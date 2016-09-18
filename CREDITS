@@ -1,0 +1,52 @@
+********************************************************************************
+3rd party software used to build this demo
+********************************************************************************
+vasm is used to build this demo
+ vasm 1.7c (c) 2002-2015 Volker Barthelmann
+ vasm M68k/CPU32/ColdFire cpu backend 2.0f (c) 2002-2015 Frank Wille
+ vasm motorola syntax module 3.8 (c) 2002-2015 Frank Wille
+ vasm binary output module 1.8 (c) 2002-2009,2013,2015 Volker Barthelmann
+ http://sun.hasenbraten.de/vasm/
+
+Background music was composed using MilkyTracker
+ http://www.milkytracker.org/
+ https://github.com/Deltafire/MilkyTracker/blob/master/COPYING
+ https://github.com/Deltafire/MilkyTracker/blob/master/AUTHORS
+
+xm2esf was used to convert xm files to esf for use with Echo
+ (c) 2010-2015 Eric Voirin alias Oerg866
+ https://github.com/oerg866/xm2esf
+
+********************************************************************************
+References
+********************************************************************************
+The following were used to learn Genesis and/or Motorola 68000 programming:
+ https://en.wikibooks.org/wiki/Genesis_Programming
+ http://www.hacking-cult.org/?r/18
+ http://md.squee.co/
+ http://bigevilcorporation.co.uk/
+ http://emu-docs.org/Genesis/Graphics/genvdp.txt
+ http://devster.proboards.com/thread/1087/echo-sound-engine-setup-tutorial
+ http://www.easy68k.com/paulrsm/doc/trick68k.htm
+ "68000 Family Assembly Language" 1994 by Alan Clements
+
+LoadPalettes, LoadTiles, and DrawTileset routines are based on examples from:
+ http://bigevilcorporation.co.uk/
+
+This very detailed Echo Sound Engine setup tutorial was consulted: 
+ http://devster.proboards.com/thread/1087/echo-sound-engine-setup-tutorial
+
+The MilkyTracker tutorials by Brandon Walsh were invaluable to creating BGM:
+ https://www.youtube.com/watch?v=N2s04YYO0Wg
+
+********************************************************************************
+Thanks
+********************************************************************************
+Thanks to lorenzo for encouraging me to learn Motorola 68000 assembly
+and creating disassembles that were helpful in the learning process. 
+
+********************************************************************************
+Inspirations
+********************************************************************************
+This demo is obviously heavily influenced by Phantasy Star II and III.
+
