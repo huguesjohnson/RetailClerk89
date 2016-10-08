@@ -38,6 +38,8 @@
 ;-------------------------------------------------------------------------------
 ; program-specific constants
 ;-------------------------------------------------------------------------------
+	include 'const_ObjectIDs.X68'
+
 ; data addresses
 ROM_ADDR_INSTRUMENTS=$80000
 ; sprite settings
@@ -106,11 +108,20 @@ MAP_CHANGED_V=$0002	; vertical
 INIT_MAP_POSITION_X=$0000	; initial x-position
 INIT_MAP_POSITION_Y=$0000	; initial y-position
 ; game states
-STATE_FLAG_PAUSED=$F	; game is paused
-STATE_FLAG_EXPLORING=$0	; player is controlling the sprite on the map
-STATE_FLAG_DIALOG=$1	; player is interacting with a dialog
+STATE_FLAG_PAUSED=$00	; game is paused
+STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
+STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
+STATE_FLAG_DIALOG_TEXT_BUILT=$03	; set when text to display is built
+STATE_FLAG_DIALOG_TEXT_OPENING=$04	; dialog is opening
+STATE_FLAG_DIALOG_TEXT_OPEN=$05	; dialog is open
+STATE_FLAG_DIALOG_TEXT_CLOSING=$06	; dialog is closing
+; object list constants
+OBJ_LIST_LENGTH=$000A	; max of 10 items in the object list
+NPC_LIST_LENGTH=$000A	; max of 10 items in the NPC list
+OBJ_LIST_LOOP_CTRL=OBJ_LIST_LENGTH+NPC_LIST_LENGTH-1
+OBJ_LIST_STRUCT_SIZE=$0006	; size of the data structure for object list entries
 ; other constants
-ROW_HEIGHT=$800000			; height of a tile row
+ROW_HEIGHT=$800000	; height of a tile row
 
 ;*******************************************************************************
 ; vectors
@@ -274,14 +285,9 @@ DrawCounter:
 	add.l	#$019C0000,d3	; initial address offset - TODO - store with pattern
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 
-LoadSprite:
-	lea     PlayerSpriteDefinition,a0	; store address of sprite definition
-	move.w  #$03,d0						; 1 sprite = 2 longs
-	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
-LoadSpriteLoop:
-	move.l  (a0)+,(VDP_DATA)
-	dbra    d0,LoadSpriteLoop
-
+;-------------------------------------------------------------------------------
+; setup map and object data
+;-------------------------------------------------------------------------------
 InitMap:
 	move.w	#INIT_MAP_POSITION_X,(MEM_MAP_POSITION_X)	; set map x-position
 	move.w	#INIT_MAP_POSITION_Y,(MEM_MAP_POSITION_Y)	; set map y-position
@@ -295,6 +301,80 @@ LoadMapCollisionData:
 LoadMapCollisionLoop:
 	move.l  (a0)+,(a1)+
 	dbra    d0,LoadMapCollisionLoop
+
+; TODO - create a data file for the objects or format for location data
+; i.e. a file that stores the tile layout, collision data, and objects
+LoadObjectData:
+	lea	MEM_OBJECT_LIST_OBJS,a0	; store address of object data
+	;---------------------------------------------------------------------------
+	; word0=Object ID (0-65535)
+	; word1[0-8]=x0 (0-511)
+	; word1[9-15]=width (0-127)
+	; word2[0-8]=y0 (0-512)
+	; word2[9-15]=height (0-127)
+	;---------------------------------------------------------------------------
+	move.w	#OBJ_SCENE_VB_8BIT,(a0)+
+	; x0=136 width=106 = 1101010 010001000 = D488
+	move.w	#$D488,(a0)+
+	; y0=136 height=26 = 0011010 010001000 = 3488
+	move.w	#$3488,(a0)+
+
+	move.w	#OBJ_SCENE_VB_HARDWARE,(a0)+
+	; x0=242 width=79 = 1001111 011110010  = 9EF2
+	move.w	#$9EF2,(a0)+
+	; y0=136 height=26 = 0011010 010001000  = 3488
+	move.w	#$3488,(a0)+
+
+	move.w	#OBJ_SCENE_VB_16BIT,(a0)+
+	; x0=351 width=90 = 1011010 101011111 = B55F
+	move.w	#$B55F,(a0)+
+	; y0=136 height=26 = 0011010 010001000 = 3488
+	move.w	#$3488,(a0)+
+
+	move.w	#OBJ_SCENE_VB_MAGS,(a0)+
+	; x0=240 width=114 = 1110010 011110000 = E4F0
+	move.w	#$E4F0,(a0)+
+	; y0=224 height=32 = 0100000 011100000 = 40E0
+	move.w	#$40E0,(a0)+
+
+	move.w	#OBJ_SCENE_VB_COUNTER,(a0)+
+	; x0=240 width=80 = 1010000 011110000 = A0F0
+	move.w	#$A0F0,(a0)+
+	; y0=200 height=16 = 0010000 011001000  = 20C8
+	move.w	#$20C8,(a0)+
+
+	move.w	#OBJ_SCENE_VB_REGISTER,(a0)+
+	; x0=320 width=16 = 0010000 101000000 = 2140
+	move.w	#$2140,(a0)+
+	; y0=162 height=32 = 0100000 010100010 = 40A2
+	move.w	#$40A2,(a0)+
+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+
+LoadNPCData:
+	bsr.w	BuildNPCObjectList
+
+;-------------------------------------------------------------------------------
+; load and setup the sprites
+;-------------------------------------------------------------------------------
+LoadSprite:
+	lea     PlayerSpriteDefinition,a0	; store address of sprite definition
+	move.w  #$03,d0						; 1 sprite = 2 longs
+	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
+LoadSpriteLoop:
+	move.l  (a0)+,(VDP_DATA)
+	dbra    d0,LoadSpriteLoop
 
 InitSprites:
 	; player	
@@ -320,6 +400,9 @@ InitSprites:
 	lea	(MEM_NPC1_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
 
+;-------------------------------------------------------------------------------
+; start the background music
+;-------------------------------------------------------------------------------
 StartBGM:
 	lea BGM_Test,a0
 	bsr Echo_PlayBGM
@@ -361,14 +444,34 @@ UpdatePause:
 	move.w	#$2000,sr		; re-enable interrupts
 TestPause:
 	btst.l	#STATE_FLAG_PAUSED,d7	; test if paused
-	beq.s	TestExploring	; not paused, branch to update sprites
+	beq.s	TestDialog	; not paused, branch to update sprites
 	bra.w	MainGameLoop	; paused, return to start of game loop
+;-------------------------------------------------------------------------------
+; determine if the player is opening or interacting with a dialog
+;-------------------------------------------------------------------------------
+TestDialog:
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	btst.l	#STATE_FLAG_DIALOG,d7 ; test game state
+	beq.w	TestExploring	; dialog not set displaying
+	bsr.w	ProcessDialog	; dialog is set, jump to process dialog sub-routine
+	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
 ; determine if sprites need to be moved and move them
 ;-------------------------------------------------------------------------------
 TestExploring:
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_EXPLORING,d7	; test game state
 	beq.w	MainGameLoopEnd	; not exploring, branch to next test
+TestDialogOpened: ; test if the player is attempting to open a dialog
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.w	#BUTTON_A_PRESSED,d6	; test if the A button was pressed
+	beq.s	MainGameLoopUpdateSprites	; A button is not pressed
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bset.l	#STATE_FLAG_DIALOG,d7	; set the dialog bit
+	move.l	d7,(MEM_GAME_STATE) ; copy game state back to d7
+	; clear MEM_CONTROL_PRESSED to prevent dialog state from flipping in loop
+	move.w	#$0000,(MEM_CONTROL_PRESSED)
+	bra.w	MainGameLoop	; return to start of game loop
 MainGameLoopUpdateSprites:
 	; test if it's time to move sprites
 	cmpi.w	#SPRITE_MOVE_FREQUENCY,(MEM_FRAME_COUNTER); is it time to move?
@@ -448,11 +551,174 @@ TrapException:
 ; work in-progress subroutines
 ;*******************************************************************************
 
+ProcessDialog:
+	move.w	#$2700,sr	; disable interrupts while managing dialogs
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+ProcessDialogTestTextBuilt:
+	btst.l	#STATE_FLAG_DIALOG_TEXT_BUILT,d7	; test game state
+	bne.s	ProcessDialogTestOpening	; text is built, move to next test
+	bsr.w	BuildNPCObjectList	; update the location of NPCs
+	bsr.w	FindActionTarget	; find the target of the player's action
+	; TODO - implement text building
+	bset.l	#STATE_FLAG_DIALOG_TEXT_BUILT,d7	; flag that text is built
+	bset.l	#STATE_FLAG_DIALOG_TEXT_OPENING,d7	; change state to opening
+ProcessDialogTestOpening:
+	btst.l	#STATE_FLAG_DIALOG_TEXT_OPENING,d7	; test if the dialog is opening
+	bne.s	ProcessDialogTestOpen	; dialog is not opening, move to next test
+	; TODO - implement dialog opening animation
+	bset.l	#STATE_FLAG_DIALOG_TEXT_OPEN,d7	; change state to open when done
+ProcessDialogTestOpen:
+	btst.l	#STATE_FLAG_DIALOG_TEXT_OPEN,d7	; test if the dialog is opening
+	bne.s	ProcessDialogTestClosing	; dialog is not open, move to next test
+	; wait until a button is pressed to clear the dialog
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	cmpi.w	#$0000,d6	; are any buttons pressed?
+	beq.s	ExitProcessDialog ; no buttons are pressed, exit
+ProcessDialogTestClosing:
+	btst.l	#STATE_FLAG_DIALOG_TEXT_CLOSING,d7	; test if the dialog is opening
+	bne.s	ProcessDialogClearFlags	; dialog is not closing, exit
+	; TODO - implement dialog closing animation
+	nop
+ProcessDialogClearFlags:	; clear flags when done
+	bclr.l	#STATE_FLAG_DIALOG,d7
+	bclr.l	#STATE_FLAG_DIALOG_TEXT_BUILT,d7
+	bclr.l	#STATE_FLAG_DIALOG_TEXT_CLOSING,d7
+ExitProcessDialog:
+	move.l	d7,(MEM_GAME_STATE)	; save any changes made to the game state
+	move.w	#$2000,sr		; re-enable interrupts
+	rts
 
+FindActionTarget:	; note - d6 and d7 are used by caller
+	; d4 - store map adjusted player sprite x
+	move.w	(MEM_PLAYER_SPRITE_X),d4	; move base sprite x
+	add.w	(MEM_MAP_POSITION_X),d4	; adjust for map position
+	; d5 - store map adjusted player sprite y
+	move.w	(MEM_PLAYER_SPRITE_Y),d5	; move base sprite y
+	add.w	(MEM_MAP_POSITION_Y),d5	; adjust for map position
+	add.w	#SPRITE_COLLISION_Y,d5	; adjust for collision Y
+	; determine what the player is looking at
+	move.w	(MEM_PLAYER_SPRITE_DIRECTION),d3	; copy direction
+	cmpi.w	#DIRECTION_UP,d3	; test if sprite is facing up
+	bne.s	.1 	; branch if not
+	subq	#SPRITE_COLLISION_UP,d5	; adjust y
+	bra.w	.4	; branch to object list search
+.1	; down
+	cmpi.w	#DIRECTION_DOWN,d3	; test if sprite is facing down
+	bne.s	.2 	; branch if not
+	add.w	#SPRITE_COLLISION_DOWN,d5	; adjust y
+	bra.w	.4	; branch to object list search
+.2	; left
+	cmpi.w	#DIRECTION_LEFT,d3	; test if sprite is facing left
+	bne.s	.3 	; branch if not
+	subq	#SPRITE_COLLISION_LEFT,d4	; adjust x
+	bra.w	.4	; branch to object list search
+.3	; right
+	cmpi.w	#DIRECTION_RIGHT,d3	; test if sprite is facing right
+	bne.s	.4 	; not reachable unless there's a bug in MovePlayer
+	add.w	#SPRITE_COLLISION_RIGHT,d4	; adjust x
+.4
+	; search object list	
+	lea	MEM_OBJECT_LIST_OBJS,a0	; point a0 to the object list
+	move.w	#OBJ_LIST_LOOP_CTRL,d3	; use d3 for loop control
+	;---------------------------------------------------------------------------
+	; hit test = ((htx>=x1)&&(htx<=x0))&&((hty>y0)&&(hty<y1))
+	; where
+	; htx = sprite x adjusted for map scroll
+	; hty = sprite y adjusted for map scorll
+	; x0 = right edge of object rect
+	; x1 = left edge of object rect
+	; y0 = bottom edge of object rect
+	; y1 = top edge of object rect
+	;---------------------------------------------------------------------------
+FindActionTargetObjectLoop:
+	;---------------------------------------------------------------------------
+	; a0   = word0=Object ID (0-65535)
+	; a0+2 = word1[0-8]=x0 (0-511) word1[9-15]=width (0-127)
+	; a0+4 = word2[0-8]=y0 (0-512) word2[9-15]=height (0-127)
+	;---------------------------------------------------------------------------
+	move.w	(a0),(MEM_ACTION_TARGET_OBJID)	; copy the current object id
+	cmpi.w	#OBJ_NOTHING,(MEM_ACTION_TARGET_OBJID)	; looking at nothing?
+	beq.w	FindActionTargetObjectLoopDbra	; if so loop to next object
+	; test if sprite x is between left and right edge
+	move.w	(2,a0),d2	; copy word 1 (x and width)
+	move.w	d2,d1	; use d1 for width
+	and.w	#%0000000111111111,d2	; clear bits[9-15]
+	cmp.w	d2,d4	; (htx>=x1)
+	blt.w	FindActionTargetObjectLoopDbra ; loop if sprite x < object left
+	; need to shift 9 bits right
+	lsr.w	#$08,d1	; shift 8
+	lsr.w	#$01,d1	; shift 1 more
+	add.w	d1,d2	; add width to left edge to get right edge
+	cmp.w	d2,d4	; (htx<=x0)
+	bgt.w	FindActionTargetObjectLoopDbra ; loop if sprite x > object right
+	; test if sprite y is between top and bottom edge
+	move.w	(4,a0),d2	; copy word 2 (y and width)
+	move.w	d2,d1	; use d1 for height
+	and.w	#%0000000111111111,d2	; clear bits[9-15]
+	cmp.w	d2,d5	; (hty>y0)
+	blt.w	FindActionTargetObjectLoopDbra ; loop if sprite y < object top
+	; need to shift 9 bits right
+	lsr.w	#$08,d1	; shift 8
+	lsr.w	#$01,d1	; shift 1 more
+	add.w	d1,d2	; add height to top edge to get bottom edge
+	cmp.w	d2,d5	; (hty<y1)
+	blt.w	ExitFindActionTarget ; if last test passes then we have a hit
+FindActionTargetObjectLoopDbra:
+	adda.w	#OBJ_LIST_STRUCT_SIZE,a0	; move to next object list entry
+	dbra    d3,FindActionTargetObjectLoop	; decrement and loop
+ActionTargetNotFound:
+	move.w	#OBJ_NOTHING,(MEM_ACTION_TARGET_OBJID)	; nothing by default
+ExitFindActionTarget:
+	rts
 
-
-
-
+BuildNPCObjectList:	; note - d6 and d7 are used by caller
+	lea	MEM_OBJECT_LIST_NPCS,a0	; store address of object data
+	;---------------------------------------------------------------------------
+	; word0=Object ID (0-65535)
+	; word1[0-8]=x0 (0-511)
+	; word1[9-15]=width (0-127)
+	; word2[0-8]=y0 (0-512)
+	; word2[9-15]=height (0-127)
+	;---------------------------------------------------------------------------
+	move.w	#OBJ_NPC_DANI,(a0)+
+	move.w	(MEM_NPC1_SPRITE_X),d5	; store x position in d5
+	subq	#$0008,d5	; buffer area around sprite
+	add.w	(MEM_MAP_POSITION_X),d5	; adjust for map position
+	or.w	#%0100000000000000,d5	; append sprite width+buffer to bits [9-15]
+	move.w	d5,(a0)+	; store word 1
+	move.w	(MEM_NPC1_SPRITE_Y),d5	; store y position in d5
+	add.w	(MEM_MAP_POSITION_Y),d5	; adjust for map position
+	subq	#$0008,d5	; buffer area around sprite
+	or.w	#%0110000000000000,d5	; append sprite height+buffer to bits [9-15]
+	move.w	d5,(a0)+	; store word 2
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#OBJ_NOTHING,(a0)+
+	move.w	#$0000,(a0)+
+	move.w	#$0000,(a0)+
+	rts
 
 ;*******************************************************************************
 ; mostly stable subroutines
