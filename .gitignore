@@ -1,4 +1,5 @@
 *.sh~
-src/collision-maps/JBMP2ASM.java~
+*.java~
 *.X68~
 *.68k~
+src/RetailClerk89.bin

@@ -20,12 +20,11 @@ SetSpritePattern:
 	;---------------------------------------------------------------------------
 	; setup	
 	movea.l	a6,a5	; store address in a5 because it is manipulated
-	move.w	(a5),d5	; copy sprite id to d5
 	; test if it's time to update the animation frame and if so update it
 	adda.l	#$C,a5	; move up to a5+C -> SPRITE_STEP_COUNTER
 	addq	#$1,(a5)	; increment counter
 	cmpi.w	#SPRITE_ANIMATION_STEPS,(a5); is it time to update animation frame?
-	ble.s	DrawSprite	; animation hasn't changed, draw the sprite 
+	ble.s	ExitSetSpritePattern	; animation hasn't changed, draw the sprite 
 IncrementSpriteFrame:
 	move.w	#$0000,(a5)	; reset SPRITE_STEP_COUNTER
 	suba.l	#$2,a5	; move back to a5+A -> SPRITE_FRAME

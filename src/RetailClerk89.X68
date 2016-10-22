@@ -168,7 +168,7 @@ InitGameState:
 ;-------------------------------------------------------------------------------
 	; a0 also needs to contain the starting address for the call to LoadTiles
 	lea	TransparentTileStart,a0	; load address of first tileset to a0
-	lea CounterTilesHighEnd,a1	; load address of last tileset to a1
+	lea	CounterTilesHighEnd,a1	; load address of last tileset to a1
 	move.w 	a1,d0			; copy end address to d0
 	sub.w	a0,d0			; subtract the start address to get length
 	divu.w	#$0004,d0		; divide by 4 go setup call to LoadTiles
@@ -369,8 +369,8 @@ LoadNPCData:
 ; load and setup the sprites
 ;-------------------------------------------------------------------------------
 LoadSprite:
-	lea     PlayerSpriteDefinition,a0	; store address of sprite definition
-	move.w  #$03,d0						; 1 sprite = 2 longs
+	lea     SpriteZeroDefinition,a0	; store address of sprite definition
+	move.w  #$05,d0	; 1 sprite = 2 longs, 3 sprites = (6-1)
 	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
 LoadSpriteLoop:
 	move.l  (a0)+,(VDP_DATA)
@@ -378,7 +378,7 @@ LoadSpriteLoop:
 
 InitSprites:
 	; player	
-	move.w	#$0000,(MEM_PLAYER_SPRITE_ID)	; player sprite is the 1st entry
+	move.w	#$0001,(MEM_PLAYER_SPRITE_ID)	; player sprite is the 1st entry
 	move.w	#SPRITE_PLAYER_INIT_X,(MEM_PLAYER_SPRITE_X)	; starting x location
 	move.w	#SPRITE_PLAYER_INIT_Y,(MEM_PLAYER_SPRITE_Y)	; starting y location
 	move.w	#SPRITE_PLAYER_PATTERN,(MEM_PLAYER_SPRITE_PATTERN_INDEX) ; pattern
@@ -388,7 +388,7 @@ InitSprites:
 	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
 	; NPC1	
-	move.w	#$0001,(MEM_NPC1_SPRITE_ID)	; NPC sprite is the 2nd entry
+	move.w	#$0002,(MEM_NPC1_SPRITE_ID)	; NPC sprite is the 2nd entry
 	move.w	#SPRITE_NPC1_INIT_X,(MEM_NPC1_SPRITE_X)	; starting x location
 	move.w	#SPRITE_NPC1_INIT_Y,(MEM_NPC1_SPRITE_Y)	; starting y location
 	move.w	#SPRITE_NPC1_PATTERN,(MEM_NPC1_SPRITE_PATTERN_INDEX) ; pattern
@@ -513,6 +513,8 @@ MainGameLoopSetScroll:
 ;	bsr.w	SetMapScroll							; else scroll the map
 
 MainGameLoopEnd:
+	; TODO - only call this when needed (exploring mode & sprites have moved)
+	bsr.w	OrderSprites	; reorder the sprites
 	bra.w	MainGameLoop	; return to start of game loop
 
 ;-------------------------------------------------------------------------------
@@ -539,7 +541,8 @@ VBlank:
 	addq	#$1,(MEM_FRAME_COUNTER)		; increment frame counter
 VBlankReadJoypads:
 	bsr.w	ReadJoypads					; read controllers
-
+VBlankOrderSprites:
+;	bsr.w	OrderSprites	; reorder the sprites
 VBlankExit:
 	move.w	#$0000,(MEM_VBLANKFLAG)		; flag that vblank is complete
 	rte
@@ -550,6 +553,52 @@ TrapException:
 ;*******************************************************************************
 ; work in-progress subroutines
 ;*******************************************************************************
+
+; TODO - this will need to loop through all sprites on screen
+OrderSprites:
+	move.l	#VDP_VRAM_WRITE_SPRITE,d5
+	move.w	(MEM_NPC1_SPRITE_Y),d6	; copy NPC Y to d1
+	cmp.w	(MEM_PLAYER_SPRITE_Y),d6	; test which is higher
+	bge.s	.1	; branch if NPC Y > player Y
+	; NPC Y < player Y -> sprite order is 0,1,2
+	; sprite zero link field
+	add.l	#$00020000,d5	; move to index 2
+	move.w	#$0700,d6	; width=16,height=32 - TODO - derive or constant
+	add.w	(MEM_PLAYER_SPRITE_ID),d6	; link to npc sprite id
+	move.l	d5,(VDP_CONTROL)	; set write location in VDP (sprite[0] link)
+	move.w	d6,(VDP_DATA)	; store new sprite link field
+	; player link field
+	add.l	#$00080000,d5	; move to index 2 of next sprite
+	move.w	#$0700,d6	; width=16,height=32 - TODO - derive or constant
+	add.w	(MEM_NPC1_SPRITE_ID),d6	; link to npc sprite id
+	move.l	d5,(VDP_CONTROL)	; set write location in VDP (sprite[0] link)
+	move.w	d6,(VDP_DATA)	; store new sprite link field
+	; NPC1 link field
+	add.l	#$00080000,d5	; move to index 2 of next sprite
+	move.w	#$0700,d6	; width=16,height=32 - TODO - derive or constant
+	move.l	d5,(VDP_CONTROL)	; set write location in VDP (sprite[0] link)
+	move.w	d6,(VDP_DATA)	; store new sprite link field
+	rts
+.1	; NPC Y > player Y -> sprite order is 0,2,1
+	; sprite zero link field
+	add.l	#$00020000,d5	; move to index 2
+	move.w	#$0700,d6	; width=16,height=32 - TODO - derive or constant
+	add.w	(MEM_NPC1_SPRITE_ID),d6	; link to npc sprite id
+	move.l	d5,(VDP_CONTROL)	; set write location in VDP (sprite[0] link)
+	move.w	d6,(VDP_DATA)	; store new sprite link field
+	; player link field
+	add.l	#$00080000,d5	; move to index 2 of next sprite
+	move.w	#$0700,d6	; width=16,height=32 - TODO - derive or constant
+	add.w	(MEM_NPC1_SPRITE_ID),d6	; link to npc sprite id
+	move.l	d5,(VDP_CONTROL)	; set write location in VDP (sprite[0] link)
+	move.w	d6,(VDP_DATA)	; store new sprite link field
+	; NPC1 link field
+	add.l	#$00080000,d5	; move to index 2 of next sprite
+	move.w	#$0700,d6	; width=16,height=32 - TODO - derive or constant
+	add.w	(MEM_PLAYER_SPRITE_ID),d6	; link to npc sprite id
+	move.l	d5,(VDP_CONTROL)	; set write location in VDP (sprite[0] link)
+	move.w	d6,(VDP_DATA)	; store new sprite link field
+	rts
 
 ProcessDialog:
 	move.w	#$2700,sr	; disable interrupts while managing dialogs
