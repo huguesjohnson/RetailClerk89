@@ -21,9 +21,6 @@ InitVDP:
 InitVDPDataLoop:
 	move.w	(a0)+,(VDP_CONTROL)	; write the init data
 	dbf	d1,InitVDPDataLoop		; decrement value of d1 and loop if not 0
-InitVDPClearScreen:
-	move.l	#$40000080,(VDP_CONTROL); Set VDP to CRAM write
-	move.w	#0,(VDP_DATA)			; write 0 to the data port
 
 ClearRAM:
 	lea	(RAM_START).l,a0
@@ -43,5 +40,3 @@ InitEcho:
 	lea (EchoPointerList),a0
 	bsr.w Echo_Init
 
-InitEnableInterrupts:
-	move.w	#$2000,sr

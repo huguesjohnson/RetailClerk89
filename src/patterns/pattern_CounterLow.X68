@@ -1,3 +1,7 @@
+	dc.w	$0003	; 4 rows
+
+	dc.w	$000D	; 15 columns
+
 	; row 00
 	dc.w	$0D
 	dc.w	$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E

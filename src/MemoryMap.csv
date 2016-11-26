@@ -7,6 +7,9 @@ MEM_FRAME_COUNTER,2,current frame - cycles from 0-59
 MEM_CONTROL_HELD,2,store value of a held button
 MEM_CONTROL_PRESSED,2,store value of a pressed button
 MEM_GAME_STATE,4,used to control the main loop flow
+MEM_DIALOG_FLAGS,4,used to manage dialogs
+MEM_DIALOG_TEXT,4,pointer to location of dialog text
+MEM_DIALOG_VPD,4,pointer to VPD location to write text
 MEM_PLAYER_SPRITE_ID,2,sprite table id of player sprite
 MEM_PLAYER_SPRITE_X,2,virtual x position of the player
 MEM_PLAYER_SPRITE_Y,2,virtual y position of the player

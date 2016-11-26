@@ -72,7 +72,6 @@ UpdateSpritePattern:
 	move.w	#$0010,d7	; set animation frame to 2*8
 .3: ; add (frame*8) to pattern
 	add.w	d7,d6 	; add result to d6
-	add.w	#$2000,d6	; TODO compute value using palette id
 DrawSprite:
 	move.l	d5,(VDP_CONTROL)	; set write location in VDP
 	move.w	d6,(VDP_DATA)		; write the new pattern

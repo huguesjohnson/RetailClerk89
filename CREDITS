@@ -13,9 +13,16 @@ Background music was composed using MilkyTracker
  https://github.com/Deltafire/MilkyTracker/blob/master/COPYING
  https://github.com/Deltafire/MilkyTracker/blob/master/AUTHORS
 
+This demo uses the Echo Sound Driver 1.21
+ (c) 2010-2013 Javier Degirolmo
+ https://github.com/sikthehedgehog/Echo
+
 xm2esf was used to convert xm files to esf for use with Echo
  (c) 2010-2015 Eric Voirin alias Oerg866
  https://github.com/oerg866/xm2esf
+
+Font is based off Deathwake font by Zee-3
+ http://www.zee-3.com/pickfordbros/archive/bitmapfonts.php
 
 ********************************************************************************
 References

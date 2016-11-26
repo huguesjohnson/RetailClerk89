@@ -68,7 +68,7 @@ PlayerSpriteDefinition:
 	; index + 4 = priority, palette, flip, pattern
 	;---------------------------------------------------------------------------
 			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000000000101	; priority=0,palette=2,vflip=0,hflip=0,pattern=5
+	dc.w 	%0110000100000000	; priority=0,palette=2,vflip=0,hflip=0,pattern=5
 	;---------------------------------------------------------------------------
 	; index + 6 = horizontal coordinate
 	; ---- --yy yyyy yyyy
@@ -95,7 +95,7 @@ NPCSprite1Definition:
 	; index + 4 = priority, palette, flip, pattern
 	;---------------------------------------------------------------------------
 			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000001100101	;priority=0,palette=2,vflip=0,hflip=0,pattern=65
+	dc.w 	%0110000101100000	;priority=0,palette=2,vflip=0,hflip=0,pattern=65
 	;---------------------------------------------------------------------------
 	; index + 6 = horizontal coordinate
 	; ---- --yy yyyy yyyy

@@ -43,18 +43,19 @@
 ; data addresses
 ROM_ADDR_INSTRUMENTS=$80000
 ; sprite settings
+SPRITE_BASE_PATTERN=$6100	; base pattern of sprites
 DEFAULT_SPRITE_HEIGHT=$0020	; how many pixels tall a sprite is by default
 DEFAULT_SPRITE_WIDTH=$0010	; how many pixels wide a sprite is by default
 SPRITE_FRAME_COUNT=$0003	; how many animation frames there are for sprites
 SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
 SPRITE_ANIMATION_STEPS=$000A	; how many steps between animation frame changes
 SPRITE_STEP_PIXELS=$0001	; how many pixels to move on each sprite step
-SPRITE_PLAYER_PATTERN=$4005	; VDP tile number for the player sprite pattern
+SPRITE_PLAYER_PATTERN=SPRITE_BASE_PATTERN	; base pattern for player sprite
 SPRITE_PLAYER_HEIGHT=DEFAULT_SPRITE_HEIGHT	; player sprite height
 SPRITE_PLAYER_WIDTH=DEFAULT_SPRITE_WIDTH	; player sprite 
 SPRITE_PLAYER_INIT_X=$0100	; starting x location of player sprite
 SPRITE_PLAYER_INIT_Y=$0100	; starting y location of player sprite
-SPRITE_NPC1_PATTERN=$4065	; VDP tile number for the player sprite pattern
+SPRITE_NPC1_PATTERN=SPRITE_BASE_PATTERN+$60	; base pattern for npc1 sprite
 SPRITE_NPC1_HEIGHT=DEFAULT_SPRITE_HEIGHT	; player sprite height
 SPRITE_NPC1_WIDTH=DEFAULT_SPRITE_WIDTH	; player sprite 
 SPRITE_NPC1_INIT_X=$0180	; starting x location of player sprite
@@ -81,6 +82,10 @@ VDP_VRAM_WRITE_SPRITE=$78000002		; register 5
 VDP_VRAM_WRITE_B=$60000003			; register 4
 VDP_VRAM_WRITE_WINDOW=$60000002		; register 3
 VDP_VRAM_WRITE_VSCROLL=$40000010	; vscroll write
+; VPD memory locations
+SCENE_VDP=VDP_VRAM_WRITE			; write location for scene tiles
+FONT_VDP=SCENE_VDP+$12000000		; write location for font tiles
+SPRITE_VDP=SCENE_VDP+$20000000		; write location for sprite tiles
 ; screen & plane sizes
 DISPLAY_PIXELS_X=$0140				; width of physical display
 DISPLAY_PIXELS_Y=$00E0				; height of physical display
@@ -107,19 +112,31 @@ MAP_CHANGED_V=$0002	; vertical
 ; initial map values
 INIT_MAP_POSITION_X=$0000	; initial x-position
 INIT_MAP_POSITION_Y=$0000	; initial y-position
+DEFAULT_COLLISION_DATA_SIZE=$7F	; 128 longs of collision data by default 
 ; game states
 STATE_FLAG_PAUSED=$00	; game is paused
 STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
 STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
-STATE_FLAG_DIALOG_TEXT_BUILT=$03	; set when text to display is built
-STATE_FLAG_DIALOG_TEXT_OPENING=$04	; dialog is opening
-STATE_FLAG_DIALOG_TEXT_OPEN=$05	; dialog is open
-STATE_FLAG_DIALOG_TEXT_CLOSING=$06	; dialog is closing
+; high word of MEM_DIALOG_FLAGS is used to track the state
+DIALOG_FLAG_TEXT_BUILT=$10	; set when text to display is built
+DIALOG_FLAG_TEXT_OPENING=$11	; dialog is opening
+DIALOG_FLAG_TEXT_DRAWING=$12	; dialog text is drawing
+DIALOG_FLAG_TEXT_OPEN=$13	; dialog is open
+DIALOG_FLAG_TEXT_CLOSING=$14	; dialog is closing
 ; object list constants
 OBJ_LIST_LENGTH=$000A	; max of 10 items in the object list
 NPC_LIST_LENGTH=$000A	; max of 10 items in the NPC list
 OBJ_LIST_LOOP_CTRL=OBJ_LIST_LENGTH+NPC_LIST_LENGTH-1
 OBJ_LIST_STRUCT_SIZE=$0006	; size of the data structure for object list entries
+; dialog constants
+DIALOG_PATTERN_SIZE=$00C4	; size of the dialog pattern
+DIALOG_BASE_TILE=$8090	; base file for dialogs
+DIALOG_ROWCOL=$09900000	; row 19 column 16=(128*19)+16=2448=990
+DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
+DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
+LF=$0A	; '\n' - used to break text into multiple lines
+FF=$0C	; form feed - used to break text into sections
+ETX=$03	; end of text
 ; other constants
 ROW_HEIGHT=$800000	; height of a tile row
 
@@ -143,7 +160,6 @@ ROW_HEIGHT=$800000	; height of a tile row
 ;*******************************************************************************
 
 Main:
-	move.w	#$2700,sr		; disable interrupts
 
 InitCounters:
 	move.w	#$0000,(MEM_VBLANK_COUNTER)
@@ -156,219 +172,39 @@ InitGameState:
 	move.l	d0,(MEM_GAME_STATE)
 
 ;-------------------------------------------------------------------------------
-; load palettes
+; load the initial scene
 ;-------------------------------------------------------------------------------
-	; setup call to LoadPalettes
-	lea	PaletteStoreA,a0	; address of the starting palette to a0
-	move.w	#$0004,d0		; number of palettes to load
-	bsr.w	LoadPalettes	; branch to LoadPalettes subroutine
+	lea	SceneVB,a6	; address of the initial scene
+	bsr.w	LoadScene	; branch to LoadScene subroutine
 
-;-------------------------------------------------------------------------------
-; load tiles
-;-------------------------------------------------------------------------------
-	; a0 also needs to contain the starting address for the call to LoadTiles
-	lea	TransparentTileStart,a0	; load address of first tileset to a0
-	lea	CounterTilesHighEnd,a1	; load address of last tileset to a1
-	move.w 	a1,d0			; copy end address to d0
-	sub.w	a0,d0			; subtract the start address to get length
-	divu.w	#$0004,d0		; divide by 4 go setup call to LoadTiles
-	bsr.w	LoadTiles		; branch to LoadTiles subroutine
+	move.w	#$2700,sr		; disable interrupts
 
 ;-------------------------------------------------------------------------------
-; draw the background
+; load the font
 ;-------------------------------------------------------------------------------
-FillBackground:
-;-------------------------------------------------------------------------------
-; Pattern notes
-; bits 0-10 = pattern number 
-; bit 11 = horizontal reverse bit (1=reverse)
-; bit 12 = vertical reverse bit (1=reverse)
-; bit 13 = palette low bit
-; bit 14 = palette high bit
-; bit 15 = priority (0=low, 1=high)
-;-------------------------------------------------------------------------------
-	move.w	#$0001,d0					; store tile pattern in d0
-	move.b	#%0011,d3					; eor value used to toggle tiles
-	move.l	#VDP_VRAM_WRITE_B,(VDP_CONTROL)	; initial drawing location
-	move.w	#$001F,d1					; 32 rows
-FillBackgroundRowLoop:
-	move.w	#$003F,d2					; 64 columns per row
-FillBackgroundColLoop:
-	move.w  d0,(VDP_DATA)				; copy the pattern to VPD
-	eor.b	d3,d0						; flip between patterns
-	dbra    d2,FillBackgroundColLoop	; loop to next tile
-	eor.b	#%0010,d0					; flip between tiles 1 and 3
-	eor.b	#%0100,d3					; flip the flip pattern
-	dbra    d1,FillBackgroundRowLoop	; loop to next tile
-
-DrawLowPlaneScenery:
-	; draw shelves with merchandise
-	move.w	#$00C5,d0		; store base tile ID in d0 - TODO - constant value
-	move.l	#VDP_VRAM_WRITE_B,d4	; initial address offset
-	; start drawing the counter at row 1, column 0 = 128
-	; 128 = 0080 = 0000 0000 1000 0000
-	add.l	#$00800000,d4	; initial address offset - TODO - store with pattern
-	move.l	d4,(VDP_CONTROL)	; initial drawing location
-	move.w	#$0002,d1	; 3 rows
-DrawLowPlaneSceneryRowLoop:
-	move.w	#$0014,d2	; 64 columns per row / 3 tiles in pattern
-DrawLowPlaneSceneryColLoop:
-	move.w  d0,(VDP_DATA)	; copy the pattern to VPD
-	addq	#$1,d0			; move to the 2nd tile in the pattern
-	move.w  d0,(VDP_DATA)	; copy the pattern to VPD
-	addq	#$1,d0			; move to the 3rd tile in the pattern
-	move.w  d0,(VDP_DATA)	; copy the pattern to VPD
-	subq	#$2,d0			; move back to the first tile in the pattern
-	dbra    d2,DrawLowPlaneSceneryColLoop	; loop to next tile
-	add.w	#$2000,d0		; increment the palette
-	dbra    d1,DrawLowPlaneSceneryRowLoop	; loop to next tile
-
-DrawFrame:
-	move.w	#$80C8,d0	; store base tile ID in d0 - TODO - constant value
-	move.l	#VDP_VRAM_WRITE_A,d4	; initial address offset
-	move.l	d4,(VDP_CONTROL)		; initial drawing location
-	move.w  d0,(VDP_DATA)			; copy the first tile to VPD
-	; draw the top row
-	move.w	#$80C9,d0	; store tile ID in d0 - TODO - constant value
-	move.w	#$0025,d2	; 38 columns to draw
-DrawFrameTopLoop:
-	move.w  d0,(VDP_DATA) ; copy tile to VPD
-	dbra    d2,DrawFrameTopLoop	; loop to next tile
-	move.w	#$80CA,d0	; store tile ID in d0 - TODO - constant value
-	move.w  d0,(VDP_DATA) ; copy last tile to VPD
-	; setup for drawing the side	
-	move.w	#$80CB,d0	; store tile ID of side in d0 - TODO - constant value
-	move.w	#$0016,d2	; 23 rows to draw
-	move.l	#VDP_VRAM_WRITE_A,d4	; initial address offset
-	add.l	#$00800000,d4		; increment drawing location to move to next row
-DrawFrameSideLoop:
-	move.l	d4,(VDP_CONTROL)		; update drawing location
-	move.w  d0,(VDP_DATA) 			; copy tile to VPD
-	add.l	#$004E0000,d4			; column 78 (78x4=312px)
-	move.l	d4,(VDP_CONTROL)		; update drawing location
-	move.w  d0,(VDP_DATA) 			; copy tile to VPD
-	add.l	#$00320000,d4			; increment drawing location
-	dbra    d2,DrawFrameSideLoop	; loop to next tile
-DrawStoreFront:
-	; setup call to DrawTileset
-	lea	PatternStoreFrontStart,a1	; store the high starting address in a2
-	; tile 0 for the counter pattern should be at index 6Ch
-	move.w	#$80CC,d0	; store base tile ID in d0 - TODO - constant value
-	move.w	#$0003,d1	; 4 rows in the pattern - TODO - store with pattern
-	move.w	#$0027,d2	; 40 columns in the pattern - TODO - store with pattern
-	move.l	#VDP_VRAM_WRITE_A,d3	; initial address offset
-	; draw the high plane at row 24 (24*128=3072), column 0 (0px) = 3072 = C00
-	move.l	#VDP_VRAM_WRITE_A,d3	; initial address offset
-	add.l	#$0C000000,d3	; initial address offset - TODO - store with pattern
-	bsr.w	DrawTileset		; branch to DrawTileset subroutine
-
-DrawCounter: 
-	; setup call to DrawTileset for low tiles
-	lea	PatternCounterLowStart,a1	; store the low starting address in a1
-	; tile 0 for the counter pattern should be at index 81h, palette 01, low
-	; 0010 0000 1000 0001 = 2081
-	move.w	#$20E1,d0	; store base tile ID in d0 - TODO - constant value
-	move.w	#$0003,d1	; 4 rows in the pattern - TODO - store with pattern
-	move.w	#$000D,d2	; 15 columns in the pattern - TODO - store with pattern
-	move.l	#VDP_VRAM_WRITE_A,d3	; initial address offset
-	; start drawing at row 10, column 28 (112px) = 1280+28 = 51C
-	add.l	#$051C0000,d3	; initial address offset - TODO - store with pattern
-	bsr.w	DrawTileset		; branch to DrawTileset subroutine
-	; setup call to DrawTileset for high tiles
-	lea	PatternCounterHighStart,a1	; store the high starting address in a1
-	; tile 0 for the counter pattern should be at index 91h, palette 01, high
-	move.w	#$A0F1,d0	; store base tile ID in d0 - TODO - constant value
-	move.w	#$0006,d1	; 7 rows in the pattern - TODO - store with pattern
-	move.w	#$000D,d2	; 14 columns in the pattern - TODO - store with pattern
-	move.l	#VDP_VRAM_WRITE_A,d3	; initial address offset
-	; start drawing at row 3, column 28 (112px) = 394+28 = 19C
-	add.l	#$019C0000,d3	; initial address offset - TODO - store with pattern
-	bsr.w	DrawTileset		; branch to DrawTileset subroutine
-
-;-------------------------------------------------------------------------------
-; setup map and object data
-;-------------------------------------------------------------------------------
-InitMap:
-	move.w	#INIT_MAP_POSITION_X,(MEM_MAP_POSITION_X)	; set map x-position
-	move.w	#INIT_MAP_POSITION_Y,(MEM_MAP_POSITION_Y)	; set map y-position
-	move.w	#$FFFF,(MEM_FLAG_MAP_POSITION_CHANGED)	; flag to reset the scroll
-	bsr.w	SetMapScroll				; set the map position
-
-LoadMapCollisionData:
-	lea	MapStoreCollision,a0	; store address of collision data
-	lea	MEM_COLLISION_DATA,a1	; store destination memory location
-	move.w	#$7F,d0				; 128 longs of collision data
-LoadMapCollisionLoop:
-	move.l  (a0)+,(a1)+
-	dbra    d0,LoadMapCollisionLoop
-
-; TODO - create a data file for the objects or format for location data
-; i.e. a file that stores the tile layout, collision data, and objects
-LoadObjectData:
-	lea	MEM_OBJECT_LIST_OBJS,a0	; store address of object data
-	;---------------------------------------------------------------------------
-	; word0=Object ID (0-65535)
-	; word1[0-8]=x0 (0-511)
-	; word1[9-15]=width (0-127)
-	; word2[0-8]=y0 (0-512)
-	; word2[9-15]=height (0-127)
-	;---------------------------------------------------------------------------
-	move.w	#OBJ_SCENE_VB_8BIT,(a0)+
-	; x0=136 width=106 = 1101010 010001000 = D488
-	move.w	#$D488,(a0)+
-	; y0=136 height=26 = 0011010 010001000 = 3488
-	move.w	#$3488,(a0)+
-
-	move.w	#OBJ_SCENE_VB_HARDWARE,(a0)+
-	; x0=242 width=79 = 1001111 011110010  = 9EF2
-	move.w	#$9EF2,(a0)+
-	; y0=136 height=26 = 0011010 010001000  = 3488
-	move.w	#$3488,(a0)+
-
-	move.w	#OBJ_SCENE_VB_16BIT,(a0)+
-	; x0=351 width=90 = 1011010 101011111 = B55F
-	move.w	#$B55F,(a0)+
-	; y0=136 height=26 = 0011010 010001000 = 3488
-	move.w	#$3488,(a0)+
-
-	move.w	#OBJ_SCENE_VB_MAGS,(a0)+
-	; x0=240 width=114 = 1110010 011110000 = E4F0
-	move.w	#$E4F0,(a0)+
-	; y0=224 height=32 = 0100000 011100000 = 40E0
-	move.w	#$40E0,(a0)+
-
-	move.w	#OBJ_SCENE_VB_COUNTER,(a0)+
-	; x0=240 width=80 = 1010000 011110000 = A0F0
-	move.w	#$A0F0,(a0)+
-	; y0=200 height=16 = 0010000 011001000  = 20C8
-	move.w	#$20C8,(a0)+
-
-	move.w	#OBJ_SCENE_VB_REGISTER,(a0)+
-	; x0=320 width=16 = 0010000 101000000 = 2140
-	move.w	#$2140,(a0)+
-	; y0=162 height=32 = 0100000 010100010 = 40A2
-	move.w	#$40A2,(a0)+
-
-	move.w	#OBJ_NOTHING,(a0)+
-	move.w	#$0000,(a0)+
-	move.w	#$0000,(a0)+
-	move.w	#OBJ_NOTHING,(a0)+
-	move.w	#$0000,(a0)+
-	move.w	#$0000,(a0)+
-	move.w	#OBJ_NOTHING,(a0)+
-	move.w	#$0000,(a0)+
-	move.w	#$0000,(a0)+
-	move.w	#OBJ_NOTHING,(a0)+
-	move.w	#$0000,(a0)+
-	move.w	#$0000,(a0)+
-
-LoadNPCData:
-	bsr.w	BuildNPCObjectList
+LoadFontTiles:
+	move.l	#FontTilesStart,d1	; start address of tileset
+	move.l	#FontTilesEnd,d0	; end address of tileset
+	sub.l	d1,d0	; subtract the start address to get length
+	divu.w	#$0004,d0	; divide by 4 to setup call to LoadTiles
+	movea.l	d1,a0	; set address of first tile to load
+	move.l	#FONT_VDP,d1	; set initial write location
+	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 
 ;-------------------------------------------------------------------------------
 ; load and setup the sprites
 ;-------------------------------------------------------------------------------
-LoadSprite:
+
+LoadSpriteTiles:
+	move.l	#SpriteTilesStart,d1	; start address of tileset
+	move.l	#SpriteTilesEnd,d0	; end address of tileset
+	sub.l	d1,d0	; subtract the start address to get length
+	divu.w	#$0004,d0	; divide by 4 to setup call to LoadTiles
+	movea.l	d1,a0	; set address of first tile to load
+	move.l	#SPRITE_VDP,d1	; set initial write location
+	bsr.w	LoadTiles	; branch to LoadTiles subroutine
+
+LoadSprites:
 	lea     SpriteZeroDefinition,a0	; store address of sprite definition
 	move.w  #$05,d0	; 1 sprite = 2 longs, 3 sprites = (6-1)
 	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
@@ -400,12 +236,8 @@ InitSprites:
 	lea	(MEM_NPC1_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
 
-;-------------------------------------------------------------------------------
-; start the background music
-;-------------------------------------------------------------------------------
-StartBGM:
-	lea BGM_Test,a0
-	bsr Echo_PlayBGM
+LoadNPCData:
+	bsr.w	BuildNPCObjectList
 
 	move.w	#$2000,sr		; re-enable interrupts
 
@@ -430,6 +262,7 @@ Pause:
 	bsr	Echo_StopBGM	; pause the background music
 	lea	PaletteStoreAPaused,a0	; address of the starting palette to a0
 	move.w	#$0004,d0		; number of palettes to load
+	move.l	#VDP_CRAM_WRITE,d1	; initial write address
 	bsr.w	LoadPalettes	; branch to LoadPalettes subroutine
 	bra.s	UpdatePause	; save the paused state
 Unpause:
@@ -438,6 +271,7 @@ Unpause:
 	; revert to normal palette
 	lea	PaletteStoreA,a0	; address of the starting palette to a0
 	move.w	#$0004,d0		; number of palettes to load
+	move.l	#VDP_CRAM_WRITE,d1	; initial write address
 	bsr.w	LoadPalettes	; branch to LoadPalettes subroutine
 UpdatePause:
 	move.l	d7,(MEM_GAME_STATE)	; save the new paused state
@@ -452,7 +286,19 @@ TestPause:
 TestDialog:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_DIALOG,d7 ; test game state
-	beq.w	TestExploring	; dialog not set displaying
+	beq.w	TestExploring	; dialog not displaying, move to next test
+TestDialogUpdateFrequency:
+	cmpi.w	#DIALOG_UPDATE_FREQUENCY,(MEM_FRAME_COUNTER); is it time to update?
+	blt.s	TestDialogOpen	; branch if it's not time to move
+	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset counter to 0	
+	bsr.w	ProcessDialog	; dialog is set, jump to process dialog sub-routine
+	bra.w	MainGameLoop	; return to start of game loop
+TestDialogOpen:
+	; if the dialog is open then update frequency is ignored
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy current game state to d7
+	btst.l	#DIALOG_FLAG_TEXT_OPEN,d7 ; test if the dialog is open
+	beq.w	MainGameLoop	; dialog is not open, move to next test
+	; else branch to process dialog
 	bsr.w	ProcessDialog	; dialog is set, jump to process dialog sub-routine
 	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
@@ -602,38 +448,95 @@ OrderSprites:
 
 ProcessDialog:
 	move.w	#$2700,sr	; disable interrupts while managing dialogs
-	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy current dialog state to d7
 ProcessDialogTestTextBuilt:
-	btst.l	#STATE_FLAG_DIALOG_TEXT_BUILT,d7	; test game state
+	btst.l	#DIALOG_FLAG_TEXT_BUILT,d7	; test game state
 	bne.s	ProcessDialogTestOpening	; text is built, move to next test
 	bsr.w	BuildNPCObjectList	; update the location of NPCs
 	bsr.w	FindActionTarget	; find the target of the player's action
-	; TODO - implement text building
-	bset.l	#STATE_FLAG_DIALOG_TEXT_BUILT,d7	; flag that text is built
-	bset.l	#STATE_FLAG_DIALOG_TEXT_OPENING,d7	; change state to opening
+	bsr.w	BuildDialogText	; build text
+	bset.l	#DIALOG_FLAG_TEXT_BUILT,d7	; flag that text is built
+	bset.l	#DIALOG_FLAG_TEXT_OPENING,d7	; change state to opening
 ProcessDialogTestOpening:
-	btst.l	#STATE_FLAG_DIALOG_TEXT_OPENING,d7	; test if the dialog is opening
-	bne.s	ProcessDialogTestOpen	; dialog is not opening, move to next test
-	; TODO - implement dialog opening animation
-	bset.l	#STATE_FLAG_DIALOG_TEXT_OPEN,d7	; change state to open when done
+	btst.l	#DIALOG_FLAG_TEXT_OPENING,d7	; test if the dialog is opening
+	beq.s	ProcessDialogTextDrawing	; dialog is not opening, go to next test
+	; dialog opening animation
+	move.w	d7,d6	; copy low word with frame number
+	mulu.w	#DIALOG_PATTERN_SIZE,d6	; multiply by size of dialog patterns
+	movea.l	#PatternDialogStart,a0	; point a0 to start of dialog patterns
+	adda.l	d6,a0	; increment to current frame
+	move.w	#DIALOG_BASE_TILE,d0	; base pattern
+	move.w	#$0000,d1	; repeat
+	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
+	bsr.w	DrawTileset		; branch to DrawTileset subroutine
+	addq	#$1,d7	; increment frame number
+	cmpi.w	#DIALOG_FRAME_COUNT,d7	; are we at the last frame?
+	ble.w	ExitProcessDialog ; not at the last frame, exit
+	bclr.l	#DIALOG_FLAG_TEXT_OPENING,d7	; done opening, clear flag
+	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; change state to text drawing
+	; reset the drawing location for the dialog text
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VPD)	; base address
+	add.l	#$00820000,(MEM_DIALOG_VPD)	; add 132 to move 1 row and column
+	bra.w	ExitProcessDialog	; exit
+ProcessDialogTextDrawing:
+	btst.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; test if the dialog is opening
+	beq.s	ProcessDialogTestOpen	; text is not drawing, go to next test
+	move.l	(MEM_DIALOG_TEXT),a0	; point a0 to the current character
+	move.b	(a0),d6	; copy current character to d6
+	cmpi.b	#ETX,d6	; is this the end of the text?
+	beq.s	ProcessDialogTextEnd	; end of text
+	cmpi.b	#LF,d6	; is this a new line character
+	bne.s	.1	; not a new character
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VPD)	; base address
+	add.l	#$01020000,(MEM_DIALOG_VPD)	; add 258 to move 2 rows and column
+	bra.s	.2	; go to increment text step
+.1
+	; update d6 to point to the tile ID
+	sub.w	#$20,d6	; subtract 32 to get the character index
+	add.w	#DIALOG_BASE_TILE,d6	; add the base tile
+	move.l	(MEM_DIALOG_VPD),(VDP_CONTROL)	; set VDP address
+	move.w  d6,(VDP_DATA)	; copy the character to VPD
+	; draw the next character
+	add.l	#$00020000,(MEM_DIALOG_VPD)	; move to the next column
+.2
+	add.l	#$0001,(MEM_DIALOG_TEXT)	; move to the next character
+	bra.w	ExitProcessDialog
+ProcessDialogTextEnd:
+	bclr.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; done drawing, clear flag
+	bset.l	#DIALOG_FLAG_TEXT_OPEN,d7	; change state to open when done
 ProcessDialogTestOpen:
-	btst.l	#STATE_FLAG_DIALOG_TEXT_OPEN,d7	; test if the dialog is opening
-	bne.s	ProcessDialogTestClosing	; dialog is not open, move to next test
+	btst.l	#DIALOG_FLAG_TEXT_OPEN,d7	; test if the dialog is open
+	beq.s	ProcessDialogTestClosing	; dialog is not open, move to next test
 	; wait until a button is pressed to clear the dialog
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	cmpi.w	#$0000,d6	; are any buttons pressed?
 	beq.s	ExitProcessDialog ; no buttons are pressed, exit
+	bset.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; set closing flag
+	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; closing, clear open flag
 ProcessDialogTestClosing:
-	btst.l	#STATE_FLAG_DIALOG_TEXT_CLOSING,d7	; test if the dialog is opening
-	bne.s	ProcessDialogClearFlags	; dialog is not closing, exit
-	; TODO - implement dialog closing animation
-	nop
+	btst.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; test if the dialog is opening
+	beq.s	ProcessDialogClearFlags	; dialog is not closing, exit
+	; dialog closing animation
+	move.w	d7,d6	; copy low word with frame number
+	subq	#$1,d6	; decrement frame number
+	mulu.w	#DIALOG_PATTERN_SIZE,d6	; multiply by size of dialog patterns
+	movea.l	#PatternDialogClear,a0	; point a0 to start of dialog patterns
+	adda.l	d6,a0	; decrement to current frame
+	move.w	#DIALOG_BASE_TILE,d0	; base pattern
+	move.w	#$0000,d1	; repeat
+	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
+	bsr.w	DrawTileset		; branch to DrawTileset subroutine
+	subq	#$1,d7	; decrement frame number
+	cmpi.w	#$0000,d7	; are we at the last frame?
+	bgt.s	ExitProcessDialog ; not at the last frame, exit
 ProcessDialogClearFlags:	; clear flags when done
-	bclr.l	#STATE_FLAG_DIALOG,d7
-	bclr.l	#STATE_FLAG_DIALOG_TEXT_BUILT,d7
-	bclr.l	#STATE_FLAG_DIALOG_TEXT_CLOSING,d7
+	andi.l	#$00000000,d7	; clear all dialog flags 
+	; clear dialog bit on game state
+	move.l	(MEM_GAME_STATE),d6	; copy current game state to d6
+	bclr.l	#STATE_FLAG_DIALOG,d6	; clear the dialog bit
+	move.l	d6,(MEM_GAME_STATE)	; copy it back
 ExitProcessDialog:
-	move.l	d7,(MEM_GAME_STATE)	; save any changes made to the game state
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save any changes made to the game state
 	move.w	#$2000,sr		; re-enable interrupts
 	rts
 
@@ -720,6 +623,45 @@ ActionTargetNotFound:
 ExitFindActionTarget:
 	rts
 
+; this demo iteration is just doing a brute force lookup by object id
+; future versions of this demo should add rules based on the game state 
+BuildDialogText: ; note - d7 is used by the caller
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NOTHING,d6
+	bne.s	.1
+	lea	DialogTextNothing,a0
+	bra.s	ExitBuildDialogText
+.1
+	cmpi.w	#OBJ_SCENE_VB_8BIT,d6
+	bne.s	.2
+	lea	DialogText8Bit,a0
+	bra.s	ExitBuildDialogText
+.2
+	cmpi.w	#OBJ_SCENE_VB_MAGS,d6
+	bne.s	.3
+	lea	DialogTextMags,a0
+	bra.s	ExitBuildDialogText
+.3
+	cmpi.w	#OBJ_SCENE_VB_COUNTER,d6
+	bne.s	.4
+	lea	DialogTextCounter,a0
+	bra.s	ExitBuildDialogText
+.4
+	cmpi.w	#OBJ_SCENE_VB_REGISTER,d6
+	bne.s	.5
+	lea	DialogTextRegister,a0
+	bra.s	ExitBuildDialogText	
+.5
+	cmpi.w	#OBJ_NPC_DANI,d6
+	bne.s	.6
+	lea	DialogTextDani,a0
+	bra.s	ExitBuildDialogText	
+.6
+	lea	DialogTextNothing,a0
+ExitBuildDialogText:
+	move.l	a0,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
 BuildNPCObjectList:	; note - d6 and d7 are used by caller
 	lea	MEM_OBJECT_LIST_NPCS,a0	; store address of object data
 	;---------------------------------------------------------------------------
@@ -798,6 +740,13 @@ BuildNPCObjectList:	; note - d6 and d7 are used by caller
 
 	include	'sub_SetMapScroll.X68'
 
+	include 'sub_LoadScene.X68'
+
+;*******************************************************************************
+; scenes
+;*******************************************************************************
+	include 'scenes/scene_vb.X68'
+
 ;*******************************************************************************
 ; palettes
 ;*******************************************************************************
@@ -829,6 +778,13 @@ PalettePeoplePaused:
 ; tiles
 ;*******************************************************************************
 
+FontTilesStart:
+	include 'font-tiles/dwf.X68'
+	include 'font-tiles/dialog-frame.X68'
+FontTilesEnd:
+
+StoreTilesStart:
+
 TransparentTileStart:
 	dc.l	$00000000
 	dc.l	$00000000
@@ -846,18 +802,6 @@ FloorTilesStart:
 	;include 'scene-tiles/tileset_FloorDebug.X68'
 FloorTilesEnd:
 
-PlayerSpriteTilesStart:
-	include 'sprite-tiles/tileset_PlayerSprite.X68'
-	; swap for this tileset for the debug pattern
-	;include 'sprite-tiles/tileset_SpriteDebug.X68'
-PlayerSpriteTilesEnd:
-
-NPCSprite1TilesStart:
-	include 'sprite-tiles/tileset_NPCSprite1.X68'
-	; swap for this tileset for the debug pattern
-	;include 'sprite-tiles/tileset_SpriteDebug.X68'
-NPCSprite1TilesEnd:
-
 MerchandiseTilesStart:
 	include 'scene-tiles/tileset_Merchandise.X68'
 MerchandiseTilesEnd:
@@ -873,14 +817,61 @@ StoreFrontTilesEnd:
 CounterTilesLowStart:
 	include 'scene-tiles/tileset_CounterLow.X68'
 CounterTilesLowEnd:
-
+s
 CounterTilesHighStart:
 	include 'scene-tiles/tileset_CounterHigh.X68'
 CounterTilesHighEnd:
 
+RegisterTilesStart:
+	include 'scene-tiles/tileset_Register.X68'
+RegisterTilesEnd:
+
+StoreTilesEnd:
+
+SpriteTilesStart:
+
+PlayerSpriteTilesStart:
+	include 'sprite-tiles/tileset_PlayerSprite.X68'
+	; swap for this tileset for the debug pattern
+	;include 'sprite-tiles/tileset_SpriteDebug.X68'
+PlayerSpriteTilesEnd:
+
+NPCSprite1TilesStart:
+	include 'sprite-tiles/tileset_NPCSprite1.X68'
+	; swap for this tileset for the debug pattern
+	;include 'sprite-tiles/tileset_SpriteDebug.X68'
+NPCSprite1TilesEnd:
+
+SpriteTilesEnd:
+
+
 ;*******************************************************************************
 ; patterns
 ;*******************************************************************************
+
+PatternFloorStart:
+	include 'patterns/pattern_Floor.X68'
+PatternFloorEnd:
+
+PatternShelvesHStart:
+	include 'patterns/pattern_ShelvesH.X68'
+PatternShelvesHEnd:
+
+PatternShelvesMStart:
+	include 'patterns/pattern_ShelvesM.X68'
+PatternShelvesMEnd:
+
+PatternShelvesLStart:
+	include 'patterns/pattern_ShelvesL.X68'
+PatternShelvesLEnd:
+
+PatternFrameTopStart:
+	include 'patterns/pattern_FrameTop.X68'
+PatternFrameTopEnd:
+
+PatternFrameSideStart:
+	include 'patterns/pattern_FrameSide.X68'
+PatternFrameSideEnd:
 
 PatternStoreFrontStart:
 	include 'patterns/pattern_StoreFront.X68'
@@ -890,9 +881,21 @@ PatternCounterLowStart:
 	include 'patterns/pattern_CounterLow.X68'
 PatternCounterLowEnd:
 
+PatternCounterLowSideStart:
+	include 'patterns/pattern_CounterLowSide.X68'
+PatternCounterLowSideEnd:
+
 PatternCounterHighStart:
 	include 'patterns/pattern_CounterHigh.X68'
 PatternCounterHighEnd:
+
+PatternRegisterStart:
+	include 'patterns/pattern_Register.X68'
+PatternRegisterEnd:
+
+PatternDialogStart:
+	include 'patterns/pattern_Dialog.X68'
+PatternDialogEnd:
 
 ;*******************************************************************************
 ; maps
@@ -925,6 +928,62 @@ RandomNPCMovementStart:
     dc.w	DIRECTION_UP,DIRECTION_RIGHT,DIRECTION_DOWN,DIRECTION_LEFT
     dc.w	DIRECTION_RIGHT,DIRECTION_DOWN,DIRECTION_LEFT,DIRECTION_UP
 RandomNPCMovementEnd:
+
+;*******************************************************************************
+; diaglog text
+;*******************************************************************************
+
+DialogTextNothing:
+	;		"1234567890123456789012
+	dc.b	"There's nothing very"
+	dc.b	LF
+	;		"1234567890123456789012
+	dc.b	"interesting here."
+	dc.b	ETX
+	align 2
+
+DialogText8Bit:
+	;		"1234567890123456789012
+	dc.b	"The shelves are lined"
+	dc.b	LF
+	;		"1234567890123456789012
+	dc.b	"with 8-bit games."
+	dc.b	ETX
+	align 2
+
+DialogTextMags:
+	;		"1234567890123456789012
+	dc.b	"Below the counter are"
+	dc.b	LF
+	;		"1234567890123456789012
+	dc.b	"gaming magazines."
+	dc.b	ETX
+	align 2
+
+DialogTextCounter:
+	;		"1234567890123456789012
+	dc.b	"The counter is empty."
+	dc.b	ETX
+	align 2
+
+DialogTextRegister:
+	;		"1234567890123456789012
+	dc.b	"The register stares"
+	dc.b	LF
+	;		"1234567890123456789012
+	dc.b	"back at you blankly."
+	dc.b	ETX
+	align 2
+
+DialogTextDani:
+	;		"1234567890123456789012
+	dc.b	"Dani: 'Isn't it time"
+	dc.b	LF
+	;		"1234567890123456789012
+	dc.b	"to close already?'"
+	dc.b	ETX
+	align 2
+
 
 ;*******************************************************************************
 ; echo sound driver (https://github.com/sikthehedgehog/Echo)
