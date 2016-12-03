@@ -33,8 +33,8 @@ SceneVB:
 	;---------------------------------------------------------------------------
 	dc.w	$0000	; one tileset
 	; tileset 0
-	dc.l	StoreTilesStart	; start of scene tiles
-	dc.l	StoreTilesEnd	; end of scene tiles
+	dc.l	StoreVBTilesStart	; start of scene tiles
+	dc.l	StoreVBTilesEnd	; end of scene tiles
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -45,7 +45,7 @@ SceneVB:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$000A	; scenery count
+	dc.w	$000E	; scenery count
 
 	; floor
 	dc.l	PatternFloorStart	; location of pattern to load
@@ -145,6 +145,42 @@ SceneVB:
 	; row 6, column 44 = 330
 	dc.l	VDP_VRAM_WRITE_A+$03300000	; initial drawing location
 
+	; hardware rack - low
+	dc.l	PatternHWRackLow	; location of first pattern to load
+	; pccvhnnnnnnnnnnn
+	; 0000000001000001	
+	dc.w	$0041	; base pattern
+	dc.w	$0000	; no repeat
+	; row 15, column 4 = 788
+	dc.l	VDP_VRAM_WRITE_A+$07880000	; initial drawing location
+
+	; hardware rack - high
+	dc.l	PatternHWRackHigh	; location of first pattern to load
+	; pccvhnnnnnnnnnnn
+	; 1000000001000001	
+	dc.w	$8041	; base pattern
+	dc.w	$0000	; no repeat
+	; row 10, column 4 = 508
+	dc.l	VDP_VRAM_WRITE_A+$05080000	; initial drawing location
+
+	; 16-bit rack - low
+	dc.l	Pattern16BitRackLow	; location of first pattern to load
+	; pccvhnnnnnnnnnnn
+	; 0100000001010000	
+	dc.w	$4050	; base pattern
+	dc.w	$0000	; no repeat
+	; row 15, column 50 = 788
+	dc.l	VDP_VRAM_WRITE_A+$083E0000	; initial drawing location
+
+	; 16-bit rack - high
+	dc.l	Pattern16BitRackHigh	; location of first pattern to load
+	; pccvhnnnnnnnnnnn
+	; 1100000001010000	
+	dc.w	$C050	; base pattern
+	dc.w	$0000	; no repeat
+	; row 10, column 4 = 508
+	dc.l	VDP_VRAM_WRITE_A+$05BE0000	; initial drawing location
+
 	;---------------------------------------------------------------------------
 	; objects
 	;---------------------------------------------------------------------------
@@ -193,12 +229,19 @@ SceneVB:
 	; y0=162 height=32 = 0100000 010100010 = 40A2
 	dc.w	$40A2
 
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	dc.w	OBJ_SCENE_VB_HARDWARE
+	; x0=164 width=38 = 0100110 010100100 = 4CA4
+	dc.w	$4CA4
+	; y0=238 height=36 = 0100100 011101110 = 48EE
+	dc.w	$48EE
+
+	dc.w	OBJ_SCENE_VB_16BIT
+	; x0=380 width=30 = 0011110 0101111100 = 797C
+	dc.w	$797C
+	; y0=248 height=32 = 0100000 011111000 = 40F8
+	dc.w	$40F8
+
+
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
 	dc.w	$0000

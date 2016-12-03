@@ -56,10 +56,10 @@ SPRITE_PLAYER_WIDTH=DEFAULT_SPRITE_WIDTH	; player sprite
 SPRITE_PLAYER_INIT_X=$0100	; starting x location of player sprite
 SPRITE_PLAYER_INIT_Y=$0100	; starting y location of player sprite
 SPRITE_NPC1_PATTERN=SPRITE_BASE_PATTERN+$60	; base pattern for npc1 sprite
-SPRITE_NPC1_HEIGHT=DEFAULT_SPRITE_HEIGHT	; player sprite height
-SPRITE_NPC1_WIDTH=DEFAULT_SPRITE_WIDTH	; player sprite 
-SPRITE_NPC1_INIT_X=$0180	; starting x location of player sprite
-SPRITE_NPC1_INIT_Y=$00E0	; starting y location of player sprite
+SPRITE_NPC1_HEIGHT=DEFAULT_SPRITE_HEIGHT	; npc1 sprite height
+SPRITE_NPC1_WIDTH=DEFAULT_SPRITE_WIDTH	; npc1 sprite 
+SPRITE_NPC1_INIT_X=$0180	; starting x location of npc1 sprite
+SPRITE_NPC1_INIT_Y=$0120	; starting y location of npc1 sprite
 SPRITE_NPC1_MOVE_TEST=$0FF0	; used to determine how often to move the NPC
 SPRITE_NPC1_MOVE_STEPS=$0009; how many steps the NPC sprite takes when they move
 ; directions
@@ -655,8 +655,18 @@ BuildDialogText: ; note - d7 is used by the caller
 	cmpi.w	#OBJ_NPC_DANI,d6
 	bne.s	.6
 	lea	DialogTextDani,a0
-	bra.s	ExitBuildDialogText	
+	bra.s	ExitBuildDialogText
 .6
+	cmpi.w	#OBJ_SCENE_VB_HARDWARE,d6
+	bne.s	.7
+	lea	DialogTextHardware,a0
+	bra.s	ExitBuildDialogText	
+.7
+	cmpi.w	#OBJ_SCENE_VB_16BIT,d6
+	bne.s	.8
+	lea	DialogText16Bit,a0
+	bra.s	ExitBuildDialogText	
+.8
 	lea	DialogTextNothing,a0
 ExitBuildDialogText:
 	move.l	a0,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -783,7 +793,7 @@ FontTilesStart:
 	include 'font-tiles/dialog-frame.X68'
 FontTilesEnd:
 
-StoreTilesStart:
+StoreVBTilesStart:
 
 TransparentTileStart:
 	dc.l	$00000000
@@ -796,37 +806,27 @@ TransparentTileStart:
 	dc.l	$00000000
 TransparentTileEnd:
 
-FloorTilesStart:
 	include 'scene-tiles/tileset_Floor.X68'
 	; swap for this tileset for the debug grid pattern	
 	;include 'scene-tiles/tileset_FloorDebug.X68'
-FloorTilesEnd:
 
-MerchandiseTilesStart:
 	include 'scene-tiles/tileset_Merchandise.X68'
-MerchandiseTilesEnd:
 
-FrameTilesStart:
 	include 'scene-tiles/tileset_StoreFrame.X68'
-FrameTilesEnd:
 
-StoreFrontTilesStart:
 	include 'scene-tiles/tileset_StoreFront.X68'
-StoreFrontTilesEnd:
 
-CounterTilesLowStart:
 	include 'scene-tiles/tileset_CounterLow.X68'
-CounterTilesLowEnd:
-s
-CounterTilesHighStart:
+
 	include 'scene-tiles/tileset_CounterHigh.X68'
-CounterTilesHighEnd:
 
-RegisterTilesStart:
 	include 'scene-tiles/tileset_Register.X68'
-RegisterTilesEnd:
 
-StoreTilesEnd:
+	include 'scene-tiles/tileset_HWRack.X68'
+
+	include 'scene-tiles/tileset_16BitRack.X68'
+
+StoreVBTilesEnd:
 
 SpriteTilesStart:
 
@@ -896,6 +896,9 @@ PatternRegisterEnd:
 PatternDialogStart:
 	include 'patterns/pattern_Dialog.X68'
 PatternDialogEnd:
+
+	include patterns/pattern_HWRack.X68
+	include patterns/pattern_16BitRack.X68
 
 ;*******************************************************************************
 ; maps
@@ -972,6 +975,24 @@ DialogTextRegister:
 	dc.b	LF
 	;		"1234567890123456789012
 	dc.b	"back at you blankly."
+	dc.b	ETX
+	align 2
+
+DialogTextHardware:
+	;		"1234567890123456789012
+	dc.b	"This is a wire rack"
+	dc.b	LF
+	;		"1234567890123456789012
+	dc.b	"of computer hardware."
+	dc.b	ETX
+	align 2
+
+DialogText16Bit:
+	;		"1234567890123456789012
+	dc.b	"Here are the latest"
+	dc.b	LF
+	;		"1234567890123456789012
+	dc.b	"16-bit games."
 	dc.b	ETX
 	align 2
 
