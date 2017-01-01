@@ -1,3 +1,4 @@
+PatternRegister:
 	dc.w	$0001	; 2 rows
 
 	dc.w	$0002	; 3 columns

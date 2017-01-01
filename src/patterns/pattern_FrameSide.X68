@@ -1,3 +1,4 @@
+PatternFrameSide:
 	dc.w	$0000	; 1 row
 
 	dc.w	$0027	; 40 columns

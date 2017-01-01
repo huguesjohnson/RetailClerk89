@@ -7,15 +7,6 @@
 ; d7 is modified to store & update map collision data
 ;-------------------------------------------------------------------------------
 FlipSpriteMapPosition:
-	;---------------------------------------------------------------------------
-	; a6 = SPRITE_ID
-	; a6 + 2 = SPRITE_X
-	; a6 + 4 = SPRITE_Y
-	; a6 + 6 = SPRITE_PATTERN_INDEX
-	; a6 + 8 = SPRITE_DIRECTION
-	; a6 + A = SPRITE_FRAME
-	; a6 + C = SPRITE_STEP_COUNTER
-	;---------------------------------------------------------------------------
 	bsr.w	SetActiveSpriteMapRowCol	; set the active map position
 	;---------------------------------------------------------------------------
 	; block the left side of the sprite

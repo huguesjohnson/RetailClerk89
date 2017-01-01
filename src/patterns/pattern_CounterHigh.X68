@@ -1,3 +1,5 @@
+PatternCounterHigh:
+
 	dc.w	$0002	; 3 rows
 
 	dc.w	$000D	; 14 columns

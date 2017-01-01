@@ -1,0 +1,8 @@
+	include 'sprite-tiles/tileset_NPCSprite2_DownFrame0.X68'
+	include 'sprite-tiles/tileset_NPCSprite2_DownFrames12.X68'
+	include 'sprite-tiles/tileset_NPCSprite2_UpFrame0.X68'
+	include 'sprite-tiles/tileset_NPCSprite2_UpFrames12.X68'
+	include 'sprite-tiles/tileset_NPCSprite2_LeftFrame0.X68'
+	include 'sprite-tiles/tileset_NPCSprite2_LeftFrames12.X68'
+	include 'sprite-tiles/tileset_NPCSprite2_RightFrame0.X68'
+	include 'sprite-tiles/tileset_NPCSprite2_RightFrames12.X68'

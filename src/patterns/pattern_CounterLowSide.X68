@@ -1,3 +1,5 @@
+PatternCounterLowSide:
+
 	dc.w	$0004	; 5 rows
 
 	dc.w	$0003	; 4 columns

@@ -92,59 +92,59 @@
 	dc.l	$00000000
 	dc.l	$AAAAAAAA
 	dc.l	$AAAAAAAA
-	dc.l	$999999AA
 	dc.l	$9999999A
+	dc.l	$99999999
 	dc.l	$88888888
 	dc.l	$88888888
 	dc.l	$88888888
 
 	; 0A
 	dc.l	$88888888
-	dc.l	$BBBBBBAA
-	dc.l	$BBBBBBAA
-	dc.l	$3B55B3AA
-	dc.l	$E3553EAA
-	dc.l	$EE55EEAA
-	dc.l	$EEEEEEAA
+	dc.l	$BBBBBBBA
+	dc.l	$BBBBBBBA
+	dc.l	$3B555B3A
+	dc.l	$E35553EA
+	dc.l	$EE555EEA
+	dc.l	$EEEEEEEA
 	dc.l	$AAAAAAAA
 
 	; 0B
-	dc.l	$A1111AAA
-	dc.l	$8A88A8AA
-	dc.l	$A8AA8A8A
-	dc.l	$8AAAA8A8
-	dc.l	$AAAAAA8A
-	dc.l	$9AAAA99A
+	dc.l	$A11111AA
+	dc.l	$8A888A8A
+	dc.l	$A8AAA8A8
+	dc.l	$8AAAAA8A
+	dc.l	$AAAAAAA8
+	dc.l	$9AAAAA99
 	dc.l	$AAAAAAAA
 	dc.l	$99999999
 
 	; 0C
 	dc.l	$00000000
-	dc.l	$AAAAAA90
-	dc.l	$AAAAAA90
-	dc.l	$AAAAAA90
-	dc.l	$AAAAAA90
-	dc.l	$888AAA90
-	dc.l	$8888AAAA
-	dc.l	$8888AA99
+	dc.l	$AAAAAAA0
+	dc.l	$AAAAAAA0
+	dc.l	$AAAAAAA0
+	dc.l	$AAAAAAA0
+	dc.l	$8888AAA0
+	dc.l	$88888AAA
+	dc.l	$88888AA9
 
 	; 0D
-	dc.l	$888AAA90
-	dc.l	$AAAAAA90
-	dc.l	$AAAAAA90
-	dc.l	$A999AA90
-	dc.l	$A9B9AA90
-	dc.l	$A9B9AA90
-	dc.l	$A9B9AAAA
-	dc.l	$A999AA99
+	dc.l	$8888AAA0
+	dc.l	$AAAAAAA0
+	dc.l	$AAAAAAA0
+	dc.l	$AA999AA0
+	dc.l	$AA9B9AA0
+	dc.l	$AA9B9AA0
+	dc.l	$AA9B9AAA
+	dc.l	$AA999AA9
 
 	; 0E
-	dc.l	$AAAAAA90
-	dc.l	$AAAAAA90
-	dc.l	$AAAAAA90
-	dc.l	$AAAAAA90
-	dc.l	$8AAAAA90
-	dc.l	$99AAAA90
+	dc.l	$AAAAAAA0
+	dc.l	$AAAAAAA0
+	dc.l	$AAAAAAA0
+	dc.l	$8AAAAAA0
+	dc.l	$A8AAAAA0
+	dc.l	$A99AAAA0
 	dc.l	$AAAAAAAA
 	dc.l	$99999999
 

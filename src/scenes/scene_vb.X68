@@ -29,6 +29,11 @@
 SceneVB:
 
 	;---------------------------------------------------------------------------
+	; scene ID
+	;---------------------------------------------------------------------------
+	dc.w	SCENE_ID_VB
+
+	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
 	dc.w	$0000	; one tileset
@@ -48,7 +53,7 @@ SceneVB:
 	dc.w	$000E	; scenery count
 
 	; floor
-	dc.l	PatternFloorStart	; location of pattern to load
+	dc.l	PatternFloor	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0000000000000001	
 	dc.w	$0001	; base pattern
@@ -56,7 +61,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
 
 	; top shelf
-	dc.l	PatternShelvesHStart	; location of pattern to load
+	dc.l	PatternShelvesH	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0000000000000101	
 	dc.w	$0005	; base pattern
@@ -65,7 +70,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_B+$00800000	; initial drawing location
 
 	; middle shelf
-	dc.l	PatternShelvesMStart	; location of pattern to load
+	dc.l	PatternShelvesM	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0010000000000101	
 	dc.w	$2005	; base pattern
@@ -74,7 +79,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_B+$01000000	; initial drawing location
 
 	; low shelf
-	dc.l	PatternShelvesLStart	; location of pattern to load
+	dc.l	PatternShelvesL	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0100000000000101	
 	dc.w	$4005	; base pattern
@@ -83,7 +88,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_B+$01800000	; initial drawing location
 
 	; frame top
-	dc.l	PatternFrameTopStart	; location of pattern to load
+	dc.l	PatternFrameTop	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 1000000000000000	
 	dc.w	$8000	; base pattern
@@ -92,7 +97,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
 
 	; frame side
-	dc.l	PatternFrameSideStart	; location of pattern to load
+	dc.l	PatternFrameSide	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 1000000000000000	
 	dc.w	$8000	; base pattern
@@ -101,7 +106,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
 
 	; store front
-	dc.l	PatternStoreFrontStart	; location of first pattern to load
+	dc.l	PatternStoreFront	; location of first pattern to load
 	; pccvhnnnnnnnnnnn
 	; 1000000000001100	
 	dc.w	$800C	; base pattern
@@ -110,7 +115,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_A+$0C000000	; initial drawing location
 
 	; counter - low front
-	dc.l	PatternCounterLowStart	; location of first pattern to load
+	dc.l	PatternCounterLow	; location of first pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0010000000100001	
 	dc.w	$2021	; base pattern
@@ -119,7 +124,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_A+$051C0000	; initial drawing location
 
 	; counter - low side
-	dc.l	PatternCounterLowSideStart	; location of first pattern to load
+	dc.l	PatternCounterLowSide	; location of first pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0010000000110001	
 	dc.w	$2031	; base pattern
@@ -128,7 +133,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_B+$01B00000	; initial drawing location
 
 	; counter - top
-	dc.l	PatternCounterHighStart	; location of first pattern to load
+	dc.l	PatternCounterHigh	; location of first pattern to load
 	; pccvhnnnnnnnnnnn
 	; 1010000000110001	
 	dc.w	$A031	; base pattern
@@ -137,7 +142,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_A+$039C0000	; initial drawing location
 
 	; register
-	dc.l	PatternRegisterStart	; location of first pattern to load
+	dc.l	PatternRegister	; location of first pattern to load
 	; pccvhnnnnnnnnnnn
 	; 1110000000111011	
 	dc.w	$E03B	; base pattern
@@ -241,7 +246,6 @@ SceneVB:
 	; y0=248 height=32 = 0100000 011111000 = 40F8
 	dc.w	$40F8
 
-
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
 	dc.w	$0000
@@ -260,4 +264,25 @@ SceneVB:
 	; bgm
 	;---------------------------------------------------------------------------
 	dc.l	BGM_Test	; location of background music
+
+	;---------------------------------------------------------------------------
+	; NPC locations
+	;---------------------------------------------------------------------------
+	dc.w	$0001	; one npc slot
+
+	; npc0
+	dc.w	$0180	; starting x location of npc0
+	dc.w	$0110	; starting y location of npc0
+	dc.w	DIRECTION_DOWN	; starting direction of npc0
+	dc.w	$A0F1	; movement frequency of npc0
+	dc.l	RandomNPCMovement0Start	; location of movement pattern for npc0
+	dc.w	(RandomNPCMovement0End-RandomNPCMovement0Start-1)	; pattern length
+
+	; npc1
+	dc.w	$00B0	; starting x location of npc1
+	dc.w	$0100	; starting y location of npc1
+	dc.w	DIRECTION_DOWN	; starting direction of npc1
+	dc.w	$0FF0	; movement frequency of npc1
+	dc.l	RandomNPCMovement1Start	; location of movement pattern for npc1
+	dc.w	(RandomNPCMovement1End-RandomNPCMovement1Start-1)	; pattern length
 

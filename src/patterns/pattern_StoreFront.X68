@@ -1,3 +1,4 @@
+PatternStoreFront:
 	dc.w	$0003	; 4 rows
 
 	dc.w	$0027	; 40 columns

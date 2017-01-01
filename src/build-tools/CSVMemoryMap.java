@@ -36,7 +36,7 @@ public class CSVMemoryMap{
     private static final String delimiter=",";
 
     public static void main(String[] args){
-        String defaultBaseAddress="0FF00000";
+        String defaultBaseAddress="FFFF0000";
         BufferedReader bufferedReader=null;
         OutputStreamWriter outputStreamWriter=null;
         int lineNumber=0;
@@ -51,25 +51,29 @@ public class CSVMemoryMap{
             if(args.length>2){
                 currentAddressHex=args[2];
             }
-            int currentAddressInt=Integer.valueOf(currentAddressHex,16);
+            long currentAddressInt=Long.valueOf(currentAddressHex,16);
             bufferedReader=new BufferedReader(new InputStreamReader(new FileInputStream(sourceFile)));
             outputStreamWriter=new FileWriter(outputFile);
             while((currentLine=bufferedReader.readLine())!=null){
                 lineNumber++;
-                String[] split=currentLine.split(",");
-                if(split.length!=3){
-                    throw new Exception("Invalid length in line "+lineNumber+" expected 3 actual "+split.length);
-                }
-                StringBuffer stringBuffer=new StringBuffer();
-                stringBuffer.append(split[0]);
-                stringBuffer.append("=$");
-                stringBuffer.append(Integer.toHexString(currentAddressInt).toUpperCase());
-                stringBuffer.append("\t; ");
-                stringBuffer.append(split[2]);
-                stringBuffer.append(newLine);
-                outputStreamWriter.write(stringBuffer.toString());
-                int size=Integer.parseInt(split[1]);
-                currentAddressInt+=size;
+	            StringBuffer stringBuffer=new StringBuffer();
+				if(currentLine.startsWith(";")){
+					stringBuffer.append(currentLine);
+				}else{
+		            String[] split=currentLine.split(",");
+		            if(split.length!=3){
+		                throw new Exception("Invalid length in line "+lineNumber+" expected 3 actual "+split.length);
+		            }
+		            stringBuffer.append(split[0]);
+		            stringBuffer.append("=$");
+		            stringBuffer.append(Long.toHexString(currentAddressInt).toUpperCase());
+		            stringBuffer.append("\t; ");
+		            stringBuffer.append(split[2]);
+		            int size=Integer.parseInt(split[1]);
+		            currentAddressInt+=size;
+				}
+	            stringBuffer.append(newLine);
+	            outputStreamWriter.write(stringBuffer.toString());
             }
         }
         catch(Exception x){

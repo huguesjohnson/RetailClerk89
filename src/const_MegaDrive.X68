@@ -36,3 +36,8 @@ BUTTON_B_PRESSED=$10
 BUTTON_C_PRESSED=$20
 BUTTON_A_PRESSED=$40
 BUTTON_START_PRESSED=$80
+
+; other constants
+WORD_SIZE=$2
+LWORD_SIZE=$4
+LWORDS_PER_TILE=$8	; how many lwords of data in each tile

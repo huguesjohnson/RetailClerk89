@@ -13,23 +13,13 @@
 ; d7 is used for all other operations
 ;-------------------------------------------------------------------------------
 SetActiveSpriteMapRowCol:
-	;---------------------------------------------------------------------------
-	; a6 = SPRITE_ID
-	; a6 + 2 = SPRITE_X
-	; a6 + 4 = SPRITE_Y
-	; a6 + 6 = SPRITE_PATTERN_INDEX
-	; a6 + 8 = SPRITE_DIRECTION
-	; a6 + A = SPRITE_FRAME
-	; a6 + C = SPRITE_STEP_COUNTER
-	;---------------------------------------------------------------------------
 SetActiveSpriteLeftCol:
 	; copy sprite x postion to d7 and adjust for scroll
 	clr.l	d7
-	clr.l	d6
-	adda.l	#$2,a6	; move to a6+2 -> SPRITE_X
-	move.w	(a6),d7	; store sprite x in d7
+	;clr.l	d6
+	move.w	(STRUCT_SPRITE_X,a6),d7	; store sprite x in d7
 	add.w	(MEM_MAP_POSITION_X),d7	; adjust for scroll
-	move.w	d7,d6	; copy to d6 for later use
+	move.l	d7,d6	; copy to d6 for later use
 	and.w	#$00FF,d7 ; remove all bits over 255
 	divu.w	#$08,d7 ; divide by 8 to get index in map data
 	; clear remainder from high word (easy68k.com/paulrsm/doc/trick68k.htm)
@@ -39,8 +29,7 @@ SetActiveSpriteLeftCol:
 	move.w	d7,(MEM_ACTIVE_SPRITE_LEFT_COLUMN)	; copy left column value
 SetActiveSpriteLeftHighLow:
 	; copy sprite y postion to d7 and adjust for scroll
-	adda.l	#$2,a6	; move to a6+4 -> SPRITE_Y
-	move.w	(a6),d7	; store sprite y in d7
+	move.w	(STRUCT_SPRITE_Y,a6),d7	; store sprite y in d7
 	add.w	(MEM_MAP_POSITION_Y),d7	; adjust for scroll
 	add.w	#$18,d7	; top edge of lower 1/4
 	move.w	d7,d5	; copy the adjusted y value 
@@ -67,7 +56,7 @@ SetActiveSpriteRightCol:
 	move.w	d7,(MEM_ACTIVE_SPRITE_RIGHT_COLUMN)	; copy left column value
 SetActiveSpriteRightHighLow:
 	; copy sprite y postion to d7 and adjust for scroll
-	move.w	(a6),d7	; store sprite y in d7
+	move.w	(STRUCT_SPRITE_Y,a6),d7	; store sprite y in d7
 	add.w	(MEM_MAP_POSITION_Y),d7	; adjust for scroll
 	add.w	#$18,d7	; top edge of lower 1/4
 	move.w	d7,d5	; copy the adjusted y value 
@@ -82,6 +71,5 @@ SetActiveSpriteRightHighLow:
 .4
 	move.w	d7,(MEM_ACTIVE_SPRITE_HIGH_RIGHT)	; copy high left value
 	move.w	d5,(MEM_ACTIVE_SPRITE_LOW_RIGHT)	; copy low left value
-	suba.l	#$04,a6	; move a6 back to SPRITE_ID
 	rts
 

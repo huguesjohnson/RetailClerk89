@@ -4,15 +4,15 @@
 ;*******************************************************************************
 	dc.b	'SEGA GENESIS    '	; console name
 	dc.b	'(C)HUJO '			; copyright
- 	dc.b	'2016.NOV'			; date
-	dc.b	'Retail Clerk 89 - Development Build 20161128-00 ' ; cart name
-	dc.b	'Retail Clerk 89 - Development Build 20161128-00 ' ; cart name (alt)
-	dc.b	'GM 20161128-00'	; program type / serial number / version
+ 	dc.b	'2016.DEC'			; date
+	dc.b	'Retail Clerk 89 - Development Build 20170101-00 ' ; cart name
+	dc.b	'Retail Clerk 89 - Development Build 20170101-00 ' ; cart name (alt)
+	dc.b	'GM 20170101-00'	; program type / serial number / version
 	dc.w	$0000				; ROM checksum
 	dc.b	'J               '	; I/O device support (unused)
 	dc.l	$00000000			; address of ROM start
 	dc.l	RomEnd				; address of ROM end
-	dc.l	$00FF0000,$00FFFFFF	; RAM start/end
+	dc.l	$FFFF0000,$FFFFFFFF	; RAM start/end
 	dc.b	'            '		; backup RAM info
 	dc.b	'            '		; modem info
 	dc.b	'http://huguesjohnson.com/               ' ; comment
