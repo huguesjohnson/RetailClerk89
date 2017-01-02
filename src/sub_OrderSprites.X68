@@ -21,7 +21,7 @@ OrderSpritesTestNPC1:	; test if player sprite is lowest priority
 	; test if the player sprite links are already correct	
 	cmp.w	#$0000,(MEM_PLAYER_SPRITE_LINK_TO)	; check "to" link
 	bne.s	.1	; links need to be set
-	cmp.w	#$0002,(MEM_PLAYER_SPRITE_LINK_FROM); check "from" link"
+	cmp.w	#$0002,(MEM_PLAYER_SPRITE_LINK_FROM); check "from" link
 	beq.w	ExitOrderSprites	; exit if the links are already OK
 .1
 	move.w	#$0000,d2	; sprite ID 0 is the sprite to modify
@@ -46,7 +46,7 @@ OrderSpritesTestNPC0:	; test if player sprite below NPC0
 	; test if the player sprite links are already correct	
 	cmp.w	#$0003,(MEM_PLAYER_SPRITE_LINK_TO)	; check "to" link
 	bne.s	.2	; links need to be set
-	cmp.w	#$0002,(MEM_PLAYER_SPRITE_LINK_FROM); check "from" link"
+	cmp.w	#$0002,(MEM_PLAYER_SPRITE_LINK_FROM); check "from" link
 	beq.w	ExitOrderSprites	; exit if the links are already OK
 .2
 	move.w	#$0000,d2	; sprite ID 0 is the sprite to modify
@@ -68,7 +68,7 @@ OrderSpritesDefault:
 	; test if the player sprite links are already correct	
 	cmp.w	#$0003,(MEM_PLAYER_SPRITE_LINK_TO)	; check "to" link
 	bne.s	.3	; links need to be set
-	cmp.w	#$0000,(MEM_PLAYER_SPRITE_LINK_FROM); check "from" link"
+	cmp.w	#$0000,(MEM_PLAYER_SPRITE_LINK_FROM); check "from" link
 	beq.w	ExitOrderSprites	; exit if the links are already OK
 .3
 	move.w	#$0000,d2	; sprite ID 0 is the sprite to modify
