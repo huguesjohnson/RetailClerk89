@@ -63,6 +63,9 @@ ProcessDialogTestOpen:
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	cmpi.w	#$0000,d6	; are any buttons pressed?
 	beq.s	ExitProcessDialog ; no buttons are pressed, exit
+	; start button shouldn't close the dialog
+	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button is held
+	bne.w	ExitProcessDialog			; exit if start button is held
 	bset.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; set closing flag
 	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; closing, clear open flag
 ProcessDialogTestClosing:
