@@ -353,6 +353,10 @@ MainGameLoopUpdateNPCSpritesLoop:
 .3	; move the NPC sprite
 	move.l a5,a6	; setup call to StopSprite
 	bsr.w	MoveSprite	; branch to move MoveSprite
+	; did the sprite move successfully?
+	tst.w	(MEM_COLLISION_RESULT)	; test result of last collision
+	beq.s	MainGameLoopUpdateNPCSpritesLoopEnd ; done updating this sprite	
+	addq	#$0001,(STRUCT_SPRITE_MOVEMENT_COUNTER,a5)	; rollback counter
 MainGameLoopUpdateNPCSpritesLoopEnd:
 	; move to next NPC sprite
 	adda.l	#NPC_RECORD_SIZE,a5	; increment a5	
@@ -368,7 +372,7 @@ MainGameLoopSetScroll:
 
 MainGameLoopEnd:
 	; test if sprites need to be reordered
-	tst	(MEM_SPRITE_Y_ORDER_CHANGED)	; has the sprite Y order changed?
+	tst.w	(MEM_SPRITE_Y_ORDER_CHANGED)	; has the sprite Y order changed?
 	beq.w	MainGameLoop	; hasn't changed, no need to order sprites
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_EXPLORING,d7	; test game state
@@ -507,9 +511,10 @@ RandomNPCMovement0Start:
 RandomNPCMovement0End:
 
 RandomNPCMovement1Start:
-	dc.w	DIRECTION_UP,DIRECTION_LEFT,DIRECTION_LEFT
-    dc.w	DIRECTION_RIGHT,DIRECTION_RIGHT,DIRECTION_RIGHT,DIRECTION_RIGHT
-    dc.w	DIRECTION_LEFT,DIRECTION_LEFT
+	dc.w	DIRECTION_LEFT,DIRECTION_LEFT
+    dc.w	DIRECTION_RIGHT,DIRECTION_RIGHT
+    dc.w	DIRECTION_RIGHT,DIRECTION_RIGHT
+	dc.w	DIRECTION_LEFT,DIRECTION_LEFT
 RandomNPCMovement1End:
 
 ;*******************************************************************************
