@@ -6,7 +6,6 @@ MEM_DEBUG_2,2,general debug register
 ;-------------------------------------------------------------------------------
 ; counters
 ;-------------------------------------------------------------------------------
-MEM_VBLANKFLAG,2,indicates whether vblank in-progess
 MEM_VBLANK_COUNTER,2,incremented at vblank - used for debug & RNG
 MEM_MAINLOOP_COUNTER,2,used for debug & RNG
 MEM_FRAME_COUNTER,2,current frame - cycles from 0-59

@@ -238,7 +238,6 @@ InitPlayerSprite:
 	move.w	#$2000,sr		; re-enable interrupts
 
 MainGameLoop:
-
 	bsr.w	WaitVBlank							; wait for vblank to complete
 	addq	#$1,(MEM_MAINLOOP_COUNTER)			; increment counter
 ;-------------------------------------------------------------------------------
@@ -385,8 +384,9 @@ MainGameLoopEnd:
 ; WaitVBlank
 ;-------------------------------------------------------------------------------
 WaitVBlank:
-	cmpi.w	#$FFFF,(MEM_VBLANKFLAG)	; check if the vblank flag is set
-	beq.s	WaitVBlank				; wait for vblank to complete
+	move.w	VDP_CONTROL,d0	; copy VDP status to d0
+   	andi.w	#VDP_STATUS_VBLANK,d0	; check if the vblank status flag is set
+	bne.s	WaitVBlank				; wait for vblank to complete
 	rts
 
 ;*******************************************************************************
@@ -400,13 +400,12 @@ HBlank:
 	rte
 
 VBlank:
-	move.w	#$FFFF,(MEM_VBLANKFLAG)		; flag that vblank is in-progress
 	addq	#$1,(MEM_VBLANK_COUNTER)	; increment debug counter 
 	addq	#$1,(MEM_FRAME_COUNTER)		; increment frame counter
 VBlankReadJoypads:
 	bsr.w	ReadJoypads					; read controllers
+
 VBlankExit:
-	move.w	#$0000,(MEM_VBLANKFLAG)		; flag that vblank is complete
 	rte
 
 TrapException:
