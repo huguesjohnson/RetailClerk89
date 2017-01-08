@@ -32,17 +32,22 @@ ProcessDialogTestOpening:
 	bra.w	ExitProcessDialog	; exit
 ProcessDialogTextDrawing:
 	btst.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; test if the dialog is opening
-	beq.s	ProcessDialogTestOpen	; text is not drawing, go to next test
+	beq.w	ProcessDialogTestOpen	; text is not drawing, go to next test
 	move.l	(MEM_DIALOG_TEXT),a0	; point a0 to the current character
 	move.b	(a0),d6	; copy current character to d6
 	cmpi.b	#ETX,d6	; is this the end of the text?
 	beq.s	ProcessDialogTextEnd	; end of text
+	cmpi.b	#FF,d6	; is there another page of text?
+	bne.s	.1	; not the new page character, continue to next test
+	bset.l	#DIALOG_FLAG_TEXT_NEW_PAGE,d7	; flag there is another page
+	bra.s	ProcessDialogTextEnd
+.1
 	cmpi.b	#LF,d6	; is this a new line character
-	bne.s	.1	; not a new character
+	bne.s	.2	; not a new character
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VPD)	; base address
 	add.l	#$01020000,(MEM_DIALOG_VPD)	; add 258 to move 2 rows and column
-	bra.s	.2	; go to increment text step
-.1
+	bra.s	.3	; go to increment text step
+.2
 	; update d6 to point to the tile ID
 	sub.w	#$20,d6	; subtract 32 to get the character index
 	add.w	#DIALOG_BASE_TILE,d6	; add the base tile
@@ -50,7 +55,7 @@ ProcessDialogTextDrawing:
 	move.w  d6,(VDP_DATA)	; copy the character to VPD
 	; draw the next character
 	add.l	#$00020000,(MEM_DIALOG_VPD)	; move to the next column
-.2
+.3
 	add.l	#$0001,(MEM_DIALOG_TEXT)	; move to the next character
 	bra.w	ExitProcessDialog
 ProcessDialogTextEnd:
@@ -62,10 +67,31 @@ ProcessDialogTestOpen:
 	; wait until a button is pressed to clear the dialog
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	cmpi.w	#$0000,d6	; are any buttons pressed?
-	beq.s	ExitProcessDialog ; no buttons are pressed, exit
+	beq.w	ExitProcessDialog ; no buttons are pressed, exit
 	; start button shouldn't close the dialog
 	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button is held
 	bne.w	ExitProcessDialog			; exit if start button is held
+	btst.l	#DIALOG_FLAG_TEXT_NEW_PAGE,d7	; test if there is another page	
+	beq.s	.4	; branch if new text page is not set
+	;---------------------------------------------------------------------------
+	; moving to a new page of text
+	;---------------------------------------------------------------------------
+	add.l	#$0001,(MEM_DIALOG_TEXT)	; move to the next character
+	; reset the drawing location for the dialog text
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VPD)	; base address
+	add.l	#$00820000,(MEM_DIALOG_VPD)	; add 132 to move 1 row and column	
+	; clear out the dialog
+	movea.l	#PatternDialogFull,a0	; point a0 to start of dialog patterns
+	move.w	#DIALOG_BASE_TILE,d0	; base pattern
+	move.w	#$0000,d1	; repeat
+	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
+	bsr.w	DrawTileset		; branch to DrawTileset subroutine
+	; reset flags to force text to start re-drawing
+	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; set drawing flag
+	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; clear open flag
+	bclr.l	#DIALOG_FLAG_TEXT_NEW_PAGE,d7	; clear new page flag
+	bra.s	ExitProcessDialog			; exit
+.4
 	bset.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; set closing flag
 	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; closing, clear open flag
 ProcessDialogTestClosing:

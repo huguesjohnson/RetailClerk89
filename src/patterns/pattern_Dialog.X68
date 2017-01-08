@@ -289,6 +289,7 @@ PatternDialogFrame9:
 	dc.w	$65,$65,$65,$65,$65,$65,$65,$65,$65,$65,$67
 	dc.w	$5F
 
+PatternDialogFull:
 PatternDialogFrameA:
 	dc.w	$0003	; 4 rows
 

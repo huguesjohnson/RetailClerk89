@@ -118,11 +118,12 @@ STATE_FLAG_PAUSED=$00	; game is paused
 STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
 STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
 ; high word of MEM_DIALOG_FLAGS is used to track the state
-DIALOG_FLAG_TEXT_BUILT=$10	; set when text to display is built
-DIALOG_FLAG_TEXT_OPENING=$11	; dialog is opening
-DIALOG_FLAG_TEXT_DRAWING=$12	; dialog text is drawing
-DIALOG_FLAG_TEXT_OPEN=$13	; dialog is open
-DIALOG_FLAG_TEXT_CLOSING=$14	; dialog is closing
+DIALOG_FLAG_TEXT_BUILT=$1A	; set when text to display is built
+DIALOG_FLAG_TEXT_OPENING=$1B	; dialog is opening
+DIALOG_FLAG_TEXT_DRAWING=$1C	; dialog text is drawing
+DIALOG_FLAG_TEXT_OPEN=$1D	; dialog is open
+DIALOG_FLAG_TEXT_NEW_PAGE=$1E	; dialog text has another page
+DIALOG_FLAG_TEXT_CLOSING=$1F	; dialog is closing
 ; object list constants
 OBJ_LIST_LENGTH=$000A	; max items in the object list
 NPC_LIST_LENGTH=$0004	; max items in the NPC list
@@ -135,7 +136,7 @@ DIALOG_ROWCOL=$09900000	; row 19 column 16=(128*19)+16=2448=990
 DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
 DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
 LF=$0A	; '\n' - used to break text into multiple lines
-FF=$0C	; form feed - used to break text into sections
+FF=$0C	; form feed - used to break text into pages
 ETX=$03	; end of text
 ; other constants
 ROW_HEIGHT=$800000	; height of a tile row
