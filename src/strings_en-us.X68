@@ -79,9 +79,9 @@ DialogText16Bit:
 	dc.b	ETX
 	align 2
 
-DialogTextDani:
+DialogTextDaniScene0Day0Flag0:
 	;		"1234567890123456789012"
-	dc.b	"Dani: `Isn't it time"
+	dc.b	"Dani:`Isn't it time"
 	dc.b	LF
 	;		"1234567890123456789012"
 	dc.b	"to close already?    ^"
@@ -91,6 +91,18 @@ DialogTextDani:
 	dc.b	LF
 	;		"1234567890123456789012"
 	dc.b	"here so we can leave.'"
+	dc.b	ETX
+	align 2
+
+DialogTextDaniScene0Day0Flag1:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`Maybe you should"
+	dc.b	LF
+	;		"1234567890123456789012"
+	dc.b	"actually talk to him.^"
+	dc.b	FF
+	;		"1234567890123456789012"
+	dc.b	"You know, do your job."
 	dc.b	ETX
 	align 2
 

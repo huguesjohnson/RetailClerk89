@@ -28,6 +28,7 @@ MEM_ACTION_TABLE_OFFSET,2,relative address of action table entry
 MEM_NPC_LOCATIONS,4,table to track where NPCs are located
 MEM_SPRITE_Y_ORDER_CHANGED,2,track if sprite order has changed
 MEM_DAY,2,what day is it in the story
+MEM_DAY_EVENT_FLAGS,4,track events in the current day
 ;-------------------------------------------------------------------------------
 ; dialog management
 ;-------------------------------------------------------------------------------

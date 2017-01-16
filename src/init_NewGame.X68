@@ -10,6 +10,7 @@ InitGameState:
 	move.l	#$00000000,d0
 	bset.l	#STATE_FLAG_EXPLORING,d0
 	move.l	d0,(MEM_GAME_STATE)
+	move.l	#$00000000,(MEM_DAY_EVENT_FLAGS)
 
 ;-------------------------------------------------------------------------------
 ; load the initial NPC locations
