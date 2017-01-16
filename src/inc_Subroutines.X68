@@ -31,10 +31,15 @@
 
 	include 'sub_LoadScene.X68'
 
-	include	'sub_ProcessDialog-BuildDialogText.X68'
+	include	'sub_ProcessDialog.X68'
 	
 	include	'sub_SetSpriteLink.X68'
 
 	include	'sub_OrderSprites.X68'
 
+	include	'sub_BuildActionTableOffset.X68'
+
+	include	'sub_ShowDefaultText.X68'
+
+	include	'sub_SetDialogOpening.X68'
 

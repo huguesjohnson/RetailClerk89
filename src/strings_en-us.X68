@@ -7,7 +7,7 @@
 ;  2) Painfully change all the text
 ;  3) Not rename any of the labels
 ;  4) Change the include path in the main file
-;  5) Update init_Header
+;  5) Change version in init_Header to avoid confusion
 ;  6) Rebuild
 ;
 ; Things that will make translations difficult:
@@ -101,5 +101,38 @@ DialogTextMaleShopper0:
 	;		"1234567890123456789012"
 	dc.b	"for over an hour now."
 	dc.b	ETX
+	align 2
+
+WelcomeMessage:
+	;		"1234567890123456789012"
+	dc.b	"Welcome to the Retail"
+	dc.b	LF
+	;		"1234567890123456789012"
+	dc.b	"Clerk '89 demo.      ^"
+	dc.b	FF
+	;		"1234567890123456789012"
+	dc.b	"Press A to look at    "
+	dc.b	LF
+	;		"1234567890123456789012"
+	dc.b	"nearby items & talk. ^"
+	dc.b	FF
+	;		"1234567890123456789012"
+	dc.b	"Press C to open the   "
+	dc.b	LF
+	;		"1234567890123456789012"
+	dc.b	"menu.                ^"
+	dc.b	FF
+	;		"1234567890123456789012"
+	dc.b	"In menus, A & C select"
+	dc.b	LF
+	;		"1234567890123456789012"
+	dc.b	"items and B cancels. ^"
+	dc.b	FF
+	;		"1234567890123456789012"
+	dc.b	"The Start button"
+	dc.b	LF
+	;		"1234567890123456789012"
+	dc.b	"pauses the game."
+	dc.b	FF
 	align 2
 

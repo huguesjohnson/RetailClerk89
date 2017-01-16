@@ -1,14 +1,6 @@
 ProcessDialog:
 	move.w	#$2700,sr	; disable interrupts while managing dialogs
 	move.l	(MEM_DIALOG_FLAGS),d7	; copy current dialog state to d7
-ProcessDialogTestTextBuilt:
-	btst.l	#DIALOG_FLAG_TEXT_BUILT,d7	; test game state
-	bne.s	ProcessDialogTestOpening	; text is built, move to next test
-	bsr.w	BuildNPCObjectList	; update the location of NPCs
-	bsr.w	FindActionTarget	; find the target of the player's action
-	bsr.w	BuildDialogText	; build text
-	bset.l	#DIALOG_FLAG_TEXT_BUILT,d7	; flag that text is built
-	bset.l	#DIALOG_FLAG_TEXT_OPENING,d7	; change state to opening
 ProcessDialogTestOpening:
 	btst.l	#DIALOG_FLAG_TEXT_OPENING,d7	; test if the dialog is opening
 	beq.s	ProcessDialogTextDrawing	; dialog is not opening, go to next test
@@ -120,58 +112,3 @@ ExitProcessDialog:
 	move.l	d7,(MEM_DIALOG_FLAGS)	; save any changes made to the game state
 	move.w	#$2000,sr		; re-enable interrupts
 	rts
-
-; this demo iteration is just doing a brute force lookup by object id
-; future versions of this demo should add rules based on the game state 
-BuildDialogText: ; note - d7 is used by the caller
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NOTHING,d6
-	bne.s	.1
-	lea	DialogTextNothing,a0
-	bra.s	ExitBuildDialogText
-.1
-	cmpi.w	#OBJ_SCENE_VB_8BIT,d6
-	bne.s	.2
-	lea	DialogText8Bit,a0
-	bra.s	ExitBuildDialogText
-.2
-	cmpi.w	#OBJ_SCENE_VB_MAGS,d6
-	bne.s	.3
-	lea	DialogTextMags,a0
-	bra.s	ExitBuildDialogText
-.3
-	cmpi.w	#OBJ_SCENE_VB_COUNTER,d6
-	bne.s	.4
-	lea	DialogTextCounter,a0
-	bra.s	ExitBuildDialogText
-.4
-	cmpi.w	#OBJ_SCENE_VB_REGISTER,d6
-	bne.s	.5
-	lea	DialogTextRegister,a0
-	bra.s	ExitBuildDialogText	
-.5
-	cmpi.w	#OBJ_NPC_DANI,d6
-	bne.s	.6
-	lea	DialogTextDani,a0
-	bra.s	ExitBuildDialogText
-.6
-	cmpi.w	#OBJ_SCENE_VB_HARDWARE,d6
-	bne.s	.7
-	lea	DialogTextHardware,a0
-	bra.s	ExitBuildDialogText	
-.7
-	cmpi.w	#OBJ_SCENE_VB_16BIT,d6
-	bne.s	.8
-	lea	DialogText16Bit,a0
-	bra.s	ExitBuildDialogText
-.8
-	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6
-	bne.s	.9
-	lea	DialogTextMaleShopper0,a0
-	bra.s	ExitBuildDialogText	
-.9
-	lea	DialogTextNothing,a0
-ExitBuildDialogText:
-	move.l	a0,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-

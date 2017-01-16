@@ -65,7 +65,7 @@ TestRight:
    	swap	d7                          ; move to upper word
 	add.l	#VDP_VRAM_WRITE_SPRITE,d7	; add to sprite table address
 	move.l	d7,(VDP_CONTROL)			; set write location in VDP
-	move.w	(STRUCT_SPRITE_X,a6),(VDP_DATA)				; copy the new x-coordinate
+	move.w	(STRUCT_SPRITE_X,a6),(VDP_DATA)			; copy the new x-coordinate
 	bra.w	MoveSpriteSetPattern		; update the sprite pattern	and exit
 TestLeft:
 	cmpi.w	#DIRECTION_LEFT,d7			; test for left
@@ -81,7 +81,7 @@ TestLeft:
    	swap	d7                          ; move to upper word
 	add.l	#VDP_VRAM_WRITE_SPRITE,d7	; add to sprite table address
 	move.l	d7,(VDP_CONTROL)			; set write location in VDP
-	move.w	(STRUCT_SPRITE_X,a6),(VDP_DATA)				; copy the new x-coordinate
+	move.w	(STRUCT_SPRITE_X,a6),(VDP_DATA)			; copy the new x-coordinate
 MoveSpriteSetPattern:
 	; update the sprite animation	
 	bsr.w	SetSpritePattern		; set the new pattern for the sprite

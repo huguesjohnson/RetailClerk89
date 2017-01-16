@@ -40,10 +40,13 @@
 ;-------------------------------------------------------------------------------
 	include 'const_ObjectIDs.X68'
 	include 'const_SceneIDs.X68'
+	include 'const_ActionIDs.X68'
 	include	'const_StructFields.X68'
 
 ; data addresses
 ROM_ADDR_INSTRUMENTS=$80000
+ROM_ADDR_DEFAULT_TEXT_TABLE=$AF000
+ROM_ADDR_ACTION_TABLE=$B0000
 ; sprite settings
 SPRITE_BASE_PATTERN=$6100	; base pattern of sprites
 SPRITE_TILESET_SIZE=$60	; the size of the tileset used for sprites
@@ -118,7 +121,6 @@ STATE_FLAG_PAUSED=$00	; game is paused
 STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
 STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
 ; high word of MEM_DIALOG_FLAGS is used to track the state
-DIALOG_FLAG_TEXT_BUILT=$1A	; set when text to display is built
 DIALOG_FLAG_TEXT_OPENING=$1B	; dialog is opening
 DIALOG_FLAG_TEXT_DRAWING=$1C	; dialog text is drawing
 DIALOG_FLAG_TEXT_OPEN=$1D	; dialog is open
@@ -138,6 +140,12 @@ DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
 LF=$0A	; '\n' - used to break text into multiple lines
 FF=$0C	; form feed - used to break text into pages
 ETX=$03	; end of text
+; used for action table
+DAY_COUNT=$0A ;$01	; total number of days
+SCENE_COUNT=$14 ;$01	; total number of scenes
+ACTION_COUNT=$06 ;$01	; total number of actions
+ACTION_COUNT_X4=(ACTION_COUNT*4)
+SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
 ; other constants
 ROW_HEIGHT=$800000	; height of a tile row
 CHARACTER_DEFINITION_SIZE=CharacterDefinitionPlayerEnd-CharacterDefinitionPlayer
@@ -163,80 +171,7 @@ CHARACTER_DEFINITION_SIZE=CharacterDefinitionPlayerEnd-CharacterDefinitionPlayer
 
 Main:
 
-	move.w	#$2700,sr		; disable interrupts
-
-InitCounters:
-	move.w	#$0000,(MEM_VBLANK_COUNTER)
-	move.w	#$0000,(MEM_MAINLOOP_COUNTER)
-	move.w	#$0000,(MEM_FRAME_COUNTER)
-
-InitGameState:
-	move.l	#$00000000,d0
-	bset.l	#STATE_FLAG_EXPLORING,d0
-	move.l	d0,(MEM_GAME_STATE)
-
-;-------------------------------------------------------------------------------
-; load the initial NPC locations
-;-------------------------------------------------------------------------------
-InitNPCLocations:
-	lea MEM_NPC_LOCATIONS,a0
-	move.w	#$0102,(a0)+	; location 00 - NPCs 0,1
-	move.w	#$0000,(a0)+	; location 00 - NPCs 2,3
-
-
-LoadPlayerSpriteTiles:
-	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
-	movea.l	#PlayerSpriteTilesStart,a0	; set address of first tile to load
-	move.l	#SPRITE_VDP,d1	; set initial write location
-	bsr.w	LoadTiles	; branch to LoadTiles subroutine
-
-LoadSprites:
-	lea     SpriteZeroDefinition,a0	; store address of sprite definition
-	move.w  #$03,d0	; 1 sprite = 2 longs, 2 sprites = (4-1)
-	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
-LoadSpriteLoop:
-	move.l  (a0)+,(VDP_DATA)
-	dbra    d0,LoadSpriteLoop
-
-;-------------------------------------------------------------------------------
-; load the font
-;-------------------------------------------------------------------------------
-LoadFontTiles:
-	move.l	#FontTilesStart,d1	; start address of tileset
-	move.l	#FontTilesEnd,d0	; end address of tileset
-	sub.l	d1,d0	; subtract the start address to get length
-	divu.w	#$0004,d0	; divide by 4 to setup call to LoadTiles
-	movea.l	d1,a0	; set address of first tile to load
-	move.l	#FONT_VDP,d1	; set initial write location
-	bsr.w	LoadTiles	; branch to LoadTiles subroutine
-
-;-------------------------------------------------------------------------------
-; load the initial scene
-;-------------------------------------------------------------------------------
-	lea	SceneVB,a6	; address of the initial scene
-	bsr.w	LoadScene	; branch to LoadScene subroutine
-
-;-------------------------------------------------------------------------------
-; load and setup the sprites
-;-------------------------------------------------------------------------------
-	move.w	#$2700,sr	; disable interrupts
-
-
-InitPlayerSprite:
-	; player	
-	move.w	#$0001,(MEM_PLAYER_SPRITE_ID)	; player sprite is the 2nd entry
-	move.w	#SPRITE_PLAYER_INIT_X,(MEM_PLAYER_SPRITE_X)	; starting x location
-	move.w	#SPRITE_PLAYER_INIT_Y,(MEM_PLAYER_SPRITE_Y)	; starting y location
-	move.w	#SPRITE_PLAYER_PATTERN,(MEM_PLAYER_SPRITE_PATTERN_INDEX) ; pattern
-	move.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; direction
-	move.w	#$0000,(MEM_PLAYER_SPRITE_FRAME)	; frame
-	; setting SPRITE_STEP_COUNTER to SPRITE_ANIMATION_STEPS forces movement
-	; animation to trigger the next time the sprite moves
-	move.w	#SPRITE_ANIMATION_STEPS,(MEM_PLAYER_SPRITE_STEP_COUNTER)
-	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
-	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
-
-	move.w	#$2000,sr		; re-enable interrupts
+	include	'init_NewGame.X68'
 
 MainGameLoop:
 	bsr.w	WaitVBlank							; wait for vblank to complete
@@ -305,15 +240,27 @@ TestExploring:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_EXPLORING,d7	; test game state
 	beq.w	MainGameLoopEnd	; not exploring, branch to next test
-TestDialogOpened: ; test if the player is attempting to open a dialog
+TestAButtonPressed: ; test if the player pressed the A button
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.w	#BUTTON_A_PRESSED,d6	; test if the A button was pressed
-	beq.s	MainGameLoopUpdateSprites	; A button is not pressed
-	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
-	bset.l	#STATE_FLAG_DIALOG,d7	; set the dialog bit
-	move.l	d7,(MEM_GAME_STATE) ; copy game state back to d7
-	; clear MEM_CONTROL_PRESSED to prevent dialog state from flipping in loop
+	beq.w	MainGameLoopUpdateSprites	; A button is not pressed
+	;---------------------------------------------------------------------------
+	; build event table address and branch to code
+	;---------------------------------------------------------------------------
+	; clear MEM_CONTROL_PRESSED to prevent state from flipping in loop
 	move.w	#$0000,(MEM_CONTROL_PRESSED)
+	bsr.w	BuildNPCObjectList	; update the location of NPCs
+	bsr.w	FindActionTarget	; find the target of the player's action
+	cmpi.w	#OBJ_NOTHING,(MEM_ACTION_TARGET_OBJID)	; is the target nothing?
+	beq.s	NoActionTarget	; branch if no target
+	bsr.w	BuildActionTableOffset	; build action table offset
+	lea	ActionTable,a5	; point to action table
+	adda.w	(MEM_ACTION_TABLE_OFFSET),a5	; move to offset location
+	move.l	(a5),a6	; a5 has the address of the subroutine to jump to
+	jsr	(a6)	; jump to location of code to process this event
+	bra.w	MainGameLoop	; return to start of game loop
+NoActionTarget: 	; if target is 0 then display the default message
+	bsr.w	ShowDefaultText	; show the default text
 	bra.w	MainGameLoop	; return to start of game loop
 MainGameLoopUpdateSprites:
 	; test if it's time to move sprites
@@ -423,6 +370,11 @@ TrapException:
 	include 'inc_Subroutines.X68'
 
 ;*******************************************************************************
+; code to handle player actions based on game state
+;*******************************************************************************
+	include	'ActionScript.X68'
+
+;*******************************************************************************
 ; scenes
 ;*******************************************************************************
 	include 'scenes/scene_vb.X68'
@@ -461,36 +413,8 @@ MapStoreCollision:
 ; character defintions
 ;*******************************************************************************
 
-CharacterDefinitionStart:
+	include 'data_CharacterDefinitions.X68'
 
-; 00
-CharacterDefinitionPlayer:
-	dc.l	PlayerSpriteTilesStart
-	;---------------------------------------------------------------------------
-	; priority, palette, flip, pattern
-	;---------------------------------------------------------------------------
-			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000100000000	; priority=0,palette=2,vflip=0,hflip=0,pattern=5
-CharacterDefinitionPlayerEnd:
-
-; 01
-CharacterDefinitionDani:
-	dc.l	NPCSpriteDaniTilesStart
-	;---------------------------------------------------------------------------
-	; priority, palette, flip, pattern
-	;---------------------------------------------------------------------------
-			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000101100000 ;priority=0,palette=2,vflip=0,hflip=0,pattern=160
-
-; 02
-CharacterDefinitionMaleShopper0:
-	dc.l	NPCSpriteMaleShopper0Start
-	;---------------------------------------------------------------------------
-	; priority, palette, flip, pattern
-	;---------------------------------------------------------------------------
-			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000111000000 ;priority=0,palette=2,vflip=0,hflip=0,pattern=1C0
-	
 ;*******************************************************************************
 ; initialization data
 ;*******************************************************************************
@@ -537,6 +461,16 @@ RandomNPCMovement1End:
 
 BGM_Test:
 	incbin	'music/bgm_store00.esf'
+
+;*******************************************************************************
+; default object text table
+;*******************************************************************************
+	include	'table_defaultText.X68'
+
+;*******************************************************************************
+; action table
+;*******************************************************************************
+	include	'table_actions.X68'
 
 ;*******************************************************************************
 ; end of rom
