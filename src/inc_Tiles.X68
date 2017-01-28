@@ -52,6 +52,10 @@ StoreVBTilesEnd:
 
 SpriteTilesStart:
 
+SpriteZeroTilesStart:
+	include 'sprite-tiles/tileset_SpriteZero.X68'
+SpriteZeroTilesEnd:
+
 PlayerSpriteTilesStart:
 	include 'sprite-tiles/tileset_PlayerSprite.X68'
 	; swap for this tileset for the debug pattern

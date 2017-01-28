@@ -20,10 +20,16 @@ InitNPCLocations:
 	move.w	#$0102,(a0)+	; location 00 - NPCs 0,1
 	move.w	#$0000,(a0)+	; location 00 - NPCs 2,3
 
+LoadSpriteZeroTiles:
+	move.w	#$8,d0	; number of tiles in a sprite tileset
+	movea.l	#SpriteZeroTilesStart,a0	; set address of first tile to load
+	move.l	#SPRITE_VDP,d1	; set initial write location
+	bsr.w	LoadTiles	; branch to LoadTiles subroutine
+
 LoadPlayerSpriteTiles:
 	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
 	movea.l	#PlayerSpriteTilesStart,a0	; set address of first tile to load
-	move.l	#SPRITE_VDP,d1	; set initial write location
+	move.l	#PLAYER_SPRITE_VDP,d1	; set initial write location
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 
 LoadSprites:

@@ -41,7 +41,7 @@ SpriteZeroDefinition:
 	; index + 4 = priority, palette, flip, pattern
 	;---------------------------------------------------------------------------
 			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000000000000	; priority=0,palette=0,vflip=0,hflip=0,pattern=0
+	dc.w 	%1000000100000000	; pri=1,palette=0,vflip=0,hflip=0,pattern=256
 	;---------------------------------------------------------------------------
 	; index + 6 = horizontal coordinate
 	; ---- --yy yyyy yyyy
@@ -68,7 +68,7 @@ PlayerSpriteDefinition:
 	; index + 4 = priority, palette, flip, pattern
 	;---------------------------------------------------------------------------
 			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000100000000	; priority=0,palette=2,vflip=0,hflip=0,pattern=5
+	dc.w 	%0110000100000001	; pri=0,palette=2,vflip=0,hflip=0,pattern=256
 	;---------------------------------------------------------------------------
 	; index + 6 = horizontal coordinate
 	; ---- --yy yyyy yyyy

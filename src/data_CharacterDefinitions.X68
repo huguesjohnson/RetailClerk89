@@ -7,7 +7,7 @@ CharacterDefinitionPlayer:
 	; priority, palette, flip, pattern
 	;---------------------------------------------------------------------------
 			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000100000000	; priority=0,palette=2,vflip=0,hflip=0,pattern=5
+	dc.w 	%0110000100000001 ; priority=0,palette=2,vflip=0,hflip=0,pattern=257
 CharacterDefinitionPlayerEnd:
 
 ; 01
@@ -17,7 +17,7 @@ CharacterDefinitionDani:
 	; priority, palette, flip, pattern
 	;---------------------------------------------------------------------------
 			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000101100000 ;priority=0,palette=2,vflip=0,hflip=0,pattern=160
+	dc.w 	%0110000101100001 ;priority=0,palette=2,vflip=0,hflip=0,pattern=161
 
 ; 02
 CharacterDefinitionMaleShopper0:
@@ -26,5 +26,5 @@ CharacterDefinitionMaleShopper0:
 	; priority, palette, flip, pattern
 	;---------------------------------------------------------------------------
 			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000111000000 ;priority=0,palette=2,vflip=0,hflip=0,pattern=1C0
+	dc.w 	%0110000111000001 ;priority=0,palette=2,vflip=0,hflip=0,pattern=1C1
 	

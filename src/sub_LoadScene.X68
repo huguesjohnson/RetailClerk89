@@ -166,7 +166,7 @@ LoadNPC:
 	adda.w	d5,a2	; increment a2 to the NPC definition
 	lea	MEM_NPC0_SPRITE_ID,a3	; point a3 to the first NPC memory location
 	move.w	d2,d5	; d2 has sprite ID, copy it to d5
-	subq	#$2,d5	; decrement to account for player sprite & sprite 0
+	subq	#$2,d5	; decrement to account for player sprite
 	mulu.w	#NPC_RECORD_SIZE,d5	; multiply to get location
 	adda.w	d5,a3	; increment a3 to the NPC memory location
 	; load the tiles
@@ -174,10 +174,10 @@ LoadNPC:
 	movea.l	(a2)+,a0	; set address of first tile to load
 	; calculate VDP write address
 	move.l	d2,d1	; copy sprite ID to d1
-	subq	#$1,d1	; subtract 1 to account for sprite 0 having no tiles
+	subq	#$1,d1	; subtract 1 to account for zero indexing
 	mulu	#(SPRITE_TILESET_LWORDS*LWORD_SIZE),d1	; multiply to get location
 	swap	d1	; move to upper word
-	add.l	#SPRITE_VDP,d1 ; add base address
+	add.l	#PLAYER_SPRITE_VDP,d1 ; add base address
 	; note - a0, d0, and d1 are modified by this call
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 	; update base pattern

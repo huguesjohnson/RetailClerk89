@@ -16,135 +16,172 @@
 ;*******************************************************************************
 
 ;-------------------------------------------------------------------------------
-; dialog text
+; messages
 ;-------------------------------------------------------------------------------
-
 DialogTextNothing:
 	;		"1234567890123456789012"
-	dc.b	"There's nothing very"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"interesting here."
-	dc.b	ETX
-	align 2
+	dc.b	"There's nothing very",LF
+	dc.b	"interesting here.",ETX
 
-DialogText8Bit:
+DialogTextNoItems:
 	;		"1234567890123456789012"
-	dc.b	"The shelves are lined"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"with 8-bit games."
-	dc.b	ETX
-	align 2
+	dc.b	"You aren't carrying",LF
+	dc.b	"anything right now.",ETX
 
-DialogTextMags:
+DialogTextNothingHappens:
 	;		"1234567890123456789012"
-	dc.b	"Below the counter are"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"gaming magazines."
-	dc.b	ETX
-	align 2
+	dc.b	"Nothing happens.",ETX
 
-DialogTextCounter:
+DialogTextCantTake:
 	;		"1234567890123456789012"
-	dc.b	"The counter is empty."
-	dc.b	ETX
-	align 2
-
-DialogTextRegister:
-	;		"1234567890123456789012"
-	dc.b	"The register stares"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"back at you blankly."
-	dc.b	ETX
-	align 2
-
-DialogTextHardware:
-	;		"1234567890123456789012"
-	dc.b	"This is a wire rack"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"of computer hardware."
-	dc.b	ETX
-	align 2
-
-DialogText16Bit:
-	;		"1234567890123456789012"
-	dc.b	"Here are the latest"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"16-bit games."
-	dc.b	ETX
-	align 2
-
-DialogTextDaniScene0Day0Flag0:
-	;		"1234567890123456789012"
-	dc.b	"Dani:`Isn't it time"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"to close already?    ^"
-	dc.b	FF
-	;		"1234567890123456789012"
-	dc.b	"Get that guy out of"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"here so we can leave.'"
-	dc.b	ETX
-	align 2
-
-DialogTextDaniScene0Day0Flag1:
-	;		"1234567890123456789012"
-	dc.b	"Dani:`Maybe you should"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"actually talk to him.^"
-	dc.b	FF
-	;		"1234567890123456789012"
-	dc.b	"You know, do your job."
-	dc.b	ETX
-	align 2
-
-DialogTextMaleShopper0:
-	;		"1234567890123456789012"
-	dc.b	"He has been browsing"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"for over an hour now."
-	dc.b	ETX
-	align 2
+	dc.b	"You can't take this.",ETX
 
 WelcomeMessage:
 	;		"1234567890123456789012"
-	dc.b	"Welcome to the Retail"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"Clerk '89 demo.      ^"
-	dc.b	FF
-	;		"1234567890123456789012"
-	dc.b	"Press A to look at    "
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"nearby items & talk. ^"
-	dc.b	FF
-	;		"1234567890123456789012"
-	dc.b	"Press C to open the   "
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"menu.                ^"
-	dc.b	FF
-	;		"1234567890123456789012"
-	dc.b	"In menus, A & C select"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"items and B cancels. ^"
-	dc.b	FF
-	;		"1234567890123456789012"
-	dc.b	"The Start button"
-	dc.b	LF
-	;		"1234567890123456789012"
-	dc.b	"pauses the game."
-	dc.b	FF
-	align 2
+	dc.b	"Welcome to the Retail",LF
+	dc.b	"Clerk '89 demo.      ^",FF
+	dc.b	"Press A to look at",LF
+	dc.b	"nearby items & talk. ^",FF
+	dc.b	"Press C to open the",LF
+	dc.b	"menu.                ^",FF
+	dc.b	"In menus, A & C select",LF
+	dc.b	"items and B cancels. ^",FF
+	dc.b	"The Start button",LF
+	dc.b	"pauses the game.",ETX
 
+;-------------------------------------------------------------------------------
+; dialog text
+;-------------------------------------------------------------------------------
+DialogTextDaniScene0Day0Flag0:
+	;		"1234567890123456789012"
+	dc.b	"`Isn't it time to",LF
+	dc.b	"close already?       ^",FF
+	dc.b	"Get that guy out of",LF
+	dc.b	"here so we can leave.'",ETX
+
+DialogTextDaniScene0Day0Flag1:
+	;		"1234567890123456789012"
+	dc.b	"`Maybe you should",LF
+	dc.b	"actually talk to him.^",FF
+	dc.b	"`You know, like",LF
+	dc.b	"do your job.'",ETX
+
+DialogTextMaleShopper0Scene0Day0Flag0:
+	;		"1234567890123456789012"
+	dc.b	"`Do you know if I have",LF
+	dc.b	"a mouse on COM2 using^",FF
+	dc.b	"IRQ3 can I hookup one",LF
+	dc.b	"of these modems      ^",FF
+	dc.b	"on COM4 using IRQ4?'",LF
+	dc.b	"                     ^",FF
+	dc.b	"{Sure, why not?",LF
+	dc.b	"{I make $3.35 an hour.",ETX
+
+DialogTextMaleShopper0Scene0Day0Flag0R0:
+	;		"1234567890123456789012"
+	dc.b	"`You chose response",LF
+	dc.b	"zero, neat.'",ETX
+
+DialogTextMaleShopper0Scene0Day0Flag0R1:
+	;		"1234567890123456789012"
+	dc.b	"`You chose response",LF
+	dc.b	"one, alright.'",ETX
+
+DialogTextMaleShopper0Scene0Day0Flag2:
+	;		"1234567890123456789012"
+	dc.b	"`You're talking to me",LF
+	dc.b	"again now.'",ETX
+
+;-------------------------------------------------------------------------------
+; default object descriptions
+;-------------------------------------------------------------------------------
+DialogText8Bit:
+	;		"1234567890123456789012"
+	dc.b	"The shelves are lined",LF
+	dc.b	"with 8-bit games.",ETX
+
+DialogTextMags:
+	;		"1234567890123456789012"
+	dc.b	"Below the counter are",LF
+	dc.b	"gaming magazines.",ETX
+
+DialogTextCounter:
+	;		"1234567890123456789012"
+	dc.b	"The counter is empty.",ETX
+
+DialogTextRegister:
+	;		"1234567890123456789012"
+	dc.b	"The register stares",LF
+	dc.b	"back at you blankly.",ETX
+
+DialogTextHardware:
+	;		"1234567890123456789012"
+	dc.b	"This is a wire rack",LF
+	dc.b	"of computer hardware.",ETX
+
+DialogText16Bit:
+	;		"1234567890123456789012"
+	dc.b	"Here are the latest",LF
+	dc.b	"16-bit games.",ETX
+
+;-------------------------------------------------------------------------------
+; default NPC descriptions
+;-------------------------------------------------------------------------------
+DialogTextMaleShopper0:
+	;		"1234567890123456789012"
+	dc.b	"He has been browsing",LF
+	dc.b	"for over an hour now.",ETX
+
+DialogTextDaniScene0Day0Action0:
+	;		"1234567890123456789012"
+	dc.b	"She gives you a look",LF
+	dc.b	"that clearly says    ^",FF
+	dc.b	"you'll be walking home",LF
+	dc.b	"if you take too long.",ETX
+
+;-------------------------------------------------------------------------------
+; menus
+;-------------------------------------------------------------------------------
+NPCMenu:
+	;		"1234567890123456789012"
+	dc.b	"{Look  {Talk  {Give",ETX
+
+
+ObjectMenu:
+	;		"1234567890123456789012"
+	dc.b	"{Look  {Use   {Take",ETX
+
+;-------------------------------------------------------------------------------
+; object names
+;-------------------------------------------------------------------------------
+ObjectName8Bit:
+	dc.b	"Wall of 8-bit games",OBJMENU
+
+ObjectNameComputerHardware:
+	dc.b	"Computer hardware",OBJMENU
+
+ObjectName16Bit:
+	dc.b	"Rack of 16-bit games",OBJMENU
+
+ObjectNameMagazines:
+	dc.b	"Magazine rack",OBJMENU
+
+ObjectNameCounter:
+	dc.b	"Counter",OBJMENU
+
+ObjectNameRegister:
+	dc.b	"Cash register",OBJMENU
+
+;-------------------------------------------------------------------------------
+; npc names
+;-------------------------------------------------------------------------------
+NPCNameDani:
+	dc.b	"Dani (your sister)",NPCMENU
+
+NPCNameMapperShopper0:
+	dc.b	"Business casual guy",NPCMENU
+
+;-------------------------------------------------------------------------------
+; end
+;-------------------------------------------------------------------------------
+	align 2

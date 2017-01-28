@@ -43,3 +43,5 @@
 
 	include	'sub_SetDialogOpening.X68'
 
+	include	'sub_ResetDialog.X68'
+

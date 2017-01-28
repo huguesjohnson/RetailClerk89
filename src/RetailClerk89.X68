@@ -45,7 +45,7 @@
 
 ; data addresses
 ROM_ADDR_INSTRUMENTS=$80000
-ROM_ADDR_DEFAULT_TEXT_TABLE=$AF000
+ROM_ADDR_TEXT_TABLE=$AF000
 ROM_ADDR_ACTION_TABLE=$B0000
 ; sprite settings
 SPRITE_BASE_PATTERN=$6100	; base pattern of sprites
@@ -57,7 +57,7 @@ SPRITE_FRAME_COUNT=$0003	; how many animation frames there are for sprites
 SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
 SPRITE_ANIMATION_STEPS=$000A	; how many steps between animation frame changes
 SPRITE_STEP_PIXELS=$0001	; how many pixels to move on each sprite step
-SPRITE_PLAYER_PATTERN=SPRITE_BASE_PATTERN	; base pattern for player sprite
+SPRITE_PLAYER_PATTERN=SPRITE_BASE_PATTERN+$1	; base pattern for player sprite
 SPRITE_PLAYER_HEIGHT=DEFAULT_SPRITE_HEIGHT	; player sprite height
 SPRITE_PLAYER_WIDTH=DEFAULT_SPRITE_WIDTH	; player sprite 
 SPRITE_PLAYER_INIT_X=$0100	; starting x location of player sprite
@@ -89,6 +89,7 @@ VDP_VRAM_WRITE_VSCROLL=$40000010	; vscroll write
 SCENE_VDP=VDP_VRAM_WRITE			; write location for scene tiles
 FONT_VDP=SCENE_VDP+$12000000		; write location for font tiles
 SPRITE_VDP=SCENE_VDP+$20000000		; write location for sprite tiles
+PLAYER_SPRITE_VDP=SPRITE_VDP+$00200000	; write location for player sprite tiles
 ; screen & plane sizes
 DISPLAY_PIXELS_X=$0140				; width of physical display
 DISPLAY_PIXELS_Y=$00E0				; height of physical display
@@ -120,7 +121,12 @@ DEFAULT_COLLISION_DATA_SIZE=$7F	; 128 longs of collision data by default
 STATE_FLAG_PAUSED=$00	; game is paused
 STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
 STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
+STATE_FLAG_ACTION=$03	; there is an action queued
 ; high word of MEM_DIALOG_FLAGS is used to track the state
+DIALOG_FLAG_STYLE_MENU=$17	; overworld menu style dialog
+DIALOG_FLAG_STYLE_TEXT_CHOICE=$18	; dialog has text with selection at the end
+DIALOG_FLAG_STYLE_SIMPLE_TEXT=$19	; dialog is a simple text dialog
+DIALOG_FLAG_SELECTION_WAIT=$1A	; waiting for the player to make a selection 
 DIALOG_FLAG_TEXT_OPENING=$1B	; dialog is opening
 DIALOG_FLAG_TEXT_DRAWING=$1C	; dialog text is drawing
 DIALOG_FLAG_TEXT_OPEN=$1D	; dialog is open
@@ -137,13 +143,17 @@ DIALOG_BASE_TILE=$8090	; base file for dialogs
 DIALOG_ROWCOL=$09900000	; row 19 column 16=(128*19)+16=2448=990
 DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
 DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
+DIALOG_MENU_INIT_SELECTION_X=$C8	; x coordinate of initial menu selection
+DIALOG_MENU_INIT_SELECTION_Y=$120	; y coordinate of initial menu selection
 LF=$0A	; '\n' - used to break text into multiple lines
 FF=$0C	; form feed - used to break text into pages
 ETX=$03	; end of text
+OBJMENU=$1E	; indicator to draw object menu
+NPCMENU=$1F	; indicator to draw npc menu
 ; used for action table
-DAY_COUNT=$0A ;$01	; total number of days
-SCENE_COUNT=$14 ;$01	; total number of scenes
-ACTION_COUNT=$06 ;$01	; total number of actions
+DAY_COUNT=$01	; total number of days
+SCENE_COUNT=$01	; total number of scenes
+ACTION_COUNT=$04	; total number of actions
 ACTION_COUNT_X4=(ACTION_COUNT*4)
 SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
 ; other constants
@@ -210,7 +220,15 @@ UpdatePause:
 	move.w	#$2000,sr		; re-enable interrupts
 TestPause:
 	btst.l	#STATE_FLAG_PAUSED,d7	; test if paused
-	beq.s	TestDialog	; not paused, branch to update sprites
+	beq.s	TestAction	; not paused, move to next test
+	bra.w	MainGameLoop	; paused, return to start of game loop
+;-------------------------------------------------------------------------------
+; determine if there is an action queued
+;-------------------------------------------------------------------------------
+TestAction:
+	btst.l	#STATE_FLAG_ACTION,d7 ; test game state
+	beq.w	TestDialog	; no action queued, move to next test
+	bsr.w	ProcessAction	; process the pending action
 	bra.w	MainGameLoop	; paused, return to start of game loop
 ;-------------------------------------------------------------------------------
 ; determine if the player is opening or interacting with a dialog
@@ -222,6 +240,7 @@ TestDialog:
 TestDialogUpdateFrequency:
 	cmpi.w	#DIALOG_UPDATE_FREQUENCY,(MEM_FRAME_COUNTER); is it time to update?
 	blt.s	TestDialogOpen	; branch if it's not time to move
+	blt.w	MainGameLoop	; branch if it's not time to move
 	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset counter to 0	
 	bsr.w	ProcessDialog	; dialog is set, jump to process dialog sub-routine
 	bra.w	MainGameLoop	; return to start of game loop
@@ -233,9 +252,6 @@ TestDialogOpen:
 	; else branch to process dialog
 	bsr.w	ProcessDialog	; dialog is set, jump to process dialog sub-routine
 	bra.w	MainGameLoop	; return to start of game loop
-;-------------------------------------------------------------------------------
-; determine if sprites need to be moved and move them
-;-------------------------------------------------------------------------------
 TestExploring:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_EXPLORING,d7	; test game state
@@ -253,15 +269,15 @@ TestAButtonPressed: ; test if the player pressed the A button
 	bsr.w	FindActionTarget	; find the target of the player's action
 	cmpi.w	#OBJ_NOTHING,(MEM_ACTION_TARGET_OBJID)	; is the target nothing?
 	beq.s	NoActionTarget	; branch if no target
-	bsr.w	BuildActionTableOffset	; build action table offset
-	lea	ActionTable,a5	; point to action table
-	adda.w	(MEM_ACTION_TABLE_OFFSET),a5	; move to offset location
-	move.l	(a5),a6	; a5 has the address of the subroutine to jump to
-	jsr	(a6)	; jump to location of code to process this event
+	bsr.w	ShowSelectionDialog	; otherwise show a selection dialog
 	bra.w	MainGameLoop	; return to start of game loop
 NoActionTarget: 	; if target is 0 then display the default message
 	bsr.w	ShowDefaultText	; show the default text
+	bsr.w	SetDialogOpening	; set dialog state to opening
 	bra.w	MainGameLoop	; return to start of game loop
+;-------------------------------------------------------------------------------
+; determine if sprites need to be moved and move them
+;-------------------------------------------------------------------------------
 MainGameLoopUpdateSprites:
 	; test if it's time to move sprites
 	cmpi.w	#SPRITE_MOVE_FREQUENCY,(MEM_FRAME_COUNTER); is it time to move?
@@ -362,7 +378,43 @@ TrapException:
 ;*******************************************************************************
 ; work in-progress subroutines
 ;*******************************************************************************
+ShowSelectionDialog:
+	move.w	(MEM_ACTION_TARGET_OBJID),d7	; move target object ID to d7
+	andi.w	#$0FFF,d7	; clear the base value
+	mulu.w	#$4,d7	; multiply by 4 to get the offset
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	andi.w	#OBJ_SCENE_BASE,d6	; and against OBJ_SCENE_BASE
+	beq.s	.1	; if the result is zero then this is not scenery
+	lea	ObjectNameTable,a6	; point to default object text table
+	bra.s	.2	branch to next step
+.1	; target object is an NPC
+	lea	NPCNameTable,a6	; point to default npc text table
+.2
+	adda.l	d7,a6	; add offset
+	move.l	(a6),(MEM_DIALOG_TEXT)	; copy value at a6 to MEM_DIALOG_TEXT
+	; set dialog flags to display the dialog
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy current dialog state to d7
+	bset.l	#DIALOG_FLAG_TEXT_OPENING,d7	; change state to opening
+	bset.l	#DIALOG_FLAG_STYLE_MENU,d7	; set style to overworld menu
+	bset.l	#DIALOG_FLAG_SELECTION_WAIT,d7	; set flag to wait for selection
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save changes made to the game state
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bset.l	#STATE_FLAG_DIALOG,d7	; set the dialog bit
+	move.l	d7,(MEM_GAME_STATE) ; copy game state back to d7
+	move.w	#$0000,(MEM_MENU_SELECTION)	; default to first menu selection
+	rts
 
+ProcessAction:
+	bsr.w	ResetDialog	; reset the dialog
+	bsr.w	BuildActionTableOffset	; build action table offset
+	lea	ActionTable,a5	; point to action table
+	adda.w	(MEM_ACTION_TABLE_OFFSET),a5	; move to offset location
+	move.l	(a5),a6	; a5 has the address of the subroutine to jump to
+	jsr	(a6)	; jump to location of code to process this event
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bclr.l	#STATE_FLAG_ACTION,d7 ; clear action flag
+	move.l	d7,(MEM_GAME_STATE)	; save it back
+	rts
 
 ;*******************************************************************************
 ; mostly stable subroutines
@@ -458,12 +510,12 @@ BGM_Test:
 ;*******************************************************************************
 ; default object text table
 ;*******************************************************************************
-	include	'table_defaultText.X68'
+	include	'table_Text.X68'
 
 ;*******************************************************************************
 ; action table
 ;*******************************************************************************
-	include	'table_actions.X68'
+	include	'table_Actions.X68'
 
 ;*******************************************************************************
 ; end of rom

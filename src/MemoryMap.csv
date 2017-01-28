@@ -30,8 +30,10 @@ MEM_SPRITE_Y_ORDER_CHANGED,2,track if sprite order has changed
 MEM_DAY,2,what day is it in the story
 MEM_DAY_EVENT_FLAGS,4,track events in the current day
 ;-------------------------------------------------------------------------------
-; dialog management
+; dialog & menu management
 ;-------------------------------------------------------------------------------
+MEM_MENU_SELECTION,2,which menu item is selected
+MEM_MENU_RESPONSE,2,which dialog choice was selected
 MEM_DIALOG_FLAGS,4,used to manage dialogs
 MEM_DIALOG_TEXT,4,pointer to location of dialog text
 MEM_DIALOG_VPD,4,pointer to VPD location to write text
