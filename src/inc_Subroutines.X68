@@ -31,6 +31,8 @@
 
 	include 'sub_LoadScene.X68'
 
+	include 'sub_DrawScene.X68'
+
 	include	'sub_ProcessDialog.X68'
 	
 	include	'sub_SetSpriteLink.X68'
@@ -44,4 +46,10 @@
 	include	'sub_SetDialogOpening.X68'
 
 	include	'sub_ResetDialog.X68'
+
+	include	'sub_ShowSelectionDialog.X68'
+
+	include	'sub_ProcessAction.X68'
+
+	include	'sub_Inventory.X68'
 

@@ -36,6 +36,10 @@ DialogTextCantTake:
 	;		"1234567890123456789012"
 	dc.b	"You can't take this.",ETX
 
+DialogTextAlreadyHaveIt:
+	;		"1234567890123456789012"
+	dc.b	"You already have one.",ETX
+
 WelcomeMessage:
 	;		"1234567890123456789012"
 	dc.b	"Welcome to the Retail",LF
@@ -68,12 +72,10 @@ DialogTextDaniScene0Day0Flag1:
 
 DialogTextMaleShopper0Scene0Day0Flag0:
 	;		"1234567890123456789012"
-	dc.b	"`Do you know if I have",LF
-	dc.b	"a mouse on COM2 using^",FF
-	dc.b	"IRQ3 can I hookup one",LF
-	dc.b	"of these modems      ^",FF
-	dc.b	"on COM4 using IRQ4?'",LF
-	dc.b	"                     ^",FF
+	dc.b	"`If I have a mouse on",LF
+	dc.b	"COM2 using IRQ3 can I^",FF
+	dc.b	"hookup a modem on",LF
+	dc.b	"COM4 using IRQ4?'    ^",FF
 	dc.b	"{Sure, why not?",LF
 	dc.b	"{I make $3.35 an hour.",ETX
 
@@ -146,40 +148,91 @@ NPCMenu:
 	;		"1234567890123456789012"
 	dc.b	"{Look  {Talk  {Give",ETX
 
-
 ObjectMenu:
 	;		"1234567890123456789012"
 	dc.b	"{Look  {Use   {Take",ETX
+
+ItemMenu:
+	;		"1234567890123456789012"
+	dc.b	"{",ITEMNAMESTART
+
+;-------------------------------------------------------------------------------
+; take menus and messages
+;-------------------------------------------------------------------------------
+TakeMenuFull:
+	;		"1234567890123456789012"
+	dc.b	"You can't carry any",LF
+	dc.b	"more items.",ETX
+
+TakeMenuMagazines:
+	;		"1234567890123456789012"
+	dc.b	"Which magazine do you",LF
+	dc.b	"want to take?        ^",FF
+	dc.b	"{",ITEMNAMESTART
+
+TakeMagazinesOption0:
+	;		"1234567890123456789012"
+	dc.b	"You selected option 0.",ETX
+
+TakeMagazinesOption1:
+	;		"1234567890123456789012"
+	dc.b	"You selected option 1.",ETX
+
+TakeMagazinesOption2:
+	;		"1234567890123456789012"
+	dc.b	"You selected option 2.",ETX
+
+TakeMagazinesOption3:
+	;		"1234567890123456789012"
+	dc.b	"You selected option 3.",ETX
 
 ;-------------------------------------------------------------------------------
 ; object names
 ;-------------------------------------------------------------------------------
 ObjectName8Bit:
-	dc.b	"Wall of 8-bit games",OBJMENU
+	dc.b	"Wall of 8-bit games",OBJNAMEEND
 
 ObjectNameComputerHardware:
-	dc.b	"Computer hardware",OBJMENU
+	dc.b	"Computer hardware",OBJNAMEEND
 
 ObjectName16Bit:
-	dc.b	"Rack of 16-bit games",OBJMENU
+	dc.b	"Rack of 16-bit games",OBJNAMEEND
 
 ObjectNameMagazines:
-	dc.b	"Magazine rack",OBJMENU
+	dc.b	"Magazine rack",OBJNAMEEND
 
 ObjectNameCounter:
-	dc.b	"Counter",OBJMENU
+	dc.b	"Counter",OBJNAMEEND
 
 ObjectNameRegister:
-	dc.b	"Cash register",OBJMENU
+	dc.b	"Cash register",OBJNAMEEND
 
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------
 NPCNameDani:
-	dc.b	"Dani (your sister)",NPCMENU
+	dc.b	"Dani (your sister)",NPCNAMEEND
 
 NPCNameMapperShopper0:
-	dc.b	"Business casual guy",NPCMENU
+	dc.b	"Business casual guy",NPCNAMEEND
+
+;-------------------------------------------------------------------------------
+; item names
+;-------------------------------------------------------------------------------
+ItemNameNothing:
+	dc.b	"Nothing",ITEMNAMEEND
+
+ItemNameMagGamePro:
+	dc.b	"GamePro",ITEMNAMEEND
+
+ItemNameMagEGM:
+	dc.b	"EGM",ITEMNAMEEND
+
+ItemNameMagAntic:
+	dc.b	"Antic",ITEMNAMEEND
+
+ItemNameMagAnalog:
+	dc.b	"Analog",ITEMNAMEEND
 
 ;-------------------------------------------------------------------------------
 ; end

@@ -25,18 +25,27 @@ MEM_GAME_STATE,4,used to control the main loop flow
 MEM_ACTION_ID,2,current action selected by player
 MEM_ACTION_TARGET_OBJID,2,action target object id
 MEM_ACTION_TABLE_OFFSET,2,relative address of action table entry
+MEM_ACTIVE_ITEM,2,item that is currently being used
 MEM_NPC_LOCATIONS,4,table to track where NPCs are located
 MEM_SPRITE_Y_ORDER_CHANGED,2,track if sprite order has changed
 MEM_DAY,2,what day is it in the story
 MEM_DAY_EVENT_FLAGS,4,track events in the current day
+MEM_MISSION_EVENT_FLAGS,4,track events in the current mission
+;-------------------------------------------------------------------------------
+; player inventory
+;-------------------------------------------------------------------------------
+MEM_PLAYER_ITEM_COUNT,2,how many items the player is holding
+MEM_PLAYER_ITEMS,8,four items
 ;-------------------------------------------------------------------------------
 ; dialog & menu management
 ;-------------------------------------------------------------------------------
-MEM_MENU_SELECTION,2,which menu item is selected
+MEM_MENU_SELECTION,2,which menu item is selected - used for sprite
 MEM_MENU_RESPONSE,2,which dialog choice was selected
 MEM_DIALOG_FLAGS,4,used to manage dialogs
 MEM_DIALOG_TEXT,4,pointer to location of dialog text
 MEM_DIALOG_VPD,4,pointer to VPD location to write text
+MEM_DIALOG_ITEM_LIST,4,pointer to location of item list to display
+MEM_DIALOG_ITEM_INDEX,2,track which item in the list is being drawn
 ;-------------------------------------------------------------------------------
 ; sprite management
 ;-------------------------------------------------------------------------------

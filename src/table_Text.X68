@@ -58,4 +58,18 @@ NPCNameTable:
 	; OBJ_NPC_MALE_SHOPPER0
 	dc.l	NPCNameMapperShopper0
 
+;-------------------------------------------------------------------------------
+; item names
+;-------------------------------------------------------------------------------
+ItemNameTable:
+	;OBJ_ITEM_NOTHING
+	dc.l	ItemNameNothing
+	;OBJ_ITEM_MAG_GAMEPRO
+	dc.l	ItemNameMagGamePro
+	;OBJ_ITEM_MAG_EGM
+	dc.l	ItemNameMagEGM
+	;OBJ_ITEM_MAG_ANTIC
+	dc.l	ItemNameMagAntic
+	;OBJ_ITEM_MAG_ANALOG
+	dc.l	ItemNameMagAnalog
 

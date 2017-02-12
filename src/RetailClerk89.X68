@@ -123,8 +123,10 @@ STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
 STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
 STATE_FLAG_ACTION=$03	; there is an action queued
 ; high word of MEM_DIALOG_FLAGS is used to track the state
-DIALOG_FLAG_STYLE_MENU=$17	; overworld menu style dialog
-DIALOG_FLAG_STYLE_TEXT_CHOICE=$18	; dialog has text with selection at the end
+DIALOG_FLAG_STYLE_ITEM_MENU=$15	; item menu dialog
+DIALOG_FLAG_STYLE_MENU=$16	; overworld menu style dialog
+DIALOG_FLAG_STYLE_TEXT_4CHOICE=$17	; dialog has text with selection at the end
+DIALOG_FLAG_STYLE_TEXT_2CHOICE=$18	; dialog has text with selection at the end
 DIALOG_FLAG_STYLE_SIMPLE_TEXT=$19	; dialog is a simple text dialog
 DIALOG_FLAG_SELECTION_WAIT=$1A	; waiting for the player to make a selection 
 DIALOG_FLAG_TEXT_OPENING=$1B	; dialog is opening
@@ -145,11 +147,14 @@ DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
 DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
 DIALOG_MENU_INIT_SELECTION_X=$C8	; x coordinate of initial menu selection
 DIALOG_MENU_INIT_SELECTION_Y=$120	; y coordinate of initial menu selection
+DIALOG_NO_RESPONSE=$FFFF	; no response or dialog cancelled 
 LF=$0A	; '\n' - used to break text into multiple lines
 FF=$0C	; form feed - used to break text into pages
 ETX=$03	; end of text
-OBJMENU=$1E	; indicator to draw object menu
-NPCMENU=$1F	; indicator to draw npc menu
+OBJNAMEEND=$1E	; end of object name
+NPCNAMEEND=$1F	; end of NPC name
+ITEMNAMESTART=$1C	; indicator to draw the next item name
+ITEMNAMEEND=$1D	; end of item name
 ; used for action table
 DAY_COUNT=$01	; total number of days
 SCENE_COUNT=$01	; total number of scenes
@@ -157,6 +162,7 @@ ACTION_COUNT=$04	; total number of actions
 ACTION_COUNT_X4=(ACTION_COUNT*4)
 SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
 ; other constants
+MAX_ITEMS=$04	; maximum number of items the player can carry
 ROW_HEIGHT=$800000	; height of a tile row
 CHARACTER_DEFINITION_SIZE=CharacterDefinitionPlayerEnd-CharacterDefinitionPlayer
 
@@ -378,43 +384,6 @@ TrapException:
 ;*******************************************************************************
 ; work in-progress subroutines
 ;*******************************************************************************
-ShowSelectionDialog:
-	move.w	(MEM_ACTION_TARGET_OBJID),d7	; move target object ID to d7
-	andi.w	#$0FFF,d7	; clear the base value
-	mulu.w	#$4,d7	; multiply by 4 to get the offset
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	andi.w	#OBJ_SCENE_BASE,d6	; and against OBJ_SCENE_BASE
-	beq.s	.1	; if the result is zero then this is not scenery
-	lea	ObjectNameTable,a6	; point to default object text table
-	bra.s	.2	branch to next step
-.1	; target object is an NPC
-	lea	NPCNameTable,a6	; point to default npc text table
-.2
-	adda.l	d7,a6	; add offset
-	move.l	(a6),(MEM_DIALOG_TEXT)	; copy value at a6 to MEM_DIALOG_TEXT
-	; set dialog flags to display the dialog
-	move.l	(MEM_DIALOG_FLAGS),d7	; copy current dialog state to d7
-	bset.l	#DIALOG_FLAG_TEXT_OPENING,d7	; change state to opening
-	bset.l	#DIALOG_FLAG_STYLE_MENU,d7	; set style to overworld menu
-	bset.l	#DIALOG_FLAG_SELECTION_WAIT,d7	; set flag to wait for selection
-	move.l	d7,(MEM_DIALOG_FLAGS)	; save changes made to the game state
-	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
-	bset.l	#STATE_FLAG_DIALOG,d7	; set the dialog bit
-	move.l	d7,(MEM_GAME_STATE) ; copy game state back to d7
-	move.w	#$0000,(MEM_MENU_SELECTION)	; default to first menu selection
-	rts
-
-ProcessAction:
-	bsr.w	ResetDialog	; reset the dialog
-	bsr.w	BuildActionTableOffset	; build action table offset
-	lea	ActionTable,a5	; point to action table
-	adda.w	(MEM_ACTION_TABLE_OFFSET),a5	; move to offset location
-	move.l	(a5),a6	; a5 has the address of the subroutine to jump to
-	jsr	(a6)	; jump to location of code to process this event
-	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
-	bclr.l	#STATE_FLAG_ACTION,d7 ; clear action flag
-	move.l	d7,(MEM_GAME_STATE)	; save it back
-	rts
 
 ;*******************************************************************************
 ; mostly stable subroutines
@@ -487,6 +456,15 @@ RandomNPCMovement1Start:
     dc.w	DIRECTION_RIGHT,DIRECTION_RIGHT
 	dc.w	DIRECTION_LEFT,DIRECTION_LEFT
 RandomNPCMovement1End:
+
+;*******************************************************************************
+; scene items
+;*******************************************************************************
+ItemListVBMagazine:
+	dc.w	OBJ_ITEM_MAG_GAMEPRO
+	dc.w	OBJ_ITEM_MAG_EGM
+	dc.w	OBJ_ITEM_MAG_ANTIC
+	dc.w	OBJ_ITEM_MAG_ANALOG
 
 ;*******************************************************************************
 ; text
