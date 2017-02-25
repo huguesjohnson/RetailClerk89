@@ -136,8 +136,6 @@ Day00Scene00Action02DefaultTake:
 	bra.s	ExitDay00Scene00Action02
 Day00Scene00Action02DefaultGive:
 
-	move.w	(MEM_ACTIVE_ITEM),(MEM_DEBUG_1)
-
 	lea	DialogTextNothingHappens,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 ExitDay00Scene00Action02:

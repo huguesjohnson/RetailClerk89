@@ -122,6 +122,7 @@ STATE_FLAG_PAUSED=$00	; game is paused
 STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
 STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
 STATE_FLAG_ACTION=$03	; there is an action queued
+STATE_FLAG_SCRIPTED_EVENT=$04	; a scripted event is running
 ; high word of MEM_DIALOG_FLAGS is used to track the state
 DIALOG_FLAG_STYLE_ITEM_MENU=$15	; item menu dialog
 DIALOG_FLAG_STYLE_MENU=$16	; overworld menu style dialog
@@ -165,6 +166,8 @@ SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
 MAX_ITEMS=$04	; maximum number of items the player can carry
 ROW_HEIGHT=$800000	; height of a tile row
 CHARACTER_DEFINITION_SIZE=CharacterDefinitionPlayerEnd-CharacterDefinitionPlayer
+SCRIPTED_EVENT_END=$FFFF
+SCRIPTED_EVENT_DIALOG=$EEEE
 
 ;*******************************************************************************
 ; vectors
@@ -233,9 +236,74 @@ TestPause:
 ;-------------------------------------------------------------------------------
 TestAction:
 	btst.l	#STATE_FLAG_ACTION,d7 ; test game state
-	beq.w	TestDialog	; no action queued, move to next test
+	beq.w	TestScriptedEvent	; no action queued, move to next test
 	bsr.w	ProcessAction	; process the pending action
 	bra.w	MainGameLoop	; paused, return to start of game loop
+;-------------------------------------------------------------------------------
+; determine if there is a scripted event to process
+;-------------------------------------------------------------------------------
+TestScriptedEvent:
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	btst.l	#STATE_FLAG_SCRIPTED_EVENT,d7 ; test game state
+	beq.w	TestDialog	; not in a scripted event, move to next test
+	btst.l	#STATE_FLAG_DIALOG,d7 ; test if we need to wait for a dialog
+	bne.w	TestDialogUpdateFrequency	; wait for dialog interaction to finish
+	;---------------------------------------------------------------------------
+	; dialog is not displaying, test if it is time to start a new action
+	;---------------------------------------------------------------------------
+	cmpi.w	#$0000,(MEM_SCRIPTED_EVENT_STEPS)	; test if 0
+	beq.s	NextScriptedEventAction	; if 0 then start next action
+	;---------------------------------------------------------------------------
+	; continue moving the sprite
+	;---------------------------------------------------------------------------
+	cmpi.w	#SPRITE_MOVE_FREQUENCY,(MEM_FRAME_COUNTER); is it time to move?
+	blt.w	MainGameLoopEnd	; exit if it's not time to move
+	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset counter to 0
+ScriptedEventMoveSprite:
+	subq	#$1,(MEM_SCRIPTED_EVENT_STEPS)	; decrement step counter
+	move.l	(MEM_SCRIPTED_SPRITE_ADDR),a6	; point a6 to sprite to move
+	bsr.w	MoveSprite	; branch to MoveSprite
+	bra.w	MainGameLoop	; return to start of game loop
+NextScriptedEventAction:
+	move.l	(MEM_SCRIPTED_SPRITE_ADDR),a6	; point a6 to sprite
+	bsr.w	StopSprite	; stop moving the sprite
+	move.l	(MEM_SCRIPTED_EVENT_ADDR),a6	; point a6 to next step
+	move.w	(MEM_SCRIPTED_EVENT_ACTION),d7	; copy action to d7
+	cmpi.w	#SCRIPTED_EVENT_END,d7	; are we at the end?
+	beq.s	ScriptedEventEnd	; if so branch
+	cmpi.w	#SCRIPTED_EVENT_DIALOG,d7	; display a dialog?
+	beq.s	ScriptedEventDialog	; if so branch
+	;---------------------------------------------------------------------------
+	; start moving the sprite
+	;---------------------------------------------------------------------------
+	move.l	(MEM_SCRIPTED_SPRITE_ADDR),a5	; point a5 to sprite to update
+	; copy direction to sprite direction 
+	adda.w	#STRUCT_SPRITE_DIRECTION,a5	; move to direction
+	move.w	(MEM_SCRIPTED_EVENT_ACTION),(a5)	; copy action to direction
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_STEPS)	; copy steps in action
+	; save state of scripted event and loop back to main
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
+	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
+	bra.w	MainGameLoop	; return to start of game loop
+ScriptedEventEnd:
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bclr.l	#STATE_FLAG_SCRIPTED_EVENT,d7	; clear the scripted event flag
+	move.l	d7,(MEM_GAME_STATE)	; save it back
+	bra.w	MainGameLoop	; return to start of game loop
+ScriptedEventDialog:
+	move.l	(a6)+,(MEM_DIALOG_TEXT)	; copy value at a6 to MEM_DIALOG_TEXT
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
+	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
+	move.w	#$0000,(MEM_SCRIPTED_EVENT_STEPS)	; reset step counter
+	; set dialog flags to display the dialog
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy current dialog state to d7
+	bset.l	#DIALOG_FLAG_TEXT_OPENING,d7	; change state to opening
+	bset.l	#DIALOG_FLAG_STYLE_SIMPLE_TEXT,d7	; set style to overworld menu
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save changes made to the game state
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bset.l	#STATE_FLAG_DIALOG,d7	; set the dialog bit
+	move.l	d7,(MEM_GAME_STATE) ; copy game state back to d7
+	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
 ; determine if the player is opening or interacting with a dialog
 ;-------------------------------------------------------------------------------
@@ -258,6 +326,9 @@ TestDialogOpen:
 	; else branch to process dialog
 	bsr.w	ProcessDialog	; dialog is set, jump to process dialog sub-routine
 	bra.w	MainGameLoop	; return to start of game loop
+;-------------------------------------------------------------------------------
+; determine if the player is in free exploration mode
+;-------------------------------------------------------------------------------
 TestExploring:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_EXPLORING,d7	; test game state
@@ -320,7 +391,7 @@ MainGameLoopUpdateNPCSpritesLoop:
 	bsr.w	StopSprite ; stop the sprite
 	bra.s	MainGameLoopUpdateNPCSpritesLoopEnd ; done updating this sprite
 .3	; move the NPC sprite
-	move.l a5,a6	; setup call to StopSprite
+	move.l a5,a6	; setup call to MoveSprite
 	bsr.w	MoveSprite	; branch to move MoveSprite
 	; did the sprite move successfully?
 	tst.w	(MEM_COLLISION_RESULT)	; test result of last collision
@@ -384,6 +455,39 @@ TrapException:
 ;*******************************************************************************
 ; work in-progress subroutines
 ;*******************************************************************************
+; a6 = address of event to queue
+; a5 and d7 are modified
+QueueScriptedEvent:
+	;---------------------------------------------------------------------------
+	; set state flag
+	;---------------------------------------------------------------------------
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bset.l	#STATE_FLAG_SCRIPTED_EVENT,d7	; set the scripted event flag
+	move.l	d7,(MEM_GAME_STATE)	; save it back
+	;---------------------------------------------------------------------------
+	; determine which sprite this applies to
+	;---------------------------------------------------------------------------
+	move.w	(a6)+,d7	; copy to d7 for next operations
+	cmpi.w	#$0000,d7	; this the player sprite?
+	bne.s	.1	; branch if not player
+	lea	MEM_PLAYER_SPRITE_ID,a5	; point a5 to player 
+	bra.s	.2	; branch
+.1
+	subq	#$0002,d7	; decrement to account for 0 indexing & sprite zero
+	lea	MEM_NPC0_SPRITE_ID,a5	; point a5 to first NPC 
+	mulu.w	#NPC_RECORD_SIZE,d7	; multiply to get offset
+	adda.w	d7,a5	; move to NPC being modified
+.2
+	move.l	a5,(MEM_SCRIPTED_SPRITE_ADDR)	; save address
+	;---------------------------------------------------------------------------
+	; setup scripted event
+	;---------------------------------------------------------------------------
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save first action
+	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of first step
+	; set steps to 0 to trigger next action start in main loop
+	move.w	#$0000,(MEM_SCRIPTED_EVENT_STEPS)
+ExitQueueScriptedEvent:
+	rts
 
 ;*******************************************************************************
 ; mostly stable subroutines
@@ -456,6 +560,27 @@ RandomNPCMovement1Start:
     dc.w	DIRECTION_RIGHT,DIRECTION_RIGHT
 	dc.w	DIRECTION_LEFT,DIRECTION_LEFT
 RandomNPCMovement1End:
+
+;*******************************************************************************
+; scripted events
+;*******************************************************************************
+ScriptedEventTest0:
+	dc.w	$0002	; NPC0
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextTestScriptIntro
+	dc.w	DIRECTION_DOWN
+	dc.w	$0008
+	dc.w	DIRECTION_LEFT
+	dc.w	$0010
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextTestScript0
+	dc.w	DIRECTION_LEFT
+	dc.w	$0010
+	dc.w	DIRECTION_UP
+	dc.w	$0020
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextTestScript1
+	dc.w	SCRIPTED_EVENT_END
 
 ;*******************************************************************************
 ; scene items

@@ -46,8 +46,8 @@ WelcomeMessage:
 	dc.b	"Clerk '89 demo.      ^",FF
 	dc.b	"Press A to look at",LF
 	dc.b	"nearby items & talk. ^",FF
-	dc.b	"Press C to open the",LF
-	dc.b	"menu.                ^",FF
+;	dc.b	"Press C to open the",LF
+;	dc.b	"menu.                ^",FF
 	dc.b	"In menus, A & C select",LF
 	dc.b	"items and B cancels. ^",FF
 	dc.b	"The Start button",LF
@@ -93,6 +93,21 @@ DialogTextMaleShopper0Scene0Day0Flag2:
 	;		"1234567890123456789012"
 	dc.b	"`You're talking to me",LF
 	dc.b	"again now.'",ETX
+
+DialogTextTestScriptIntro:
+	;		"1234567890123456789012"
+	dc.b	"Testing scripted event",LF
+	dc.b	"processing...",ETX
+
+DialogTextTestScript0:
+	;		"1234567890123456789012"
+	dc.b	"`Some dialog after",LF
+	dc.b	"walking around a bit.'",ETX
+
+DialogTextTestScript1:
+	;		"1234567890123456789012"
+	dc.b	"`I guess I'm done",LF
+	dc.b	"walking for now.'",ETX
 
 ;-------------------------------------------------------------------------------
 ; default object descriptions

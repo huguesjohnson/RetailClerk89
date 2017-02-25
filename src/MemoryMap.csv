@@ -32,6 +32,13 @@ MEM_DAY,2,what day is it in the story
 MEM_DAY_EVENT_FLAGS,4,track events in the current day
 MEM_MISSION_EVENT_FLAGS,4,track events in the current mission
 ;-------------------------------------------------------------------------------
+; scripted event management
+;-------------------------------------------------------------------------------
+MEM_SCRIPTED_EVENT_ADDR,4,pointer to scripted event running
+MEM_SCRIPTED_EVENT_ACTION,2,current scripted event action
+MEM_SCRIPTED_EVENT_STEPS,2,steps remaining in current action
+MEM_SCRIPTED_SPRITE_ADDR,4,which sprite to move
+;-------------------------------------------------------------------------------
 ; player inventory
 ;-------------------------------------------------------------------------------
 MEM_PLAYER_ITEM_COUNT,2,how many items the player is holding
@@ -56,6 +63,11 @@ MEM_PLAYER_SPRITE_PATTERN_INDEX,2,index of pattern in VDP
 MEM_PLAYER_SPRITE_DIRECTION,2,which direction the player faces
 MEM_PLAYER_SPRITE_FRAME,2,animation frame of player sprite
 MEM_PLAYER_SPRITE_STEP_COUNTER,2,used to determine when to move
+MEM_PLAYER_MOVEMENT_COUNTER,2,used to determine how far to move
+MEM_PLAYER_MOVE_FREQUENCY,2,how often to move
+MEM_PLAYER_MOVE_PATTERN,4,movement pattern
+MEM_PLAYER_MOVE_PATTERN_LENGTH,2,length of movement pattern
+MEM_PLAYER_MOVE_INDEX,2,where the sprite is the movement pattern
 MEM_PLAYER_SPRITE_LINK_TO,2,sprite ID the player sprite links to
 MEM_PLAYER_SPRITE_LINK_FROM,2,sprite ID linked to the player sprite
 MEM_NPC0_SPRITE_ID,2,sprite table id of NPC0 sprite
