@@ -2,7 +2,7 @@
 ;Echo License
 ;https://github.com/sikthehedgehog/Echo
 ;
-;© 2010-2013 Javier Degirolmo
+;© 2010-2017 Javier Degirolmo
 ;
 ;This software is provided 'as-is', without any express or implied
 ;warranty.  In no event will the authors be held liable for any damages
@@ -66,6 +66,15 @@ ESF_FMFREQ_8    equ ESF_FMFREQ_GS
 ESF_FMFREQ_9    equ ESF_FMFREQ_A
 ESF_FMFREQ_10   equ ESF_FMFREQ_AS
 ESF_FMFREQ_11   equ ESF_FMFREQ_B
+
+;****************************************************************************
+; Panning values
+;****************************************************************************
+
+ESF_PAN_OFF:    equ $00     ; Mute
+ESF_PAN_L:      equ $80     ; Left speaker only
+ESF_PAN_R:      equ $40     ; Right speaker only
+ESF_PAN_LR:     equ $C0     ; Both speakers
 
 ;****************************************************************************
 ; ESF_NoteOn
@@ -185,8 +194,41 @@ ESF_SetInstr macro
 ;****************************************************************************
 
 ESF_Lock macro
-    dc.b    $E0
-    dc.b    (\1)
+    dc.b    $E0+(\1)
+    endm
+
+;****************************************************************************
+; ESF_SetPan
+; Set the panning of a FM channel.
+;----------------------------------------------------------------------------
+; Format:
+;   ESF_SetPan channel, panning
+;----------------------------------------------------------------------------
+; param channel ... channel to modify
+; param panning ... panning (see ESF_PAN_*)
+;****************************************************************************
+
+ESF_SetPan macro
+    dc.b    $F0+(\1)
+    dc.b    (\2)
+    endm
+
+;****************************************************************************
+; ESF_SetFMReg
+; Set a FM register directly.
+;----------------------------------------------------------------------------
+; Format:
+;   ESF_SetFMReg bank, register, value
+;----------------------------------------------------------------------------
+; param bank ....... YM2612 bank (0 or 1)
+; param register ... register to modify
+; param value ...... value to write
+;****************************************************************************
+
+ESF_SetFMReg macro
+    dc.b    $F8+(\1)
+    dc.b    (\2)
+    dc.b    (\3)
     endm
 
 ;****************************************************************************
@@ -200,8 +242,14 @@ ESF_Lock macro
 ;****************************************************************************
 
 ESF_Delay macro
+    if      (\1)>0
+    if      (\1)<=$10
+    dc.b    $D0-1+(\1)
+    else
     dc.b    $FE
-    dc.b    (\1)
+    dc.b    (\1)&$FF
+    endc
+    endc
     endm
 
 ;****************************************************************************

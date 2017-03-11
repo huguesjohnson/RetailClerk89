@@ -6,7 +6,7 @@ ShowSelectionDialog:
 	andi.w	#OBJ_SCENE_BASE,d6	; and against OBJ_SCENE_BASE
 	beq.s	ShowSelectionDialogNPC	; if result is zero then this is not scenery
 	lea	ObjectNameTable,a6	; point to default object text table
-	bra.s	ShowSelectionDialogScenery	branch to next step
+	bra.s	ShowSelectionDialogScenery	; branch to next step
 ShowSelectionDialogNPC:	; target object is an NPC
 	lea	NPCNameTable,a6	; point to default npc text table
 ShowSelectionDialogScenery:

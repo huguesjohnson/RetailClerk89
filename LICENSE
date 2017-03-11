@@ -29,8 +29,8 @@ THE SOFTWARE.
 ********************************************************************************
 3rd party software and licenses
 ********************************************************************************
-This demo uses the Echo Sound Driver 1.21
- (c) 2010-2013 Javier Degirolmo
+This demo uses the Echo Sound Driver
+ (c) 2010-2017 Javier Degirolmo
  https://github.com/sikthehedgehog/Echo
  Modifications were made to some source files to address build errors in vasm
  These changes have been documented in the respective source files

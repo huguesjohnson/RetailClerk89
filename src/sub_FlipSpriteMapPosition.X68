@@ -51,7 +51,7 @@ FlipSpriteMapPosition:
 	;---------------------------------------------------------------------------
 .1	; right and left side of sprite are on the same half of the map
 	subq	#$0001,d6	; decrement right column
-	cmp.w	d7,d6	test if the right and left are touching
+	cmp.w	d7,d6	; test if the right and left are touching
 	beq.s	ExitFlipSpriteMapPosition ; if they are touching, exit
 	; at this point d6 has the middle column
 	lea		MEM_COLLISION_DATA,a3	; move start address of map data to a3
