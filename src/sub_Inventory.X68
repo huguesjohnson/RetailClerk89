@@ -62,8 +62,10 @@ RemoveItem:
 	adda.l	d5,a1	; move a1 to the removed item
 	move.w	#$0000,(a1)	; clear removed item	
 	move.w	(MEM_PLAYER_ITEM_COUNT),d5	; copy item count to d5
+	cmp.w	d6,d5	; test if the last item in the list was removed
+	beq.s	ExitRemoveItem	; if the last item was removed then exit
 	sub.w	d6,d5	; subtract item index from count to get loop control
-	beq.s	ExitRemoveItem	; exit if the only item in inventory was removed
+	subq	#$1,d5	; subtract one from loop control
 RemoveItemLoop:
 	move.w	(WORD_SIZE,a1),(a1)	; copy item+1 to current item
 	adda.l	#WORD_SIZE,a1	; move to next item

@@ -32,9 +32,83 @@ DefaultActionInventoryFull:
 ExitDefaultActionInventoryFull:
 	rts
 
+;-------------------------------------------------------------------------------
+; adds an item from the take dialog to the player's inventory
+;-------------------------------------------------------------------------------
+DefaultTakeAddItem:
+	move.w	(MEM_ACTIVE_ITEM),d7	; copy active item to d7
+	bsr.w	HasItem	; check if the player already has the item
+	cmpi.w	#$FFFF,d6	; d6 will have FFFF if the player has the item	
+	bne.s	DefaultTakeAddItemHasItem	; branch if the player has the item
+	bsr.w	AddItem	; add the item
+	lea	TakeMenuItemTaken,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+DefaultTakeAddItemHasItem:
+	lea	TakeMenuAlreadyCarrying,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+;*******************************************************************************
+; scene exit actions
+;*******************************************************************************
+
+ExitScene00:
+
+	move.l	#$ABCDDBCA,(MEM_DEBUG_1)
+
+	rts
+
 ;*******************************************************************************
 ; process actions based on day and scene, this is effectively the game script
 ;*******************************************************************************
+
+;-------------------------------------------------------------------------------
+; default take scripts for scenes
+;-------------------------------------------------------------------------------
+Scene00DefaultTake:
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_SCENE_VB_MAGS,d6	; is the magazine rack the target?
+	bne.s	.1	; most to next test
+	lea	TakeMenuMagazines,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	lea	ItemListVBMagazine,a6	; load item list
+	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
+	bra.s	ExitScene00DefaultTake	; exit
+.1	; test for OBJ_SCENE_VB_8BIT
+	cmpi.w	#OBJ_SCENE_VB_8BIT,d6	; is the magazine rack the target?
+	bne.s	.2	; most to next test
+	lea	TakeMenuGames,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	lea	ItemListVB8Bit,a6	; load item list
+	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
+	bra.s	ExitScene00DefaultTake	; exit
+.2	; test for OBJ_SCENE_VB_HARDWARE
+	cmpi.w	#OBJ_SCENE_VB_HARDWARE,d6	; is the magazine rack the target?
+	bne.s	.3	; most to next test
+	lea	TakeMenuDefault,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	lea	ItemListVBHW,a6	; load item list
+	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
+	bra.s	ExitScene00DefaultTake	; exit
+.3	; test for OBJ_SCENE_VB_16BIT
+	cmpi.w	#OBJ_SCENE_VB_16BIT,d6	; is the magazine rack the target?
+	bne.s	.4	; most to next test
+	lea	TakeMenuGames,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	lea	ItemListVB16Bit,a6	; load item list
+	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
+	bra.s	ExitScene00DefaultTake	; exit
+.4	; default for anything else in the scene
+	lea	DialogTextCantTake,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+ExitScene00DefaultTake:
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d7	; set text choice flag
+	bset.l	#DIALOG_FLAG_STYLE_ITEM_MENU,d7	; set item menu flag
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated dialog flags
+	rts
 
 ;-------------------------------------------------------------------------------
 ; day 00 - scene 00
@@ -48,39 +122,57 @@ Day00Scene00Action01:	; ACTION_USE_TALK
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_DANI,d6	; test target
-	bne.s	.2	; branch to next NPC
+	bne.s	Day00Scene00Action01NPCMaleShopper	; branch to next NPC
+Day00Scene00Action01NPCDani:
 	;---------------------------------------------------------------------------
 	; handle dialog with NPC Dani		
 	;---------------------------------------------------------------------------
 	btst.l	#$1,d7	; test if flag 1 is set
-	bne	.1	; branch if it is
+	bne	Day00Scene00Action01NPCDaniFlag1	; branch if it is
 	bset.l	#$1,d7	; set flag 1
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated event flags for the day
 	lea	DialogTextDaniScene0Day0Flag0,a6	; load dialog text
-	bra.s	.5	; branch to setup dialog display
-.1
+	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
+Day00Scene00Action01NPCDaniFlag1:
 	lea	DialogTextDaniScene0Day0Flag1,a6	; load dialog text
-	bra.s	.5	; branch to setup dialog display
-.2
+	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
+Day00Scene00Action01NPCMaleShopper:
 	;---------------------------------------------------------------------------
 	; handle dialog with shopper		
 	;---------------------------------------------------------------------------
 	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
-	bne.s	.4	; branch to display default text
+	bne.s	Day00Scene00Action01Default	; branch to display default text
+	btst.l	#$4,d7	; test if flag 4 is set
+	bne	Day00Scene00Action01NPCMaleShopperFlag4	; branch if it is set
+	; if 4 is not set but 2 or 3 are then the player cancelled a dialog
+Day00Scene00Action01NPCMaleShopperTestFlag3:
+	btst.l	#$3,d7	; test if flag 3 is set
+	beq.s	Day00Scene00Action01NPCMaleShopperTestFlag2	; flag is 0, next test
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d7	; set text choice flag
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated dialog flags
+	bra.w	Day00Scene00Action03NPCMaleShopperFlag0R1	; show selection
+Day00Scene00Action01NPCMaleShopperTestFlag2:
 	btst.l	#$2,d7	; test if flag 2 is set
-	bne	.3	; branch if it is set
+	beq.s	Day00Scene00Action01NPCMaleShopperNoFlags	; flag is 0
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d7	; set text choice flag
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated dialog flags
+	bra.w	Day00Scene00Action03NPCMaleShopperFlag0R0	; show selection
+Day00Scene00Action01NPCMaleShopperNoFlags:
+	; no flags for this NPC are set - use initial dialog
 	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
 	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d7	; set text choice flag
 	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated dialog flags
 	lea	DialogTextMaleShopper0Scene0Day0Flag0,a6	; load dialog text
-	bra.s	.5	; branch to setup dialog display
-.3	; flag 2 is set
-	lea	DialogTextMaleShopper0Scene0Day0Flag2,a6	; load dialog text
-	bra.s	.5	; branch to setup dialog display
-.4
+	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
+Day00Scene00Action01NPCMaleShopperFlag4:	; flag 4 is set
+	lea	DialogTextMaleShopper0Scene0Day0Flag4,a6	; load dialog text
+	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
+Day00Scene00Action01Default:
 	; default
 	lea	DialogTextNothingHappens,a6	; load default text
-.5
+Day00Scene00Action01CopyDialogText:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 ExitDay00Scene00Action01:
 	rts
@@ -88,80 +180,166 @@ ExitDay00Scene00Action01:
 Day00Scene00Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	andi.w	#OBJ_SCENE_BASE,d6	; and against base scene ID
-	beq.w	Day00Scene00Action02DefaultGive	; not scenery
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_SCENE_VB_MAGS,d6	; is the magazine rack the target?
-	bne.w	Day00Scene00Action02DefaultTake	; not the magazine rack, branch
-	; check if we are coming back from a take menu or need to open one	
-	cmpi.w	#DIALOG_NO_RESPONSE,(MEM_MENU_RESPONSE)	; test response
-	beq.s	.5	; branch if no response
-	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; test response
-	bne.s	.1
-	lea	TakeMagazinesOption0,a6	; load dialog text
-	bra.s	.4
-.1
-	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; test response
-	bne.s	.2
-	lea	TakeMagazinesOption1,a6	; load dialog text
-	bra.s	.4
-.2
-	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; test response
-	bne.s	.3
-	lea	TakeMagazinesOption2,a6	; load dialog text
-	bra.s	.4
-.3
-	cmpi.w	#$0003,(MEM_MENU_RESPONSE)	; test response
-	bne.s	.3
-	lea	TakeMagazinesOption3,a6	; load dialog text
-.4
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
-	bclr.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d7	; set text choice flag
-	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated dialog flags
-	bra.s	ExitDay00Scene00Action02
-
-.5 
-	lea	TakeMenuMagazines,a6	; load dialog text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	lea	ItemListVBMagazine,a6	; load item list
-	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
-	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
-	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d7	; set text choice flag
-	bset.l	#DIALOG_FLAG_STYLE_ITEM_MENU,d7	; set item menu flag
-	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated dialog flags
-	bra.s	ExitDay00Scene00Action02
+	beq.w	Day00Scene00Action02GiveNPC	; not scenery
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
+	btst.l	#7,d7	; test if flag 7 is set
+	beq.s	Day00Scene00Action02DefaultTake	; flag is not set, branch
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6 (again)
+	cmpi.w	#OBJ_SCENE_VB_8BIT,d6	; is the player looking at 8-bit games?
+	beq.s	Day00Scene00Action02LaunchScriptedEvent	; if so, launch event
+	cmpi.w	#OBJ_SCENE_VB_16BIT,d6	; is the player looking at 16-bit games?
+	bne.s	Day00Scene00Action02DefaultTake	; if not branch
+Day00Scene00Action02LaunchScriptedEvent:
+	; set flag 8
+	bset.l	#8,d7	; set flag 8
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated event flag
+	; determine which direction to move the NPC
+	move.w	(MEM_PLAYER_SPRITE_X),d6	; copy player x to d6
+	move.w	(MEM_NPC0_SPRITE_X),d7	; copy first NPC x to d7
+	cmp.w	d6,d7	; compare the values
+	bge.s	Day00Scene00Action02LaunchScriptedRight	; branch if d7>=d6
+	lea ScriptedEventDay0Left,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	bsr.w	Scene00DefaultTake	; use scene defaults
+	rts	; exit
+Day00Scene00Action02LaunchScriptedRight:
+	lea ScriptedEventDay0Right,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	bsr.w	Scene00DefaultTake	; use scene defaults
+	rts	; exit
 Day00Scene00Action02DefaultTake:
-	lea	DialogTextCantTake,a6	; load dialog text
+	bsr.w	Scene00DefaultTake	; use scene defaults
+	bra.w	ExitDay00Scene00Action02	; exit
+Day00Scene00Action02GiveNPC:
+	move.w	(MEM_ACTIVE_ITEM),d7	; copy item being given to d7
+	bsr.w	RemoveItem	; remove the item
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
+	bne.s	Day00Scene00Action02GiveNPCTest2	; branch if not MALE_SHOPPER0
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
+	btst.l	#8,d7	; test if flag 8 is set
+	bne.s	Day00Scene00Action02GiveNPCDefault	; flag is set, branch
+	btst.l	#6,d7	; test if flag 6 is set
+	bne.s	Day00Scene00Action02GiveNPCFlag6	; flag is set, branch
+	btst.l	#5,d7	; test if flag 5 is set
+	bne.s	Day00Scene00Action02GiveNPCFlag5	; flag is set, branch
+	btst.l	#4,d7	; test if flag 4 is set
+	bne.s	Day00Scene00Action02GiveNPCFlag4	; flag is set, branch
+Day00Scene00Action02GiveNPCDefault:
+	; flag is not set, use default text
+	lea	DialogTextMaleShopperDefaultGive,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bra.s	ExitDay00Scene00Action02
+	rts
+Day00Scene00Action02GiveNPCFlag4:
+	lea	DialogTextMaleShopper0Scene0Day0Flag4Give,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bset.l	#5,d7	; set flag 5
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
+	rts
+Day00Scene00Action02GiveNPCFlag5:
+	lea	DialogTextMaleShopper0Scene0Day0Flag5Give,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bset.l	#6,d7	; set flag 6
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
+	rts
+Day00Scene00Action02GiveNPCFlag6:
+	lea	DialogTextMaleShopper0Scene0Day0Flag6Give,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bset.l	#7,d7	; set flag 7
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
+	rts
+Day00Scene00Action02GiveNPCTest2:
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	bne.s	Day00Scene00Action02DefaultGive	; branch if not OBJ_NPC_DANI
+	lea	DialogTextDaniDefaultGive,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene00Action02DefaultGive:
-
 	lea	DialogTextNothingHappens,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 ExitDay00Scene00Action02:
 	rts
 
 Day00Scene00Action03:	; ACTION_RESPOND
-	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
+	;---------------------------------------------------------------------------
+	; determine which NPC the player responded to
+	;---------------------------------------------------------------------------
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
-	bne.s	.2	; branch to display default text
+	bne.w	Day00Scene00Action03Default	; branch to display default text
+Day00Scene00Action03NPCMaleShopper:
+	;---------------------------------------------------------------------------
+	; determine which conversation flow to take
+	;---------------------------------------------------------------------------
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
+	btst.l	#3,d7	; test if flag 3 is set
+	bne.w	Day00Scene00Action03NPCMaleShopperFlag3	; flag is set, branch
+	btst.l	#2,d7	; test if flag 2 is set
+	bne.s	Day00Scene00Action03NPCMaleShopperFlag2	; flag is set, branch
+;---------------------------------------------------------------------------
+; player is responding to the NPC for the first time
+;---------------------------------------------------------------------------
+Day00Scene00Action03NPCMaleShopperFlag0:
+	; both possible responses use a 2 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	bne.s	Day00Scene00Action03NPCMaleShopperFlag0R1	; branch if not zero
+Day00Scene00Action03NPCMaleShopperFlag0R0:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
 	bset.l	#$2,d7	; set flag 2
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save the updated flags
-	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
-	bne.s	.1	; branch if not equal to zero (there are only two options)
 	lea	DialogTextMaleShopper0Scene0Day0Flag0R0,a6	; load response text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bra.s	ExitDay00Scene00Action03	; exit
-.1
+	bra.w	ExitDay00Scene00Action03	; exit
+Day00Scene00Action03NPCMaleShopperFlag0R1:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
+	bset.l	#$3,d7	; set flag 3
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save the updated flags
 	lea	DialogTextMaleShopper0Scene0Day0Flag0R1,a6	; load response text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bra.w	ExitDay00Scene00Action03	; exit
+;---------------------------------------------------------------------------
+; flag 2 is set = player selected option 0 in the first dialog
+;---------------------------------------------------------------------------
+Day00Scene00Action03NPCMaleShopperFlag2:
+	bset.l	#$4,d7	; set flag 4
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save the updated flags
+	; both possible responses use a regular dialog	
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	bne.s	Day00Scene00Action03NPCMaleShopperFlag2R1	; branch if not zero
+Day00Scene00Action03NPCMaleShopperFlag2R0:
+	lea	DialogTextMaleShopper0Scene0Day0Flag2R0,a6	; load response text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bra.s	ExitDay00Scene00Action03	; exit
-.2
+Day00Scene00Action03NPCMaleShopperFlag2R1:
+	lea	DialogTextMaleShopper0Scene0Day0Flag2R1,a6	; load response text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bra.s	ExitDay00Scene00Action03	; exit
+;---------------------------------------------------------------------------
+; flag 3 is set = player selected option 1 in the first dialog
+;---------------------------------------------------------------------------
+Day00Scene00Action03NPCMaleShopperFlag3:
+	bset.l	#$4,d7	; set flag 4
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save the updated flags
+	; both possible responses use a regular dialog	
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	bne.s	Day00Scene00Action03NPCMaleShopperFlag3R1	; branch if not zero
+Day00Scene00Action03NPCMaleShopperFlag3R0:
+	lea	DialogTextMaleShopper0Scene0Day0Flag3R0,a6	; load response text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bra.s	ExitDay00Scene00Action03	; exit
+Day00Scene00Action03NPCMaleShopperFlag3R1:
+	lea	DialogTextMaleShopper0Scene0Day0Flag3R1,a6	; load response text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bra.s	ExitDay00Scene00Action03	; exit
+Day00Scene00Action03Default:
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-ExitDay00Scene00Action03:
 	bsr.w	ResetDialog	; reset the dialog
+ExitDay00Scene00Action03:
 	rts
-
 

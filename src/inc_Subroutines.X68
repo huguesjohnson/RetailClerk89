@@ -53,3 +53,5 @@
 
 	include	'sub_Inventory.X68'
 
+	include	'sub_QueueScriptedEvent.X68'
+

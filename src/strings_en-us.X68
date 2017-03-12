@@ -40,14 +40,21 @@ DialogTextAlreadyHaveIt:
 	;		"1234567890123456789012"
 	dc.b	"You already have one.",ETX
 
+DialogTextCantLeave:
+	;		"1234567890123456789012"
+	dc.b	"You can't leave while",LF
+	dc.b	"the store is open.",ETX
+
 WelcomeMessage:
 	;		"1234567890123456789012"
 	dc.b	"Welcome to the Retail",LF
 	dc.b	"Clerk '89 demo.      ^",FF
+	dc.b	"This is a (very) brief",LF
+	dc.b	"demo intended to     ^",FF
+	dc.b	"test out the basic",LF
+	dc.b	"game features.       ^",FF
 	dc.b	"Press A to look at",LF
-	dc.b	"nearby items & talk. ^",FF
-;	dc.b	"Press C to open the",LF
-;	dc.b	"menu.                ^",FF
+	dc.b	"stuff & talk to NPCs.^",FF
 	dc.b	"In menus, A & C select",LF
 	dc.b	"items and B cancels. ^",FF
 	dc.b	"The Start button",LF
@@ -58,8 +65,8 @@ WelcomeMessage:
 ;-------------------------------------------------------------------------------
 DialogTextDaniScene0Day0Flag0:
 	;		"1234567890123456789012"
-	dc.b	"`Isn't it time to",LF
-	dc.b	"close already?       ^",FF
+	dc.b	"`It's 10 minutes past",LF
+	dc.b	"closing time already.^",FF
 	dc.b	"Get that guy out of",LF
 	dc.b	"here so we can leave.'",ETX
 
@@ -69,6 +76,36 @@ DialogTextDaniScene0Day0Flag1:
 	dc.b	"actually talk to him.^",FF
 	dc.b	"`You know, like",LF
 	dc.b	"do your job.'",ETX
+
+DialogTextDaniScene0Day0Flag8:
+	;		"1234567890123456789012"
+	dc.b	"`Maybe you should",LF
+	dc.b	"actually talk to him.^",FF
+	dc.b	"`You know, like",LF
+	dc.b	"do your job.'",ETX
+
+DialogTextScene0Day0Event0D0:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`This is taking",LF
+	dc.b	"forever.'            ^",ETX
+
+DialogTextScene0Day0Event0D1:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`This is the game",LF
+	dc.b	"your kid wants.'     ^",FF
+	dc.b	"Shopper:`Baby Boomer?",LF
+	dc.b	"That can't be right. ^",FF
+	dc.b	"Do you even work",LF
+	dc.b	"here?'               ^",FF
+	dc.b	"Dani:`Trust me. It's",LF
+	dc.b	"what all the kids    ^",FF
+	dc.b	"are playing today.",LF
+	dc.b	"It's really popular.'^",FF
+	dc.b	"Shopper:`Uh, OK.'",ETX
+
+DialogTextDaniDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Yeah, whatever.'",ETX
 
 DialogTextMaleShopper0Scene0Day0Flag0:
 	;		"1234567890123456789012"
@@ -81,33 +118,83 @@ DialogTextMaleShopper0Scene0Day0Flag0:
 
 DialogTextMaleShopper0Scene0Day0Flag0R0:
 	;		"1234567890123456789012"
-	dc.b	"`You chose response",LF
-	dc.b	"zero, neat.'",ETX
+	dc.b	"`Great, thanks.",FF
+	dc.b	"There's one more thing",LF
+	dc.b	"I need tonight.      ^",FF
+	dc.b	"My kid wants this one",LF
+	dc.b	"video game for Xmas. ^",FF
+	dc.b	"Do you have it?'     ^",FF
+	dc.b	"{Um, what's it called?",LF
+	dc.b	"{What system is it on?",ETX
 
 DialogTextMaleShopper0Scene0Day0Flag0R1:
 	;		"1234567890123456789012"
-	dc.b	"`You chose response",LF
-	dc.b	"one, alright.'",ETX
+	dc.b	"`Sorry I asked.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Maybe you can help",LF
+	dc.b	"with something else. ^",FF
+	dc.b	"I'm supposed to pickup",LF
+	dc.b	"some game for my kid.^",FF
+	dc.b	"It has a guy on the",LF
+	dc.b	"box or maybe a car.^",FF
+	dc.b	"Do you know the one",LF
+	dc.b	"I'm talking about?'  ^",FF
+	dc.b	"{Oh yeah, that one.",LF
+	dc.b	"{It's sold out.",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag2:
+DialogTextMaleShopper0Scene0Day0Flag2R0:
 	;		"1234567890123456789012"
-	dc.b	"`You're talking to me",LF
-	dc.b	"again now.'",ETX
+	dc.b	"`Someone and Iggy vs",LF
+	dc.b	"whatever & something.^",FF
+	dc.b	"You know all these ",LF
+	dc.b	"games, go find it.'",ETX
 
-DialogTextTestScriptIntro:
+DialogTextMaleShopper0Scene0Day0Flag2R1:
 	;		"1234567890123456789012"
-	dc.b	"Testing scripted event",LF
-	dc.b	"processing...",ETX
+	dc.b	"`It's the one with two",LF
+	dc.b	"controllers on the TV^",FF
+	dc.b	"I thought you were",LF
+	dc.b	"the expert on this.'",ETX
 
-DialogTextTestScript0:
+DialogTextMaleShopper0Scene0Day0Flag3R0:
 	;		"1234567890123456789012"
-	dc.b	"`Some dialog after",LF
-	dc.b	"walking around a bit.'",ETX
+	dc.b	"`Great, go get it.",LF
+	dc.b	"I'll wait here.'",ETX
 
-DialogTextTestScript1:
+DialogTextMaleShopper0Scene0Day0Flag3R1:
 	;		"1234567890123456789012"
-	dc.b	"`I guess I'm done",LF
-	dc.b	"walking for now.'",ETX
+	dc.b	"`Can you check anyway?",LF
+	dc.b	"I'm sure it's here.'",ETX
+
+DialogTextMaleShopper0Scene0Day0Flag4:
+	;		"1234567890123456789012"
+	dc.b	"`Have you found that",LF
+	dc.b	"game yet?'",ETX
+
+DialogTextMaleShopper0Scene0Day0Flag8:
+	;		"1234567890123456789012"
+	dc.b	"`Ring this up, I don't",LF
+	dc.b	"have all night.'",ETX
+
+DialogTextMaleShopper0Scene0Day0Flag4Give:
+	;		"1234567890123456789012"
+	dc.b	"`That doesn't look",LF
+	dc.b	"right at all.'",ETX
+
+DialogTextMaleShopper0Scene0Day0Flag5Give:
+	;		"1234567890123456789012"
+	dc.b	"`No, that's even'",LF
+	dc.b	"`worse.'",ETX
+
+DialogTextMaleShopper0Scene0Day0Flag6Give:
+	;		"1234567890123456789012"
+	dc.b	"`Did you even listen",LF
+	dc.b	"to me?'",ETX
+
+DialogTextMaleShopperDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"He accepts it with a",LF
+	dc.b	"look of confusion.",ETX
 
 ;-------------------------------------------------------------------------------
 ; default object descriptions
@@ -174,6 +261,15 @@ ItemMenu:
 ;-------------------------------------------------------------------------------
 ; take menus and messages
 ;-------------------------------------------------------------------------------
+TakeMenuItemTaken:
+	;		"1234567890123456789012"
+	dc.b	"Taken.",ETX
+
+TakeMenuAlreadyCarrying:
+	;		"1234567890123456789012"
+	dc.b	"You're already",LF
+	dc.b	"carrying one.",ETX
+
 TakeMenuFull:
 	;		"1234567890123456789012"
 	dc.b	"You can't carry any",LF
@@ -185,21 +281,17 @@ TakeMenuMagazines:
 	dc.b	"want to take?        ^",FF
 	dc.b	"{",ITEMNAMESTART
 
-TakeMagazinesOption0:
+TakeMenuGames:
 	;		"1234567890123456789012"
-	dc.b	"You selected option 0.",ETX
+	dc.b	"Which game do you",LF
+	dc.b	"want to take?        ^",FF
+	dc.b	"{",ITEMNAMESTART
 
-TakeMagazinesOption1:
+TakeMenuDefault:
 	;		"1234567890123456789012"
-	dc.b	"You selected option 1.",ETX
-
-TakeMagazinesOption2:
-	;		"1234567890123456789012"
-	dc.b	"You selected option 2.",ETX
-
-TakeMagazinesOption3:
-	;		"1234567890123456789012"
-	dc.b	"You selected option 3.",ETX
+	dc.b	"What do you want to",LF
+	dc.b	"take?                ^",FF
+	dc.b	"{",ITEMNAMESTART
 
 ;-------------------------------------------------------------------------------
 ; object names
@@ -235,19 +327,72 @@ NPCNameMapperShopper0:
 ; item names
 ;-------------------------------------------------------------------------------
 ItemNameNothing:
+	;		"1234567890"
 	dc.b	"Nothing",ITEMNAMEEND
 
 ItemNameMagGamePro:
+	;		"1234567890"
 	dc.b	"GamePro",ITEMNAMEEND
 
 ItemNameMagEGM:
+	;		"1234567890"
 	dc.b	"EGM",ITEMNAMEEND
 
 ItemNameMagAntic:
+	;		"1234567890"
 	dc.b	"Antic",ITEMNAMEEND
 
 ItemNameMagAnalog:
+	;		"1234567890"
 	dc.b	"Analog",ITEMNAMEEND
+
+ItemName8BitMegaMan2:
+	;		"1234567890"
+	dc.b	"Mega Man 2",ITEMNAMEEND
+
+ItemName8BitShadowgate:
+	;		"1234567890"
+	dc.b	"Shadowgate",ITEMNAMEEND
+
+ItemName8BitBayouBilly:
+	;		"1234567890"
+	dc.b	"BayouBilly",ITEMNAMEEND
+
+ItemName8BitTMNT:
+	;		"1234567890"
+	dc.b	"TMNT",ITEMNAMEEND
+
+ItemName16BitGoldenAxe:
+	;		"1234567890"
+	dc.b	"Golden Axe",ITEMNAMEEND
+
+ItemName16BitLastBattle:
+	;		"1234567890"
+	dc.b	"LastBattle",ITEMNAMEEND
+
+ItemName16BitGalaga90:
+	;		"1234567890"
+	dc.b	"Galaga '90",ITEMNAMEEND
+
+ItemName16BitVigilante:
+	;		"1234567890"
+	dc.b	"Vigilante",ITEMNAMEEND
+
+ItemNameHWSBlaster:
+	;		"1234567890"
+	dc.b	"SndBlaster",ITEMNAMEEND
+
+ItemNameHWProdigy:
+	;		"1234567890"
+	dc.b	"Prodigy",ITEMNAMEEND
+
+ItemName35Disks:
+	;		"123  4            567890"
+	dc.b	"3.5",CHAR_DQUOTE," disks",ITEMNAMEEND
+
+ItemNameHWPrintRibbon:
+	;		"1234567890"
+	dc.b	"PrntRibbon",ITEMNAMEEND
 
 ;-------------------------------------------------------------------------------
 ; end

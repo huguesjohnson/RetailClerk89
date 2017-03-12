@@ -9,6 +9,6 @@ BuildActionTableOffset:
 	mulu.w	#ACTION_COUNT_X4,d7
 	add.w	d7,(MEM_ACTION_TABLE_OFFSET)
 	move.w	MEM_ACTION_ID,d7
-	mulu.w	#$4,d7
+	mulu.w	#LWORD_SIZE,d7
 	add.w	d7,(MEM_ACTION_TABLE_OFFSET)
 	rts

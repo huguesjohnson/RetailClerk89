@@ -8,3 +8,6 @@ ActionTable:
 	dc.l	Day00Scene00Action01
 	dc.l	Day00Scene00Action02
 	dc.l	Day00Scene00Action03
+
+SceneExitTable:
+	dc.l	ExitScene00

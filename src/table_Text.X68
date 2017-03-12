@@ -62,14 +62,38 @@ NPCNameTable:
 ; item names
 ;-------------------------------------------------------------------------------
 ItemNameTable:
-	;OBJ_ITEM_NOTHING
+	; OBJ_ITEM_NOTHING
 	dc.l	ItemNameNothing
-	;OBJ_ITEM_MAG_GAMEPRO
+	; OBJ_ITEM_MAG_GAMEPRO
 	dc.l	ItemNameMagGamePro
-	;OBJ_ITEM_MAG_EGM
+	; OBJ_ITEM_MAG_EGM
 	dc.l	ItemNameMagEGM
-	;OBJ_ITEM_MAG_ANTIC
+	; OBJ_ITEM_MAG_ANTIC
 	dc.l	ItemNameMagAntic
-	;OBJ_ITEM_MAG_ANALOG
+	; OBJ_ITEM_MAG_ANALOG
 	dc.l	ItemNameMagAnalog
+	; OBJ_ITEM_8BIT_MEGAMAN2
+	dc.l	ItemName8BitMegaMan2
+	; OBJ_ITEM_8BIT_SHADOWGATE
+	dc.l	ItemName8BitShadowgate
+	; OBJ_ITEM_8BIT_BAYOUBILLY
+	dc.l	ItemName8BitBayouBilly
+	; OBJ_ITEM_8BIT_TMNT
+	dc.l	ItemName8BitTMNT
+	; OBJ_ITEM_16BIT_GOLDENAXE
+	dc.l	ItemName16BitGoldenAxe
+	; OBJ_ITEM_16BIT_LASTBATTLE
+	dc.l	ItemName16BitLastBattle
+	; OBJ_ITEM_16BIT_GALAGA90
+	dc.l	ItemName16BitGalaga90
+	; OBJ_ITEM_16BIT_VIGILANTE
+	dc.l	ItemName16BitVigilante
+	; OBJ_ITEM_HW_SBLASTER
+	dc.l	ItemNameHWSBlaster
+	; OBJ_ITEM_HW_PRODIGY
+	dc.l	ItemNameHWProdigy
+	; OBJ_ITEM_HW_35DISKS
+	dc.l	ItemName35Disks
+	; OBJ_ITEM_HW_PRNTRIBBON
+	dc.l	ItemNameHWPrintRibbon
 

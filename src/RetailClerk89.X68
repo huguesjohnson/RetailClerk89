@@ -145,7 +145,8 @@ DIALOG_PATTERN_SIZE=$00C4	; size of the dialog pattern
 DIALOG_BASE_TILE=$8090	; base file for dialogs
 DIALOG_ROWCOL=$09900000	; row 19 column 16=(128*19)+16=2448=990
 DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
-DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
+;DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
+DIALOG_UPDATE_FREQUENCY=$0001	; how often to update dialog animation
 DIALOG_MENU_INIT_SELECTION_X=$C8	; x coordinate of initial menu selection
 DIALOG_MENU_INIT_SELECTION_Y=$120	; y coordinate of initial menu selection
 DIALOG_NO_RESPONSE=$FFFF	; no response or dialog cancelled 
@@ -163,11 +164,13 @@ ACTION_COUNT=$04	; total number of actions
 ACTION_COUNT_X4=(ACTION_COUNT*4)
 SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
 ; other constants
+CHAR_DQUOTE=$22	; ACSII code for double quote character
 MAX_ITEMS=$04	; maximum number of items the player can carry
 ROW_HEIGHT=$800000	; height of a tile row
 CHARACTER_DEFINITION_SIZE=CharacterDefinitionPlayerEnd-CharacterDefinitionPlayer
 SCRIPTED_EVENT_END=$FFFF
 SCRIPTED_EVENT_DIALOG=$EEEE
+SCRIPTED_EVENT_CHANGE_SPRITE=$DDDD
 
 ;*******************************************************************************
 ; vectors
@@ -273,6 +276,8 @@ NextScriptedEventAction:
 	beq.s	ScriptedEventEnd	; if so branch
 	cmpi.w	#SCRIPTED_EVENT_DIALOG,d7	; display a dialog?
 	beq.s	ScriptedEventDialog	; if so branch
+	cmpi.w	#SCRIPTED_EVENT_CHANGE_SPRITE,d7	; changing the sprite?
+	beq.s	ScriptedEventChangeSprite	; if so branch
 	;---------------------------------------------------------------------------
 	; start moving the sprite
 	;---------------------------------------------------------------------------
@@ -303,6 +308,10 @@ ScriptedEventDialog:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	bset.l	#STATE_FLAG_DIALOG,d7	; set the dialog bit
 	move.l	d7,(MEM_GAME_STATE) ; copy game state back to d7
+	bra.w	MainGameLoop	; return to start of game loop
+ScriptedEventChangeSprite:
+	move.l	(MEM_SCRIPTED_EVENT_ADDR),a6	; point a6 to next step
+	bsr.w	QueueScriptedEvent	; this will reset all variables
 	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
 ; determine if the player is opening or interacting with a dialog
@@ -455,39 +464,7 @@ TrapException:
 ;*******************************************************************************
 ; work in-progress subroutines
 ;*******************************************************************************
-; a6 = address of event to queue
-; a5 and d7 are modified
-QueueScriptedEvent:
-	;---------------------------------------------------------------------------
-	; set state flag
-	;---------------------------------------------------------------------------
-	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
-	bset.l	#STATE_FLAG_SCRIPTED_EVENT,d7	; set the scripted event flag
-	move.l	d7,(MEM_GAME_STATE)	; save it back
-	;---------------------------------------------------------------------------
-	; determine which sprite this applies to
-	;---------------------------------------------------------------------------
-	move.w	(a6)+,d7	; copy to d7 for next operations
-	cmpi.w	#$0000,d7	; this the player sprite?
-	bne.s	.1	; branch if not player
-	lea	MEM_PLAYER_SPRITE_ID,a5	; point a5 to player 
-	bra.s	.2	; branch
-.1
-	subq	#$0002,d7	; decrement to account for 0 indexing & sprite zero
-	lea	MEM_NPC0_SPRITE_ID,a5	; point a5 to first NPC 
-	mulu.w	#NPC_RECORD_SIZE,d7	; multiply to get offset
-	adda.w	d7,a5	; move to NPC being modified
-.2
-	move.l	a5,(MEM_SCRIPTED_SPRITE_ADDR)	; save address
-	;---------------------------------------------------------------------------
-	; setup scripted event
-	;---------------------------------------------------------------------------
-	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save first action
-	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of first step
-	; set steps to 0 to trigger next action start in main loop
-	move.w	#$0000,(MEM_SCRIPTED_EVENT_STEPS)
-ExitQueueScriptedEvent:
-	rts
+
 
 ;*******************************************************************************
 ; mostly stable subroutines
@@ -546,50 +523,17 @@ MapStoreCollision:
 ;*******************************************************************************
 ; sprite movement
 ;*******************************************************************************
-
-RandomNPCMovement0Start:
-	dc.w	DIRECTION_LEFT,DIRECTION_DOWN,DIRECTION_RIGHT,DIRECTION_UP
-    dc.w	DIRECTION_DOWN,DIRECTION_RIGHT,DIRECTION_UP,DIRECTION_LEFT
-    dc.w	DIRECTION_UP,DIRECTION_RIGHT,DIRECTION_DOWN,DIRECTION_LEFT
-    dc.w	DIRECTION_RIGHT,DIRECTION_DOWN,DIRECTION_LEFT,DIRECTION_UP
-RandomNPCMovement0End:
-
-RandomNPCMovement1Start:
-	dc.w	DIRECTION_LEFT,DIRECTION_LEFT
-    dc.w	DIRECTION_RIGHT,DIRECTION_RIGHT
-    dc.w	DIRECTION_RIGHT,DIRECTION_RIGHT
-	dc.w	DIRECTION_LEFT,DIRECTION_LEFT
-RandomNPCMovement1End:
+	include	'data_SpriteMovementPatterns.X68'
 
 ;*******************************************************************************
 ; scripted events
 ;*******************************************************************************
-ScriptedEventTest0:
-	dc.w	$0002	; NPC0
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextTestScriptIntro
-	dc.w	DIRECTION_DOWN
-	dc.w	$0008
-	dc.w	DIRECTION_LEFT
-	dc.w	$0010
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextTestScript0
-	dc.w	DIRECTION_LEFT
-	dc.w	$0010
-	dc.w	DIRECTION_UP
-	dc.w	$0020
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextTestScript1
-	dc.w	SCRIPTED_EVENT_END
+	include	'data_ScriptedEvents.X68'
 
 ;*******************************************************************************
 ; scene items
 ;*******************************************************************************
-ItemListVBMagazine:
-	dc.w	OBJ_ITEM_MAG_GAMEPRO
-	dc.w	OBJ_ITEM_MAG_EGM
-	dc.w	OBJ_ITEM_MAG_ANTIC
-	dc.w	OBJ_ITEM_MAG_ANALOG
+	include	'data_SceneItemLists.X68'
 
 ;*******************************************************************************
 ; text
@@ -606,7 +550,6 @@ ItemListVBMagazine:
 ;*******************************************************************************
 ; background music
 ;*******************************************************************************
-
 BGM_Test:
 	incbin	'music/bgm_store00.esf'
 

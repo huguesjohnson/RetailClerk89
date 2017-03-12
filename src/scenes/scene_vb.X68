@@ -219,8 +219,8 @@ SceneVB:
 	dc.w	OBJ_SCENE_VB_MAGS
 	; x0=240 width=114 = 1110010 011110000 = E4F0
 	dc.w	$E4F0
-	; y0=224 height=32 = 0100000 011100000 = 40E0
-	dc.w	$40E0
+	; y0=224 height=12 = 0001100 011100000 = 18E0
+	dc.w	$18E0
 
 	dc.w	OBJ_SCENE_VB_COUNTER
 	; x0=240 width=80 = 1010000 011110000 = A0F0
@@ -237,8 +237,8 @@ SceneVB:
 	dc.w	OBJ_SCENE_VB_HARDWARE
 	; x0=164 width=38 = 0100110 010100100 = 4CA4
 	dc.w	$4CA4
-	; y0=238 height=36 = 0100100 011101110 = 48EE
-	dc.w	$48EE
+	; y0=238 height=26= 0011010 011101110 = 34EE
+	dc.w	$34EE
 
 	dc.w	OBJ_SCENE_VB_16BIT
 	; x0=380 width=30 = 0011110 0101111100 = 797C
@@ -271,8 +271,8 @@ SceneVB:
 	dc.w	$0001	; two npc slots
 
 	; npc0
-	dc.w	$0180	; starting x location of npc0
-	dc.w	$0110	; starting y location of npc0
+	dc.w	$0150	; starting x location of npc0
+	dc.w	$00F0	; starting y location of npc0
 	dc.w	DIRECTION_DOWN	; starting direction of npc0
 	dc.w	$A0F1	; movement frequency of npc0
 	dc.l	RandomNPCMovement0Start	; location of movement pattern for npc0
@@ -280,7 +280,7 @@ SceneVB:
 
 	; npc1
 	dc.w	$00B0	; starting x location of npc1
-	dc.w	$0100	; starting y location of npc1
+	dc.w	$0104	; starting y location of npc1
 	dc.w	DIRECTION_DOWN	; starting direction of npc1
 	dc.w	$0FF0	; movement frequency of npc1
 	dc.l	RandomNPCMovement1Start	; location of movement pattern for npc1
