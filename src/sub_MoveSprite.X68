@@ -24,8 +24,6 @@ TestUp:
 	cmpi.w	#DIRECTION_UP,d7			; test for up
 	bne.w	TestDown					; branch if not
 	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; flag that Y order changed
-	cmpi.w	#MAP_CHANGED_V,(MEM_FLAG_MAP_POSITION_CHANGED)	; test for scrolling
-	beq.w	MoveSpriteSetPattern	; map is scrolling, don't move the sprite
 	; update the sprite's Y position
 	subq	#SPRITE_STEP_PIXELS,(STRUCT_SPRITE_Y,a6)	; decrement SPRITE_Y
 	; update the sprite in the sprite table
@@ -40,8 +38,6 @@ TestDown:
 	cmpi.w	#DIRECTION_DOWN,d7			; test for down
 	bne.w	TestRight					; branch if not
 	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; flag that Y order changed
-	cmpi.w	#MAP_CHANGED_V,(MEM_FLAG_MAP_POSITION_CHANGED)	; test for scrolling
-	beq.w	MoveSpriteSetPattern	; map is scrolling, don't move the sprite
 	; update the sprite's Y position
 	addq	#SPRITE_STEP_PIXELS,(STRUCT_SPRITE_Y,a6)	; increment SPRITE_Y
 	move.w	(a6),d7						; copy sprite ID to d7
@@ -54,8 +50,6 @@ TestDown:
 TestRight:
 	cmpi.w	#DIRECTION_RIGHT,d7			; test for right
 	bne.w	TestLeft					; branch if not
-	cmpi.w	#MAP_CHANGED_H,(MEM_FLAG_MAP_POSITION_CHANGED)	; test for scrolling
-	beq.w	MoveSpriteSetPattern	; map is scrolling, don't move the sprite
 	; update the sprite's X position
 	addq	#SPRITE_STEP_PIXELS,(STRUCT_SPRITE_X,a6)	; increment SPRITE_X
 	; update the sprite in the sprite table
@@ -70,8 +64,6 @@ TestRight:
 TestLeft:
 	cmpi.w	#DIRECTION_LEFT,d7			; test for left
 	bne.w	ExitMoveSprite				; branch if not
-	cmpi.w	#MAP_CHANGED_H,(MEM_FLAG_MAP_POSITION_CHANGED)	; test for scrolling
-	beq.w	MoveSpriteSetPattern	; map is scrolling, don't move the sprite
 	; update the sprite's X position
 	subq	#SPRITE_STEP_PIXELS,(STRUCT_SPRITE_X,a6)	; decrement SPRITE_X
 	; update the sprite in the sprite table

@@ -34,12 +34,10 @@ TestSpriteCollisionSetup:
 	movea.l	a6,a4			; store address in a4 because it is manipulated
 	adda.l	#$2,a4			; move to a4+2 -> SPRITE_X
 	move.w	(a4),d6			; store sprite x in d6
-	add.w	(MEM_MAP_POSITION_X),d6	; adjust for scroll
 	; copy sprite y postion to d5, and adjust for scroll & collision point
 	adda.l	#$2,a4			; move to a4+4 -> SPRITE_Y
 	move.w	(a4),d5			; copy the sprite's y-position to d5
 	add.w	#SPRITE_COLLISION_Y,d5	; test against collision box
-	add.w	(MEM_MAP_POSITION_Y),d5	; adjust for scroll
 	; copy sprite direction to d7
 	adda.l	#$4,a4			; move to a4+8 -> SPRITE_DIRECTION
 	move.w	(a4),d7			; store direction in d7

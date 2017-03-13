@@ -23,7 +23,6 @@
 
 	include	'sub_MovePlayer.X68'
 
-	include	'sub_SetMapScroll.X68'
 
 	include 'sub_FindActionTarget.X68'
 

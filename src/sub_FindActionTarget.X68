@@ -1,10 +1,8 @@
 FindActionTarget:	; note - d6 and d7 are used by caller
-	; d4 - store map adjusted player sprite x
+	; d4 - store player sprite x
 	move.w	(MEM_PLAYER_SPRITE_X),d4	; move base sprite x
-	add.w	(MEM_MAP_POSITION_X),d4	; adjust for map position
-	; d5 - store map adjusted player sprite y
+	; d5 - store sprite y
 	move.w	(MEM_PLAYER_SPRITE_Y),d5	; move base sprite y
-	add.w	(MEM_MAP_POSITION_Y),d5	; adjust for map position
 	add.w	#SPRITE_COLLISION_Y,d5	; adjust for collision Y
 	; determine what the player is looking at
 	move.w	(MEM_PLAYER_SPRITE_DIRECTION),d3	; copy direction

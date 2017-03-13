@@ -78,6 +78,11 @@ SPRITE_COLLISION_DOWN=(DEFAULT_SPRITE_HEIGHT/2)+SPRITE_STEP_PIXELS
 SPRITE_COLLISION_RIGHT=DEFAULT_SPRITE_WIDTH+SPRITE_STEP_PIXELS
 SPRITE_COLLISION_LEFT=SPRITE_STEP_PIXELS
 MAP_MID_X=$100
+; scene exit points
+SCENE_EXIT_TOP=$0000+SPRITE_PLANE_OFFSET_TOP
+SCENE_EXIT_BOTTOM=$00D0+SPRITE_PLANE_OFFSET_TOP
+SCENE_EXIT_LEFT=$0000+SPRITE_PLANE_OFFSET_LEFT
+SCENE_EXIT_RIGHT=$013A+SPRITE_PLANE_OFFSET_LEFT
 ; these are based on registers 2,3,4,5,13 in data_VDPInit.X68
 VDP_VRAM_WRITE_A=$40000003			; register 2
 VDP_VRAM_WRITE_HSCROLL=$7C000002	; register 13
@@ -101,18 +106,6 @@ SPRITE_PLANE_OFFSET_BOTTOM=$00A0	; sprite plane bottom to display bottom edge
 SPRITE_PLANE_OFFSET_RIGHT=$0040		; sprite plane right to display right edge
 VDP_PLANE_PIXELS_X=$0200			; width of VDP plane
 VDP_PLANE_PIXELS_Y=$0100			; height of VDP plane
-; scrolling boundaries are the values used to determine when to scroll the map
-; they are the number of pixels between the sprite and screen edge
-; when the player is < XX_BOUNDARY pixels from the edge the map needs to scroll 
-PLAYER_SCROLL_BOUNDARY=$0000		; setting to 0 disables scrolling 
-;PLAYER_SCROLL_BOUNDARY=$0040		; base value when scrolling is enabled
-PLAYER_SCROLL_BOUNDARY_TOP=PLAYER_SCROLL_BOUNDARY
-PLAYER_SCROLL_BOUNDARY_BOTTOM=PLAYER_SCROLL_BOUNDARY+SPRITE_PLAYER_HEIGHT
-PLAYER_SCROLL_BOUNDARY_LEFT=PLAYER_SCROLL_BOUNDARY
-PLAYER_SCROLL_BOUNDARY_RIGHT=PLAYER_SCROLL_BOUNDARY+SPRITE_PLAYER_WIDTH
-; which direction the map is scrolling (MEM_FLAG_MAP_POSITION_CHANGED)
-MAP_CHANGED_H=$0001	; horizontal
-MAP_CHANGED_V=$0002	; vertical
 ; initial map values
 INIT_MAP_POSITION_X=$0000	; initial x-position
 INIT_MAP_POSITION_Y=$0000	; initial y-position
@@ -145,8 +138,7 @@ DIALOG_PATTERN_SIZE=$00C4	; size of the dialog pattern
 DIALOG_BASE_TILE=$8090	; base file for dialogs
 DIALOG_ROWCOL=$09900000	; row 19 column 16=(128*19)+16=2448=990
 DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
-;DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
-DIALOG_UPDATE_FREQUENCY=$0001	; how often to update dialog animation
+DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
 DIALOG_MENU_INIT_SELECTION_X=$C8	; x coordinate of initial menu selection
 DIALOG_MENU_INIT_SELECTION_Y=$120	; y coordinate of initial menu selection
 DIALOG_NO_RESPONSE=$FFFF	; no response or dialog cancelled 
@@ -412,12 +404,6 @@ MainGameLoopUpdateNPCSpritesLoopEnd:
 	; apparently dbra doesn't work against a memory address
 	subq	#$1,(MEM_NPC_LOOP_COUNTER)	; decrement loop counter
 	bgt.w	MainGameLoopUpdateNPCSpritesLoop	; branch
-
-MainGameLoopSetScroll:
-; no scrolling in this iteration of the demo
-;	cmpi.w	#$0000,(MEM_FLAG_MAP_POSITION_CHANGED)	; test for scrolling
-;	beq.w	MainGameLoopEnd							; not scrolling, exit
-;	bsr.w	SetMapScroll							; else scroll the map
 
 MainGameLoopEnd:
 	; test if sprites need to be reordered

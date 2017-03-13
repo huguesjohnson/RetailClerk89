@@ -54,9 +54,8 @@ DefaultTakeAddItemHasItem:
 ;*******************************************************************************
 
 ExitScene00:
-
-	move.l	#$ABCDDBCA,(MEM_DEBUG_1)
-
+	; TODO - if day 0, check flag to see if sprite can leave
+	; another option - fixed day flag for "player can leave store"
 	rts
 
 ;*******************************************************************************

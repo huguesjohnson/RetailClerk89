@@ -130,12 +130,6 @@ MEM_ACTIVE_SPRITE_LOW_RIGHT,2,low right row of active sprite
 MEM_COLLISION_MAP_ROW,4,row of map data
 MEM_COLLISION_RESULT,2,result of collision test
 ;-------------------------------------------------------------------------------
-; map scroll management
-;-------------------------------------------------------------------------------
-MEM_MAP_POSITION_X,2,x position of the map
-MEM_MAP_POSITION_Y,2,y position of the map
-MEM_FLAG_MAP_POSITION_CHANGED,2,>0 if map position changed
-;-------------------------------------------------------------------------------
 ; active scene
 ;-------------------------------------------------------------------------------
 MEM_ACTIVE_SCENE_ID,2,ID of the active scene

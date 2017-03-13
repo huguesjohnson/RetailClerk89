@@ -19,54 +19,46 @@ TestUpHeld:
 	andi.w	#BUTTON_UP_PRESSED,d7	; test if the up button is held
 	beq.s	TestDownHeld			; branch if not
 	move.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)	; set direction
-	; test if map should scroll because the player is approaching the boundary
-	; top boundary is [current map y-position]
-	move.w	(MEM_MAP_POSITION_Y),d7	; move map y-position to d7
-	cmpi.w	#$0000,d7				; are we already scrolled to the top?
-	ble.w	MovePlayerSprite		; if so stop testing for scroll
-	; at this point d7 contains the y value of the top boundary
-	add.w	#SPRITE_PLANE_OFFSET_TOP,d7	; adjust for sprite plane offset
-	sub.w	(MEM_PLAYER_SPRITE_Y),d7	; subtract sprite y
-	cmpi.w	#PLAYER_SCROLL_BOUNDARY_TOP,d7 ; is sprite within scroll area?
-	; bcc used here because previous subtraction can lead to negative number	
-	bcc.w	MovePlayerSprite		; if not stop testing for scroll
-	subq	#SPRITE_STEP_PIXELS,(MEM_MAP_POSITION_Y) ; decrement map y-position
-	move.w	#MAP_CHANGED_V,(MEM_FLAG_MAP_POSITION_CHANGED)	; flag map changed
-	bra.w	MovePlayerSprite		; move the player sprite
+	; test if player is exiting top edge of scene
+	cmpi.w	#SCENE_EXIT_TOP,(MEM_PLAYER_SPRITE_Y)	; test if at exit edge
+	bgt.s	MovePlayerSprite	; branch if not
+	bra.s	QueueExitAction	; queue an exit scene event
 TestDownHeld:
 	move.b	(MEM_CONTROL_HELD),d7	; copy button held value to d7 for andi
 	andi.w	#BUTTON_DOWN_PRESSED,d7	; test if the down button is held
 	beq.s	TestLeftHeld			; branch if not
 	move.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; set direction
-	; test if map should scroll because the player is approaching the boundary
-	; bottom boundary is [current map y-position]+[screen height]
-	move.w	(MEM_MAP_POSITION_Y),d7	; move map y-position to d7
-	add.w	#DISPLAY_PIXELS_Y,d7	; add the screen height
-	cmpi.w	#VDP_PLANE_PIXELS_Y,d7	; are we already scrolled to the bottom?
-	bge.w	MovePlayerSprite		; if so stop testing for scroll
-	; at this point d7 contains the y value of the bottom boundary
-	add.w	#SPRITE_PLANE_OFFSET_TOP,d7	; adjust for sprite plane offset
-	sub.w	(MEM_PLAYER_SPRITE_Y),d7	; subtract sprite y
-	cmpi.w	#PLAYER_SCROLL_BOUNDARY_BOTTOM,d7 ; is sprite within scroll area?
-	bge.w	MovePlayerSprite		; if not stop testing for scroll
-	addq	#SPRITE_STEP_PIXELS,(MEM_MAP_POSITION_Y) ; increment map y-position
-	move.w	#MAP_CHANGED_V,(MEM_FLAG_MAP_POSITION_CHANGED)	; flag map changed
-	bra.s	MovePlayerSprite		; move the player sprite
+	; test if player is exiting bottom edge of scene
+	cmpi.w	#SCENE_EXIT_BOTTOM,(MEM_PLAYER_SPRITE_Y)	; test if at exit edge
+	blt.s	MovePlayerSprite	; branch if not
+	bra.s	QueueExitAction	; queue an exit scene event
 TestLeftHeld:
 	move.b	(MEM_CONTROL_HELD),d7	; copy button held value to d7 for andi
 	andi.w	#BUTTON_LEFT_PRESSED,d7	; test if the left button is held
 	beq.s	TestRightHeld			; branch if not
 	move.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)	; set direction
-	bra.s	MovePlayerSprite		; move the player sprite
+	; test if player is exiting left edge of scene
+	cmpi.w	#SCENE_EXIT_LEFT,(MEM_PLAYER_SPRITE_X)	; test if at exit edge
+	bgt.s	MovePlayerSprite	; branch if not
+	bra.s	QueueExitAction	; queue an exit scene event
 TestRightHeld:
 	move.b	(MEM_CONTROL_HELD),d7	; copy button held value to d7 for andi
 	andi.w	#BUTTON_RIGHT_PRESSED,d7	; test if the right button is held
 	beq.w	StopPlayerSprite			; non-directional button held
 	move.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)	; set direction
+	cmpi.w	#SCENE_EXIT_RIGHT,(MEM_PLAYER_SPRITE_X)	; test if at exit edge
+	blt.s	MovePlayerSprite	; branch if not
+	bra.s	QueueExitAction	; queue an exit scene event
 MovePlayerSprite:
 	lea (MEM_PLAYER_SPRITE_ID),a6	; setup call to MoveSprite
 	bsr.w	MoveSprite				; branch to move MoveSprite
 	bra.s	EndMovePlayer			; exit
+QueueExitAction:
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	bset.l	#STATE_FLAG_ACTION,d7	; set the action flag
+	move.l	d7,(MEM_GAME_STATE)	; save it back
+	move.w	#ACTION_EXIT_SCENE,(MEM_ACTION_ID)	; set the action id
+	bra.s	MovePlayerSprite	; move the player sprite
 StopPlayerSprite:
 	lea (MEM_PLAYER_SPRITE_ID),a6	; setup call to StopSprite
 	bsr.w	StopSprite				; reset the sprite frame

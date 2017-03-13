@@ -130,16 +130,10 @@ MEM_ACTIVE_SPRITE_LOW_RIGHT=$FFFF00E8	; low right row of active sprite
 MEM_COLLISION_MAP_ROW=$FFFF00EA	; row of map data
 MEM_COLLISION_RESULT=$FFFF00EE	; result of collision test
 ;-------------------------------------------------------------------------------
-; map scroll management
-;-------------------------------------------------------------------------------
-MEM_MAP_POSITION_X=$FFFF00F0	; x position of the map
-MEM_MAP_POSITION_Y=$FFFF00F2	; y position of the map
-MEM_FLAG_MAP_POSITION_CHANGED=$FFFF00F4	; >0 if map position changed
-;-------------------------------------------------------------------------------
 ; active scene
 ;-------------------------------------------------------------------------------
-MEM_ACTIVE_SCENE_ID=$FFFF00F6	; ID of the active scene
-MEM_ACTIVE_NPC_COUNT=$FFFF00F8	; number of NPCs in the current scene
-MEM_OBJECT_LIST_OBJS=$FFFF00FA	; list of objects in current map
-MEM_OBJECT_LIST_NPCS=$FFFF0136	; list of npcs in current map
-MEM_COLLISION_DATA=$FFFF014E	; collision data for the current map
+MEM_ACTIVE_SCENE_ID=$FFFF00F0	; ID of the active scene
+MEM_ACTIVE_NPC_COUNT=$FFFF00F2	; number of NPCs in the current scene
+MEM_OBJECT_LIST_OBJS=$FFFF00F4	; list of objects in current map
+MEM_OBJECT_LIST_NPCS=$FFFF0130	; list of npcs in current map
+MEM_COLLISION_DATA=$FFFF0148	; collision data for the current map

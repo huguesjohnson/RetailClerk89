@@ -42,14 +42,6 @@ LoadSceneLoadMapCollisionLoop:
 	dbra    d7,LoadSceneLoadMapCollisionLoop
 
 ;-------------------------------------------------------------------------------
-; setup map 
-;-------------------------------------------------------------------------------
-	move.w	#INIT_MAP_POSITION_X,(MEM_MAP_POSITION_X)	; set map x-position
-	move.w	#INIT_MAP_POSITION_Y,(MEM_MAP_POSITION_Y)	; set map y-position
-	move.w	#$FFFF,(MEM_FLAG_MAP_POSITION_CHANGED)	; flag to reset the scroll
-	bsr.w	SetMapScroll	; set the map position
-
-;-------------------------------------------------------------------------------
 ; load & start the background music
 ;-------------------------------------------------------------------------------
 	movea.l	(a6)+,a0	; address of the BGM
