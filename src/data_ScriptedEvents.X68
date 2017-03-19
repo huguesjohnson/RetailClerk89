@@ -66,6 +66,22 @@ ScriptedEventDay0Left:
 
 ScriptedEventDay0Exit:
 	dc.w	$0003	; NPC1
+	dc.w	DIRECTION_DOWN	; move them offscreen
+	dc.w	$0180
+	dc.w	DIRECTION_LEFT	; move them into hidden space
+	dc.w	$0040
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0060
+	dc.w	DIRECTION_UP
+	dc.w	$0020
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDaniScene0Day0Exit0
+	dc.w	DIRECTION_DOWN
+	dc.w	$0020
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDaniScene0Day0Exit1
 	dc.w	DIRECTION_DOWN
 	dc.w	$0080
 	dc.w	SCRIPTED_EVENT_END

@@ -42,10 +42,12 @@ LoadSceneLoadMapCollisionLoop:
 	dbra    d7,LoadSceneLoadMapCollisionLoop
 
 ;-------------------------------------------------------------------------------
-; load & start the background music
+; load scene exits
 ;-------------------------------------------------------------------------------
-	movea.l	(a6)+,a0	; address of the BGM
-	bsr Echo_PlayBGM
+	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_N)	; north exit of active scene
+	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_S)	; south exit of active scene
+	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_E)	; east exit of active scene
+	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_W)	; west exit of active scene
 
 ;-------------------------------------------------------------------------------
 ; load NPCs
@@ -104,13 +106,18 @@ LoadSceneLoadNPCSpritesLoop:
 	; once all NPCs have been added, rebuild the object list
 	bsr.w	BuildNPCObjectList
 
-
 ;-------------------------------------------------------------------------------
 ; setup to rebuild sprite order after loading new NPCs
 ;-------------------------------------------------------------------------------
 	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; set to redraw sprite order
 	move.w	#$FFFF,(MEM_PLAYER_SPRITE_LINK_TO)	; player is linking to nothing
 	move.w	#$FFFF,(MEM_PLAYER_SPRITE_LINK_FROM)	; nothing links to player
+
+;-------------------------------------------------------------------------------
+; load & start the background music
+;-------------------------------------------------------------------------------
+	movea.l	(a6)+,a0	; address of the BGM
+	bsr Echo_PlayBGM
 
 ExitLoadScene:
 	move.w	#$2000,sr		; re-enable interrupts

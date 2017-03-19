@@ -58,6 +58,9 @@ QueueExitAction:
 	bset.l	#STATE_FLAG_ACTION,d7	; set the action flag
 	move.l	d7,(MEM_GAME_STATE)	; save it back
 	move.w	#ACTION_EXIT_SCENE,(MEM_ACTION_ID)	; set the action id
+	; test if the exits are blocked
+	btst.l	#STATE_FLAG_EXITS_BLOCKED,d7	; test exits blocked flag
+	bne.s	StopPlayerSprite	; if set stop the sprite
 	bra.s	MovePlayerSprite	; move the player sprite
 StopPlayerSprite:
 	lea (MEM_PLAYER_SPRITE_ID),a6	; setup call to StopSprite

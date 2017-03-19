@@ -261,9 +261,12 @@ SceneVB:
 	dc.l	MapStoreCollision	; location of collision data
 
 	;---------------------------------------------------------------------------
-	; bgm
+	; exits
 	;---------------------------------------------------------------------------
-	dc.l	BGM_Test	; location of background music
+	dc.w	$FFFF	; north exit
+	dc.w	$FFFF	; south exit
+	dc.w	$FFFF	; east exit
+	dc.w	$FFFF	; west exit
 
 	;---------------------------------------------------------------------------
 	; NPC locations
@@ -285,4 +288,11 @@ SceneVB:
 	dc.w	$0FF0	; movement frequency of npc1
 	dc.l	RandomNPCMovement1Start	; location of movement pattern for npc1
 	dc.w	(RandomNPCMovement1End-RandomNPCMovement1Start-1)	; pattern length
+
+	;---------------------------------------------------------------------------
+	; bgm
+	;---------------------------------------------------------------------------
+	dc.l	BGM_Test	; location of background music
+
+
 

@@ -133,6 +133,10 @@ MEM_COLLISION_RESULT,2,result of collision test
 ; active scene
 ;-------------------------------------------------------------------------------
 MEM_ACTIVE_SCENE_ID,2,ID of the active scene
+MEM_ACTIVE_SCENE_EXIT_N,2,north exit of active scene
+MEM_ACTIVE_SCENE_EXIT_S,2,south exit of active scene
+MEM_ACTIVE_SCENE_EXIT_E,2,east exit of active scene
+MEM_ACTIVE_SCENE_EXIT_W,2,west exit of active scene
 MEM_ACTIVE_NPC_COUNT,2,number of NPCs in the current scene
 MEM_OBJECT_LIST_OBJS,60,list of objects in current map
 MEM_OBJECT_LIST_NPCS,24,list of npcs in current map

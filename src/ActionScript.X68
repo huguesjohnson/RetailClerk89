@@ -54,8 +54,21 @@ DefaultTakeAddItemHasItem:
 ;*******************************************************************************
 
 ExitScene00:
-	; TODO - if day 0, check flag to see if sprite can leave
-	; another option - fixed day flag for "player can leave store"
+	cmpi.w	#$0000,(MEM_DAY)
+	beq.s	ExitScene00Day00	; branch to day 0
+	; TODO  - use default scene change logic when it's built
+	rts
+ExitScene00Day00:
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	btst.l	#STATE_FLAG_EXITS_BLOCKED,d7	; test flag blocking the exits
+	beq.s	ExitScene00Day00CanExit	; branch if flag is set
+	; display message
+	lea	DialogTextCantLeaveStoreUnattended,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening
+	rts
+ExitScene00Day00CanExit:
+	; TODO - show ending screen
 	rts
 
 ;*******************************************************************************
@@ -120,30 +133,42 @@ ExitDay00Scene00Action00:
 Day00Scene00Action01:	; ACTION_USE_TALK
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_SCENE_VB_REGISTER,d6	; test target
+	beq.w	Day00Scene00Register	; branch if this is the register
 	cmpi.w	#OBJ_NPC_DANI,d6	; test target
 	bne.s	Day00Scene00Action01NPCMaleShopper	; branch to next NPC
 Day00Scene00Action01NPCDani:
 	;---------------------------------------------------------------------------
 	; handle dialog with NPC Dani		
 	;---------------------------------------------------------------------------
+	btst.l	#$8,d7	; test if flag 8 is set
+	bne	Day00Scene00Action01NPCDaniFlag8	; branch if it is
 	btst.l	#$1,d7	; test if flag 1 is set
 	bne	Day00Scene00Action01NPCDaniFlag1	; branch if it is
 	bset.l	#$1,d7	; set flag 1
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated event flags for the day
 	lea	DialogTextDaniScene0Day0Flag0,a6	; load dialog text
-	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
+	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
+Day00Scene00Action01NPCDaniFlag8:
+	lea	DialogTextDaniScene0Day0Flag8,a6	; load dialog text
+	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01NPCDaniFlag1:
 	lea	DialogTextDaniScene0Day0Flag1,a6	; load dialog text
-	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
+	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01NPCMaleShopper:
 	;---------------------------------------------------------------------------
 	; handle dialog with shopper		
 	;---------------------------------------------------------------------------
 	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
-	bne.s	Day00Scene00Action01Default	; branch to display default text
+	bne.w	Day00Scene00Action01Default	; branch to display default text
+	btst.l	#$8,d7	; test if flag 8 is set
+	bne	Day00Scene00Action01NPCMaleShopperTestFlag8	; branch if it is
 	btst.l	#$4,d7	; test if flag 4 is set
 	bne	Day00Scene00Action01NPCMaleShopperFlag4	; branch if it is set
 	; if 4 is not set but 2 or 3 are then the player cancelled a dialog
+Day00Scene00Action01NPCMaleShopperTestFlag8:
+	lea	DialogTextMaleShopper0Scene0Day0Flag8,a6	; load dialog text
+	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01NPCMaleShopperTestFlag3:
 	btst.l	#$3,d7	; test if flag 3 is set
 	beq.s	Day00Scene00Action01NPCMaleShopperTestFlag2	; flag is 0, next test
@@ -168,6 +193,17 @@ Day00Scene00Action01NPCMaleShopperNoFlags:
 Day00Scene00Action01NPCMaleShopperFlag4:	; flag 4 is set
 	lea	DialogTextMaleShopper0Scene0Day0Flag4,a6	; load dialog text
 	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
+Day00Scene00Register:
+	btst.l	#$8,d7	; test if flag 8 is set
+	beq.s	Day00Scene00Action01Default	; branch if not
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	bclr.l	#STATE_FLAG_EXITS_BLOCKED,d7	; clear flag blocking the exits
+	move.l	d7,(MEM_GAME_STATE)	; save updated flags
+	; queue the scripted event
+	lea ScriptedEventDay0Exit,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextRegisterDay0Use,a6	; load dialog text
+	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01Default:
 	; default
 	lea	DialogTextNothingHappens,a6	; load default text
@@ -181,7 +217,9 @@ Day00Scene00Action02:	; ACTION_TAKE_GIVE
 	andi.w	#OBJ_SCENE_BASE,d6	; and against base scene ID
 	beq.w	Day00Scene00Action02GiveNPC	; not scenery
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
-	btst.l	#7,d7	; test if flag 7 is set
+	btst.l	#$8,d7	; test if flag 8 is set
+	bne.s	Day00Scene00Action02DefaultTake	; flag is set, branch
+	btst.l	#$7,d7	; test if flag 7 is set
 	beq.s	Day00Scene00Action02DefaultTake	; flag is not set, branch
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6 (again)
 	cmpi.w	#OBJ_SCENE_VB_8BIT,d6	; is the player looking at 8-bit games?
@@ -190,7 +228,7 @@ Day00Scene00Action02:	; ACTION_TAKE_GIVE
 	bne.s	Day00Scene00Action02DefaultTake	; if not branch
 Day00Scene00Action02LaunchScriptedEvent:
 	; set flag 8
-	bset.l	#8,d7	; set flag 8
+	bset.l	#$8,d7	; set flag 8
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated event flag
 	; determine which direction to move the NPC
 	move.w	(MEM_PLAYER_SPRITE_X),d6	; copy player x to d6
@@ -232,19 +270,19 @@ Day00Scene00Action02GiveNPCDefault:
 Day00Scene00Action02GiveNPCFlag4:
 	lea	DialogTextMaleShopper0Scene0Day0Flag4Give,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bset.l	#5,d7	; set flag 5
+	bset.l	#$5,d7	; set flag 5
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
 	rts
 Day00Scene00Action02GiveNPCFlag5:
 	lea	DialogTextMaleShopper0Scene0Day0Flag5Give,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bset.l	#6,d7	; set flag 6
+	bset.l	#$6,d7	; set flag 6
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
 	rts
 Day00Scene00Action02GiveNPCFlag6:
 	lea	DialogTextMaleShopper0Scene0Day0Flag6Give,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bset.l	#7,d7	; set flag 7
+	bset.l	#$7,d7	; set flag 7
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
 	rts
 Day00Scene00Action02GiveNPCTest2:
@@ -271,9 +309,9 @@ Day00Scene00Action03NPCMaleShopper:
 	; determine which conversation flow to take
 	;---------------------------------------------------------------------------
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
-	btst.l	#3,d7	; test if flag 3 is set
+	btst.l	#$3,d7	; test if flag 3 is set
 	bne.w	Day00Scene00Action03NPCMaleShopperFlag3	; flag is set, branch
-	btst.l	#2,d7	; test if flag 2 is set
+	btst.l	#$2,d7	; test if flag 2 is set
 	bne.s	Day00Scene00Action03NPCMaleShopperFlag2	; flag is set, branch
 ;---------------------------------------------------------------------------
 ; player is responding to the NPC for the first time

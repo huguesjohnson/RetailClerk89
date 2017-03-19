@@ -40,10 +40,10 @@ DialogTextAlreadyHaveIt:
 	;		"1234567890123456789012"
 	dc.b	"You already have one.",ETX
 
-DialogTextCantLeave:
+DialogTextCantLeaveStoreUnattended:
 	;		"1234567890123456789012"
-	dc.b	"You can't leave while",LF
-	dc.b	"the store is open.",ETX
+	dc.b	"You can't leave the",LF
+	dc.b	"store unattended.",ETX
 
 WelcomeMessage:
 	;		"1234567890123456789012"
@@ -79,10 +79,26 @@ DialogTextDaniScene0Day0Flag1:
 
 DialogTextDaniScene0Day0Flag8:
 	;		"1234567890123456789012"
-	dc.b	"`Maybe you should",LF
-	dc.b	"actually talk to him.^",FF
-	dc.b	"`You know, like",LF
-	dc.b	"do your job.'",ETX
+	dc.b	"`Do I have to explain",LF
+	dc.b	"everything to you?   ^",FF
+	dc.b	"Go ring him up & let's",LF
+	dc.b	"get out of here.'",ETX
+
+DialogTextDaniScene0Day0Exit0:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`Your problem is",LF
+	dc.b	"you listened to the  ^",FF
+	dc.b	"customer. They're all",LF
+	dc.b	"idiots & have no clue^",FF
+	dc.b	"what they want. Just",LF
+	dc.b	"say something that   ^",FF
+	dc.b	"makes them happy &",LF
+	dc.b	"they'll leave.'",ETX
+
+DialogTextDaniScene0Day0Exit1:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`Let's get home.",LF
+	dc.b	"Meet me at the car.'",ETX
 
 DialogTextScene0Day0Event0D0:
 	;		"1234567890123456789012"
@@ -217,6 +233,11 @@ DialogTextRegister:
 	;		"1234567890123456789012"
 	dc.b	"The register stares",LF
 	dc.b	"back at you blankly.",ETX
+
+DialogTextRegisterDay0Use:
+	;		"1234567890123456789012"
+	dc.b	"After some fumbling",LF
+	dc.b	"you ring up the sale.",ETX
 
 DialogTextHardware:
 	;		"1234567890123456789012"

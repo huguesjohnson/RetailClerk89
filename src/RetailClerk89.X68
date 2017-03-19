@@ -116,6 +116,7 @@ STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
 STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
 STATE_FLAG_ACTION=$03	; there is an action queued
 STATE_FLAG_SCRIPTED_EVENT=$04	; a scripted event is running
+STATE_FLAG_EXITS_BLOCKED=$05	; blocks sprite from leaving scene
 ; high word of MEM_DIALOG_FLAGS is used to track the state
 DIALOG_FLAG_STYLE_ITEM_MENU=$15	; item menu dialog
 DIALOG_FLAG_STYLE_MENU=$16	; overworld menu style dialog
@@ -186,6 +187,8 @@ SCRIPTED_EVENT_CHANGE_SPRITE=$DDDD
 Main:
 
 	include	'init_NewGame.X68'
+
+	include	'init_Debug.X68'
 
 MainGameLoop:
 	bsr.w	WaitVBlank							; wait for vblank to complete
@@ -500,13 +503,6 @@ MapStoreCollision:
 	include 'data_CharacterDefinitions.X68'
 
 ;*******************************************************************************
-; initialization data
-;*******************************************************************************
-	include 'data_Z80Init.X68'
-
-	include 'data_VDPInit.X68'
-
-;*******************************************************************************
 ; sprite movement
 ;*******************************************************************************
 	include	'data_SpriteMovementPatterns.X68'
@@ -522,16 +518,16 @@ MapStoreCollision:
 	include	'data_SceneItemLists.X68'
 
 ;*******************************************************************************
-; text
-;*******************************************************************************
-	include 'strings_en-us.X68'
-
-;*******************************************************************************
 ; echo sound driver (https://github.com/sikthehedgehog/Echo)
 ;*******************************************************************************
 	include 'echo/echo_main.X68'
 
 	include	'echo/echo_list.X68'
+
+;*******************************************************************************
+; text
+;*******************************************************************************
+	include 'strings_en-us.X68'
 
 ;*******************************************************************************
 ; background music
@@ -548,6 +544,14 @@ BGM_Test:
 ; action table
 ;*******************************************************************************
 	include	'table_Actions.X68'
+
+;*******************************************************************************
+; initialization data
+;*******************************************************************************
+	include 'data_Z80Init.X68'
+
+	include 'data_VDPInit.X68'
+
 
 ;*******************************************************************************
 ; end of rom
