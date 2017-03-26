@@ -3,7 +3,7 @@
 	; black - character outlines and accents
 	dc.w	$0000	; rgb(000,000,000) => 000000000000 => 0000
 	; brownish-red - hair color
-	dc.w	$046A	; rgb(160,096,064) => 010001101010 => 046A
+	dc.w	$0468	; rgb(160,096,064) => 010001101010 => 046A
 	; skin tone #1
 	dc.w	$0ACE	; rgb(224,192,160) => 101011001110 => 0ACE
 	; light blue - shirt and jean accents
@@ -13,9 +13,9 @@
 	; skin tone #2
 	dc.w	$08AC	; rgb(192,160,128) => 100010101100 => 08AC
 	; skin tone #3
-	dc.w	$068A	; rgb(160,128,096) => 011010001010 => 068A
-	; dark blue - shirt
-	dc.w	$0842	; rgb(032,064,128) => 100001000010 => 0842
+	dc.w	$026A
+	; green - clothing
+	dc.w	$0486
 	; purple - tie
 	dc.w	$0828	; rgb(128,032,128) => 100000101000 => 0828
 	; gray - pants

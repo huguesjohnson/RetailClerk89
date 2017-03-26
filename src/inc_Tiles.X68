@@ -72,6 +72,11 @@ NPCSpriteMaleShopper0Start:
 	include 'sprite-tiles/tileset_NPCSprite2.X68'
 NPCSpriteMaleShopper0End:
 
+NPCSpriteGreenbergStart:
+	include 'sprite-tiles/tileset_NPCSprite3.X68'
+NPCSpriteGreenbergEnd:
+
+
 SpriteTilesEnd:
 
 
