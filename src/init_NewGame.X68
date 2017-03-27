@@ -30,18 +30,20 @@ ClearPlayerInventoryLoop:
 InitNPCLocations:
 	lea MEM_NPC_LOCATIONS,a0
 	move.w	#$0102,(a0)+	; location 00 - NPCs 0,1
-	move.w	#$0000,(a0)+	; location 00 - NPCs 2,3
+	move.w	#$0300,(a0)+	; location 00 - NPCs 2,3
 
 LoadSpriteZeroTiles:
-	move.w	#$8,d0	; number of tiles in a sprite tileset
 	movea.l	#SpriteZeroTilesStart,a0	; set address of first tile to load
-	move.l	#SPRITE_VDP,d1	; set initial write location
+	move.w	#SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
+	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
+	move.w	#$8,d0	; number of tiles in a sprite tileset
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 
 LoadPlayerSpriteTiles:
-	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
 	movea.l	#PlayerSpriteTilesStart,a0	; set address of first tile to load
-	move.l	#PLAYER_SPRITE_VDP,d1	; set initial write location
+	move.w	#PLAYER_SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
+	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
+	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 
 LoadSprites:
@@ -56,12 +58,13 @@ LoadSpriteLoop:
 ; load the font
 ;-------------------------------------------------------------------------------
 LoadFontTiles:
-	move.l	#FontTilesStart,d1	; start address of tileset
+	move.w	#FONT_VDP,d1	; setup call to BuildVRAMWriteAddress
+	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
+	move.l	#FontTilesStart,d2	; start address of tileset
 	move.l	#FontTilesEnd,d0	; end address of tileset
-	sub.l	d1,d0	; subtract the start address to get length
+	sub.l	d2,d0	; subtract the start address to get length
 	divu.w	#$0004,d0	; divide by 4 to setup call to LoadTiles
-	movea.l	d1,a0	; set address of first tile to load
-	move.l	#FONT_VDP,d1	; set initial write location
+	movea.l	d2,a0	; set address of first tile to load
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 
 ;-------------------------------------------------------------------------------

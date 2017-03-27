@@ -54,3 +54,5 @@
 
 	include	'sub_QueueScriptedEvent.X68'
 
+	include	'sub_BuildVRAMWriteAddress.X68'
+

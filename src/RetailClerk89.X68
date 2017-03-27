@@ -48,7 +48,7 @@ ROM_ADDR_INSTRUMENTS=$80000
 ROM_ADDR_TEXT_TABLE=$AF000
 ROM_ADDR_ACTION_TABLE=$B0000
 ; sprite settings
-SPRITE_BASE_PATTERN=$6100	; base pattern of sprites
+SPRITE_BASE_PATTERN=$6110	; base pattern of sprites
 SPRITE_TILESET_SIZE=$60	; the size of the tileset used for sprites
 SPRITE_TILESET_LWORDS=SPRITE_TILESET_SIZE*LWORDS_PER_TILE	; lwords in tileset
 DEFAULT_SPRITE_HEIGHT=$0020	; how many pixels tall a sprite is by default
@@ -90,11 +90,11 @@ VDP_VRAM_WRITE_SPRITE=$78000002		; register 5
 VDP_VRAM_WRITE_B=$60000003			; register 4
 VDP_VRAM_WRITE_WINDOW=$60000002		; register 3
 VDP_VRAM_WRITE_VSCROLL=$40000010	; vscroll write
-; VPD memory locations
-SCENE_VDP=VDP_VRAM_WRITE			; write location for scene tiles
-FONT_VDP=SCENE_VDP+$12000000		; write location for font tiles
-SPRITE_VDP=SCENE_VDP+$20000000		; write location for sprite tiles
-PLAYER_SPRITE_VDP=SPRITE_VDP+$00200000	; write location for player sprite tiles
+; relative VPD memory locations
+SCENE_VDP=$0000			; write location for scene tiles
+FONT_VDP=$1200	; write location for font tiles
+SPRITE_VDP=$2200	; write location for sprite tiles
+PLAYER_SPRITE_VDP=SPRITE_VDP+$0020	; write location for player sprite tiles
 ; screen & plane sizes
 DISPLAY_PIXELS_X=$0140				; width of physical display
 DISPLAY_PIXELS_Y=$00E0				; height of physical display
@@ -156,6 +156,13 @@ SCENE_COUNT=$01	; total number of scenes
 ACTION_COUNT=$04	; total number of actions
 ACTION_COUNT_X4=(ACTION_COUNT*4)
 SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
+; sprite link values
+LINK_SPRITE0=$0000
+LINK_PLAYER=$0001
+LINK_NPC0=$0002;
+LINK_NPC1=$0003;
+LINK_NPC2=$0004;
+LINK_NPC3=$0005;
 ; other constants
 CHAR_DQUOTE=$22	; ACSII code for double quote character
 MAX_ITEMS=$04	; maximum number of items the player can carry
@@ -171,7 +178,7 @@ SCRIPTED_EVENT_CHANGE_SPRITE=$DDDD
 	include 'init_Vectors.X68'
 
 ;*******************************************************************************
-; vectors
+; ROM header
 ;*******************************************************************************
 	include 'init_Header.X68'
 
@@ -370,6 +377,9 @@ MainGameLoopUpdateSprites:
 	move.w	(MEM_ACTIVE_NPC_COUNT),(MEM_NPC_LOOP_COUNTER)	; setup loop control
 	lea	MEM_NPC0_SPRITE_ID,a5	; point to first NPC
 MainGameLoopUpdateNPCSpritesLoop:
+	; if STRUCT_SPRITE_MOVE_FREQUENCY = $FFFF then don't move the sprite
+	cmpi.w	#$FFFF,(STRUCT_SPRITE_MOVE_FREQUENCY,a5)	; test
+	beq.s	MainGameLoopUpdateNPCSpritesLoopEnd	; branch if equal
 	cmpi.w	#$0000,(STRUCT_SPRITE_MOVEMENT_COUNTER,a5)	; is the NPC moving?
 	bne	.2	; if MOVEMENT_COUNTER > 0 then the sprite is moving
 	; test if it's time for them to move again
@@ -475,10 +485,6 @@ TrapException:
 ;*******************************************************************************
 	include 'inc_Palettes.X68'
 
-;*******************************************************************************
-; tiles
-;*******************************************************************************
-	include 'inc_Tiles.X68'
 
 ;*******************************************************************************
 ; patterns
@@ -552,6 +558,10 @@ BGM_Test:
 
 	include 'data_VDPInit.X68'
 
+;*******************************************************************************
+; tiles
+;*******************************************************************************
+	include 'inc_Tiles.X68'
 
 ;*******************************************************************************
 ; end of rom

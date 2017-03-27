@@ -82,36 +82,36 @@ MEM_NPC0_MOVE_FREQUENCY,2,how often to move
 MEM_NPC0_MOVE_PATTERN,4,movement pattern
 MEM_NPC0_MOVE_PATTERN_LENGTH,2,length of movement pattern
 MEM_NPC0_MOVE_INDEX,2,where the sprite is the movement pattern
-MEM_NPC1_SPRITE_ID,2,sprite table id of NPC0 sprite
-MEM_NPC1_SPRITE_X,2,virtual x position of NPC0 sprite
-MEM_NPC1_SPRITE_Y,2,virtual y position of NPC0 sprite
+MEM_NPC1_SPRITE_ID,2,sprite table id of NPC1 sprite
+MEM_NPC1_SPRITE_X,2,virtual x position of NPC1 sprite
+MEM_NPC1_SPRITE_Y,2,virtual y position of NPC1 sprite
 MEM_NPC1_SPRITE_PATTERN_INDEX,2,index of pattern in VDP
-MEM_NPC1_SPRITE_DIRECTION,2,which direction NPC0 faces
-MEM_NPC1_SPRITE_FRAME,2,animation frame of NPC0 sprite
+MEM_NPC1_SPRITE_DIRECTION,2,which direction NPC1 faces
+MEM_NPC1_SPRITE_FRAME,2,animation frame of NPC1 sprite
 MEM_NPC1_SPRITE_STEP_COUNTER,2,used to determine when to move
 MEM_NPC1_MOVEMENT_COUNTER,2,used to determine how far to move
 MEM_NPC1_MOVE_FREQUENCY,2,how often to move
 MEM_NPC1_MOVE_PATTERN,4,movement pattern
 MEM_NPC1_MOVE_PATTERN_LENGTH,2,length of movement pattern
 MEM_NPC1_MOVE_INDEX,2,where the sprite is the movement pattern
-MEM_NPC2_SPRITE_ID,2,sprite table id of NPC0 sprite
-MEM_NPC2_SPRITE_X,2,virtual x position of NPC0 sprite
-MEM_NPC2_SPRITE_Y,2,virtual y position of NPC0 sprite
+MEM_NPC2_SPRITE_ID,2,sprite table id of NPC2 sprite
+MEM_NPC2_SPRITE_X,2,virtual x position of NPC2 sprite
+MEM_NPC2_SPRITE_Y,2,virtual y position of NPC2 sprite
 MEM_NPC2_SPRITE_PATTERN_INDEX,2,index of pattern in VDP
-MEM_NPC2_SPRITE_DIRECTION,2,which direction NPC0 faces
-MEM_NPC2_SPRITE_FRAME,2,animation frame of NPC0 sprite
+MEM_NPC2_SPRITE_DIRECTION,2,which direction NPC2 faces
+MEM_NPC2_SPRITE_FRAME,2,animation frame of NPC2 sprite
 MEM_NPC2_SPRITE_STEP_COUNTER,2,used to determine when to move
 MEM_NPC2_MOVEMENT_COUNTER,2,used to determine how far to move
 MEM_NPC2_MOVE_FREQUENCY,2,how often to move
 MEM_NPC2_MOVE_PATTERN,4,movement pattern
 MEM_NPC2_MOVE_PATTERN_LENGTH,2,length of movement pattern
 MEM_NPC2_MOVE_INDEX,2,where the sprite is the movement pattern
-MEM_NPC3_SPRITE_ID,2,sprite table id of NPC0 sprite
-MEM_NPC3_SPRITE_X,2,virtual x position of NPC0 sprite
-MEM_NPC3_SPRITE_Y,2,virtual y position of NPC0 sprite
+MEM_NPC3_SPRITE_ID,2,sprite table id of NPC3 sprite
+MEM_NPC3_SPRITE_X,2,virtual x position of NPC3 sprite
+MEM_NPC3_SPRITE_Y,2,virtual y position of NPC3 sprite
 MEM_NPC3_SPRITE_PATTERN_INDEX,2,index of pattern in VDP
-MEM_NPC3_SPRITE_DIRECTION,2,which direction NPC0 faces
-MEM_NPC3_SPRITE_FRAME,2,animation frame of NPC0 sprite
+MEM_NPC3_SPRITE_DIRECTION,2,which direction NPC3 faces
+MEM_NPC3_SPRITE_FRAME,2,animation frame of NPC3 sprite
 MEM_NPC3_SPRITE_STEP_COUNTER,2,used to determine when to move
 MEM_NPC3_MOVEMENT_COUNTER,2,used to determine how far to move
 MEM_NPC3_MOVE_FREQUENCY,2,how often to move

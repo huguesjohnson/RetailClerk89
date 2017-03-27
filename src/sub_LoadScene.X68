@@ -84,11 +84,12 @@ LoadSceneLoadNPCSprites:
 	;---------------------------------------------------------------------------
 	; setup loop control - 2 NPCs per word in MEM_NPC_LOCATIONS
 	;---------------------------------------------------------------------------
-	move.w	#(NPC_LIST_LENGTH-1)/2,d3	; use d3 for loop control
+	move.w	#(NPC_LIST_LENGTH/2)-1,d3	; use d3 for loop control
 	;---------------------------------------------------------------------------
 	; loop through all NPCs in the scene and add their sprites
 	;---------------------------------------------------------------------------
 	move.w	#$0002,d2	; use d2 to track sprite ID
+
 LoadSceneLoadNPCSpritesLoop:
 	move.w	(a1)+,d4	; copy next NPC pair to d4
 	move.w	d4,d5	; use d5 for first byte
@@ -133,15 +134,17 @@ LoadNPC:
 	subq	#$2,d5	; decrement to account for player sprite
 	mulu.w	#NPC_RECORD_SIZE,d5	; multiply to get location
 	adda.w	d5,a3	; increment a3 to the NPC memory location
-	; load the tiles
-	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
 	movea.l	(a2)+,a0	; set address of first tile to load
 	; calculate VDP write address
-	move.l	d2,d1	; copy sprite ID to d1
-	subq	#$1,d1	; subtract 1 to account for zero indexing
-	mulu	#(SPRITE_TILESET_LWORDS*LWORD_SIZE),d1	; multiply to get location
-	swap	d1	; move to upper word
-	add.l	#PLAYER_SPRITE_VDP,d1 ; add base address
+	move.w	d2,d1	; copy sprite ID to d1
+	subq.w	#$1,d1	; subtract 1 to account for zero indexing
+	mulu.w	#(SPRITE_TILESET_LWORDS*LWORD_SIZE),d1	; multiply to get location
+	add.w	#PLAYER_SPRITE_VDP,d1
+	bsr.w	BuildVRAMWriteAddress	; build VRAM write address
+	;swap	d1	; move to upper word
+	;add.l	#PLAYER_SPRITE_VDP,d1 ; add base address
+	; load the tiles
+	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
 	; note - a0, d0, and d1 are modified by this call
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 	; update base pattern
@@ -168,7 +171,7 @@ LoadNPC:
 	; pattern
 	move.w	d2,d6	; store sprite ID in d6
 	mulu.w	#$08,d6	; multiply sprite ID by 8 to get sprite array offset
-   	addq	#STRUCT_SPRITEDEF_PATTERN,d6		; move to x-coordinate
+   	addq	#STRUCT_SPRITEDEF_PATTERN,d6		; move to pattern
 	swap	d6	; move to upper word
 	add.l	#VDP_VRAM_WRITE_SPRITE,d6	; add to sprite table address
 	move.l	d6,(VDP_CONTROL)	; set write location in VDP

@@ -17,7 +17,7 @@ CharacterDefinitionDani:
 	; priority, palette, flip, pattern
 	;---------------------------------------------------------------------------
 			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000101100001 ;priority=0,palette=2,vflip=0,hflip=0,pattern=161
+	dc.w 	%0110000101110001 ;priority=0,palette=2,vflip=0,hflip=0,pattern=171
 
 ; 02
 CharacterDefinitionMaleShopper0:
@@ -26,5 +26,15 @@ CharacterDefinitionMaleShopper0:
 	; priority, palette, flip, pattern
 	;---------------------------------------------------------------------------
 			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000111000001 ;priority=0,palette=2,vflip=0,hflip=0,pattern=1C1
+	dc.w 	%0110000111010001 ;priority=0,palette=2,vflip=0,hflip=0,pattern=1D1
 	
+; 03
+CharacterDefinitionGreenberg:
+	dc.l	NPCSpriteGreenbergStart
+	;---------------------------------------------------------------------------
+	; priority, palette, flip, pattern
+	;---------------------------------------------------------------------------
+			;pccvhnnnnnnnnnnn
+	dc.w 	%0110001000110001 ;priority=0,palette=2,vflip=0,hflip=0,pattern=231
+	
+
