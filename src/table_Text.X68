@@ -29,6 +29,8 @@ DefaultNPCDescriptionTable:
 	dc.l	DialogTextDaniScene0Day0Action0
 	; OBJ_NPC_MALE_SHOPPER0
 	dc.l	DialogTextMaleShopper0
+	; OBJ_NPC_GREENBERG
+	dc.l	DialogTextGreenbergDefaultLook
 
 ;-------------------------------------------------------------------------------
 ; object names
@@ -57,6 +59,8 @@ NPCNameTable:
 	dc.l	NPCNameDani
 	; OBJ_NPC_MALE_SHOPPER0
 	dc.l	NPCNameMapperShopper0
+	; OBJ_NPC_GREENBERG
+	dc.l	NPCNameGreenberg
 
 ;-------------------------------------------------------------------------------
 ; item names

@@ -79,18 +79,24 @@ ScriptedEventDay0Exit:
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDaniScene0Day0Exit0
 	dc.w	DIRECTION_DOWN
-	dc.w	$0020
+	dc.w	$0010
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDaniScene0Day0Exit1
+	dc.w	DIRECTION_DOWN
+	dc.w	$0010
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDaniScene0Day0Exit2
 	dc.w	DIRECTION_DOWN
 	dc.w	$0080
 	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
 	dc.w	$0004	; NPC3
 	dc.w	DIRECTION_LEFT
-	dc.w	$0050
+	dc.w	$0040
 	dc.w	DIRECTION_UP
 	dc.w	$0100
 	dc.w	DIRECTION_DOWN
 	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextGreenbergScene0Day0Exit
 	dc.w	SCRIPTED_EVENT_END
 

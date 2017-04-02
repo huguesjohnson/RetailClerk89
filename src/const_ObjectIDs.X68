@@ -17,6 +17,7 @@ OBJ_SCENE_VB_REGISTER=OBJ_SCENE_BASE+$6
 OBJ_NPC_BASE=$2000
 OBJ_NPC_DANI=OBJ_NPC_BASE+$1
 OBJ_NPC_MALE_SHOPPER0=OBJ_NPC_BASE+$2
+OBJ_NPC_GREENBERG=OBJ_NPC_BASE+$3
 
 ;-------------------------------------------------------------------------------
 ; items

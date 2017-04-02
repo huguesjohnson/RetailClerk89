@@ -160,7 +160,7 @@ Day00Scene00Action01NPCMaleShopper:
 	; handle dialog with shopper		
 	;---------------------------------------------------------------------------
 	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
-	bne.w	Day00Scene00Action01Default	; branch to display default text
+	bne.w	Day00Scene00Action01NPCGreenberg	; test next NPC
 	btst.l	#$8,d7	; test if flag 8 is set
 	bne	Day00Scene00Action01NPCMaleShopperTestFlag8	; branch if it is
 	btst.l	#$4,d7	; test if flag 4 is set
@@ -204,6 +204,14 @@ Day00Scene00Register:
 	bsr.w QueueScriptedEvent	; queue the event
 	lea	DialogTextRegisterDay0Use,a6	; load dialog text
 	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
+Day00Scene00Action01NPCGreenberg:
+	;---------------------------------------------------------------------------
+	; handle dialog with Greenberg		
+	;---------------------------------------------------------------------------
+	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
+	bne.w	Day00Scene00Action01Default	; branch to display default text
+	lea	DialogTextGreenbergScene0Day0Talk,a6	; load dialog text
+	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01Default:
 	; default
 	lea	DialogTextNothingHappens,a6	; load default text
@@ -287,8 +295,14 @@ Day00Scene00Action02GiveNPCFlag6:
 	rts
 Day00Scene00Action02GiveNPCTest2:
 	cmpi.w	#OBJ_NPC_DANI,d6	; test target
-	bne.s	Day00Scene00Action02DefaultGive	; branch if not OBJ_NPC_DANI
+	bne.s	Day00Scene00Action02GiveNPCTest3	; branch if not OBJ_NPC_DANI
 	lea	DialogTextDaniDefaultGive,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene00Action02GiveNPCTest3:
+	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
+	bne.s	Day00Scene00Action02DefaultGive	; branch if not OBJ_NPC_DANI
+	lea	DialogTextGreenbergScene0Day0Give,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day00Scene00Action02DefaultGive:

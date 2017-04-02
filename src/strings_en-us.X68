@@ -90,15 +90,53 @@ DialogTextDaniScene0Day0Exit0:
 	dc.b	"you listened to the  ^",FF
 	dc.b	"customer. They're all",LF
 	dc.b	"idiots & have no clue^",FF
-	dc.b	"what they want. Just",LF
-	dc.b	"say something that   ^",FF
-	dc.b	"makes them happy &",LF
-	dc.b	"they'll leave.'",ETX
+	dc.b	"what they want.",LF
+	dc.b	"Just say something   ^",FF
+	dc.b	"that makes them happy",LF
+	dc.b	"and they'll leave.'",ETX
 
 DialogTextDaniScene0Day0Exit1:
 	;		"1234567890123456789012"
-	dc.b	"Dani:`Let's get home.",LF
-	dc.b	"Meet me at the car.'",ETX
+	dc.b	"Dani:`I can't believe",LF
+	dc.b	"your manager is MIA. ^",FF
+	dc.b	"He better give you a",LF
+	dc.b	"a key tomorrow.'",ETX
+
+DialogTextDaniScene0Day0Exit2:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`Meet me at the",LF
+	dc.b	"car whenever he      ^",FF
+	dc.b	"bothers to show up",LF
+	dc.b	"again.'",ETX
+
+DialogTextGreenbergScene0Day0Exit:
+	;		"1234567890123456789012"
+	dc.b	"Greenberg:`Did I just",LF
+	dc.b	"see a guy walking out^",FF
+	dc.b	"with a copy of Baby",LF
+	dc.b	"Boomer? You're the   ^",FF
+	dc.b	"best sales person I",LF
+	dc.b	"hired this season.   ^",FF
+	dc.b	"Sorry for being gone a",LF
+	dc.b	"while, there was a   ^",FF
+	dc.b	"sale at the other end",LF
+	dc.b	"of the mall.         ^",FF
+	dc.b	"You did fine though so",LF
+	dc.b	"get on home.'",ETX
+
+DialogTextGreenbergScene0Day0Talk:
+	;		"1234567890123456789012"
+	dc.b	"Greenberg:`Don't keep",LF
+	dc.b	"that nice young lady ^",FF
+	dc.b	"waiting. I sure",LF
+	dc.b	"wouldn't.'",ETX
+
+DialogTextGreenbergScene0Day0Give:
+	;		"1234567890123456789012"
+	dc.b	"Greenberg:`You're not",LF
+	dc.b	"stealing either?     ^",FF
+	dc.b	"You're the model",LF
+	dc.b	"employee today.'",ETX
 
 DialogTextScene0Day0Event0D0:
 	;		"1234567890123456789012"
@@ -264,6 +302,11 @@ DialogTextDaniScene0Day0Action0:
 	dc.b	"you'll be walking home",LF
 	dc.b	"if you take too long.",ETX
 
+DialogTextGreenbergDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"Greenberg:`Do you",LF
+	dc.b	"need something?'",ETX
+
 ;-------------------------------------------------------------------------------
 ; menus
 ;-------------------------------------------------------------------------------
@@ -343,6 +386,9 @@ NPCNameDani:
 
 NPCNameMapperShopper0:
 	dc.b	"Business casual guy",NPCNAMEEND
+
+NPCNameGreenberg:
+	dc.b	"Greenberg",NPCNAMEEND
 
 ;-------------------------------------------------------------------------------
 ; item names
