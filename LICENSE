@@ -31,9 +31,18 @@ THE SOFTWARE.
 ********************************************************************************
 This demo uses the Echo Sound Driver
  (c) 2010-2017 Javier Degirolmo
+ Licensed under zlib License
  https://github.com/sikthehedgehog/Echo
  Modifications were made to some source files to address build errors in vasm
  These changes have been documented in the respective source files
+
+Title screen logo font is based off Audiowide
+ Copyright (c) 2012, Brian J. Bonislawsky DBA Astigmatic (AOETI)
+ Licensed under the SIL Open Font License, Version 1.1
+
+Dialog & menu font is based off Deathwake font by Zee-3
+ http://www.zee-3.com/pickfordbros/archive/bitmapfonts.php
+ "Feel free to use any of these fonts for whatever purpose you see fit."
 
 ********************************************************************************
 Public domain songs used

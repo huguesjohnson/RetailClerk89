@@ -10,6 +10,7 @@ InitGameState:
 	move.l	#$00000000,d0
 	bset.l	#STATE_FLAG_EXPLORING,d0	; initial mode is exploring
 	bset.l	#STATE_FLAG_EXITS_BLOCKED,d0	; set flag blocking the exits
+	bset.l	#STATE_FLAG_TITLE_SCREEN,d0	; set title screen flag
 	move.l	d0,(MEM_GAME_STATE)
 	move.l	#$00000000,(MEM_DAY_EVENT_FLAGS)
 
@@ -22,7 +23,7 @@ InitGameState:
 	subq	#$1,d7	; decrement for zero-based list
 ClearPlayerInventoryLoop:
 	move.w	#$0000,(a1)+
-	dbra	d7,ClearPlayerInventoryLoop	; loop to the end of the lis
+	dbra	d7,ClearPlayerInventoryLoop	; loop to the end of the list
 
 ;-------------------------------------------------------------------------------
 ; load the initial NPC locations
@@ -70,7 +71,7 @@ LoadFontTiles:
 ;-------------------------------------------------------------------------------
 ; load the initial scene
 ;-------------------------------------------------------------------------------
-	lea	SceneVB,a6	; address of the initial scene
+	lea	SceneTitle,a6	; address of the scene for the title screen
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 
 ;-------------------------------------------------------------------------------

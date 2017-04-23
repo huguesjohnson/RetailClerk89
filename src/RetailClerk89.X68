@@ -116,7 +116,8 @@ STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
 STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
 STATE_FLAG_ACTION=$03	; there is an action queued
 STATE_FLAG_SCRIPTED_EVENT=$04	; a scripted event is running
-STATE_FLAG_EXITS_BLOCKED=$05	; blocks sprite from leaving scene
+STATE_FLAG_TITLE_SCREEN=$05	; title screen is displaying
+STATE_FLAG_EXITS_BLOCKED=$06	; blocks sprite from leaving scene
 ; high word of MEM_DIALOG_FLAGS is used to track the state
 DIALOG_FLAG_STYLE_ITEM_MENU=$15	; item menu dialog
 DIALOG_FLAG_STYLE_MENU=$16	; overworld menu style dialog
@@ -201,8 +202,33 @@ MainGameLoop:
 	bsr.w	WaitVBlank							; wait for vblank to complete
 	addq	#$1,(MEM_MAINLOOP_COUNTER)			; increment counter
 ;-------------------------------------------------------------------------------
+; title screen
+;-------------------------------------------------------------------------------
+TestTitleScreen:
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	btst.l	#STATE_FLAG_TITLE_SCREEN,d7 ; test game state
+	beq.w	TestPauseToggle	; not on the title screen, move to next test
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
+	beq.s	MainGameLoop	; start button not pressed, loop
+	; clear MEM_CONTROL_PRESSED to prevent entering pause state immediately
+	move.w	#$0000,(MEM_CONTROL_PRESSED)
+	; --------------------------------------------------------------------------
+	; start button was pressed on the title screen
+	; in this iteration there is only one menu option
+	; future versions will need to determine which action was selected
+	; --------------------------------------------------------------------------
+	bclr.l	#STATE_FLAG_TITLE_SCREEN,d7 ; clear game state flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	lea	SceneVB,a6	; address of the scene for the title screen
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
+	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
+	bra.w	MainGameLoop	;	return to start of game loop
+;-------------------------------------------------------------------------------
 ; pause/unpause
 ;-------------------------------------------------------------------------------
+TestPauseToggle:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
@@ -325,7 +351,7 @@ TestDialog:
 TestDialogUpdateFrequency:
 	cmpi.w	#DIALOG_UPDATE_FREQUENCY,(MEM_FRAME_COUNTER); is it time to update?
 	blt.s	TestDialogOpen	; branch if it's not time to move
-	blt.w	MainGameLoop	; branch if it's not time to move
+	blt.w	MainGameLoop	; branch i6f it's not time to move
 	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset counter to 0	
 	bsr.w	ProcessDialog	; dialog is set, jump to process dialog sub-routine
 	bra.w	MainGameLoop	; return to start of game loop
@@ -478,6 +504,7 @@ TrapException:
 ;*******************************************************************************
 ; scenes
 ;*******************************************************************************
+	include 'scenes/scene_title.X68'
 	include 'scenes/scene_vb.X68'
 
 ;*******************************************************************************
@@ -538,6 +565,10 @@ MapStoreCollision:
 ;*******************************************************************************
 ; background music
 ;*******************************************************************************
+BGM_Title:
+	incbin	'music/bgm_title.esf'
+
+
 BGM_Test:
 	incbin	'music/bgm_store00.esf'
 

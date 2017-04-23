@@ -21,3 +21,6 @@ PaletteStoreCPaused:
 
 PalettePeoplePaused:
 	include 'palettes/pal_People_Paused.X68'
+
+PaletteTitleScreen:
+	include 'palettes/pal_TitleScreen.X68'

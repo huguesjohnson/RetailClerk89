@@ -35,6 +35,8 @@ LoadSceneLoadObjectsLoop:
 ; load collision data
 ;-------------------------------------------------------------------------------
 	move.w	(a6)+,d7	; size of collision data
+	cmpi.w	#$0000,d7	; test if no collision data
+	beq.s	LoadSceneLoadExits	; branch if no collision data
 	movea.l	(a6)+,a0	; start address of collision data
 	lea	MEM_COLLISION_DATA,a1	; store destination memory location
 LoadSceneLoadMapCollisionLoop:
@@ -44,6 +46,7 @@ LoadSceneLoadMapCollisionLoop:
 ;-------------------------------------------------------------------------------
 ; load scene exits
 ;-------------------------------------------------------------------------------
+LoadSceneLoadExits:
 	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_N)	; north exit of active scene
 	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_S)	; south exit of active scene
 	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_E)	; east exit of active scene
