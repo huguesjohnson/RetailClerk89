@@ -1,3 +1,13 @@
+/* 
+this class is not named very well
+it is used to convert a BMP image to collision data 
+
+code to read bmp pixels is from: http://stackoverflow.com/questions/17015340/how-to-read-a-bmp-file-identify-which-pixels-are-black-in-java
+
+everything else by Hugues Johnson (http://HuguesJohnson.com/)
+
+the entire contents of this file are licensed under cc by-sa 3.0 https://creativecommons.org/licenses/by-sa/3.0/
+*/
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -5,9 +15,6 @@ import java.io.FileWriter;
 
 import javax.imageio.ImageIO;
 
-//code to read bmp pixels is from: http://stackoverflow.com/questions/17015340/how-to-read-a-bmp-file-identify-which-pixels-are-black-in-java
-//everything else by Hugues Johnson (http://HuguesJohnson.com/)
-//the entire contents of this file are licensed under cc by-sa 3.0 https://creativecommons.org/licenses/by-sa/3.0/
 public class JBMP2ASM{
 	private final static String newLine=System.lineSeparator();
 

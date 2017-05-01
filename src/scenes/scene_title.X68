@@ -36,7 +36,11 @@ SceneTitle:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; one tileset
+	dc.w	$0001	; two tilesets
+	; tileset 0
+	dc.l	TransparentTileStart	; start of scene tiles
+	dc.l	TransparentTileEnd	; end of scene tiles
+
 	; tileset 0
 	dc.l	TileScreenTilesStart	; start of scene tiles
 	dc.l	TileScreenTilesEnd	; end of scene tiles
@@ -44,22 +48,40 @@ SceneTitle:
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
-	dc.w	$0001	; one palette
-	dc.l	PaletteTitleScreen	; start of first palette to load
+	dc.w	$0002	; two palettes
+	dc.l	PaletteTitleScreen00	; start of first palette to load
 
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
 	dc.w	$0000	; scenery count
 
-	; floor
+	; title
 	dc.l	PatternTitleLogo	; location of pattern to load
 	; pccvhnnnnnnnnnnn
-	; 0000000000000001	
-	dc.w	$0000	; base pattern
+	; 0010000000000000	
+	dc.w	$2000	; base pattern
 	dc.w	$0000	; repeat 1 time
-	; row 10, column 2 = 508
-	dc.l	VDP_VRAM_WRITE_A+$05080000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$05100000	; initial drawing location
+
+;	; graphics behind title
+;	; title
+;	dc.l	PatternTitleBackground	; location of pattern to load
+;	; pccvhnnnnnnnnnnn
+;	; 0000000000000001	
+;	dc.w	$0000	; base pattern
+;	dc.w	$0000	; repeat 1 time
+;	; row x, column y = z
+;	dc.l	VDP_VRAM_WRITE_B+$03B40000	; initial drawing location
+;
+;	; menu
+;	dc.l	PatternTitleMenu	; location of pattern to load
+;	; pccvhnnnnnnnnnnn
+;	; 0000000000000001	
+;	dc.w	$0000	; base pattern
+;	dc.w	$0000	; repeat 1 time
+;	; row 20, column 15 = A3C
+;	dc.l	VDP_VRAM_WRITE_A+$0A3C0000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; objects

@@ -20,3 +20,5 @@
 	include 'patterns/pattern_HWRack.X68'
 	include 'patterns/pattern_16BitRack.X68'
 	include 'patterns/pattern_TitleLogo.X68'
+	include 'patterns/pattern_TitleMenu.X68'
+	include 'patterns/pattern_TitleBackground.X68'
