@@ -47,13 +47,14 @@ LoadPlayerSpriteTiles:
 	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 
-LoadSprites:
+; sprite zero is used on the menu screen
+LoadSpriteZero:
 	lea     SpriteZeroDefinition,a0	; store address of sprite definition
-	move.w  #$03,d0	; 1 sprite = 2 longs, 2 sprites = (4-1)
+	move.w  #$01,d0	; 1 sprite = 2 longs
 	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
-LoadSpriteLoop:
+LoadSpriteZeroLoop:
 	move.l  (a0)+,(VDP_DATA)
-	dbra    d0,LoadSpriteLoop
+	dbra    d0,LoadSpriteZeroLoop
 
 ;-------------------------------------------------------------------------------
 ; load the font

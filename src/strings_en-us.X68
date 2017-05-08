@@ -1,6 +1,6 @@
 ;*******************************************************************************
 ; There's a 0.000001% chance this will ever be translated to another language.
-; All the game text is in one file to make it easier if that somehow happens.
+; (Almost) All the game text is in one file to make it easier if that happens.
 ;
 ; The best way to go about it is:
 ;  1) Copy this file and rename it to 'string_[locale].X68'
@@ -13,6 +13,7 @@
 ; Things that will make translations difficult:
 ;  1) In the overhead view, the dialog displays a fixed 22 chars per row
 ;  2) Game font only includes ASCII, unused chars could be re-purposed though
+;  3) The title screen text is not in this file
 ;*******************************************************************************
 
 ;-------------------------------------------------------------------------------

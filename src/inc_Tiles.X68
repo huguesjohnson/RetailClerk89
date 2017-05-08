@@ -12,6 +12,8 @@ FontTilesEnd:
 ;-------------------------------------------------------------------------------
 TileScreenTilesStart:
 	include 'tiles/title-tiles/tileset_title_logo.X68'
+	include 'tiles/title-tiles/tileset_title_bg.X68'
+	include 'tiles/title-tiles/tileset_title_menu.X68'
 TileScreenTilesEnd:
 
 ;-------------------------------------------------------------------------------

@@ -28,4 +28,9 @@ PaletteTitleScreen00:
 PaletteTitleScreen01:
 	include 'palettes/pal_TitleScreen01.X68'
 
+PaletteTitleScreen02:
+	include 'palettes/pal_TitleScreen02.X68'
+
+PaletteTitleScreen03:
+	include 'palettes/pal_TitleScreen03.X68'
 

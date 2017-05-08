@@ -222,6 +222,14 @@ TestTitleScreen:
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 	lea	SceneVB,a6	; address of the scene for the title screen
 	bsr.w	LoadScene	; branch to LoadScene subroutine
+	; load the player sprite
+LoadSprites:
+	lea     SpriteZeroDefinition,a0	; store address of sprite definition
+	move.w  #$03,d0	; 1 sprite = 2 longs
+	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
+LoadSpriteLoop:
+	move.l  (a0)+,(VDP_DATA)
+	dbra    d0,LoadSpriteLoop
 	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
 	bra.w	MainGameLoop	;	return to start of game loop
