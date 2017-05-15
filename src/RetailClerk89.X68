@@ -232,6 +232,8 @@ LoadSpriteLoop:
 	dbra    d0,LoadSpriteLoop
 	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
+	; hide the menu selector sprite
+	bsr.w	HideSelectorSprite
 	bra.w	MainGameLoop	;	return to start of game loop
 ;-------------------------------------------------------------------------------
 ; pause/unpause

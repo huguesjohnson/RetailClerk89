@@ -56,6 +56,20 @@ LoadSpriteZeroLoop:
 	move.l  (a0)+,(VDP_DATA)
 	dbra    d0,LoadSpriteZeroLoop
 
+; move sprite zero to the first menu item
+	;---------------------------------------------------------------------------
+	; update y
+	;---------------------------------------------------------------------------
+	move.l	#VDP_VRAM_WRITE_SPRITE,d6	; add to sprite table address
+	move.l	d6,(VDP_CONTROL)	; set write location in VDP
+	move.w	#$0120,(VDP_DATA)	; copy the new y-coordinate
+	;---------------------------------------------------------------------------
+	; update x
+	;---------------------------------------------------------------------------
+	add.l	#$00060000,d6	; move to x-coordinate
+	move.l	d6,(VDP_CONTROL)	; set write location in VDP
+	move.w	#$0178,(VDP_DATA)	; copy the new x-coordinate
+
 ;-------------------------------------------------------------------------------
 ; load the font
 ;-------------------------------------------------------------------------------
