@@ -27,7 +27,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 ********************************************************************************
-3rd party software and licenses
+3rd party code
 ********************************************************************************
 This demo uses the Echo Sound Driver
  (c) 2010-2017 Javier Degirolmo
@@ -36,6 +36,9 @@ This demo uses the Echo Sound Driver
  Modifications were made to some source files to address build errors in vasm
  These changes have been documented in the respective source files
 
+********************************************************************************
+3rd party graphics
+********************************************************************************
 Title screen logo font is based off Audiowide
  Copyright (c) 2012, Brian J. Bonislawsky DBA Astigmatic (AOETI)
  Licensed under the SIL Open Font License, Version 1.1
@@ -45,8 +48,12 @@ Dialog & menu font is based off Deathwake font by Zee-3
  "Feel free to use any of these fonts for whatever purpose you see fit."
 
 ********************************************************************************
-Public domain songs used
+3rd party music
 ********************************************************************************
+bgm_title.esf is a conversion of chip_overture.xm by Drozerix
+ Licensed under the Public Domain license
+ https://creativecommons.org/licenses/publicdomain/
+
 bgm_store00.esf is roughly based on It Came Upon the Midnight Clear 
  Richard Storrs Willis / Edmund Sears (1849-1850)
 

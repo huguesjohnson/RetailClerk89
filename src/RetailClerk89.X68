@@ -208,6 +208,12 @@ TestTitleScreen:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_TITLE_SCREEN,d7 ; test game state
 	beq.w	TestPauseToggle	; not on the title screen, move to next test
+	; test if the BGM is stopped, if so then we need to restart the intro
+	bsr.w	Echo_GetStatus	; this moves the echo status to d0
+	tst.w	d0	; test if d0 is 0
+	bne.s TestTitleScreenTestStartPressed	; not zero, test for start button
+	bra.w	LoadTitleScene	; 0 means that the BGM is over & need to restart
+TestTitleScreenTestStartPressed:
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
 	beq.s	MainGameLoop	; start button not pressed, loop

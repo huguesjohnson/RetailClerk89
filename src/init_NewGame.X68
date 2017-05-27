@@ -86,6 +86,7 @@ LoadFontTiles:
 ;-------------------------------------------------------------------------------
 ; load the initial scene
 ;-------------------------------------------------------------------------------
+LoadTitleScene:
 	lea	SceneTitle,a6	; address of the scene for the title screen
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 
