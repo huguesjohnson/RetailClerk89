@@ -34,6 +34,7 @@ InitNPCLocations:
 	move.w	#$0300,(a0)+	; location 00 - NPCs 2,3
 
 LoadSpriteZeroTiles:
+	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
 	movea.l	#SpriteZeroTilesStart,a0	; set address of first tile to load
 	move.w	#SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
 	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
@@ -41,6 +42,7 @@ LoadSpriteZeroTiles:
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 
 LoadPlayerSpriteTiles:
+	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
 	movea.l	#PlayerSpriteTilesStart,a0	; set address of first tile to load
 	move.w	#PLAYER_SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
 	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
@@ -74,6 +76,7 @@ LoadSpriteZeroLoop:
 ; load the font
 ;-------------------------------------------------------------------------------
 LoadFontTiles:
+	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
 	move.w	#FONT_VDP,d1	; setup call to BuildVRAMWriteAddress
 	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
 	move.l	#FontTilesStart,d2	; start address of tileset

@@ -17,6 +17,7 @@ DrawScene:
 	move.w	#SCENE_VDP,d1	; use d1 to track write location
 
 LoadSceneLoadTilesLoop:
+	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
 	bsr.w	BuildVRAMWriteAddress
 	move.l	(a6)+,d3	; start address of tileset
 	move.l	(a6)+,d0	; end address of tileset
@@ -32,6 +33,8 @@ LoadSceneLoadTilesLoop:
 ;-------------------------------------------------------------------------------
 ; load palettes
 ;-------------------------------------------------------------------------------
+
+	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
 	; setup call to LoadPalettes
 	move.w	(a6)+,d0	; number of palettes to load
 	movea.l	(a6)+,a0	; start address of palettes
