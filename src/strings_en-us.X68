@@ -238,7 +238,7 @@ DialogTextMaleShopper0Scene0Day0Flag4Give:
 
 DialogTextMaleShopper0Scene0Day0Flag5Give:
 	;		"1234567890123456789012"
-	dc.b	"`No, that's even'",LF
+	dc.b	"`No, that's even",LF
 	dc.b	"`worse.'",ETX
 
 DialogTextMaleShopper0Scene0Day0Flag6Give:

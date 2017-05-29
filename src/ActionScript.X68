@@ -166,6 +166,7 @@ Day00Scene00Action01NPCMaleShopper:
 	btst.l	#$4,d7	; test if flag 4 is set
 	bne	Day00Scene00Action01NPCMaleShopperFlag4	; branch if it is set
 	; if 4 is not set but 2 or 3 are then the player cancelled a dialog
+	bra.s	Day00Scene00Action01NPCMaleShopperNoFlags ; no flags are set
 Day00Scene00Action01NPCMaleShopperTestFlag8:
 	lea	DialogTextMaleShopper0Scene0Day0Flag8,a6	; load dialog text
 	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
