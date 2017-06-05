@@ -33,21 +33,17 @@ InitNPCLocations:
 	move.w	#$0102,(a0)+	; location 00 - NPCs 0,1
 	move.w	#$0300,(a0)+	; location 00 - NPCs 2,3
 
-LoadSpriteZeroTiles:
-	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
-	movea.l	#SpriteZeroTilesStart,a0	; set address of first tile to load
-	move.w	#SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
-	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
-	move.w	#$8,d0	; number of tiles in a sprite tileset
-	bsr.w	LoadTiles	; branch to LoadTiles subroutine
+;-------------------------------------------------------------------------------
+; load the initial scene
+;-------------------------------------------------------------------------------
+LoadTitleScene:
+	lea	SceneTitle,a6	; address of the scene for the title screen
+	bsr.w	LoadScene	; branch to LoadScene subroutine
 
-LoadPlayerSpriteTiles:
-	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
-	movea.l	#PlayerSpriteTilesStart,a0	; set address of first tile to load
-	move.w	#PLAYER_SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
-	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
-	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
-	bsr.w	LoadTiles	; branch to LoadTiles subroutine
+;-------------------------------------------------------------------------------
+; load and setup the sprites
+;-------------------------------------------------------------------------------
+	move.w	#$2700,sr	; disable interrupts
 
 ; sprite zero is used on the menu screen
 LoadSpriteZero:
@@ -71,32 +67,6 @@ LoadSpriteZeroLoop:
 	add.l	#$00060000,d6	; move to x-coordinate
 	move.l	d6,(VDP_CONTROL)	; set write location in VDP
 	move.w	#$0178,(VDP_DATA)	; copy the new x-coordinate
-
-;-------------------------------------------------------------------------------
-; load the font
-;-------------------------------------------------------------------------------
-LoadFontTiles:
-	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
-	move.w	#FONT_VDP,d1	; setup call to BuildVRAMWriteAddress
-	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
-	move.l	#FontTilesStart,d2	; start address of tileset
-	move.l	#FontTilesEnd,d0	; end address of tileset
-	sub.l	d2,d0	; subtract the start address to get length
-	divu.w	#$0004,d0	; divide by 4 to setup call to LoadTiles
-	movea.l	d2,a0	; set address of first tile to load
-	bsr.w	LoadTiles	; branch to LoadTiles subroutine
-
-;-------------------------------------------------------------------------------
-; load the initial scene
-;-------------------------------------------------------------------------------
-LoadTitleScene:
-	lea	SceneTitle,a6	; address of the scene for the title screen
-	bsr.w	LoadScene	; branch to LoadScene subroutine
-
-;-------------------------------------------------------------------------------
-; load and setup the sprites
-;-------------------------------------------------------------------------------
-	move.w	#$2700,sr	; disable interrupts
 
 InitPlayerSprite:
 	; player	

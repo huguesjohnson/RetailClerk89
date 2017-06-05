@@ -11,6 +11,16 @@ DrawScene:
 	move.w	#$2700,sr		; disable interrupts
 
 ;-------------------------------------------------------------------------------
+; clear VDP
+;-------------------------------------------------------------------------------
+ClearVRAM:
+	move.l	#VDP_VRAM_WRITE,(VDP_CONTROL) 
+	move.w	#$7FFF,d1
+ClearVRAMLoop:
+	move.w	#$0000,(VDP_DATA)
+	dbra	d1,ClearVRAMLoop
+
+;-------------------------------------------------------------------------------
 ; load tiles
 ;-------------------------------------------------------------------------------
 	move.w	(a6)+,d7	; number of tilesets to load
@@ -31,9 +41,22 @@ LoadSceneLoadTilesLoop:
 	dbra d7,LoadSceneLoadTilesLoop	; loop until all data is loaded
 
 ;-------------------------------------------------------------------------------
+; load the font tiles
+;-------------------------------------------------------------------------------
+LoadFontTiles:
+	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
+	move.w	#FONT_VDP,d1	; setup call to BuildVRAMWriteAddress
+	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
+	move.l	#FontTilesStart,d2	; start address of tileset
+	move.l	#FontTilesEnd,d0	; end address of tileset
+	sub.l	d2,d0	; subtract the start address to get length
+	divu.w	#$0004,d0	; divide by 4 to setup call to LoadTiles
+	movea.l	d2,a0	; set address of first tile to load
+	bsr.w	LoadTiles	; branch to LoadTiles subroutine
+
+;-------------------------------------------------------------------------------
 ; load palettes
 ;-------------------------------------------------------------------------------
-
 	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
 	; setup call to LoadPalettes
 	move.w	(a6)+,d0	; number of palettes to load

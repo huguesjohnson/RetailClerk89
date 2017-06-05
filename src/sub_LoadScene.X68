@@ -53,6 +53,25 @@ LoadSceneLoadExits:
 	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_W)	; west exit of active scene
 
 ;-------------------------------------------------------------------------------
+; load sprite zero and player sprite
+;-------------------------------------------------------------------------------
+LoadSpriteZeroTiles:
+	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
+	movea.l	#SpriteZeroTilesStart,a0	; set address of first tile to load
+	move.w	#SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
+	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
+	move.w	#$8,d0	; number of tiles in a sprite tileset
+	bsr.w	LoadTiles	; branch to LoadTiles subroutine
+
+LoadPlayerSpriteTiles:
+	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
+	movea.l	#PlayerSpriteTilesStart,a0	; set address of first tile to load
+	move.w	#PLAYER_SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
+	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
+	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
+	bsr.w	LoadTiles	; branch to LoadTiles subroutine
+
+;-------------------------------------------------------------------------------
 ; load NPCs
 ;-------------------------------------------------------------------------------
 LoadSceneLoadNPCData:
@@ -121,7 +140,7 @@ LoadSceneLoadNPCSpritesLoop:
 ; load & start the background music
 ;-------------------------------------------------------------------------------
 	movea.l	(a6)+,a0	; address of the BGM
-	bsr Echo_PlayBGM
+	bsr Echo_PlayBGM	; start the background music
 
 ExitLoadScene:
 	move.w	#$2000,sr		; re-enable interrupts

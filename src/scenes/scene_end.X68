@@ -26,12 +26,12 @@
 ;	-BGM
 ;		-reference to location of background music
 ;-------------------------------------------------------------------------------
-SceneTitle:
+SceneEnd:
 
 	;---------------------------------------------------------------------------
 	; scene ID
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_TITLE
+	dc.w	SCENE_ID_END
 
 	;---------------------------------------------------------------------------
 	; tiles
@@ -50,12 +50,12 @@ SceneTitle:
 	; palettes
 	;---------------------------------------------------------------------------
 	dc.w	$0004	; three palettes
-	dc.l	PaletteTitleScreen00	; start of first palette to load
+	dc.l	PaletteEndScreen00	; start of first palette to load
 
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0004	; scenery count
+	dc.w	$0003	; scenery count
 
 	; title
 	dc.l	PatternTitleLogo	; location of pattern to load
@@ -84,23 +84,14 @@ SceneTitle:
 	; row 7 (128x7 = #380), column 12 (12x4 = #30) => #3B0
 	dc.l	VDP_VRAM_WRITE_B+$03B00000	; initial drawing location
 
-	; menu
-	dc.l	PatternTitleMenu	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0110000000000000	
-	dc.w	$6000	; base pattern
-	dc.w	$0000	; repeat 1 time
-	; row 20  (128x20 = #A00), column 15 (15x4 = #3C) => A3C
-	dc.l	VDP_VRAM_WRITE_A+$0A3C0000	; initial drawing location
-
-	; footer
-	dc.l	PatternTitleFooter	; location of pattern to load
+	; text
+	dc.l	PatternEndText	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0000000000000000	
 	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.w	$0000	; repeat 1 time
-	; row 24  (128x24 = #C00), column 0 (0x4 = #0) => 0
-	dc.l	VDP_VRAM_WRITE_A+$0C000000	; initial drawing location
+	; row 19  (128x19 = #980), column 0 (0x4 = #0) => 0
+	dc.l	VDP_VRAM_WRITE_A+$09800000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; objects
@@ -146,10 +137,10 @@ SceneTitle:
 	;---------------------------------------------------------------------------
 	; exits
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_VB	; north exit
-	dc.w	SCENE_ID_VB	; south exit
-	dc.w	SCENE_ID_VB	; east exit
-	dc.w	SCENE_ID_VB	; west exit
+	dc.w	SCENE_ID_TITLE	; north exit
+	dc.w	SCENE_ID_TITLE	; south exit
+	dc.w	SCENE_ID_TITLE	; east exit
+	dc.w	SCENE_ID_TITLE	; west exit
 
 	;---------------------------------------------------------------------------
 	; NPC locations
@@ -167,5 +158,5 @@ SceneTitle:
 	;---------------------------------------------------------------------------
 	; bgm
 	;---------------------------------------------------------------------------
-	dc.l	BGM_Title	; location of background music
+	dc.l	BGM_End	; location of background music
 

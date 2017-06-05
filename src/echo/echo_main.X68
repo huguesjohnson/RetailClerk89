@@ -385,17 +385,14 @@ Echo_GetStatus:
     moveq   #0, d0
     Echo_Z80Request                 ; We need the Z80 bus
     move.b  ($A01FF0), d0           ; Get the status flags
-
     tst.b   ($A01FFF)               ; Check if command still has to be parsed
     beq.s   @NotBusy                ; Any commands left to be parsed?
     bset.l  #15, d0                 ; If so, set the relevant flag
 @NotBusy:
-
     cmpi.b  #$FF, ($A01F00)         ; Check if the direct buffer is empty
     beq.s   @DirectEmpty            ; Any direct events still to be played?
     bset.l  #14, d0                 ; If so, set the relevant flag
 @DirectEmpty:
-
     Echo_Z80Release                 ; Let the Z80 go!
     rts                             ; End of subroutine
 

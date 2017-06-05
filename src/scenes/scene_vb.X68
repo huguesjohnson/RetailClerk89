@@ -45,7 +45,7 @@ SceneVB:
 	; palettes
 	;---------------------------------------------------------------------------
 	dc.w	$0004	; four palettes
-	dc.l	PaletteStoreA	; start of first palette to load
+	dc.l	Store00Palettes	; start of first palette to load
 
 	;---------------------------------------------------------------------------
 	; scenery
@@ -300,5 +300,5 @@ SceneVB:
 	;---------------------------------------------------------------------------
 	; bgm
 	;---------------------------------------------------------------------------
-	dc.l	BGM_Test	; location of background music
+	dc.l	BGM_Store0	; location of background music
 

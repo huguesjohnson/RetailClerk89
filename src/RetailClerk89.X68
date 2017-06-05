@@ -44,9 +44,10 @@
 	include	'const_StructFields.X68'
 
 ; data addresses
-ROM_ADDR_INSTRUMENTS=$80000
-ROM_ADDR_TEXT_TABLE=$AF000
-ROM_ADDR_ACTION_TABLE=$B0000
+ROM_ADDR_INSTRUMENTS=$080000
+ROM_ADDR_TEXT_TABLE=$0AF000
+ROM_ADDR_ACTION_TABLE=$0B0000
+ROM_ADDR_END=$3FFFFF
 ; sprite settings
 SPRITE_BASE_PATTERN=$6110	; base pattern of sprites
 SPRITE_TILESET_SIZE=$60	; the size of the tileset used for sprites
@@ -118,6 +119,7 @@ STATE_FLAG_ACTION=$03	; there is an action queued
 STATE_FLAG_SCRIPTED_EVENT=$04	; a scripted event is running
 STATE_FLAG_TITLE_SCREEN=$05	; title screen is displaying
 STATE_FLAG_EXITS_BLOCKED=$06	; blocks sprite from leaving scene
+STATE_FLAG_END_SCREEN=$07	; end screen is displaying
 ; high word of MEM_DIALOG_FLAGS is used to track the state
 DIALOG_FLAG_STYLE_ITEM_MENU=$15	; item menu dialog
 DIALOG_FLAG_STYLE_MENU=$16	; overworld menu style dialog
@@ -160,14 +162,15 @@ SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
 ; sprite link values
 LINK_SPRITE0=$0000
 LINK_PLAYER=$0001
-LINK_NPC0=$0002;
-LINK_NPC1=$0003;
-LINK_NPC2=$0004;
-LINK_NPC3=$0005;
+LINK_NPC0=$0002
+LINK_NPC1=$0003
+LINK_NPC2=$0004
+LINK_NPC3=$0005
 ; other constants
 CHAR_DQUOTE=$22	; ACSII code for double quote character
 MAX_ITEMS=$04	; maximum number of items the player can carry
 ROW_HEIGHT=$800000	; height of a tile row
+PALETTE_SET_SIZE=$80	; size of 4 palettes
 CHARACTER_DEFINITION_SIZE=CharacterDefinitionPlayerEnd-CharacterDefinitionPlayer
 SCRIPTED_EVENT_END=$FFFF
 SCRIPTED_EVENT_DIALOG=$EEEE
@@ -182,7 +185,7 @@ SCRIPTED_EVENT_CHANGE_SPRITE=$DDDD
 ; ROM header
 ;*******************************************************************************
 	include 'init_Header.X68'
-z
+
 ;*******************************************************************************
 ; entry point & initialization
 ;*******************************************************************************
@@ -207,12 +210,7 @@ MainGameLoop:
 TestTitleScreen:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_TITLE_SCREEN,d7 ; test game state
-	beq.w	TestPauseToggle	; not on the title screen, move to next test
-	; test if the BGM is stopped, if so then we need to restart the intro
-	bsr.w	Echo_GetStatus	; this moves the echo status to d0
-	tst.w	d0	; test if d0 is 0
-	bne.s TestTitleScreenTestStartPressed	; not zero, test for start button
-	bra.w	LoadTitleScene	; 0 means that the BGM is over & need to restart
+	beq.w	TestEndScreen	; not on the title screen, move to next test
 TestTitleScreenTestStartPressed:
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
@@ -242,6 +240,23 @@ LoadSpriteLoop:
 	bsr.w	HideSelectorSprite
 	bra.w	MainGameLoop	;	return to start of game loop
 ;-------------------------------------------------------------------------------
+; end screen
+;-------------------------------------------------------------------------------
+TestEndScreen:
+	btst.l	#STATE_FLAG_END_SCREEN,d7 ; test game state
+	beq.w	TestPauseToggle	; not on the end screen, move to next test
+TestEndScreenTestStartPressed:
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
+	beq.w	MainGameLoop	; start button not pressed, loop
+	; --------------------------------------------------------------------------
+	; start button was pressed on the end screen - loop back to the beginning
+	; --------------------------------------------------------------------------
+	; clear MEM_CONTROL_PRESSED to prevent entering pause state immediately
+	move.w	#$0000,(MEM_CONTROL_PRESSED)
+EndScreenRestart:
+	bra.w	NewGame	; restart
+;-------------------------------------------------------------------------------
 ; pause/unpause
 ;-------------------------------------------------------------------------------
 TestPauseToggle:
@@ -249,7 +264,6 @@ TestPauseToggle:
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
 	beq.s	TestPause	; start button is not pressed test if still paused
-	move.w	#$2700,sr	; disable interrupts while changing the pause state
 	; clear MEM_CONTROL_PRESSED to prevent pause state from flipping in loop
 	move.w	#$0000,(MEM_CONTROL_PRESSED)
 	btst.l	#STATE_FLAG_PAUSED,d7	; is the paused bit set?
@@ -258,7 +272,10 @@ Pause:
 	bset.l	#STATE_FLAG_PAUSED,d7	; set the paused bit
 	; flip to paused palette
 	bsr	Echo_StopBGM	; pause the background music
-	lea	PaletteStoreAPaused,a0	; address of the starting palette to a0
+	lea	StorePalettesPaused,a0	; point to start of palettes
+	move.w	(MEM_ACTIVE_SCENE_ID),d0	; copy active scene ID to d0
+	mulu.w	#PALETTE_SET_SIZE,d0	; multiply scene ID by size of palette set
+	adda.w	d0,a0	; increment a0 to point to scene palette
 	move.w	#$0004,d0		; number of palettes to load
 	move.l	#VDP_CRAM_WRITE,d1	; initial write address
 	bsr.w	LoadPalettes	; branch to LoadPalettes subroutine
@@ -266,14 +283,15 @@ Pause:
 Unpause:
 	bclr.l	#STATE_FLAG_PAUSED,d7	; clear the paused bit
 	bsr	Echo_ResumeBGM	; unpause the background music
-	; revert to normal palette
-	lea	PaletteStoreA,a0	; address of the starting palette to a0
+	lea	StorePalettes,a0	; point to start of palettes
+	move.w	(MEM_ACTIVE_SCENE_ID),d0	; copy active scene ID to d0
+	mulu.w	#PALETTE_SET_SIZE,d0	; multiply scene ID by size of palette set
+	adda.w	d0,a0	; increment a0 to point to scene palette
 	move.w	#$0004,d0		; number of palettes to load
 	move.l	#VDP_CRAM_WRITE,d1	; initial write address
 	bsr.w	LoadPalettes	; branch to LoadPalettes subroutine
 UpdatePause:
 	move.l	d7,(MEM_GAME_STATE)	; save the new paused state
-	move.w	#$2000,sr		; re-enable interrupts
 TestPause:
 	btst.l	#STATE_FLAG_PAUSED,d7	; test if paused
 	beq.s	TestAction	; not paused, move to next test
@@ -520,14 +538,12 @@ TrapException:
 ;*******************************************************************************
 ; scenes
 ;*******************************************************************************
-	include 'scenes/scene_title.X68'
-	include 'scenes/scene_vb.X68'
+	include 'inc_Scenes.X68'
 
 ;*******************************************************************************
 ; palettes
 ;*******************************************************************************
 	include 'inc_Palettes.X68'
-
 
 ;*******************************************************************************
 ; patterns
@@ -584,9 +600,16 @@ MapStoreCollision:
 BGM_Title:
 	incbin	'music/bgm_title.esf'
 
+BGM_End:
+	incbin	'music/bgm_end.esf'
 
-BGM_Test:
+BGM_Store0:
 	incbin	'music/bgm_store00.esf'
+
+;*******************************************************************************
+; scene definition table
+;*******************************************************************************
+	include	'table_SceneDefinitions.X68'
 
 ;*******************************************************************************
 ; default object text table
@@ -615,4 +638,6 @@ BGM_Test:
 ;*******************************************************************************
 
 RomEnd:
+	ORG ROM_ADDR_END
+	dc.b	%11111111
     end 0
