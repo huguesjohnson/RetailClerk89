@@ -51,9 +51,21 @@ Dialog & menu font is based off Deathwake font by Zee-3
 3rd party music
 ********************************************************************************
 bgm_title.esf is a conversion of chip_overture.xm by Drozerix
- Licensed under the Public Domain license
+ Released under the Public Domain license
  https://creativecommons.org/licenses/publicdomain/
+ "Feel free to use my music in whatever, pc game, video, program, keygen ext."
 
-bgm_store00.esf is roughly based on It Came Upon the Midnight Clear 
- Richard Storrs Willis / Edmund Sears (1849-1850)
+bgm_end.esf is a conversion of the_radix_point.xm by Drozerix
+ Released under the Public Domain license
+ https://creativecommons.org/licenses/publicdomain/
+ "Feel free to use my music in whatever, pc game, video, program, keygen ext."
+ Original song was modified so all percussion was on a single track so it 
+ could be mapped to the PCM channel - modifications are also Public Domain
+
+bgm_store00.esf is a conversion of october_chip.xm by Drozerix
+ Released under the Public Domain license
+ https://creativecommons.org/licenses/publicdomain/
+ "Feel free to use my music in whatever, pc game, video, program, keygen ext."
+ Original song was modified to remove percussion from track 6 and 
+ the intro was cut so it only plays the looping section
 

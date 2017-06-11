@@ -10,17 +10,17 @@
 # 7 = [PSG] Piano PSG instrument
 # 8 = [PSG] MIDI square lead
 # 9 = [FM] MIDI piano
-# 10 = [FM] MIDI square lead
-# 11 = [FM] MIDI sawtooth lead
-# 12 = [FM] MIDI flute
-# 13 = [PSG] Nepel Four PSG instr.
-# 14 = [FM] MIDI synth bass
-# 15 = [FM] MIDI square (filtered)
-# 16 = [FM] MIDI sawtooth (filtered)
-# 17 = [PSG] Seashore
-# 18 = [PSG] Hit-hat
-# 19 = [PSG] PSG string
-# 20 = [FM] Electric guitar
+# A = [FM] MIDI square lead
+# B = [FM] MIDI sawtooth lead
+# C = [FM] MIDI flute
+# D = [PSG] Nepel Four PSG instr.
+# E = [FM] MIDI synth bass
+# F = [FM] MIDI square (filtered)
+# 10 = [FM] MIDI sawtooth (filtered)
+# 11 = [PSG] Seashore
+# 12 = [PSG] Hit-hat
+# 13 = [PSG] PSG string
+# 14 = [FM] Electric guitar
 # ------------------------------------------------------
 FILE "chip_overture.xm"
 TYPE BGM NOLOOP
@@ -31,8 +31,8 @@ FM1 1
 FM2 2
 FM3 3
 FM4 4
-FM5 7
-FM6 9
+FM5 9
+FM6 7
 [Instruments]
 1 9
 2 5
@@ -42,10 +42,10 @@ FM6 9
 6 9
 7 0
 8 0
-9 15
+9 12
 10 0
-11 12
-12 16
+11 10
+12 9
 13 0
 14 0
 15 0

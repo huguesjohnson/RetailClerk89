@@ -22,25 +22,22 @@
 # 13 = [PSG] PSG string
 # 14 = [FM] Electric guitar
 # ------------------------------------------------------
-FILE "october_chip_mainloop.xm"
-TYPE BGM LOOP
+FILE "the_radix_point_mod.xm"
+TYPE BGM NOLOOP
 TEMPO 7
-PSG 0
 NOISE 0
-FM 5
+FM 3
 FM1 1
-FM2 5
-FM3 6
-FM4 2
-FM5 3
+FM2 2
+FM3 4
 PCM 1
-PCMC 4
+PCMC 3
 [Instruments]
-1 9
-2 0
-3 2
-4 3
-5 10
+1 A
+2 9
+3 3
+4 2
+5 0
 6 0
 7 0
 8 0
@@ -168,12 +165,8 @@ PCMC 4
 FM1 0
 FM2 0
 FM3 0
-FM4 0
-FM5 0
 [Volume]
 FM1 48
-FM2 32
-FM3 32
-FM4 48
-FM5 48
+FM2 48
+FM3 48
 [END]
