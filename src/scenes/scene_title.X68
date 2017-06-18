@@ -103,6 +103,23 @@ SceneTitle:
 	dc.l	VDP_VRAM_WRITE_A+$0C000000	; initial drawing location
 
 	;---------------------------------------------------------------------------
+	; text
+	;---------------------------------------------------------------------------
+	dc.w	$0001	; text count
+
+	; new game text
+	dc.l	TitleScreenTextNewGame	; location of string to display
+	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
+	; row 20  (128x20 = #A00), column 16 (16x4 = #3C) => A40
+	dc.l	VDP_VRAM_WRITE_A+$0A400000	; initial drawing location
+
+	; footer
+	dc.l	TitleScreenTextFooter	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	; this will need to be shifted around a little while the build name changes 
+	dc.l	VDP_VRAM_WRITE_A+$0C8E0000	; initial drawing location
+
+	;---------------------------------------------------------------------------
 	; objects
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count

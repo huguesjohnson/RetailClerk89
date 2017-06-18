@@ -140,6 +140,11 @@ LoadSceneLoadNPCSpritesLoop:
 ; load & start the background music
 ;-------------------------------------------------------------------------------
 	movea.l	(a6)+,a0	; address of the BGM
+	cmp.l	#$00000000,a0	; test if there is background music to play
+	bne.s	LoadScenePlayBGM	; there is music to play
+	bsr Echo_StopBGM	; otherwise stop the background music
+	bra.s	ExitLoadScene	; move on
+LoadScenePlayBGM:
 	bsr Echo_PlayBGM	; start the background music
 
 ExitLoadScene:

@@ -139,7 +139,7 @@ OBJ_LIST_LOOP_CTRL=OBJ_LIST_LENGTH+NPC_LIST_LENGTH-1
 OBJ_LIST_STRUCT_SIZE=$0006	; size of the data structure for object list entries
 ; dialog constants
 DIALOG_PATTERN_SIZE=$00C4	; size of the dialog pattern
-DIALOG_BASE_TILE=$8090	; base file for dialogs
+DIALOG_BASE_TILE=$8090	; base tile for dialogs
 DIALOG_ROWCOL=$09900000	; row 19 column 16=(128*19)+16=2448=990
 DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
 DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation

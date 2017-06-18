@@ -67,7 +67,9 @@ LoadFontTiles:
 ;-------------------------------------------------------------------------------
 ; draw the scenery
 ;-------------------------------------------------------------------------------
-	move.w	(a6)+,d7	; number of tilesets to load
+	move.w	(a6)+,d7	; number of scenery items to draw
+	cmpi.w	#$FFFF,d7	; is there any sceney to draw?
+	beq.s	LoadSceneDrawText	; if no scenery then move to next section
 LoadSceneDrawSceneryLoop:
 	movea.l	(a6)+,a0	; start address of pattern
 	move.w	(a6)+,d0	; base pattern
@@ -75,6 +77,35 @@ LoadSceneDrawSceneryLoop:
 	movea.l	(a6)+,a1	; initial drawing location
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	dbra d7,LoadSceneDrawSceneryLoop	; loop until all data is loaded
+
+;-------------------------------------------------------------------------------
+; draw the text
+;-------------------------------------------------------------------------------
+LoadSceneDrawText:	
+	move.w	(a6)+,d7	; number of scenery items to draw
+	cmpi.w	#$FFFF,d7	; are there any items to draw?
+	beq.s	ExitDrawScene	; if no items then move to next section
+LoadSceneDrawTextLoop:
+	movea.l	(a6)+,a0	; start address of text
+	move.w	(a6)+,d0	; base pattern
+	movea.l	(a6)+,a1	; initial drawing location
+	; read & draw the string character by character until ETX is reached
+LoadSceneDrawTextNextCharacter:
+	clr	d6	; clear out d6
+	move.b	(a0),d6	; copy current character to d6
+	cmpi.b	#ETX,d6	; is this the end of the text?
+	beq.s	LoadSceneDrawTextLoopEnd	; end of this string, move to next one
+	sub.w	#$20,d6	; subtract 32 to get the character index
+	; draw the character
+	add.w	d0,d6	; add the base tile
+	move.l	a1,(VDP_CONTROL)	; set VDP address
+	move.w  d6,(VDP_DATA)	; copy the character to VPD
+	; increment for next character
+	adda.l	#$00000001,a0	; move to next character in the string
+	add.l	#$00020000,a1	; move to the next column
+	bra.s	LoadSceneDrawTextNextCharacter	; repeat until ETX is reached
+LoadSceneDrawTextLoopEnd:
+	dbra d7,LoadSceneDrawTextLoop	; loop until all data is loaded
 
 ExitDrawScene:
 	move.w	#$2000,sr		; re-enable interrupts

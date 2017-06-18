@@ -24,5 +24,4 @@
 	include 'patterns/pattern_TitleMenu.X68'
 	include 'patterns/pattern_TitleBackground.X68'
 	include 'patterns/pattern_TitleFooter.X68'
-	include 'patterns/pattern_EndText.X68'
 

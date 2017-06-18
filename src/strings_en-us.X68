@@ -13,8 +13,36 @@
 ; Things that will make translations difficult:
 ;  1) In the overhead view, the dialog displays a fixed 22 chars per row
 ;  2) Game font only includes ASCII, unused chars could be re-purposed though
-;  3) The title screen text is not in this file
+;  3) The game logo text is not in this file
 ;*******************************************************************************
+
+;-------------------------------------------------------------------------------
+; title screen
+;-------------------------------------------------------------------------------
+TitleScreenTextNewGame:
+	dc.b	"New Game",ETX
+
+TitleScreenTextFooter:
+	dc.b	"One Room Demo (June 2017)",ETX
+
+;-------------------------------------------------------------------------------
+; end screen
+;-------------------------------------------------------------------------------
+EndScreenTextLine1:
+	dc.b	"Thank you for trying this little demo.",ETX
+
+EndScreenTextLine2:
+	dc.b	"Follow the progress of this project at:",ETX
+
+EndScreenTextLine3:
+	dc.b	"http://HuguesJohnson.com/",ETX
+
+EndScreenTextLine4:
+	dc.b	"Look for the final game in stores",ETX
+
+EndScreenTextLine5:
+	dc.b	"sometime around Xmas 2040.",ETX
+
 
 ;-------------------------------------------------------------------------------
 ; messages
