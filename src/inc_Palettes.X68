@@ -23,6 +23,15 @@ Store00PalettesPaused:
 	include 'palettes/pal_Paused_03.X68'
 
 ;-------------------------------------------------------------------------------
+; day intro screen palettes
+;-------------------------------------------------------------------------------
+DayIntroScreenPalettes:
+	include 'palettes/pal_DayIntroScreen_00.X68'
+	include 'palettes/pal_DayIntroScreen_01.X68'
+	include 'palettes/pal_DayIntroScreen_02.X68'
+	include 'palettes/pal_DayIntroScreen_03.X68'
+
+;-------------------------------------------------------------------------------
 ; title palettes
 ;-------------------------------------------------------------------------------
 PaletteTitleScreen00:

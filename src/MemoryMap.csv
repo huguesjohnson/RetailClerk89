@@ -28,6 +28,7 @@ MEM_ACTION_TABLE_OFFSET,2,relative address of action table entry
 MEM_ACTIVE_ITEM,2,item that is currently being used
 MEM_NPC_LOCATIONS,4,table to track where NPCs are located
 MEM_SPRITE_Y_ORDER_CHANGED,2,track if sprite order has changed
+MEM_INTRO_SCENE_COUNTER,2,counter for displaying the intro screen
 MEM_DAY,2,what day is it in the story
 MEM_DAY_EVENT_FLAGS,4,track events in the current day
 MEM_MISSION_EVENT_FLAGS,4,track events in the current mission

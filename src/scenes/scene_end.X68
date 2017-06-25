@@ -49,7 +49,7 @@ SceneEnd:
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
-	dc.w	$0004	; three palettes
+	dc.w	$0004	; four palettes
 	dc.l	PaletteEndScreen00	; start of first palette to load
 
 	;---------------------------------------------------------------------------
@@ -168,7 +168,6 @@ SceneEnd:
 	;---------------------------------------------------------------------------
 	dc.w	$0000	; one npc slot, which is just a placeholder
 
-	; npc2
 	dc.w	$0000	; starting x location of npc2
 	dc.w	$0000	; starting y location of npc2
 	dc.w	DIRECTION_LEFT	; starting direction of npc2

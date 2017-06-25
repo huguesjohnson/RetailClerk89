@@ -120,6 +120,7 @@ STATE_FLAG_SCRIPTED_EVENT=$04	; a scripted event is running
 STATE_FLAG_TITLE_SCREEN=$05	; title screen is displaying
 STATE_FLAG_EXITS_BLOCKED=$06	; blocks sprite from leaving scene
 STATE_FLAG_END_SCREEN=$07	; end screen is displaying
+STATE_FLAG_INTRO_SCREEN=$08	; day intro screen is displaying
 ; high word of MEM_DIALOG_FLAGS is used to track the state
 DIALOG_FLAG_STYLE_ITEM_MENU=$15	; item menu dialog
 DIALOG_FLAG_STYLE_MENU=$16	; overworld menu style dialog
@@ -175,6 +176,7 @@ CHARACTER_DEFINITION_SIZE=CharacterDefinitionPlayerEnd-CharacterDefinitionPlayer
 SCRIPTED_EVENT_END=$FFFF
 SCRIPTED_EVENT_DIALOG=$EEEE
 SCRIPTED_EVENT_CHANGE_SPRITE=$DDDD
+INTRO_SCREEN_COUNTER_START=$0168
 
 ;*******************************************************************************
 ; vectors
@@ -223,8 +225,47 @@ TestTitleScreenTestStartPressed:
 	; future versions will need to determine which action was selected
 	; --------------------------------------------------------------------------
 	bclr.l	#STATE_FLAG_TITLE_SCREEN,d7 ; clear game state flag
+	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear game state flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-	lea	SceneVB,a6	; address of the scene for the title screen
+	; set the intro screen counter
+	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
+	lea	SceneIntroDay00,a6	; address of the scene for the title screen
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bra.w	MainGameLoop	;	return to start of game loop
+;-------------------------------------------------------------------------------
+; end screen
+;-------------------------------------------------------------------------------
+TestEndScreen:
+	btst.l	#STATE_FLAG_END_SCREEN,d7 ; test game state
+	beq.w	TestIntroScreen	; not on the end screen, move to next test
+TestEndScreenTestStartPressed:
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
+	beq.w	MainGameLoop	; start button not pressed, loop
+	; --------------------------------------------------------------------------
+	; start button was pressed on the end screen - loop back to the beginning
+	; --------------------------------------------------------------------------
+	; clear MEM_CONTROL_PRESSED to prevent entering pause state immediately
+	move.w	#$0000,(MEM_CONTROL_PRESSED)
+EndScreenRestart:
+	bra.w	NewGame	; restart
+;-------------------------------------------------------------------------------
+; day intro screen
+;-------------------------------------------------------------------------------
+TestIntroScreen:
+	btst.l	#STATE_FLAG_INTRO_SCREEN,d7 ; test game state
+	beq.w	TestPauseToggle	; not on the intro screen, move to next test
+	subq	#$1,(MEM_INTRO_SCENE_COUNTER)	; decrement counter
+	bne.w	MainGameLoop	; loop until the counter is zero
+	; counter is zero, load the next scene
+	bclr.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear game state flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	; determine which scene to load
+	move.w	(MEM_ACTIVE_SCENE_EXIT_N),d6	; copy any exit to d6
+	mulu.w	#LWORD_SIZE,d6	; SceneDefinitionTable entries are long values
+	lea	SceneDefinitionTable,a5	; point to action table
+	adda.w	d6,a5	; move to offset location
+	move.l	(a5),a6	; a5 has the address of the subroutine to jump to
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	; load the player sprite
 LoadSprites:
@@ -239,23 +280,7 @@ LoadSpriteLoop:
 	; hide the menu selector sprite
 	bsr.w	HideSelectorSprite
 	bra.w	MainGameLoop	;	return to start of game loop
-;-------------------------------------------------------------------------------
-; end screen
-;-------------------------------------------------------------------------------
-TestEndScreen:
-	btst.l	#STATE_FLAG_END_SCREEN,d7 ; test game state
-	beq.w	TestPauseToggle	; not on the end screen, move to next test
-TestEndScreenTestStartPressed:
-	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
-	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
-	beq.w	MainGameLoop	; start button not pressed, loop
-	; --------------------------------------------------------------------------
-	; start button was pressed on the end screen - loop back to the beginning
-	; --------------------------------------------------------------------------
-	; clear MEM_CONTROL_PRESSED to prevent entering pause state immediately
-	move.w	#$0000,(MEM_CONTROL_PRESSED)
-EndScreenRestart:
-	bra.w	NewGame	; restart
+
 ;-------------------------------------------------------------------------------
 ; pause/unpause
 ;-------------------------------------------------------------------------------
@@ -477,7 +502,6 @@ MainGameLoopUpdateNPCSpritesLoopEnd:
 	; apparently dbra doesn't work against a memory address
 	subq	#$1,(MEM_NPC_LOOP_COUNTER)	; decrement loop counter
 	bgt.w	MainGameLoopUpdateNPCSpritesLoop	; branch
-
 MainGameLoopEnd:
 	; test if sprites need to be reordered
 	tst.w	(MEM_SPRITE_Y_ORDER_CHANGED)	; has the sprite Y order changed?
@@ -493,9 +517,14 @@ MainGameLoopEnd:
 ; WaitVBlank
 ;-------------------------------------------------------------------------------
 WaitVBlank:
+WaitVBlankStart:
 	move.w	VDP_CONTROL,d0	; copy VDP status to d0
    	andi.w	#VDP_STATUS_VBLANK,d0	; check if the vblank status flag is set
-	bne.s	WaitVBlank				; wait for vblank to complete
+	beq.s	WaitVBlankStart				; wait for vblank to complete
+WaitVBlankEnd:
+	move.w	VDP_CONTROL,d0	; copy VDP status to d0
+   	andi.w	#VDP_STATUS_VBLANK,d0	; check if the vblank status flag is set
+	bne.s	WaitVBlankEnd				; wait for vblank to complete
 	rts
 
 ;*******************************************************************************

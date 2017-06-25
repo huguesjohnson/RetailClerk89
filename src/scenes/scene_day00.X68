@@ -26,12 +26,12 @@
 ;	-BGM
 ;		-reference to location of background music
 ;-------------------------------------------------------------------------------
-SceneTitle:
+SceneIntroDay00:
 
 	;---------------------------------------------------------------------------
 	; scene ID
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_TITLE
+	dc.w	SCENE_ID_INTRO_DAY00
 
 	;---------------------------------------------------------------------------
 	; tiles
@@ -49,13 +49,13 @@ SceneTitle:
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
-	dc.w	$0004	; three palettes
-	dc.l	PaletteTitleScreen00	; start of first palette to load
+	dc.w	$0004	; four palettes
+	dc.l	DayIntroScreenPalettes	; start of first palette to load
 
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0004	; scenery count
+	dc.w	$0003	; scenery count
 
 	; title
 	dc.l	PatternTitleLogo	; location of pattern to load
@@ -64,7 +64,7 @@ SceneTitle:
 	dc.w	$2000	; base pattern
 	dc.w	$0000	; repeat 1 time
 	; row 10 (128x10 = #500), column 4 (4x4 = #10) => #510
-	dc.l	VDP_VRAM_WRITE_A+$05100000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$01980000	; initial drawing location
 
 	; title - 89
 	dc.l	PatternTitleLogo89	; location of pattern to load
@@ -72,8 +72,7 @@ SceneTitle:
 	; 0110000000000000	
 	dc.w	$6000	; base pattern
 	dc.w	$0000	; repeat 1 time
-	; row 10 (128x10 = #500), column 4 (4x4 = #10) => #510
-	dc.l	VDP_VRAM_WRITE_A+$05360000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$01BE0000	; initial drawing location
 
 	; graphics behind title
 	dc.l	PatternTitleBackground	; location of pattern to load
@@ -81,43 +80,51 @@ SceneTitle:
 	; 0100000000000000	
 	dc.w	$4000	; base pattern
 	dc.w	$0000	; repeat 1 time
-	; row 7 (128x7 = #380), column 12 (12x4 = #30) => #3B0
-	dc.l	VDP_VRAM_WRITE_B+$03B00000	; initial drawing location
+	; row 0 (128x0 = #000), column 14 (14x4 = #38) => #030
+	dc.l	VDP_VRAM_WRITE_B+$00380000	; initial drawing location
 
-	; menu
-	dc.l	PatternTitleMenu	; location of pattern to load
+	; graphics behind hint text
+	dc.l	PatternIntroHint	; location of pattern to load
 	; pccvhnnnnnnnnnnn
-	; 0110000000000000	
-	dc.w	$6000	; base pattern
-	dc.w	$0000	; repeat 1 time
-	; row 20  (128x20 = #A00), column 15 (15x4 = #3C) => A3C
-	dc.l	VDP_VRAM_WRITE_A+$0A3C0000	; initial drawing location
-
-	; footer
-	dc.l	PatternTitleFooter	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0000000000000000	
+	; 0100000000000000	
 	dc.w	DIALOG_BASE_TILE	; base pattern
-	dc.w	$0000	; repeat 1 time
-	; row 24  (128x24 = #C00), column 0 (0x4 = #0) => 0
-	dc.l	VDP_VRAM_WRITE_A+$0C000000	; initial drawing location
+	dc.w	$000C	; repeat 11 times
+	dc.l	VDP_VRAM_WRITE_B+$08000000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
-	dc.w	$0001	; text count
+	dc.w	$0006	; text count
 
-	; new game text
-	dc.l	TitleScreenTextNewGame	; location of string to display
+	dc.l	Day00IntroText	; location of string to display
 	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
-	; row 20  (128x20 = #A00), column 16 (16x4 = #3C) => A40
-	dc.l	VDP_VRAM_WRITE_A+$0A400000	; initial drawing location
+	; row 13  (128x13 = #680), column 0 (0x4 = #0) => 0
+	dc.l	VDP_VRAM_WRITE_A+$06800000	; initial drawing location
 
-	; footer
-	dc.l	TitleScreenTextFooter	; location of string to display
+	dc.l	Day00IntroTip0	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
-	; this will need to be shifted around a little while the build name changes 
-	dc.l	VDP_VRAM_WRITE_A+$0C8E0000	; initial drawing location
+	; row 15  (128x15 = #700), column 0 (0x4 = #0) => 0
+	dc.l	VDP_VRAM_WRITE_A+$08000000	; initial drawing location
+
+	dc.l	Day00IntroTip1	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$09000000	; initial drawing location
+
+	dc.l	Day00IntroTip2	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$0A000000	; initial drawing location
+
+	dc.l	Day00IntroTip3	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$0B000000	; initial drawing location
+
+	dc.l	Day00IntroTip4	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$0C000000	; initial drawing location
+
+	dc.l	Day00IntroTip5	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$0D000000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; objects
@@ -183,5 +190,5 @@ SceneTitle:
 	;---------------------------------------------------------------------------
 	; bgm
 	;---------------------------------------------------------------------------
-	dc.l	BGM_Title	; location of background music
+	dc.l	$00000000	; location of background music
 
