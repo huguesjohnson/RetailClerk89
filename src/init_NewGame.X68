@@ -8,8 +8,6 @@ InitCounters:
 
 InitGameState:
 	move.l	#$00000000,d0
-	bset.l	#STATE_FLAG_EXPLORING,d0	; initial mode is exploring
-	bset.l	#STATE_FLAG_EXITS_BLOCKED,d0	; set flag blocking the exits
 	bset.l	#STATE_FLAG_TITLE_SCREEN,d0	; set title screen flag
 	move.l	d0,(MEM_GAME_STATE)
 	move.l	#$00000000,(MEM_DAY_EVENT_FLAGS)

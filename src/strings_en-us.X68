@@ -23,7 +23,7 @@ TitleScreenTextNewGame:
 	dc.b	"New Game",ETX
 
 TitleScreenTextFooter:
-	dc.b	"One Room Demo (June 2017)",ETX
+	dc.b	"One Room Demo (July 2017)",ETX
 
 ;-------------------------------------------------------------------------------
 ; end screen

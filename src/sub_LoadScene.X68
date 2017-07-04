@@ -132,9 +132,8 @@ LoadSceneLoadNPCSpritesLoop:
 ;-------------------------------------------------------------------------------
 ; setup to rebuild sprite order after loading new NPCs
 ;-------------------------------------------------------------------------------
-	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; set to redraw sprite order
-	move.w	#$FFFF,(MEM_PLAYER_SPRITE_LINK_TO)	; player is linking to nothing
-	move.w	#$FFFF,(MEM_PLAYER_SPRITE_LINK_FROM)	; nothing links to player
+	bsr.w	SetDefaultSpriteOrder	; set the initial sprite order
+	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; flag to sort sprite order
 
 ;-------------------------------------------------------------------------------
 ; load & start the background music

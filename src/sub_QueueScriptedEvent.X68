@@ -14,7 +14,7 @@ QueueScriptedEvent:
 	; determine which sprite this applies to
 	;---------------------------------------------------------------------------
 	move.w	(a6)+,d7	; copy to d7 for next operations
-	cmpi.w	#$0000,d7	; this the player sprite?
+	cmpi.w	#$0000,d7	; is this the player sprite?
 	bne.s	.1	; branch if not player
 	lea	MEM_PLAYER_SPRITE_ID,a5	; point a5 to player 
 	bra.s	.2	; branch

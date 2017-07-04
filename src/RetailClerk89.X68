@@ -55,7 +55,6 @@ SPRITE_TILESET_LWORDS=SPRITE_TILESET_SIZE*LWORDS_PER_TILE	; lwords in tileset
 DEFAULT_SPRITE_HEIGHT=$0020	; how many pixels tall a sprite is by default
 DEFAULT_SPRITE_WIDTH=$0010	; how many pixels wide a sprite is by default
 SPRITE_FRAME_COUNT=$0003	; how many animation frames there are for sprites
-SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
 SPRITE_ANIMATION_STEPS=$000A	; how many steps between animation frame changes
 SPRITE_STEP_PIXELS=$0001	; how many pixels to move on each sprite step
 SPRITE_PLAYER_PATTERN=SPRITE_BASE_PATTERN+$1	; base pattern for player sprite
@@ -143,7 +142,6 @@ DIALOG_PATTERN_SIZE=$00C4	; size of the dialog pattern
 DIALOG_BASE_TILE=$8090	; base tile for dialogs
 DIALOG_ROWCOL=$09900000	; row 19 column 16=(128*19)+16=2448=990
 DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
-DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
 DIALOG_MENU_INIT_SELECTION_X=$C8	; x coordinate of initial menu selection
 DIALOG_MENU_INIT_SELECTION_Y=$120	; y coordinate of initial menu selection
 DIALOG_NO_RESPONSE=$FFFF	; no response or dialog cancelled 
@@ -160,13 +158,6 @@ SCENE_COUNT=$01	; total number of scenes
 ACTION_COUNT=$04	; total number of actions
 ACTION_COUNT_X4=(ACTION_COUNT*4)
 SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
-; sprite link values
-LINK_SPRITE0=$0000
-LINK_PLAYER=$0001
-LINK_NPC0=$0002
-LINK_NPC1=$0003
-LINK_NPC2=$0004
-LINK_NPC3=$0005
 ; other constants
 CHAR_DQUOTE=$22	; ACSII code for double quote character
 MAX_ITEMS=$04	; maximum number of items the player can carry
@@ -176,7 +167,12 @@ CHARACTER_DEFINITION_SIZE=CharacterDefinitionPlayerEnd-CharacterDefinitionPlayer
 SCRIPTED_EVENT_END=$FFFF
 SCRIPTED_EVENT_DIALOG=$EEEE
 SCRIPTED_EVENT_CHANGE_SPRITE=$DDDD
-INTRO_SCREEN_COUNTER_START=$0168
+;-------------------------------------------------------------------------------
+; variables that effect the game speed that are changed often for debugging
+;-------------------------------------------------------------------------------
+DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
+SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
+INTRO_SCREEN_COUNTER_START=$0168	; how long to display intro screens
 
 ;*******************************************************************************
 ; vectors
@@ -206,81 +202,9 @@ Main:
 MainGameLoop:
 	bsr.w	WaitVBlank							; wait for vblank to complete
 	addq	#$1,(MEM_MAINLOOP_COUNTER)			; increment counter
-;-------------------------------------------------------------------------------
-; title screen
-;-------------------------------------------------------------------------------
-TestTitleScreen:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
-	btst.l	#STATE_FLAG_TITLE_SCREEN,d7 ; test game state
-	beq.w	TestEndScreen	; not on the title screen, move to next test
-TestTitleScreenTestStartPressed:
-	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
-	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
-	beq.s	MainGameLoop	; start button not pressed, loop
-	; clear MEM_CONTROL_PRESSED to prevent entering pause state immediately
-	move.w	#$0000,(MEM_CONTROL_PRESSED)
-	; --------------------------------------------------------------------------
-	; start button was pressed on the title screen
-	; in this iteration there is only one menu option
-	; future versions will need to determine which action was selected
-	; --------------------------------------------------------------------------
-	bclr.l	#STATE_FLAG_TITLE_SCREEN,d7 ; clear game state flag
-	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear game state flag
-	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-	; set the intro screen counter
-	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
-	lea	SceneIntroDay00,a6	; address of the scene for the title screen
-	bsr.w	LoadScene	; branch to LoadScene subroutine
-	bra.w	MainGameLoop	;	return to start of game loop
-;-------------------------------------------------------------------------------
-; end screen
-;-------------------------------------------------------------------------------
-TestEndScreen:
-	btst.l	#STATE_FLAG_END_SCREEN,d7 ; test game state
-	beq.w	TestIntroScreen	; not on the end screen, move to next test
-TestEndScreenTestStartPressed:
-	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
-	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
-	beq.w	MainGameLoop	; start button not pressed, loop
-	; --------------------------------------------------------------------------
-	; start button was pressed on the end screen - loop back to the beginning
-	; --------------------------------------------------------------------------
-	; clear MEM_CONTROL_PRESSED to prevent entering pause state immediately
-	move.w	#$0000,(MEM_CONTROL_PRESSED)
-EndScreenRestart:
-	bra.w	NewGame	; restart
-;-------------------------------------------------------------------------------
-; day intro screen
-;-------------------------------------------------------------------------------
-TestIntroScreen:
-	btst.l	#STATE_FLAG_INTRO_SCREEN,d7 ; test game state
-	beq.w	TestPauseToggle	; not on the intro screen, move to next test
-	subq	#$1,(MEM_INTRO_SCENE_COUNTER)	; decrement counter
-	bne.w	MainGameLoop	; loop until the counter is zero
-	; counter is zero, load the next scene
-	bclr.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear game state flag
-	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-	; determine which scene to load
-	move.w	(MEM_ACTIVE_SCENE_EXIT_N),d6	; copy any exit to d6
-	mulu.w	#LWORD_SIZE,d6	; SceneDefinitionTable entries are long values
-	lea	SceneDefinitionTable,a5	; point to action table
-	adda.w	d6,a5	; move to offset location
-	move.l	(a5),a6	; a5 has the address of the subroutine to jump to
-	bsr.w	LoadScene	; branch to LoadScene subroutine
-	; load the player sprite
-LoadSprites:
-	lea     SpriteZeroDefinition,a0	; store address of sprite definition
-	move.w  #$03,d0	; 1 sprite = 2 longs
-	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
-LoadSpriteLoop:
-	move.l  (a0)+,(VDP_DATA)
-	dbra    d0,LoadSpriteLoop
-	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
-	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
-	; hide the menu selector sprite
-	bsr.w	HideSelectorSprite
-	bra.w	MainGameLoop	;	return to start of game loop
-
+	btst.l	#STATE_FLAG_EXPLORING,d7	; test game state
+	beq.w	TestTitleScreen	; not exploring, branch
 ;-------------------------------------------------------------------------------
 ; pause/unpause
 ;-------------------------------------------------------------------------------
@@ -428,7 +352,7 @@ TestDialogOpen:
 TestExploring:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_EXPLORING,d7	; test game state
-	beq.w	MainGameLoopEnd	; not exploring, branch to next test
+	beq.w	TestTitleScreen	; not exploring, branch to next test
 TestAButtonPressed: ; test if the player pressed the A button
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.w	#BUTTON_A_PRESSED,d6	; test if the A button was pressed
@@ -502,6 +426,82 @@ MainGameLoopUpdateNPCSpritesLoopEnd:
 	; apparently dbra doesn't work against a memory address
 	subq	#$1,(MEM_NPC_LOOP_COUNTER)	; decrement loop counter
 	bgt.w	MainGameLoopUpdateNPCSpritesLoop	; branch
+;-------------------------------------------------------------------------------
+; title screen
+;-------------------------------------------------------------------------------
+TestTitleScreen:
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	btst.l	#STATE_FLAG_TITLE_SCREEN,d7 ; test game state
+	beq.w	TestEndScreen	; not on the title screen, move to next test
+TestTitleScreenTestStartPressed:
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
+	beq.w	MainGameLoop	; start button not pressed, loop
+	; clear MEM_CONTROL_PRESSED to prevent entering pause state immediately
+	move.w	#$0000,(MEM_CONTROL_PRESSED)
+	; --------------------------------------------------------------------------
+	; start button was pressed on the title screen
+	; in this iteration there is only one menu option
+	; future versions will need to determine which action was selected
+	; --------------------------------------------------------------------------
+	bclr.l	#STATE_FLAG_TITLE_SCREEN,d7 ; clear game state flag
+	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
+	bset.l	#STATE_FLAG_EXITS_BLOCKED,d7	; set flag blocking the exits
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	; set the intro screen counter
+	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
+	lea	SceneIntroDay00,a6	; address of the scene for the title screen
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bra.w	MainGameLoop	;	return to start of game loop
+;-------------------------------------------------------------------------------
+; end screen
+;-------------------------------------------------------------------------------
+TestEndScreen:
+	btst.l	#STATE_FLAG_END_SCREEN,d7 ; test game state
+	beq.w	TestIntroScreen	; not on the end screen, move to next test
+TestEndScreenTestStartPressed:
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
+	beq.w	MainGameLoop	; start button not pressed, loop
+	; --------------------------------------------------------------------------
+	; start button was pressed on the end screen - loop back to the beginning
+	; --------------------------------------------------------------------------
+	; clear MEM_CONTROL_PRESSED to prevent entering pause state immediately
+	move.w	#$0000,(MEM_CONTROL_PRESSED)
+EndScreenRestart:
+	bra.w	NewGame	; restart
+;-------------------------------------------------------------------------------
+; day intro screen
+;-------------------------------------------------------------------------------
+TestIntroScreen:
+	btst.l	#STATE_FLAG_INTRO_SCREEN,d7 ; test game state
+	beq.w	MainGameLoopEnd	; not on the intro screen, move to next test
+	subq	#$1,(MEM_INTRO_SCENE_COUNTER)	; decrement counter
+	bne.w	MainGameLoop	; loop until the counter is zero
+	; counter is zero, load the next scene
+	bclr.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear game state flag
+	bset.l	#STATE_FLAG_EXPLORING,d7	; initial mode is exploring
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	; determine which scene to load
+	move.w	(MEM_ACTIVE_SCENE_EXIT_N),d6	; copy any exit to d6
+	mulu.w	#LWORD_SIZE,d6	; SceneDefinitionTable entries are long values
+	lea	SceneDefinitionTable,a5	; point to action table
+	adda.w	d6,a5	; move to offset location
+	move.l	(a5),a6	; a5 has the address of the subroutine to jump to
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	; load the player sprite
+LoadSprites:
+	lea     SpriteZeroDefinition,a0	; store address of sprite definition
+	move.w  #$03,d0	; 1 sprite = 2 longs
+	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
+LoadSpriteLoop:
+	move.l  (a0)+,(VDP_DATA)
+	dbra    d0,LoadSpriteLoop
+	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
+	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
+	; hide the menu selector sprite
+	bsr.w	HideSelectorSprite
+	bra.w	MainGameLoop	;	return to start of game loop
 MainGameLoopEnd:
 	; test if sprites need to be reordered
 	tst.w	(MEM_SPRITE_Y_ORDER_CHANGED)	; has the sprite Y order changed?

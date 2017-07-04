@@ -26,6 +26,10 @@ TestUp:
 	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; flag that Y order changed
 	; update the sprite's Y position
 	subq	#SPRITE_STEP_PIXELS,(STRUCT_SPRITE_Y,a6)	; decrement SPRITE_Y
+	; update the sprite sort table
+	move.w	(STRUCT_SPRITE_ID,a6),d2	; copy ID to d2
+	move.w	(STRUCT_SPRITE_Y,a6),d3	; copy new Y value to d3
+	bsr.w	UpdateSpriteSortTable	; update the sprite table
 	; update the sprite in the sprite table
 	move.w	(a6),d7						; copy sprite ID to d7
    	mulu.w	#$08,d7						; mult by 8 to get sprite array offset
@@ -40,6 +44,10 @@ TestDown:
 	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; flag that Y order changed
 	; update the sprite's Y position
 	addq	#SPRITE_STEP_PIXELS,(STRUCT_SPRITE_Y,a6)	; increment SPRITE_Y
+	; update the sprite sort table
+	move.w	(STRUCT_SPRITE_ID,a6),d2	; copy ID to d2
+	move.w	(STRUCT_SPRITE_Y,a6),d3	; copy new Y value to d3
+	bsr.w	UpdateSpriteSortTable	; update the sprite table
 	move.w	(a6),d7						; copy sprite ID to d7
    	mulu.w	#$08,d7						; mult by 8 to get sprite array offset
 	swap	d7                          ; move to upper word

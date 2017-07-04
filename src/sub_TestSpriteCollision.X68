@@ -188,7 +188,7 @@ TestRightCollisionBottomEdge:
 	bra.w	ExitTestSpriteCollision			; exit
 TestLeftCollision:
 	cmpi.w	#DIRECTION_LEFT,d7	; test if sprite is moving Left
-	bne.w	TestLeftCollision ; branch if not
+	bne.w	ExitTestSpriteCollision ; branch if not
 TestLeftCollisionSetup:
 	; d5 will have top edge, d3 will have bottom edge
 	move.w	d5,d3	; copy y position to d3 to store bottom edge

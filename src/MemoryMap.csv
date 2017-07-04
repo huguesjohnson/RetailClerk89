@@ -4,6 +4,18 @@
 MEM_DEBUG_1,2,general debug register
 MEM_DEBUG_2,2,general debug register
 ;-------------------------------------------------------------------------------
+; table to sort the draw order of sprites
+;-------------------------------------------------------------------------------
+MEM_SPRITE_SORT_TABLE_SORTED,2,0000=sorted
+MEM_SPRITE_SORT_TABLE_ID0,2,sort table ID 0
+MEM_SPRITE_SORT_TABLE_VALUE0,2,sort table value 0
+MEM_SPRITE_SORT_TABLE_ID1,2,sort table ID 1
+MEM_SPRITE_SORT_TABLE_VALUE1,2,sort table value 1
+MEM_SPRITE_SORT_TABLE_ID2,2,sort table ID 2
+MEM_SPRITE_SORT_TABLE_VALUE2,2,sort table value 2
+MEM_SPRITE_SORT_TABLE_ID3,2,sort table ID 3
+MEM_SPRITE_SORT_TABLE_VALUE3,2,sort table value 3
+;-------------------------------------------------------------------------------
 ; counters
 ;-------------------------------------------------------------------------------
 MEM_VBLANK_COUNTER,2,incremented at vblank - used for debug & RNG
@@ -27,7 +39,6 @@ MEM_ACTION_TARGET_OBJID,2,action target object id
 MEM_ACTION_TABLE_OFFSET,2,relative address of action table entry
 MEM_ACTIVE_ITEM,2,item that is currently being used
 MEM_NPC_LOCATIONS,4,table to track where NPCs are located
-MEM_SPRITE_Y_ORDER_CHANGED,2,track if sprite order has changed
 MEM_INTRO_SCENE_COUNTER,2,counter for displaying the intro screen
 MEM_DAY,2,what day is it in the story
 MEM_DAY_EVENT_FLAGS,4,track events in the current day
@@ -57,6 +68,7 @@ MEM_DIALOG_ITEM_INDEX,2,track which item in the list is being drawn
 ;-------------------------------------------------------------------------------
 ; sprite management
 ;-------------------------------------------------------------------------------
+MEM_SPRITE_Y_ORDER_CHANGED,2,track if sprite order has changed
 MEM_PLAYER_SPRITE_ID,2,sprite table id of player sprite
 MEM_PLAYER_SPRITE_X,2,virtual x position of the player
 MEM_PLAYER_SPRITE_Y,2,virtual y position of the player
@@ -69,8 +81,6 @@ MEM_PLAYER_MOVE_FREQUENCY,2,how often to move
 MEM_PLAYER_MOVE_PATTERN,4,movement pattern
 MEM_PLAYER_MOVE_PATTERN_LENGTH,2,length of movement pattern
 MEM_PLAYER_MOVE_INDEX,2,where the sprite is the movement pattern
-MEM_PLAYER_SPRITE_LINK_TO,2,sprite ID the player sprite links to
-MEM_PLAYER_SPRITE_LINK_FROM,2,sprite ID linked to the player sprite
 MEM_NPC0_SPRITE_ID,2,sprite table id of NPC0 sprite
 MEM_NPC0_SPRITE_X,2,virtual x position of NPC0 sprite
 MEM_NPC0_SPRITE_Y,2,virtual y position of NPC0 sprite
@@ -119,6 +129,8 @@ MEM_NPC3_MOVE_FREQUENCY,2,how often to move
 MEM_NPC3_MOVE_PATTERN,4,movement pattern
 MEM_NPC3_MOVE_PATTERN_LENGTH,2,length of movement pattern
 MEM_NPC3_MOVE_INDEX,2,where the sprite is the movement pattern
+;MEM_NPC3_SPRITE_LINK_TO,2,sprite ID the NPC3 sprite links to
+;MEM_NPC3_SPRITE_LINK_FROM,2,sprite ID linked to the NPC3 sprite
 ;-------------------------------------------------------------------------------
 ; collision detection
 ;-------------------------------------------------------------------------------

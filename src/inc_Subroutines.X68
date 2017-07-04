@@ -38,6 +38,10 @@
 
 	include	'sub_OrderSprites.X68'
 
+	include	'sub_UpdateSpriteSortTable.X68'
+
+	include	'sub_SetDefaultSpriteOrder.X68'
+
 	include	'sub_BuildActionTableOffset.X68'
 
 	include	'sub_ShowDefaultText.X68'

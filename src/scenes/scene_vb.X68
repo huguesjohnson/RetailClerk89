@@ -282,7 +282,7 @@ SceneVB:
 	dc.w	$0150	; starting x location of npc0
 	dc.w	$00F0	; starting y location of npc0
 	dc.w	DIRECTION_DOWN	; starting direction of npc0
-	dc.w	$02F0	; movement frequency of npc0
+	dc.w	$00F0	; movement frequency of npc0
 	dc.l	RandomNPCMovement0Start	; location of movement pattern for npc0
 	dc.w	(RandomNPCMovement0End-RandomNPCMovement0Start-1)	; pattern length
 
@@ -290,8 +290,8 @@ SceneVB:
 	dc.w	$00B0	; starting x location of npc1
 	dc.w	$0104	; starting y location of npc1
 	dc.w	DIRECTION_DOWN	; starting direction of npc1
-	dc.w	$00F0	; movement frequency of npc1
-	dc.l	RandomNPCMovement1Start	; location of movement pattern for npc2
+	dc.w	$00D1	; movement frequency of npc1
+	dc.l	RandomNPCMovement1Start	; location of movement pattern for npc1
 	dc.w	(RandomNPCMovement1End-RandomNPCMovement1Start-1)	; pattern length
 
 	; npc2
