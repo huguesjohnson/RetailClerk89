@@ -38,16 +38,13 @@
 ;-------------------------------------------------------------------------------
 ; program-specific constants
 ;-------------------------------------------------------------------------------
-	include 'const_ObjectIDs.X68'
-	include 'const_SceneIDs.X68'
 	include 'const_ActionIDs.X68'
+	include 'const_Flags.X68'
+	include 'const_ObjectIDs.X68'
+	include	'const_RomMap.X68'
+	include 'const_SceneIDs.X68'
 	include	'const_StructFields.X68'
 
-; data addresses
-ROM_ADDR_INSTRUMENTS=$080000
-ROM_ADDR_TEXT_TABLE=$0AF000
-ROM_ADDR_ACTION_TABLE=$0B0000
-ROM_ADDR_END=$3FFFFF
 ; sprite settings
 SPRITE_BASE_PATTERN=$6110	; base pattern of sprites
 SPRITE_TILESET_SIZE=$60	; the size of the tileset used for sprites
@@ -55,7 +52,7 @@ SPRITE_TILESET_LWORDS=SPRITE_TILESET_SIZE*LWORDS_PER_TILE	; lwords in tileset
 DEFAULT_SPRITE_HEIGHT=$0020	; how many pixels tall a sprite is by default
 DEFAULT_SPRITE_WIDTH=$0010	; how many pixels wide a sprite is by default
 SPRITE_FRAME_COUNT=$0003	; how many animation frames there are for sprites
-SPRITE_ANIMATION_STEPS=$000A	; how many steps between animation frame changes
+SPRITE_ANIMATION_STEPS=$0008	; how many steps between animation frame changes
 SPRITE_STEP_PIXELS=$0001	; how many pixels to move on each sprite step
 SPRITE_PLAYER_PATTERN=SPRITE_BASE_PATTERN+$1	; base pattern for player sprite
 SPRITE_PLAYER_HEIGHT=DEFAULT_SPRITE_HEIGHT	; player sprite height
@@ -110,28 +107,6 @@ VDP_PLANE_PIXELS_Y=$0100			; height of VDP plane
 INIT_MAP_POSITION_X=$0000	; initial x-position
 INIT_MAP_POSITION_Y=$0000	; initial y-position
 DEFAULT_COLLISION_DATA_SIZE=$7F	; 128 longs of collision data by default 
-; game states
-STATE_FLAG_PAUSED=$00	; game is paused
-STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
-STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
-STATE_FLAG_ACTION=$03	; there is an action queued
-STATE_FLAG_SCRIPTED_EVENT=$04	; a scripted event is running
-STATE_FLAG_TITLE_SCREEN=$05	; title screen is displaying
-STATE_FLAG_EXITS_BLOCKED=$06	; blocks sprite from leaving scene
-STATE_FLAG_END_SCREEN=$07	; end screen is displaying
-STATE_FLAG_INTRO_SCREEN=$08	; day intro screen is displaying
-; high word of MEM_DIALOG_FLAGS is used to track the state
-DIALOG_FLAG_STYLE_ITEM_MENU=$15	; item menu dialog
-DIALOG_FLAG_STYLE_MENU=$16	; overworld menu style dialog
-DIALOG_FLAG_STYLE_TEXT_4CHOICE=$17	; dialog has text with selection at the end
-DIALOG_FLAG_STYLE_TEXT_2CHOICE=$18	; dialog has text with selection at the end
-DIALOG_FLAG_STYLE_SIMPLE_TEXT=$19	; dialog is a simple text dialog
-DIALOG_FLAG_SELECTION_WAIT=$1A	; waiting for the player to make a selection 
-DIALOG_FLAG_TEXT_OPENING=$1B	; dialog is opening
-DIALOG_FLAG_TEXT_DRAWING=$1C	; dialog text is drawing
-DIALOG_FLAG_TEXT_OPEN=$1D	; dialog is open
-DIALOG_FLAG_TEXT_NEW_PAGE=$1E	; dialog text has another page
-DIALOG_FLAG_TEXT_CLOSING=$1F	; dialog is closing
 ; object list constants
 OBJ_LIST_LENGTH=$000A	; max items in the object list
 NPC_LIST_LENGTH=$0004	; max items in the NPC list
@@ -198,7 +173,6 @@ Main:
 	include	'init_NewGame.X68'
 
 	include	'init_Debug.X68'
-
 MainGameLoop:
 	bsr.w	WaitVBlank							; wait for vblank to complete
 	addq	#$1,(MEM_MAINLOOP_COUNTER)			; increment counter
@@ -553,7 +527,6 @@ TrapException:
 ; work in-progress subroutines
 ;*******************************************************************************
 
-
 ;*******************************************************************************
 ; mostly stable subroutines
 ;*******************************************************************************
@@ -565,9 +538,18 @@ TrapException:
 	include	'ActionScript.X68'
 
 ;*******************************************************************************
-; scenes
+; echo sound driver (https://github.com/sikthehedgehog/Echo)
 ;*******************************************************************************
-	include 'inc_Scenes.X68'
+	include 'echo/echo_main.X68'
+
+	include	'echo/echo_list.X68'
+
+;*******************************************************************************
+; initialization data
+;*******************************************************************************
+	include 'data_Z80Init.X68'
+
+	include 'data_VDPInit.X68'
 
 ;*******************************************************************************
 ; palettes
@@ -580,9 +562,18 @@ TrapException:
 	include 'inc_Patterns.X68'
 
 ;*******************************************************************************
-; maps
+; scenes
 ;*******************************************************************************
+	include 'inc_Scenes.X68'
 
+;*******************************************************************************
+; scene items
+;*******************************************************************************
+	include	'data_SceneItemLists.X68'
+
+;*******************************************************************************
+; collision maps
+;*******************************************************************************
 MapStoreCollision:
 	include 'collision-maps/map_StoreVBCollision.X68'
 
@@ -607,16 +598,21 @@ MapStoreCollision:
 	include	'data_ScriptedEvents.X68'
 
 ;*******************************************************************************
-; scene items
+; scene definition table
 ;*******************************************************************************
-	include	'data_SceneItemLists.X68'
+	include	'table_SceneDefinitions.X68'
 
 ;*******************************************************************************
-; echo sound driver (https://github.com/sikthehedgehog/Echo)
+; default object text table
 ;*******************************************************************************
-	include 'echo/echo_main.X68'
+	include	'table_Text.X68'
 
-	include	'echo/echo_list.X68'
+;*******************************************************************************
+; action table
+;*******************************************************************************
+	include	'table_Actions.X68'
+
+	org	ROM_ADDR_RESOURCES
 
 ;*******************************************************************************
 ; text
@@ -636,31 +632,16 @@ BGM_Store0:
 	incbin	'music/bgm_store00.esf'
 
 ;*******************************************************************************
-; scene definition table
-;*******************************************************************************
-	include	'table_SceneDefinitions.X68'
-
-;*******************************************************************************
-; default object text table
-;*******************************************************************************
-	include	'table_Text.X68'
-
-;*******************************************************************************
-; action table
-;*******************************************************************************
-	include	'table_Actions.X68'
-
-;*******************************************************************************
-; initialization data
-;*******************************************************************************
-	include 'data_Z80Init.X68'
-
-	include 'data_VDPInit.X68'
-
-;*******************************************************************************
 ; tiles
 ;*******************************************************************************
 	include 'inc_Tiles.X68'
+
+;*******************************************************************************
+; echo instruments
+;*******************************************************************************
+	org	ROM_ADDR_INSTRUMENTS
+
+	include 'echo/echo_instruments.X68'
 
 ;*******************************************************************************
 ; end of rom

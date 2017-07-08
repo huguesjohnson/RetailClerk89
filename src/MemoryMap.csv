@@ -36,6 +36,7 @@ MEM_CONTROL_PRESSED,2,store value of a pressed button
 MEM_GAME_STATE,4,used to control the main loop flow
 MEM_ACTION_ID,2,current action selected by player
 MEM_ACTION_TARGET_OBJID,2,action target object id
+MEM_ACTION_TARGET_NPCID,2,NPC id if action target is an NPC
 MEM_ACTION_TABLE_OFFSET,2,relative address of action table entry
 MEM_ACTIVE_ITEM,2,item that is currently being used
 MEM_NPC_LOCATIONS,4,table to track where NPCs are located
