@@ -173,6 +173,7 @@ Main:
 	include	'init_NewGame.X68'
 
 	include	'init_Debug.X68'
+
 MainGameLoop:
 	bsr.w	WaitVBlank							; wait for vblank to complete
 	addq	#$1,(MEM_MAINLOOP_COUNTER)			; increment counter
@@ -336,6 +337,8 @@ TestAButtonPressed: ; test if the player pressed the A button
 	;---------------------------------------------------------------------------
 	; clear MEM_CONTROL_PRESSED to prevent state from flipping in loop
 	move.w	#$0000,(MEM_CONTROL_PRESSED)
+	lea	MEM_PLAYER_SPRITE_ID,a6	; point a6 to player sprite
+	bsr.w	StopSprite ; stop the player sprite
 	bsr.w	BuildNPCObjectList	; update the location of NPCs
 	bsr.w	FindActionTarget	; find the target of the player's action
 	cmpi.w	#OBJ_NOTHING,(MEM_ACTION_TARGET_OBJID)	; is the target nothing?

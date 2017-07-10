@@ -37,6 +37,7 @@ MEM_GAME_STATE,4,used to control the main loop flow
 MEM_ACTION_ID,2,current action selected by player
 MEM_ACTION_TARGET_OBJID,2,action target object id
 MEM_ACTION_TARGET_NPCID,2,NPC id if action target is an NPC
+MEM_ACTION_TARGET_NPC_DIRECTION,2,put NPC back in right direction
 MEM_ACTION_TABLE_OFFSET,2,relative address of action table entry
 MEM_ACTIVE_ITEM,2,item that is currently being used
 MEM_NPC_LOCATIONS,4,table to track where NPCs are located
@@ -130,8 +131,6 @@ MEM_NPC3_MOVE_FREQUENCY,2,how often to move
 MEM_NPC3_MOVE_PATTERN,4,movement pattern
 MEM_NPC3_MOVE_PATTERN_LENGTH,2,length of movement pattern
 MEM_NPC3_MOVE_INDEX,2,where the sprite is the movement pattern
-;MEM_NPC3_SPRITE_LINK_TO,2,sprite ID the NPC3 sprite links to
-;MEM_NPC3_SPRITE_LINK_FROM,2,sprite ID linked to the NPC3 sprite
 ;-------------------------------------------------------------------------------
 ; collision detection
 ;-------------------------------------------------------------------------------

@@ -70,7 +70,15 @@ FindActionTargetObjectLoop:
 	lsr.w	#$01,d1	; shift 1 more
 	add.w	d1,d2	; add height to top edge to get bottom edge
 	cmp.w	d2,d5	; (hty<y1)
-	blt.w	ExitFindActionTarget ; if last test passes then we have a hit
+	bge.w	FindActionTargetObjectLoopDbra ; loop if no hit
+	; determine if this is an NPC
+	move.w	#NPC_LIST_LENGTH-1,d2	; if d3<NPC_LIST_LENGTH then we have an NPC
+	sub.w	d3,d2	; subtract d3 from d2
+	bpl.s	.1	; branch if the result is positive
+	move.w	#$FFFF,d2	; set NPC id as -1 
+.1
+	move.w	d2,(MEM_ACTION_TARGET_NPCID)	; store NPC id
+	bra.s	ExitFindActionTarget	; exit
 FindActionTargetObjectLoopDbra:
 	adda.w	#OBJ_LIST_STRUCT_SIZE,a0	; move to next object list entry
 	dbra    d3,FindActionTargetObjectLoop	; decrement and loop

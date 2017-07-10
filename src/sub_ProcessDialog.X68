@@ -220,13 +220,13 @@ ProcessDialogTestButtonPressA:	; a
 	bne.s	ProcessDialogTestButtonPressC	; a not pressed move, next test
 	bsr.w	ConfirmMenuSelection	; confirm the menu selection
 	move.w	#$0000,(MEM_CONTROL_PRESSED)	; clear pressed buttons
-	bra.s	ExitProcessDialog	; exit
+	bra.w	ExitProcessDialog	; exit
 ProcessDialogTestButtonPressC:	; c
 	cmpi.w	#BUTTON_C_PRESSED,d6	; is the c button pressed?
-	bne.s	ExitProcessDialog	; c is not pressed, exit
+	bne.w	ExitProcessDialog	; c is not pressed, exit
 	bsr.w	ConfirmMenuSelection	; confirm the menu selection
 	move.w	#$0000,(MEM_CONTROL_PRESSED)	; clear pressed buttons
-	bra.s	ExitProcessDialog	; exit
+	bra.w	ExitProcessDialog	; exit
 ProcessDialogSetClosing:
 	bset.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; set closing flag
 	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; closing, clear open flag
@@ -248,6 +248,16 @@ ProcessDialogTestClosing:
 	subq	#$1,d7	; decrement frame number
 	cmpi.w	#$0000,d7	; are we at the last frame?
 	bgt.s	ExitProcessDialog ; not at the last frame, exit
+	; if the target of the dialog was an NPC, restore their previous direction
+	move.w (MEM_ACTION_TARGET_NPCID),d7	; copy NPC target ID to d7
+	cmpi.w	#$FFFF,d7	; test if it is -1
+	beq.s	ProcessDialogClearFlags	; exit if -1
+	lea	MEM_NPC0_SPRITE_ID,a6	; point a6 to the first NPC sprite
+	move.w	(MEM_ACTION_TARGET_NPCID),d1	; copy target NPC id to d1
+	mulu.w	#NPC_RECORD_SIZE,d1	; multiply by NPC_RECORD_SIZE to get offset
+	adda.l	d1,a6	; move to target NPC sprite
+	; restore NPC direction
+	move.w	(MEM_ACTION_TARGET_NPC_DIRECTION),(STRUCT_SPRITE_DIRECTION,a6)
 ProcessDialogClearFlags:	; clear flags when done
 	andi.l	#$00000000,d7	; clear all dialog flags 
 	; clear dialog bit on game state
