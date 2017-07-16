@@ -7,6 +7,7 @@
 ; d7 is modified to store & update map collision data
 ;-------------------------------------------------------------------------------
 FlipSpriteMapPosition:
+	rts
 	bsr.w	SetActiveSpriteMapRowCol	; set the active map position
 	;---------------------------------------------------------------------------
 	; block the left side of the sprite
@@ -17,11 +18,11 @@ FlipSpriteMapPosition:
 	move.l	(a3),d7	; copy row data to memory
 	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
 	move.l	d7,(a3)	; save the map data back
-	lea		MEM_COLLISION_DATA,a3	; move start address of map data to a3
-	adda.w	(MEM_ACTIVE_SPRITE_LOW_LEFT),a3 ; move to row
-	move.l	(a3),d7	; copy row data to memory
-	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
-	move.l	d7,(a3)	; save the map data back
+;	lea		MEM_COLLISION_DATA,a3	; move start address of map data to a3
+;	adda.w	(MEM_ACTIVE_SPRITE_LOW_LEFT),a3 ; move to row
+;	move.l	(a3),d7	; copy row data to memory
+;	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
+;	move.l	d7,(a3)	; save the map data back
 	;---------------------------------------------------------------------------
 	; block the right side of the sprite
 	;---------------------------------------------------------------------------
@@ -31,11 +32,11 @@ FlipSpriteMapPosition:
 	move.l	(a3),d7	; copy row data to memory
 	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
 	move.l	d7,(a3)	; save the map data back
-	lea		MEM_COLLISION_DATA,a3	; move start address of map data to a3
-	adda.w	(MEM_ACTIVE_SPRITE_LOW_RIGHT),a3 ; move to row
-	move.l	(a3),d7	; copy row data to memory
-	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
-	move.l	d7,(a3)	; save the map data back
+;	lea		MEM_COLLISION_DATA,a3	; move start address of map data to a3
+;	adda.w	(MEM_ACTIVE_SPRITE_LOW_RIGHT),a3 ; move to row
+;	move.l	(a3),d7	; copy row data to memory
+;	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
+;	move.l	d7,(a3)	; save the map data back
 	;---------------------------------------------------------------------------
 	; if the sprite is occupying 3 columns (common) then block the middle
 	;---------------------------------------------------------------------------
@@ -59,11 +60,11 @@ FlipSpriteMapPosition:
 	move.l	(a3),d7	; copy row data to memory
 	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
 	move.l	d7,(a3)	; save the map data back
-	lea		MEM_COLLISION_DATA,a3	; move start address of map data to a3
-	adda.w	(MEM_ACTIVE_SPRITE_LOW_RIGHT),a3 ; move to row
-	move.l	(a3),d7	; copy row data to memory
-	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
-	move.l	d7,(a3)	; save the map data back
+;	lea		MEM_COLLISION_DATA,a3	; move start address of map data to a3
+;	adda.w	(MEM_ACTIVE_SPRITE_LOW_RIGHT),a3 ; move to row
+;	move.l	(a3),d7	; copy row data to memory
+;	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
+;	move.l	d7,(a3)	; save the map data back
 	bra.s	ExitFlipSpriteMapPosition
 	;---------------------------------------------------------------------------
 	; block middle column based on left columns when right column is zero
@@ -78,10 +79,10 @@ FlipSpriteMapPosition:
 	move.l	(a3),d7	; copy row data to memory
 	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
 	move.l	d7,(a3)	; save the map data back
-	lea		MEM_COLLISION_DATA,a3	; move start address of map data to a3
-	adda.w	(MEM_ACTIVE_SPRITE_LOW_LEFT),a3 ; move to row
-	move.l	(a3),d7	; copy row data to memory
-	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
-	move.l	d7,(a3)	; save the map data back
+;	lea		MEM_COLLISION_DATA,a3	; move start address of map data to a3
+;	adda.w	(MEM_ACTIVE_SPRITE_LOW_LEFT),a3 ; move to row
+;	move.l	(a3),d7	; copy row data to memory
+;	bchg.l	d6,d7	; flip the map data from 0 to 1 or 1 to 0
+;	move.l	d7,(a3)	; save the map data back
 ExitFlipSpriteMapPosition:
 	rts
