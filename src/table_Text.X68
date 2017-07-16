@@ -24,9 +24,9 @@ DefaultNPCDescriptionTable:
 	; nothing
 	dc.l	DialogTextNothing
 	; OBJ_NPC_DANI
-	dc.l	DialogTextDaniScene0Day0Action0
+	dc.l	DialogTextDaniDefaultLook
 	; OBJ_NPC_MALE_SHOPPER0
-	dc.l	DialogTextMaleShopper0
+	dc.l	DialogTextMaleShopper00DefaultLook
 	; OBJ_NPC_GREENBERG
 	dc.l	DialogTextGreenbergDefaultLook
 

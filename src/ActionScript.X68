@@ -132,6 +132,13 @@ ExitScene00DefaultTake:
 ; day 00 - scene 00
 ;-------------------------------------------------------------------------------
 Day00Scene00Action00:	; ACTION_LOOK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	bne.s	Day00Scene00Action00Default	; branch to default
+	lea	DialogTextDaniScene0Day0Action0,a6	; load text for the day
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bra.s	ExitDay00Scene00Action00	; exit
+Day00Scene00Action00Default:
 	bsr.w	ShowDefaultText
 ExitDay00Scene00Action00:
 	rts
@@ -245,18 +252,18 @@ Day00Scene00Action02LaunchScriptedEvent:
 	; set flag to indicate the scripted event ran
 	bset.l	#EVENT_FLAG_DAY00_EVENT00_COMPLETE,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated event flag
-	; determine which direction to move the NPC
-	move.w	(MEM_PLAYER_SPRITE_X),d6	; copy player x to d6
-	move.w	(MEM_NPC0_SPRITE_X),d7	; copy first NPC x to d7
-	cmp.w	d6,d7	; compare the values
-	bge.s	Day00Scene00Action02LaunchScriptedRight	; branch if d7>=d6
-	lea ScriptedEventDay0Left,a6	; point a6 to event to load
-	bsr.w QueueScriptedEvent	; queue the event
-	bsr.w	Scene00DefaultTake	; use scene defaults
-	rts	; exit
+;	; determine which direction to move the NPC
+;	move.w	(MEM_PLAYER_SPRITE_X),d6	; copy player x to d6
+;	move.w	(MEM_NPC0_SPRITE_X),d7	; copy first NPC x to d7
+;	cmp.w	d6,d7	; compare the values
+;	bge.s	Day00Scene00Action02LaunchScriptedRight	; branch if d7>=d6
+;	lea ScriptedEventDay0Left,a6	; point a6 to event to load
+;	bsr.w QueueScriptedEvent	; queue the event
+;	bsr.w	Scene00DefaultTake	; use scene defaults
+;	rts	; exit
 Day00Scene00Action02LaunchScriptedRight:
-	lea ScriptedEventDay0Right,a6	; point a6 to event to load
-	bsr.w QueueScriptedEvent	; queue the event
+	lea	ScriptedEventDay0Right,a6	; point a6 to event to load
+	bsr.w	QueueScriptedEvent	; queue the event
 	bsr.w	Scene00DefaultTake	; use scene defaults
 	rts	; exit
 Day00Scene00Action02DefaultTake:

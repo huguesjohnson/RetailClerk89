@@ -23,7 +23,7 @@ TitleScreenTextNewGame:
 	dc.b	"New Game",ETX
 
 TitleScreenTextFooter:
-	dc.b	"One Room Demo (July 2017)",ETX
+	dc.b	"One Room Demo (2017-07-16)",ETX
 
 ;-------------------------------------------------------------------------------
 ; end screen
@@ -74,24 +74,16 @@ DialogTextCantLeaveStoreUnattended:
 	dc.b	"You can't leave the",LF
 	dc.b	"store unattended.",ETX
 
-WelcomeMessage:
-	;		"1234567890123456789012"
-	dc.b	"Welcome to the Retail",LF
-	dc.b	"Clerk '89 demo.      ^",FF
-	dc.b	"This is a (very) brief",LF
-	dc.b	"demo intended to     ^",FF
-	dc.b	"test out the basic",LF
-	dc.b	"game features.       ^",FF
-	dc.b	"Press A to look at",LF
-	dc.b	"stuff & talk to NPCs.^",FF
-	dc.b	"In menus, A & C select",LF
-	dc.b	"items and B cancels. ^",FF
-	dc.b	"The Start button",LF
-	dc.b	"pauses the game.",ETX
-
 ;-------------------------------------------------------------------------------
 ; dialog text
 ;-------------------------------------------------------------------------------
+DialogTextDaniScene0Day0Action0:
+	;		"1234567890123456789012"
+	dc.b	"She gives you a look",LF
+	dc.b	"that clearly says    ^",FF
+	dc.b	"you'll be walking home",LF
+	dc.b	"if you take too long.",ETX
+
 DialogTextDaniScene0Day0Flag0:
 	;		"1234567890123456789012"
 	dc.b	"`It's 10 minutes past",LF
@@ -115,32 +107,38 @@ DialogTextDaniScene0Day0Flag8:
 
 DialogTextDaniScene0Day0Exit0:
 	;		"1234567890123456789012"
-	dc.b	"Dani:`Your problem is",LF
-	dc.b	"you listened to the  ^",FF
-	dc.b	"customer. They're all",LF
-	dc.b	"idiots & have no clue^",FF
-	dc.b	"what they want.",LF
-	dc.b	"Just say something   ^",FF
-	dc.b	"that makes them happy",LF
-	dc.b	"and they'll leave.'",ETX
+	dc.b	"`You know what your",LF
+	dc.b	"problem is?          ^",FF
+	dc.b	"You tried listening to",LF
+	dc.b	"the customer.        ^",FF
+	dc.b	"They never actually",LF
+	dc.b	"know what they want. ^",FF
+	dc.b	"They'll loiter forever",LF
+	dc.b	"if you let them.     ^",FF
+	dc.b	"They're either bored",LF
+	dc.b	"or lonely or stupid. ^",FF
+	dc.b	"Just figure out what",LF
+	dc.b	"they want to hear.   ^",FF
+	dc.b	"That will get them to",LF
+	dc.b	"buy anything & leave.'",ETX
 
 DialogTextDaniScene0Day0Exit1:
 	;		"1234567890123456789012"
-	dc.b	"Dani:`I can't believe",LF
+	dc.b	"`I can't believe",LF
 	dc.b	"your manager is MIA. ^",FF
 	dc.b	"He better give you a",LF
 	dc.b	"a key tomorrow.'",ETX
 
 DialogTextDaniScene0Day0Exit2:
 	;		"1234567890123456789012"
-	dc.b	"Dani:`Meet me at the",LF
+	dc.b	"`Meet me at the",LF
 	dc.b	"car whenever he      ^",FF
 	dc.b	"bothers to show up",LF
 	dc.b	"again.'",ETX
 
 DialogTextGreenbergScene0Day0Exit:
 	;		"1234567890123456789012"
-	dc.b	"Greenberg:`Did I just",LF
+	dc.b	"`Did I just",LF
 	dc.b	"see a guy walking out^",FF
 	dc.b	"with a copy of Baby",LF
 	dc.b	"Boomer? You're the   ^",FF
@@ -155,14 +153,14 @@ DialogTextGreenbergScene0Day0Exit:
 
 DialogTextGreenbergScene0Day0Talk:
 	;		"1234567890123456789012"
-	dc.b	"Greenberg:`Don't keep",LF
+	dc.b	"`Don't keep",LF
 	dc.b	"that nice young lady ^",FF
 	dc.b	"waiting. I sure",LF
 	dc.b	"wouldn't.'",ETX
 
 DialogTextGreenbergScene0Day0Give:
 	;		"1234567890123456789012"
-	dc.b	"Greenberg:`You're not",LF
+	dc.b	"`You're not",LF
 	dc.b	"stealing either?     ^",FF
 	dc.b	"You're the model",LF
 	dc.b	"employee today.'",ETX
@@ -319,17 +317,15 @@ DialogText16Bit:
 ;-------------------------------------------------------------------------------
 ; default NPC descriptions
 ;-------------------------------------------------------------------------------
-DialogTextMaleShopper0:
+DialogTextMaleShopper00DefaultLook:
 	;		"1234567890123456789012"
 	dc.b	"He has been browsing",LF
 	dc.b	"for over an hour now.",ETX
 
-DialogTextDaniScene0Day0Action0:
+DialogTextDaniDefaultLook:
 	;		"1234567890123456789012"
-	dc.b	"She gives you a look",LF
-	dc.b	"that clearly says    ^",FF
-	dc.b	"you'll be walking home",LF
-	dc.b	"if you take too long.",ETX
+	dc.b	"She seems moderately",LF
+	dc.b	"annoyed with you.",ETX
 
 DialogTextGreenbergDefaultLook:
 	;		"1234567890123456789012"
@@ -411,7 +407,7 @@ ObjectNameRegister:
 ; npc names
 ;-------------------------------------------------------------------------------
 NPCNameDani:
-	dc.b	"Dani (your sister)",NPCNAMEEND
+	dc.b	"Dani",NPCNAMEEND
 
 NPCNameMapperShopper0:
 	dc.b	"Business casual guy",NPCNAMEEND
