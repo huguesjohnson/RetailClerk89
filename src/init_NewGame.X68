@@ -38,6 +38,7 @@ InitNPCLocations:
 LoadTitleScene:
 	lea	SceneTitle,a6	; address of the scene for the title screen
 	bsr.w	LoadScene	; branch to LoadScene subroutine
+	move.w	#TITLE_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
 
 ;-------------------------------------------------------------------------------
 ; load and setup the sprites
@@ -79,6 +80,8 @@ InitPlayerSprite:
 	; animation to trigger the next time the sprite moves
 	move.w	#SPRITE_ANIMATION_STEPS,(MEM_PLAYER_SPRITE_STEP_COUNTER)
 	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
+	if	_SPRITE_COLLISION_
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
+	endif
 
 	move.w	#$2000,sr		; re-enable interrupts

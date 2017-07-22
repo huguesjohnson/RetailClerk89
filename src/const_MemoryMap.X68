@@ -20,7 +20,7 @@ MEM_SPRITE_SORT_TABLE_VALUE3=$FFFF0014	; sort table value 3
 ;-------------------------------------------------------------------------------
 MEM_VBLANK_COUNTER=$FFFF0016	; incremented at vblank - used for debug & RNG
 MEM_MAINLOOP_COUNTER=$FFFF0018	; used for debug & RNG
-MEM_FRAME_COUNTER=$FFFF001A	; current frame - cycles from 0-59
+MEM_FRAME_COUNTER=$FFFF001A	; current frame
 ;-------------------------------------------------------------------------------
 ; program flow
 ;-------------------------------------------------------------------------------

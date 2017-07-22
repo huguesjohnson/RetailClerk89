@@ -22,6 +22,12 @@
 ;*******************************************************************************
 
 ;*******************************************************************************
+; conditional compilation directives
+;*******************************************************************************
+_DEBUG_=$0	; enable/disable debug mode
+_SPRITE_COLLISION_=$0	; enable/disable collision between sprites
+
+;*******************************************************************************
 ; constants
 ;*******************************************************************************
 
@@ -142,12 +148,19 @@ CHARACTER_DEFINITION_SIZE=CharacterDefinitionPlayerEnd-CharacterDefinitionPlayer
 SCRIPTED_EVENT_END=$FFFF
 SCRIPTED_EVENT_DIALOG=$EEEE
 SCRIPTED_EVENT_CHANGE_SPRITE=$DDDD
+TITLE_SCREEN_COUNTER_START=$2800	; how long to display title before reset
 ;-------------------------------------------------------------------------------
 ; variables that effect the game speed that are changed often for debugging
 ;-------------------------------------------------------------------------------
+	if	_DEBUG_
+DIALOG_UPDATE_FREQUENCY=$0000	; how often to update dialog animation
+SPRITE_MOVE_FREQUENCY=$0000 ; how many frames to wait between sprite moves
+INTRO_SCREEN_COUNTER_START=$0001	; how long to display intro screens
+	else
 DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
 SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
 INTRO_SCREEN_COUNTER_START=$0168	; how long to display intro screens
+	endif
 
 ;*******************************************************************************
 ; vectors
@@ -413,7 +426,11 @@ TestTitleScreen:
 TestTitleScreenTestStartPressed:
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
-	beq.w	MainGameLoop	; start button not pressed, loop
+	bne.s	TestTitleLoadIntroScreen	; start button pressed, load intro
+	subq	#$1,(MEM_INTRO_SCENE_COUNTER)	; decrement counter
+	bne.w	MainGameLoop	; loop until the counter is zero
+	bra.w	NewGame	; counter is zero, restart
+TestTitleLoadIntroScreen:
 	; clear MEM_CONTROL_PRESSED to prevent entering pause state immediately
 	move.w	#$0000,(MEM_CONTROL_PRESSED)
 	; --------------------------------------------------------------------------
@@ -464,20 +481,23 @@ TestIntroScreen:
 	mulu.w	#LWORD_SIZE,d6	; SceneDefinitionTable entries are long values
 	lea	SceneDefinitionTable,a5	; point to action table
 	adda.w	d6,a5	; move to offset location
-	move.l	(a5),a6	; a5 has the address of the subroutine to jump to
+	move.l	(a5),a6	; a5 has the address of the scene to load
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	; load the player sprite
 LoadSprites:
+	bsr.w	WaitVBlank	; wait for vblank to complete
 	lea     SpriteZeroDefinition,a0	; store address of sprite definition
 	move.w  #$03,d0	; 1 sprite = 2 longs
 	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
 LoadSpriteLoop:
 	move.l  (a0)+,(VDP_DATA)
 	dbra    d0,LoadSpriteLoop
+	if	_SPRITE_COLLISION_
 	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
-	; hide the menu selector sprite
-	bsr.w	HideSelectorSprite
+	endif
+	bsr.w	HideSelectorSprite	; hide the menu selector sprite
+	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset frame counter
 	bra.w	MainGameLoop	;	return to start of game loop
 MainGameLoopEnd:
 	; test if sprites need to be reordered
@@ -517,6 +537,7 @@ HBlank:
 VBlank:
 	addq	#$1,(MEM_VBLANK_COUNTER)	; increment debug counter 
 	addq	#$1,(MEM_FRAME_COUNTER)		; increment frame counter
+
 VBlankReadJoypads:
 	bsr.w	ReadJoypads					; read controllers
 

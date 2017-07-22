@@ -12,7 +12,9 @@
 ;-------------------------------------------------------------------------------
 MoveSprite:
 	; collision detection
+	if	_SPRITE_COLLISION_
 	bsr.w	FlipSpriteMapPosition		; clear map data for current position
+	endif
 	bsr.w	TestSpriteCollision			; branch to test sprite collision
 	tst.w	(MEM_COLLISION_RESULT)		; 0 = no collision
 	beq.s	NoCollision					; no collision, continue moving
@@ -86,5 +88,7 @@ MoveSpriteSetPattern:
 	; update the sprite animation	
 	bsr.w	SetSpritePattern		; set the new pattern for the sprite
 ExitMoveSprite:
+	if	_SPRITE_COLLISION_
 	bsr.w	FlipSpriteMapPosition	; set map data for the sprites' new position
+	endif	
 	rts

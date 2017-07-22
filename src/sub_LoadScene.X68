@@ -202,12 +202,14 @@ LoadNPC:
 	add.l	#VDP_VRAM_WRITE_SPRITE,d6	; add to sprite table address
 	move.l	d6,(VDP_CONTROL)	; set write location in VDP
 	move.w	(STRUCT_SPRITE_BASE_PATTERN,a3),(VDP_DATA)	; copy the new pattern
+	if	_SPRITE_COLLISION_
 	; block the sprite's initial map positon
 	move.l	a6,a4	; workaround caused by my lack of planning
 	move.l	a3,a6	; setup call to FlipSpriteMapPosition
 	; note - a3, d5, d6, and d7 are modified by this call
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
 	move.l	a4,a6	; workaround caused by my lack of planning
+	endif
 ExitLoadNPC:
 	addq	#$1,d2	; increment sprite ID
 	addq	#$1,(MEM_ACTIVE_NPC_COUNT)	; increment active scene NPC count
