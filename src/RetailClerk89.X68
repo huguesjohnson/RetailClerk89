@@ -514,15 +514,19 @@ MainGameLoopEnd:
 ; WaitVBlank
 ;-------------------------------------------------------------------------------
 WaitVBlank:
+	bsr.w	WaitVBlankStart	; wait for vblank to start
+	bsr.w	WaitVBlankEnd	; wait for vblank to end
+	rts	; exit
 WaitVBlankStart:
 	move.w	VDP_CONTROL,d0	; copy VDP status to d0
    	andi.w	#VDP_STATUS_VBLANK,d0	; check if the vblank status flag is set
-	beq.s	WaitVBlankStart				; wait for vblank to complete
+	beq.s	WaitVBlankStart	; wait for vblank to complete
+	rts	; exit
 WaitVBlankEnd:
 	move.w	VDP_CONTROL,d0	; copy VDP status to d0
    	andi.w	#VDP_STATUS_VBLANK,d0	; check if the vblank status flag is set
-	bne.s	WaitVBlankEnd				; wait for vblank to complete
-	rts
+	bne.s	WaitVBlankEnd	; wait for vblank to complete
+	rts	; exit
 
 ;*******************************************************************************
 ; traps

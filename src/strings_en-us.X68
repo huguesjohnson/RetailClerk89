@@ -23,7 +23,8 @@ TitleScreenTextNewGame:
 	dc.b	"New Game",ETX
 
 TitleScreenTextFooter:
-	dc.b	"One Room Demo (2017-07-22)",ETX
+	;		"1234567890123456789012345678901234567890"
+	dc.b	 "  One Room Demo (August 2017 Build)   ",ETX
 
 ;-------------------------------------------------------------------------------
 ; end screen
@@ -491,7 +492,7 @@ ItemNameHWPrintRibbon:
 ;-------------------------------------------------------------------------------
 Day00IntroText:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"           November 18, 1989            ",ETX
+	dc.b	"           November 19, 1989            ",ETX
 
 Day00IntroTip0:
 	;		"1234567890123456789012345678901234567890"

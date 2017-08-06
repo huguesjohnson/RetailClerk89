@@ -66,7 +66,6 @@ SceneVB:
 	; 0000000000000101	
 	dc.w	$0005	; base pattern
 	dc.w	$0000	; no repeat
-	; row 1, column 0 = 128 = 0080
 	dc.l	VDP_VRAM_WRITE_B+$00800000	; initial drawing location
 
 	; middle shelf
@@ -75,7 +74,6 @@ SceneVB:
 	; 0010000000000101	
 	dc.w	$2005	; base pattern
 	dc.w	$0000	; no repeat
-	; row 2, column 0 = 256 = 0100
 	dc.l	VDP_VRAM_WRITE_B+$01000000	; initial drawing location
 
 	; low shelf
@@ -84,7 +82,6 @@ SceneVB:
 	; 0100000000000101	
 	dc.w	$4005	; base pattern
 	dc.w	$0000	; no repeat
-	; row 3, column 0 = 256 = 0180
 	dc.l	VDP_VRAM_WRITE_B+$01800000	; initial drawing location
 
 	; frame top
@@ -93,7 +90,6 @@ SceneVB:
 	; 1000000000000000	
 	dc.w	$8000	; base pattern
 	dc.w	$0000	; no repeat
-	; row 3, column 0 = 256 = 0180
 	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
 
 	; frame side
@@ -102,7 +98,6 @@ SceneVB:
 	; 1000000000000000	
 	dc.w	$8000	; base pattern
 	dc.w	$0016	; repeat 23 times
-	; row 1, column 0 = 128 = 0080
 	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
 
 	; store front
@@ -111,7 +106,6 @@ SceneVB:
 	; 1000000000001100	
 	dc.w	$800C	; base pattern
 	dc.w	$0000	; no repeat
-	; row 24, column 0 = 3072 = C00
 	dc.l	VDP_VRAM_WRITE_A+$0C000000	; initial drawing location
 
 	; counter - low front
@@ -120,8 +114,7 @@ SceneVB:
 	; 0010000000100001	
 	dc.w	$2021	; base pattern
 	dc.w	$0000	; no repeat
-	; row 10, column 7 = 51C
-	dc.l	VDP_VRAM_WRITE_A+$051C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$05000000+$001C0000	; initial drawing location
 
 	; counter - low side
 	dc.l	PatternCounterLowSide	; location of first pattern to load
@@ -129,8 +122,7 @@ SceneVB:
 	; 0010000000110001	
 	dc.w	$2031	; base pattern
 	dc.w	$0000	; no repeat
-	; row 3, column 12 = 432 = 1B0
-	dc.l	VDP_VRAM_WRITE_B+$01B00000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$01800000+$00300000	; initial drawing location
 
 	; counter - top
 	dc.l	PatternCounterHigh	; location of first pattern to load
@@ -138,8 +130,7 @@ SceneVB:
 	; 1010000000110001	
 	dc.w	$A031	; base pattern
 	dc.w	$0000	; no repeat
-	; row 7, column 28 = 39C
-	dc.l	VDP_VRAM_WRITE_A+$039C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$03800000+$001C0000	; initial drawing location
 
 	; register
 	dc.l	PatternRegister	; location of first pattern to load
@@ -147,8 +138,7 @@ SceneVB:
 	; 1110000000111011	
 	dc.w	$E03B	; base pattern
 	dc.w	$0000	; no repeat
-	; row 6, column 44 = 330
-	dc.l	VDP_VRAM_WRITE_A+$03300000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$03000000+$00300000	; initial drawing location
 
 	; hardware rack - low
 	dc.l	PatternHWRackLow	; location of first pattern to load
@@ -156,8 +146,7 @@ SceneVB:
 	; 0000000001000001	
 	dc.w	$0041	; base pattern
 	dc.w	$0000	; no repeat
-	; row 15, column 4 = 788
-	dc.l	VDP_VRAM_WRITE_A+$07880000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$07800000+$00080000	; initial drawing location
 
 	; hardware rack - high
 	dc.l	PatternHWRackHigh	; location of first pattern to load
@@ -166,7 +155,7 @@ SceneVB:
 	dc.w	$8041	; base pattern
 	dc.w	$0000	; no repeat
 	; row 10, column 4 = 508
-	dc.l	VDP_VRAM_WRITE_A+$05080000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$05000000+$00080000	; initial drawing location
 
 	; 16-bit rack - low
 	dc.l	Pattern16BitRackLow	; location of first pattern to load
@@ -175,7 +164,7 @@ SceneVB:
 	dc.w	$4050	; base pattern
 	dc.w	$0000	; no repeat
 	; row 15, column 50 = 788
-	dc.l	VDP_VRAM_WRITE_A+$083E0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$08000000+$003E0000	; initial drawing location
 
 	; 16-bit rack - high
 	dc.l	Pattern16BitRackHigh	; location of first pattern to load
@@ -184,7 +173,7 @@ SceneVB:
 	dc.w	$C050	; base pattern
 	dc.w	$0000	; no repeat
 	; row 10, column 4 = 508
-	dc.l	VDP_VRAM_WRITE_A+$05BE0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$05800000+$003E0000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text

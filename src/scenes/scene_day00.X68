@@ -63,8 +63,7 @@ SceneIntroDay00:
 	; 0010000000000000	
 	dc.w	$2000	; base pattern
 	dc.w	$0000	; repeat 1 time
-	; row 10 (128x10 = #500), column 4 (4x4 = #10) => #510
-	dc.l	VDP_VRAM_WRITE_A+$01980000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$01800000+$00180000	; initial drawing location
 
 	; title - 89
 	dc.l	PatternTitleLogo89	; location of pattern to load
@@ -72,7 +71,7 @@ SceneIntroDay00:
 	; 0110000000000000	
 	dc.w	$6000	; base pattern
 	dc.w	$0000	; repeat 1 time
-	dc.l	VDP_VRAM_WRITE_A+$01BE0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$01800000+$003E0000	; initial drawing location
 
 	; graphics behind title
 	dc.l	PatternTitleBackground	; location of pattern to load
@@ -98,12 +97,10 @@ SceneIntroDay00:
 
 	dc.l	Day00IntroText	; location of string to display
 	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
-	; row 13  (128x13 = #680), column 0 (0x4 = #0) => 0
 	dc.l	VDP_VRAM_WRITE_A+$06800000	; initial drawing location
 
 	dc.l	Day00IntroTip0	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
-	; row 15  (128x15 = #700), column 0 (0x4 = #0) => 0
 	dc.l	VDP_VRAM_WRITE_A+$08000000	; initial drawing location
 
 	dc.l	Day00IntroTip1	; location of string to display
