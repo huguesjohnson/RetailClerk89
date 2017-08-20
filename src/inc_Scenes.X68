@@ -2,3 +2,4 @@
 	include 'scenes/scene_day00.X68'
 	include 'scenes/scene_end.X68'
 	include 'scenes/scene_vb.X68'
+	include 'scenes/scene_wwhall.X68'

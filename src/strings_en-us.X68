@@ -24,7 +24,7 @@ TitleScreenTextNewGame:
 
 TitleScreenTextFooter:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	 "  One Room Demo (August 2017 Build)   ",ETX
+	dc.b	 "   Mall Walker Demo (Unstable Build)  ",ETX
 
 ;-------------------------------------------------------------------------------
 ; end screen

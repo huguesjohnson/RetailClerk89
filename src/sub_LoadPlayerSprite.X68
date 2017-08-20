@@ -1,0 +1,18 @@
+;-------------------------------------------------------------------------------
+; also loads sprite zero
+; d0, a0, and a6 are modified
+;-------------------------------------------------------------------------------
+LoadPlayerSprite:
+	bsr.w	WaitVBlank	; wait for vblank to complete
+	lea     SpriteZeroDefinition,a0	; store address of sprite definition
+	move.w  #$03,d0	; 1 sprite = 2 longs
+	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
+LoadPlayerSpriteLoop:
+	move.l  (a0)+,(VDP_DATA)
+	dbra    d0,LoadPlayerSpriteLoop
+	if	_SPRITE_COLLISION_
+	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
+	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
+	endif
+ExitLoadPlayerSprite:
+	rts

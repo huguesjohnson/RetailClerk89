@@ -146,10 +146,10 @@ MEM_COLLISION_RESULT=$FFFF0102	; result of collision test
 ; active scene
 ;-------------------------------------------------------------------------------
 MEM_ACTIVE_SCENE_ID=$FFFF0104	; ID of the active scene
-MEM_ACTIVE_SCENE_EXIT_N=$FFFF0106	; north exit of active scene
-MEM_ACTIVE_SCENE_EXIT_S=$FFFF0108	; south exit of active scene
-MEM_ACTIVE_SCENE_EXIT_E=$FFFF010A	; east exit of active scene
-MEM_ACTIVE_SCENE_EXIT_W=$FFFF010C	; west exit of active scene
+MEM_ACTIVE_SCENE_EXIT_S=$FFFF0106	; south exit of active scene
+MEM_ACTIVE_SCENE_EXIT_N=$FFFF0108	; north exit of active scene
+MEM_ACTIVE_SCENE_EXIT_W=$FFFF010A	; west exit of active scene
+MEM_ACTIVE_SCENE_EXIT_E=$FFFF010C	; east exit of active scene
 MEM_ACTIVE_NPC_COUNT=$FFFF010E	; number of NPCs in the current scene
 MEM_OBJECT_LIST_OBJS=$FFFF0110	; list of objects in current map
 MEM_OBJECT_LIST_NPCS=$FFFF014C	; list of npcs in current map

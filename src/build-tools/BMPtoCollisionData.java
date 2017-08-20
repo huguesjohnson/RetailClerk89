@@ -1,6 +1,5 @@
 /* 
-this class is not named very well
-it is used to convert a BMP image to collision data 
+convert a BMP image to collision data 
 
 code to read bmp pixels is from: http://stackoverflow.com/questions/17015340/how-to-read-a-bmp-file-identify-which-pixels-are-black-in-java
 
@@ -15,7 +14,7 @@ import java.io.FileWriter;
 
 import javax.imageio.ImageIO;
 
-public class JBMP2ASM{
+public class BMPtoCollisionData{
 	private final static String newLine=System.lineSeparator();
 
 	//arg[0]=source file (bitmap)

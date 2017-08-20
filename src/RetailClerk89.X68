@@ -113,6 +113,11 @@ VDP_PLANE_PIXELS_Y=$0100			; height of VDP plane
 INIT_MAP_POSITION_X=$0000	; initial x-position
 INIT_MAP_POSITION_Y=$0000	; initial y-position
 DEFAULT_COLLISION_DATA_SIZE=$7F	; 128 longs of collision data by default 
+; position where the player enters a scene
+SCENE_ENTER_TOP=SPRITE_PLANE_OFFSET_TOP+$0008
+SCENE_ENTER_BOTTOM=SPRITE_PLANE_OFFSET_TOP+DISPLAY_PIXELS_Y-$0010
+SCENE_ENTER_LEFT=SPRITE_PLANE_OFFSET_LEFT+$0008
+SCENE_ENTER_RIGHT=SPRITE_PLANE_OFFSET_LEFT+DISPLAY_PIXELS_X-$0008
 ; object list constants
 OBJ_LIST_LENGTH=$000A	; max items in the object list
 NPC_LIST_LENGTH=$0004	; max items in the NPC list
@@ -440,7 +445,9 @@ TestTitleLoadIntroScreen:
 	; --------------------------------------------------------------------------
 	bclr.l	#STATE_FLAG_TITLE_SCREEN,d7 ; clear game state flag
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
+	ifeq	_DEBUG_
 	bset.l	#STATE_FLAG_EXITS_BLOCKED,d7	; set flag blocking the exits
+	endif
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 	; set the intro screen counter
 	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
@@ -483,19 +490,7 @@ TestIntroScreen:
 	adda.w	d6,a5	; move to offset location
 	move.l	(a5),a6	; a5 has the address of the scene to load
 	bsr.w	LoadScene	; branch to LoadScene subroutine
-	; load the player sprite
-LoadSprites:
-	bsr.w	WaitVBlank	; wait for vblank to complete
-	lea     SpriteZeroDefinition,a0	; store address of sprite definition
-	move.w  #$03,d0	; 1 sprite = 2 longs
-	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
-LoadSpriteLoop:
-	move.l  (a0)+,(VDP_DATA)
-	dbra    d0,LoadSpriteLoop
-	if	_SPRITE_COLLISION_
-	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
-	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
-	endif
+	bsr.w	LoadPlayerSprite	; load the player sprite
 	bsr.w	HideSelectorSprite	; hide the menu selector sprite
 	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset frame counter
 	bra.w	MainGameLoop	;	return to start of game loop
@@ -602,8 +597,10 @@ TrapException:
 ;*******************************************************************************
 ; collision maps
 ;*******************************************************************************
-MapStoreCollision:
-	include 'collision-maps/map_StoreVBCollision.X68'
+MapStore00Collision:
+	include 'collision-maps/map_Store00Collision.X68'
+MapStore01Collision:
+	include 'collision-maps/map_Store01Collision.X68'
 
 ;*******************************************************************************
 ; sprite table defintions

@@ -4,7 +4,6 @@ ProcessAction:
 	; --------------------------------------------------------------------------
 	cmpi.w	#ACTION_EXIT_SCENE,(MEM_ACTION_ID)	; test if this is an exit action
 	bne.s	ProcessActionTestDefaultActions	; not an exit action, branch
-	bsr.w	BuildActionTableOffset	; build action table offset
 	lea	SceneExitTable,a5	; point to scene exit table
 	move.w	(MEM_ACTIVE_SCENE_ID),d7	; copy scene ID to d7
 	mulu.w	#LWORD_SIZE,d7	; multiply by lword size to get offset
@@ -61,4 +60,5 @@ ExitProcessAction:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	bclr.l	#STATE_FLAG_ACTION,d7 ; clear action flag
 	move.l	d7,(MEM_GAME_STATE)	; save it back
+
 	rts

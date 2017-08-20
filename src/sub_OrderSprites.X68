@@ -13,6 +13,21 @@ OrderSprites:
 ; yes, this is a bubble sort, no it's not an awesome algorithm 
 ; for a small number of entries it's OK
 ;-------------------------------------------------------------------------------
+	tst.w	(MEM_ACTIVE_NPC_COUNT)	; test if there are 0 NPCs
+	bne.s	SpriteYSortLoopOuter	; there are not 0 NPCs, branch
+	;---------------------------------------------------------------------------
+	; handle case where there are 0 NPCs
+	;---------------------------------------------------------------------------
+	move.w	#$0000,(MEM_SPRITE_Y_ORDER_CHANGED)	; clear Y order changed
+	; have sprite zero point to the player sprite
+	move.w	#$0000,d2	; sprite zero is the sprite to edit
+	move.w	#$0001,d3	; player sprite is the sprite to link to
+	bsr.w	SetSpriteLink	; set the sprite link
+	; have sprite zero point to the player sprite
+	move.w	#$0001,d2	; player sprite is the sprite to edit
+	move.w	#$0000,d3	; sprite zero is the sprite to link to
+	bsr.w	SetSpriteLink	; set the sprite link
+	bra.w	ExitOrderSprites	; exit
 SpriteYSortLoopOuter:
 	move.w	#$0000,(MEM_SPRITE_SORT_TABLE_SORTED)	; start with table sorted
 	lea	MEM_SPRITE_SORT_TABLE_ID0,a4	; point a4 to the start of sort table

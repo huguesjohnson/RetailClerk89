@@ -47,10 +47,10 @@ LoadSceneLoadMapCollisionLoop:
 ; load scene exits
 ;-------------------------------------------------------------------------------
 LoadSceneLoadExits:
-	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_N)	; north exit of active scene
-	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_S)	; south exit of active scene
-	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_E)	; east exit of active scene
-	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_W)	; west exit of active scene
+	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_S)	; north exit of active scene
+	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_N)	; south exit of active scene
+	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_W)	; east exit of active scene
+	move.w	(a6)+,(MEM_ACTIVE_SCENE_EXIT_E)	; west exit of active scene
 
 ;-------------------------------------------------------------------------------
 ; load sprite zero and player sprite

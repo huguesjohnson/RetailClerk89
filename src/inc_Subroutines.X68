@@ -23,6 +23,7 @@
 
 	include	'sub_MovePlayer.X68'
 
+	include	'sub_LoadPlayerSprite.X68'
 
 	include 'sub_FindActionTarget.X68'
 

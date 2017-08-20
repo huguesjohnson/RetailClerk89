@@ -53,10 +53,86 @@ DefaultTakeAddItemHasItem:
 ; scene exit actions
 ;*******************************************************************************
 
+;-------------------------------------------------------------------------------
+; default exit scene handler
+;-------------------------------------------------------------------------------
+DefaultExitScene:
+	; determine which exit is being used based on sprite direction
+	move.w	(MEM_PLAYER_SPRITE_DIRECTION),d6	; copy player direction to d6
+	mulu.w	#$2,d6	; multiply by 2 to get offset
+	lea	MEM_ACTIVE_SCENE_EXIT_S,a6	; point a6 to the first exit
+	adda.l	d6,a6	; add offset
+	move.w	(a6),d6	; copy location to d6
+	mulu.w	#$4,d6	; multiply by 4 to get offset
+	lea	SceneDefinitionTable,a6	; point a6 to the scene definition table
+	adda.l	d6,a6	; add offset
+	move.l	(a6),a6	; have a6 point to the value at a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	LoadPlayerSprite	; load the player sprite
+	; move player to the correct position
+	move.w	(MEM_PLAYER_SPRITE_DIRECTION),d6	; copy player direction to d6
+DefaultExitSceneTestDown:
+	cmpi.w	#DIRECTION_DOWN,d6	; test for down
+	bne.s	DefaultExitSceneTestUp	; direction is not down, test for up
+	move.w	#SCENE_ENTER_TOP,(MEM_PLAYER_SPRITE_Y)	; update y location
+	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
+	add.l	#$00080000,d7	; add $00080000 to point to Y of 2nd sprite (player)
+	move.l	d7,(VDP_CONTROL)	; set VDP write address
+	move.w	(MEM_PLAYER_SPRITE_Y),(VDP_DATA)	; write new Y value
+	bra.w	DefaultExitSceneUpdatePlayerSprite	; exit
+DefaultExitSceneTestUp:
+	cmpi.w	#DIRECTION_UP,d6	; test for up
+	bne.s	DefaultExitSceneTestLeft	; direction is not up, test for left
+	move.w	#SCENE_ENTER_BOTTOM,(MEM_PLAYER_SPRITE_Y)	; update y location
+	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
+	add.l	#$00080000,d7	; add $00080000 to point to Y of 2nd sprite (player)
+	move.l	d7,(VDP_CONTROL)	; set VDP write address
+	move.w	(MEM_PLAYER_SPRITE_Y),(VDP_DATA)	; write new Y value
+	bra.s	DefaultExitSceneUpdatePlayerSprite	; exit
+DefaultExitSceneTestLeft:
+	cmpi.w	#DIRECTION_LEFT,d6	; test for up
+	bne.s	DefaultExitSceneTestRight	; direction is not left, test for right
+	move.w	#SCENE_ENTER_LEFT,(MEM_PLAYER_SPRITE_X)	; update x location
+	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
+	add.l	#$000E0000,d7	; add $00080000 to point to Y of 2nd sprite (player)
+	move.l	d7,(VDP_CONTROL)	; set VDP write address
+	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; write new Y value
+	bra.s	DefaultExitSceneUpdatePlayerSprite	; exit
+DefaultExitSceneTestRight:
+	cmpi.w	#DIRECTION_LEFT,d6	; test for right
+	bne.s	DefaultExitSceneUpdatePlayerSprite	; should be unreachable
+	move.w	#SCENE_ENTER_RIGHT,(MEM_PLAYER_SPRITE_X)	; update x location
+	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
+	add.l	#$000E0000,d7	; add $00080000 to point to Y of 2nd sprite (player)
+	move.l	d7,(VDP_CONTROL)	; set VDP write address
+	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; write new Y value
+DefaultExitSceneUpdatePlayerSprite:
+	move.w	#$0000,(MEM_PLAYER_SPRITE_FRAME)	; frame
+	; setting SPRITE_STEP_COUNTER to SPRITE_ANIMATION_STEPS forces movement
+	; animation to trigger the next time the sprite moves
+	move.w	#SPRITE_ANIMATION_STEPS,(MEM_PLAYER_SPRITE_STEP_COUNTER)
+	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
+	if	_SPRITE_COLLISION_
+	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
+	endif
+
+;	bsr.w	SetDefaultSpriteOrder	; reset sprite order table
+	move.w	(MEM_PLAYER_SPRITE_ID),d2	; copy ID to d2
+	move.w	(MEM_PLAYER_SPRITE_Y),d3	; copy new Y value to d3
+	bsr.w	UpdateSpriteSortTable	; update the sprite table
+	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; flag order has changed
+;	bsr.w	OrderSprites	
+
+	rts
+
+
+;-------------------------------------------------------------------------------
+; exit scene 00
+;-------------------------------------------------------------------------------
 ExitScene00:
 	cmpi.w	#$0000,(MEM_DAY)
 	beq.s	ExitScene00Day00	; branch to day 0
-	; TODO  - use default scene change logic when it's built
+	bsr.w	DefaultExitScene	; use default handler
 	rts
 ExitScene00Day00:
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
@@ -68,13 +144,17 @@ ExitScene00Day00:
 	bsr.w	SetDialogOpening
 	rts
 ExitScene00Day00CanExit:
+	; --------------------------------------------------------------------------
+	; save this code for later - can be re-used for end of mall walker demo
+	; --------------------------------------------------------------------------
 	; set the end game flag
-	and.l	#$0000,d7	; clear all other flags
-	bset.l	#STATE_FLAG_END_SCREEN,d7 ; set end screen state flag	
-	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-	; load end scene
-	lea	SceneEnd,a6	; address of the scene for the title screen
-	bsr.w	LoadScene	; branch to LoadScene subroutine
+;	and.l	#$0000,d7	; clear all other flags
+;	bset.l	#STATE_FLAG_END_SCREEN,d7 ; set end screen state flag	
+;	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+;	; load end scene
+;	lea	SceneEnd,a6	; address of the scene for the title screen
+;	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	DefaultExitScene	; use default handler
 	rts
 
 ;*******************************************************************************
@@ -252,15 +332,6 @@ Day00Scene00Action02LaunchScriptedEvent:
 	; set flag to indicate the scripted event ran
 	bset.l	#EVENT_FLAG_DAY00_EVENT00_COMPLETE,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated event flag
-;	; determine which direction to move the NPC
-;	move.w	(MEM_PLAYER_SPRITE_X),d6	; copy player x to d6
-;	move.w	(MEM_NPC0_SPRITE_X),d7	; copy first NPC x to d7
-;	cmp.w	d6,d7	; compare the values
-;	bge.s	Day00Scene00Action02LaunchScriptedRight	; branch if d7>=d6
-;	lea ScriptedEventDay0Left,a6	; point a6 to event to load
-;	bsr.w QueueScriptedEvent	; queue the event
-;	bsr.w	Scene00DefaultTake	; use scene defaults
-;	rts	; exit
 Day00Scene00Action02LaunchScriptedRight:
 	lea	ScriptedEventDay0Right,a6	; point a6 to event to load
 	bsr.w	QueueScriptedEvent	; queue the event

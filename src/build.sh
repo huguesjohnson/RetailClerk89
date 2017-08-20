@@ -1,7 +1,8 @@
 # build the collision data
 cd build-tools
 echo "Building collision data..."
-sh JBMP2ASM.sh ../collision-maps/store-vb-512x512.bmp ../collision-maps/map_StoreVBCollision.X68
+sh BMPtoCollisionData.sh ../collision-maps/store-00-512x512.bmp ../collision-maps/map_Store00Collision.X68
+sh BMPtoCollisionData.sh ../collision-maps/store-01-512x512.bmp ../collision-maps/map_Store01Collision.X68
 # build the memory map
 echo "Building memory map..."
 sh CSVMemoryMap.sh ../MemoryMap.csv ../const_MemoryMap.X68 FFFF0000

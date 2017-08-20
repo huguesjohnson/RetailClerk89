@@ -26,12 +26,12 @@
 ;	-BGM
 ;		-reference to location of background music
 ;-------------------------------------------------------------------------------
-SceneVB:
+SceneWWHall:
 
 	;---------------------------------------------------------------------------
 	; scene ID
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_VB
+	dc.w	SCENE_ID_WWHALL
 
 	;---------------------------------------------------------------------------
 	; tiles
@@ -45,60 +45,20 @@ SceneVB:
 	; palettes
 	;---------------------------------------------------------------------------
 	dc.w	$0004	; four palettes
-	dc.l	Store00Palettes	; start of first palette to load
+	dc.l	Store01Palettes	; start of first palette to load
 
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$000E	; scenery count
+	dc.w	$0001	; scenery count
 
 	; floor
 	dc.l	PatternFloor	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0000000000000001	
 	dc.w	$0001	; base pattern
-	dc.w	$001F	; repeat 32 times
+	dc.w	$0001	; repeat 2 times
 	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
-
-	; top shelf
-	dc.l	PatternShelvesH	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0000000000000101	
-	dc.w	$0005	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$00800000	; initial drawing location
-
-	; middle shelf
-	dc.l	PatternShelvesM	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0010000000000101	
-	dc.w	$2005	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$01000000	; initial drawing location
-
-	; low shelf
-	dc.l	PatternShelvesL	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0100000000000101	
-	dc.w	$4005	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$01800000	; initial drawing location
-
-	; frame top
-	dc.l	PatternFrameTop	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000000	
-	dc.w	$8000	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
-
-	; frame side
-	dc.l	PatternFrameSide	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000000	
-	dc.w	$8000	; base pattern
-	dc.w	$0016	; repeat 23 times
-	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
 
 	; store front
 	dc.l	PatternStoreFront	; location of first pattern to load
@@ -106,74 +66,7 @@ SceneVB:
 	; 1000000000001100	
 	dc.w	$800C	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$0C000000	; initial drawing location
-
-	; counter - low front
-	dc.l	PatternCounterLow	; location of first pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0010000000100001	
-	dc.w	$2021	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$05000000+$001C0000	; initial drawing location
-
-	; counter - low side
-	dc.l	PatternCounterLowSide	; location of first pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0010000000110001	
-	dc.w	$2031	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$01800000+$00300000	; initial drawing location
-
-	; counter - top
-	dc.l	PatternCounterHigh	; location of first pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1010000000110001	
-	dc.w	$A031	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$03800000+$001C0000	; initial drawing location
-
-	; register
-	dc.l	PatternRegister	; location of first pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1110000000111011	
-	dc.w	$E03B	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$03000000+$00300000	; initial drawing location
-
-	; hardware rack - low
-	dc.l	PatternHWRackLow	; location of first pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0000000001000001	
-	dc.w	$0041	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$07800000+$00080000	; initial drawing location
-
-	; hardware rack - high
-	dc.l	PatternHWRackHigh	; location of first pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000001000001	
-	dc.w	$8041	; base pattern
-	dc.w	$0000	; no repeat
-	; row 10, column 4 = 508
-	dc.l	VDP_VRAM_WRITE_A+$05000000+$00080000	; initial drawing location
-
-	; 16-bit rack - low
-	dc.l	Pattern16BitRackLow	; location of first pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0100000001010000	
-	dc.w	$4050	; base pattern
-	dc.w	$0000	; no repeat
-	; row 15, column 50 = 788
-	dc.l	VDP_VRAM_WRITE_A+$08000000+$003E0000	; initial drawing location
-
-	; 16-bit rack - high
-	dc.l	Pattern16BitRackHigh	; location of first pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1100000001010000	
-	dc.w	$C050	; base pattern
-	dc.w	$0000	; no repeat
-	; row 10, column 4 = 508
-	dc.l	VDP_VRAM_WRITE_A+$05800000+$003E0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A;+$0C000000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text
@@ -252,15 +145,15 @@ SceneVB:
 	;---------------------------------------------------------------------------
 	dc.w	DEFAULT_COLLISION_DATA_SIZE	; collision data size
 	
-	dc.l	MapStore00Collision	; location of collision data
+	dc.l	MapStore01Collision	; location of collision data
 
 	;---------------------------------------------------------------------------
 	; exits
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_WWHALL	; south exit
-	dc.w	$FFFF	; north exit
-	dc.w	$FFFF	; west exit
-	dc.w	$FFFF	; east exit
+	dc.w	SCENE_ID_TBOOKS	; south exit
+	dc.w	SCENE_ID_VB	; north exit
+	dc.w	SCENE_ID_FCBCHECKOUT	; west exit
+	dc.w	SCENE_ID_WEHALL	; east exit
 
 	;---------------------------------------------------------------------------
 	; NPC locations
