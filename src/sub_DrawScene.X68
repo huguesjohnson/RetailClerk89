@@ -24,20 +24,23 @@ ClearVRAMLoop:
 ; load tiles
 ;-------------------------------------------------------------------------------
 	move.w	(a6)+,d7	; number of tilesets to load
+	cmpi.w	#$FFFF,d7	; is there any tiles to load?
+	beq.s	LoadFontTiles	; if no tiles then move to next section
 	move.w	#SCENE_VDP,d1	; use d1 to track write location
-
+	clr.l	d2	; use d2 to increment write location
 LoadSceneLoadTilesLoop:
 	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
 	bsr.w	BuildVRAMWriteAddress
 	move.l	(a6)+,d3	; start address of tileset
 	move.l	(a6)+,d0	; end address of tileset
 	sub.l	d3,d0	; subtract the start address to get length
-	move.l	d0,d2	; copy original value to increment write location later
+	add.l	d0,d2	; copy original value to increment write location later
 	divu.w	#$0004,d0	; divide by 4 to setup call to LoadTiles
 	movea.l	d3,a0	; set address of first tile to load
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 	; increment write location for next tileset
-	add.w	d2,d1	; add to d6 to increment write location
+	move.w	#SCENE_VDP,d1	; d1 was modified by BuildVRAMWriteAddress
+	add.w	d2,d1	; add to d1 to increment write location
 	dbra d7,LoadSceneLoadTilesLoop	; loop until all data is loaded
 
 ;-------------------------------------------------------------------------------

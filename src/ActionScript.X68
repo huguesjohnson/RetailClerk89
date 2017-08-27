@@ -75,53 +75,44 @@ DefaultExitSceneTestDown:
 	cmpi.w	#DIRECTION_DOWN,d6	; test for down
 	bne.s	DefaultExitSceneTestUp	; direction is not down, test for up
 	move.w	#SCENE_ENTER_TOP,(MEM_PLAYER_SPRITE_Y)	; update y location
-	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
-	add.l	#$00080000,d7	; add $00080000 to point to Y of 2nd sprite (player)
-	move.l	d7,(VDP_CONTROL)	; set VDP write address
-	move.w	(MEM_PLAYER_SPRITE_Y),(VDP_DATA)	; write new Y value
 	bra.w	DefaultExitSceneUpdatePlayerSprite	; exit
 DefaultExitSceneTestUp:
 	cmpi.w	#DIRECTION_UP,d6	; test for up
 	bne.s	DefaultExitSceneTestLeft	; direction is not up, test for left
 	move.w	#SCENE_ENTER_BOTTOM,(MEM_PLAYER_SPRITE_Y)	; update y location
-	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
-	add.l	#$00080000,d7	; add $00080000 to point to Y of 2nd sprite (player)
-	move.l	d7,(VDP_CONTROL)	; set VDP write address
-	move.w	(MEM_PLAYER_SPRITE_Y),(VDP_DATA)	; write new Y value
 	bra.s	DefaultExitSceneUpdatePlayerSprite	; exit
 DefaultExitSceneTestLeft:
-	cmpi.w	#DIRECTION_LEFT,d6	; test for up
+	cmpi.w	#DIRECTION_LEFT,d6	; test for left
 	bne.s	DefaultExitSceneTestRight	; direction is not left, test for right
-	move.w	#SCENE_ENTER_LEFT,(MEM_PLAYER_SPRITE_X)	; update x location
-	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
-	add.l	#$000E0000,d7	; add $00080000 to point to Y of 2nd sprite (player)
-	move.l	d7,(VDP_CONTROL)	; set VDP write address
-	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; write new Y value
+	move.w	#SCENE_ENTER_RIGHT,(MEM_PLAYER_SPRITE_X)	; update x location
 	bra.s	DefaultExitSceneUpdatePlayerSprite	; exit
 DefaultExitSceneTestRight:
-	cmpi.w	#DIRECTION_LEFT,d6	; test for right
+	cmpi.w	#DIRECTION_RIGHT,d6	; test for right
 	bne.s	DefaultExitSceneUpdatePlayerSprite	; should be unreachable
-	move.w	#SCENE_ENTER_RIGHT,(MEM_PLAYER_SPRITE_X)	; update x location
-	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
-	add.l	#$000E0000,d7	; add $00080000 to point to Y of 2nd sprite (player)
-	move.l	d7,(VDP_CONTROL)	; set VDP write address
-	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; write new Y value
+	move.w	#SCENE_ENTER_LEFT,(MEM_PLAYER_SPRITE_X)	; update x location
 DefaultExitSceneUpdatePlayerSprite:
-	move.w	#$0000,(MEM_PLAYER_SPRITE_FRAME)	; frame
 	; setting SPRITE_STEP_COUNTER to SPRITE_ANIMATION_STEPS forces movement
 	; animation to trigger the next time the sprite moves
 	move.w	#SPRITE_ANIMATION_STEPS,(MEM_PLAYER_SPRITE_STEP_COUNTER)
-	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
 	if	_SPRITE_COLLISION_
+	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition	
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
 	endif
-
-;	bsr.w	SetDefaultSpriteOrder	; reset sprite order table
+	; update sort table	
 	move.w	(MEM_PLAYER_SPRITE_ID),d2	; copy ID to d2
 	move.w	(MEM_PLAYER_SPRITE_Y),d3	; copy new Y value to d3
 	bsr.w	UpdateSpriteSortTable	; update the sprite table
 	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; flag order has changed
-;	bsr.w	OrderSprites	
+	; update x & y values in the sprite table
+	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
+	add.l	#$00080000,d7	; add $00080000 to point to Y of 2nd sprite (player)
+	move.l	d7,(VDP_CONTROL)	; set VDP write address
+	move.w	(MEM_PLAYER_SPRITE_Y),(VDP_DATA)	; write new Y value
+	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
+	add.l	#$000E0000,d7	; add $00080000 to point to Y of 2nd sprite (player)
+	move.l	d7,(VDP_CONTROL)	; set VDP write address
+	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; write new X value
+
 
 	rts
 

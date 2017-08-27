@@ -13,6 +13,7 @@
 	include 'patterns/pattern_FrameTop.X68'
 	include 'patterns/pattern_FrameSide.X68'
 	include 'patterns/pattern_StoreFront.X68'
+	include 'patterns/pattern_StoreFrontFrame.X68'
 	include 'patterns/pattern_CounterLow.X68'
 	include 'patterns/pattern_CounterLowSide.X68'
 	include 'patterns/pattern_CounterHigh.X68'
@@ -25,4 +26,12 @@
 	include 'patterns/pattern_TitleBackground.X68'
 	include 'patterns/pattern_TitleFooter.X68'
 	include 'patterns/pattern_IntroHint.X68'
+
+;-------------------------------------------------------------------------------
+; hallway scenery
+;-------------------------------------------------------------------------------
+	include 'patterns/pattern_HallFloor.X68'
+	include 'patterns/pattern_HallFloorBorder.X68'
+	include	'patterns/pattern_HallSouthFrame.X68'
+
 

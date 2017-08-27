@@ -24,7 +24,7 @@
 ;*******************************************************************************
 ; conditional compilation directives
 ;*******************************************************************************
-_DEBUG_=$0	; enable/disable debug mode
+_DEBUG_=$1	; enable/disable debug mode
 _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
 
 ;*******************************************************************************
@@ -597,10 +597,7 @@ TrapException:
 ;*******************************************************************************
 ; collision maps
 ;*******************************************************************************
-MapStore00Collision:
-	include 'collision-maps/map_Store00Collision.X68'
-MapStore01Collision:
-	include 'collision-maps/map_Store01Collision.X68'
+	include	'inc_CollisionMaps.X68'
 
 ;*******************************************************************************
 ; sprite table defintions

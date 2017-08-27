@@ -13,7 +13,7 @@ Store00Palettes:
 ; store 01 (west hallway west)
 Store01Palettes:
 	include 'palettes/pal_Store_00.X68'
-	include 'palettes/pal_Store_01.X68'
+	include 'palettes/pal_Hallway_00.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
 

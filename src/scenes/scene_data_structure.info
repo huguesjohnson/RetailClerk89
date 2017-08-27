@@ -1,0 +1,48 @@
+;-------------------------------------------------------------------------------
+; scene data structure
+;	-tiles
+;		-tileset count
+;		-references to locations of tilesets to load
+;	-palettes
+;		-palette count
+;		-references to locations of palettes to load
+;	-scenery
+;		-scenery count
+;		-scenery definitions
+;			-Pattern
+;			-Rows -> Word
+;			-Columns -> Word
+;			-Repeat -> Word number of times to repeat the pattern
+;			-Base tile ID -> Word (Base tile ID + Palette + Priority)
+;			-Initial address offset -> Long (either A or B)
+;			-Start Row (or Y) -> Word
+;			-Start Column (or X) -> Word
+;	-text
+;		-text count
+;		-text definitions
+;			-references to location of string to display
+;			-base tile ID (usually DIALOG_BASE_TILE)
+;			-Initial address offset -> Long (either A or B)
+;	-objects[]
+;		-object count
+;		-list of objects
+;	-collision data
+;		-size of collision data
+;		-reference to location of collision data
+;	-exits
+;		-scene id of south exit
+;		-scene id of north exit
+;		-scene id of west exit
+;		-scene id of east exit
+;	-NPC locations
+;		-npc count
+;		-npc location definition
+;			-starting x location of npc
+;			-starting y location of npc
+;			-starting direction of npc
+;			-movement frequency of npc
+;			-location of movement pattern for npc
+;			-movement pattern length
+;	-BGM
+;		-reference to location of background music
+;-------------------------------------------------------------------------------

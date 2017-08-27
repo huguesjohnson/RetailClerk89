@@ -33,15 +33,21 @@ TransparentTileStart:
 	dc.l	$00000000
 TransparentTileEnd:
 
+StoreVBFloorTilesStart:
 	include 'tiles/scene-tiles/tileset_Floor.X68'
 	; swap for this tileset for the debug grid pattern	
 	;include 'tiles/scene-tiles/tileset_FloorDebug.X68'
+StoreVBFloorTilesEnd:
+
+StoreVBFrameTilesStart:
+	include 'tiles/scene-tiles/tileset_StoreFrame.X68'
+StoreVBFrameTilesEnd:
+
+StoreVBStoreFrontTilesStart:
+	include 'tiles/scene-tiles/tileset_StoreFront.X68'
+StoreVBStoreFrontTilesEnd:
 
 	include 'tiles/scene-tiles/tileset_Merchandise.X68'
-
-	include 'tiles/scene-tiles/tileset_StoreFrame.X68'
-
-	include 'tiles/scene-tiles/tileset_StoreFront.X68'
 
 	include 'tiles/scene-tiles/tileset_CounterLow.X68'
 
@@ -54,6 +60,14 @@ TransparentTileEnd:
 	include 'tiles/scene-tiles/tileset_16BitRack.X68'
 
 StoreVBTilesEnd:
+
+;-------------------------------------------------------------------------------
+; hallway scene tiles
+;-------------------------------------------------------------------------------
+
+HallWestTilesStart:
+	include 'tiles/scene-tiles/tileset_WestHallFloor.X68'
+HallWestTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; sprite tiles
