@@ -63,6 +63,8 @@ DefaultExitScene:
 	lea	MEM_ACTIVE_SCENE_EXIT_S,a6	; point a6 to the first exit
 	adda.l	d6,a6	; add offset
 	move.w	(a6),d6	; copy location to d6
+	cmpi.w	#$FFFF,d6	; is this a valid exit?
+	beq.w	ExitDefaultExit	; if not a valid exit then exit subroutine
 	mulu.w	#$4,d6	; multiply by 4 to get offset
 	lea	SceneDefinitionTable,a6	; point a6 to the scene definition table
 	adda.l	d6,a6	; add offset
@@ -112,8 +114,7 @@ DefaultExitSceneUpdatePlayerSprite:
 	add.l	#$000E0000,d7	; add $00080000 to point to Y of 2nd sprite (player)
 	move.l	d7,(VDP_CONTROL)	; set VDP write address
 	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; write new X value
-
-
+ExitDefaultExit:
 	rts
 
 
