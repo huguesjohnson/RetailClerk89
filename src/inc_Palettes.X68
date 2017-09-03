@@ -5,22 +5,22 @@ StorePalettes:
 
 ; store 00 (video buffet)
 Store00Palettes:
-	include 'palettes/pal_Store_00.X68'
-	include 'palettes/pal_Store_01.X68'
-	include 'palettes/pal_Store_02.X68'
+	include 'palettes/pal_Store_vb_00.X68'
+	include 'palettes/pal_Store_vb_01.X68'
+	include 'palettes/pal_Store_vb_02.X68'
 	include 'palettes/pal_People_00.X68'
 
 ; store 01 (west hallway west)
 Store01Palettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_vb_00.X68'	; north wall is video buffet
 	include 'palettes/pal_Hallway_00.X68'
-	include 'palettes/pal_Store_02.X68'
+	include 'palettes/pal_Store_tbooks_00.X68'	; south wall is bookstore
 	include 'palettes/pal_People_00.X68'
 
 ; store 02 (west hallway east)
 Store02Palettes:
 	include 'palettes/pal_Store_00.X68'
-	include 'palettes/pal_Store_01.X68'
+	include 'palettes/pal_Hallway_00.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
 

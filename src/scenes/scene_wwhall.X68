@@ -8,7 +8,7 @@ SceneWWHall:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0004	; five tilesets
+	dc.w	$0006	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -30,6 +30,14 @@ SceneWWHall:
 	dc.l	HallWestTilesStart	; start of hallway tiles
 	dc.l	HallWestTilesEnd	; end of hallway tiles
 
+	; tileset 5
+	dc.l	NorthFrameRoundedTilesStart	; start of tiles for south frame
+	dc.l	NorthFrameRoundedTilesEnd	; end of tiles for south frame
+
+	; tileset 6
+	dc.l	WoodFloorTilesStart	; start of tiles for south floor
+	dc.l	WoodFloorTilesEnd	; end of tiles for south floor
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -39,7 +47,7 @@ SceneWWHall:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0006	; scenery count
+	dc.w	$0008	; scenery count
 
 	; floor
 	dc.l	PatternFloor	; location of pattern to load
@@ -89,13 +97,29 @@ SceneWWHall:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$0C800000	; initial drawing location
 
-	; south store frame
+	; floor
+	dc.l	PatternWoodFloor	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 0100000000101010	
+	dc.w	$402A	; base pattern
+	dc.w	$0000	; no repeat 
+	dc.l	VDP_VRAM_WRITE_B+$0D800000	; initial drawing location
+
+	; south store frame - left side
 	dc.l	PatternHallSouthFrame	; location of pattern to load
 	; pccvhnnnnnnnnnnn
-	; 1000000000001100	
-	dc.w	$8000	; base pattern
+	; 1100000000100011	
+	dc.w	$C023	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$0D800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$0D800000	; initial drawing location
+
+	; south store frame - right side
+	dc.l	PatternHallSouthFrame	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 1100000000100011	
+	dc.w	$C023	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0D800000+$00360000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text

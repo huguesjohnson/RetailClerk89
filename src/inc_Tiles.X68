@@ -70,6 +70,18 @@ HallWestTilesStart:
 HallWestTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; general store frame tiles
+;-------------------------------------------------------------------------------
+
+NorthFrameRoundedTilesStart:
+	include 'tiles/scene-tiles/tileset_northframe_rounded.X68'
+NorthFrameRoundedTilesEnd:
+
+WoodFloorTilesStart:
+	include 'tiles/scene-tiles/tileset_woodfloor.X68'
+WoodFloorTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; sprite tiles
 ;-------------------------------------------------------------------------------
 
@@ -102,4 +114,12 @@ NPCSpriteGreenbergEnd:
 
 SpriteTilesEnd:
 
+;-------------------------------------------------------------------------------
+; used for development builds only
+;-------------------------------------------------------------------------------
+	if	_DEBUG_
+DebugWireframeTilesStart:
+	include 'tiles/scene-tiles/tileset_debugwireframe.X68'
+DebugWireframeTilesEnd:
+	endif
 

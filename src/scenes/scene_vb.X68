@@ -22,7 +22,7 @@ SceneVB:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$000F	; scenery count
+	dc.w	$000F	; scenery count - 1
 
 	; floor
 	dc.l	PatternFloor	; location of pattern to load
@@ -73,7 +73,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
 
 	; store front frame
-	dc.l	PatternStoreFrontFrame	; location of first pattern to load
+	dc.l	PatternStoreFrontFrame	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 1000000000001100	
 	dc.w	$8000	; base pattern
@@ -81,7 +81,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_A+$0C000000	; initial drawing location
 
 	; store front
-	dc.l	PatternStoreFront	; location of first pattern to load
+	dc.l	PatternStoreFront	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 1000000000001100	
 	dc.w	$8000	; base pattern
@@ -97,7 +97,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_A+$05000000+$001C0000	; initial drawing location
 
 	; counter - low side
-	dc.l	PatternCounterLowSide	; location of first pattern to load
+	dc.l	PatternCounterLowSide	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0010000000110001	
 	dc.w	$2031	; base pattern
@@ -105,7 +105,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_B+$01800000+$00300000	; initial drawing location
 
 	; counter - top
-	dc.l	PatternCounterHigh	; location of first pattern to load
+	dc.l	PatternCounterHigh	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 1010000000110001	
 	dc.w	$A031	; base pattern
@@ -113,7 +113,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_A+$03800000+$001C0000	; initial drawing location
 
 	; register
-	dc.l	PatternRegister	; location of first pattern to load
+	dc.l	PatternRegister	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 1110000000111011	
 	dc.w	$E03B	; base pattern
@@ -147,7 +147,7 @@ SceneVB:
 	dc.l	VDP_VRAM_WRITE_A+$08000000+$003E0000	; initial drawing location
 
 	; 16-bit rack - high
-	dc.l	Pattern16BitRackHigh	; location of first pattern to load
+	dc.l	Pattern16BitRackHigh	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 1100000001010000	
 	dc.w	$C050	; base pattern

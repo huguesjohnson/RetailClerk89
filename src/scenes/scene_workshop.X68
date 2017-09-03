@@ -8,7 +8,15 @@ SceneWorkshop:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$FFFF	; zero tilesets
+	dc.w	$0001	; tileset count - 1
+
+	; tileset 0
+	dc.l	TransparentTileStart
+	dc.l	TransparentTileEnd
+
+	; tileset 1
+	dc.l	DebugWireframeTilesStart	; start of hallway tiles
+	dc.l	DebugWireframeTilesEnd	; end of hallway tiles
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -19,7 +27,39 @@ SceneWorkshop:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$FFFF	; scenery count
+	dc.w	$0003	; scenery count - 1
+
+	; frame side
+	dc.l	PatternDebugWireFrameSides	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 1000000000000001	
+	dc.w	$8001	; base pattern
+	dc.w	$0019	; repeat 26 times
+	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
+
+	; south frame
+	dc.l	PatternDebugWireFrameSouthFrameClosed	; location pattern to load
+	; pccvhnnnnnnnnnnn
+	; 1000000000000001	
+	dc.w	$8001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0C000000	; initial drawing location
+
+	; store front window
+	dc.l	PatternDebugWireFrameNorthWindow	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 1000000000000001	
+	dc.w	$8001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0C800000	; initial drawing location
+
+	; north store frame
+	dc.l	PatternDebugWireFrameNorthFrameClosed ; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 1000000000000001	
+	dc.w	$8001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text

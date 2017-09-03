@@ -7,6 +7,7 @@
 ; video buffet scenery
 ;-------------------------------------------------------------------------------
 	include 'patterns/pattern_Floor.X68'
+	include 'patterns/pattern_WoodFloor.X68'
 	include 'patterns/pattern_ShelvesH.X68'
 	include 'patterns/pattern_ShelvesM.X68'
 	include 'patterns/pattern_ShelvesL.X68'
@@ -34,4 +35,10 @@
 	include 'patterns/pattern_HallFloorBorder.X68'
 	include	'patterns/pattern_HallSouthFrame.X68'
 
+;-------------------------------------------------------------------------------
+; used for development builds only
+;-------------------------------------------------------------------------------
+	if	_DEBUG_
+	include	'patterns/pattern_debugwireframe.X68'
+	endif
 
