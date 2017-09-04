@@ -21,6 +21,35 @@ import javax.imageio.ImageIO;
 public class BMPtoTiles{
 	private final static String newLine=System.lineSeparator();
 
+	public static String hexStringToGenesisRgb(String hexString){
+		int i=Integer.parseInt(hexString,16);
+		i=i/32;
+		String b=Integer.toBinaryString(i);
+		if(b.length()>3){b=b.substring(0,3); return(b); }
+		if(b.length()==2){b="0"+b; return(b); }
+		if(b.length()==1){b="00"+b; return(b); }
+		if(b.length()==0){ return("000"); }
+		return(b);
+	}
+
+
+	public static String rgbStringToGenesisRgbString(String rgb){
+		StringBuilder grgb=new StringBuilder();
+		//ffrrggbb
+		//01234567
+		grgb.append("0000");
+		//BBB
+		grgb.append(hexStringToGenesisRgb(rgb.substring(6,8)));
+		grgb.append("0");
+		//GGG
+		grgb.append(hexStringToGenesisRgb(rgb.substring(4,6)));
+		grgb.append("0");
+		//RRR
+		grgb.append(hexStringToGenesisRgb(rgb.substring(2,4)));
+		grgb.append("0");
+		return(grgb.toString());
+	}
+	
 	//arg[0]=source file (bitmap)
 	//arg[1]=output file (text)
 	//arg[n]=initial colors to add to the array - i.e.  transparency color in entry 0
@@ -59,7 +88,7 @@ public class BMPtoTiles{
 						StringBuffer line=new StringBuffer();
 						line.append("\tdc.l\t$");
 						for(int x=col;x<(col+8);x++){
-							int color=image.getRGB(x,y);
+							int color=image.getRGB(x,y); 
 							String hexString=Integer.toHexString(color);
 							int index=colors.indexOf(hexString);
 							if(index<0){
@@ -79,7 +108,8 @@ public class BMPtoTiles{
 		    System.out.println("Successfully wrote "+outputFilePath);
 		    System.out.println("Color list:");
 		    for(int i=0;i<colors.size();i++){
-		    	System.out.println(colors.get(i));
+		    	System.out.println("Color["+i+"]="+colors.get(i));
+		    	System.out.println("Genesis RGB approximation="+rgbStringToGenesisRgbString(colors.get(i)));
 		    }
 		}catch(Exception x){
 			x.printStackTrace();			
