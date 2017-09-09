@@ -77,3 +77,5 @@
 	; SCENE_ID_FCBCAMPING=$0016
 	include 'scenes/scene_fcbcamping.X68'
 
+	; SCENE_ID_SOUTH_CENTER=$0017
+	include 'scenes/scene_southcenter.X68'

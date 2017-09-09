@@ -1,3 +1,14 @@
+TransparentTileStart:
+	dc.l	$00000000
+	dc.l	$00000000
+	dc.l	$00000000
+	dc.l	$00000000
+	dc.l	$00000000
+	dc.l	$00000000
+	dc.l	$00000000
+	dc.l	$00000000
+TransparentTileEnd:
+
 ;-------------------------------------------------------------------------------
 ; font tiles
 ;-------------------------------------------------------------------------------
@@ -17,35 +28,10 @@ TileScreenTilesStart:
 TileScreenTilesEnd:
 
 ;-------------------------------------------------------------------------------
-; video buffet scene tiles
+; video buffet scenery tiles
 ;-------------------------------------------------------------------------------
 
 StoreVBTilesStart:
-
-TransparentTileStart:
-	dc.l	$00000000
-	dc.l	$00000000
-	dc.l	$00000000
-	dc.l	$00000000
-	dc.l	$00000000
-	dc.l	$00000000
-	dc.l	$00000000
-	dc.l	$00000000
-TransparentTileEnd:
-
-StoreVBFloorTilesStart:
-	include 'tiles/scene-tiles/tileset_Floor.X68'
-	; swap for this tileset for the debug grid pattern	
-	;include 'tiles/scene-tiles/tileset_FloorDebug.X68'
-StoreVBFloorTilesEnd:
-
-StoreVBFrameTilesStart:
-	include 'tiles/scene-tiles/tileset_StoreFrame.X68'
-StoreVBFrameTilesEnd:
-
-StoreVBStoreFrontTilesStart:
-	include 'tiles/scene-tiles/tileset_StoreFront.X68'
-StoreVBStoreFrontTilesEnd:
 
 	include 'tiles/scene-tiles/tileset_Merchandise.X68'
 
@@ -73,13 +59,47 @@ HallWestTilesEnd:
 ; general store frame tiles
 ;-------------------------------------------------------------------------------
 
+CarpetFloorTilesStart:
+	include 'tiles/scene-tiles/tileset_Floor.X68'
+	; swap for this tileset for the debug grid pattern	
+	;include 'tiles/scene-tiles/tileset_FloorDebug.X68'
+CarpetFloorTilesEnd:
+
 NorthFrameRoundedTilesStart:
 	include 'tiles/scene-tiles/tileset_northframe_rounded.X68'
 NorthFrameRoundedTilesEnd:
 
-WoodFloorTilesStart:
-	include 'tiles/scene-tiles/tileset_woodfloor.X68'
-WoodFloorTilesEnd:
+WoodFloorVTilesStart:
+	include 'tiles/scene-tiles/tileset_woodfloorv.X68'
+WoodFloorVTilesEnd:
+
+WoodFloorHTilesStart:
+	include 'tiles/scene-tiles/tileset_woodfloorh.X68'
+WoodFloorHTilesEnd:
+
+WoodFloorSlopedTilesStart:
+	include 'tiles/scene-tiles/tileset_woodfloorsloped.X68'
+WoodFloorSlopedTilesEnd:
+
+WindowAngledTilesStart:
+	include 'tiles/scene-tiles/tileset_windowangled.X68'
+WindowAngledTilesEnd:
+
+TileFloorTilesStart:
+	include 'tiles/scene-tiles/tileset_tilefloor.X68'
+TileFloorTilesEnd:
+
+SimpleTileFloorTilesStart:
+	include 'tiles/scene-tiles/tileset_tilefloorsimple.X68'
+SimpleTileFloorTilesEnd:
+
+StoreFrameTilesStart:
+	include 'tiles/scene-tiles/tileset_StoreFrame.X68'
+StoreFrameTilesEnd:
+
+StoreFrontWindowTilesStart:
+	include 'tiles/scene-tiles/tileset_StoreFront.X68'
+StoreFrontWindowTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; sprite tiles

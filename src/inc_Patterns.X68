@@ -6,8 +6,6 @@
 ;-------------------------------------------------------------------------------
 ; video buffet scenery
 ;-------------------------------------------------------------------------------
-	include 'patterns/pattern_Floor.X68'
-	include 'patterns/pattern_WoodFloor.X68'
 	include 'patterns/pattern_ShelvesH.X68'
 	include 'patterns/pattern_ShelvesM.X68'
 	include 'patterns/pattern_ShelvesL.X68'
@@ -27,6 +25,19 @@
 	include 'patterns/pattern_TitleBackground.X68'
 	include 'patterns/pattern_TitleFooter.X68'
 	include 'patterns/pattern_IntroHint.X68'
+
+;-------------------------------------------------------------------------------
+; generic store scenery
+;-------------------------------------------------------------------------------
+	include 'patterns/pattern_WindowAngledLeft.X68'
+	include 'patterns/pattern_WindowAngledCenter.X68'
+	include 'patterns/pattern_WindowAngledRight.X68'
+	include 'patterns/pattern_Floor.X68'
+	include 'patterns/pattern_WoodFloorH.X68'
+	include 'patterns/pattern_WoodFloorV.X68'
+	include 'patterns/pattern_WoodFloorSloped.X68'
+	include 'patterns/pattern_TileFloor.X68'
+	include 'patterns/pattern_TileFloorSimple.X68'
 
 ;-------------------------------------------------------------------------------
 ; hallway scenery

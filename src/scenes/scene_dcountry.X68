@@ -110,7 +110,7 @@ SceneDeminCountry:
 	;---------------------------------------------------------------------------
 	dc.w	$FFFF	; south exit
 	dc.w	SCENE_ID_EWHALL	; north exit
-	dc.w	$FFFF	; west exit
+	dc.w	SCENE_ID_SOUTH_CENTER	; west exit
 	dc.w	$FFFF	; east exit
 
 	;---------------------------------------------------------------------------

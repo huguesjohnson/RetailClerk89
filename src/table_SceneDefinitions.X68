@@ -72,3 +72,7 @@ SceneDefinitionTable:
 	; SCENE_ID_FCBCAMPING=$0016
 	dc.l	SceneFCBCamping
 
+	; SCENE_ID_SOUTH_CENTER=$0017
+	dc.l	SceneSouthCenter
+
+

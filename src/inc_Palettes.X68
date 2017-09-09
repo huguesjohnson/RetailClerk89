@@ -19,9 +19,9 @@ Store01Palettes:
 
 ; store 02 (west hallway east)
 Store02Palettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_cplanet_00.X68'	; north wall is cassette planet
 	include 'palettes/pal_Hallway_00.X68'
-	include 'palettes/pal_Store_02.X68'
+	include 'palettes/pal_Store_jitch_00.X68'	; south wall is jock itch
 	include 'palettes/pal_People_00.X68'
 
 ; store 03 (center)
@@ -47,16 +47,16 @@ Store05Palettes:
 
 ; store 06 (east hallway west)
 Store06Palettes:
-	include 'palettes/pal_Store_00.X68'
-	include 'palettes/pal_Store_01.X68'
-	include 'palettes/pal_Store_02.X68'
+	include 'palettes/pal_Store_checkers_00.X68'	; north wall is checkers
+	include 'palettes/pal_Hallway_01.X68'
+	include 'palettes/pal_Store_dcountry_00.X68'	; south wall is denimcountry
 	include 'palettes/pal_People_00.X68'
 
 ; store 07 (east hallway east)
 Store07Palettes:
-	include 'palettes/pal_Store_00.X68'
-	include 'palettes/pal_Store_01.X68'
-	include 'palettes/pal_Store_02.X68'
+	include 'palettes/pal_Store_cavern_00.X68'	; north wall is the cavern
+	include 'palettes/pal_Hallway_01.X68'
+	include 'palettes/pal_Store_02.X68'	; south wall is tlodge
 	include 'palettes/pal_People_00.X68'
 
 ; store 08 (denim country)
@@ -68,7 +68,7 @@ Store08Palettes:
 
 ; store 09 (checkers)
 Store09Palettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_checkers_00.X68'
 	include 'palettes/pal_Store_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
@@ -117,21 +117,21 @@ Store0FPalettes:
 
 ; store 10 (cassette planet)
 Store10Palettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_cplanet_00.X68'
 	include 'palettes/pal_Store_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
 
 ; store 11 (jock itch)
 Store11Palettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_jitch_00.X68'
 	include 'palettes/pal_Store_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
 
 ; store 12 (bookstore)
 Store12Palettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_tbooks_00.X68'
 	include 'palettes/pal_Store_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
@@ -159,6 +159,13 @@ Store15Palettes:
 
 ; store 16 (fish or cut bait - camping)
 Store16Palettes:
+	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_01.X68'
+	include 'palettes/pal_Store_02.X68'
+	include 'palettes/pal_People_00.X68'
+
+; store 17 (south center)
+Store17Palettes:
 	include 'palettes/pal_Store_00.X68'
 	include 'palettes/pal_Store_01.X68'
 	include 'palettes/pal_Store_02.X68'
@@ -325,6 +332,13 @@ Store15PalettesPaused:
 
 ; store 16 (fish or cut bait - camping)
 Store16PalettesPaused:
+	include 'palettes/pal_Paused_00.X68'
+	include 'palettes/pal_Paused_01.X68'
+	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_03.X68'
+
+; store 17 (south center)
+Store17PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_01.X68'
 	include 'palettes/pal_Paused_02.X68'

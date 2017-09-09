@@ -8,7 +8,7 @@ SceneWEHall:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0002	; tileset count - 1
+	dc.w	$0005	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -19,8 +19,20 @@ SceneWEHall:
 	dc.l	HallWestTilesEnd	; end of hallway tiles
 
 	; tileset 2
-	dc.l	DebugWireframeTilesStart	; start of hallway tiles
-	dc.l	DebugWireframeTilesEnd	; end of hallway tiles
+	dc.l	WindowAngledTilesStart	; start of north window tiles
+	dc.l	WindowAngledTilesEnd	; end of north window tiles
+
+	; tileset 3
+	dc.l	TileFloorTilesStart	; start of north floor tiles
+	dc.l	TileFloorTilesEnd	; end of north floor tiles
+
+	; tileset 4
+	dc.l	CarpetFloorTilesStart	; start of south floor tiles
+	dc.l	CarpetFloorTilesEnd	; end of south floor tiles
+
+	; tileset 5
+	dc.l	StoreFrameTilesStart	; start of south frame tiles
+	dc.l	StoreFrameTilesEnd	; end of south frame tiles
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -31,22 +43,47 @@ SceneWEHall:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0005	; scenery count - 1
+	dc.w	$0009	; scenery count - 1
+
+	; north store floor border
+	dc.l	PatternTileFloor	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 0000000000011010	
+	dc.w	$001A	; base pattern
+	dc.w	$0001	; repeat 1 time
+	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
 
 	; top border
 	dc.l	PatternHallFloorBorder	; location of pattern to load
+	; pccvhnnnnnnnnnnn
 	; 0010000000000001	
 	dc.w	$2001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$02000000	; initial drawing location
 
-	; store front
-	dc.l	PatternDebugWireFrameNorthWindow	; location of pattern to load
-;	; pccvhnnnnnnnnnnn
-;	; 0000000000000110	
+	; store front - left
+	dc.l	PatternWindowAngledLeft	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 0000000000000110	
 	dc.w	$0006	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
+
+	; store front - center
+	dc.l	PatternWindowAngledCenter	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 1000000000000110	
+	dc.w	$8006	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$001A0000	; initial drawing location
+
+	; store front - right
+	dc.l	PatternWindowAngledRight	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 0000000000000110	
+	dc.w	$0006	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00360000	; initial drawing location
 
 	; floor
 	dc.l	PatternHallFloor	; location of first pattern to load
@@ -64,21 +101,29 @@ SceneWEHall:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$0C800000	; initial drawing location
 
-	; north store frame
-	dc.l	PatternDebugWireFrameNorthFrameClosed ; location of pattern to load
+	; south store floor
+	dc.l	PatternTileFloor	; location of pattern to load
 	; pccvhnnnnnnnnnnn
-	; 1000000000000110	
-	dc.w	$8006	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
-
-	; south store frame
-	dc.l	PatternDebugWireFrameSouthFrameOpen	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000110	
-	dc.w	$8006	; base pattern
+	; 0100000000011110	
+	dc.w	$401E	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$0D800000	; initial drawing location
+
+	; south store frame - left side
+	dc.l	PatternHallSouthFrame	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 1100000000100010	
+	dc.w	$C022	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0D800000	; initial drawing location
+
+	; south store frame - right side
+	dc.l	PatternHallSouthFrame	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 1100000000100010	
+	dc.w	$C022	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0D800000+$00360000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text

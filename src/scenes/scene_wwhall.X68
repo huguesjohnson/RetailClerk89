@@ -15,16 +15,16 @@ SceneWWHall:
 	dc.l	TransparentTileEnd
 
 	; tileset 1
-	dc.l	StoreVBFloorTilesStart	; start of floor tiles
-	dc.l	StoreVBFloorTilesEnd	; end of floor tiles
+	dc.l	CarpetFloorTilesStart
+	dc.l	CarpetFloorTilesEnd
 
 	; tileset 2
-	dc.l	StoreVBFrameTilesStart	; start of frame tiles
-	dc.l	StoreVBFrameTilesEnd	; end of frame tiles
+	dc.l	StoreFrameTilesStart
+	dc.l	StoreFrameTilesEnd
 
 	; tileset 3
-	dc.l	StoreVBStoreFrontTilesStart	; start of front tiles
-	dc.l	StoreVBStoreFrontTilesEnd	; end of front tiles
+	dc.l	StoreFrontWindowTilesStart
+	dc.l	StoreFrontWindowTilesEnd
 
 	; tileset 4
 	dc.l	HallWestTilesStart	; start of hallway tiles
@@ -35,8 +35,8 @@ SceneWWHall:
 	dc.l	NorthFrameRoundedTilesEnd	; end of tiles for south frame
 
 	; tileset 6
-	dc.l	WoodFloorTilesStart	; start of tiles for south floor
-	dc.l	WoodFloorTilesEnd	; end of tiles for south floor
+	dc.l	WoodFloorVTilesStart	; start of tiles for south floor
+	dc.l	WoodFloorVTilesEnd	; end of tiles for south floor
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -47,7 +47,7 @@ SceneWWHall:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0008	; scenery count
+	dc.w	$0008	; scenery count - 1
 
 	; floor
 	dc.l	PatternFloor	; location of pattern to load
@@ -60,7 +60,7 @@ SceneWWHall:
 	; store front frame
 	dc.l	PatternStoreFrontFrame	; location of pattern to load
 	; pccvhnnnnnnnnnnn
-	; 1000000000001100	
+	; 1000000000000000	
 	dc.w	$8000	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
@@ -79,7 +79,7 @@ SceneWWHall:
 	; 0010000000011110	
 	dc.w	$201E	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$02000000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$02000000	; initial drawing location
 
 	; floor
 	dc.l	PatternHallFloor	; location of first pattern to load
@@ -97,8 +97,8 @@ SceneWWHall:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$0C800000	; initial drawing location
 
-	; floor
-	dc.l	PatternWoodFloor	; location of pattern to load
+	; south floor
+	dc.l	PatternWoodFloorV	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0100000000101010	
 	dc.w	$402A	; base pattern

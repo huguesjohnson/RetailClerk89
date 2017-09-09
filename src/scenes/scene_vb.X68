@@ -8,10 +8,27 @@ SceneVB:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; one tileset
+	dc.w	$0004	; tileset count - 1
+
 	; tileset 0
-	dc.l	StoreVBTilesStart	; start of scene tiles
-	dc.l	StoreVBTilesEnd	; end of scene tiles
+	dc.l	TransparentTileStart
+	dc.l	TransparentTileEnd
+
+	; tileset 1
+	dc.l	CarpetFloorTilesStart
+	dc.l	CarpetFloorTilesEnd
+
+	; tileset 2
+	dc.l	StoreFrameTilesStart
+	dc.l	StoreFrameTilesEnd
+
+	; tileset 3
+	dc.l	StoreFrontWindowTilesStart
+	dc.l	StoreFrontWindowTilesEnd
+
+	; tileset 4
+	dc.l	StoreVBTilesStart	; start of scenery tiles
+	dc.l	StoreVBTilesEnd	; end of scenery tiles
 
 	;---------------------------------------------------------------------------
 	; palettes

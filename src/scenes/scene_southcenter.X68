@@ -1,9 +1,9 @@
-SceneJockItch:
+SceneSouthCenter:
 
 	;---------------------------------------------------------------------------
 	; scene ID
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_JOCKITCH
+	dc.w	SCENE_ID_WEHALL
 
 	;---------------------------------------------------------------------------
 	; tiles
@@ -22,28 +22,12 @@ SceneJockItch:
 	; palettes
 	;---------------------------------------------------------------------------
 	dc.w	$0004	; four palettes
-	dc.l	Store11Palettes	; start of first palette to load
+	dc.l	Store03Palettes	; start of first palette to load
 
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0002	; scenery count
-
-	; frame side
-	dc.l	PatternDebugWireFrameSides	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000001	
-	dc.w	$8001	; base pattern
-	dc.w	$0019	; repeat 26 times
-	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
-
-	; south frame
-	dc.l	PatternDebugWireFrameSouthFrameClosed	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000001	
-	dc.w	$8001	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$0D800000	; initial drawing location
+	dc.w	$0001	; scenery count - 1
 
 	; north store frame
 	dc.l	PatternDebugWireFrameNorthFrameOpen ; location of pattern to load
@@ -53,12 +37,28 @@ SceneJockItch:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
 
+	; store front
+	dc.l	PatternDebugWireFrameNorthWindow	; location of pattern to load
+;	; pccvhnnnnnnnnnnn
+;	; 0000000000000001	
+	dc.w	$0001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
+
+;	; south store frame
+;	dc.l	PatternDebugWireFrameSouthFrameOpen	; location of pattern to load
+;	; pccvhnnnnnnnnnnn
+;	; 1000000000000001	
+;	dc.w	$8001	; base pattern
+;	dc.w	$0000	; no repeat
+;	dc.l	VDP_VRAM_WRITE_B+$0D800000	; initial drawing location
+
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
 	dc.w	$0000	; text count
 
-	dc.l	StoreName11	; location of string to display
+	dc.l	StoreName17	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$0C800000	; initial drawing location
 
@@ -103,15 +103,15 @@ SceneJockItch:
 	;---------------------------------------------------------------------------
 	dc.w	DEFAULT_COLLISION_DATA_SIZE	; collision data size
 	
-	dc.l	MapStore11Collision	; location of collision data
+	dc.l	MapStore03Collision	; location of collision data
 
 	;---------------------------------------------------------------------------
 	; exits
 	;---------------------------------------------------------------------------
-	dc.w	$FFFF	; south exit
-	dc.w	SCENE_ID_WEHALL	; north exit
-	dc.w	$FFFF	; west exit
-	dc.w	SCENE_ID_SOUTH_CENTER	; east exit
+	dc.w	SCENE_ID_SHALL	; south exit
+	dc.w	SCENE_ID_CENTER	; north exit
+	dc.w	SCENE_ID_JOCKITCH	; west exit
+	dc.w	SCENE_ID_DENIMCOUNTRY	; east exit
 
 	;---------------------------------------------------------------------------
 	; NPC locations

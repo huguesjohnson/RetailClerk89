@@ -108,7 +108,7 @@ SceneCenter:
 	;---------------------------------------------------------------------------
 	; exits
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_SHALL	; south exit
+	dc.w	SCENE_ID_SOUTH_CENTER	; south exit
 	dc.w	SCENE_ID_WORKSHOP	; north exit
 	dc.w	SCENE_ID_WEHALL	; west exit
 	dc.w	SCENE_ID_EWHALL	; east exit

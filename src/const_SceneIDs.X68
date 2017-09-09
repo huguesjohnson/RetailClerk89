@@ -24,6 +24,7 @@ SCENE_ID_FCBCHECKOUT=$0013
 SCENE_ID_FCBFIREARMS=$0014
 SCENE_ID_FCBFISHING=$0015
 SCENE_ID_FCBCAMPING=$0016
+SCENE_ID_SOUTH_CENTER=$0017
 
 ;-------------------------------------------------------------------------------
 ; day transition screens

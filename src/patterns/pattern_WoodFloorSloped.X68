@@ -1,4 +1,4 @@
-PatternWoodFloor:
+PatternWoodFloorSloped:
 
 	dc.w	$0003	; 4 rows
 

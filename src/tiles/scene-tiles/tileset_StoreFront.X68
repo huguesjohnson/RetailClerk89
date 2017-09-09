@@ -14,7 +14,7 @@
 	dc.l	$9AAAAAAA
 	dc.l	$9AAAAAAA
 	dc.l	$9AAAAAA9
-	dc.l	$22AAAA22
+	dc.l	$44AAAA44
 
 	dc.l	$99999999
 	dc.l	$AAAAAAAA
@@ -23,7 +23,7 @@
 	dc.l	$AAAAAAAA
 	dc.l	$AAAAAAAA
 	dc.l	$99999999
-	dc.l	$22222222
+	dc.l	$44444444
 
 	dc.l	$99999999
 	dc.l	$AAAAAAAA
@@ -32,7 +32,7 @@
 	dc.l	$AAAAAAAA
 	dc.l	$AAAAAAAA
 	dc.l	$9AAAAAA9
-	dc.l	$22AAAA22
+	dc.l	$44AAAA44
 
 	dc.l	$9AAAAAA9
 	dc.l	$AAAAAAA9
@@ -41,16 +41,16 @@
 	dc.l	$AAAAAAA9
 	dc.l	$AAAAAAA9
 	dc.l	$9AAAAAA9
-	dc.l	$22AAAA22
+	dc.l	$44AAAA44
 
-	dc.l	$A219912A
-	dc.l	$A219912A
-	dc.l	$A219912A
-	dc.l	$A219912A
-	dc.l	$A219912A
-	dc.l	$A219912A
-	dc.l	$A219912A
-	dc.l	$A219912A
+	dc.l	$A499994A
+	dc.l	$A499994A
+	dc.l	$A499994A
+	dc.l	$A499994A
+	dc.l	$A499994A
+	dc.l	$A499994A
+	dc.l	$A499994A
+	dc.l	$A499994A
 
 	dc.l	$77777777
 	dc.l	$70900008
