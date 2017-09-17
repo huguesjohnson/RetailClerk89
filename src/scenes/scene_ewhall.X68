@@ -78,7 +78,7 @@ SceneEWHall:
 	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
 
 	; main floor
-	dc.l	PatternWoodFloorSloped	; location of pattern to load
+	dc.l	Pattern32x32Tile	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0010000000101000	
 	dc.w	$2028	; base pattern
@@ -87,17 +87,15 @@ SceneEWHall:
 
 	; top border
 	dc.l	PatternWoodFloorH	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0100000000100000	
-	dc.w	$4020	; base pattern
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000000100000	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$02000000	; initial drawing location
 
 	; bottom border
 	dc.l	PatternWoodFloorH	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0100000000100000	
-	dc.w	$4020	; base pattern
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000000100000	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$0C800000	; initial drawing location
 

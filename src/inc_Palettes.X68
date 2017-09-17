@@ -26,9 +26,9 @@ Store02Palettes:
 
 ; store 03 (center)
 Store03Palettes:
-	include 'palettes/pal_Store_00.X68'
-	include 'palettes/pal_Store_01.X68'
-	include 'palettes/pal_Store_02.X68'
+	include 'palettes/pal_Store_workshop_00.X68'	; north wall is workshop
+	include 'palettes/pal_Hallway_00.X68'
+	include 'palettes/pal_Store_workshop_01.X68'
 	include 'palettes/pal_People_00.X68'
 
 ; store 04 (south hallway)
@@ -56,7 +56,7 @@ Store06Palettes:
 Store07Palettes:
 	include 'palettes/pal_Store_cavern_00.X68'	; north wall is the cavern
 	include 'palettes/pal_Hallway_01.X68'
-	include 'palettes/pal_Store_02.X68'	; south wall is tlodge
+	include 'palettes/pal_Store_tlodge_00.X68'	; south wall is tlodge
 	include 'palettes/pal_People_00.X68'
 
 ; store 08 (denim country)
@@ -75,14 +75,14 @@ Store09Palettes:
 
 ; store 0A (transistor lodge)
 Store0APalettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_tlodge_00.X68'
 	include 'palettes/pal_Store_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
 
 ; store 0B (the cavern)
 Store0BPalettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_cavern_00.X68'
 	include 'palettes/pal_Store_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
@@ -96,8 +96,8 @@ Store0CPalettes:
 
 ; store 0D (santa's workshop)
 Store0DPalettes:
-	include 'palettes/pal_Store_00.X68'
-	include 'palettes/pal_Store_01.X68'
+	include 'palettes/pal_Store_workshop_00.X68'
+	include 'palettes/pal_Store_workshop_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
 

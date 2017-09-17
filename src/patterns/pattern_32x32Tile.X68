@@ -1,4 +1,4 @@
-PatternWoodFloorSloped:
+Pattern32x32Tile:
 
 	dc.w	$0003	; 4 rows
 

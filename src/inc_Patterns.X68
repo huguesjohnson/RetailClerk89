@@ -35,9 +35,10 @@
 	include 'patterns/pattern_Floor.X68'
 	include 'patterns/pattern_WoodFloorH.X68'
 	include 'patterns/pattern_WoodFloorV.X68'
-	include 'patterns/pattern_WoodFloorSloped.X68'
+	include 'patterns/pattern_32x32Tile.X68'
 	include 'patterns/pattern_TileFloor.X68'
 	include 'patterns/pattern_TileFloorSimple.X68'
+	include	'patterns/pattern_LargeStoreFront.X68'
 
 ;-------------------------------------------------------------------------------
 ; hallway scenery
@@ -45,6 +46,7 @@
 	include 'patterns/pattern_HallFloor.X68'
 	include 'patterns/pattern_HallFloorBorder.X68'
 	include	'patterns/pattern_HallSouthFrame.X68'
+	include	'patterns/pattern_Banner.X68'
 
 ;-------------------------------------------------------------------------------
 ; used for development builds only

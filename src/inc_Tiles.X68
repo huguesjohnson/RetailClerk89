@@ -55,6 +55,14 @@ HallWestTilesStart:
 	include 'tiles/scene-tiles/tileset_WestHallFloor.X68'
 HallWestTilesEnd:
 
+
+;-------------------------------------------------------------------------------
+; santa's workshop scene tiles
+;-------------------------------------------------------------------------------
+BannerTilesStart:
+	include 'tiles/scene-tiles/tileset_banner.X68'
+BannerTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; general store frame tiles
 ;-------------------------------------------------------------------------------
@@ -100,6 +108,14 @@ StoreFrameTilesEnd:
 StoreFrontWindowTilesStart:
 	include 'tiles/scene-tiles/tileset_StoreFront.X68'
 StoreFrontWindowTilesEnd:
+
+BlackLightFloorTilesStart:
+	include 'tiles/scene-tiles/tileset_blacklightfloortile.X68'
+BlackLightFloorTilesEnd:
+
+LargeStoreFrontTilesStart:
+	include 'tiles/scene-tiles/tileset_largestorefront.X68'
+LargeStoreFrontTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; sprite tiles
