@@ -15,8 +15,8 @@ SceneParkingLot:
 	dc.l	TransparentTileEnd
 
 	; tileset 1
-	dc.l	DebugWireframeTilesStart	; start of hallway tiles
-	dc.l	DebugWireframeTilesEnd	; end of hallway tiles
+	dc.l	PavementTilesStart	; start of pavement tiles
+	dc.l	PavementTilesEnd	; end of pavement tiles
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -27,39 +27,14 @@ SceneParkingLot:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0003	; scenery count
+	dc.w	$0000	; scenery count
 
-	; frame side
-	dc.l	PatternDebugWireFrameSides	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000001	
-	dc.w	$8001	; base pattern
-	dc.w	$0019	; repeat 26 times
-	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
-
-	; south frame
-	dc.l	PatternDebugWireFrameSouthFrameClosed	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000001	
-	dc.w	$8001	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$0D800000	; initial drawing location
-
-	; store front
-	dc.l	PatternDebugWireFrameNorthWindow	; location of pattern to load
-;	; pccvhnnnnnnnnnnn
-;	; 0000000000000001	
-	dc.w	$0001	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00800000	; initial drawing location
-
-	; north store frame
-	dc.l	PatternDebugWireFrameNorthFrameOpen ; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000001	
-	dc.w	$8001	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
+	; pavement
+	dc.l	PatternTileFloor	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000000001	; base pattern
+	dc.w	$000B	; repeat 12 times
+	dc.l	VDP_VRAM_WRITE_B+$02000000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text

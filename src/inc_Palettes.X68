@@ -28,19 +28,19 @@ Store02Palettes:
 Store03Palettes:
 	include 'palettes/pal_Store_workshop_00.X68'	; north wall is workshop
 	include 'palettes/pal_Hallway_00.X68'
-	include 'palettes/pal_Store_workshop_01.X68'
+	include 'palettes/pal_Store_workshop_01.X68'	; used for sign
 	include 'palettes/pal_People_00.X68'
 
 ; store 04 (south hallway)
 Store04Palettes:
-	include 'palettes/pal_Store_00.X68'
-	include 'palettes/pal_Store_01.X68'
-	include 'palettes/pal_Store_02.X68'
+	include 'palettes/pal_Store_hotsam_00.X68'	; west wall is hot sam
+	include 'palettes/pal_Hallway_00.X68'
+	include 'palettes/pal_Store_nshack_00.X68'	; east wall is nut shack
 	include 'palettes/pal_People_00.X68'
 
 ; store 05 (parking log)
 Store05Palettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_parking_00.X68'
 	include 'palettes/pal_Store_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
@@ -103,14 +103,14 @@ Store0DPalettes:
 
 ; store 0E (nut shack)
 Store0EPalettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_nshack_00.X68'
 	include 'palettes/pal_Store_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
 
 ; store 0F (hot sam)
 Store0FPalettes:
-	include 'palettes/pal_Store_00.X68'
+	include 'palettes/pal_Store_hotsam_00.X68'
 	include 'palettes/pal_Store_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
@@ -161,14 +161,14 @@ Store15Palettes:
 Store16Palettes:
 	include 'palettes/pal_Store_00.X68'
 	include 'palettes/pal_Store_01.X68'
-	include 'palettes/pal_Store_02.X68'
+	include 'palettes/pal_Store_02.X68' 
 	include 'palettes/pal_People_00.X68'
 
 ; store 17 (south center)
 Store17Palettes:
-	include 'palettes/pal_Store_00.X68'
-	include 'palettes/pal_Store_01.X68'
-	include 'palettes/pal_Store_02.X68'
+	include 'palettes/pal_Store_jitch_00.X68'	; west wall is jock itch
+	include 'palettes/pal_Hallway_00.X68'
+	include 'palettes/pal_Store_dcountry_00.X68'	; east wall is denimcountry
 	include 'palettes/pal_People_00.X68'
 
 ;-------------------------------------------------------------------------------

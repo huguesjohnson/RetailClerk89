@@ -54,6 +54,7 @@ SceneExitTable:
 	dc.l	DefaultExitScene
 	; scene 16
 	dc.l	DefaultExitScene
-
+	; scene 17
+	dc.l	DefaultExitScene
 
 

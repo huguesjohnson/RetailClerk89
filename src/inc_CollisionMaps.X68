@@ -44,3 +44,5 @@ MapStore15Collision:
 	include 'collision-maps/map_Store15Collision.X68'
 MapStore16Collision:
 	include 'collision-maps/map_Store16Collision.X68'
+MapStore17Collision:
+	include 'collision-maps/map_Store17Collision.X68'

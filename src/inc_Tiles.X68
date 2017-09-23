@@ -50,11 +50,16 @@ StoreVBTilesEnd:
 ;-------------------------------------------------------------------------------
 ; hallway scene tiles
 ;-------------------------------------------------------------------------------
-
 HallWestTilesStart:
 	include 'tiles/scene-tiles/tileset_WestHallFloor.X68'
 HallWestTilesEnd:
 
+;-------------------------------------------------------------------------------
+; parking lot scene tiles
+;-------------------------------------------------------------------------------
+PavementTilesStart:
+	include 'tiles/scene-tiles/tileset_pavement.X68'
+PavementTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; santa's workshop scene tiles
@@ -116,6 +121,14 @@ BlackLightFloorTilesEnd:
 LargeStoreFrontTilesStart:
 	include 'tiles/scene-tiles/tileset_largestorefront.X68'
 LargeStoreFrontTilesEnd:
+
+SideStoreEntranceTilesStart:
+	include 'tiles/scene-tiles/tileset_StoreEntranceSide.X68'
+SideStoreEntranceTilesEnd:
+
+SideStoreEntranceSquareTilesStart:
+	include 'tiles/scene-tiles/tileset_StoreEntranceSideSquare.X68'
+SideStoreEntranceSquareTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; sprite tiles

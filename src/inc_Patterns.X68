@@ -47,6 +47,8 @@
 	include 'patterns/pattern_HallFloorBorder.X68'
 	include	'patterns/pattern_HallSouthFrame.X68'
 	include	'patterns/pattern_Banner.X68'
+	include 'patterns/pattern_SideEntrance.X68'
+	include 'patterns/pattern_SideEntranceFloor.X68'
 
 ;-------------------------------------------------------------------------------
 ; used for development builds only
