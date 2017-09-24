@@ -61,6 +61,22 @@ PavementTilesStart:
 	include 'tiles/scene-tiles/tileset_pavement.X68'
 PavementTilesEnd:
 
+MallExteriorTilesStart:
+	include 'tiles/scene-tiles/tileset_mallexterior.X68'
+MallExteriorTilesEnd:
+
+MallSignTilesStart:
+	include 'tiles/scene-tiles/tileset_mallsign.X68'
+MallSignTilesEnd:
+
+ParkingStripeTilesStart:
+	include 'tiles/scene-tiles/tileset_parkingstripe.X68'
+ParkingStripeTilesEnd:
+
+ParkingLotEdgeTilesStart:
+	include 'tiles/scene-tiles/tileset_parkinglotedge.X68'
+ParkingLotEdgeTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; santa's workshop scene tiles
 ;-------------------------------------------------------------------------------

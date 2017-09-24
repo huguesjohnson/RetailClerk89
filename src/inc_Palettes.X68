@@ -41,7 +41,7 @@ Store04Palettes:
 ; store 05 (parking log)
 Store05Palettes:
 	include 'palettes/pal_Store_parking_00.X68'
-	include 'palettes/pal_Store_01.X68'
+	include 'palettes/pal_Store_parking_01.X68'
 	include 'palettes/pal_Store_02.X68'
 	include 'palettes/pal_People_00.X68'
 

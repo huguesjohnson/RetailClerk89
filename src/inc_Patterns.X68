@@ -51,6 +51,14 @@
 	include 'patterns/pattern_SideEntranceFloor.X68'
 
 ;-------------------------------------------------------------------------------
+; parking lot scenery
+;-------------------------------------------------------------------------------
+	include 'patterns/pattern_MallExteriorSide.X68'
+	include 'patterns/pattern_MallExteriorSign.X68'
+	include 'patterns/pattern_ParkingStripe.X68'
+	include 'patterns/pattern_ParkingLotEdge.X68'
+
+;-------------------------------------------------------------------------------
 ; used for development builds only
 ;-------------------------------------------------------------------------------
 	if	_DEBUG_
