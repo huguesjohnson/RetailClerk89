@@ -52,7 +52,7 @@ SceneEEHall:
 	; north floor
 	dc.l	Pattern32x32Tile	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000110101	; base pattern
+	dc.w	%0000000000111001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
 
@@ -115,7 +115,7 @@ SceneEEHall:
 	; south store floor
 	dc.l	PatternTileFloor	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000000110001		; base pattern
+	dc.w	%0100000000110101		; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$0D800000	; initial drawing location
 

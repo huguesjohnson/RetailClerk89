@@ -10,7 +10,10 @@
 	include 'patterns/pattern_ShelvesM.X68'
 	include 'patterns/pattern_ShelvesL.X68'
 	include 'patterns/pattern_FrameTop.X68'
+	include 'patterns/pattern_FrameTopOpen.X68'
 	include 'patterns/pattern_FrameSide.X68'
+	include 'patterns/pattern_FrameSouthClosed.X68'
+	include 'patterns/pattern_SideClosed.X68'
 	include 'patterns/pattern_StoreFront.X68'
 	include 'patterns/pattern_StoreFrontFrame.X68'
 	include 'patterns/pattern_CounterLow.X68'
@@ -39,6 +42,7 @@
 	include 'patterns/pattern_TileFloor.X68'
 	include 'patterns/pattern_TileFloorSimple.X68'
 	include	'patterns/pattern_LargeStoreFront.X68'
+	include	'patterns/pattern_StoreFrameRounded.X68'
 
 ;-------------------------------------------------------------------------------
 ; hallway scenery

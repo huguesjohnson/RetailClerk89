@@ -15,16 +15,16 @@ SceneWWHall:
 	dc.l	TransparentTileEnd
 
 	; tileset 1
-	dc.l	CarpetFloorTilesStart
-	dc.l	CarpetFloorTilesEnd
-
-	; tileset 2
 	dc.l	StoreFrameTilesStart
 	dc.l	StoreFrameTilesEnd
 
-	; tileset 3
+	; tileset 2
 	dc.l	StoreFrontWindowTilesStart
 	dc.l	StoreFrontWindowTilesEnd
+
+	; tileset 3
+	dc.l	CarpetFloorTilesStart
+	dc.l	CarpetFloorTilesEnd
 
 	; tileset 4
 	dc.l	HallWestTilesStart	; start of hallway tiles
@@ -51,9 +51,8 @@ SceneWWHall:
 
 	; floor
 	dc.l	PatternFloor	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0000000000000001	
-	dc.w	$0001	; base pattern
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000011110	; base pattern
 	dc.w	$0001	; repeat 2 times
 	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
 
@@ -75,49 +74,43 @@ SceneWWHall:
 
 	; top border
 	dc.l	PatternHallFloorBorder	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0010000000011110	
-	dc.w	$201E	; base pattern
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000000100010	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$02000000	; initial drawing location
 
 	; floor
 	dc.l	PatternHallFloor	; location of first pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0010000000011110	
-	dc.w	$201E	; base pattern
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000000100010	; base pattern
 	dc.w	$0001	; repeat 1 times
 	dc.l	VDP_VRAM_WRITE_B+$03000000	; initial drawing location
 
 	; bottom border
 	dc.l	PatternHallFloorBorder	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0010000000011110	
-	dc.w	$201E	; base pattern
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000000100010	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$0C800000	; initial drawing location
 
 	; south floor
 	dc.l	PatternWoodFloorV	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 0100000000101010	
-	dc.w	$402A	; base pattern
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0100000000111011
 	dc.w	$0000	; no repeat 
 	dc.l	VDP_VRAM_WRITE_B+$0D800000	; initial drawing location
 
 	; south store frame - left side
 	dc.l	PatternHallSouthFrame	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1100000000100011	
-	dc.w	$C023	; base pattern
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1100000000100111	
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D800000	; initial drawing location
 
 	; south store frame - right side
 	dc.l	PatternHallSouthFrame	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1100000000100011	
-	dc.w	$C023	; base pattern
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1100000000100111
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D800000+$00360000	; initial drawing location
 
