@@ -55,6 +55,13 @@ HallWestTilesStart:
 HallWestTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; fish or cut bait scene tiles
+;-------------------------------------------------------------------------------
+FCBFrameTilesStart:
+	include 'tiles/scene-tiles/tileset_FCBFrame.X68'
+FCBFrameTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; parking lot scene tiles
 ;-------------------------------------------------------------------------------
 PavementTilesStart:
@@ -83,6 +90,14 @@ ParkingLotEdgeTilesEnd:
 BannerTilesStart:
 	include 'tiles/scene-tiles/tileset_banner.X68'
 BannerTilesEnd:
+
+WorkshopFrameTilesStart:
+	include 'tiles/scene-tiles/tileset_workshopframe.X68'
+WorkshopFrameTilesEnd:
+
+SnowFloorTilesStart:
+	include 'tiles/scene-tiles/tileset_snow.X68'
+SnowFloorTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; general store frame tiles
@@ -122,9 +137,17 @@ SimpleTileFloorTilesStart:
 	include 'tiles/scene-tiles/tileset_tilefloorsimple.X68'
 SimpleTileFloorTilesEnd:
 
+StoneFloorTilesStart:
+	include 'tiles/scene-tiles/tileset_stonefloor.X68'
+StoneFloorTilesEnd:
+
 StoreFrameTilesStart:
 	include 'tiles/scene-tiles/tileset_StoreFrame.X68'
 StoreFrameTilesEnd:
+
+StoreFrameThreeColorTilesStart:
+	include 'tiles/scene-tiles/tileset_StoreFrameThreeColor.X68'
+StoreFrameThreeColorTilesEnd:
 
 StoreFrontWindowTilesStart:
 	include 'tiles/scene-tiles/tileset_StoreFront.X68'

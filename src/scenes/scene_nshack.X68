@@ -8,15 +8,23 @@ SceneNShack:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0001	; tileset count - 1
+	dc.w	$0003	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
 	dc.l	TransparentTileEnd
 
 	; tileset 1
-	dc.l	DebugWireframeTilesStart	; start of hallway tiles
-	dc.l	DebugWireframeTilesEnd	; end of hallway tiles
+	dc.l	SimpleTileFloorTilesStart	; start of left side floor tiles
+	dc.l	SimpleTileFloorTilesEnd	; end of left side floor tiles
+
+	; tileset 2
+	dc.l	SideStoreEntranceSquareTilesStart	; start of side entrance tiles
+	dc.l	SideStoreEntranceSquareTilesEnd	; end of side entrance tiles
+
+	; tileset 3
+	dc.l	StoreFrameTilesStart	; start of frame tiles
+	dc.l	StoreFrameTilesEnd	; end of frame tiles
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -27,56 +35,54 @@ SceneNShack:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0004	; scenery count - 1
+	dc.w	$0005	; scenery count - 1
 
-	; side walls - top
-	dc.l	PatternDebugWireFrameSides	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000001	
-	dc.w	$8001	; base pattern
-	dc.w	$0008	; repeat 8 times
-	dc.l	VDP_VRAM_WRITE_B+$00800000	; initial drawing location
+	; floor
+	dc.l	PatternTileFloorSimple
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000000001	; base pattern
+	dc.w	$000D	; repeat 14 times
+	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
 
-	; side walls - center
-	dc.l	PatternDebugWireFrameRightSide	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000001	
-	dc.w	$8001	; base pattern
-	dc.w	$000A	; repeat 8 times
-	dc.l	VDP_VRAM_WRITE_B+$04800000	; initial drawing location
-
-	; side walls - bottom
-	dc.l	PatternDebugWireFrameSides	; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000001	
-	dc.w	$8001	; base pattern
-	dc.w	$0008	; repeat 8 times
-	dc.l	VDP_VRAM_WRITE_B+$09800000	; initial drawing location
-
-	; north store frame
-	dc.l	PatternDebugWireFrameNorthFrameClosed ; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000001	
-	dc.w	$8001	; base pattern
+	; left entrance - top
+	dc.l	PatternSideEntranceLeft
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000000011	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$00000000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
 
-	; south store frame
-	dc.l	PatternDebugWireFrameSouthFrameClosed ; location of pattern to load
-	; pccvhnnnnnnnnnnn
-	; 1000000000000001	
-	dc.w	$8001	; base pattern
+	; left entrance - bottom
+	dc.l	PatternSideEntranceLeft
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000000011	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$0D800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$09000000	; initial drawing location
+
+	; south wall
+	dc.l	PatternFrameSouthClosed
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000001001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0D800000	; initial drawing location
+
+	; right side
+	dc.l	PatternSideClosed
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000001001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00800000+$004E0000	; initial drawing location
+
+	; top
+	dc.l	PatternFrameTop
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000000100	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; text count
-
-	dc.l	StoreName0E	; location of string to display
-	dc.w	DIALOG_BASE_TILE	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$0C800000	; initial drawing location
+	dc.w	$FFFF	; text count
 
 	;---------------------------------------------------------------------------
 	; objects
