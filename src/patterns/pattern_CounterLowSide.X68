@@ -1,6 +1,6 @@
 PatternCounterLowSide:
 
-	dc.w	$0004	; 5 rows
+	dc.w	$0005	; 6 rows
 
 	dc.w	$0003	; 4 columns
 
@@ -17,4 +17,7 @@ PatternCounterLowSide:
 	dc.w	$04,$05,$05,$06
 
 	; row 04
+	dc.w	$04,$05,$05,$06
+
+	; row 05
 	dc.w	$04,$05,$05,$06

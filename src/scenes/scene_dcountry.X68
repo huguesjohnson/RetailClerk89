@@ -8,7 +8,7 @@ SceneDeminCountry:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0003	; tileset count - 1
+	dc.w	$0007	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -26,6 +26,22 @@ SceneDeminCountry:
 	dc.l	StoreFrameTilesStart	; start of frame tiles
 	dc.l	StoreFrameTilesEnd	; end of frame tiles
 
+	; tileset 4
+	dc.l	AccentedCounterTilesStart	; start of counter top tiles
+	dc.l	AccentedCounterTilesEnd	; end of counter top tiles
+
+	; tileset 5
+	dc.l	TableTilesStart	; start of table tiles
+	dc.l	TableTilesEnd	; end of table tiles
+
+	; tileset 6
+	dc.l	RegisterTilesStart	; start of register tiles
+	dc.l	RegisterTilesEnd	; end of register tiles
+
+	; tileset 7
+	dc.l	CounterShelvesTilesStart	; start of counter shelf tiles
+	dc.l	CounterShelvesTilesEnd	; end of counter shelf tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -35,7 +51,7 @@ SceneDeminCountry:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0006	; scenery count
+	dc.w	$0012	; scenery count - 1
 
 	; main floor
 	dc.l	PatternWoodFloorV
@@ -85,6 +101,87 @@ SceneDeminCountry:
 	dc.w	%1010000000010111	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D800000	; initial drawing location
+
+	; shelves under counter
+	dc.l	Pattern3Tile72x8	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000111110	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$00080000+$04000000	; initial drawing location
+
+	dc.l	Pattern3Tile72x8	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000111110	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$00080000+$04800000	; initial drawing location
+
+
+	; counter side
+	dc.l	PatternCounterSide24x64OpenLowerLeft
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000011111	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$00140000+$00800000	; initial drawing location
+
+	; counter high
+	dc.l	PatternCounterHigh48x8OpenLowerRight
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000011111	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00080000+$02800000	; initial drawing location
+
+	; counter low
+	dc.l	PatternCounterLow48x24OpenTopRight
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000011111	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00080000+$03000000	; initial drawing location
+
+	; register
+	dc.l	PatternRegister	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1110000000111000	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00140000+$01800000	; initial drawing location
+
+	; tables
+	dc.l	PatternTableHigh72x8
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000101001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00360000+$02800000	; initial drawing location
+
+	dc.l	PatternTableLow72x40
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000101001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00360000+$03000000	; initial drawing location
+
+	dc.l	PatternTableHigh72x8
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000101001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00360000+$06800000	; initial drawing location
+
+	dc.l	PatternTableLow72x40
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000101001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00360000+$07000000	; initial drawing location
+
+	dc.l	PatternTableHigh72x8
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000101001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00080000+$06800000	; initial drawing location
+
+	dc.l	PatternTableLow72x40
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000101001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00080000+$07000000	; initial drawing location
+
+
 
 	;---------------------------------------------------------------------------
 	; text

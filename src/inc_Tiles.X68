@@ -39,7 +39,9 @@ StoreVBTilesStart:
 
 	include 'tiles/scene-tiles/tileset_CounterHigh.X68'
 
+RegisterTilesStart:
 	include 'tiles/scene-tiles/tileset_Register.X68'
+RegisterTilesEnd:
 
 	include 'tiles/scene-tiles/tileset_HWRack.X68'
 
@@ -168,6 +170,30 @@ SideStoreEntranceTilesEnd:
 SideStoreEntranceSquareTilesStart:
 	include 'tiles/scene-tiles/tileset_StoreEntranceSideSquare.X68'
 SideStoreEntranceSquareTilesEnd:
+
+;-------------------------------------------------------------------------------
+; general scenery tiles
+;-------------------------------------------------------------------------------
+SimpleCounterTilesStart:
+	include 'tiles/scene-tiles/tileset_countertop.X68'
+SimpleCounterTilesEnd:
+
+BorderedCounterTilesStart:
+	include 'tiles/scene-tiles/tileset_countertopbordered.X68'
+BorderedCounterTilesEnd:
+
+AccentedCounterTilesStart:
+	include 'tiles/scene-tiles/tileset_countertopaccented.X68'
+AccentedCounterTilesEnd:
+
+TableTilesStart:
+	include 'tiles/scene-tiles/tileset_table.X68'
+TableTilesEnd:
+
+CounterShelvesTilesStart:
+	include 'tiles/scene-tiles/tileset_CounterShelves.X68'
+CounterShelvesTilesEnd:
+
 
 ;-------------------------------------------------------------------------------
 ; sprite tiles

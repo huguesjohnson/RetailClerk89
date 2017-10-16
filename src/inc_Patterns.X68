@@ -32,6 +32,7 @@
 ;-------------------------------------------------------------------------------
 ; generic store scenery
 ;-------------------------------------------------------------------------------
+	include 'patterns/pattern_GenericPatterns.X68'
 	include 'patterns/pattern_WindowAngledLeft.X68'
 	include 'patterns/pattern_WindowAngledCenter.X68'
 	include 'patterns/pattern_WindowAngledRight.X68'
@@ -43,6 +44,8 @@
 	include 'patterns/pattern_TileFloorSimple.X68'
 	include	'patterns/pattern_LargeStoreFront.X68'
 	include	'patterns/pattern_StoreFrameRounded.X68'
+	include	'patterns/pattern_CounterTops.X68'
+	include	'patterns/pattern_Tables.X68'
 
 ;-------------------------------------------------------------------------------
 ; hallway scenery

@@ -101,7 +101,7 @@ SceneVB:
 	dc.l	PatternCounterLow	; location of first pattern to load
 	dc.w	%0010000000100101	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$05000000+$001C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$05800000+$001C0000	; initial drawing location
 
 	; counter - low side
 	dc.l	PatternCounterLowSide	; location of pattern to load
@@ -115,14 +115,14 @@ SceneVB:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1010000000110101	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$03800000+$001C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$04000000+$001C0000	; initial drawing location
 
 	; register
 	dc.l	PatternRegister	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1110000000111111	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$03000000+$00300000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$03800000+$00300000	; initial drawing location
 
 	; hardware rack - low
 	dc.l	PatternHWRackLow	; location of first pattern to load
@@ -202,8 +202,8 @@ SceneVB:
 	dc.w	OBJ_SCENE_VB_REGISTER
 	; x0=320 width=16 = 0010000 101000000 = 2140
 	dc.w	$2140
-	; y0=162 height=32 = 0100000 010100010 = 40A2
-	dc.w	$40A2
+	; y0=178 height=32 = 0100000 010110010 = 40A2
+	dc.w	$40B2
 
 	dc.w	OBJ_SCENE_VB_HARDWARE
 	; x0=164 width=38 = 0100110 010100100 = 4CA4
