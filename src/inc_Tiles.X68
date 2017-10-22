@@ -50,6 +50,14 @@ RegisterTilesEnd:
 StoreVBTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; denim country scene tiles
+;-------------------------------------------------------------------------------
+DenimCountryMerchandiseTilesStart:
+	include 'tiles/scene-tiles/tileset_DenimCountryMerchandise.X68'
+DenimCountryMerchandiseTilesEnd:
+
+
+;-------------------------------------------------------------------------------
 ; hallway scene tiles
 ;-------------------------------------------------------------------------------
 HallWestTilesStart:

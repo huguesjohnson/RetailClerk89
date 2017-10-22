@@ -45,8 +45,10 @@ ObjectNameTable:
 	dc.l	ObjectNameMagazines
 	; OBJ_SCENE_VB_COUNTER
 	dc.l	ObjectNameCounter
-	; OBJ_SCENE_VB_REGISTER
+	; OBJ_SCENE_REGISTER
 	dc.l	ObjectNameRegister
+	; OBJ_SCENE_DC_JEANS
+	dc.l	ObjectNameJeans
 
 ;-------------------------------------------------------------------------------
 ; npc names

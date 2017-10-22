@@ -234,9 +234,9 @@ Store07PalettesPaused:
 
 ; store 08 (denim country)
 Store08PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
+	include 'palettes/pal_Paused_04.X68'
 	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_03.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 09 (checkers)

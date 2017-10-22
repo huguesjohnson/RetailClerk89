@@ -558,7 +558,7 @@ TrapException:
 ;*******************************************************************************
 ; code to handle player actions based on game state
 ;*******************************************************************************
-	include	'ActionScript.X68'
+	include	'actionscript/ActionScript.X68'
 
 ;*******************************************************************************
 ; echo sound driver (https://github.com/sikthehedgehog/Echo)

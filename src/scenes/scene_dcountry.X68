@@ -8,7 +8,7 @@ SceneDeminCountry:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0007	; tileset count - 1
+	dc.w	$0008	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -42,6 +42,10 @@ SceneDeminCountry:
 	dc.l	CounterShelvesTilesStart	; start of counter shelf tiles
 	dc.l	CounterShelvesTilesEnd	; end of counter shelf tiles
 
+	; tileset 8
+	dc.l	DenimCountryMerchandiseTilesStart	; start of merchandise tiles
+	dc.l	DenimCountryMerchandiseTilesEnd	; end of merchandise tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -51,7 +55,7 @@ SceneDeminCountry:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0012	; scenery count - 1
+	dc.w	$0015	; scenery count - 1
 
 	; main floor
 	dc.l	PatternWoodFloorV
@@ -115,7 +119,6 @@ SceneDeminCountry:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$00080000+$04800000	; initial drawing location
 
-
 	; counter side
 	dc.l	PatternCounterSide24x64OpenLowerLeft
 	; 		%pccvhnnnnnnnnnnn
@@ -147,7 +150,7 @@ SceneDeminCountry:
 	; tables
 	dc.l	PatternTableHigh72x8
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000101001	; base pattern
+	dc.w	%1000000000101001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00360000+$02800000	; initial drawing location
 
@@ -181,7 +184,24 @@ SceneDeminCountry:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00080000+$07000000	; initial drawing location
 
+	; stuff on tables
+	dc.l	Pattern56x16
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0100000001000001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$000A0000+$07000000	; initial drawing location
 
+	dc.l	Pattern56x16
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0100000001000001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00380000+$03000000	; initial drawing location
+
+	dc.l	Pattern56x16
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0100000001000001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00380000+$07000000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text
@@ -193,6 +213,37 @@ SceneDeminCountry:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
+	;---------------------------------------------------------------------------
+	; word0=Object ID (0-65535)
+	; word1[0-8]=x0 (0-511)
+	; word1[9-15]=width (0-127)
+	; word2[0-8]=y0 (0-512)
+	; word2[9-15]=height (0-127)
+	;---------------------------------------------------------------------------
+	dc.w	OBJ_SCENE_REGISTER
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0010000011010000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0100000010011010
+
+	dc.w	OBJ_SCENE_DC_JEANS
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1000111010100000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101000011101000
+
+	dc.w	OBJ_SCENE_DC_JEANS
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1000111101011000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101000010101000
+
+	dc.w	OBJ_SCENE_DC_JEANS
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1000111101011000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101000011101000
+
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
 	dc.w	$0000
@@ -207,19 +258,7 @@ SceneDeminCountry:
 	dc.w	$0000
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	dc.w	$0000	
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
 	dc.w	$0000

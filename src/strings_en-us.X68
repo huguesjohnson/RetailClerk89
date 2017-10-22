@@ -404,6 +404,9 @@ ObjectNameCounter:
 ObjectNameRegister:
 	dc.b	"Cash register",OBJNAMEEND
 
+ObjectNameJeans:
+	dc.b	"Pile of folded jeans",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------
@@ -486,82 +489,6 @@ ItemName35Disks:
 ItemNameHWPrintRibbon:
 	;		"1234567890"
 	dc.b	"PrntRibbon",ITEMNAMEEND
-
-
-;-------------------------------------------------------------------------------
-; store names
-;-------------------------------------------------------------------------------
-StoreName00:
-	dc.b	"Video Buffet",ETX
-
-StoreName01:
-	dc.b	"West-West Hall",ETX
-
-StoreName02:
-	dc.b	"West-East Hall",ETX
-
-StoreName03:
-	dc.b	"Center Court",ETX
-
-StoreName04:
-	dc.b	"South Hall",ETX
-
-StoreName05:
-	dc.b	"Parking Lot",ETX
-
-StoreName06:
-	dc.b	"East-West Hall",ETX
-
-StoreName07:
-	dc.b	"East-East Hall",ETX
-
-StoreName08:
-	dc.b	"Denim Country",ETX
-
-StoreName09:
-	dc.b	"Checkers",ETX
-
-StoreName0A:
-	dc.b	"Transistor Lodge",ETX
-
-StoreName0B:
-	dc.b	"The Cavern",ETX
-
-StoreName0C:
-	dc.b	"Sunset Video",ETX
-
-StoreName0D:
-	dc.b	"Santa's Workshop",ETX
-
-StoreName0E:
-	dc.b	"Nut Shack",ETX
-
-StoreName0F:
-	dc.b	"Hot Sam",ETX
-
-StoreName10:
-	dc.b	"Cassette Planet",ETX
-
-StoreName11:
-	dc.b	"Jock Itch",ETX
-
-StoreName12:
-	dc.b	"ThoreauBooks",ETX
-
-StoreName13:
-	dc.b	"Checkout",ETX
-
-StoreName14:
-	dc.b	"Firearms",ETX
-
-StoreName15:
-	dc.b	"Fishing",ETX
-
-StoreName16:
-	dc.b	"Camping",ETX
-
-StoreName17:
-	dc.b	"South center",ETX
 
 ;-------------------------------------------------------------------------------
 ; day intros
