@@ -49,6 +49,8 @@ ObjectNameTable:
 	dc.l	ObjectNameRegister
 	; OBJ_SCENE_DC_JEANS
 	dc.l	ObjectNameJeans
+	; OBJ_SCENE_BENCH
+	dc.l	ObjectNameBench
 
 ;-------------------------------------------------------------------------------
 ; npc names

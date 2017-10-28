@@ -20,7 +20,7 @@ Store01Palettes:
 ; store 02 (west hallway east)
 Store02Palettes:
 	include 'palettes/pal_Store_cplanet_00.X68'	; north wall is cassette planet
-	include 'palettes/pal_Hallway_00.X68'
+	include 'palettes/pal_Hallway_we.X68'
 	include 'palettes/pal_Store_jitch_00.X68'	; south wall is jock itch
 	include 'palettes/pal_People_00.X68'
 
@@ -192,9 +192,9 @@ Store01PalettesPaused:
 
 ; store 02 (west hallway east)
 Store02PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_01.X68'
+	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 03 (center)

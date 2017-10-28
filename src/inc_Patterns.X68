@@ -30,6 +30,11 @@
 	include 'patterns/pattern_IntroHint.X68'
 
 ;-------------------------------------------------------------------------------
+; casette planet scenery
+;-------------------------------------------------------------------------------
+	include 'patterns/pattern_Poster.X68'
+
+;-------------------------------------------------------------------------------
 ; generic store scenery
 ;-------------------------------------------------------------------------------
 	include 'patterns/pattern_GenericPatterns.X68'
@@ -39,6 +44,7 @@
 	include 'patterns/pattern_Floor.X68'
 	include 'patterns/pattern_WoodFloorH.X68'
 	include 'patterns/pattern_WoodFloorV.X68'
+	include 'patterns/pattern_TackyFloor.X68'
 	include 'patterns/pattern_32x32Tile.X68'
 	include 'patterns/pattern_TileFloor.X68'
 	include 'patterns/pattern_TileFloorSimple.X68'
@@ -56,6 +62,7 @@
 	include	'patterns/pattern_Banner.X68'
 	include 'patterns/pattern_SideEntrance.X68'
 	include 'patterns/pattern_SideEntranceFloor.X68'
+	include 'patterns/pattern_BenchSimple.X68'
 
 ;-------------------------------------------------------------------------------
 ; parking lot scenery

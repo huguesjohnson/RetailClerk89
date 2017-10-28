@@ -407,6 +407,9 @@ ObjectNameRegister:
 ObjectNameJeans:
 	dc.b	"Pile of folded jeans",OBJNAMEEND
 
+ObjectNameBench:
+	dc.b	"Wooden bench",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------

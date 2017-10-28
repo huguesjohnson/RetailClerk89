@@ -50,12 +50,25 @@ RegisterTilesEnd:
 StoreVBTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; cassette planet scene tiles
+;-------------------------------------------------------------------------------
+PosterTilesStart:
+	include 'tiles/scene-tiles/tileset_Poster00.X68'
+	include 'tiles/scene-tiles/tileset_Poster01.X68'
+	include 'tiles/scene-tiles/tileset_Poster02.X68'
+	include 'tiles/scene-tiles/tileset_Poster03.X68'
+PosterTilesEnd:
+
+CPlanetLogoTilesStart:
+	include 'tiles/scene-tiles/tileset_CPlanetLogo.X68'
+CPlanetLogoTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; denim country scene tiles
 ;-------------------------------------------------------------------------------
 DenimCountryMerchandiseTilesStart:
 	include 'tiles/scene-tiles/tileset_DenimCountryMerchandise.X68'
 DenimCountryMerchandiseTilesEnd:
-
 
 ;-------------------------------------------------------------------------------
 ; hallway scene tiles
@@ -63,6 +76,10 @@ DenimCountryMerchandiseTilesEnd:
 HallWestTilesStart:
 	include 'tiles/scene-tiles/tileset_WestHallFloor.X68'
 HallWestTilesEnd:
+
+BenchSimpleTilesStart:
+	include 'tiles/scene-tiles/tileset_benchsimple.X68'
+BenchSimpleTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; fish or cut bait scene tiles
@@ -150,6 +167,10 @@ SimpleTileFloorTilesEnd:
 StoneFloorTilesStart:
 	include 'tiles/scene-tiles/tileset_stonefloor.X68'
 StoneFloorTilesEnd:
+
+TackyFloorTilesStart:
+	include 'tiles/scene-tiles/tileset_tackyfloor.X68'
+TackyFloorTilesEnd:
 
 StoreFrameTilesStart:
 	include 'tiles/scene-tiles/tileset_StoreFrame.X68'

@@ -8,7 +8,7 @@ SceneCPlanet:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0003	; tileset count - 1
+	dc.w	$0005	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -26,6 +26,15 @@ SceneCPlanet:
 	dc.l	StoreFrameThreeColorTilesStart	; start of frame tiles
 	dc.l	StoreFrameThreeColorTilesEnd	; end of frame tiles
 
+	; tileset 4
+	dc.l	PosterTilesStart	; start of poster tiles
+	dc.l	PosterTilesEnd	; end of poster tiles
+
+	; tileset 5
+	dc.l	CPlanetLogoTilesStart	; start of logo tiles
+	dc.l	CPlanetLogoTilesEnd	; end of logo tiles
+
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -35,7 +44,7 @@ SceneCPlanet:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0006	; scenery count - 1
+	dc.w	$000B	; scenery count - 1
 
 	; floor
 	dc.l	PatternTileFloor	; location of pattern to load
@@ -85,6 +94,38 @@ SceneCPlanet:
 	dc.w	%1000000000000001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00360000+$0C000000	; initial drawing location
+
+	; posters
+	dc.l	PatternPoster	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000011110	; base pattern
+	dc.w	$0000	; repeat 0 times
+	dc.l	VDP_VRAM_WRITE_A+$00040000+$0C800000	; initial drawing location
+
+	dc.l	PatternPoster	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000100100	; base pattern
+	dc.w	$0000	; repeat 0 times
+	dc.l	VDP_VRAM_WRITE_A+$00120000+$0C800000	; initial drawing location
+
+	dc.l	PatternPoster	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000101010	; base pattern
+	dc.w	$0000	; repeat 0 times
+	dc.l	VDP_VRAM_WRITE_A+$003a0000+$0C800000	; initial drawing location
+
+	dc.l	PatternPoster	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000110000	; base pattern
+	dc.w	$0000	; repeat 0 times
+	dc.l	VDP_VRAM_WRITE_A+$00460000+$0C800000	; initial drawing location
+
+	; logo
+	dc.l	Pattern32x24	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000110110	; base pattern
+	dc.w	$0000	; repeat 0 times
+	dc.l	VDP_VRAM_WRITE_A+$00240000+$0C000000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text
