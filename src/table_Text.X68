@@ -51,6 +51,12 @@ ObjectNameTable:
 	dc.l	ObjectNameJeans
 	; OBJ_SCENE_BENCH
 	dc.l	ObjectNameBench
+	; OBJ_SCENE_TRASHCAN
+	dc.l	ObjectNameTrashCan
+	; OBJ_SCENE_PLANT
+	dc.l	ObjectNamePlant
+	; OBJ_SCENE_INFODESK
+	dc.l	ObjectNameInfoDesk
 
 ;-------------------------------------------------------------------------------
 ; npc names

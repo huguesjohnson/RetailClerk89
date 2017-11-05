@@ -81,6 +81,18 @@ BenchSimpleTilesStart:
 	include 'tiles/scene-tiles/tileset_benchsimple.X68'
 BenchSimpleTilesEnd:
 
+TrashCanTilesStart:
+	include 'tiles/scene-tiles/tileset_TrashCan.X68'
+TrashCanTilesEnd:
+
+Plant24x32TilesStart:
+	include 'tiles/scene-tiles/tileset_plant-24x32.X68'
+Plant24x32TilesEnd:
+
+InfoDeskTilesStart:
+	include 'tiles/scene-tiles/tileset_InfoDesk.X68'
+InfoDeskTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; fish or cut bait scene tiles
 ;-------------------------------------------------------------------------------
@@ -253,7 +265,6 @@ NPCSpriteMaleShopper0End:
 NPCSpriteGreenbergStart:
 	include 'tiles/sprite-tiles/tileset_NPCSprite3.X68'
 NPCSpriteGreenbergEnd:
-
 
 SpriteTilesEnd:
 

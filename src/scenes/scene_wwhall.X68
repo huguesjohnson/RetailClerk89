@@ -8,7 +8,7 @@ SceneWWHall:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0006	; tileset count - 1
+	dc.w	$0008	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -38,6 +38,14 @@ SceneWWHall:
 	dc.l	WoodFloorVTilesStart	; start of tiles for south floor
 	dc.l	WoodFloorVTilesEnd	; end of tiles for south floor
 
+	; tileset 7
+	dc.l	BenchSimpleTilesStart	; start of bench tiles
+	dc.l	BenchSimpleTilesEnd	; end of bench tiles
+
+	; tileset 8
+	dc.l	TrashCanTilesStart	; start of trash can tiles
+	dc.l	TrashCanTilesEnd	; end of trash can tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -47,7 +55,7 @@ SceneWWHall:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0008	; scenery count - 1
+	dc.w	$000B	; scenery count - 1
 
 	; floor
 	dc.l	PatternFloor	; location of pattern to load
@@ -114,6 +122,26 @@ SceneWWHall:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D800000+$00360000	; initial drawing location
 
+	; bench
+	dc.l	PatternBenchSimpleLong	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001000000
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$06000000+$00140000	; initial drawing location
+
+	; trash cans
+	dc.l	Pattern16x24	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001000100
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$05800000+$00100000	; initial drawing location
+
+	dc.l	Pattern16x24	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001000100
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$05800000+$003C0000	; initial drawing location
+
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
@@ -124,18 +152,38 @@ SceneWWHall:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	;---------------------------------------------------------------------------
+	; word0=Object ID (0-65535)
+	; word1[0-8]=x0 (0-511)
+	; word1[9-15]=width (0-127)
+	; word2[0-8]=y0 (0-512)
+	; word2[9-15]=height (0-127)
+	;---------------------------------------------------------------------------
+
+	dc.w	OBJ_SCENE_TRASHCAN
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0010000010111110
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000011011000
+
+	dc.w	OBJ_SCENE_TRASHCAN
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0010000101110010
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000011011000
+
+	dc.w	OBJ_SCENE_BENCH
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1010000011010000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0010000011100000
+
+	dc.w	OBJ_SCENE_BENCH
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1010000100100000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0010000011100000
+
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
 	dc.w	$0000

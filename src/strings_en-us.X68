@@ -410,6 +410,15 @@ ObjectNameJeans:
 ObjectNameBench:
 	dc.b	"Wooden bench",OBJNAMEEND
 
+ObjectNameTrashCan:
+	dc.b	"Trash can",OBJNAMEEND
+
+ObjectNamePlant:
+	dc.b	"Potted plant",OBJNAMEEND
+
+ObjectNameInfoDesk:
+	dc.b	"Information desk",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------
