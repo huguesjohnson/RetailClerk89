@@ -57,6 +57,8 @@ ObjectNameTable:
 	dc.l	ObjectNamePlant
 	; OBJ_SCENE_INFODESK
 	dc.l	ObjectNameInfoDesk
+	; OBJ_SCENE_TREE
+	dc.l	ObjectNameTree
 
 ;-------------------------------------------------------------------------------
 ; npc names

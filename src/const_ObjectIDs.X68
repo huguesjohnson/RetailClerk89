@@ -15,6 +15,7 @@ OBJ_SCENE_BENCH=OBJ_SCENE_BASE+$8
 OBJ_SCENE_TRASHCAN=OBJ_SCENE_BASE+$9
 OBJ_SCENE_PLANT=OBJ_SCENE_BASE+$A
 OBJ_SCENE_INFODESK=OBJ_SCENE_BASE+$B
+OBJ_SCENE_TREE=OBJ_SCENE_BASE+$C
 
 ;-------------------------------------------------------------------------------
 ; NPCs

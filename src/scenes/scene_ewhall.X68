@@ -8,7 +8,7 @@ SceneEWHall:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0007	; tileset count - 1
+	dc.w	$0008	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -42,6 +42,10 @@ SceneEWHall:
 	dc.l	WoodFloorVTilesStart
 	dc.l	WoodFloorVTilesEnd
 
+	; tileset 8
+	dc.l	Plant32x64TilesStart	; start of plant tiles
+	dc.l	Plant32x64TilesEnd	; end of plant tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -51,7 +55,7 @@ SceneEWHall:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0008	; scenery count - 1
+	dc.w	$000C	; scenery count - 1
 
 	; north floor
 	dc.l	PatternTileFloorSimple	; location of pattern to load
@@ -119,6 +123,33 @@ SceneEWHall:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D800000+$00360000	; initial drawing location
 
+	; plants
+	dc.l	Pattern32x40	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000001001100	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$05000000+$00100000	; initial drawing location
+
+	dc.l	Pattern32x24	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001100000	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$07800000+$00100000	; initial drawing location
+
+	dc.l	Pattern32x40	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000001001100	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$05000000+$00380000	; initial drawing location
+
+	dc.l	Pattern32x24	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001100000	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$07800000+$00380000	; initial drawing location
+
+
+
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
@@ -129,12 +160,18 @@ SceneEWHall:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	dc.w	OBJ_SCENE_TREE
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0100000011000000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000011110100
+
+	dc.w	OBJ_SCENE_TREE
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0100000101100000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000011110100
+
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
 	dc.w	$0000

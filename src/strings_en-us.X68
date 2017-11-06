@@ -419,6 +419,9 @@ ObjectNamePlant:
 ObjectNameInfoDesk:
 	dc.b	"Information desk",OBJNAMEEND
 
+ObjectNameTree:
+	dc.b	"Tree",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------

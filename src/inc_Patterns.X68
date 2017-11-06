@@ -65,6 +65,7 @@
 	include 'patterns/pattern_BenchSimple.X68'
 	include 'patterns/pattern_BenchSimpleLong.X68'
 	include	'patterns/pattern_InfoDesk.X68'
+	include	'patterns/pattern_LongPlant.X68'
 
 ;-------------------------------------------------------------------------------
 ; parking lot scenery

@@ -89,6 +89,14 @@ Plant24x32TilesStart:
 	include 'tiles/scene-tiles/tileset_plant-24x32.X68'
 Plant24x32TilesEnd:
 
+Plant32x32TilesStart:
+	include 'tiles/scene-tiles/tileset_plant-32x32.X68'
+Plant32x32TilesEnd:
+
+Plant32x64TilesStart:
+	include 'tiles/scene-tiles/tileset_plant-32x64.X68'
+Plant32x64TilesEnd:
+
 InfoDeskTilesStart:
 	include 'tiles/scene-tiles/tileset_InfoDesk.X68'
 InfoDeskTilesEnd:
