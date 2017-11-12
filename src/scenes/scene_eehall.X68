@@ -8,7 +8,7 @@ SceneEEHall:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0008	; tileset count - 1
+	dc.w	$0009	; tileset count - 1
 
 	; tileset 01
 	dc.l	TransparentTileStart
@@ -46,6 +46,10 @@ SceneEEHall:
 	dc.l	BenchSimpleTilesStart	; start of bench tiles
 	dc.l	BenchSimpleTilesEnd	; end of bench tiles
 
+	; tileset 9
+	dc.l	ArcadeLogoTilesStart ; start of arcade logo tiles
+	dc.l	ArcadeLogoTilesEnd ; end of arcade logo tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -55,7 +59,7 @@ SceneEEHall:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$000C	; scenery count - 1
+	dc.w	$000D	; scenery count - 1
 
 	; north floor
 	dc.l	Pattern32x32Tile	; location of pattern to load
@@ -147,6 +151,13 @@ SceneEEHall:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$08000000+$000C0000	; initial drawing location
 
+	; arcade logo
+	dc.l	Pattern72x16	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000001011101
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00000000+$001E0000	; initial drawing location
+
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
@@ -157,18 +168,30 @@ SceneEEHall:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	dc.w	OBJ_SCENE_BENCH
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1110010010110000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0010000100000000
+
+	dc.w	OBJ_SCENE_BENCH
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1110010100100010
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0010000100000000
+
+	dc.w	OBJ_SCENE_PLANT
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1110010010110000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0100000011100000
+
+	dc.w	OBJ_SCENE_PLANT
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1110010100100010
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0100000011100000
+
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
 	dc.w	$0000

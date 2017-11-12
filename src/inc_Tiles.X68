@@ -132,6 +132,13 @@ ParkingLotEdgeTilesStart:
 ParkingLotEdgeTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; cavern scene tiles
+;-------------------------------------------------------------------------------
+ArcadeLogoTilesStart:
+	include 'tiles/scene-tiles/tileset_arcadelogo.X68'
+ArcadeLogoTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; santa's workshop scene tiles
 ;-------------------------------------------------------------------------------
 BannerTilesStart:

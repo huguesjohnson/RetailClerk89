@@ -168,10 +168,10 @@ SceneIntroDay00:
 	; exits
 	;---------------------------------------------------------------------------
 	if	_DEBUG_
-	dc.w	SCENE_ID_EEHALL	; north exit
-	dc.w	SCENE_ID_EEHALL	; south exit
-	dc.w	SCENE_ID_EEHALL	; east exit
-	dc.w	SCENE_ID_EEHALL	; west exit
+	dc.w	SCENE_ID_SOUTH_CENTER	; north exit
+	dc.w	SCENE_ID_SOUTH_CENTER	; south exit
+	dc.w	SCENE_ID_SOUTH_CENTER	; east exit
+	dc.w	SCENE_ID_SOUTH_CENTER	; west exit
 	else
 	dc.w	SCENE_ID_VB	; north exit
 	dc.w	SCENE_ID_VB	; south exit
