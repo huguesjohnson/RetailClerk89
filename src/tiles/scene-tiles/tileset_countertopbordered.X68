@@ -1,3 +1,4 @@
+	; 00
 	dc.l	$00000000
 	dc.l	$00000000
 	dc.l	$00000000
@@ -7,6 +8,7 @@
 	dc.l	$00000000
 	dc.l	$00000000
 
+	; 01
 	dc.l	$09999999
 	dc.l	$9AAAAAAA
 	dc.l	$9ABBBBBB
@@ -16,6 +18,7 @@
 	dc.l	$9ABBBBBB
 	dc.l	$9ABBBBBB
 
+	; 02
 	dc.l	$99999999
 	dc.l	$AAAAAAAA
 	dc.l	$BBBBBBBB
@@ -25,6 +28,7 @@
 	dc.l	$BBBBBBBB
 	dc.l	$BBBBBBBB
 
+	; 03
 	dc.l	$99999990
 	dc.l	$AAAAAA99
 	dc.l	$BBBBBBA9
@@ -34,6 +38,7 @@
 	dc.l	$BBBBBBA9
 	dc.l	$BBBBBBA9
 
+	; 04
 	dc.l	$9ABBBBBA
 	dc.l	$9ABBBBBA
 	dc.l	$9ABBBBBA
@@ -43,6 +48,7 @@
 	dc.l	$9ABBBBBA
 	dc.l	$9ABBBBBA
 
+	; 05
 	dc.l	$9ABBBBBB
 	dc.l	$9ABBBBBB
 	dc.l	$9ABBBBBB
@@ -52,15 +58,17 @@
 	dc.l	$9ABBBBBB
 	dc.l	$9ABBBBBB
 
-	dc.l	$BBBBBBBA
-	dc.l	$BBBBBBBA
-	dc.l	$BBBBBBBA
-	dc.l	$BBBBBBBA
-	dc.l	$BBBBBBBA
-	dc.l	$BBBBBBBA
-	dc.l	$BBBBBBBA
-	dc.l	$BBBBBBBA
+	; 06
+	dc.l	$BBBBBBA9
+	dc.l	$BBBBBBA9
+	dc.l	$BBBBBBA9
+	dc.l	$BBBBBBA9
+	dc.l	$BBBBBBA9
+	dc.l	$BBBBBBA9
+	dc.l	$BBBBBBA9
+	dc.l	$BBBBBBA9
 
+	; 07
 	dc.l	$99ABBBBB
 	dc.l	$99ABBBBB
 	dc.l	$99ABBBBB
@@ -70,6 +78,7 @@
 	dc.l	$90099999
 	dc.l	$90000999
 
+	; 08
 	dc.l	$BBBBBBBB
 	dc.l	$BBBBBBBB
 	dc.l	$BBBBBBBB
@@ -79,6 +88,7 @@
 	dc.l	$99999999
 	dc.l	$99999999
 
+	; 09
 	dc.l	$BBBBBBA9
 	dc.l	$BBBBBBA9
 	dc.l	$BBBBBBA9
@@ -88,3 +98,42 @@
 	dc.l	$99999900
 	dc.l	$99999000
 
+	; 0A
+	dc.l	$BBBBBBA9
+	dc.l	$BBBBBBAA
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+
+	; 0B
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBAA
+	dc.l	$BBBBBBA9
+	dc.l	$BBBBBBA9
+	dc.l	$BBBBBBA9
+
+	; 0C
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$AABBBBBB
+	dc.l	$9ABBBBBB
+	dc.l	$9ABBBBBB
+	dc.l	$9ABBBBBB
+
+	; 0D
+	dc.l	$9ABBBBBB
+	dc.l	$AABBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB

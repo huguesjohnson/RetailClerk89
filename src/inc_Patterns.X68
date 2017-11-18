@@ -66,14 +66,16 @@
 	include 'patterns/pattern_BenchSimpleLong.X68'
 	include	'patterns/pattern_InfoDesk.X68'
 	include	'patterns/pattern_LongPlant.X68'
+	include	'patterns/pattern_BoothMerch.X68'
+	include	'patterns/pattern_KioskShelves.X68'
 
 ;-------------------------------------------------------------------------------
 ; parking lot scenery
 ;-------------------------------------------------------------------------------
+	include 'patterns/pattern_ParkingLotEdge.X68'
+	include 'patterns/pattern_ParkingStripe.X68'
 	include 'patterns/pattern_MallExteriorSide.X68'
 	include 'patterns/pattern_MallExteriorSign.X68'
-	include 'patterns/pattern_ParkingStripe.X68'
-	include 'patterns/pattern_ParkingLotEdge.X68'
 
 ;-------------------------------------------------------------------------------
 ; fish or cut bait scenery

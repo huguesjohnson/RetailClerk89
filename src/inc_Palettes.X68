@@ -167,7 +167,7 @@ Store16Palettes:
 ; store 17 (south center)
 Store17Palettes:
 	include 'palettes/pal_Store_jitch_00.X68'	; west wall is jock itch
-	include 'palettes/pal_Hallway_00.X68'
+	include 'palettes/pal_Hallway_02.X68'
 	include 'palettes/pal_Store_dcountry_01.X68'	; east wall is denimcountry
 	include 'palettes/pal_People_00.X68'
 
@@ -339,9 +339,9 @@ Store16PalettesPaused:
 
 ; store 17 (south center)
 Store17PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
+	include 'palettes/pal_Paused_04.X68'
 	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_04.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ;-------------------------------------------------------------------------------

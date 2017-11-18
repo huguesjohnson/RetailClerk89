@@ -4,6 +4,4 @@ PatternBenchSimple:
 	; row 00
 	dc.w	$00,$00,$00,$00
 	; row 01
-	dc.w	$01,$02,$02,$03
-
-
+	dc.w 	$01,$02,$02,$03

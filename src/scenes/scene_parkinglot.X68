@@ -63,6 +63,13 @@ SceneParkingLot:
 	dc.w	$000B	; repeat 12 times
 	dc.l	VDP_VRAM_WRITE_B+$02000000	; initial drawing location
 
+	; mall exterior - sign
+	dc.l	PatternMallExteriorSign	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000110100	; base pattern
+	dc.w	$0000	; repeat 0 times
+	dc.l	VDP_VRAM_WRITE_A+$00180000	; initial drawing location
+
 	; mall exterior - left side
 	dc.l	PatternMallExteriorSide	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
@@ -76,13 +83,6 @@ SceneParkingLot:
 	dc.w	%0000000000010001	; base pattern
 	dc.w	$0000	; repeat 0 times
 	dc.l	VDP_VRAM_WRITE_B+$00380000	; initial drawing location
-
-	; mall exterior - sign
-	dc.l	PatternMallExteriorSign	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000110100	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_A+$00180000	; initial drawing location
 
 	; left edge
 	dc.l	PatternParkingLotEdgeLeft	; location of pattern to load
@@ -170,7 +170,6 @@ SceneParkingLot:
 	dc.w	%0000000000011001	; base pattern
 	dc.w	$0000	; repeat 0 times
 	dc.l	VDP_VRAM_WRITE_B+$00380000+$0C000000	; initial drawing location
-
 
 	;---------------------------------------------------------------------------
 	; text

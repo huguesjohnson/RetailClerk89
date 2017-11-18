@@ -101,6 +101,10 @@ InfoDeskTilesStart:
 	include 'tiles/scene-tiles/tileset_InfoDesk.X68'
 InfoDeskTilesEnd:
 
+KioskShelvesTilesStart:
+	include 'tiles/scene-tiles/tileset_ShelvesKiosk.X68'
+KioskShelvesTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; fish or cut bait scene tiles
 ;-------------------------------------------------------------------------------
@@ -250,6 +254,9 @@ CounterShelvesTilesStart:
 	include 'tiles/scene-tiles/tileset_CounterShelves.X68'
 CounterShelvesTilesEnd:
 
+CounterShelvesAltTilesStart:
+	include 'tiles/scene-tiles/tileset_CounterShelvesAlt.X68'
+CounterShelvesAltTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; sprite tiles

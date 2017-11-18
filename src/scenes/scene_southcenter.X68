@@ -8,7 +8,7 @@ SceneSouthCenter:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0004	; tileset count - 1
+	dc.w	$0007	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -30,6 +30,18 @@ SceneSouthCenter:
 	dc.l	WoodFloorVTilesStart	; start of right side floor tiles
 	dc.l	WoodFloorVTilesEnd	; end of right side floor tiles
 
+	; tileset 5
+	dc.l	BorderedCounterTilesStart	; start of counter top tiles
+	dc.l	BorderedCounterTilesEnd	; end of counter top tiles
+
+	; tileset 6
+	dc.l	CounterShelvesAltTilesStart	; start of counter shelf tiles
+	dc.l	CounterShelvesAltTilesEnd	; end of counter shelf tiles
+
+	; tileset 7
+	dc.l	KioskShelvesTilesStart	; start of kiosk shelf tiles
+	dc.l	KioskShelvesTilesEnd	; end of kiosk shelf tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -39,7 +51,7 @@ SceneSouthCenter:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0006	; scenery count - 1
+	dc.w	$000A	; scenery count - 1
 
 	; main floor
 	dc.l	PatternTileFloor
@@ -90,6 +102,34 @@ SceneSouthCenter:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$05000000+$004E0000	; initial drawing location
 
+	; shelves under counter
+	dc.l	PatternBoothMerch112x16	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000000101101	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$001A0000+$07800000	; initial drawing location
+
+	; kiosk counter
+	dc.l	PatternCounterLow112x80Closed
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000000011111	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$03000000+$001A0000	; initial drawing location
+
+	; kiosk shelves
+	dc.l	PatternKioskShelves
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000000110000	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$02800000+$001E0000	; initial drawing location
+
+	; kiosk shelves
+	dc.l	PatternKioskShelves
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000000110000	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$02800000+$00280000	; initial drawing location
+
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
@@ -100,9 +140,12 @@ SceneSouthCenter:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	dc.w	OBJ_SCENE_KIOSK
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1101111011101000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%1011000010110000
+
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
 	dc.w	$0000

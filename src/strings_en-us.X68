@@ -422,6 +422,9 @@ ObjectNameInfoDesk:
 ObjectNameTree:
 	dc.b	"Tree",OBJNAMEEND
 
+ObjectNameKiosk:
+	dc.b	"Seasonal kiosk",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------
