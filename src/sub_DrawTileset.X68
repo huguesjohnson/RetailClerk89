@@ -25,7 +25,7 @@ DrawTileset:
 	move.w	(a0)+,d2	; store the number of rows
 	move.w	(a0)+,d3	; store the number of columns
 DrawTilesetOuterLoop:
-	movea.w	a0,a2	; reset a2 to starting address
+	movea.l	a0,a2	; reset a2 to starting address
 	move.w	d2,d5	; reset d5 to store the number of rows to loop over
 DrawTilesetRowLoop:
 	move.w	d3,d6	; reset d6 to store the number of columns to loop over
