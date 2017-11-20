@@ -16,6 +16,14 @@ Pattern16x24:
 	; row 02
 	dc.w	$04,$05
 
+Pattern24x16:
+	dc.w	$0001	; 2 rows
+	dc.w	$0002	; 3 columns	
+	; row 00
+	dc.w	$00,$01,$02
+	; row 01
+	dc.w	$03,$04,$05
+
 Pattern24x32:
 	dc.w	$0003	; 4 rows
 	dc.w	$0002	; 3 columns	

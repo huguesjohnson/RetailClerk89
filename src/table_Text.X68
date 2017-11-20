@@ -61,6 +61,8 @@ ObjectNameTable:
 	dc.l	ObjectNameTree
 	; OBJ_SCENE_KIOSK
 	dc.l	ObjectNameKiosk
+	; OBJ_SCENE_PHONE
+	dc.l	ObjectNamePhone
 
 ;-------------------------------------------------------------------------------
 ; npc names

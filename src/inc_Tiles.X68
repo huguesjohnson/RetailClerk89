@@ -105,6 +105,10 @@ KioskShelvesTilesStart:
 	include 'tiles/scene-tiles/tileset_ShelvesKiosk.X68'
 KioskShelvesTilesEnd:
 
+PhoneTilesStart:
+	include 'tiles/scene-tiles/tileset_phone.X68'
+PhoneTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; fish or cut bait scene tiles
 ;-------------------------------------------------------------------------------

@@ -34,7 +34,7 @@ Store03Palettes:
 ; store 04 (south hallway)
 Store04Palettes:
 	include 'palettes/pal_Store_hotsam_00.X68'	; west wall is hot sam
-	include 'palettes/pal_Hallway_00.X68'
+	include 'palettes/pal_Hallway_03.X68'
 	include 'palettes/pal_Store_nshack_00.X68'	; east wall is nut shack
 	include 'palettes/pal_People_00.X68'
 
@@ -206,9 +206,9 @@ Store03PalettesPaused:
 
 ; store 04 (south hallway)
 Store04PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
+	include 'palettes/pal_Paused_04.X68'
 	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_04.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 05 (parking log)

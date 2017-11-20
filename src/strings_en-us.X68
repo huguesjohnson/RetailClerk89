@@ -425,6 +425,9 @@ ObjectNameTree:
 ObjectNameKiosk:
 	dc.b	"Seasonal kiosk",OBJNAMEEND
 
+ObjectNamePhone:
+	dc.b	"Payphone",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------
