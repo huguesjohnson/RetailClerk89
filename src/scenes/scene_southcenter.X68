@@ -105,7 +105,7 @@ SceneSouthCenter:
 	; shelves under counter
 	dc.l	PatternBoothMerch112x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0010000000101101	; base pattern
+	dc.w	%0010000000101110	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$001A0000+$07800000	; initial drawing location
 
@@ -119,14 +119,14 @@ SceneSouthCenter:
 	; kiosk shelves
 	dc.l	PatternKioskShelves
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000110000	; base pattern
+	dc.w	%1010000000110001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$02800000+$001E0000	; initial drawing location
 
 	; kiosk shelves
 	dc.l	PatternKioskShelves
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000110000	; base pattern
+	dc.w	%1010000000110001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$02800000+$00280000	; initial drawing location
 

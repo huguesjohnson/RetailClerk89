@@ -137,3 +137,13 @@
 	dc.l	$BBBBBBBB
 	dc.l	$BBBBBBBB
 	dc.l	$BBBBBBBB
+
+	; 0E
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB

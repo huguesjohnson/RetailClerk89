@@ -34,6 +34,22 @@ PatternCounterHigh48x8OpenLowerRight:
 	; row 00
 	dc.w	$01,$02,$02,$02,$02,$02
 
+PatternCounterHigh112x8Closed:
+	dc.w	$0000	; 1 rows
+	dc.w	$000D	; 14 columns
+	; row 00
+	dc.w	$01,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$03
+
+PatternCounterLow112x24Closed:
+	dc.w	$0002	; 3 rows
+	dc.w	$000D	; 14 columns
+	; row 00
+	dc.w	$05,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$06
+	; row 01
+	dc.w	$05,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$06
+	; row 02
+	dc.w	$07,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$09
+
 PatternCounterLow112x80Closed:
 	dc.w	$0009	; 10 rows
 	dc.w	$000D	; 14 columns

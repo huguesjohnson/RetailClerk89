@@ -428,6 +428,9 @@ ObjectNameKiosk:
 ObjectNamePhone:
 	dc.b	"Payphone",OBJNAMEEND
 
+ObjectNameDaniCar:
+	dc.b	"Dani's car",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------

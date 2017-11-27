@@ -71,6 +71,23 @@ DenimCountryMerchandiseTilesStart:
 DenimCountryMerchandiseTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; checkers scene tiles
+;-------------------------------------------------------------------------------
+MannequinStandTilesStart:
+	include 'tiles/scene-tiles/tileset_MannequinStand.X68'
+MannequinStandTilesEnd:
+
+MannequinTilesStart:
+	include 'tiles/scene-tiles/tileset_MannequinA.X68'
+	include 'tiles/scene-tiles/tileset_MannequinB.X68'
+	include 'tiles/scene-tiles/tileset_MannequinC.X68'
+MannequinTilesEnd:
+
+CheckersMerchandiseTilesStart:
+	include 'tiles/scene-tiles/tileset_CheckersMerchandise.X68'
+CheckersMerchandiseTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; hallway scene tiles
 ;-------------------------------------------------------------------------------
 HallWestTilesStart:
@@ -139,6 +156,10 @@ ParkingLotEdgeTilesStart:
 	include 'tiles/scene-tiles/tileset_parkinglotedge.X68'
 ParkingLotEdgeTilesEnd:
 
+JunkerCarTilesStart:
+	include 'tiles/scene-tiles/tileset_junker.X68'
+JunkerCarTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; cavern scene tiles
 ;-------------------------------------------------------------------------------
@@ -164,7 +185,6 @@ SnowFloorTilesEnd:
 ;-------------------------------------------------------------------------------
 ; general store frame tiles
 ;-------------------------------------------------------------------------------
-
 CarpetFloorTilesStart:
 	include 'tiles/scene-tiles/tileset_Floor.X68'
 	; swap for this tileset for the debug grid pattern	
@@ -234,6 +254,10 @@ SideStoreEntranceTilesEnd:
 SideStoreEntranceSquareTilesStart:
 	include 'tiles/scene-tiles/tileset_StoreEntranceSideSquare.X68'
 SideStoreEntranceSquareTilesEnd:
+
+RegisterAltTilesStart:
+	include 'tiles/scene-tiles/tileset_register_alt.X68'
+RegisterAltTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; general scenery tiles

@@ -8,7 +8,7 @@ SceneParkingLot:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0006	; tileset count - 1
+	dc.w	$0007	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -38,6 +38,10 @@ SceneParkingLot:
 	dc.l	MallSignTilesStart	; start of mall sign tiles
 	dc.l	MallSignTilesEnd	; end of mall sign tiles
 
+	; tileset 7
+	dc.l	JunkerCarTilesStart	; start of junker car tiles
+	dc.l	JunkerCarTilesEnd	; end of junker car tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -47,7 +51,7 @@ SceneParkingLot:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0012	; scenery count
+	dc.w	$0014	; scenery count
 
 	; north mall floor
 	dc.l	PatternTileFloor	; location of pattern to load
@@ -171,6 +175,19 @@ SceneParkingLot:
 	dc.w	$0000	; repeat 0 times
 	dc.l	VDP_VRAM_WRITE_B+$00380000+$0C000000	; initial drawing location
 
+	; car
+	dc.l	Pattern96x16	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1100000000111000	; base pattern
+	dc.w	$0000	; repeat 0 times
+	dc.l	VDP_VRAM_WRITE_A+$00360000+$06000000	; initial drawing location
+
+	dc.l	Pattern96x40	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0100000001010000	; base pattern
+	dc.w	$0000	; repeat 0 times
+	dc.l	VDP_VRAM_WRITE_A+$00360000+$07000000	; initial drawing location
+
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
@@ -181,9 +198,12 @@ SceneParkingLot:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	dc.w	OBJ_SCENE_DANICAR
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1011000101011001
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101010011100010
+
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
 	dc.w	$0000

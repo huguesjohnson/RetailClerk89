@@ -1,0 +1,19 @@
+	; 00
+	dc.l	$DDDDDDDD
+	dc.l	$DDDDDDDD
+	dc.l	$DDDDDDDD
+	dc.l	$CCCCCCCC
+	dc.l	$CCCCCCCC
+	dc.l	$BBBBBBBB
+	dc.l	$BBBBBBBB
+	dc.l	$EEEEEEEE
+
+	; 01
+	dc.l	$DDDDDDDF
+	dc.l	$DDDDDDDF
+	dc.l	$DDDDDDDF
+	dc.l	$CCCCCCCF
+	dc.l	$CCCCCCCF
+	dc.l	$BBBBBBBF
+	dc.l	$BBBBBBBF
+	dc.l	$EEEEEEEE

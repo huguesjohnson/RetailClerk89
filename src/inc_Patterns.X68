@@ -35,6 +35,12 @@
 	include 'patterns/pattern_Poster.X68'
 
 ;-------------------------------------------------------------------------------
+; checkers scenery
+;-------------------------------------------------------------------------------
+	include 'patterns/pattern_CheckersShelves.X68'
+	include 'patterns/pattern_MannequinStand.X68'
+
+;-------------------------------------------------------------------------------
 ; generic store scenery
 ;-------------------------------------------------------------------------------
 	include 'patterns/pattern_GenericPatterns.X68'

@@ -214,8 +214,8 @@ Store04PalettesPaused:
 ; store 05 (parking log)
 Store05PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
 	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 06 (east hallway west)
@@ -242,8 +242,8 @@ Store08PalettesPaused:
 ; store 09 (checkers)
 Store09PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_00.X68'
+	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 0A (transistor lodge)

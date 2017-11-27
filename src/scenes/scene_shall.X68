@@ -159,18 +159,30 @@ SceneSouthHall:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	dc.w	OBJ_SCENE_PHONE
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0011000100000000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0110000011000000
+
+	dc.w	OBJ_SCENE_PHONE
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0011000100101010
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0110000011000000
+
+	dc.w	OBJ_SCENE_PLANT
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1011000010001000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000101001010
+
+	dc.w	OBJ_SCENE_PLANT
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1011000101100000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000101001010
+
 	dc.w	OBJ_NOTHING
 	dc.w	$0000
 	dc.w	$0000
