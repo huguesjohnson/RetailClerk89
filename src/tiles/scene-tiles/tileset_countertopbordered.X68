@@ -73,10 +73,10 @@
 	dc.l	$99ABBBBB
 	dc.l	$99ABBBBB
 	dc.l	$999ABBBB
-	dc.l	$909AAAAA
-	dc.l	$90999999
-	dc.l	$90099999
-	dc.l	$90000999
+	dc.l	$999AAAAA
+	dc.l	$09999999
+	dc.l	$00999999
+	dc.l	$00099999
 
 	; 08
 	dc.l	$BBBBBBBB

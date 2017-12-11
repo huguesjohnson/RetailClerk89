@@ -251,36 +251,65 @@ SceneCheckers:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	dc.w	OBJ_SCENE_REGISTER
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0010000101000000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0010000010110000
+
+	dc.w	OBJ_SCENE_CLOTHING
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1100100010001000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000010001000
+
+	dc.w	OBJ_SCENE_CLOTHING
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1100100011101100
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000010001000
+
+	dc.w	OBJ_SCENE_CLOTHING
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1100110101001000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000010001000
+
+	dc.w	OBJ_SCENE_MANNEQUIN
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0010000010100100
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101000011101000
+
+	dc.w	OBJ_SCENE_MANNEQUIN
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0010000010111000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0100000011110000
+
+	dc.w	OBJ_SCENE_MANNEQUIN
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0010000011001000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101000011101000
+
+	dc.w	OBJ_SCENE_MANNEQUIN
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0010000101101000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101000011101000
+
+	dc.w	OBJ_SCENE_MANNEQUIN
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0010000101111000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0100000011110000
+
+	dc.w	OBJ_SCENE_MANNEQUIN
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0010000110001000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101000011101000
 
 	;---------------------------------------------------------------------------
 	; collision data

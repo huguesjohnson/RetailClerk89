@@ -65,6 +65,22 @@ ObjectNameTable:
 	dc.l	ObjectNamePhone
 	; OBJ_SCENE_DANICAR
 	dc.l	ObjectNameDaniCar
+	; OBJ_SCENE_MANNEQUIN
+	dc.l	ObjectNameMannequin
+	; OBJ_SCENE_CLOTHING
+	dc.l	ObjectNameClothing
+	; OBJ_SCENE_RADIO
+	dc.l	ObjectNameRadio
+	; OBJ_SCENE_CASSETTE_PLAYER
+	dc.l	ObjectNameCassettePlayer
+	; OBJ_SCENE_CELL_PHONE
+	dc.l	ObjectNameCellPhone
+	; OBJ_SCENE_RCCAR
+	dc.l	ObjectNameRCCar
+	; OBJ_SCENE_COMPUTER
+	dc.l	ObjectNameComputer
+	; OBJ_SCENE_OFFICEPHONE
+	dc.l	ObjectNameOfficePhone
 
 ;-------------------------------------------------------------------------------
 ; npc names

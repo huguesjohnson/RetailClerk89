@@ -88,6 +88,22 @@ CheckersMerchandiseTilesStart:
 CheckersMerchandiseTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; transistor lodge scene tiles
+;-------------------------------------------------------------------------------
+TLodgeMerchandiseTilesStart:
+	include 'tiles/scene-tiles/tileset_tlodge_scenery1.X68'
+	include 'tiles/scene-tiles/tileset_tlodge_scenery2.X68'
+	include 'tiles/scene-tiles/tileset_rccar.X68'
+TLodgeMerchandiseTilesEnd:
+
+;-------------------------------------------------------------------------------
+; sunset video scene tiles
+;-------------------------------------------------------------------------------
+SVideoMerchandiseTilesStart:
+	include 'tiles/scene-tiles/tileset_SVideoMerchandise.X68'
+SVideoMerchandiseTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; hallway scene tiles
 ;-------------------------------------------------------------------------------
 HallWestTilesStart:
@@ -258,6 +274,10 @@ SideStoreEntranceSquareTilesEnd:
 RegisterAltTilesStart:
 	include 'tiles/scene-tiles/tileset_register_alt.X68'
 RegisterAltTilesEnd:
+
+RegisterAlt2TilesStart:
+	include 'tiles/scene-tiles/tileset_register_alt2.X68'
+RegisterAlt2TilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; general scenery tiles

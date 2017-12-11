@@ -8,7 +8,7 @@ SceneSVideo:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0003	; tileset count - 1
+	dc.w	$0006	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -26,6 +26,18 @@ SceneSVideo:
 	dc.l	StoreFrameTilesStart	; start of frame tiles
 	dc.l	StoreFrameTilesEnd	; end of frame tiles
 
+	; tileset 4
+	dc.l	BorderedCounterTilesStart	; start of counter top tiles
+	dc.l	BorderedCounterTilesEnd	; end of counter top tiles
+
+	; tileset 5
+	dc.l	CounterShelvesTilesStart	; start of counter shelf tiles
+	dc.l	CounterShelvesTilesEnd	; end of counter shelf tiles
+
+	; tileset 6
+	dc.l	SVideoMerchandiseTilesStart	; start of merchandise tiles
+	dc.l	SVideoMerchandiseTilesEnd	; end of merchandise tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -35,7 +47,7 @@ SceneSVideo:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0005	; scenery count - 1
+	dc.w	$000F	; scenery count - 1
 
 	; floor
 	dc.l	PatternFloor	; location of pattern to load
@@ -43,20 +55,6 @@ SceneSVideo:
 	dc.w	%0010000000000001	; base pattern
 	dc.w	$001F	; repeat 32 times
 	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
-
-	; left entrance - top
-	dc.l	PatternSideEntranceLeft
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000000101	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
-
-	; left entrance - bottom
-	dc.l	PatternSideEntranceLeft
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000000101	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$09000000	; initial drawing location
 
 	; south wall
 	dc.l	PatternFrameSouthClosed
@@ -78,6 +76,85 @@ SceneSVideo:
 	dc.w	%1010000000000110	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
+
+	; left entrance - top
+	dc.l	PatternSideEntranceLeftSingle
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000000000101	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
+
+	; left entrance - bottom
+	dc.l	PatternSideEntranceLeftSingle
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000000000101	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0D800000	; initial drawing location
+
+	; top shelf
+	dc.l	PatternShelvesH	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000100101	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$00800000	; initial drawing location
+
+	; middle shelf
+	dc.l	PatternShelvesM	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000000100101	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$01000000	; initial drawing location
+
+	; low shelf
+	dc.l	PatternShelvesL	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0100000000100101	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$01800000	; initial drawing location
+
+	; shelves under counter
+	dc.l	Pattern3Tile168x8	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000100010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$08800000+$000C0000	; initial drawing location
+
+	dc.l	Pattern3Tile168x8	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000100010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$05000000+$000C0000	; initial drawing location
+
+	; counter
+	dc.l	PatternCounterHigh112x8Top	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000010011	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$03800000+$000C0000	; initial drawing location
+
+	dc.l	PatternCounterLow112x24Top
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000010011	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$04000000+$000C0000	; initial drawing location
+
+	dc.l	PatternCounterHigh112x8Bottom	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000010011	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$07000000+$000C0000	; initial drawing location
+
+	dc.l	PatternCounterLow112x24Bottom
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0000000000010011	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$07800000+$000C0000	; initial drawing location
+
+	dc.l	PatternCounterSide32x24	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000010011	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$05800000+$000C0000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text

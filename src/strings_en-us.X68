@@ -431,6 +431,30 @@ ObjectNamePhone:
 ObjectNameDaniCar:
 	dc.b	"Dani's car",OBJNAMEEND
 
+ObjectNameMannequin:
+	dc.b	"Mannequin",OBJNAMEEND
+
+ObjectNameClothing:
+	dc.b	"Shelves of clothing",OBJNAMEEND
+
+ObjectNameRadio:
+	dc.b	"Radio",OBJNAMEEND
+
+ObjectNameCassettePlayer:
+	dc.b	"Mini cassette player",OBJNAMEEND
+
+ObjectNameCellPhone:
+	dc.b	"Portable phone",OBJNAMEEND
+
+ObjectNameRCCar:
+	dc.b	"RC car",OBJNAMEEND
+
+ObjectNameComputer:
+	dc.b	"Computer",OBJNAMEEND
+
+ObjectNameOfficePhone:
+	dc.b	"Phone",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------
