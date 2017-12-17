@@ -455,6 +455,12 @@ ObjectNameComputer:
 ObjectNameOfficePhone:
 	dc.b	"Phone",OBJNAMEEND
 
+ObjectNameVideoWall:
+	dc.b	"Wall of VHS tapes",OBJNAMEEND
+
+ObjectNameVideoRack:
+	dc.b	"Rack of VHS tapes",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------

@@ -27,12 +27,12 @@ SceneTLodge:
 	dc.l	BorderedCounterTilesEnd	; end of counter tiles
 
 	; tileset 4
-	dc.l	RegisterAlt2TilesStart ; start of register tiles
-	dc.l	RegisterAlt2TilesEnd ; end of register tiles
+	dc.l	RegisterAlt2TilesStart	; start of register tiles
+	dc.l	RegisterAlt2TilesEnd	; end of register tiles
 
 	; tileset 5
-	dc.l	TLodgeMerchandiseTilesStart ; start of merchandise tiles
-	dc.l	TLodgeMerchandiseTilesEnd ; end of merchandise tiles
+	dc.l	TLodgeMerchandiseTilesStart	; start of merchandise tiles
+	dc.l	TLodgeMerchandiseTilesEnd	; end of merchandise tiles
 
 	;---------------------------------------------------------------------------
 	; palettes

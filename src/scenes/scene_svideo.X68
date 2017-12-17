@@ -47,7 +47,7 @@ SceneSVideo:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$000F	; scenery count - 1
+	dc.w	$000E	; scenery count - 1
 
 	; floor
 	dc.l	PatternFloor	; location of pattern to load
@@ -94,7 +94,7 @@ SceneSVideo:
 	; top shelf
 	dc.l	PatternShelvesH	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000100101	; base pattern
+	dc.w	%0100000000100101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$00800000	; initial drawing location
 
@@ -108,53 +108,48 @@ SceneSVideo:
 	; low shelf
 	dc.l	PatternShelvesL	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000000100101	; base pattern
+	dc.w	%0000000000100101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$01800000	; initial drawing location
 
 	; shelves under counter
-	dc.l	Pattern3Tile168x8	; location of pattern to load
+	dc.l	Pattern3Tile96x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0000000000100010	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$08800000+$000C0000	; initial drawing location
-
-	dc.l	Pattern3Tile168x8	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000100010	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$05000000+$000C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$08800000+$00380000	; initial drawing location
 
 	; counter
-	dc.l	PatternCounterHigh112x8Top	; location of pattern to load
+	dc.l	PatternCounterHigh88x8Bottom	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1000000000010011	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$03800000+$000C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$07000000+$00380000	; initial drawing location
 
-	dc.l	PatternCounterLow112x24Top
+	dc.l	PatternCounterLow88x24Bottom
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0000000000010011	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$04000000+$000C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$07800000+$00380000	; initial drawing location
 
-	dc.l	PatternCounterHigh112x8Bottom	; location of pattern to load
+	dc.l	PatternCounterSide32x104	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1000000000010011	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$07000000+$000C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$00380000+$00800000	; initial drawing location
 
-	dc.l	PatternCounterLow112x24Bottom
+	; rack
+	dc.l	PatternSVideoRackHigh	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000010011	; base pattern
+	dc.w	%1100000000100101	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$07800000+$000C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$000C0000+$04800000	; initial drawing location
 
-	dc.l	PatternCounterSide32x24	; location of pattern to load
+	dc.l	PatternSVideoRackLow	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000010011	; base pattern
+	dc.w	%0100000000100101	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$05800000+$000C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$000C0000+$06000000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text
@@ -166,36 +161,65 @@ SceneSVideo:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
+	dc.w	OBJ_SCENE_VIDEOWALL
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1000000010000000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000010001000
+
+	dc.w	OBJ_SCENE_VIDEOWALL
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1111111100000000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000010001000
+
+	dc.w	OBJ_SCENE_VIDEORACK
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1000000010110000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101000011001000
+
+	dc.w	OBJ_SCENE_VIDEORACK
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0111111011110000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101000011001000
+
+	dc.w	OBJ_SCENE_COUNTER
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0100000101100000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%1111110010001000
+
+	dc.w	OBJ_SCENE_COUNTER
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1011000101100000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0101000100000110
+
 	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0000000000000000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0000000000000000
+
 	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0000000000000000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0000000000000000
+
 	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0000000000000000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0000000000000000
+
 	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0000000000000000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0000000000000000
 
 	;---------------------------------------------------------------------------
 	; collision data

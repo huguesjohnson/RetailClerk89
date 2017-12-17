@@ -262,8 +262,8 @@ Store0BPalettesPaused:
 
 ; store 0C (sunset video)
 Store0CPalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
+	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_02.X68'
 	include 'palettes/pal_Paused_02.X68'
 	include 'palettes/pal_Paused_03.X68'
 

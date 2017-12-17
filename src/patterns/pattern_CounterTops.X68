@@ -18,14 +18,34 @@ PatternCounterSide24x64OpenLowerLeft:
 	; row 07
 	dc.w	$08,$08,$09
 
-PatternCounterSide32x24:
-	dc.w	$0002	; 3 rows
+PatternCounterSide32x104:
+	dc.w	$000C	; 13 rows
 	dc.w	$0003	; 4 columns
 	; row 00
 	dc.w	$05,$0E,$0E,$06
 	; row 01
 	dc.w	$05,$0E,$0E,$06
 	; row 02
+	dc.w	$05,$0E,$0E,$06
+	; row 03
+	dc.w	$05,$0E,$0E,$06
+	; row 04
+	dc.w	$05,$0E,$0E,$06
+	; row 05
+	dc.w	$05,$0E,$0E,$06
+	; row 06
+	dc.w	$05,$0E,$0E,$06
+	; row 07
+	dc.w	$05,$0E,$0E,$06
+	; row 08
+	dc.w	$05,$0E,$0E,$06
+	; row 09
+	dc.w	$05,$0E,$0E,$06
+	; row 0A
+	dc.w	$05,$0E,$0E,$06
+	; row 0B
+	dc.w	$05,$0E,$0E,$06
+	; row 0C
 	dc.w	$05,$0E,$0E,$06
 
 PatternCounterLow48x24OpenTopRight:
@@ -108,45 +128,21 @@ PatternCounterLow112x80Closed:
 	; row 09
 	dc.w	$07,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$09
 
-PatternCounterHigh112x8Top:
+PatternCounterHigh88x8Bottom:
 	dc.w	$0000	; 1 row
-	dc.w	$0014	; 21 columns
-	; row 00
-	dc.w	$01,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
-	dc.w	$02,$02,$02,$02,$02,$02,$02,$02,$02,$03
-
-PatternCounterHigh112x8Bottom:
-	dc.w	$0000	; 1 row
-	dc.w	$0014	; 21 columns
+	dc.w	$000A	; 11 columns
 	; row 00
 	dc.w	$05,$0E,$0E,$0A,$02,$02,$02,$02,$02,$02,$02
-	dc.w	$02,$02,$02,$02,$02,$02,$02,$02,$02,$03
 
-PatternCounterLow112x24Top:
+PatternCounterLow88x24Bottom:
 	dc.w	$0002	; 3 rows
-	dc.w	$0014	; 21 columns
+	dc.w	$000A	; 11 columns
 	; row 00
 	dc.w	$05,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E
-	dc.w	$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$06
 	; row 01
 	dc.w	$05,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E
-	dc.w	$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$06
-	; row 02
-	dc.w	$05,$0E,$0E,$0B,$08,$08,$08,$08,$08,$08,$08
-	dc.w	$08,$08,$08,$08,$08,$08,$08,$08,$08,$09
-
-PatternCounterLow112x24Bottom:
-	dc.w	$0002	; 3 rows
-	dc.w	$0014	; 21 columns
-	; row 00
-	dc.w	$05,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E
-	dc.w	$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$06
-	; row 01
-	dc.w	$05,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E
-	dc.w	$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$0E,$06
 	; row 02
 	dc.w	$07,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08
-	dc.w	$08,$08,$08,$08,$08,$08,$08,$08,$08,$09
 
 PatternCounterLow112x88OpenRight:
 	dc.w	$000A	; 11 rows

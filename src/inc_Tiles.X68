@@ -279,6 +279,10 @@ RegisterAlt2TilesStart:
 	include 'tiles/scene-tiles/tileset_register_alt2.X68'
 RegisterAlt2TilesEnd:
 
+RegisterAltFlippedTilesStart:
+	include 'tiles/scene-tiles/tileset_register_alt_flipped.X68'
+RegisterAltFlippedTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; general scenery tiles
 ;-------------------------------------------------------------------------------

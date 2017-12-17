@@ -81,6 +81,10 @@ ObjectNameTable:
 	dc.l	ObjectNameComputer
 	; OBJ_SCENE_OFFICEPHONE
 	dc.l	ObjectNameOfficePhone
+	; OBJ_SCENE_VIDEOWALL
+	dc.l	ObjectNameVideoWall
+	; OBJ_SCENE_VIDEORACK
+	dc.l	ObjectNameVideoRack
 
 ;-------------------------------------------------------------------------------
 ; npc names
