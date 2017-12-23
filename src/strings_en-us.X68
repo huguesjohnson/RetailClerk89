@@ -461,6 +461,12 @@ ObjectNameVideoWall:
 ObjectNameVideoRack:
 	dc.b	"Rack of VHS tapes",OBJNAMEEND
 
+ObjectNameNutCase:
+	dc.b	"Fancy nuts",OBJNAMEEND
+
+ObjectNameNutBarrel:
+	dc.b	"Barrel of nuts",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------

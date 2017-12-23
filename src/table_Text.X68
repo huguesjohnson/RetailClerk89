@@ -85,6 +85,11 @@ ObjectNameTable:
 	dc.l	ObjectNameVideoWall
 	; OBJ_SCENE_VIDEORACK
 	dc.l	ObjectNameVideoRack
+	; OBJ_SCENE_NUTCASE
+	dc.l	ObjectNameNutCase
+	; OBJ_SCENE_NUTBARREL
+	dc.l	ObjectNameNutBarrel
+
 
 ;-------------------------------------------------------------------------------
 ; npc names

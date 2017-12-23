@@ -104,6 +104,14 @@ SVideoMerchandiseTilesStart:
 SVideoMerchandiseTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; nut shack scene tiles
+;-------------------------------------------------------------------------------
+NShackSceneryTilesStart:
+	include 'tiles/scene-tiles/tileset_nshack_case.X68'
+	include 'tiles/scene-tiles/tileset_barrel.X68'
+NShackSceneryTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; hallway scene tiles
 ;-------------------------------------------------------------------------------
 HallWestTilesStart:

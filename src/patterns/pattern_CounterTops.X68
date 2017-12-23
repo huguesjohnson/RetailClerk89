@@ -88,6 +88,22 @@ PatternCounter48x80:
 	; row 09
 	dc.w	$00,$00,$00,$07,$08,$09
 
+PatternCounterHigh80x8:
+	dc.w	$0000	; 1 row
+	dc.w	$0009	; 10 columns
+	; row 00
+	dc.w	$01,$02,$02,$02,$02,$02,$02,$02,$02,$03
+
+PatternCounterLow80x24:
+	dc.w	$0002	; 3 rows
+	dc.w	$0009	; 10 columns
+	; row 00
+	dc.w	$04,$05,$05,$05,$05,$05,$05,$05,$05,$06
+	; row 01
+	dc.w	$04,$05,$05,$05,$05,$05,$05,$05,$05,$06
+	; row 02
+	dc.w	$07,$08,$08,$08,$08,$08,$08,$08,$08,$09
+
 PatternCounterHigh112x8Closed:
 	dc.w	$0000	; 1 rows
 	dc.w	$000D	; 14 columns
