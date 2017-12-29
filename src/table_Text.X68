@@ -89,7 +89,10 @@ ObjectNameTable:
 	dc.l	ObjectNameNutCase
 	; OBJ_SCENE_NUTBARREL
 	dc.l	ObjectNameNutBarrel
-
+	; OBJ_SCENE_TABLE
+	dc.l	ObjectNameSceneTable
+	; OBJ_SCENE_TRASH
+	dc.l	ObjectNameTrash
 
 ;-------------------------------------------------------------------------------
 ; npc names

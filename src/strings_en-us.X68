@@ -467,6 +467,12 @@ ObjectNameNutCase:
 ObjectNameNutBarrel:
 	dc.b	"Barrel of nuts",OBJNAMEEND
 
+ObjectNameSceneTable:
+	dc.b	"Table",OBJNAMEEND
+
+ObjectNameTrash:
+	dc.b	"Trash",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------

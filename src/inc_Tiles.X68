@@ -112,6 +112,13 @@ NShackSceneryTilesStart:
 NShackSceneryTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; hot sam scene tiles
+;-------------------------------------------------------------------------------
+HotSamSceneryTilesStart:
+	include 'tiles/scene-tiles/tileset_hotsam_seating.X68'
+HotSamSceneryTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; hallway scene tiles
 ;-------------------------------------------------------------------------------
 HallWestTilesStart:
@@ -287,9 +294,9 @@ RegisterAlt2TilesStart:
 	include 'tiles/scene-tiles/tileset_register_alt2.X68'
 RegisterAlt2TilesEnd:
 
-RegisterAltFlippedTilesStart:
-	include 'tiles/scene-tiles/tileset_register_alt_flipped.X68'
-RegisterAltFlippedTilesEnd:
+RegisterAlt3TilesStart:
+	include 'tiles/scene-tiles/tileset_register_alt3.X68'
+RegisterAlt3TilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; general scenery tiles
@@ -317,6 +324,10 @@ CounterShelvesTilesEnd:
 CounterShelvesAltTilesStart:
 	include 'tiles/scene-tiles/tileset_CounterShelvesAlt.X68'
 CounterShelvesAltTilesEnd:
+
+TrashTilesStart:
+	include 'tiles/scene-tiles/tileset_trash.X68'
+TrashTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; sprite tiles
