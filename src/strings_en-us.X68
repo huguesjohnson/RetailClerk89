@@ -473,6 +473,12 @@ ObjectNameSceneTable:
 ObjectNameTrash:
 	dc.b	"Trash",OBJNAMEEND
 
+ObjectNameTapes:
+	dc.b	"Cassette tapes",OBJNAMEEND
+
+ObjectNameCDs:
+	dc.b	"CD rack",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------

@@ -15,7 +15,7 @@ PatternCounterLow24x40:
 	dc.w	$05,$0E,$06
 	; row 03
 	dc.w	$05,$0E,$06
-	; row 00
+	; row 04
 	dc.w	$07,$08,$09
 
 PatternCounterSide24x64OpenLowerLeft:
@@ -37,6 +37,44 @@ PatternCounterSide24x64OpenLowerLeft:
 	dc.w	$05,$05,$06
 	; row 07
 	dc.w	$08,$08,$09
+
+PatternCounterLow24x136:
+	dc.w	$0010	; 17 rows
+	dc.w	$0002	; 3 columns
+	; row 00
+	dc.w	$01,$02,$03
+	; row 01
+	dc.w	$05,$0E,$06
+	; row 02
+	dc.w	$05,$0E,$06
+	; row 03
+	dc.w	$05,$0E,$06
+	; row 04
+	dc.w	$05,$0E,$06
+	; row 05
+	dc.w	$05,$0E,$06
+	; row 06
+	dc.w	$05,$0E,$06
+	; row 07
+	dc.w	$05,$0E,$06
+	; row 08
+	dc.w	$05,$0E,$06
+	; row 09
+	dc.w	$05,$0E,$06
+	; row 0A
+	dc.w	$05,$0E,$06
+	; row 0B
+	dc.w	$05,$0E,$06
+	; row 0C
+	dc.w	$05,$0E,$06
+	; row 0D
+	dc.w	$05,$0E,$06
+	; row 0E
+	dc.w	$05,$0E,$06
+	; row 0F
+	dc.w	$05,$0E,$06
+	; row 10
+	dc.w	$07,$08,$09
 
 PatternCounterSide32x104:
 	dc.w	$000C	; 13 rows

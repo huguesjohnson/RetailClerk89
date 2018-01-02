@@ -93,6 +93,10 @@ ObjectNameTable:
 	dc.l	ObjectNameSceneTable
 	; OBJ_SCENE_TRASH
 	dc.l	ObjectNameTrash
+	; OBJ_SCENE_TAPES
+	dc.l	ObjectNameTapes
+	; OBJ_SCENE_CDS
+	dc.l	ObjectNameCDs
 
 ;-------------------------------------------------------------------------------
 ; npc names

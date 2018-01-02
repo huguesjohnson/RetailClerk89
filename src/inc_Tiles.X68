@@ -119,6 +119,14 @@ HotSamSceneryTilesStart:
 HotSamSceneryTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; cassette planet scene tiles
+;-------------------------------------------------------------------------------
+CPlanetSceneryTilesStart:
+	include 'tiles/scene-tiles/tileset_cplanetShelves.X68'
+	include 'tiles/scene-tiles/tileset_cplanetCDs.X68'
+CPlanetSceneryTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; hallway scene tiles
 ;-------------------------------------------------------------------------------
 HallWestTilesStart:
@@ -297,6 +305,11 @@ RegisterAlt2TilesEnd:
 RegisterAlt3TilesStart:
 	include 'tiles/scene-tiles/tileset_register_alt3.X68'
 RegisterAlt3TilesEnd:
+
+RegisterAltFlippedTilesStart:
+	include 'tiles/scene-tiles/tileset_register_alt_flipped.X68'
+RegisterAltFlippedTilesEnd:
+
 
 ;-------------------------------------------------------------------------------
 ; general scenery tiles
