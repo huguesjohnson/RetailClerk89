@@ -97,6 +97,14 @@ ObjectNameTable:
 	dc.l	ObjectNameTapes
 	; OBJ_SCENE_CDS
 	dc.l	ObjectNameCDs
+	; OBJ_SCENE_BOOKS_FICTION
+	dc.l	ObjectNameBooksFiction
+	; OBJ_SCENE_BOOKS_ROMANCE
+	dc.l	ObjectNameBooksRomance
+	; OBJ_SCENE_BOOKS_HISTORY
+	dc.l	ObjectNameBooksHistory
+	; OBJ_SCENE_BOOKS_COOKING
+	dc.l	ObjectNameBooksCooking
 
 ;-------------------------------------------------------------------------------
 ; npc names

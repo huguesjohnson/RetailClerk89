@@ -127,6 +127,13 @@ CPlanetSceneryTilesStart:
 CPlanetSceneryTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; bookstore scene tiles
+;-------------------------------------------------------------------------------
+TBooksSceneryTilesStart:
+	include 'tiles/scene-tiles/tileset_tbooksBookshelves.X68'
+TBooksSceneryTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; hallway scene tiles
 ;-------------------------------------------------------------------------------
 HallWestTilesStart:
@@ -309,7 +316,6 @@ RegisterAlt3TilesEnd:
 RegisterAltFlippedTilesStart:
 	include 'tiles/scene-tiles/tileset_register_alt_flipped.X68'
 RegisterAltFlippedTilesEnd:
-
 
 ;-------------------------------------------------------------------------------
 ; general scenery tiles

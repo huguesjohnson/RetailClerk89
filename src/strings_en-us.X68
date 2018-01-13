@@ -479,6 +479,18 @@ ObjectNameTapes:
 ObjectNameCDs:
 	dc.b	"CD rack",OBJNAMEEND
 
+ObjectNameBooksFiction:
+	dc.b	"Fiction books",OBJNAMEEND
+
+ObjectNameBooksRomance:
+	dc.b	"Romance books",OBJNAMEEND
+
+ObjectNameBooksHistory:
+	dc.b	"History books",OBJNAMEEND
+
+ObjectNameBooksCooking:
+	dc.b	"Cooking books",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------
@@ -561,6 +573,25 @@ ItemName35Disks:
 ItemNameHWPrintRibbon:
 	;		"1234567890"
 	dc.b	"PrntRibbon",ITEMNAMEEND
+
+;-------------------------------------------------------------------------------
+; store signs
+;-------------------------------------------------------------------------------
+StoreSignFiction:
+	;		"1234567"
+	dc.b	"Fiction",ETX
+
+StoreSignCooking:
+	;		"1234567"
+	dc.b	"Cooking",ETX
+
+StoreSignRomance:
+	;		"1234567"
+	dc.b	"Romance",ETX
+
+StoreSignHistory:
+	;		"1234567"
+	dc.b	"History",ETX
 
 ;-------------------------------------------------------------------------------
 ; day intros
