@@ -491,6 +491,33 @@ ObjectNameBooksHistory:
 ObjectNameBooksCooking:
 	dc.b	"Cooking books",OBJNAMEEND
 
+ObjectNameArcade0:
+	dc.b	"Arcade game 0",OBJNAMEEND
+
+ObjectNameArcade1:
+	dc.b	"Arcade game 1",OBJNAMEEND
+
+ObjectNameArcade2:
+	dc.b	"Arcade game 2",OBJNAMEEND
+
+ObjectNameArcade3:
+	dc.b	"Arcade game 3",OBJNAMEEND
+
+ObjectNameArcade4:
+	dc.b	"Arcade game 4",OBJNAMEEND
+
+ObjectNameArcade5:
+	dc.b	"Arcade game 5",OBJNAMEEND
+
+ObjectNameArcade6:
+	dc.b	"Arcade game 6",OBJNAMEEND
+
+ObjectNameArcade7:
+	dc.b	"Arcade game 7",OBJNAMEEND
+
+ObjectNameArcade8:
+	dc.b	"Arcade game 8",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------

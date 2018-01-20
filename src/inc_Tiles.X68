@@ -209,9 +209,20 @@ JunkerCarTilesEnd:
 ;-------------------------------------------------------------------------------
 ; cavern scene tiles
 ;-------------------------------------------------------------------------------
+CavernSceneryTilesStart:
+
 ArcadeLogoTilesStart:
 	include 'tiles/scene-tiles/tileset_arcadelogo.X68'
 ArcadeLogoTilesEnd:
+
+	include	'tiles/scene-tiles/tileset_arcadecabinetbase00.X68'
+	include	'tiles/scene-tiles/tileset_arcadecabinetbase01.X68'
+	include	'tiles/scene-tiles/tileset_arcadecabinetbase02.X68'
+	include	'tiles/scene-tiles/tileset_arcadecabinettop00.X68'
+	include	'tiles/scene-tiles/tileset_arcadecabinettop01.X68'
+	include	'tiles/scene-tiles/tileset_arcadecabinettop02.X68'
+
+CavernSceneryTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; santa's workshop scene tiles

@@ -105,6 +105,24 @@ ObjectNameTable:
 	dc.l	ObjectNameBooksHistory
 	; OBJ_SCENE_BOOKS_COOKING
 	dc.l	ObjectNameBooksCooking
+	; OBJ_SCENE_ARCADE0
+	dc.l	ObjectNameArcade0
+	; OBJ_SCENE_ARCADE1
+	dc.l	ObjectNameArcade1
+	; OBJ_SCENE_ARCADE2
+	dc.l	ObjectNameArcade2
+	; OBJ_SCENE_ARCADE3
+	dc.l	ObjectNameArcade3
+	; OBJ_SCENE_ARCADE4
+	dc.l	ObjectNameArcade4
+	; OBJ_SCENE_ARCADE5
+	dc.l	ObjectNameArcade5
+	; OBJ_SCENE_ARCADE6
+	dc.l	ObjectNameArcade6
+	; OBJ_SCENE_ARCADE7
+	dc.l	ObjectNameArcade7
+	; OBJ_SCENE_ARCADE8
+	dc.l	ObjectNameArcade8
 
 ;-------------------------------------------------------------------------------
 ; npc names

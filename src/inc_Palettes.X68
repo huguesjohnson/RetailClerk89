@@ -256,8 +256,8 @@ Store0APalettesPaused:
 ; store 0B (the cavern)
 Store0BPalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_00.X68'
+	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 0C (sunset video)
