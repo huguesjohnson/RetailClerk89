@@ -231,6 +231,8 @@ BannerTilesStart:
 	include 'tiles/scene-tiles/tileset_banner.X68'
 BannerTilesEnd:
 
+WorkshopTilesStart:
+
 WorkshopFrameTilesStart:
 	include 'tiles/scene-tiles/tileset_workshopframe.X68'
 WorkshopFrameTilesEnd:
@@ -238,6 +240,18 @@ WorkshopFrameTilesEnd:
 SnowFloorTilesStart:
 	include 'tiles/scene-tiles/tileset_snow.X68'
 SnowFloorTilesEnd:
+
+FenceTilesStart:
+	include 'tiles/scene-tiles/tileset_fence.X68'
+FenceTilesEnd:
+
+	include 'tiles/scene-tiles/tileset_workshop.X68'
+
+	include 'tiles/scene-tiles/tileset_workshoppole.X68'
+
+	include 'tiles/scene-tiles/tileset_workshoptree.X68'
+
+WorkshopTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; general store frame tiles

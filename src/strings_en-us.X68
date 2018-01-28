@@ -518,6 +518,15 @@ ObjectNameArcade7:
 ObjectNameArcade8:
 	dc.b	"Arcade game 8",OBJNAMEEND
 
+ObjectNameFence
+	dc.b	"Fence",OBJNAMEEND
+
+ObjectNamePole
+	dc.b	"Festive pole",OBJNAMEEND
+
+ObjectNameWorkshop
+	dc.b	"Santa's Workshop",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------

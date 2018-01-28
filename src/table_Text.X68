@@ -123,6 +123,12 @@ ObjectNameTable:
 	dc.l	ObjectNameArcade7
 	; OBJ_SCENE_ARCADE8
 	dc.l	ObjectNameArcade8
+	; OBJ_SCENE_FENCE
+	dc.l	ObjectNameFence
+	; OBJ_SCENE_POLE
+	dc.l	ObjectNamePole
+	; OBJ_SCENE_WORKSHOP
+	dc.l	ObjectNameWorkshop
 
 ;-------------------------------------------------------------------------------
 ; npc names

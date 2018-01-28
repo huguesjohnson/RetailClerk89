@@ -123,6 +123,7 @@
 ; workshop scenery
 ;-------------------------------------------------------------------------------
 	include 'patterns/pattern_WorkshopFrame.X68'
+	include 'patterns/pattern_Workshop.X68'
 
 ;-------------------------------------------------------------------------------
 ; used for development builds only

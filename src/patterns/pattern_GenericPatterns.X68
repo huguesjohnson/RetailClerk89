@@ -78,6 +78,22 @@ Pattern24x32:
 	; row 03
 	dc.w	$09,$0A,$0B
 
+Pattern24x48:
+	dc.w	$0005	; 6 rows
+	dc.w	$0002	; 3 columns	
+	; row 00
+	dc.w	$00,$01,$02
+	; row 01
+	dc.w	$03,$04,$05
+	; row 02
+	dc.w	$06,$07,$08
+	; row 03
+	dc.w	$09,$0A,$0B
+	; row 04
+	dc.w	$0C,$0D,$0E
+	; row 05
+	dc.w	$0F,$10,$11
+
 Pattern32x16:
 	dc.w	$0001	; 2 rows
 	dc.w	$0003	; 4 columns
