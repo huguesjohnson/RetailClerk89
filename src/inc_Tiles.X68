@@ -179,6 +179,32 @@ FCBFrameTilesStart:
 	include 'tiles/scene-tiles/tileset_FCBFrame.X68'
 FCBFrameTilesEnd:
 
+WaterTilesStart:
+	include 'tiles/scene-tiles/tileset_water.X68'
+WaterTilesEnd:
+
+FCBCenterTopTilesStart:
+	include 'tiles/scene-tiles/tileset_fcbcentertop.X68'
+FCBCenterTopTilesEnd:
+
+FCBCenterTilesStart:
+	include 'tiles/scene-tiles/tileset_fcbcenter.X68'
+FCBCenterTilesEnd:
+
+FCBCenterLeftTilesStart:
+	include 'tiles/scene-tiles/tileset_fcbcenterleft00.X68'
+	include 'tiles/scene-tiles/tileset_fcbcenterleft01.X68'
+	include 'tiles/scene-tiles/tileset_fcbcenterleft02.X68'
+	include 'tiles/scene-tiles/tileset_fcbcenterleft03.X68'
+FCBCenterLeftTilesEnd:
+
+FCBCenterRightTilesStart:
+	include 'tiles/scene-tiles/tileset_fcbcenterright00.X68'
+	include 'tiles/scene-tiles/tileset_fcbcenterright01.X68'
+	include 'tiles/scene-tiles/tileset_fcbcenterright02.X68'
+	include 'tiles/scene-tiles/tileset_fcbcenterright03.X68'
+FCBCenterRightTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; parking lot scene tiles
 ;-------------------------------------------------------------------------------

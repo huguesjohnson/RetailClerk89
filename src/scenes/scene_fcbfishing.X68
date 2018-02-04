@@ -8,7 +8,7 @@ SceneFCBFishing:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0003	; tileset count - 1
+	dc.w	$0006	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -26,6 +26,18 @@ SceneFCBFishing:
 	dc.l	StoneFloorTilesStart	; start of stone floor tiles
 	dc.l	StoneFloorTilesEnd	; end of stone floor tiles
 
+	; tileset 4
+	dc.l	WaterTilesStart	; start of water tiles
+	dc.l	WaterTilesEnd	; end of water tiles
+
+	; tileset 5
+	dc.l	FCBCenterLeftTilesStart	; start of center tiles
+	dc.l	FCBCenterLeftTilesEnd	; end of center tiles
+
+	; tileset 6
+	dc.l	FCBCenterTilesStart	; start of center tiles
+	dc.l	FCBCenterTilesEnd	; end of center tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -35,7 +47,7 @@ SceneFCBFishing:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0004	; scenery count - 1
+	dc.w	$000C	; scenery count - 1
 
 	; stone floor
 	dc.l	Pattern32x32Tile	; location of pattern to load
@@ -71,6 +83,56 @@ SceneFCBFishing:
 	dc.w	%0000000000001010	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$00100000	; initial drawing location
+
+	; water
+	dc.l	Pattern32x32x3	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000000101010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$00380000	; initial drawing location
+
+	; center - left edge
+	dc.l	Pattern8x64	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000000111010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00360000	; initial drawing location
+
+	dc.l	Pattern8x56	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001000001	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00380000+$00800000	; initial drawing location
+
+	dc.l	Pattern8x48	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001001000	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$003A0000+$01000000	; initial drawing location
+
+	dc.l	Pattern8x48	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001001110	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$003C0000+$01000000	; initial drawing location
+
+	dc.l	Pattern32x40	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001010100	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$003E0000+$01800000	; initial drawing location
+
+	dc.l	Pattern32x40	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001010100	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00460000+$01800000	; initial drawing location
+
+	dc.l	Pattern32x40	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0010000001010100	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$004E0000+$01800000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text

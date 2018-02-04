@@ -8,7 +8,7 @@ SceneFCBFirearms:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0003	; tileset count - 1
+	dc.w	$0004	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -26,6 +26,10 @@ SceneFCBFirearms:
 	dc.l	StoneFloorTilesStart	; start of stone floor tiles
 	dc.l	StoneFloorTilesEnd	; end of stone floor tiles
 
+	; tileset 4
+	dc.l	FCBCenterTopTilesStart	; start of center tiles
+	dc.l	FCBCenterTopTilesEnd	; end of center tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -35,7 +39,7 @@ SceneFCBFirearms:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0004	; scenery count - 1
+	dc.w	$0008	; scenery count - 1
 
 	; stone floor
 	dc.l	Pattern32x32Tile	; location of pattern to load
@@ -71,6 +75,31 @@ SceneFCBFirearms:
 	dc.w	%0000000000001010	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$0B800000+$00380000	; initial drawing location
+
+	; center
+	dc.l	Pattern32x16	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000000101010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0D000000	; initial drawing location
+
+	dc.l	Pattern32x16	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000000101010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0D000000+$00020000	; initial drawing location
+
+	dc.l	Pattern32x16	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000000101010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0D000000+$000A0000	; initial drawing location
+
+	dc.l	Pattern32x16	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000000101010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0D000000+$00120000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text

@@ -129,6 +129,8 @@ ObjectNameTable:
 	dc.l	ObjectNamePole
 	; OBJ_SCENE_WORKSHOP
 	dc.l	ObjectNameWorkshop
+	; OBJ_SCENE_FOUNTAIN
+	dc.l	ObjectNameFountain
 
 ;-------------------------------------------------------------------------------
 ; npc names

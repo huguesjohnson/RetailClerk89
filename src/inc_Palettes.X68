@@ -153,7 +153,7 @@ Store14Palettes:
 ; store 15 (fish or cut bait - fishing)
 Store15Palettes:
 	include 'palettes/pal_Store_fcb_00.X68'
-	include 'palettes/pal_Store_fcb_05.X68'
+	include 'palettes/pal_Store_fcb_01.X68'
 	include 'palettes/pal_Store_fcb_06.X68'
 	include 'palettes/pal_People_00.X68'
 
@@ -312,28 +312,28 @@ Store12PalettesPaused:
 ; store 13 (fish or cut bait - checkout)
 Store13PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
+	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_02.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 14 (fish or cut bait - firearms)
 Store14PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
+	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_02.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 15 (fish or cut bait - fishing)
 Store15PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
+	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_02.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 16 (fish or cut bait - camping)
 Store16PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
+	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_02.X68'
 	include 'palettes/pal_Paused_03.X68'
 
