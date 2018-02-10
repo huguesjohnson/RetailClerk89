@@ -118,6 +118,9 @@
 ;-------------------------------------------------------------------------------
 	include 'patterns/pattern_FCBFloor.X68'
 	include 'patterns/pattern_FCBFrame.X68'
+	include 'patterns/pattern_FCBFishing.X68'
+	include 'patterns/pattern_FCBFirearms.X68'
+	include 'patterns/pattern_FCBCamping.X68'
 
 ;-------------------------------------------------------------------------------
 ; workshop scenery

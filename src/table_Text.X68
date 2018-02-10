@@ -131,6 +131,14 @@ ObjectNameTable:
 	dc.l	ObjectNameWorkshop
 	; OBJ_SCENE_FOUNTAIN
 	dc.l	ObjectNameFountain
+	; OBJ_SCENE_FISHINGPOLES
+	dc.l	ObjectNameFishingPoles
+	; OBJ_SCENE_GUNCASE
+	dc.l	ObjectNameGunCase
+	; OBJ_SCENE_FIREPIT
+	dc.l	ObjectNameFirepit
+	; OBJ_SCENE_TENT
+	dc.l	ObjectNameTent
 
 ;-------------------------------------------------------------------------------
 ; npc names

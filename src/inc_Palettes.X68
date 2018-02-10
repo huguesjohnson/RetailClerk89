@@ -320,21 +320,21 @@ Store13PalettesPaused:
 Store14PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_05.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 15 (fish or cut bait - fishing)
 Store15PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 16 (fish or cut bait - camping)
 Store16PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_02.X68'
+	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_03.X68'
 
 ; store 17 (south center)

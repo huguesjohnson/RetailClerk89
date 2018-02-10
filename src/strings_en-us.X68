@@ -530,6 +530,18 @@ ObjectNameWorkshop:
 ObjectNameFountain:
 	dc.b	"Fountain",OBJNAMEEND
 
+ObjectNameFishingPoles:
+	dc.b	"Fishing poles",OBJNAMEEND
+
+ObjectNameGunCase:
+	dc.b	"Gun case",OBJNAMEEND
+
+ObjectNameFirepit:
+	dc.b	"Fire pit",OBJNAMEEND
+
+ObjectNameTent:
+	dc.b	"Tent",OBJNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------

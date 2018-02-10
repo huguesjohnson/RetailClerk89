@@ -8,7 +8,7 @@ SceneFCBFirearms:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0004	; tileset count - 1
+	dc.w	$0005	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -30,6 +30,10 @@ SceneFCBFirearms:
 	dc.l	FCBCenterTopTilesStart	; start of center tiles
 	dc.l	FCBCenterTopTilesEnd	; end of center tiles
 
+	; tileset 5
+	dc.l	FCBFirearmsTilesStart	; start of merchandise/counter tiles
+	dc.l	FCBFirearmsTilesEnd	; start of merchandise/counter tiles
+
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
@@ -39,7 +43,7 @@ SceneFCBFirearms:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0008	; scenery count - 1
+	dc.w	$000D	; scenery count - 1
 
 	; stone floor
 	dc.l	Pattern32x32Tile	; location of pattern to load
@@ -101,6 +105,39 @@ SceneFCBFirearms:
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D000000+$00120000	; initial drawing location
 
+	; back display
+	dc.l	PatternFCBFirearmsBackDisplay	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0100000000110010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_B+$00800000+$000E0000	; initial drawing location
+
+	; counter
+	dc.l	PatternFCBFirearmsCounterSide	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1100000000110010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00800000+$000E0000	; initial drawing location
+
+	dc.l	PatternFCBFirearmsCounterSide	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1100000000110010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$00800000+$004C0000	; initial drawing location
+
+	dc.l	PatternFCBFirearmsCounterFront	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1100000000110010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$03800000+$000E0000	; initial drawing location
+
+	; front display
+	dc.l	PatternFCBFirearmsFrontDisplay	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0100000000110010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$04000000+$000E0000	; initial drawing location
+
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
@@ -111,17 +148,17 @@ SceneFCBFirearms:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
-	dc.w	OBJ_NOTHING
+	dc.w	OBJ_SCENE_GUNCASE
 	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%0000000000000000
+	dc.w	%1111111010111010
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0000000000000000
+	dc.w	%0001000011010000
 
-	dc.w	OBJ_NOTHING
+	dc.w	OBJ_SCENE_GUNCASE
 	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%0000000000000000
+	dc.w	%1111111100111001
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0000000000000000
+	dc.w	%0001000011010000
 
 	dc.w	OBJ_NOTHING
 	; 		%wwwwwwwxxxxxxxxx

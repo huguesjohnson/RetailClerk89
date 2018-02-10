@@ -205,6 +205,20 @@ FCBCenterRightTilesStart:
 	include 'tiles/scene-tiles/tileset_fcbcenterright03.X68'
 FCBCenterRightTilesEnd:
 
+FCBFishingTilesStart:
+	include 'tiles/scene-tiles/tileset_fishingpoles.X68'
+FCBFishingTilesEnd:
+
+FCBFirearmsTilesStart:
+	include 'tiles/scene-tiles/tileset_firearms.X68'
+FCBFirearmsTilesEnd:
+
+FCBCampingTilesStart:
+	include 'tiles/scene-tiles/tileset_firepit.X68'
+	include 'tiles/scene-tiles/tileset_tent-mid.X68'
+	include 'tiles/scene-tiles/tileset_tent-tall.X68'
+FCBCampingTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; parking lot scene tiles
 ;-------------------------------------------------------------------------------
