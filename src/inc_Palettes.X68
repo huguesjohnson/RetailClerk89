@@ -21,7 +21,7 @@ Store01Palettes:
 Store02Palettes:
 	include 'palettes/pal_Store_cplanet_00.X68'	; north wall is cassette planet
 	include 'palettes/pal_Hallway_00.X68'
-	include 'palettes/pal_Store_jitch_00.X68'	; south wall is jock itch
+	include 'palettes/pal_Store_cnow_00.X68'	; south wall is clothesnow
 	include 'palettes/pal_People_00.X68'
 
 ; store 03 (center)
@@ -33,7 +33,7 @@ Store03Palettes:
 
 ; store 04 (south hallway)
 Store04Palettes:
-	include 'palettes/pal_Store_hotsam_00.X68'	; west wall is hot sam
+	include 'palettes/pal_Store_pogodawg_00.X68'	; west wall is pogo dawg
 	include 'palettes/pal_Hallway_03.X68'
 	include 'palettes/pal_Store_nshack_00.X68'	; east wall is nut shack
 	include 'palettes/pal_People_00.X68'
@@ -108,11 +108,11 @@ Store0EPalettes:
 	include 'palettes/pal_Store_nshack_02.X68'
 	include 'palettes/pal_People_00.X68'
 
-; store 0F (hot sam)
+; store 0F (pogo dawg)
 Store0FPalettes:
-	include 'palettes/pal_Store_hotsam_00.X68'
-	include 'palettes/pal_Store_hotsam_01.X68'
-	include 'palettes/pal_Store_hotsam_02.X68'
+	include 'palettes/pal_Store_pogodawg_00.X68'
+	include 'palettes/pal_Store_pogodawg_01.X68'
+	include 'palettes/pal_Store_pogodawg_02.X68'
 	include 'palettes/pal_People_00.X68'
 
 ; store 10 (cassette planet)
@@ -122,11 +122,11 @@ Store10Palettes:
 	include 'palettes/pal_Store_cplanet_02.X68'
 	include 'palettes/pal_People_00.X68'
 
-; store 11 (jock itch)
+; store 11 (clothesnow)
 Store11Palettes:
-	include 'palettes/pal_Store_jitch_00.X68'
-	include 'palettes/pal_Store_jitch_01.X68'
-	include 'palettes/pal_Store_jitch_02.X68'
+	include 'palettes/pal_Store_cnow_00.X68'
+	include 'palettes/pal_Store_cnow_01.X68'
+	include 'palettes/pal_Store_cnow_02.X68'
 	include 'palettes/pal_People_00.X68'
 
 ; store 12 (bookstore)
@@ -166,7 +166,7 @@ Store16Palettes:
 
 ; store 17 (south center)
 Store17Palettes:
-	include 'palettes/pal_Store_jitch_00.X68'	; west wall is jock itch
+	include 'palettes/pal_Store_cnow_00.X68'	; west wall is clothesnow
 	include 'palettes/pal_Hallway_02.X68'
 	include 'palettes/pal_Store_dcountry_01.X68'	; east wall is denimcountry
 	include 'palettes/pal_People_00.X68'
@@ -281,7 +281,7 @@ Store0EPalettesPaused:
 	include 'palettes/pal_Paused_02.X68'
 	include 'palettes/pal_Paused_03.X68'
 
-; store 0F (hot sam)
+; store 0F (pogo dawg)
 Store0FPalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_01.X68'
@@ -295,7 +295,7 @@ Store10PalettesPaused:
 	include 'palettes/pal_Paused_01.X68'
 	include 'palettes/pal_Paused_03.X68'
 
-; store 11 (jock itch)
+; store 11 (clothesnow)
 Store11PalettesPaused:
 	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_01.X68'

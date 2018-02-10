@@ -312,7 +312,7 @@ SceneWEHall:
 	;---------------------------------------------------------------------------
 	; exits
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_JOCKITCH	; south exit
+	dc.w	SCENE_ID_CNOW	; south exit
 	dc.w	SCENE_ID_CPLANET	; north exit
 	dc.w	SCENE_ID_WWHALL	; west exit
 	dc.w	SCENE_ID_CENTER	; east exit

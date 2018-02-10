@@ -53,14 +53,14 @@
 	; SCENE_ID_NSHACK=$000E
 	include 'scenes/scene_nshack.X68'
 
-	; SCENE_ID_HOTSAM=$000F
-	include 'scenes/scene_hotsam.X68'
+	; SCENE_ID_POGODAWG=$000F
+	include 'scenes/scene_pogodawg.X68'
 
 	; SCENE_ID_CPLANET=$0010
 	include 'scenes/scene_cplanet.X68'
 
-	; SCENE_ID_JOCKITCH=$0011
-	include 'scenes/scene_jockitch.X68'
+	; SCENE_ID_CNOW=$0011
+	include 'scenes/scene_cnow.X68'
 
 	; SCENE_ID_TBOOKS=$0012
 	include 'scenes/scene_tbooks.X68'

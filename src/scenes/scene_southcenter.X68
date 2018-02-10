@@ -186,7 +186,7 @@ SceneSouthCenter:
 	;---------------------------------------------------------------------------
 	dc.w	SCENE_ID_SHALL	; south exit
 	dc.w	SCENE_ID_CENTER	; north exit
-	dc.w	SCENE_ID_JOCKITCH	; west exit
+	dc.w	SCENE_ID_CNOW	; west exit
 	dc.w	SCENE_ID_DENIMCOUNTRY	; east exit
 
 	;---------------------------------------------------------------------------

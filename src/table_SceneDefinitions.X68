@@ -48,14 +48,14 @@ SceneDefinitionTable:
 	; SCENE_ID_NSHACK=$000E
 	dc.l	SceneNShack
 
-	; SCENE_ID_HOTSAM=$000F
-	dc.l	SceneHotSam
+	; SCENE_ID_POGODAWG=$000F
+	dc.l	ScenePogoDawg
 
 	; SCENE_ID_CPLANET=$0010
 	dc.l	SceneCPlanet
 
-	; SCENE_ID_JOCKITCH=$0011
-	dc.l	SceneJockItch
+	; SCENE_ID_CNOW=$0011
+	dc.l	SceneCNow
 
 	; SCENE_ID_TBOOKS=$0012
 	dc.l	SceneTBooks

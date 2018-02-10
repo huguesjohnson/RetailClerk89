@@ -112,11 +112,11 @@ NShackSceneryTilesStart:
 NShackSceneryTilesEnd:
 
 ;-------------------------------------------------------------------------------
-; hot sam scene tiles
+; pogo dawg scene tiles
 ;-------------------------------------------------------------------------------
-HotSamSceneryTilesStart:
-	include 'tiles/scene-tiles/tileset_hotsam_seating.X68'
-HotSamSceneryTilesEnd:
+PogoDawgSceneryTilesStart:
+	include 'tiles/scene-tiles/tileset_pogodawg_seating.X68'
+PogoDawgSceneryTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; cassette planet scene tiles

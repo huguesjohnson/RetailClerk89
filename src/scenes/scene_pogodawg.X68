@@ -1,9 +1,9 @@
-SceneHotSam:
+ScenePogoDawg:
 
 	;---------------------------------------------------------------------------
 	; scene ID
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_HOTSAM
+	dc.w	SCENE_ID_POGODAWG
 
 	;---------------------------------------------------------------------------
 	; tiles
@@ -31,8 +31,8 @@ SceneHotSam:
 	dc.l	BorderedCounterTilesEnd	; end of counter tiles
 
 	; tileset 5
-	dc.l	HotSamSceneryTilesStart	; start of scenery tiles
-	dc.l	HotSamSceneryTilesEnd	; end of scenery tiles
+	dc.l	PogoDawgSceneryTilesStart	; start of scenery tiles
+	dc.l	PogoDawgSceneryTilesEnd	; end of scenery tiles
 
 	; tileset 6
 	dc.l	RegisterAlt3TilesStart	; start of register tiles
