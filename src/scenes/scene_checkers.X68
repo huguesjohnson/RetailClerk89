@@ -43,8 +43,8 @@ SceneCheckers:
 	dc.l	CheckersMerchandiseTilesEnd	; end of merchandise tiles
 
 	; tileset 8
-	dc.l	MannequinTilesStart	; start of mannequin tiles
-	dc.l	MannequinTilesEnd	; end of mannequin tiles
+	dc.l	MannequinMTilesStart	; start of mannequin tiles
+	dc.l	MannequinMTilesEnd	; end of mannequin tiles
 
 	; tileset 9
 	dc.l	RegisterAltTilesStart ; start of register tiles

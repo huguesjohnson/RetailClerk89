@@ -77,15 +77,25 @@ MannequinStandTilesStart:
 	include 'tiles/scene-tiles/tileset_MannequinStand.X68'
 MannequinStandTilesEnd:
 
-MannequinTilesStart:
-	include 'tiles/scene-tiles/tileset_MannequinA.X68'
-	include 'tiles/scene-tiles/tileset_MannequinB.X68'
-	include 'tiles/scene-tiles/tileset_MannequinC.X68'
-MannequinTilesEnd:
+MannequinMTilesStart:
+	include 'tiles/scene-tiles/tileset_MannequinMA.X68'
+	include 'tiles/scene-tiles/tileset_MannequinMB.X68'
+	include 'tiles/scene-tiles/tileset_MannequinMC.X68'
+MannequinMTilesEnd:
 
 CheckersMerchandiseTilesStart:
 	include 'tiles/scene-tiles/tileset_CheckersMerchandise.X68'
 CheckersMerchandiseTilesEnd:
+
+;-------------------------------------------------------------------------------
+; clothesnow scene tiles
+;-------------------------------------------------------------------------------
+MannequinFTilesStart:
+	include 'tiles/scene-tiles/tileset_MannequinFA.X68'
+	include 'tiles/scene-tiles/tileset_MannequinFB.X68'
+	include 'tiles/scene-tiles/tileset_MannequinFC.X68'
+	include 'tiles/scene-tiles/tileset_MannequinFD.X68'
+MannequinFTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; transistor lodge scene tiles

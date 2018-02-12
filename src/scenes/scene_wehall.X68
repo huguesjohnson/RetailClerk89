@@ -144,7 +144,7 @@ SceneWEHall:
 	; center floor
 	dc.l	PatternTackyFloor	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000000101010	; base pattern
+	dc.w	%0010000000101010	; base pattern
 	dc.w	$0001	; repeat 1 time
 	dc.l	VDP_VRAM_WRITE_B+$05000000+$000C0000	; initial drawing location
 
