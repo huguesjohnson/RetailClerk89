@@ -10,8 +10,9 @@ InitGameState:
 	move.l	#$00000000,d0
 	bset.l	#STATE_FLAG_TITLE_SCREEN,d0	; set title screen flag
 	move.l	d0,(MEM_GAME_STATE)
-	move.l	#$00000000,(MEM_DAY_EVENT_FLAGS)
-	move.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)
+	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)
+	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)
+	and.l	#$00000000,(MEM_SCENE_BGM)
 
 ;-------------------------------------------------------------------------------
 ; clear player inventory

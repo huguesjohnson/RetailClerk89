@@ -23,8 +23,8 @@ TitleScreenTextNewGame:
 	dc.b	"New Game",ETX
 
 TitleScreenTextFooter:
-	;		"1234567890123456789012345678901234567890"
-	dc.b	 "   Mall Walker Demo (Unstable Build)  ",ETX
+	;		"12345678901234567890123456789012345678"
+	dc.b	"  Empty Mall Demo Feb 2018 (Unstable) ",ETX
 
 ;-------------------------------------------------------------------------------
 ; end screen

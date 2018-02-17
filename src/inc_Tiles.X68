@@ -434,6 +434,7 @@ SpriteZeroTilesStart:
 SpriteZeroTilesEnd:
 
 PlayerSpriteTilesStart:
+	;include 'tiles/sprite-tiles/tileset_male-tall-narrow_template.X68'
 	include 'tiles/sprite-tiles/tileset_PlayerSprite.X68'
 	; swap for this tileset for the debug pattern
 	;include 'tiles/sprite-tiles/tileset_SpriteDebug.X68'

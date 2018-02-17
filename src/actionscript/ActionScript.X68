@@ -195,6 +195,27 @@ ExitScene00Day00CanExit:
 	bsr.w	DefaultExitScene	; use default handler
 	rts
 
+;-------------------------------------------------------------------------------
+; exit scene 04 - temp for empty mall demo
+;-------------------------------------------------------------------------------
+ExitScene04:
+	move.w	(MEM_PLAYER_SPRITE_DIRECTION),d6	; copy player direction to d6
+	cmpi.w	#DIRECTION_DOWN,d6
+	beq.s	.1
+	bsr.w	DefaultExitScene
+	rts
+.1
+	; set the end game flag
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	and.l	#$0000,d7	; clear all other flags
+	bset.l	#STATE_FLAG_END_SCREEN,d7 ; set end screen state flag	
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	; load end scene
+	lea	SceneEnd,a6	; address of the scene for the title screen
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+;	bsr.w	DefaultExitScene	; use default handler
+	rts
+
 ;*******************************************************************************
 ; process actions based on day and scene, this is effectively the game script
 ;*******************************************************************************

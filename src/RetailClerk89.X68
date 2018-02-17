@@ -24,7 +24,7 @@
 ;*******************************************************************************
 ; conditional compilation directives
 ;*******************************************************************************
-_DEBUG_=$1	; enable/disable debug mode
+_DEBUG_=$0	; enable/disable debug mode
 _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
 
 ;*******************************************************************************

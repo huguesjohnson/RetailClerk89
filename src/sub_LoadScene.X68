@@ -144,6 +144,10 @@ LoadSceneLoadNPCSpritesLoop:
 	bsr Echo_StopBGM	; otherwise stop the background music
 	bra.s	ExitLoadScene	; move on
 LoadScenePlayBGM:
+	cmp.l	(MEM_SCENE_BGM),a0 ; test if scene BGM is already playing
+	beq.s	ExitLoadScene	; same BGM, branch
+LoadScenePlayBGMNewBGM:
+	move.l	a0,(MEM_SCENE_BGM)	; save reference to new BGM
 	bsr Echo_PlayBGM	; start the background music
 
 ExitLoadScene:

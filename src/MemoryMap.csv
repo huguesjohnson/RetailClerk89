@@ -153,4 +153,5 @@ MEM_ACTIVE_SCENE_EXIT_E,2,east exit of active scene
 MEM_ACTIVE_NPC_COUNT,2,number of NPCs in the current scene
 MEM_OBJECT_LIST_OBJS,60,list of objects in current map
 MEM_OBJECT_LIST_NPCS,24,list of npcs in current map
+MEM_SCENE_BGM,4,reference to current background music
 MEM_COLLISION_DATA,256,collision data for the current map
