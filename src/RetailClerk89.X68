@@ -24,7 +24,7 @@
 ;*******************************************************************************
 ; conditional compilation directives
 ;*******************************************************************************
-_DEBUG_=$0	; enable/disable debug mode
+_DEBUG_=$1	; enable/disable debug mode
 _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
 
 ;*******************************************************************************
@@ -68,11 +68,17 @@ SPRITE_PLAYER_INIT_Y=$0100	; starting y location of player sprite
 SPRITE_DEF_WORD2_BASE=$0700	; width=16,height=32 - low byte has link field
 NPC_RECORD_SIZE=MEM_NPC1_SPRITE_ID-MEM_NPC0_SPRITE_ID
 NPC_SPRITE_MOVE_STEPS=$0009; how many steps NPC sprites take when they move
+PLAYER_BASE_TILE=%0110000100000001 ; pri=0,pal=2,vf=0,hf=0,pattern=101
+NPC0_BASE_TILE=%0110000101110001 ;pri=0,pal=2,vf=0,hf=0,pattern=171
+NPC1_BASE_TILE=%0110000111010001 ;pri=0,pal=2,vf=0,hf=0,pattern=1D1
+NPC2_BASE_TILE=%0110001000110001 ;pri=0,pal=2,vf=0,hf=0,pattern=231
+NPC3_BASE_TILE=%0110001010010001 ;pri=0,pal=2,vf=0,hf=0,pattern=291
 ; directions
 DIRECTION_DOWN=%0000	; 0
 DIRECTION_UP=%0001		; 1
 DIRECTION_LEFT=%0010	; 2
 DIRECTION_RIGHT=%0011	; 3
+DIRECTION_NULL=%1111	; used for movement patterns
 ; used for sprite collision tests
 ; top edge of bottom 1/2 of sprite
 SPRITE_COLLISION_Y=(DEFAULT_SPRITE_HEIGHT-(DEFAULT_SPRITE_HEIGHT/2))

@@ -40,7 +40,7 @@ MEM_ACTION_TARGET_NPCID,2,NPC id if action target is an NPC
 MEM_ACTION_TARGET_NPC_DIRECTION,2,put NPC back in right direction
 MEM_ACTION_TABLE_OFFSET,2,relative address of action table entry
 MEM_ACTIVE_ITEM,2,item that is currently being used
-MEM_NPC_LOCATIONS,92,table to track where NPCs are located
+MEM_NPC_LOCATIONS,96,table to track where NPCs are located
 MEM_INTRO_SCENE_COUNTER,2,counter for displaying the intro screen
 MEM_DAY,2,what day is it in the story
 MEM_DAY_EVENT_FLAGS,4,track events in the current day

@@ -1,0 +1,41 @@
+Unsorted technical / development notes
+
+These are here because:
+
+a) This is my first attempt to code a Sega Genesis game and there are tons of mistakes and oddities - too many for me to remember so I have to write them down 
+
+b) If anyone were to try using this code for an different game this is the stuff most likely to trip them up
+
+Some day I might turn this into a real development document.
+
+--------------------------------------------------------------------------------
+- How to add new NPCs
+--------------------------------------------------------------------------------
+I realized I officially made the project structure too complex when I started trying to add new NPCs to each location. There are 8 steps involved in this mess.
+
+1) Create the actual tiles. Due to how the tiles are loaded into the VPD and turned into a sprite, each 16x32 tile is mapped like:
+  0  4
+  1  5
+  2  6
+  3  7
+This code is hard-wired to having all the characters be 16x32. Supporting other sprite sizes is not impossible but also not zero effort. The sprite frames need to be ordered like:
+ Down frame 0,1,2
+ Up frame 0,1,2
+ Left frame 0,1,2
+ Right frame 0,1.2
+This code is also hard-wired to 3 frames per direction. Same disclaimer as above.
+
+2) Add a reference to the new tiles in inc_tiles
+
+3) Update the scene definition for the scene this NPC will appear in. Sometimes this is optional. 
+
+4) Update InitNPCLocations to place this NPC in a scene. This is optional if the NPC doesn't appear in any scene at the start of the game. 
+
+5) Add a new entry to data_CharacterDefinitions
+
+6) Add a new entry to table_Text to map the NPC name to a string
+
+7) Add the actual string to the strings file
+
+8) Add a new entry in const_ObjectIDs
+

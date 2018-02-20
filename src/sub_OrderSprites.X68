@@ -2,8 +2,8 @@
 ; this is all working as expected, which is a huge improvement over
 ; previous attempts to implement this
 ;
-; it's still very hard-coded and inefficient - the next iteration will
-; make these two problems better
+; it's still very hard-coded and inefficient - the next iteration might
+; make these two problems better, or possibly worse
 ;-------------------------------------------------------------------------------
 OrderSprites:
 	move.w	#$2700,sr		; disable interrupts
@@ -23,7 +23,7 @@ OrderSprites:
 	move.w	#$0000,d2	; sprite zero is the sprite to edit
 	move.w	#$0001,d3	; player sprite is the sprite to link to
 	bsr.w	SetSpriteLink	; set the sprite link
-	; have sprite zero point to the player sprite
+	; have player sprite point to sprite zero
 	move.w	#$0001,d2	; player sprite is the sprite to edit
 	move.w	#$0000,d3	; sprite zero is the sprite to link to
 	bsr.w	SetSpriteLink	; set the sprite link

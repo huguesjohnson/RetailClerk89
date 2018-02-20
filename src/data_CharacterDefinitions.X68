@@ -1,40 +1,28 @@
 CharacterDefinitionStart:
 
-; 00
+; 00 - player
 CharacterDefinitionPlayer:
 	dc.l	PlayerSpriteTilesStart
-	;---------------------------------------------------------------------------
-	; priority, palette, flip, pattern
-	;---------------------------------------------------------------------------
-			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000100000001 ; priority=0,palette=2,vflip=0,hflip=0,pattern=257
+	dc.w 	PLAYER_BASE_TILE
 CharacterDefinitionPlayerEnd:
 
-; 01
+; 01 - Dani
 CharacterDefinitionDani:
 	dc.l	NPCSpriteDaniTilesStart
-	;---------------------------------------------------------------------------
-	; priority, palette, flip, pattern
-	;---------------------------------------------------------------------------
-			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000101110001 ;priority=0,palette=2,vflip=0,hflip=0,pattern=171
+	dc.w	NPC0_BASE_TILE
 
-; 02
+; 02 - generic male shopper
 CharacterDefinitionMaleShopper0:
 	dc.l	NPCSpriteMaleShopper0Start
-	;---------------------------------------------------------------------------
-	; priority, palette, flip, pattern
-	;---------------------------------------------------------------------------
-			;pccvhnnnnnnnnnnn
-	dc.w 	%0110000111010001 ;priority=0,palette=2,vflip=0,hflip=0,pattern=1D1
+	dc.w 	NPC1_BASE_TILE
 	
-; 03
+; 03 - Greenberg (video buffet manager)
 CharacterDefinitionGreenberg:
 	dc.l	NPCSpriteGreenbergStart
-	;---------------------------------------------------------------------------
-	; priority, palette, flip, pattern
-	;---------------------------------------------------------------------------
-			;pccvhnnnnnnnnnnn
-	dc.w 	%0110001000110001 ;priority=0,palette=2,vflip=0,hflip=0,pattern=231
-	
+	dc.w 	NPC2_BASE_TILE
+
+; 04 - information desk person
+CharacterScene03StaffNPC:
+	dc.l	Scene03StaffNPCTilesStart
+	dc.w	NPC0_BASE_TILE	
 

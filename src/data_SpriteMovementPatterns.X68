@@ -1,5 +1,5 @@
 NullMovementStart:
-	dc.w	$FFFF
+	dc.w	DIRECTION_NULL
 NullMovementEnd:
 
 RandomNPCMovement0Start:

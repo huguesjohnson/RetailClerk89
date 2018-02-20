@@ -427,14 +427,11 @@ TrashTilesEnd:
 ; sprite tiles
 ;-------------------------------------------------------------------------------
 
-SpriteTilesStart:
-
 SpriteZeroTilesStart:
 	include 'tiles/sprite-tiles/tileset_SpriteZero.X68'
 SpriteZeroTilesEnd:
 
 PlayerSpriteTilesStart:
-	;include 'tiles/sprite-tiles/tileset_male-tall-narrow_template.X68'
 	include 'tiles/sprite-tiles/tileset_PlayerSprite.X68'
 	; swap for this tileset for the debug pattern
 	;include 'tiles/sprite-tiles/tileset_SpriteDebug.X68'
@@ -454,7 +451,9 @@ NPCSpriteGreenbergStart:
 	include 'tiles/sprite-tiles/tileset_NPCSprite3.X68'
 NPCSpriteGreenbergEnd:
 
-SpriteTilesEnd:
+Scene03StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene03StaffNPC.X68'
+Scene03StaffNPCTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; used for development builds only

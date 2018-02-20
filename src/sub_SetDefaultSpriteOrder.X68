@@ -3,6 +3,11 @@
 ; have NPCs pre-sorted by Y value in ascending order
 ;-------------------------------------------------------------------------------
 SetDefaultSpriteOrder:
+	; clear the sprite order table - paranoid step really
+	and.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID0)
+	and.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID1)
+	and.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID2)
+	and.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID3)
 	move.w	(MEM_ACTIVE_NPC_COUNT),d4	; NPC_COUNT is max size of loop
 	clr	d3	; use d3 to store offset
 	move.w	d4,d3	; use d3 to store offset

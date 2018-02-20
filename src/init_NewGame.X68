@@ -30,8 +30,30 @@ ClearPlayerInventoryLoop:
 ;-------------------------------------------------------------------------------
 InitNPCLocations:
 	lea MEM_NPC_LOCATIONS,a0
-	move.w	#$0102,(a0)+	; location 00 - NPCs 0,1
-	move.w	#$0300,(a0)+	; location 00 - NPCs 2,3
+	move.l	#$01020300,(a0)+	; location 00 (VB) - NPCs 01,02,03
+	move.l	#$00000000,(a0)+	; location 01 (WWHALL)
+	move.l	#$00000000,(a0)+	; location 02 (WEHALL)
+	move.l	#$04000000,(a0)+	; location 03 (CENTER)
+	move.l	#$00000000,(a0)+	; location 04 (SHALL)
+	move.l	#$00000000,(a0)+	; location 05 (PARKINGLOT)
+	move.l	#$00000000,(a0)+	; location 06 (EWHALL)
+	move.l	#$00000000,(a0)+	; location 07 (EEHALL)
+	move.l	#$00000000,(a0)+	; location 08 (DENIMCOUNTRY)
+	move.l	#$00000000,(a0)+	; location 09 (CHECKERS)
+	move.l	#$00000000,(a0)+	; location 0A (TLODGE)
+	move.l	#$00000000,(a0)+	; location 0B (CAVERN)
+	move.l	#$00000000,(a0)+	; location 0C (SVIDEO)
+	move.l	#$00000000,(a0)+	; location 0D (WORKSHOP)
+	move.l	#$00000000,(a0)+	; location 0E (NSHACK)
+	move.l	#$00000000,(a0)+	; location 0F (POGODAWG)
+	move.l	#$00000000,(a0)+	; location 10 (CPLANET)
+	move.l	#$00000000,(a0)+	; location 11 (CNOW)
+	move.l	#$00000000,(a0)+	; location 12 (TBOOKS)
+	move.l	#$00000000,(a0)+	; location 13 (FCBCHECKOUT)
+	move.l	#$00000000,(a0)+	; location 14 (FCBFIREARMS)
+	move.l	#$00000000,(a0)+	; location 15 (FCBFISHING)
+	move.l	#$00000000,(a0)+	; location 16 (FCBCAMPING)
+	move.l	#$00000000,(a0)+	; location 17 (SOUTH_CENTER)
 
 ;-------------------------------------------------------------------------------
 ; load the initial scene
