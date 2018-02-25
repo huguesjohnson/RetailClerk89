@@ -154,34 +154,35 @@ NPCNameTable:
 	; OBJ_NPC_CENTER_STAFF
 	dc.l	NPCNameCenterStaff
 	; OBJ_NPC_DENIMCOUNTRY_STAFF
-
+	dc.l	NPCNameDeminCountryStaff
 	; OBJ_NPC_CHECKERS_STAFF
-
+	dc.l	NPCNameCheckersStaff
 	; OBJ_NPC_TLODGE_STAFF
-
+	dc.l	NPCNameTLodgeStaff
 	; OBJ_NPC_CAVERN_STAFF
-
+	dc.l	NPCNameCavernStaff
 	; OBJ_NPC_SVIDEO_STAFF
-
+	dc.l	NPCNameSVideoStaff
 	; OBJ_NPC_NSHACK_STAFF
-
+	dc.l	NPCNameNShackStaff
 	; OBJ_NPC_POGODAWG_STAFF
-
+	dc.l	NPCNamePogoDawgStaff
 	; OBJ_NPC_CPLANET_STAFF
-
+	dc.l	NPCNameCPlanetStaff
 	; OBJ_NPC_CNOW_STAFF
-
+	dc.l	NPCNameCNowStaff
 	; OBJ_NPC_TBOOKS_STAFF
-
+	dc.l	NPCNameTBooksStaff
 	; OBJ_NPC_FCBCHECKOUT_STAFF
-
+	dc.l	NPCNameFCBCheckoutStaff
 	; OBJ_NPC_FCBFIREARMS_STAFF
-
+	dc.l	NPCNameFCBFirearmsStaff
 	; OBJ_NPC_FCBFISHING_STAFF
-
+	dc.l	NPCNameFCBFishingStaff
 	; OBJ_NPC_FCBCAMPING_STAFF
-
+	dc.l	NPCNameFCBCampingStaff
 	; OBJ_NPC_SOUTH_CENTER_STAFF
+	dc.l	NPCNameSouthCenterStaff
 
 ;-------------------------------------------------------------------------------
 ; item names

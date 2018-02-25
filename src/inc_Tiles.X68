@@ -455,6 +455,66 @@ Scene03StaffNPCTilesStart:
 	include 'tiles/sprite-tiles/tileset_Scene03StaffNPC.X68'
 Scene03StaffNPCTilesEnd:
 
+Scene08StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene08StaffNPC.X68'
+Scene08StaffNPCTilesEnd:
+
+Scene09StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene09StaffNPC.X68'
+Scene09StaffNPCTilesEnd:
+
+Scene0AStaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene0AStaffNPC.X68'
+Scene0AStaffNPCTilesEnd:
+
+Scene0BStaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene0BStaffNPC.X68'
+Scene0BStaffNPCTilesEnd:
+
+Scene0CStaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene0CStaffNPC.X68'
+Scene0CStaffNPCTilesEnd:
+
+Scene0EStaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene0EStaffNPC.X68'
+Scene0EStaffNPCTilesEnd:
+
+Scene0FStaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene0FStaffNPC.X68'
+Scene0FStaffNPCTilesEnd:
+
+Scene10StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene10StaffNPC.X68'
+Scene10StaffNPCTilesEnd:
+
+Scene11StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene11StaffNPC.X68'
+Scene11StaffNPCTilesEnd:
+
+Scene12StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene12StaffNPC.X68'
+Scene12StaffNPCTilesEnd:
+
+Scene13StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene13StaffNPC.X68'
+Scene13StaffNPCTilesEnd:
+
+Scene14StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene14StaffNPC.X68'
+Scene14StaffNPCTilesEnd:
+
+Scene15StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene15StaffNPC.X68'
+Scene15StaffNPCTilesEnd:
+
+Scene16StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene16StaffNPC.X68'
+Scene16StaffNPCTilesEnd:
+
+Scene17StaffNPCTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene17StaffNPC.X68'
+Scene17StaffNPCTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; used for development builds only
 ;-------------------------------------------------------------------------------

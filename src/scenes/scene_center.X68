@@ -206,9 +206,9 @@ SceneCenter:
 	dc.w	$0118	; starting x location of npc0
 	dc.w	$00E0	; starting y location of npc0
 	dc.w	DIRECTION_DOWN	; starting direction of npc0
-	dc.w	$FFFF	; movement frequency of npc1
-	dc.l	NullMovementStart	; location of movement pattern for npc0
-	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+	dc.w	$0001	; movement frequency of npc1
+	dc.l	NPCMovementDownStart	; location of movement pattern for npc0
+	dc.w	(NPCMovementDownEnd-NPCMovementDownStart-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm

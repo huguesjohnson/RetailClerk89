@@ -555,26 +555,52 @@ NPCNameGreenberg:
 	dc.b	"Greenberg",NPCNAMEEND
 
 NPCNameCenterStaff:
+	dc.b	"Holly",NPCNAMEEND
+
+NPCNameDeminCountryStaff:
+	dc.b	"Lisa",NPCNAMEEND
+
+NPCNameCheckersStaff:
+	dc.b	"Todd",NPCNAMEEND
+
+NPCNameTLodgeStaff:
 	dc.b	"placeholder",NPCNAMEEND
 
-;OBJ_NPC_CENTER_STAFF=OBJ_NPC_BASE+$04
-;OBJ_NPC_DENIMCOUNTRY_STAFF=OBJ_NPC_BASE+$05
-;OBJ_NPC_CHECKERS_STAFF=OBJ_NPC_BASE+$06
-;OBJ_NPC_TLODGE_STAFF=OBJ_NPC_BASE+$07
-;OBJ_NPC_CAVERN_STAFF=OBJ_NPC_BASE+$08
-;OBJ_NPC_SVIDEO_STAFF=OBJ_NPC_BASE+$09
-;OBJ_NPC_NSHACK_STAFF=OBJ_NPC_BASE+$0A
-;OBJ_NPC_POGODAWG_STAFF=OBJ_NPC_BASE+$0B
-;OBJ_NPC_CPLANET_STAFF=OBJ_NPC_BASE+$0C
-;OBJ_NPC_CNOW_STAFF=OBJ_NPC_BASE+$0D
-;OBJ_NPC_TBOOKS_STAFF=OBJ_NPC_BASE+$0E
-;OBJ_NPC_FCBCHECKOUT_STAFF=OBJ_NPC_BASE+$0F
-;OBJ_NPC_FCBFIREARMS_STAFF=OBJ_NPC_BASE+$10
-;OBJ_NPC_FCBFISHING_STAFF=OBJ_NPC_BASE+$11
-;OBJ_NPC_FCBCAMPING_STAFF=OBJ_NPC_BASE+$12
-;OBJ_NPC_SOUTH_CENTER_STAFF=OBJ_NPC_BASE+$13
+NPCNameCavernStaff:
+	dc.b	"tlodge npc",NPCNAMEEND
 
+NPCNameSVideoStaff:
+	dc.b	"Annette npc",NPCNAMEEND
 
+NPCNameNShackStaff:
+	dc.b	"nshack npc",NPCNAMEEND
+
+NPCNamePogoDawgStaff:
+	dc.b	"pd npc",NPCNAMEEND
+
+NPCNameCPlanetStaff:
+	dc.b	"cplanet npc",NPCNAMEEND
+
+NPCNameCNowStaff:
+	dc.b	"cnow npc",NPCNAMEEND
+
+NPCNameTBooksStaff:
+	dc.b	"tbooks npc",NPCNAMEEND
+
+NPCNameFCBCheckoutStaff:
+	dc.b	"fcbck npc",NPCNAMEEND
+
+NPCNameFCBFirearmsStaff:
+	dc.b	"Randy",NPCNAMEEND
+
+NPCNameFCBFishingStaff:
+	dc.b	"Heather",NPCNAMEEND
+
+NPCNameFCBCampingStaff:
+	dc.b	"Jordan",NPCNAMEEND
+
+NPCNameSouthCenterStaff:
+	dc.b	"Carol",NPCNAMEEND
 
 ;-------------------------------------------------------------------------------
 ; item names
