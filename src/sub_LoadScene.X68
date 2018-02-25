@@ -75,7 +75,7 @@ LoadPlayerSpriteTiles:
 ; load NPCs
 ;-------------------------------------------------------------------------------
 LoadSceneLoadNPCData:
-	move.w	(a6)+,d7	; number of NPC slots in the scenez
+	move.w	(a6)+,d7	; number of NPC slots in the scene
 	move.w	#$0002,d6	; use d6 to track sprite ID
 	lea	MEM_NPC0_SPRITE_ID,a0	; point a0 to the first NPC sprite
 	cmpi.w	#(NPC_LIST_LENGTH-1),d7	; test to defend against my own stupidity
@@ -133,8 +133,6 @@ LoadSceneLoadNPCSpritesLoop:
 ; setup to rebuild sprite order after loading new NPCs
 ;-------------------------------------------------------------------------------
 	bsr.w	SetDefaultSpriteOrder	; set the initial sprite order
-	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; flag to sort sprite order
-	bsr.w	OrderSprites
 
 ;-------------------------------------------------------------------------------
 ; load & start the background music
@@ -202,7 +200,7 @@ LoadNPC:
 	; size & link
 	move.w	d2,d6	; store sprite ID in d6
 	mulu.w	#$08,d6	; multiply sprite ID by 8 to get sprite array offset
-   	addq	#STRUCT_SPRITEDEF_SIZE_LINK,d6		; move to x-coordinate
+	addq	#STRUCT_SPRITEDEF_SIZE_LINK,d6		; move to x-coordinate
 	swap	d6	; move to upper word
 	add.l	#VDP_VRAM_WRITE_SPRITE,d6	; add to sprite table address
 	move.l	d6,(VDP_CONTROL)	; set write location in VDP

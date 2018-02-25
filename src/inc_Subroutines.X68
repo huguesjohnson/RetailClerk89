@@ -37,6 +37,8 @@
 	
 	include	'sub_SetSpriteLink.X68'
 
+	include	'sub_SetSpriteLinks.X68'
+
 	include	'sub_OrderSprites.X68'
 
 	include	'sub_UpdateSpriteSortTable.X68'

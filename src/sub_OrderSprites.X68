@@ -18,7 +18,6 @@ OrderSprites:
 	;---------------------------------------------------------------------------
 	; handle case where there are 0 NPCs
 	;---------------------------------------------------------------------------
-	move.w	#$0000,(MEM_SPRITE_Y_ORDER_CHANGED)	; clear Y order changed
 	; have sprite zero point to the player sprite
 	move.w	#$0000,d2	; sprite zero is the sprite to edit
 	move.w	#$0001,d3	; player sprite is the sprite to link to
@@ -58,33 +57,8 @@ SpriteYSortLoopInnerDbra:
 	; don't update VPD is the order hasn't changed
 	tst.w	(MEM_SPRITE_Y_ORDER_CHANGED)	; test MEM_SPRITE_Y_ORDER_CHANGED
 	beq.w	ExitOrderSprites	; MEM_SPRITE_Y_ORDER_CHANGED = 0, exit
-	; sprite zero points to the first record in the table
-	move.w	#$0000,d2
-	move.w	(MEM_SPRITE_SORT_TABLE_ID0),d3
-	bsr.w	SetSpriteLink
-	; loop through the others
-	move.w	(MEM_ACTIVE_NPC_COUNT),d4	; NPC_COUNT-1 is size of loop
-	bne.s	.1	; exit if there aren't any NPCs
-	; no NPC sprites - set last link and exit
-	move.w	(MEM_SPRITE_SORT_TABLE_ID0),d2
-	move.w	#$0000,d3
-	bsr.w	SetSpriteLink
-	beq.s	ExitOrderSprites	; exit
-.1
-	subq.w	#$1,d4	; NPC_COUNT-1 is size of loop
-	lea	MEM_SPRITE_SORT_TABLE_ID0,a4	; point a4 to the second of sort table
-SetSpriteLinksLoop:
-	move.w	(a4),d2	; copy sprite ID to d2
-	move.w	(4,a4),d3	; copy next sprite ID to d3
-	bsr.w	SetSpriteLink	; save the link
-	adda.l	#$0004,a4	; move to next entry
-	dbra	d4,SetSpriteLinksLoop	; decrement d4 and loop
-	; save the link for the last sprite
-	; this is done so any sprites past NPC_COUNT-1 don't accidentally display
-	move.w	(a4),d2	; copy sprite ID to d2
-	move.w	#$0000,d3	; points to sprite 0
-	bsr.w	SetSpriteLink	; save the link
-	move.w	#$0000,(MEM_SPRITE_Y_ORDER_CHANGED)	; clear Y order changed
+	bsr.w	SetSpriteLinks	; loops through the table and sets links
+
 ExitOrderSprites:
 	move.w	#$2000,sr		; re-enable interrupts
 	rts

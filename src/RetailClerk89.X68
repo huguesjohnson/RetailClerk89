@@ -498,6 +498,8 @@ TestIntroScreen:
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	bsr.w	LoadPlayerSprite	; load the player sprite
 	bsr.w	HideSelectorSprite	; hide the menu selector sprite
+	; workaround to issue where links aren't set if the table is already sorted	
+	bsr.w	SetSpriteLinks
 	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset frame counter
 	bra.w	MainGameLoop	;	return to start of game loop
 MainGameLoopEnd:

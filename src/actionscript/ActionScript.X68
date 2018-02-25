@@ -147,11 +147,6 @@ DefaultExitSceneUpdatePlayerSprite:
 	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition	
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
 	endif
-	; update sort table	
-	move.w	(MEM_PLAYER_SPRITE_ID),d2	; copy ID to d2
-	move.w	(MEM_PLAYER_SPRITE_Y),d3	; copy new Y value to d3
-	bsr.w	UpdateSpriteSortTable	; update the sprite table
-	move.w	#$FFFF,(MEM_SPRITE_Y_ORDER_CHANGED)	; flag order has changed
 	; update x & y values in the sprite table
 	move.l	#VDP_VRAM_WRITE_SPRITE,d7	; copy VDP VRAM write address to d7
 	add.l	#$00080000,d7	; add $00080000 to point to Y of 2nd sprite (player)
@@ -161,6 +156,13 @@ DefaultExitSceneUpdatePlayerSprite:
 	add.l	#$000E0000,d7	; add $00080000 to point to Y of 2nd sprite (player)
 	move.l	d7,(VDP_CONTROL)	; set VDP write address
 	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; write new X value
+	; update sprite sort table	
+	move.w	(MEM_PLAYER_SPRITE_ID),d2	; copy ID to d2
+	move.w	(MEM_PLAYER_SPRITE_Y),d3	; copy new Y value to d3
+	bsr.w	UpdateSpriteSortTable	; update the sprite table
+	bsr.w	OrderSprites	; sort the sprite table
+	; workaround to issue where links aren't set if the table is already sorted	
+	bsr.w	SetSpriteLinks
 ExitDefaultExit:
 	rts
 
