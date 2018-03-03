@@ -319,9 +319,9 @@ SceneTBooks:
 	dc.w	$00A2	; starting x location of npc0
 	dc.w	$00DA	; starting y location of npc0
 	dc.w	DIRECTION_LEFT	; starting direction of npc0
-	dc.w	$FFFF	; movement frequency of npc0
-	dc.l	NullMovementStart	; location of movement pattern for npc0
-	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+	dc.w	$01A3	; movement frequency of npc0
+	dc.l	NPCMovementScene12Start	; location of movement pattern for npc0
+	dc.w	(NPCMovementScene12End-NPCMovementScene12Start-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm

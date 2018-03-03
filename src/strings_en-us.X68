@@ -564,19 +564,19 @@ NPCNameCheckersStaff:
 	dc.b	"Todd",NPCNAMEEND
 
 NPCNameTLodgeStaff:
-	dc.b	"placeholder",NPCNAMEEND
+	dc.b	"Scott",NPCNAMEEND
 
 NPCNameCavernStaff:
-	dc.b	"tlodge npc",NPCNAMEEND
+	dc.b	"Gary",NPCNAMEEND
 
 NPCNameSVideoStaff:
-	dc.b	"Annette npc",NPCNAMEEND
+	dc.b	"Annette",NPCNAMEEND
 
 NPCNameNShackStaff:
 	dc.b	"nshack npc",NPCNAMEEND
 
 NPCNamePogoDawgStaff:
-	dc.b	"pd npc",NPCNAMEEND
+	dc.b	"Griffy",NPCNAMEEND
 
 NPCNameCPlanetStaff:
 	dc.b	"cplanet npc",NPCNAMEEND
@@ -585,10 +585,10 @@ NPCNameCNowStaff:
 	dc.b	"cnow npc",NPCNAMEEND
 
 NPCNameTBooksStaff:
-	dc.b	"tbooks npc",NPCNAMEEND
+	dc.b	"Charles",NPCNAMEEND
 
 NPCNameFCBCheckoutStaff:
-	dc.b	"fcbck npc",NPCNAMEEND
+	dc.b	"Thomas",NPCNAMEEND
 
 NPCNameFCBFirearmsStaff:
 	dc.b	"Randy",NPCNAMEEND

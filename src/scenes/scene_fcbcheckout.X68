@@ -268,12 +268,12 @@ SceneFCBCheckout:
 	;---------------------------------------------------------------------------
 	dc.w	$0000	; one npc slot
 
-	dc.w	$010C	; starting x location of npc0
-	dc.w	$00EE	; starting y location of npc0
-	dc.w	DIRECTION_LEFT	; starting direction of npc0
-	dc.w	$FFFF	; movement frequency of npc0
-	dc.l	NullMovementStart	; location of movement pattern for npc0
-	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+	dc.w	$012C	; starting x location of npc0
+	dc.w	$00B4	; starting y location of npc0
+	dc.w	DIRECTION_RIGHT	; starting direction of npc0
+	dc.w	$0000	; movement frequency of npc0
+	dc.l	NPCMovementRightStart	; location of movement pattern for npc0
+	dc.w	(NPCMovementRightEnd-NPCMovementRightStart-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm
