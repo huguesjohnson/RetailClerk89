@@ -294,12 +294,12 @@ SceneCPlanet:
 	;---------------------------------------------------------------------------
 	dc.w	$0000	; one npc slot
 
-	dc.w	$01AC	; starting x location of npc0
+	dc.w	$01A0	; starting x location of npc0
 	dc.w	$0112	; starting y location of npc0
 	dc.w	DIRECTION_LEFT	; starting direction of npc0
-	dc.w	$FFFF	; movement frequency of npc0
-	dc.l	NullMovementStart	; location of movement pattern for npc0
-	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+	dc.w	$00A1	; movement frequency of npc0
+	dc.l	NPCMovementScene10Start	; location of movement pattern for npc0
+	dc.w	(NPCMovementScene10End-NPCMovementScene10Start-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm

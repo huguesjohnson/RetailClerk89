@@ -99,17 +99,17 @@ SceneNShack:
 	dc.l	VDP_VRAM_WRITE_B+$001E0000+$04000000	; initial drawing location
 
 	; counter
-	dc.l	PatternCounterHigh80x8
+	dc.l	PatternCounterHigh80x16
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1000000000010001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$001E0000+$02800000	; initial drawing location
 
-	dc.l	PatternCounterLow80x24
+	dc.l	PatternCounterLow80x16
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0000000000010001	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$001E0000+$03000000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$001E0000+$03800000	; initial drawing location
 
 	; display cases
 	dc.l	PatternNShackDisplayCaseHigh
@@ -251,12 +251,12 @@ SceneNShack:
 	;---------------------------------------------------------------------------
 	dc.w	$0000	; one npc slot
 
-	dc.w	$0122	; starting x location of npc0
-	dc.w	$00A0	; starting y location of npc0
+	dc.w	$0118	; starting x location of npc0
+	dc.w	$0098	; starting y location of npc0
 	dc.w	DIRECTION_LEFT	; starting direction of npc0
-	dc.w	$FFFF	; movement frequency of npc0
-	dc.l	NullMovementStart	; location of movement pattern for npc0
-	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+	dc.w	$0000	; movement frequency of npc0
+	dc.l	NPCMovementDownStart	; location of movement pattern for npc0
+	dc.w	(NPCMovementDownEnd-NPCMovementDownStart-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm

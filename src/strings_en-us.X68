@@ -573,16 +573,16 @@ NPCNameSVideoStaff:
 	dc.b	"Annette",NPCNAMEEND
 
 NPCNameNShackStaff:
-	dc.b	"nshack npc",NPCNAMEEND
+	dc.b	"Jen",NPCNAMEEND
 
 NPCNamePogoDawgStaff:
 	dc.b	"Griffy",NPCNAMEEND
 
 NPCNameCPlanetStaff:
-	dc.b	"cplanet npc",NPCNAMEEND
+	dc.b	"Eliza",NPCNAMEEND
 
 NPCNameCNowStaff:
-	dc.b	"cnow npc",NPCNAMEEND
+	dc.b	"Becky",NPCNAMEEND
 
 NPCNameTBooksStaff:
 	dc.b	"Charles",NPCNAMEEND

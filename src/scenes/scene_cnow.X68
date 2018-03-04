@@ -174,7 +174,7 @@ SceneCNow:
 
 	dc.l	Pattern16x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1100000001000111	; base pattern
+	dc.w	%0100000001000111	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$000A0000+$0A000000	; initial drawing location
 
@@ -193,7 +193,7 @@ SceneCNow:
 
 	dc.l	Pattern16x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000111111	; base pattern
+	dc.w	%0010000000111111	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00460000+$09800000	; initial drawing location
 
@@ -362,11 +362,11 @@ SceneCNow:
 	dc.w	$0000	; one npc slot
 
 	dc.w	$00CE	; starting x location of npc0
-	dc.w	$00FC	; starting y location of npc0
+	dc.w	$00E8	; starting y location of npc0
 	dc.w	DIRECTION_LEFT	; starting direction of npc0
-	dc.w	$FFFF	; movement frequency of npc0
-	dc.l	NullMovementStart	; location of movement pattern for npc0
-	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+	dc.w	$0910	; movement frequency of npc0
+	dc.l	NPCMovementScene11Start	; location of movement pattern for npc0
+	dc.w	(NPCMovementScene11End-NPCMovementScene11Start-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm

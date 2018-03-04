@@ -268,7 +268,7 @@ SceneFCBCheckout:
 	;---------------------------------------------------------------------------
 	dc.w	$0000	; one npc slot
 
-	dc.w	$012C	; starting x location of npc0
+	dc.w	$0130	; starting x location of npc0
 	dc.w	$00B4	; starting y location of npc0
 	dc.w	DIRECTION_RIGHT	; starting direction of npc0
 	dc.w	$0000	; movement frequency of npc0
