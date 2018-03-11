@@ -9,13 +9,14 @@ Basic framework for:
 * Drawing background graphics and sprites
 * Capturing controller input and moving a sprite based on it
 * Playing and pausing background music
-* Sprite collision detection against scenery and other sprites
+* Collision detection
 * Very simple game state management
 * Basic game script and event handling capabilities
+* Single room demo used to test all this stuff
 
 **Not implemented**
 
-Anything that would make this resemble an actual game
+* Fully scripted game - the wiki page here in Github has more information about the roadmap
 
 **Building**
 
