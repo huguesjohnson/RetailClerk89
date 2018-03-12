@@ -30,7 +30,7 @@ ClearPlayerInventoryLoop:
 ;-------------------------------------------------------------------------------
 InitNPCLocations:
 	lea MEM_NPC_LOCATIONS,a0
-	move.l	#$01020300,(a0)+	; location 00 (VB) - NPCs 01,02,03
+	move.l	#$03010200,(a0)+	; location 00 (VB) - NPCs 03,01,02
 	move.l	#$00000000,(a0)+	; location 01 (WWHALL)
 	move.l	#$00000000,(a0)+	; location 02 (WEHALL)
 	move.l	#$04000000,(a0)+	; location 03 (CENTER)

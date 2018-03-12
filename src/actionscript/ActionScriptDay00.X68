@@ -86,6 +86,14 @@ Day00Scene00Register:
 	; queue the scripted event
 	lea ScriptedEventDay0Exit,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
+	; update NPC locations
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	; current scene is 00 so no need to move pointer
+	move.l	#$03000000,(a5)	; update NPCs in scene 00
+	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
+	move.l	#$01000000,(a5)	; update NPCs in parking lot
 	lea	DialogTextRegisterDay0Use,a6	; load dialog text
 	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01NPCGreenberg:

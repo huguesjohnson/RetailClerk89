@@ -112,7 +112,7 @@ SceneExitTable:
 	; scene 03
 	dc.l	DefaultExitScene
 	; scene 04
-	dc.l	ExitScene04	; temp action for demo
+	dc.l	DefaultExitScene
 	; scene 05
 	dc.l	DefaultExitScene
 	; scene 06

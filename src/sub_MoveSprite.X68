@@ -34,7 +34,7 @@ TestUp:
 	bsr.w	UpdateSpriteSortTable	; update the sprite table
 	; update the sprite in the sprite table
 	move.w	(a6),d7						; copy sprite ID to d7
-   	mulu.w	#$08,d7						; mult by 8 to get sprite array offset
+	mulu.w	#$08,d7						; mult by 8 to get sprite array offset
 	swap	d7                          ; move to upper word
 	add.l	#VDP_VRAM_WRITE_SPRITE,d7	; add to sprite table address
 	move.l	d7,(VDP_CONTROL)			; set write location in VDP

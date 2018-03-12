@@ -77,6 +77,7 @@ LoadPlayerSpriteTiles:
 LoadSceneLoadNPCData:
 	move.w	(a6)+,d7	; number of NPC slots in the scene
 	move.w	#$0002,d6	; use d6 to track sprite ID
+	move.w	#NPC0_BASE_TILE,d5	; use d5 to track the base tile
 	lea	MEM_NPC0_SPRITE_ID,a0	; point a0 to the first NPC sprite
 	cmpi.w	#(NPC_LIST_LENGTH-1),d7	; test to defend against my own stupidity
 	bls.s	LoadSceneLoadNPCDataLoop	; did I add more NPCs than supported?
@@ -85,7 +86,7 @@ LoadSceneLoadNPCDataLoop:
 	move.w	d6,(a0)+	; ID
 	move.w	(a6)+,(a0)+	; x
 	move.w	(a6)+,(a0)+	; y
-	move.w	#$0000,(a0)+ ; pattern
+	move.w	d5,(a0)+ ; pattern
 	move.w	(a6)+,(a0)+	; direction
 	move.w	#$0000,(a0)+	; frame
 	move.w	#$0000,(a0)+	; step counter
@@ -95,6 +96,7 @@ LoadSceneLoadNPCDataLoop:
 	move.w	(a6)+,(a0)+	; movement pattern length
 	move.w	#$0000,(a0)+	; movement index
 	addq	#$1,d6	; increment sprite ID
+	add.w	#NPC_BASE_TILE_INC,d5	; increment base tile
 	dbra    d7,LoadSceneLoadNPCDataLoop
 LoadSceneLoadNPCSprites:
 	; lookup which NPCs sprites are in this scene and add them
@@ -176,8 +178,6 @@ LoadNPC:
 	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
 	; note - a0, d0, and d1 are modified by this call
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
-	; update base pattern
-	move.w	(a2)+,(STRUCT_SPRITE_BASE_PATTERN,a3)
 	; --------------------------------------------------------------------------
 	; update x, y, and pattern in the sprite table
 	; this could be optimized a bit to use fewer calculation

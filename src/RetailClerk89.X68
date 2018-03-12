@@ -70,9 +70,7 @@ NPC_RECORD_SIZE=MEM_NPC1_SPRITE_ID-MEM_NPC0_SPRITE_ID
 NPC_SPRITE_MOVE_STEPS=$0009; how many steps NPC sprites take when they move
 PLAYER_BASE_TILE=%0110000100000001 ; pri=0,pal=2,vf=0,hf=0,pattern=101
 NPC0_BASE_TILE=%0110000101110001 ;pri=0,pal=2,vf=0,hf=0,pattern=171
-NPC1_BASE_TILE=%0110000111010001 ;pri=0,pal=2,vf=0,hf=0,pattern=1D1
-NPC2_BASE_TILE=%0110001000110001 ;pri=0,pal=2,vf=0,hf=0,pattern=231
-NPC3_BASE_TILE=%0110001010010001 ;pri=0,pal=2,vf=0,hf=0,pattern=291
+NPC_BASE_TILE_INC=$0060	; how many tiles to increment between NPCs
 ; directions
 DIRECTION_DOWN=%0000	; 0
 DIRECTION_UP=%0001		; 1
@@ -104,6 +102,8 @@ SCENE_VDP=$0000			; write location for scene tiles
 FONT_VDP=$1200	; write location for font tiles
 SPRITE_VDP=$2200	; write location for sprite tiles
 PLAYER_SPRITE_VDP=SPRITE_VDP+$0020	; write location for player sprite tiles
+NPC0_SPRITE_VDP_X=$78100002
+NPC0_SPRITE_VDP_Y=$00160000
 ; screen & plane sizes
 DISPLAY_PIXELS_X=$0140				; width of physical display
 DISPLAY_PIXELS_Y=$00E0				; height of physical display
@@ -498,6 +498,16 @@ TestIntroScreen:
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	bsr.w	LoadPlayerSprite	; load the player sprite
 	bsr.w	HideSelectorSprite	; hide the menu selector sprite
+	; move NPC0 out of frame here
+	move.w	#$017F,(MEM_NPC0_SPRITE_X)	; copy x-coordinate
+	move.w	#$01AF,(MEM_NPC0_SPRITE_Y)	; copy y-coordinate
+	move.w	#$FFFF,(MEM_NPC0_MOVE_FREQUENCY)	; set move frequency to never
+	; update NPC0 in the sprite table
+	move.l	#NPC0_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
+	move.w	(MEM_NPC0_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
+	move.l	#NPC0_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
+	move.w	(MEM_NPC0_SPRITE_X),(VDP_DATA)			; copy the new x-coordinate
+	; reorder all the sprites
 	bsr.w	OrderSprites	; order sprites
 	; workaround to issue where links aren't set if the table is already sorted
 	bsr.w	SetSpriteLinks
@@ -609,12 +619,12 @@ TrapException:
 	include	'inc_CollisionMaps.X68'
 
 ;*******************************************************************************
-; sprite table defintions
+; sprite table definitions
 ;*******************************************************************************
 	include 'data_SpriteDefinitions.X68'
 
 ;*******************************************************************************
-; character defintions
+; character definitions
 ;*******************************************************************************
 	include 'data_CharacterDefinitions.X68'
 

@@ -15,6 +15,8 @@ MEM_SPRITE_SORT_TABLE_ID2,2,sort table ID 2
 MEM_SPRITE_SORT_TABLE_VALUE2,2,sort table value 2
 MEM_SPRITE_SORT_TABLE_ID3,2,sort table ID 3
 MEM_SPRITE_SORT_TABLE_VALUE3,2,sort table value 3
+MEM_SPRITE_SORT_TABLE_ID4,2,sort table ID 4
+MEM_SPRITE_SORT_TABLE_VALUE4,2,sort table value 4
 ;-------------------------------------------------------------------------------
 ; counters
 ;-------------------------------------------------------------------------------
