@@ -12,10 +12,102 @@ DefaultObjectDescriptionTable:
 	dc.l	DialogText16Bit
 	; OBJ_SCENE_VB_MAGS
 	dc.l	DialogTextMags
-	; OBJ_SCENE_VB_COUNTER
+	; OBJ_SCENE_COUNTER
 	dc.l	DialogTextCounter
 	; OBJ_SCENE_VB_REGISTER
 	dc.l	DialogTextRegister
+	; OBJ_SCENE_DC_JEANS
+	dc.l	DialogTextJeans
+	; OBJ_SCENE_BENCH
+	dc.l	DialogTextBench
+	; OBJ_SCENE_TRASHCAN
+	dc.l	DialogTextTrashcan
+	; OBJ_SCENE_PLANT
+	dc.l	DialogTextPlant
+	; OBJ_SCENE_INFODESK
+	dc.l	DialogTextInfoDesk
+	; OBJ_SCENE_TREE
+	dc.l	DialogTextTree
+	; OBJ_SCENE_KIOSK
+	dc.l	DialogTextKiosk
+	; OBJ_SCENE_PHONE
+	dc.l	DialogTextPhone
+	; OBJ_SCENE_DANICAR
+	dc.l	DialogTextDaniCar
+	; OBJ_SCENE_MANNEQUIN
+	dc.l	DialogTextMannequin
+	; OBJ_SCENE_CLOTHING
+	dc.l	DialogTextClothing
+	; OBJ_SCENE_RADIO
+	dc.l	DialogTextRadio
+	; OBJ_SCENE_CASSETTE_PLAYER
+	dc.l	DialogTextCassettePlayer
+	; OBJ_SCENE_CELL_PHONE
+	dc.l	DialogTextCellPhone
+	; OBJ_SCENE_RCCAR
+	dc.l	DialogTextRCCar
+	; OBJ_SCENE_COMPUTER
+	dc.l	DialogTextComputer
+	; OBJ_SCENE_OFFICEPHONE
+	dc.l	DialogTextOfficePhone
+	; OBJ_SCENE_VIDEOWALL
+	dc.l	DialogTextVideoWall
+	; OBJ_SCENE_VIDEORACK
+	dc.l	DialogTextVideoRack
+	; OBJ_SCENE_NUTCASE
+	dc.l	DialogTextNutCase
+	; OBJ_SCENE_NUTBARREL
+	dc.l	DialogTextNutBarrel
+	; OBJ_SCENE_TABLE
+	dc.l	DialogTextTable
+	; OBJ_SCENE_TRASH
+	dc.l	DialogTextTrash
+	; OBJ_SCENE_TAPES
+	dc.l	DialogTextTapes
+	; OBJ_SCENE_CDS
+	dc.l	DialogTextCDs
+	; OBJ_SCENE_BOOKS_FICTION
+	dc.l	DialogTextBooksFiction
+	; OBJ_SCENE_BOOKS_ROMANCE
+	dc.l	DialogTextBooksRomance
+	; OBJ_SCENE_BOOKS_HISTORY
+	dc.l	DialogTextBooksHistory
+	; OBJ_SCENE_BOOKS_COOKING
+	dc.l	DialogTextBooksCooking
+	; OBJ_SCENE_ARCADE0
+	dc.l	DialogTextArcade0
+	; OBJ_SCENE_ARCADE1
+	dc.l	DialogTextArcade1
+	; OBJ_SCENE_ARCADE2
+	dc.l	DialogTextArcade2
+	; OBJ_SCENE_ARCADE3
+	dc.l	DialogTextArcade3
+	; OBJ_SCENE_ARCADE4
+	dc.l	DialogTextArcade4
+	; OBJ_SCENE_ARCADE5
+	dc.l	DialogTextArcade5
+	; OBJ_SCENE_ARCADE6
+	dc.l	DialogTextArcade6
+	; OBJ_SCENE_ARCADE7
+	dc.l	DialogTextArcade7
+	; OBJ_SCENE_ARCADE8
+	dc.l	DialogTextArcade8
+	; OBJ_SCENE_FENCE
+	dc.l	DialogTextFence
+	; OBJ_SCENE_POLE
+	dc.l	DialogTextPole
+	; OBJ_SCENE_WORKSHOP
+	dc.l	DialogTextWorshop
+	; OBJ_SCENE_FOUNTAIN
+	dc.l	DialogTextFountain
+	; OBJ_SCENE_FISHINGPOLES
+	dc.l	DialogTextFishingPoles
+	; OBJ_SCENE_GUNCASE
+	dc.l	DialogTextGunCase
+	; OBJ_SCENE_FIREPIT
+	dc.l	DialogTextFirePit
+	; OBJ_SCENE_TENT
+	dc.l	DialogTextTent
 
 ;-------------------------------------------------------------------------------
 ; default npc descriptions
@@ -29,6 +121,38 @@ DefaultNPCDescriptionTable:
 	dc.l	DialogTextMaleShopper00DefaultLook
 	; OBJ_NPC_GREENBERG
 	dc.l	DialogTextGreenbergDefaultLook
+	; OBJ_NPC_CENTER_STAFF
+	dc.l	DialogTextCenterStaffDefaultLook
+	; OBJ_NPC_DENIMCOUNTRY_STAFF
+	dc.l	DialogTextDenimCountryStaffDefaultLook
+	; OBJ_NPC_CHECKERS_STAFF
+	dc.l	DialogTextCheckersStaffDefaultLook
+	; OBJ_NPC_TLODGE_STAFF
+	dc.l	DialogTextTLodgeStaffDefaultLook
+	; OBJ_NPC_CAVERN_STAFF
+	dc.l	DialogTextCavernStaffDefaultLook
+	; OBJ_NPC_SVIDEO_STAFF
+	dc.l	DialogTextSVideoStaffDefaultLook
+	; OBJ_NPC_NSHACK_STAFF
+	dc.l	DialogTextNShackStaffDefaultLook
+	; OBJ_NPC_POGODAWG_STAFF
+	dc.l	DialogTextPogoDawgStaffDefaultLook
+	; OBJ_NPC_CPLANET_STAFF
+	dc.l	DialogTextCPlanetStaffDefaultLook
+	; OBJ_NPC_CNOW_STAFF
+	dc.l	DialogTextCNowStaffDefaultLook
+	; OBJ_NPC_TBOOKS_STAFF
+	dc.l	DialogTextTBooksStaffDefaultLook
+	; OBJ_NPC_FCBCHECKOUT_STAFF
+	dc.l	DialogTextFCBCheckoutStaffDefaultLook
+	; OBJ_NPC_FCBFIREARMS_STAFF
+	dc.l	DialogTextFCBFirearmsStaffDefaultLook
+	; OBJ_NPC_FCBFISHING_STAFF
+	dc.l	DialogTextFCBFishingStaffDefaultLook
+	; OBJ_NPC_FCBCAMPING_STAFF
+	dc.l	DialogTextFCBCampingStaffDefaultLook
+	; OBJ_NPC_SOUTH_CENTER_STAFF
+	dc.l	DialogTextSouthCenterStaffDefaultLook
 
 ;-------------------------------------------------------------------------------
 ; object names

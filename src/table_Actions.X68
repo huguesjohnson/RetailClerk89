@@ -103,52 +103,52 @@ ActionTable:
 	dc.l	Day00Scene17Action03	; ACTION_RESPOND
 
 SceneExitTable:
-	; scene 00
+	; scene 00 (SCENE_ID_VB)
 	dc.l	ExitScene00
-	; scene 01
+	; scene 01 (SCENE_ID_WWHALL)
+	dc.l	ExitScene01
+	; scene 02 (SCENE_ID_WEHALL)
+	dc.l	ExitScene02
+	; scene 03 (SCENE_ID_CENTER)
+	dc.l	ExitScene03
+	; scene 04 (SCENE_ID_SHALL)
+	dc.l	ExitScene04
+	; scene 05 (SCENE_ID_PARKINGLOT)
+	dc.l	ExitScene05
+	; scene 06 (SCENE_ID_EWHALL)
+	dc.l	ExitScene06
+	; scene 07 (SCENE_ID_EEHALL)
+	dc.l	ExitScene07
+	; scene 08 (SCENE_ID_DENIMCOUNTRY)
 	dc.l	DefaultExitScene
-	; scene 02
+	; scene 09 (SCENE_ID_CHECKERS)
 	dc.l	DefaultExitScene
-	; scene 03
+	; scene 0A (SCENE_ID_TLODGE)
 	dc.l	DefaultExitScene
-	; scene 04
+	; scene 0B (SCENE_ID_CAVERN)
 	dc.l	DefaultExitScene
-	; scene 05
+	; scene 0C (SCENE_ID_SVIDEO)
 	dc.l	DefaultExitScene
-	; scene 06
+	; scene 0D (SCENE_ID_WORKSHOP)
 	dc.l	DefaultExitScene
-	; scene 07
+	; scene 0E (SCENE_ID_NSHACK)
 	dc.l	DefaultExitScene
-	; scene 08
+	; scene 0F (SCENE_ID_POGODAWG)
 	dc.l	DefaultExitScene
-	; scene 09
+	; scene 10 (SCENE_ID_CPLANET)
 	dc.l	DefaultExitScene
-	; scene 0A
+	; scene 11 (SCENE_ID_CNOW)
 	dc.l	DefaultExitScene
-	; scene 0B
+	; scene 12 (SCENE_ID_TBOOKS)
 	dc.l	DefaultExitScene
-	; scene 0C
+	; scene 13 (SCENE_ID_FCBCHECKOUT)
 	dc.l	DefaultExitScene
-	; scene 0D
+	; scene 14 (SCENE_ID_FCBFIREARMS)
 	dc.l	DefaultExitScene
-	; scene 0E
+	; scene 15 (SCENE_ID_FCBFISHING)
 	dc.l	DefaultExitScene
-	; scene 0F
+	; scene 16 (SCENE_ID_FCBCAMPING)
 	dc.l	DefaultExitScene
-	; scene 10
-	dc.l	DefaultExitScene
-	; scene 11
-	dc.l	DefaultExitScene
-	; scene 12
-	dc.l	DefaultExitScene
-	; scene 13
-	dc.l	DefaultExitScene
-	; scene 14
-	dc.l	DefaultExitScene
-	; scene 15
-	dc.l	DefaultExitScene
-	; scene 16
-	dc.l	DefaultExitScene
-	; scene 17
-	dc.l	DefaultExitScene
+	; scene 17 (SCENE_ID_SOUTH_CENTER)
+	dc.l	ExitScene17
 

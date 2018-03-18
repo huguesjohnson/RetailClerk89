@@ -44,7 +44,6 @@ EndScreenTextLine4:
 EndScreenTextLine5:
 	dc.b	"sometime around Xmas 2040.",ETX
 
-
 ;-------------------------------------------------------------------------------
 ; messages
 ;-------------------------------------------------------------------------------
@@ -75,38 +74,48 @@ DialogTextCantLeaveStoreUnattended:
 	dc.b	"You can't leave the",LF
 	dc.b	"store unattended.",ETX
 
+DialogTextStoreClosing:
+	;		"1234567890123456789012"
+	dc.b	"It looks like they are",LF
+	dc.b	"closing for the night.",ETX
+
+DialogTextLongWalk:
+	;		"1234567890123456789012"
+	dc.b	"It's an awful long way",LF
+	dc.b	"to walk home.",ETX
+
 ;-------------------------------------------------------------------------------
 ; dialog text
 ;-------------------------------------------------------------------------------
-DialogTextDaniScene0Day0Action0:
+DialogTextDaniScene00Day00Action0:
 	;		"1234567890123456789012"
 	dc.b	"She gives you a look",LF
 	dc.b	"that clearly says    ^",FF
 	dc.b	"you'll be walking home",LF
 	dc.b	"if you take too long.",ETX
 
-DialogTextDaniScene0Day0Flag0:
+DialogTextDaniScene00Day00Flag0:
 	;		"1234567890123456789012"
 	dc.b	"`It's 10 minutes past",LF
 	dc.b	"closing time already.^",FF
 	dc.b	"Get that guy out of",LF
 	dc.b	"here so we can leave.'",ETX
 
-DialogTextDaniScene0Day0Flag1:
+DialogTextDaniScene00Day00Flag1:
 	;		"1234567890123456789012"
 	dc.b	"`Maybe you should",LF
 	dc.b	"actually talk to him.^",FF
 	dc.b	"`You know, like",LF
 	dc.b	"do your job.'",ETX
 
-DialogTextDaniScene0Day0Flag8:
+DialogTextDaniScene00Day00Flag8:
 	;		"1234567890123456789012"
 	dc.b	"`Do I have to explain",LF
 	dc.b	"everything to you?   ^",FF
 	dc.b	"Go ring him up & let's",LF
 	dc.b	"get out of here.'",ETX
 
-DialogTextDaniScene0Day0Exit0:
+DialogTextDaniScene00Day00Exit0:
 	;		"1234567890123456789012"
 	dc.b	"`You know what your",LF
 	dc.b	"problem is?          ^",FF
@@ -123,21 +132,26 @@ DialogTextDaniScene0Day0Exit0:
 	dc.b	"That will get them to",LF
 	dc.b	"buy anything & leave.'",ETX
 
-DialogTextDaniScene0Day0Exit1:
+DialogTextDaniScene00Day00Exit1:
 	;		"1234567890123456789012"
 	dc.b	"`I can't believe",LF
 	dc.b	"your manager is MIA. ^",FF
 	dc.b	"He better give you a",LF
 	dc.b	"a key tomorrow.'",ETX
 
-DialogTextDaniScene0Day0Exit2:
+DialogTextDaniScene00Day00Exit2:
 	;		"1234567890123456789012"
 	dc.b	"`Meet me at the",LF
 	dc.b	"car whenever he      ^",FF
 	dc.b	"bothers to show up",LF
 	dc.b	"again.'",ETX
 
-DialogTextGreenbergScene0Day0Exit:
+DialogTextDaniScene05Day00:
+	;		"1234567890123456789012"
+	dc.b	"`Did you get lost?",LF
+	dc.b	"Just get in the car.'",ETX
+
+DialogTextGreenbergScene00Day00Exit:
 	;		"1234567890123456789012"
 	dc.b	"`Did I just",LF
 	dc.b	"see a guy walking out^",FF
@@ -152,26 +166,26 @@ DialogTextGreenbergScene0Day0Exit:
 	dc.b	"You did fine though so",LF
 	dc.b	"get on home.'",ETX
 
-DialogTextGreenbergScene0Day0Talk:
+DialogTextGreenbergScene00Day00Talk:
 	;		"1234567890123456789012"
 	dc.b	"`Don't keep",LF
 	dc.b	"that nice young lady ^",FF
 	dc.b	"waiting. I sure",LF
 	dc.b	"wouldn't.'",ETX
 
-DialogTextGreenbergScene0Day0Give:
+DialogTextGreenbergScene00Day00Give:
 	;		"1234567890123456789012"
 	dc.b	"`You're not",LF
 	dc.b	"stealing either?     ^",FF
 	dc.b	"You're the model",LF
 	dc.b	"employee today.'",ETX
 
-DialogTextScene0Day0Event0D0:
+DialogTextScene00Day00Event0D0:
 	;		"1234567890123456789012"
 	dc.b	"Dani:`This is taking",LF
 	dc.b	"forever.'            ^",ETX
 
-DialogTextScene0Day0Event0D1:
+DialogTextScene00Day00Event0D1:
 	;		"1234567890123456789012"
 	dc.b	"Dani:`This is the game",LF
 	dc.b	"your kid wants.'     ^",FF
@@ -189,7 +203,7 @@ DialogTextDaniDefaultGive:
 	;		"1234567890123456789012"
 	dc.b	"`Yeah, whatever.'",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag0:
+DialogTextMaleShopper0Scene00Day00Flag0:
 	;		"1234567890123456789012"
 	dc.b	"`If I have a mouse on",LF
 	dc.b	"COM2 using IRQ3 can I^",FF
@@ -198,7 +212,7 @@ DialogTextMaleShopper0Scene0Day0Flag0:
 	dc.b	"{Sure, why not?",LF
 	dc.b	"{I make $3.35 an hour.",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag0R0:
+DialogTextMaleShopper0Scene00Day00Flag0R0:
 	;		"1234567890123456789012"
 	dc.b	"`Great, thanks.",FF
 	dc.b	"There's one more thing",LF
@@ -209,7 +223,7 @@ DialogTextMaleShopper0Scene0Day0Flag0R0:
 	dc.b	"{Um, what's it called?",LF
 	dc.b	"{What system is it on?",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag0R1:
+DialogTextMaleShopper0Scene00Day00Flag0R1:
 	;		"1234567890123456789012"
 	dc.b	"`Sorry I asked.",LF
 	dc.b	"                     ^",FF
@@ -224,51 +238,51 @@ DialogTextMaleShopper0Scene0Day0Flag0R1:
 	dc.b	"{Oh yeah, that one.",LF
 	dc.b	"{It's sold out.",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag2R0:
+DialogTextMaleShopper0Scene00Day00Flag2R0:
 	;		"1234567890123456789012"
 	dc.b	"`Someone and Iggy vs",LF
 	dc.b	"whatever & something.^",FF
 	dc.b	"You know all these ",LF
 	dc.b	"games, go find it.'",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag2R1:
+DialogTextMaleShopper0Scene00Day00Flag2R1:
 	;		"1234567890123456789012"
 	dc.b	"`It's the one with two",LF
 	dc.b	"controllers on the TV^",FF
 	dc.b	"I thought you were",LF
 	dc.b	"the expert on this.'",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag3R0:
+DialogTextMaleShopper0Scene00Day00Flag3R0:
 	;		"1234567890123456789012"
 	dc.b	"`Great, go get it.",LF
 	dc.b	"I'll wait here.'",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag3R1:
+DialogTextMaleShopper0Scene00Day00Flag3R1:
 	;		"1234567890123456789012"
 	dc.b	"`Can you check anyway?",LF
 	dc.b	"I'm sure it's here.'",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag4:
+DialogTextMaleShopper0Scene00Day00Flag4:
 	;		"1234567890123456789012"
 	dc.b	"`Have you found that",LF
 	dc.b	"game yet?'",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag8:
+DialogTextMaleShopper0Scene00Day00Flag8:
 	;		"1234567890123456789012"
 	dc.b	"`Ring this up, I don't",LF
 	dc.b	"have all night.'",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag4Give:
+DialogTextMaleShopper0Scene00Day00Flag4Give:
 	;		"1234567890123456789012"
 	dc.b	"`That doesn't look",LF
 	dc.b	"right at all.'",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag5Give:
+DialogTextMaleShopper0Scene00Day00Flag5Give:
 	;		"1234567890123456789012"
 	dc.b	"`No, that's even",LF
 	dc.b	"worse.'",ETX
 
-DialogTextMaleShopper0Scene0Day0Flag6Give:
+DialogTextMaleShopper0Scene00Day00Flag6Give:
 	;		"1234567890123456789012"
 	dc.b	"`Did you even listen",LF
 	dc.b	"to me?'",ETX
@@ -315,6 +329,236 @@ DialogText16Bit:
 	dc.b	"Here are the latest",LF
 	dc.b	"16-bit games.",ETX
 
+DialogTextJeans:
+	;		"1234567890123456789012"
+	dc.b	"Neatly folded pile of",LF
+	dc.b	"jeans in many styles.",ETX
+
+DialogTextBench:
+	;		"1234567890123456789012"
+	dc.b	"It doesn't look very",LF
+	dc.b	"comfortable.",ETX
+
+DialogTextTrashcan:
+	;		"1234567890123456789012"
+	dc.b	"It seems pretty foul",LF
+	dc.b	"inside there.",ETX
+
+DialogTextPlant:
+	;		"1234567890123456789012"
+	dc.b	"You can't tell if it's",LF
+	dc.b	"real or fake.",ETX
+
+DialogTextInfoDesk:
+	;		"1234567890123456789012"
+	dc.b	"It's a large desk with",LF
+	dc.b	"various flyers on it.",ETX
+
+DialogTextTree:
+	;		"1234567890123456789012"
+	dc.b	"It looks like some",LF
+	dc.b	"birds moved into it.",ETX
+
+DialogTextKiosk:
+	;		"1234567890123456789012"
+	dc.b	"There's an excessive",LF
+	dc.b	"amount of meat here.",ETX
+
+DialogTextPhone:
+	;		"1234567890123456789012"
+	dc.b	"There are a few phone",LF
+	dc.b	"numbers written here.",ETX
+
+DialogTextDaniCar:
+	;		"1234567890123456789012"
+	dc.b	"Somehow this thing",LF
+	dc.b	"keeps running.",ETX
+
+DialogTextMannequin:
+	;		"1234567890123456789012"
+	dc.b	"Staring too long will",LF
+	dc.b	"get you kicked out.",ETX
+
+DialogTextClothing:
+	;		"1234567890123456789012"
+	dc.b	"Folded stacks of",LF
+	dc.b	"shirts and pants.",ETX
+
+DialogTextRadio:
+	;		"1234567890123456789012"
+	dc.b	"You can faintly hear",LF
+	dc.b	"an oldies station.",ETX
+
+DialogTextCassettePlayer:
+	;		"1234567890123456789012"
+	dc.b	"The latest in portable",LF
+	dc.b	"audio technology.",ETX
+
+DialogTextCellPhone:
+	;		"1234567890123456789012"
+	dc.b	"It says they run for",LF
+	dc.b	"up to 30 minutes.",ETX
+
+DialogTextRCCar:
+	;		"1234567890123456789012"
+	dc.b	"This year's hot xmas",LF
+	dc.b	"gift apparently.",ETX
+
+DialogTextComputer:
+	;		"1234567890123456789012"
+	dc.b	"The demo program looks",LF
+	dc.b	"very complicated.",ETX
+
+DialogTextOfficePhone:
+	;		"1234567890123456789012"
+	dc.b	"Office phone/answering",LF
+	dc.b	"machine combo.",ETX
+
+DialogTextVideoWall:
+	;		"1234567890123456789012"
+	dc.b	"There are hundreds of",LF
+	dc.b	"VHS tapes here.",ETX
+
+DialogTextVideoRack:
+	;		"1234567890123456789012"
+	dc.b	"Here are the new and",LF
+	dc.b	"trendy releases.",ETX
+
+DialogTextNutCase:
+	;		"1234567890123456789012"
+	dc.b	"Various nut & candy",LF
+	dc.b	"combinations.",ETX
+
+DialogTextNutBarrel:
+	;		"1234567890123456789012"
+	dc.b	"A self-serve barrel",LF
+	dc.b	"of peanuts.",ETX
+
+DialogTextTable:
+	;		"1234567890123456789012"
+	dc.b	"It hasn't been cleaned",LF
+	dc.b	"in a while.",ETX
+
+DialogTextTrash:
+	;		"1234567890123456789012"
+	dc.b	"The shoppers at this",LF
+	dc.b	"mall are slobs.",ETX
+
+DialogTextTapes:
+	;		"1234567890123456789012"
+	dc.b	"Too bad the car only",LF
+	dc.b	"has an 8-track.",ETX
+
+DialogTextCDs:
+	;		"1234567890123456789012"
+	dc.b	"All the latest albums",LF
+	dc.b	"are here.",ETX
+
+DialogTextBooksFiction:
+	;		"1234567890123456789012"
+	dc.b	"Here are the current",LF
+	dc.b	"best-sellers.",ETX
+
+DialogTextBooksRomance:
+	;		"1234567890123456789012"
+	dc.b	"The covers all have a",LF
+	dc.b	"dude with no shirt on.",ETX
+
+DialogTextBooksHistory:
+	;		"1234567890123456789012"
+	dc.b	"Just browsing these",LF
+	dc.b	"makes you drowsy.",ETX
+
+DialogTextBooksCooking:
+	;		"1234567890123456789012"
+	dc.b	"These all kind of look",LF
+	dc.b	"the same to you.",ETX
+
+DialogTextArcade0:
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2.",ETX
+
+DialogTextArcade1:
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2.",ETX
+
+DialogTextArcade2:
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2.",ETX
+
+DialogTextArcade3:
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2.",ETX
+
+DialogTextArcade4:
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2.",ETX
+
+DialogTextArcade5:
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2.",ETX
+
+DialogTextArcade6:
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2.",ETX
+
+DialogTextArcade7:
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2.",ETX
+
+DialogTextArcade8:
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2.",ETX
+
+DialogTextFence:
+	;		"1234567890123456789012"
+	dc.b	"It's lined with many",LF
+	dc.b	"wreathes.",ETX
+
+DialogTextPole:
+	;		"1234567890123456789012"
+	dc.b	"Festive candy cane",LF
+	dc.b	"xmas pole.",ETX
+
+DialogTextWorshop:
+	;		"1234567890123456789012"
+	dc.b	"Looks sturdy for being",LF
+	dc.b	"built in a week.",ETX
+
+DialogTextFountain:
+	;		"1234567890123456789012"
+	dc.b	"There are live fish",LF
+	dc.b	"swimming around.",ETX
+
+DialogTextFishingPoles:
+	;		"1234567890123456789012"
+	dc.b	"There are several",LF
+	dc.b	"styles of poles.",ETX
+
+DialogTextGunCase:
+	;		"1234567890123456789012"
+	dc.b	"Selling guns in malls,",LF
+	dc.b	"that's something new.",ETX
+
+DialogTextFirePit:
+	;		"1234567890123456789012"
+	dc.b	"It looks like it had",LF
+	dc.b	"a real fire recently.",ETX
+
+DialogTextTent:
+	;		"1234567890123456789012"
+	dc.b	"It says it fits 3 but",LF
+	dc.b	"only if you're close.",ETX
+
 ;-------------------------------------------------------------------------------
 ; default NPC descriptions
 ;-------------------------------------------------------------------------------
@@ -330,8 +574,88 @@ DialogTextDaniDefaultLook:
 
 DialogTextGreenbergDefaultLook:
 	;		"1234567890123456789012"
-	dc.b	"Greenberg:`Do you",LF
-	dc.b	"need something?'",ETX
+	dc.b	"`Do you need",LF
+	dc.b	"something?'",ETX
+
+DialogTextCenterStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"`Hi! How can I help",LF
+	dc.b	"you today?'",ETX
+
+DialogTextDenimCountryStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"She seems very anxious",LF
+	dc.b	"about something.",ETX
+
+DialogTextCheckersStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"His outfit and hair",LF
+	dc.b	"are well manicured.",ETX
+
+DialogTextTLodgeStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"He is way too happy",LF
+	dc.b	"to be here today.",ETX
+
+DialogTextCavernStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"He must have been here",LF
+	dc.b	"since it opened.",ETX
+
+DialogTextSVideoStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"`So what's your deal?'",LF
+	dc.b	" ",ETX
+
+DialogTextNShackStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"She looks back at you",LF
+	dc.b	"a tad uncomfortably.",ETX
+
+DialogTextPogoDawgStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"It's unclear if he's",LF
+	dc.b	"aware you are here.",ETX
+
+DialogTextCPlanetStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"She doesn't seem happy",LF
+	dc.b	"that you're staring.",ETX
+
+DialogTextCNowStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"She seems eager to",LF
+	dc.b	"talk about anything.",ETX
+
+DialogTextTBooksStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"Your old friend looks",LF
+	dc.b	"sharp as usual.",ETX
+
+DialogTextFCBCheckoutStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"He's trying to look",LF
+	dc.b	"busy but failing.",ETX
+
+DialogTextFCBFirearmsStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"He looks intimidating",LF
+	dc.b	"even without the guns.",ETX
+
+DialogTextFCBFishingStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"She looks really",LF
+	dc.b	"excited to be here.",ETX
+
+DialogTextFCBCampingStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"He's taking the store",LF
+	dc.b	"theme look seriously.",ETX
+
+DialogTextSouthCenterStaffDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"She runs all these",LF
+	dc.b	"seasonal stores.",ETX
 
 ;-------------------------------------------------------------------------------
 ; menus

@@ -1,11 +1,11 @@
 ;-------------------------------------------------------------------------------
-; day 00 - scene 00
+; day 00 - scene 00 (SCENE_ID_VB)
 ;-------------------------------------------------------------------------------
 Day00Scene00Action00:	; ACTION_LOOK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_DANI,d6	; test target
 	bne.s	Day00Scene00Action00Default	; branch to default
-	lea	DialogTextDaniScene0Day0Action0,a6	; load text for the day
+	lea	DialogTextDaniScene00Day00Action0,a6	; load text for the day
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bra.w	ExitDay00Scene00Action00	; exit
 Day00Scene00Action00Default:
@@ -30,13 +30,13 @@ Day00Scene00Action01NPCDani:
 	bne	Day00Scene00Action01NPCDaniFlag1	; branch if it is
 	bset.l	#EVENT_FLAG_DAY00_NPC00_DIALOG00,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated event flags for the day
-	lea	DialogTextDaniScene0Day0Flag0,a6	; load dialog text
+	lea	DialogTextDaniScene00Day00Flag0,a6	; load dialog text
 	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01NPCDaniFlag8:
-	lea	DialogTextDaniScene0Day0Flag8,a6	; load dialog text
+	lea	DialogTextDaniScene00Day00Flag8,a6	; load dialog text
 	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01NPCDaniFlag1:
-	lea	DialogTextDaniScene0Day0Flag1,a6	; load dialog text
+	lea	DialogTextDaniScene00Day00Flag1,a6	; load dialog text
 	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01NPCMaleShopper:
 	;---------------------------------------------------------------------------
@@ -51,7 +51,7 @@ Day00Scene00Action01NPCMaleShopper:
 	; if 4 is not set but 2 or 3 are then the player cancelled a dialog
 	bra.s	Day00Scene00Action01NPCMaleShopperTestFlag3 ; no flags are set
 Day00Scene00Action01NPCMaleShopperTestFlag8:
-	lea	DialogTextMaleShopper0Scene0Day0Flag8,a6	; load dialog text
+	lea	DialogTextMaleShopper0Scene00Day00Flag8,a6	; load dialog text
 	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01NPCMaleShopperTestFlag3:
 	btst.l	#EVENT_FLAG_DAY00_NPC01_DIALOG00_RESPONSE01,d7	; test if flag set
@@ -72,14 +72,18 @@ Day00Scene00Action01NPCMaleShopperNoFlags:
 	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
 	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d7	; set text choice flag
 	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated dialog flags
-	lea	DialogTextMaleShopper0Scene0Day0Flag0,a6	; load dialog text
+	lea	DialogTextMaleShopper0Scene00Day00Flag0,a6	; load dialog text
 	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01NPCMaleShopperFlag4:	; flag is set
-	lea	DialogTextMaleShopper0Scene0Day0Flag4,a6	; load dialog text
+	lea	DialogTextMaleShopper0Scene00Day00Flag4,a6	; load dialog text
 	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Register:
 	btst.l	#EVENT_FLAG_DAY00_EVENT00_COMPLETE,d7	; test if 1st event ran
 	beq.s	Day00Scene00Action01Default	; branch if not
+	btst.l	#EVENT_FLAG_DAY00_EVENT01_COMPLETE,d7	; test if 2nd event ran
+	bne.s	Day00Scene00Action01Default	; branch if it did
+	bset.l	#EVENT_FLAG_DAY00_EVENT01_COMPLETE,d7	; set that 2nd event now ran
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save the updated day event flags
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
 	bclr.l	#STATE_FLAG_EXITS_BLOCKED,d7	; clear flag blocking the exits
 	move.l	d7,(MEM_GAME_STATE)	; save updated flags
@@ -102,7 +106,7 @@ Day00Scene00Action01NPCGreenberg:
 	;---------------------------------------------------------------------------
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
 	bne.w	Day00Scene00Action01Default	; branch to display default text
-	lea	DialogTextGreenbergScene0Day0Talk,a6	; load dialog text
+	lea	DialogTextGreenbergScene00Day00Talk,a6	; load dialog text
 	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01Default:
 	; default
@@ -159,19 +163,19 @@ Day00Scene00Action02GiveNPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day00Scene00Action02GiveNPCFlag4:
-	lea	DialogTextMaleShopper0Scene0Day0Flag4Give,a6	; load dialog text
+	lea	DialogTextMaleShopper0Scene00Day00Flag4Give,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bset.l	#EVENT_FLAG_DAY00_NPC01_GIVE00,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
 	rts
 Day00Scene00Action02GiveNPCFlag5:
-	lea	DialogTextMaleShopper0Scene0Day0Flag5Give,a6	; load dialog text
+	lea	DialogTextMaleShopper0Scene00Day00Flag5Give,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bset.l	#EVENT_FLAG_DAY00_NPC01_GIVE01,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
 	rts
 Day00Scene00Action02GiveNPCFlag6:
-	lea	DialogTextMaleShopper0Scene0Day0Flag6Give,a6	; load dialog text
+	lea	DialogTextMaleShopper0Scene00Day00Flag6Give,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bset.l	#EVENT_FLAG_DAY00_NPC01_GIVE02,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
@@ -185,7 +189,7 @@ Day00Scene00Action02GiveNPCTest2:
 Day00Scene00Action02GiveNPCTest3:
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
 	bne.s	Day00Scene00Action02DefaultGive	; branch if not OBJ_NPC_DANI
-	lea	DialogTextGreenbergScene0Day0Give,a6	; load dialog text
+	lea	DialogTextGreenbergScene00Day00Give,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day00Scene00Action02DefaultGive:
@@ -224,14 +228,14 @@ Day00Scene00Action03NPCMaleShopperFlag0R0:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
 	bset.l	#EVENT_FLAG_DAY00_NPC01_DIALOG00_RESPONSE00,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save the updated flags
-	lea	DialogTextMaleShopper0Scene0Day0Flag0R0,a6	; load response text
+	lea	DialogTextMaleShopper0Scene00Day00Flag0R0,a6	; load response text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bra.w	ExitDay00Scene00Action03	; exit
 Day00Scene00Action03NPCMaleShopperFlag0R1:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
 	bset.l	#EVENT_FLAG_DAY00_NPC01_DIALOG00_RESPONSE01,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save the updated flags
-	lea	DialogTextMaleShopper0Scene0Day0Flag0R1,a6	; load response text
+	lea	DialogTextMaleShopper0Scene00Day00Flag0R1,a6	; load response text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bra.w	ExitDay00Scene00Action03	; exit
 ;---------------------------------------------------------------------------
@@ -245,11 +249,11 @@ Day00Scene00Action03NPCMaleShopperFlag2:
 	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
 	bne.s	Day00Scene00Action03NPCMaleShopperFlag2R1	; branch if not zero
 Day00Scene00Action03NPCMaleShopperFlag2R0:
-	lea	DialogTextMaleShopper0Scene0Day0Flag2R0,a6	; load response text
+	lea	DialogTextMaleShopper0Scene00Day00Flag2R0,a6	; load response text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bra.s	ExitDay00Scene00Action03	; exit
 Day00Scene00Action03NPCMaleShopperFlag2R1:
-	lea	DialogTextMaleShopper0Scene0Day0Flag2R1,a6	; load response text
+	lea	DialogTextMaleShopper0Scene00Day00Flag2R1,a6	; load response text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bra.s	ExitDay00Scene00Action03	; exit
 ;---------------------------------------------------------------------------
@@ -263,11 +267,11 @@ Day00Scene00Action03NPCMaleShopperFlag3:
 	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
 	bne.s	Day00Scene00Action03NPCMaleShopperFlag3R1	; branch if not zero
 Day00Scene00Action03NPCMaleShopperFlag3R0:
-	lea	DialogTextMaleShopper0Scene0Day0Flag3R0,a6	; load response text
+	lea	DialogTextMaleShopper0Scene00Day00Flag3R0,a6	; load response text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bra.s	ExitDay00Scene00Action03	; exit
 Day00Scene00Action03NPCMaleShopperFlag3R1:
-	lea	DialogTextMaleShopper0Scene0Day0Flag3R1,a6	; load response text
+	lea	DialogTextMaleShopper0Scene00Day00Flag3R1,a6	; load response text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bra.s	ExitDay00Scene00Action03	; exit
 Day00Scene00Action03Default:
@@ -278,20 +282,30 @@ ExitDay00Scene00Action03:
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 01
+; day 00 - scene 01 (SCENE_ID_WWHALL)
 ;-------------------------------------------------------------------------------
 Day00Scene01Action00:	; ACTION_LOOK
+	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	rts
 Day00Scene01Action01:	; ACTION_USE_TALK
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene01Action02:	; ACTION_TAKE_GIVE
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene01Action03:	; ACTION_RESPOND
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 02
+; day 00 - scene 02 (SCENE_ID_WEHALL)
 ;-------------------------------------------------------------------------------
 Day00Scene02Action00:	; ACTION_LOOK
+	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	rts
 Day00Scene02Action01:	; ACTION_USE_TALK
 Day00Scene02Action02:	; ACTION_TAKE_GIVE
 Day00Scene02Action03:	; ACTION_RESPOND
@@ -300,9 +314,11 @@ Day00Scene02Action03:	; ACTION_RESPOND
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 03
+; day 00 - scene 03 (SCENE_ID_CENTER)
 ;-------------------------------------------------------------------------------
 Day00Scene03Action00:	; ACTION_LOOK
+	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	rts
 Day00Scene03Action01:	; ACTION_USE_TALK
 Day00Scene03Action02:	; ACTION_TAKE_GIVE
 Day00Scene03Action03:	; ACTION_RESPOND
@@ -311,9 +327,11 @@ Day00Scene03Action03:	; ACTION_RESPOND
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 04
+; day 00 - scene 04 (SCENE_ID_SHALL)
 ;-------------------------------------------------------------------------------
 Day00Scene04Action00:	; ACTION_LOOK
+	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	rts
 Day00Scene04Action01:	; ACTION_USE_TALK
 Day00Scene04Action02:	; ACTION_TAKE_GIVE
 Day00Scene04Action03:	; ACTION_RESPOND
@@ -322,20 +340,55 @@ Day00Scene04Action03:	; ACTION_RESPOND
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 05
+; day 00 - scene 05 (SCENE_ID_PARKINGLOT)
 ;-------------------------------------------------------------------------------
 Day00Scene05Action00:	; ACTION_LOOK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	beq.s	Day00Scene05Action01NPCDani	; use the same action as talk
+	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
+Day00Scene05Action00Car:
+	; dani
+	; car
+
+Day00Scene05Action00Dani:
+
+
 Day00Scene05Action01:	; ACTION_USE_TALK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	beq.s	Day00Scene05Action01NPCDani	; branch
+
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene05Action01NPCDani:
+	lea	DialogTextDaniScene05Day00,a6	; load dialog text
+	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+ExitDay00Scene05Action01:
+	rts
+
+
+Day00Scene05DaniCar:
+
+	; logic for interacting with the car
+
 Day00Scene05Action02:	; ACTION_TAKE_GIVE
+
+
+
 Day00Scene05Action03:	; ACTION_RESPOND
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 06
+; day 00 - scene 06 (SCENE_ID_EWHALL)
 ;-------------------------------------------------------------------------------
 Day00Scene06Action00:	; ACTION_LOOK
+	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	rts
 Day00Scene06Action01:	; ACTION_USE_TALK
 Day00Scene06Action02:	; ACTION_TAKE_GIVE
 Day00Scene06Action03:	; ACTION_RESPOND
@@ -344,9 +397,11 @@ Day00Scene06Action03:	; ACTION_RESPOND
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 07
+; day 00 - scene 07 (SCENE_ID_EEHALL)
 ;-------------------------------------------------------------------------------
 Day00Scene07Action00:	; ACTION_LOOK
+	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	rts
 Day00Scene07Action01:	; ACTION_USE_TALK
 Day00Scene07Action02:	; ACTION_TAKE_GIVE
 Day00Scene07Action03:	; ACTION_RESPOND
@@ -355,174 +410,146 @@ Day00Scene07Action03:	; ACTION_RESPOND
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 08
+; day 00 - scene 08 (SCENE_ID_DENIMCOUNTRY) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene08Action00:	; ACTION_LOOK
 Day00Scene08Action01:	; ACTION_USE_TALK
 Day00Scene08Action02:	; ACTION_TAKE_GIVE
 Day00Scene08Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 09
+; day 00 - scene 09 (SCENE_ID_CHECKERS) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene09Action00:	; ACTION_LOOK
 Day00Scene09Action01:	; ACTION_USE_TALK
 Day00Scene09Action02:	; ACTION_TAKE_GIVE
 Day00Scene09Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 0A
+; day 00 - scene 0A (SCENE_ID_TLODGE) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene0AAction00:	; ACTION_LOOK
 Day00Scene0AAction01:	; ACTION_USE_TALK
 Day00Scene0AAction02:	; ACTION_TAKE_GIVE
 Day00Scene0AAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 0B
+; day 00 - scene 0B (SCENE_ID_CAVERN) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene0BAction00:	; ACTION_LOOK
 Day00Scene0BAction01:	; ACTION_USE_TALK
 Day00Scene0BAction02:	; ACTION_TAKE_GIVE
 Day00Scene0BAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 0C
+; day 00 - scene 0C (SCENE_ID_SVIDEO) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene0CAction00:	; ACTION_LOOK
 Day00Scene0CAction01:	; ACTION_USE_TALK
 Day00Scene0CAction02:	; ACTION_TAKE_GIVE
 Day00Scene0CAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 0D
+; day 00 - scene 0D (SCENE_ID_WORKSHOP) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene0DAction00:	; ACTION_LOOK
 Day00Scene0DAction01:	; ACTION_USE_TALK
 Day00Scene0DAction02:	; ACTION_TAKE_GIVE
 Day00Scene0DAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 0E
+; day 00 - scene 0E (SCENE_ID_NSHACK) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene0EAction00:	; ACTION_LOOK
 Day00Scene0EAction01:	; ACTION_USE_TALK
 Day00Scene0EAction02:	; ACTION_TAKE_GIVE
 Day00Scene0EAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 0F
+; day 00 - scene 0F (SCENE_ID_POGODAWG) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene0FAction00:	; ACTION_LOOK
 Day00Scene0FAction01:	; ACTION_USE_TALK
 Day00Scene0FAction02:	; ACTION_TAKE_GIVE
 Day00Scene0FAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 10
+; day 00 - scene 10 (SCENE_ID_CPLANET) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene10Action00:	; ACTION_LOOK
 Day00Scene10Action01:	; ACTION_USE_TALK
 Day00Scene10Action02:	; ACTION_TAKE_GIVE
 Day00Scene10Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 11
+; day 00 - scene 11 (SCENE_ID_CNOW) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene11Action00:	; ACTION_LOOK
 Day00Scene11Action01:	; ACTION_USE_TALK
 Day00Scene11Action02:	; ACTION_TAKE_GIVE
 Day00Scene11Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 12
+; day 00 - scene 12 (SCENE_ID_TBOOKS) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene12Action00:	; ACTION_LOOK
 Day00Scene12Action01:	; ACTION_USE_TALK
 Day00Scene12Action02:	; ACTION_TAKE_GIVE
 Day00Scene12Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 13
+; day 00 - scene 13 (SCENE_ID_FCBCHECKOUT) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene13Action00:	; ACTION_LOOK
 Day00Scene13Action01:	; ACTION_USE_TALK
 Day00Scene13Action02:	; ACTION_TAKE_GIVE
 Day00Scene13Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 14
+; day 00 - scene 14 (SCENE_ID_FCBFIREARMS) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene14Action00:	; ACTION_LOOK
 Day00Scene14Action01:	; ACTION_USE_TALK
 Day00Scene14Action02:	; ACTION_TAKE_GIVE
 Day00Scene14Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 15
+; day 00 - scene 15 (SCENE_ID_FCBFISHING) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene15Action00:	; ACTION_LOOK
 Day00Scene15Action01:	; ACTION_USE_TALK
 Day00Scene15Action02:	; ACTION_TAKE_GIVE
 Day00Scene15Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 16
+; day 00 - scene 16 (SCENE_ID_FCBCAMPING) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene16Action00:	; ACTION_LOOK
 Day00Scene16Action01:	; ACTION_USE_TALK
 Day00Scene16Action02:	; ACTION_TAKE_GIVE
 Day00Scene16Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 17
+; day 00 - scene 17 (SCENE_ID_SOUTH_CENTER) - can't be entered in day 00
 ;-------------------------------------------------------------------------------
 Day00Scene17Action00:	; ACTION_LOOK
+	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	rts
 Day00Scene17Action01:	; ACTION_USE_TALK
 Day00Scene17Action02:	; ACTION_TAKE_GIVE
 Day00Scene17Action03:	; ACTION_RESPOND

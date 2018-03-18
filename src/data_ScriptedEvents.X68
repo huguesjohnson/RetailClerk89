@@ -4,7 +4,7 @@ ScriptedEventDay0Right:
 	; first dialog
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextScene0Day0Event0D0
+	dc.l	DialogTextScene00Day00Event0D0
 	; --------------------------------------------------------------------------
 	; move right until sprite hits the 16-bit game rack
 	; --------------------------------------------------------------------------
@@ -39,7 +39,7 @@ ScriptedEventDay0Right:
 	; show the dialog between Dani and the shopper
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextScene0Day0Event0D1
+	dc.l	DialogTextScene00Day00Event0D1
 	; --------------------------------------------------------------------------
 	; move the shopper (NPC2) around Dani
 	; --------------------------------------------------------------------------
@@ -67,15 +67,15 @@ ScriptedEventDay0Exit:
 	dc.w	DIRECTION_UP
 	dc.w	$0020
 	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDaniScene0Day0Exit0
+	dc.l	DialogTextDaniScene00Day00Exit0
 	dc.w	DIRECTION_DOWN	; start moving them offscren
 	dc.w	$0010
 	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDaniScene0Day0Exit1
+	dc.l	DialogTextDaniScene00Day00Exit1
 	dc.w	DIRECTION_DOWN	; continue moving them offscren
 	dc.w	$0010
 	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDaniScene0Day0Exit2
+	dc.l	DialogTextDaniScene00Day00Exit2
 	dc.w	DIRECTION_DOWN	; finish moving them offscren
 	dc.w	$0080
 	dc.w	DIRECTION_LEFT	; move them into hidden space
@@ -89,6 +89,6 @@ ScriptedEventDay0Exit:
 	dc.w	DIRECTION_DOWN	; move down 1 to show the front of the sprite
 	dc.w	$0001
 	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextGreenbergScene0Day0Exit
+	dc.l	DialogTextGreenbergScene00Day00Exit
 	dc.w	SCRIPTED_EVENT_END
 
