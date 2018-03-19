@@ -476,48 +476,48 @@ DialogTextBooksCooking:
 
 DialogTextArcade0:
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2.",ETX
+	dc.b	"Some kind of falling",LF
+	dc.b	"object puzzle game.",ETX
 
 DialogTextArcade1:
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2.",ETX
+	dc.b	"Featuring The Savage",LF
+	dc.b	"Bruiser & Dr. Pain.",ETX
 
 DialogTextArcade2:
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2.",ETX
+	dc.b	"It's a shooter with",LF
+	dc.b	"vector graphics.",ETX
 
 DialogTextArcade3:
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2.",ETX
+	dc.b	"It's a rather blocky",LF
+	dc.b	"looking racing game.",ETX
 
 DialogTextArcade4:
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2.",ETX
+	dc.b	"Classic shooter from",LF
+	dc.b	"the late 1970s.",ETX
 
 DialogTextArcade5:
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2.",ETX
+	dc.b	"Help Captain Tiberius",LF
+	dc.b	"escape certain death.",ETX
 
 DialogTextArcade6:
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2.",ETX
+	dc.b	"Save Chicago from drug",LF
+	dc.b	"dealers & lowlifes.",ETX
 
-DialogTextArcade7:
+DialogTextArcade7: ; Drive 'n Crash
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2.",ETX
+	dc.b	"Survive the streets of",LF
+	dc.b	"2040 Los Angeles.",ETX
 
-DialogTextArcade8:
+DialogTextArcade8: ; YourChoice-15
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2.",ETX
+	dc.b	"An assortment of 15",LF
+	dc.b	"home games.",ETX
 
 DialogTextFence:
 	;		"1234567890123456789012"
@@ -816,31 +816,31 @@ ObjectNameBooksCooking:
 	dc.b	"Cooking books",OBJNAMEEND
 
 ObjectNameArcade0:
-	dc.b	"Arcade game 0",OBJNAMEEND
+	dc.b	"Tiles!",OBJNAMEEND
 
 ObjectNameArcade1:
-	dc.b	"Arcade game 1",OBJNAMEEND
+	dc.b	"Wrestle Brawl",OBJNAMEEND
 
 ObjectNameArcade2:
-	dc.b	"Arcade game 2",OBJNAMEEND
+	dc.b	"Vector Zone",OBJNAMEEND
 
 ObjectNameArcade3:
-	dc.b	"Arcade game 3",OBJNAMEEND
+	dc.b	"Rough Steering",OBJNAMEEND
 
 ObjectNameArcade4:
-	dc.b	"Arcade game 4",OBJNAMEEND
+	dc.b	"UFO Armada",OBJNAMEEND
 
 ObjectNameArcade5:
-	dc.b	"Arcade game 5",OBJNAMEEND
+	dc.b	"Night Maze",OBJNAMEEND
 
 ObjectNameArcade6:
-	dc.b	"Arcade game 6",OBJNAMEEND
+	dc.b	"Crime Bashers",OBJNAMEEND
 
 ObjectNameArcade7:
-	dc.b	"Arcade game 7",OBJNAMEEND
+	dc.b	"Drive 'n Crash",OBJNAMEEND
 
 ObjectNameArcade8:
-	dc.b	"Arcade game 8",OBJNAMEEND
+	dc.b	"YourChoice-15",OBJNAMEEND
 
 ObjectNameFence:
 	dc.b	"Fence",OBJNAMEEND
