@@ -320,9 +320,55 @@ Day00Scene03Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day00Scene03Action01:	; ACTION_USE_TALK
-Day00Scene03Action02:	; ACTION_TAKE_GIVE
-Day00Scene03Action03:	; ACTION_RESPOND
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
+	beq.s	Day00Scene03Action01NPC	; branch to display text
+	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene03Action01NPC:
+	; setup 4 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	InfoDeskMenu,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene03Action02:	; ACTION_TAKE_GIVE
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
+	beq.s	Day00Scene03Action02NPC	; branch to text for the NPC
+	; default action
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene03Action02NPC:
+	lea	DialogTextNPCCenterStaffDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene03Action03:	; ACTION_RESPOND
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.s	Day00Scene03Action03R0	; branch to text for response 0
+	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
+	beq.s	Day00Scene03Action03R1	; branch to text for response 1
+	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
+	beq.s	Day00Scene03Action03R2	; branch to text for response 2
+	; must be response 3 then
+	lea	DialogTextInfoDeskDay00R3,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene03Action03R0:
+	lea	DialogTextInfoDeskDay00R0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene03Action03R1:
+	lea	DialogTextInfoDeskDay00R1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene03Action03R2:
+	lea	DialogTextInfoDeskDay00R2,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -347,18 +393,19 @@ Day00Scene05Action00:	; ACTION_LOOK
 	cmpi.w	#OBJ_NPC_DANI,d6	; test target
 	beq.s	Day00Scene05Action01NPCDani	; use the same action as talk
 	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
-Day00Scene05Action00Car:
-	; dani
-	; car
-
-Day00Scene05Action00Dani:
-
+	beq.s	Day00Scene05DaniCarLookUse	; same action for look and use	
+	; default action	
+	lea	DialogTextNothing,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 
 Day00Scene05Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_DANI,d6	; test target
 	beq.s	Day00Scene05Action01NPCDani	; branch
-
+	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
+	beq.s	Day00Scene05DaniCarLookUse	; same action for look and use	
+	; default action	
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -369,17 +416,40 @@ Day00Scene05Action01NPCDani:
 ExitDay00Scene05Action01:
 	rts
 
-
-Day00Scene05DaniCar:
-
-	; logic for interacting with the car
+Day00Scene05DaniCarLookUse:
+	; setup 2 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextDaniCarDayEnd,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 
 Day00Scene05Action02:	; ACTION_TAKE_GIVE
-
-
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	beq.s	Day00Scene05Action02NPCDani	; branch
+	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
+	beq.s	Day00Scene05Action02DaniCar	; branch	
+	; default action	
+	lea	DialogTextNothing,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene05Action02NPCDani:
+	lea	DialogTextDaniDefaultGive,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene05Action02DaniCar:
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 
 Day00Scene05Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.w	Day00End	; branch to day end
+	; else display message
+	lea	DialogTextDaniWalkingHome,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -551,10 +621,57 @@ Day00Scene17Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day00Scene17Action01:	; ACTION_USE_TALK
-Day00Scene17Action02:	; ACTION_TAKE_GIVE
-Day00Scene17Action03:	; ACTION_RESPOND
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,d6	; test target
+	beq.s	Day00Scene17Action01NPC	; branch to display text
+	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+Day00Scene17Action01NPC:
+	; setup 2 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextNPCSouthCenterStaffDay00,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene17Action02:	; ACTION_TAKE_GIVE
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,d6	; test target
+	beq.s	Day00Scene17Action02NPC	; branch to text for the NPC
+	; default action
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene17Action02NPC:
+	lea	DialogTextNPCSouthCenterStaffDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene17Action03:	; ACTION_RESPOND
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.s	Day00Scene17Action03R0	; branch to text for response 0
+	; response 1 must have been chosen 
+	lea	DialogTextNPCSouthCenterStaffDay00R1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene17Action03R0:
+	lea	DialogTextNPCSouthCenterStaffDay00R0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 
+;-------------------------------------------------------------------------------
+; end day 00
+;-------------------------------------------------------------------------------
+Day00End:
+	; set the end game flag
+	move.l	(MEM_GAME_STATE),d7	; copy game state
+	and.l	#$0000,d7	; clear all other flags
+	bset.l	#STATE_FLAG_END_SCREEN,d7 ; set end screen state flag	
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	; load end scene
+	lea	SceneEnd,a6	; address of the scene for the title screen
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	rts
 

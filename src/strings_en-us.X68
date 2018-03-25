@@ -199,10 +199,6 @@ DialogTextScene00Day00Event0D1:
 	dc.b	"It's really popular.'^",FF
 	dc.b	"Shopper:`Uh, OK.'",ETX
 
-DialogTextDaniDefaultGive:
-	;		"1234567890123456789012"
-	dc.b	"`Yeah, whatever.'",ETX
-
 DialogTextMaleShopper0Scene00Day00Flag0:
 	;		"1234567890123456789012"
 	dc.b	"`If I have a mouse on",LF
@@ -291,6 +287,71 @@ DialogTextMaleShopperDefaultGive:
 	;		"1234567890123456789012"
 	dc.b	"He accepts it with a",LF
 	dc.b	"look of confusion.",ETX
+
+DialogTextDaniCarDayEnd:
+	;		"1234567890123456789012"
+	dc.b	"Are you ready to go",LF
+	dc.b	"home for the day?    ^",FF
+	dc.b	"{Yeah, time to leave",LF
+	dc.b	"{Not yet",ETX
+
+DialogTextDaniWalkingHome:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`In 10 minutes",LF
+	dc.b	"you're walking home.'",ETX
+
+DialogTextNPCSouthCenterStaffDay00:
+	;		"1234567890123456789012"
+	dc.b	"`Are you going home",LF
+	dc.b	"for the night?'      ^",FF
+	dc.b	"{Uh, sure",LF
+	dc.b	"{No I'm sleeping here",ETX
+
+DialogTextNPCSouthCenterStaffDay00R0:
+	;		"1234567890123456789012"
+	dc.b	"`Well you have a good",LF
+	dc.b	"night and stay warm.'",ETX
+
+DialogTextNPCSouthCenterStaffDay00R1:
+	;		"1234567890123456789012"
+	dc.b	"`Oh, at least you're",LF
+	dc.b	"indoors tonight.'",ETX
+
+;-------------------------------------------------------------------------------
+; information desk
+;-------------------------------------------------------------------------------
+
+DialogTextInfoDeskDay00R0:	; mall news
+	;		"1234567890123456789012"
+	dc.b	"`Santa's Workshop just",LF
+	dc.b	"opened this morning. ^",FF
+	dc.b	"It was already very",LF
+	dc.b	"busy there today.'",ETX
+
+DialogTextInfoDeskDay00R1:	; events
+	;		"1234567890123456789012"
+	dc.b	"`This is exciting! The",LF
+	dc.b	"mall will be open at ^",FF
+	dc.b	"6:00 AM on Black",LF
+	dc.b	"Friday this year.'",ETX
+
+DialogTextInfoDeskDay00R2:	; store news
+	;		"1234567890123456789012"
+	dc.b	"`The first Fish or Cut",LF
+	dc.b	"Bait store in our    ^",FF
+	dc.b	"area is open now. They",LF
+	dc.b	"have this fun gimmick^",FF
+	dc.b	"where their staff",LF
+	dc.b	"dress as lumberjacks.'",ETX
+
+DialogTextInfoDeskDay00R3:	; rumors
+	;		"1234567890123456789012"
+	dc.b	"`I really shouldn't",LF
+	dc.b	"tell you this but..  ^",FF
+	dc.b	"One store here isn't",LF
+	dc.b	"doing well and might ^",FF
+	dc.b	"close next year. Don't",LF
+	dc.b	"tell anyone please.'",ETX
 
 ;-------------------------------------------------------------------------------
 ; default object descriptions
@@ -672,6 +733,13 @@ ItemMenu:
 	;		"1234567890123456789012"
 	dc.b	"{",ITEMNAMESTART
 
+InfoDeskMenu:
+	;		"{1234567890{1234567890"
+	dc.b	"`What do you want to",LF
+	dc.b	"know about today?'   ^",FF
+	dc.b	"{Mall news {Store news",LF
+	dc.b	"{Events    {Rumors",ETX
+
 ;-------------------------------------------------------------------------------
 ; take menus and messages
 ;-------------------------------------------------------------------------------
@@ -706,6 +774,25 @@ TakeMenuDefault:
 	dc.b	"What do you want to",LF
 	dc.b	"take?                ^",FF
 	dc.b	"{",ITEMNAMESTART
+
+;-------------------------------------------------------------------------------
+; default give messages
+;-------------------------------------------------------------------------------
+DialogTextDaniDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Yeah, whatever.'",ETX
+
+DialogTextNPCCenterStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Sorry, but the lost &",LF
+	dc.b	"found is full.'",ETX
+
+DialogTextNPCSouthCenterStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`It's nice to see you",LF
+	dc.b	"in the giving spirit.^",FF
+	dc.b	"But you should give",LF
+	dc.b	"this to someone else.'",ETX
 
 ;-------------------------------------------------------------------------------
 ; object names

@@ -83,16 +83,6 @@ ExitScene00Day00:
 	bsr.w	SetDialogOpening
 	rts
 ExitScene00Day00CanExit:
-	; --------------------------------------------------------------------------
-	; save this code for later - can be re-used for end of mall walker demo
-	; --------------------------------------------------------------------------
-	; set the end game flag
-;	and.l	#$0000,d7	; clear all other flags
-;	bset.l	#STATE_FLAG_END_SCREEN,d7 ; set end screen state flag	
-;	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-;	; load end scene
-;	lea	SceneEnd,a6	; address of the scene for the title screen
-;	bsr.w	LoadScene	; branch to LoadScene subroutine
 	bsr.w	DefaultExitScene	; use default handler
 	; re-set flag to block exits
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
@@ -108,8 +98,6 @@ ExitScene01:
 	beq.s	ExitScene01Day00	; branch to day 0 logic
 	bra.s	ExitScene01Day00CanExit	; use default handler
 ExitScene01Day00:
-;	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
-;	beq.s	ExitScene01Day00CanExit	; ok to exit
 	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)
 	beq.s	ExitScene01Day00CanExit	; ok to exit
 	; can't exit the scene - display message
@@ -230,7 +218,7 @@ ExitScene07:
 	beq.s	ExitScene07Day00	; branch to day 0 logic
 	bra.s	ExitScene07Day00CanExit	; use default handler
 ExitScene07Day00:
-	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
+	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)
 	beq.s	ExitScene07Day00CanExit	; ok to exit
 	; can't exit the scene - display message
 	lea	DialogTextStoreClosing,a6	; load dialog text

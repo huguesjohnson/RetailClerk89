@@ -284,7 +284,11 @@ ConfirmMenuSelection2Choice:
 ConfirmMenuSelection4Choice:
 	move.w	(MEM_MENU_SELECTION),(MEM_MENU_RESPONSE)	; selection->response
 	btst.l	#DIALOG_FLAG_STYLE_ITEM_MENU,d7	; test if this is an item menu
-	beq.s	ExitConfirmMenuSelection	; not an item menu, branch
+	bne.s	ConfirmMenuSelection4ChoiceItemMenu	; this is an item menu, branch
+	move.w	#ACTION_RESPOND,(MEM_ACTION_ID)	; action is respond
+	move.w	(MEM_MENU_SELECTION),(MEM_MENU_RESPONSE)	; selection->response
+	bra.s	ExitConfirmMenuSelection	; exit
+ConfirmMenuSelection4ChoiceItemMenu:
 	; store selected item in MEM_ACTIVE_ITEM	
 	move.l	(MEM_DIALOG_ITEM_LIST),a6	; copy address of item list to a6
 	move.w	(MEM_MENU_SELECTION),d6	; copy current item index to d6
