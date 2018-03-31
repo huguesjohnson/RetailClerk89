@@ -148,6 +148,12 @@ SceneFCBFirearms:
 	;---------------------------------------------------------------------------
 	dc.w	OBJ_LIST_LENGTH-1	; object count
 
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0011000011011100
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0001000011010000
+
 	dc.w	OBJ_SCENE_GUNCASE
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%1111111010111010
@@ -159,12 +165,6 @@ SceneFCBFirearms:
 	dc.w	%1111111100111001
 	; 		%hhhhhhhyyyyyyyyy
 	dc.w	%0001000011010000
-
-	dc.w	OBJ_NOTHING
-	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%0000000000000000
-	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0000000000000000
 
 	dc.w	OBJ_NOTHING
 	; 		%wwwwwwwxxxxxxxxx

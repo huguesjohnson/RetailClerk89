@@ -81,3 +81,11 @@ CharacterScene16StaffNPC:
 CharacterScene17StaffNPC:
 	dc.l	Scene17StaffNPCTilesStart
 
+; 14 - OBJ_NPC_WORKSHOP_STAFF0
+CharacterScene0DStaffNPC0:
+	dc.l	Scene0DStaffNPC0TilesStart
+
+; 15 - OBJ_NPC_WORKSHOP_STAFF1
+CharacterScene0DStaffNPC1:
+	dc.l	Scene0DStaffNPC1TilesStart
+

@@ -62,10 +62,15 @@ LoadSpriteZeroTiles:
 	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
 	move.w	#$8,d0	; number of tiles in a sprite tileset
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
-
 LoadPlayerSpriteTiles:
 	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; which sprite tiles to use?
+	beq.s	.1	; branch to use tiles for Dani
 	movea.l	#PlayerSpriteTilesStart,a0	; set address of first tile to load
+	bra.s	.2	; branch to write tiles to VPD
+.1	; using the Dani tiles for the player sprite
+	movea.l	#NPCSpriteDaniTilesStart,a0	; set address of first tile to load
+.2	; write tiles to VDP
 	move.w	#PLAYER_SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
 	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
 	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset

@@ -153,6 +153,10 @@ DefaultNPCDescriptionTable:
 	dc.l	DialogTextFCBCampingStaffDefaultLook
 	; OBJ_NPC_SOUTH_CENTER_STAFF
 	dc.l	DialogTextSouthCenterStaffDefaultLook
+	; OBJ_NPC_WORKSHOP_STAFF0
+	dc.l	DialogTextWorkshopStaff0DefaultLook
+	; OBJ_NPC_WORKSHOP_STAFF1
+	dc.l	DialogTextWorkshopStaff1DefaultLook
 
 ;-------------------------------------------------------------------------------
 ; object names
@@ -307,6 +311,10 @@ NPCNameTable:
 	dc.l	NPCNameFCBCampingStaff
 	; OBJ_NPC_SOUTH_CENTER_STAFF
 	dc.l	NPCNameSouthCenterStaff
+	; OBJ_NPC_WORKSHOP_STAFF0
+	dc.l	NPCNameWorkshopStaff0
+	; OBJ_NPC_WORKSHOP_STAFF1
+	dc.l	NPCNameWorkshopStaff1
 
 ;-------------------------------------------------------------------------------
 ; item names

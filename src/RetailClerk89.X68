@@ -24,7 +24,7 @@
 ;*******************************************************************************
 ; conditional compilation directives
 ;*******************************************************************************
-_DEBUG_=$0	; enable/disable debug mode
+_DEBUG_=$1	; enable/disable debug mode
 _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
 
 ;*******************************************************************************
@@ -71,6 +71,8 @@ NPC_SPRITE_MOVE_STEPS=$0009; how many steps NPC sprites take when they move
 PLAYER_BASE_TILE=%0110000100000001 ; pri=0,pal=2,vf=0,hf=0,pattern=101
 NPC0_BASE_TILE=%0110000101110001 ;pri=0,pal=2,vf=0,hf=0,pattern=171
 NPC_BASE_TILE_INC=$0060	; how many tiles to increment between NPCs
+PLAYER_SPRITE_DB=$0000	; use tiles for DB as player sprite
+PLAYER_SPRITE_DANI=$0001	; use tiles for Dani as player sprite
 ; directions
 DIRECTION_DOWN=%0000	; 0
 DIRECTION_UP=%0001		; 1
@@ -146,7 +148,7 @@ ITEMNAMESTART=$1C	; indicator to draw the next item name
 ITEMNAMEEND=$1D	; end of item name
 ; used for action table
 DAY_COUNT=$01	; total number of days
-SCENE_COUNT=$01	; total number of scenes
+SCENE_COUNT=$18	; total number of scenes
 ACTION_COUNT=$04	; total number of actions
 ACTION_COUNT_X4=(ACTION_COUNT*4)
 SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
@@ -498,15 +500,30 @@ TestIntroScreen:
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	bsr.w	LoadPlayerSprite	; load the player sprite
 	bsr.w	HideSelectorSprite	; hide the menu selector sprite
+	cmpi.w	#$0001,(MEM_DAY)	; is this day 01?
+	beq.s	TestIntroScreenDay01Setup	; if day 01, go to day 01 setup
+	cmpi.w	#$0000,(MEM_DAY)	; is this day 00?
+	bne.s	TestIntroScreenEnd	; if not, skip day 00 setup
+TestIntroScreenEndDay00Setup:
 	; move NPC0 out of frame here
 	move.w	#$017F,(MEM_NPC0_SPRITE_X)	; copy x-coordinate
 	move.w	#$01AF,(MEM_NPC0_SPRITE_Y)	; copy y-coordinate
 	move.w	#$FFFF,(MEM_NPC0_MOVE_FREQUENCY)	; set move frequency to never
 	; update NPC0 in the sprite table
+	lea	PLAYER_SPRITE_VDP,a6
 	move.l	#NPC0_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC0_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
 	move.l	#NPC0_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_NPC0_SPRITE_X),(VDP_DATA)			; copy the new x-coordinate
+	move.w	(MEM_NPC0_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
+	bra.s	TestIntroScreenEnd	; finish intro screen seup
+TestIntroScreenDay01Setup:
+	; move player sprite into starting position
+	move.w	#SPRITE_PLAYER_INIT_X,(MEM_PLAYER_SPRITE_X)	; starting x location
+	move.w	#SPRITE_PLAYER_INIT_Y,(MEM_PLAYER_SPRITE_Y)	; starting y location
+	move.w	#SPRITE_PLAYER_PATTERN,(MEM_PLAYER_SPRITE_PATTERN_INDEX) ; pattern
+	move.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; direction
+	move.w	#$0000,(MEM_PLAYER_SPRITE_FRAME)	; frame
+TestIntroScreenEnd:
 	; reorder all the sprites
 	bsr.w	OrderSprites	; order sprites
 	; workaround to issue where links aren't set if the table is already sorted

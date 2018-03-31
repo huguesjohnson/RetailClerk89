@@ -207,17 +207,17 @@ SceneNShack:
 	; 		%hhhhhhhyyyyyyyyy
 	dc.w	%0011000011111000
 
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0011000100010100
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0100100010100100
+
 	dc.w	OBJ_SCENE_COUNTER
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%1010000011111000
 	; 		%hhhhhhhyyyyyyyyy
 	dc.w	%0100100010100100
-
-	dc.w	OBJ_NOTHING
-	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%0000000000000000
-	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0000000000000000
 
 	dc.w	OBJ_NOTHING
 	; 		%wwwwwwwxxxxxxxxx

@@ -264,6 +264,14 @@ Pattern3Tile112x8:
 	; row 00
 	dc.w	$00,$01,$02,$01,$01,$02,$01,$02,$01,$01,$02,$01,$01,$02
 
+Pattern3Tile24x16:
+	dc.w	$0001	; 2 rows
+	dc.w	$0002	; 3 columns
+	; row 00
+	dc.w	$00,$01,$02
+	; row 01
+	dc.w	$00,$01,$02
+
 Pattern3Tile96x16:
 	dc.w	$0001	; 2 rows
 	dc.w	$000B	; 12 columns

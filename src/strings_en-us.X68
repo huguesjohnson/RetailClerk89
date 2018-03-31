@@ -718,6 +718,131 @@ DialogTextSouthCenterStaffDefaultLook:
 	dc.b	"She runs all these",LF
 	dc.b	"seasonal stores.",ETX
 
+DialogTextWorkshopStaff0DefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"Maybe your job isn't",LF
+	dc.b	"looking so bad now.",ETX
+
+DialogTextWorkshopStaff1DefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"That outfit can't be",LF
+	dc.b	"comfortable.",ETX
+
+;-------------------------------------------------------------------------------
+; default NPC talk responses
+;-------------------------------------------------------------------------------
+DialogTextGreenbergDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Did you see the new",LF
+	dc.b	"games that came in?'",ETX
+
+DialogTextDenimCountryStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`It's way too slow",LF
+	dc.b	"here for Xmas season.^",FF
+	dc.b	"I hope they don't",LF
+	dc.b	"close this store.'",ETX
+
+DialogTextCheckersStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Hey. What's going on",LF
+	dc.b	"with you today?'",ETX
+
+DialogTextTLodgeStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`You know what the",LF
+	dc.b	"perfect Xmas gift is?^",FF
+	dc.b	"An extended warranty",LF
+	dc.b	"for your new phone.'",ETX
+
+DialogTextCavernStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`What do you need?'",ETX
+
+DialogTextSVideoStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`If you're looking for",LF
+	dc.b	"a specific movie we  ^",FF
+	dc.b	"probably have it.'",ETX
+
+DialogTextNShackStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Welcome. Please take",LF
+	dc.b	"your time.'",ETX
+
+DialogTextPogoDawgStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"He doesn't appear to",LF
+	dc.b	"be listening.",ETX
+
+DialogTextCPlanetStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`You look like you're",LF
+	dc.b	"here for that new    ^",FF
+	dc.b	"boy band Xmas album.",LF
+	dc.b	"It's in the CD bins.'",ETX
+
+DialogTextCNowStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Hi! I'm so happy",LF
+	dc.b	"you're here!         ^",FF
+	dc.b	"You won't believe what",LF
+	dc.b	"happened today!'     ^",FF
+	dc.b	"(30 minutes later)",LF
+	dc.b	"                     ^",FF
+	dc.b	"'..and that's why you",LF
+	dc.b	"should come to our   ^",FF
+	dc.b	"next meeting on",LF
+	dc.b	"Wednesday night!'",ETX
+
+DialogTextTBooksStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Hey neighbor. Nice of",LF
+	dc.b	"you to stop by.'",ETX
+
+DialogTextFCBCheckoutStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Are you going to buy",LF
+	dc.b	"something or are you ^",FF
+	dc.b	"just here to annoy",LF
+	dc.b	"me?'",ETX
+
+DialogTextFCBFirearmsStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`There's no better",LF
+	dc.b	"gift for someone you ^",FF
+	dc.b	"care about than a new",LF
+	dc.b	"RK62 rifle.'",ETX
+
+DialogTextFCBFishingStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Ice fishing season is",LF
+	dc.b	"almost here. We have ^",FF
+	dc.b	"everything you need",LF
+	dc.b	"to catch a ton.'",ETX
+
+DialogTextFCBCampingStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Oh hey. Yeah. Welcome",LF
+	dc.b	"to the store I guess.^",FF
+	dc.b	"How can I help you?'",ETX
+
+DialogTextSouthCenterStaffDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Good evening.'",ETX
+
+DialogTextWorkshopStaff0DefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Sorry, only children",LF
+	dc.b	"under 12 can take    ^",FF
+	dc.b	"photos with Santa.'",ETX
+
+DialogTextWorkshopStaff1DefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"`Aren't you supposed",LF
+	dc.b	"to have a kid with   ^",FF
+	dc.b	"you to visit Santa?'",ETX
+
 ;-------------------------------------------------------------------------------
 ; menus
 ;-------------------------------------------------------------------------------
@@ -782,10 +907,84 @@ DialogTextDaniDefaultGive:
 	;		"1234567890123456789012"
 	dc.b	"`Yeah, whatever.'",ETX
 
+DialogTextGreenbergDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`I don't need that.'",ETX
+
 DialogTextNPCCenterStaffDefaultGive:
 	;		"1234567890123456789012"
 	dc.b	"`Sorry, but the lost &",LF
 	dc.b	"found is full.'",ETX
+
+DialogTextNPCDenimCountryStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Huh? Why don't you",LF
+	dc.b	"keep that.'",ETX
+
+DialogTextNPCCheckersStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Dude, get that out",LF
+	dc.b	"of here.'",ETX
+
+DialogTextNPCTLodgeStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`I can't do anything",LF
+	dc.b	"with that.'",ETX
+
+DialogTextNPCCavernStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Not interested.'",ETX
+
+DialogTextNPCSVideoStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`That's interesting",LF
+	dc.b	"but you keep it.'",ETX
+
+DialogTextNPCNShackStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`No thanks.'",ETX
+
+DialogTextNPCPogoDawgStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"He isn't paying any",LF
+	dc.b	"attention to you.",ETX
+
+DialogTextNPCCPlanetStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`You're kinda weird.",LF
+	dc.b	"You hang on to this.'",ETX
+
+DialogTextNPCCNowStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Is this a gift?",LF
+	dc.b	"I can't accept it.'",ETX
+
+DialogTextNPCTBooksStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`No thanks, maybe",LF
+	dc.b	"another time.'",ETX
+
+DialogTextNPCFCBCheckoutStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Do you want me to",LF
+	dc.b	"ring this up?        ^",FF
+	dc.b	"Hold on a second, we",LF
+	dc.b	"don't sell this.'",ETX
+
+DialogTextNPCFCBFirearmsStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Best keep that to",LF
+	dc.b	"yourself.'",ETX
+
+DialogTextNPCFCBFishingStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`That's pretty neat",LF
+	dc.b	"but I don't want it.'",ETX
+
+DialogTextNPCFCBCampingStaffDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Thanks but I don't",LF
+	dc.b	"have room for this.'",ETX
 
 DialogTextNPCSouthCenterStaffDefaultGive:
 	;		"1234567890123456789012"
@@ -793,6 +992,16 @@ DialogTextNPCSouthCenterStaffDefaultGive:
 	dc.b	"in the giving spirit.^",FF
 	dc.b	"But you should give",LF
 	dc.b	"this to someone else.'",ETX
+
+DialogTextNPCWorkshopStaff0DefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`Sorry, we're not",LF
+	dc.b	"taking donations now.'",ETX
+
+DialogTextNPCWorkshopStaff1DefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"`What do you want me",LF
+	dc.b	"to do with that?'",ETX
 
 ;-------------------------------------------------------------------------------
 ; object names
@@ -1013,6 +1222,12 @@ NPCNameFCBCampingStaff:
 NPCNameSouthCenterStaff:
 	dc.b	"Carol",NPCNAMEEND
 
+NPCNameWorkshopStaff0:
+	dc.b	"Missy",NPCNAMEEND
+
+NPCNameWorkshopStaff1:
+	dc.b	"Anthony",NPCNAMEEND
+
 ;-------------------------------------------------------------------------------
 ; item names
 ;-------------------------------------------------------------------------------
@@ -1135,6 +1350,34 @@ Day00IntroTip4:
 Day00IntroTip5:
 	;		"1234567890123456789012345678901234567890"
 	dc.b	"Start=Pause",ETX
+
+Day01IntroText:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"    November 24, 1989 - Black Friday    ",ETX
+
+Day01IntroTip0:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"Trading Items",ETX
+
+Day01IntroTip1:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"Each store has items than can be traded",ETX
+
+Day01IntroTip2:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"You can take items from your store",ETX
+
+Day01IntroTip3:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"New items are unlocked by trading",ETX
+
+Day01IntroTip4:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"You can carry up to four trading items",ETX
+
+Day01IntroTip5:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"Talk to NPCs to see what items they want",ETX
 
 ;-------------------------------------------------------------------------------
 ; end

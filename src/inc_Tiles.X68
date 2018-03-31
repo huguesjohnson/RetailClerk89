@@ -475,6 +475,14 @@ Scene0CStaffNPCTilesStart:
 	include 'tiles/sprite-tiles/tileset_Scene0CStaffNPC.X68'
 Scene0CStaffNPCTilesEnd:
 
+Scene0DStaffNPC0TilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene0DStaffNPC0.X68'
+Scene0DStaffNPC0TilesEnd:
+
+Scene0DStaffNPC1TilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene0DStaffNPC1.X68'
+Scene0DStaffNPC1TilesEnd:
+
 Scene0EStaffNPCTilesStart:
 	include 'tiles/sprite-tiles/tileset_Scene0EStaffNPC.X68'
 Scene0EStaffNPCTilesEnd:

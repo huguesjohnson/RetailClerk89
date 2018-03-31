@@ -307,7 +307,13 @@ Day00Scene02Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day00Scene02Action01:	; ACTION_USE_TALK
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene02Action02:	; ACTION_TAKE_GIVE
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene02Action03:	; ACTION_RESPOND
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -379,7 +385,13 @@ Day00Scene04Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day00Scene04Action01:	; ACTION_USE_TALK
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene04Action02:	; ACTION_TAKE_GIVE
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene04Action03:	; ACTION_RESPOND
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -460,7 +472,13 @@ Day00Scene06Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day00Scene06Action01:	; ACTION_USE_TALK
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene06Action02:	; ACTION_TAKE_GIVE
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene06Action03:	; ACTION_RESPOND
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -473,7 +491,13 @@ Day00Scene07Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day00Scene07Action01:	; ACTION_USE_TALK
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene07Action02:	; ACTION_TAKE_GIVE
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene07Action03:	; ACTION_RESPOND
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -665,13 +689,26 @@ Day00Scene17Action03R0:
 ; end day 00
 ;-------------------------------------------------------------------------------
 Day00End:
-	; set the end game flag
+	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
+	; update NPCs in the parking lot
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
+	and.l	#$00000000,(a5)	; update NPCs in parking lot
+	; update the game state
+	bsr.w	ClearPlayerInventory	; clear player inventory
+	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
+	move.w	#$0001,(MEM_DAY)	; move to day 01
 	move.l	(MEM_GAME_STATE),d7	; copy game state
-	and.l	#$0000,d7	; clear all other flags
-	bset.l	#STATE_FLAG_END_SCREEN,d7 ; set end screen state flag	
+	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
+	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-	; load end scene
-	lea	SceneEnd,a6	; address of the scene for the title screen
+	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)	; clear day event flags
+	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission event flags
+	; set the intro screen counter
+	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
+	lea	SceneIntroDay01,a6	; address of the scene for the title screen
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	rts
 

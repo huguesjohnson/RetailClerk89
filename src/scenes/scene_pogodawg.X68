@@ -259,11 +259,11 @@ ScenePogoDawg:
 	; 		%hhhhhhhyyyyyyyyy
 	dc.w	%0011000101001000
 
-	dc.w	OBJ_SCENE_REGISTER
+	dc.w	OBJ_NPC_POGODAWG_STAFF
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%0011000010101010
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0011000010110000
+	dc.w	%0011100010110000
 
 	dc.w	OBJ_SCENE_REGISTER
 	; 		%wwwwwwwxxxxxxxxx

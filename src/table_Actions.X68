@@ -102,6 +102,106 @@ ActionTable:
 	dc.l	Day00Scene17Action02	; ACTION_TAKE_GIVE
 	dc.l	Day00Scene17Action03	; ACTION_RESPOND
 
+	;---------------------------------------------------------------------------
+	; day 01
+	;---------------------------------------------------------------------------
+	dc.l	Day01Scene00Action00	; ACTION_LOOK
+	dc.l	Day01Scene00Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene00Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene00Action03	; ACTION_RESPOND
+	dc.l	Day01Scene01Action00	; ACTION_LOOK
+	dc.l	Day01Scene01Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene01Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene01Action03	; ACTION_RESPOND
+	dc.l	Day01Scene02Action00	; ACTION_LOOK
+	dc.l	Day01Scene02Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene02Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene02Action03	; ACTION_RESPOND
+	dc.l	Day01Scene03Action00	; ACTION_LOOK
+	dc.l	Day01Scene03Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene03Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene03Action03	; ACTION_RESPOND
+	dc.l	Day01Scene04Action00	; ACTION_LOOK
+	dc.l	Day01Scene04Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene04Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene04Action03	; ACTION_RESPOND
+	dc.l	Day01Scene05Action00	; ACTION_LOOK
+	dc.l	Day01Scene05Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene05Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene05Action03	; ACTION_RESPOND
+	dc.l	Day01Scene06Action00	; ACTION_LOOK
+	dc.l	Day01Scene06Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene06Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene06Action03	; ACTION_RESPOND
+	dc.l	Day01Scene07Action00	; ACTION_LOOK
+	dc.l	Day01Scene07Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene07Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene07Action03	; ACTION_RESPOND
+	dc.l	Day01Scene08Action00	; ACTION_LOOK
+	dc.l	Day01Scene08Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene08Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene08Action03	; ACTION_RESPOND
+	dc.l	Day01Scene09Action00	; ACTION_LOOK
+	dc.l	Day01Scene09Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene09Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene09Action03	; ACTION_RESPOND
+	dc.l	Day01Scene0AAction00	; ACTION_LOOK
+	dc.l	Day01Scene0AAction01	; ACTION_USE_TALK
+	dc.l	Day01Scene0AAction02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene0AAction03	; ACTION_RESPOND
+	dc.l	Day01Scene0BAction00	; ACTION_LOOK
+	dc.l	Day01Scene0BAction01	; ACTION_USE_TALK
+	dc.l	Day01Scene0BAction02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene0BAction03	; ACTION_RESPOND
+	dc.l	Day01Scene0CAction00	; ACTION_LOOK
+	dc.l	Day01Scene0CAction01	; ACTION_USE_TALK
+	dc.l	Day01Scene0CAction02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene0CAction03	; ACTION_RESPOND
+	dc.l	Day01Scene0DAction00	; ACTION_LOOK
+	dc.l	Day01Scene0DAction01	; ACTION_USE_TALK
+	dc.l	Day01Scene0DAction02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene0DAction03	; ACTION_RESPOND
+	dc.l	Day01Scene0EAction00	; ACTION_LOOK
+	dc.l	Day01Scene0EAction01	; ACTION_USE_TALK
+	dc.l	Day01Scene0EAction02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene0EAction03	; ACTION_RESPOND
+	dc.l	Day01Scene0FAction00	; ACTION_LOOK
+	dc.l	Day01Scene0FAction01	; ACTION_USE_TALK
+	dc.l	Day01Scene0FAction02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene0FAction03	; ACTION_RESPOND
+	dc.l	Day01Scene10Action00	; ACTION_LOOK
+	dc.l	Day01Scene10Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene10Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene10Action03	; ACTION_RESPOND
+	dc.l	Day01Scene11Action00	; ACTION_LOOK
+	dc.l	Day01Scene11Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene11Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene11Action03	; ACTION_RESPOND
+	dc.l	Day01Scene12Action00	; ACTION_LOOK
+	dc.l	Day01Scene12Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene12Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene12Action03	; ACTION_RESPOND
+	dc.l	Day01Scene13Action00	; ACTION_LOOK
+	dc.l	Day01Scene13Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene13Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene13Action03	; ACTION_RESPOND
+	dc.l	Day01Scene14Action00	; ACTION_LOOK
+	dc.l	Day01Scene14Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene14Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene14Action03	; ACTION_RESPOND
+	dc.l	Day01Scene15Action00	; ACTION_LOOK
+	dc.l	Day01Scene15Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene15Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene15Action03	; ACTION_RESPOND
+	dc.l	Day01Scene16Action00	; ACTION_LOOK
+	dc.l	Day01Scene16Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene16Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene16Action03	; ACTION_RESPOND
+	dc.l	Day01Scene17Action00	; ACTION_LOOK
+	dc.l	Day01Scene17Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene17Action02	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene17Action03	; ACTION_RESPOND
+
 SceneExitTable:
 	; scene 00 (SCENE_ID_VB)
 	dc.l	ExitScene00

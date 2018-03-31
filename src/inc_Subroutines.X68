@@ -59,6 +59,8 @@
 
 	include	'sub_Inventory.X68'
 
+	include	'sub_ClearPlayerInventory.X68'
+
 	include	'sub_QueueScriptedEvent.X68'
 
 	include	'sub_BuildVRAMWriteAddress.X68'

@@ -10,21 +10,12 @@ InitGameState:
 	move.l	#$00000000,d0
 	bset.l	#STATE_FLAG_TITLE_SCREEN,d0	; set title screen flag
 	bset.l	#STATE_FLAG_EXITS_BLOCKED,d0	; set exits blocked flag
-	move.l	d0,(MEM_GAME_STATE)
-	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)
-	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)
-	and.l	#$00000000,(MEM_SCENE_BGM)
-
-;-------------------------------------------------------------------------------
-; clear player inventory
-;-------------------------------------------------------------------------------
-	move.w	#$0000,(MEM_PLAYER_ITEM_COUNT)	; reset item count
-	lea MEM_PLAYER_ITEMS,a1	; point to start of item list
-	move.w	#MAX_ITEMS,d7	; copy max items to d7
-	subq	#$1,d7	; decrement for zero-based list
-ClearPlayerInventoryLoop:
-	move.w	#$0000,(a1)+
-	dbra	d7,ClearPlayerInventoryLoop	; loop to the end of the list
+	move.l	d0,(MEM_GAME_STATE)	; clear game state
+	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)	; clear event flags
+	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission flags
+	and.l	#$00000000,(MEM_SCENE_BGM)	; clear BGM
+	move.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; initial sprite
+	bsr.w	ClearPlayerInventory	; clear player inventory
 
 ;-------------------------------------------------------------------------------
 ; load the initial NPC locations
@@ -44,7 +35,7 @@ InitNPCLocations:
 	move.l	#$07000000,(a0)+	; location 0A (TLODGE)
 	move.l	#$08000000,(a0)+	; location 0B (CAVERN)
 	move.l	#$09000000,(a0)+	; location 0C (SVIDEO)
-	move.l	#$00000000,(a0)+	; location 0D (WORKSHOP)
+	move.l	#$14150000,(a0)+	; location 0D (WORKSHOP)
 	move.l	#$0A000000,(a0)+	; location 0E (NSHACK)
 	move.l	#$0B000000,(a0)+	; location 0F (POGODAWG)
 	move.l	#$0C000000,(a0)+	; location 10 (CPLANET)

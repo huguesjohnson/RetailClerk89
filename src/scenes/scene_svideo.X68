@@ -8,7 +8,7 @@ SceneSVideo:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0006	; tileset count - 1
+	dc.w	$0007	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -37,6 +37,10 @@ SceneSVideo:
 	; tileset 6
 	dc.l	SVideoMerchandiseTilesStart	; start of merchandise tiles
 	dc.l	SVideoMerchandiseTilesEnd	; end of merchandise tiles
+
+	; tileset 7
+	dc.l	RegisterAltFlippedTilesStart	; start of register tiles
+	dc.l	RegisterAltFlippedTilesEnd	; end of register tiles
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -113,30 +117,31 @@ SceneSVideo:
 	dc.l	VDP_VRAM_WRITE_B+$01800000	; initial drawing location
 
 	; shelves under counter
-	dc.l	Pattern3Tile96x16	; location of pattern to load
+	dc.l	Pattern3Tile24x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0000000000100010	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_B+$08800000+$00380000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$0B800000+$00400000	; initial drawing location
 
 	; counter
-	dc.l	PatternCounterHigh88x8Bottom	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000010011	; base pattern
-	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$07000000+$00380000	; initial drawing location
-
-	dc.l	PatternCounterLow88x24Bottom
+	dc.l	PatternCounterLow24x136	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0000000000010011	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$07800000+$00380000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$03800000+$00400000	; initial drawing location
 
-	dc.l	PatternCounterSide32x104	; location of pattern to load
+	; registers
+	dc.l	Pattern16x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000010011	; base pattern
+	dc.w	%1000000000111010	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00380000+$00800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$05000000+$00420000	; initial drawing location
+
+	dc.l	Pattern16x16	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1000000000111010	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$09000000+$00420000	; initial drawing location
 
 	; rack
 	dc.l	PatternSVideoRackHigh	; location of pattern to load
@@ -163,13 +168,19 @@ SceneSVideo:
 
 	dc.w	OBJ_SCENE_VIDEOWALL
 	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%1000000010000000
+	dc.w	%1111111010000000
 	; 		%hhhhhhhyyyyyyyyy
 	dc.w	%0011000010001000
 
 	dc.w	OBJ_SCENE_VIDEOWALL
 	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%1111111100000000
+	dc.w	%1111111011111111
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0011000010001000
+
+	dc.w	OBJ_SCENE_VIDEOWALL
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%1111111101111110
 	; 		%hhhhhhhyyyyyyyyy
 	dc.w	%0011000010001000
 
@@ -185,35 +196,29 @@ SceneSVideo:
 	; 		%hhhhhhhyyyyyyyyy
 	dc.w	%0101000011001000
 
-	dc.w	OBJ_SCENE_COUNTER
+	dc.w	OBJ_SCENE_REGISTER
 	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%0100000101100000
+	dc.w	%0001111110001000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%1111110010001000
+	dc.w	%0010000011010000
+
+	dc.w	OBJ_SCENE_REGISTER
+	; 		%wwwwwwwxxxxxxxxx
+	dc.w	%0001111110001000
+	; 		%hhhhhhhyyyyyyyyy
+	dc.w	%0010000100010000
 
 	dc.w	OBJ_SCENE_COUNTER
 	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%1011000101100000
+	dc.w	%0010111110000000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0101000100000110
+	dc.w	%1111111010111000
 
-	dc.w	OBJ_NOTHING
+	dc.w	OBJ_SCENE_COUNTER
 	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%0000000000000000
+	dc.w	%0010111110000000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0000000000000000
-
-	dc.w	OBJ_NOTHING
-	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%0000000000000000
-	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0000000000000000
-
-	dc.w	OBJ_NOTHING
-	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%0000000000000000
-	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0000000000000000
+	dc.w	%0001110100110111
 
 	dc.w	OBJ_NOTHING
 	; 		%wwwwwwwxxxxxxxxx
