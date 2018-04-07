@@ -9,4 +9,4 @@ cd ..
 
 # build the rom
 echo "Building ROM..."
-vasmm68k_mot -o RetailClerk89.bin -Fbin -no-opt -nosym -spaces RetailClerk89.X68
+vasmm68k_mot -o RetailClerk89.bin -Fbin -spaces RetailClerk89.X68

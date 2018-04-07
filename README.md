@@ -22,8 +22,7 @@ Basic framework for:
 
 I have only ever built this using vasm (http://sun.hasenbraten.de/vasm/) with the motorola syntax module. I have no reason to believe this won't work with any other 68000 assembler.
 vasm command line that works: 
-vasmm68k_mot -o RetailClerk89.bin -Fbin -no-opt -nosym -spaces RetailClerk89.X68
-* no-opt is not used because I haven't tested if optimizations break anything
+vasmm68k_mot -o RetailClerk89.bin -Fbin -spaces RetailClerk89.X68
 * the 'spaces' option was added to avoid headaches when linking to code from projects using an assembler that ignores spaces in statements
 
-This has been fully tested on Gens for Linux and Windows. It has been minimally tested on Genecyst.
+This has been fully tested on Gens and BlastEm for Linux. It has been minimally tested on Genecyst and Gens for Windows. The latest build has issues on Genesis Plus and derivatives.
