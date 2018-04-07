@@ -3,10 +3,8 @@
 ;*******************************************************************************
 		
 Start:
-	tst.l	(CTRL_1_CONTROL).l	; test controller 1
-	bne	SecurityCheck
-	tst.w	(CTRL_2_CONTROL).l	; test controller 2
-	; if no controllers are detected should we branch to an error screen?
+
+	move.w	#$2700,sr		; disable interrupts
 
 SecurityCheck:
 	move.b	(REG_HWVERSION),d0	; get the hardware version
@@ -14,6 +12,10 @@ SecurityCheck:
 	beq.b	SkipSecurity		; skip the next instruction on v1 hardware
 	move.l	#'SEGA',(REG_TMS)	; otherwise copy 'SEGA' to TMS register
 SkipSecurity:
+
+InitController:
+	move.b	#$40,(CTRL_1_CONTROL)
+	move.b	#$40,(CTRL_1_DATA)
 
 InitVDP:
 	lea	(VDPInitDataStart),a0	; load the address of the VDP init data to a0
@@ -40,3 +42,4 @@ InitEcho:
 	lea (EchoPointerList),a0
 	bsr.w Echo_Init
 
+	move.w	#$2000,sr		; re-enable interrupts
