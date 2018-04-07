@@ -14,5 +14,8 @@ LoadPlayerSpriteLoop:
 	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
 	endif
+	; call to StopSprite is to fix an issue where wrong tiles display
+	lea (MEM_PLAYER_SPRITE_ID),a6	; setup call to StopSprite
+	bsr.w	StopSprite	; reset the sprite frame
 ExitLoadPlayerSprite:
 	rts
