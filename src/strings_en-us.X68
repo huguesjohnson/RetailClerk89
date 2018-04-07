@@ -1372,25 +1372,25 @@ Day00IntroTip0:
 
 Day00IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"D-Pad=Move Player,change menu selection",ETX
+	dc.b	"D-Pad: Move Player,change menu selection",ETX
 
 Day00IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"A=Interact with people & objects",ETX
+	dc.b	"A button: Interact with people & objects",ETX
 
 Day00IntroTip3:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"A,C=Confirm menu selection",ETX
+	dc.b	"A or C button: Confirm menu selection",ETX
 
 
 Day00IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"B=Cancel menu",ETX
+	dc.b	"B button: Cancel menu",ETX
 
 
 Day00IntroTip5:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"Start=Pause",ETX
+	dc.b	"Start: Pause, exit this screen",ETX
 
 Day01IntroText:
 	;		"1234567890123456789012345678901234567890"

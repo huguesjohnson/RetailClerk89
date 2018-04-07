@@ -172,7 +172,7 @@ INTRO_SCREEN_COUNTER_START=$0001	; how long to display intro screens
 	else
 DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
 SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
-INTRO_SCREEN_COUNTER_START=$0168	; how long to display intro screens
+INTRO_SCREEN_COUNTER_START=$00B4	; how long to display intro screens
 	endif
 
 ;*******************************************************************************
@@ -485,9 +485,17 @@ EndScreenRestart:
 TestIntroScreen:
 	btst.l	#STATE_FLAG_INTRO_SCREEN,d7 ; test game state
 	beq.w	MainGameLoopEnd	; not on the intro screen, move to next test
+	tst.w	(MEM_INTRO_SCENE_COUNTER)	; is the counter already zero
+	beq.s	TestIntroScreenWaitButtonPress	; wait for button press
 	subq	#$1,(MEM_INTRO_SCENE_COUNTER)	; decrement counter
 	bne.w	MainGameLoop	; loop until the counter is zero
-	; counter is zero, load the next scene
+TestIntroScreenWaitButtonPress:
+	; counter is zero, test if button was pressed
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.b	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
+	beq.w	MainGameLoop	; loop until start is pressed
+TestIntroScreenLoadScene:
+	; load the next scene
 	bclr.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear game state flag
 	bset.l	#STATE_FLAG_EXPLORING,d7	; initial mode is exploring
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
