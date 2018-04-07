@@ -24,7 +24,7 @@ TitleScreenTextNewGame:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Unstable Winter/Spring 2018 WIP Build ",ETX
+	dc.b	"    Unstable Spring 2018 WIP Build    ",ETX
 
 ;-------------------------------------------------------------------------------
 ; end screen
@@ -316,6 +316,48 @@ DialogTextNPCSouthCenterStaffDay00R1:
 	;		"1234567890123456789012"
 	dc.b	"`Oh, at least you're",LF
 	dc.b	"indoors tonight.'",ETX
+
+DialogTextDay01Intro00:
+	;		"1234567890123456789012"
+	dc.b	"Lisa:`This is bad.",LF
+	dc.b	"This is really bad.  ^",FF
+	dc.b	"Today should be the",LF
+	dc.b	"busiest day all year,^",FF
+	dc.b	"but it's totally",LF
+	dc.b	"empty in here.       ^",FF
+	dc.b	"Since Marcy's had that",LF
+	dc.b	"fire it's been dead. ^",FF
+	dc.b	"Why can't they get a ",LF
+	dc.b	"new store to move in?^",FF
+	dc.b	"That Santa thing there",LF
+	dc.b	"now doesn't count.   ^",FF
+	dc.b	"Our store may close if",LF
+	dc.b	"sales don't improve.'",ETX
+
+DialogTextDay01Intro01:
+	;		"1234567890123456789012"
+	dc.b	"Dani: `Whatever.'",ETX
+
+DialogTextDay01Intro02:
+	;		"123456  7            89012345  6           789012"
+	dc.b	"Lisa:`",CHAR_DQUOTE,"Whatever",CHAR_DQUOTE,"?!",LF
+	;		"1234567890123456789012"
+	dc.b	"                     ^",FF
+	dc.b	"Don't you care about",LF
+	dc.b	"your career?'",ETX
+
+DialogTextDay01Intro03:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`My career?",LF
+	dc.b	"                     ^",FF
+	dc.b	"I have one semester of",LF
+	dc.b	"junior college left, ^",FF
+	dc.b	"then I'm transferring",LF
+	dc.b	"to state.            ^",FF
+	dc.b	"They can bulldoze the",LF
+	dc.b	"mall for all I care. ^",FF
+	dc.b	"I'm think I'll take my",LF
+	dc.b	"break now.'",ETX
 
 ;-------------------------------------------------------------------------------
 ; information desk
@@ -741,7 +783,7 @@ DialogTextDenimCountryStaffDefaultTalk:
 	dc.b	"`It's way too slow",LF
 	dc.b	"here for Xmas season.^",FF
 	dc.b	"I hope they don't",LF
-	dc.b	"close this store.'",ETX
+	dc.b	"close the mall.'",ETX
 
 DialogTextCheckersStaffDefaultTalk:
 	;		"1234567890123456789012"
@@ -790,10 +832,9 @@ DialogTextCNowStaffDefaultTalk:
 	dc.b	"happened today!'     ^",FF
 	dc.b	"(30 minutes later)",LF
 	dc.b	"                     ^",FF
-	dc.b	"'..and that's why you",LF
-	dc.b	"should come to our   ^",FF
-	dc.b	"next meeting on",LF
-	dc.b	"Wednesday night!'",ETX
+	dc.b	"'..and that's why I'm ",LF
+	dc.b	"waiting until after   ^",FF
+	dc.b	"after I get married!'",ETX
 
 DialogTextTBooksStaffDefaultTalk:
 	;		"1234567890123456789012"

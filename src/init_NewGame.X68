@@ -1,4 +1,5 @@
 NewGame:
+
 	move.w	#$2700,sr		; disable interrupts
 
 InitCounters:

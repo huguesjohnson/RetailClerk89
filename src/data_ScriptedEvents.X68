@@ -1,4 +1,4 @@
-ScriptedEventDay0Right:
+ScriptedEventDay00Right:
 	dc.w	$0003	; NPC1 (Dani)
 	; --------------------------------------------------------------------------
 	; first dialog
@@ -54,7 +54,7 @@ ScriptedEventDay0Right:
 	dc.w	$0060
 	dc.w	SCRIPTED_EVENT_END
 
-ScriptedEventDay0Exit:
+ScriptedEventDay00Exit:
 	dc.w	$0004	; NPC2
 	dc.w	DIRECTION_DOWN	; move them offscreen
 	dc.w	$0190
@@ -92,3 +92,52 @@ ScriptedEventDay0Exit:
 	dc.l	DialogTextGreenbergScene00Day00Exit
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay01Start:
+	; --------------------------------------------------------------------------
+	; move player to be on same X-axis as the NPC0
+	; --------------------------------------------------------------------------
+	dc.w	$0001	; player (Dani)
+	dc.w	DIRECTION_UP
+	dc.w	$003E
+	; --------------------------------------------------------------------------
+	; have NPC0 walk toward the player
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; have have the player face NPC0
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player (Dani)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0000
+	; --------------------------------------------------------------------------
+	; first dialog betweek NPC0 and player
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Intro00
+	; --------------------------------------------------------------------------
+	; more dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Intro01
+	; --------------------------------------------------------------------------
+	; player starts walking away
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; more dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Intro02
+	; --------------------------------------------------------------------------
+	; player faces NPC0 for the last dialog
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Intro03
+	dc.w	SCRIPTED_EVENT_END
