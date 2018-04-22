@@ -212,7 +212,7 @@ MainGameLoop:
 TestPauseToggle:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
-	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
+	andi.b	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
 	beq.s	TestPause	; start button is not pressed test if still paused
 	; clear MEM_CONTROL_PRESSED to prevent pause state from flipping in loop
 	move.w	#$0000,(MEM_CONTROL_PRESSED)
@@ -356,7 +356,7 @@ TestExploring:
 	beq.w	TestTitleScreen	; not exploring, branch to next test
 TestAButtonPressed: ; test if the player pressed the A button
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
-	andi.w	#BUTTON_A_PRESSED,d6	; test if the A button was pressed
+	andi.b	#BUTTON_A_PRESSED,d6	; test if the A button was pressed
 	beq.w	MainGameLoopUpdateSprites	; A button is not pressed
 	;---------------------------------------------------------------------------
 	; build event table address and branch to code
@@ -438,7 +438,7 @@ TestTitleScreen:
 	beq.w	TestEndScreen	; not on the title screen, move to next test
 TestTitleScreenTestStartPressed:
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
-	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
+	andi.b	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
 	bne.s	TestTitleLoadIntroScreen	; start button pressed, load intro
 	subq	#$1,(MEM_INTRO_SCENE_COUNTER)	; decrement counter
 	bne.w	MainGameLoop	; loop until the counter is zero
@@ -470,7 +470,7 @@ TestEndScreen:
 	beq.w	TestIntroScreen	; not on the end screen, move to next test
 TestEndScreenTestStartPressed:
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
-	andi.w	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
+	andi.b	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
 	beq.w	MainGameLoop	; start button not pressed, loop
 	; --------------------------------------------------------------------------
 	; start button was pressed on the end screen - loop back to the beginning
@@ -695,7 +695,12 @@ BGM_End:
 	incbin	'music/bgm_end.esf'
 
 BGM_Store0:
-	incbin	'music/bgm_store00.esf'
+	incbin	'music/bgm_store00_four-track.esf'
+
+BGM_Day00:
+	incbin	'music/bgm_day00.esf'
+
+	align 2
 
 ;*******************************************************************************
 ; tiles

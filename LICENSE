@@ -60,22 +60,39 @@ Some scenery is based off tilesets created by Sithjester
 ********************************************************************************
 3rd party music
 ********************************************************************************
-bgm_title.esf is a conversion of chip_overture.xm by Drozerix
+bgm_title.esf is a conversion of Chip Overture by Drozerix
  Released under the Public Domain license
  https://creativecommons.org/licenses/publicdomain/
  "Feel free to use my music in whatever, pc game, video, program, keygen ext."
+ Original XM: /src/music/Drozerix_chip_overture.xm
 
-bgm_end.esf is a conversion of the_radix_point.xm by Drozerix
+bgm_end.esf is a conversion of The Radix Point by Drozerix
  Released under the Public Domain license
  https://creativecommons.org/licenses/publicdomain/
  "Feel free to use my music in whatever, pc game, video, program, keygen ext."
  Original song was modified so all percussion was on a single track so it 
  could be mapped to the PCM channel - modifications are also Public Domain
+ Original XM is - /src/music/Drozerix_chip_overture.xm
+ No modifications were made
+ Original XM: /src/music/Drozerix_the_radix_point.xm
+ Modified XM: /src/music/Drozerix_the_radix_point_mod.xm
 
-bgm_store00.esf is a conversion of october_chip.xm by Drozerix
+bgm_day00.esf is a conversion of October Chip by Drozerix
  Released under the Public Domain license
  https://creativecommons.org/licenses/publicdomain/
  "Feel free to use my music in whatever, pc game, video, program, keygen ext."
  Original song was modified to remove percussion from track 6 and 
  the intro was cut so it only plays the looping section
+ Original XM: /src/music/Drozerix_october_chip.xm
+ Modified XM: /src/music/Drozerix_october_chip_mainloop.xm
+
+bgm_store00.esf is a conversion of The Spirit of Mods by Blurry
+ Licensed under the Attribution Share Alike license
+ https://creativecommons.org/licenses/by-sa/3.0/
+ Original song was modified to:
+  -Reduce the number of instruments used in some tracks
+  -Remove fade out and loop timing
+ Changes are under the same license as the original work
+ Original XM: /src/music/blurry_the_spirit_of_mods.xm
+ Modified XM: /src/music/blurry_the_spirit_of_mods_mod.xm
 

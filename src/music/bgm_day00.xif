@@ -22,33 +22,34 @@
 # 13 = [PSG] PSG string
 # 14 = [FM] Electric guitar
 # ------------------------------------------------------
-FILE "blurry_the_spirit_of_mods_mod.xm"
+FILE "Drozerix_october_chip_mainloop.xm"
 TYPE BGM LOOP
 TEMPO 7
-PSG 2
+PSG 0
 NOISE 0
-FM 4
-PCM 0
-#PCMC 6
+FM 5
 FM1 1
-FM2 2
-FM3 3
-FM4 4
+FM2 5
+FM3 6
+FM4 2
+FM5 3
+PCM 1
+PCMC 4
 [Instruments]
-1 9 # tracks 2,3,4
-2 0 # tracks 7,8
-3 5 # tracks 2,3
-4 9 # tracks 1,4
-5 5 # track 3,5
-6 14 # track 1,2
+1 9
+2 0
+3 2
+4 3
+5 10
+6 0
 7 0
-8 0 # track 5
-9 3 # track 6
-10 2 # track 6
-11 5 # tracks 2,3,7,8
-12 14 # tracks 2,3,7,8
-13 1 # tracks 1,2,3,5,7,8
-14 0 # tracks 2,3
+8 0
+9 0
+10 0
+11 0
+12 0
+13 0
+14 0
 15 0
 16 0
 17 0
@@ -168,9 +169,11 @@ FM1 0
 FM2 0
 FM3 0
 FM4 0
+FM5 0
 [Volume]
 FM1 48
-FM2 48
-FM3 48
+FM2 32
+FM3 32
 FM4 48
+FM5 48
 [END]

@@ -22,12 +22,6 @@
 	include 'patterns/pattern_Register.X68'
 	include 'patterns/pattern_HWRack.X68'
 	include 'patterns/pattern_16BitRack.X68'
-	include 'patterns/pattern_TitleLogo.X68'
-	include 'patterns/pattern_TitleLogo89.X68'
-	include 'patterns/pattern_TitleMenu.X68'
-	include 'patterns/pattern_TitleBackground.X68'
-	include 'patterns/pattern_TitleFooter.X68'
-	include 'patterns/pattern_IntroHint.X68'
 
 ;-------------------------------------------------------------------------------
 ; casette planet scenery
@@ -127,6 +121,16 @@
 ;-------------------------------------------------------------------------------
 	include 'patterns/pattern_WorkshopFrame.X68'
 	include 'patterns/pattern_Workshop.X68'
+
+;-------------------------------------------------------------------------------
+; title and intro screens
+;-------------------------------------------------------------------------------
+	include 'patterns/pattern_TitleLogo.X68'
+	include 'patterns/pattern_TitleLogo89.X68'
+	include 'patterns/pattern_TitleMenu.X68'
+	include 'patterns/pattern_TitleBackground.X68'
+	include 'patterns/pattern_TitleFooter.X68'
+	include 'patterns/pattern_IntroHint.X68'
 
 ;-------------------------------------------------------------------------------
 ; used for development builds only

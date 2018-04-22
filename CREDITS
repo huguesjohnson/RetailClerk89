@@ -22,6 +22,11 @@ xm2esf was used to convert xm files to esf for use with Echo
  https://github.com/oerg866/xm2esf
 
 ********************************************************************************
+3rd party assets used to build this demo
+********************************************************************************
+See LICENSE for the list of 3rd party code, graphics, & music used in this demo
+
+********************************************************************************
 References
 ********************************************************************************
 The following were used to learn Genesis and/or Motorola 68000 programming:
@@ -55,6 +60,13 @@ Thanks to Drozerix for making dozens of .xm files available under public domain
  Check out his work at: 
   https://soundcloud.com/drozerix
   https://modarchive.org/index.php?request=view_profile&query=84702
+
+Thanks to BLuRry for making .xm files available under 
+Attribution Share Alike license
+ See LICENSE for the list of his tracks used in this demo
+ The original compositions are also 1000x better than the conversions
+ Check out his work at: 
+  https://modarchive.org/index.php?request=view_by_moduleid&query=140283
 
 ********************************************************************************
 Inspirations

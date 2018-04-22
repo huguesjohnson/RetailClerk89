@@ -22,7 +22,7 @@
 # 13 = [PSG] PSG string
 # 14 = [FM] Electric guitar
 # ------------------------------------------------------
-FILE "chip_overture.xm"
+FILE "Drozerix_chip_overture.xm"
 TYPE BGM NOLOOP
 TEMPO 7
 NOISE 0
