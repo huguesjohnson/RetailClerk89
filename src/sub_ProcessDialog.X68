@@ -25,6 +25,7 @@ ProcessDialogTestOpening:
 ProcessDialogTextDrawing:
 	btst.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; test if text is drawing
 	beq.w	ProcessDialogTestOpen	; text is not drawing, go to next test
+	clr.w	d6	; prevent some issues
 	move.l	(MEM_DIALOG_TEXT),a0	; point a0 to the current character
 	move.b	(a0),d6	; copy current character to d6
 TestETX:
