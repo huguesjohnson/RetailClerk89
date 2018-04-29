@@ -148,13 +148,19 @@ LoadSceneLoadNPCSpritesLoop:
 	cmp.l	#$00000000,a0	; test if there is background music to play
 	bne.s	LoadScenePlayBGM	; there is music to play
 	bsr Echo_StopBGM	; otherwise stop the background music
-	bra.s	ExitLoadScene	; move on
+	bra.s	LoadSceneFadeIn	; move on
 LoadScenePlayBGM:
 	cmp.l	(MEM_SCENE_BGM),a0 ; test if scene BGM is already playing
-	beq.s	ExitLoadScene	; same BGM, branch
+	beq.s	LoadSceneFadeIn	; same BGM, branch
 LoadScenePlayBGMNewBGM:
 	move.l	a0,(MEM_SCENE_BGM)	; save reference to new BGM
 	bsr Echo_PlayBGM	; start the background music
+
+LoadSceneFadeIn:
+;-------------------------------------------------------------------------------
+; fade in new palette
+;-------------------------------------------------------------------------------
+	bsr.w	FadeIn
 
 ExitLoadScene:
 	move.w	#$2000,sr		; re-enable interrupts

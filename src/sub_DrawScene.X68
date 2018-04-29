@@ -10,9 +10,17 @@
 DrawScene:
 	move.w	#$2700,sr		; disable interrupts
 
+
+;-------------------------------------------------------------------------------
+; fade out current palette
+;-------------------------------------------------------------------------------
+	bsr.w	FadeOut
+
 ;-------------------------------------------------------------------------------
 ; clear VDP
 ;-------------------------------------------------------------------------------
+	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
+	bsr.w	WaitVBlankStart	; wait to clear screen until VBlank starts
 ClearVRAM:
 	move.l	#VDP_VRAM_WRITE,(VDP_CONTROL) 
 	move.w	#$7FFF,d1
@@ -29,7 +37,8 @@ ClearVRAMLoop:
 	move.w	#SCENE_VDP,d1	; use d1 to track write location
 	clr.l	d2	; use d2 to increment write location
 LoadSceneLoadTilesLoop:
-	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
+	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
+	bsr.w	WaitVBlankStart	; wait to load tiles until VBlank starts
 	bsr.w	BuildVRAMWriteAddress
 	move.l	(a6)+,d3	; start address of tileset
 	move.l	(a6)+,d0	; end address of tileset
@@ -47,7 +56,8 @@ LoadSceneLoadTilesLoop:
 ; load the font tiles
 ;-------------------------------------------------------------------------------
 LoadFontTiles:
-	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
+	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
+	bsr.w	WaitVBlankStart	; wait to load tiles until VBlank starts
 	move.w	#FONT_VDP,d1	; setup call to BuildVRAMWriteAddress
 	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
 	move.l	#FontTilesStart,d2	; start address of tileset
@@ -60,16 +70,20 @@ LoadFontTiles:
 ;-------------------------------------------------------------------------------
 ; load palettes
 ;-------------------------------------------------------------------------------
-	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
-	; setup call to LoadPalettes
 	move.w	(a6)+,d0	; number of palettes to load
 	movea.l	(a6)+,a0	; start address of palettes
-	move.l	#VDP_CRAM_WRITE,d1	; initial write address
-	bsr.w	LoadPalettes	; branch to LoadPalettes subroutine
+	lea	MEM_SCENE_PALETTE,a1	; point a1 to scene palette address
+	mulu	#$10,d0	; multiply number of palettes by 16
+	subq	#$01,d0	; subtract 1 since the loop counts to 0
+StorePalettesLoop:
+	move.w	(a0)+,(a1)+	; write the palette data
+	dbf	d0,StorePalettesLoop		; decrement value of d0 and loop if not 0
 
 ;-------------------------------------------------------------------------------
 ; draw the scenery
 ;-------------------------------------------------------------------------------
+	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
+	bsr.w	WaitVBlankStart	; wait until VBlank to draw scene
 	move.w	(a6)+,d7	; number of scenery items to draw
 	cmpi.w	#$FFFF,d7	; is there any sceney to draw?
 	beq.s	LoadSceneDrawText	; if no scenery then move to next section

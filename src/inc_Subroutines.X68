@@ -65,5 +65,7 @@
 
 	include	'sub_BuildVRAMWriteAddress.X68'
 
+	include	'sub_FadeInFadeOut.X68'
+
 	include	'sub_EndDemo.X68'
 

@@ -157,4 +157,5 @@ MEM_ACTIVE_NPC_COUNT=$FFFF0170	; number of NPCs in the current scene
 MEM_OBJECT_LIST_OBJS=$FFFF0172	; list of objects in current map
 MEM_OBJECT_LIST_NPCS=$FFFF01AE	; list of npcs in current map
 MEM_SCENE_BGM=$FFFF01C6	; reference to current background music
-MEM_COLLISION_DATA=$FFFF01CA	; collision data for the current map
+MEM_SCENE_PALETTE=$FFFF01CA	; storing for fade in/out
+MEM_COLLISION_DATA=$FFFF024A	; collision data for the current map
