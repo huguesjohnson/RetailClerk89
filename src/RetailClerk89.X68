@@ -10,9 +10,7 @@
 ; work from online samples. Original work is under MIT license.
 ;
 ; Build this using: 
-;	vasmm68k_mot -o RetailClerk89.bin -Fbin -no-opt -nosym RetailClerk89.X68
-;	-no-opt is used because I haven't tested if optimizations break anything
-;	-nosym is also used out of general ignorance about the side-effects
+;	vasmm68k_mot -o RetailClerk89.bin -Fbin RetailClerk89.X68
 ;
 ; Visit http://HuguesJohnson.com/ for random articles about this project.
 ; 

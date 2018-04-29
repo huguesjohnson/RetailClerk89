@@ -42,6 +42,8 @@ The following were used to learn Genesis and/or Motorola 68000 programming:
 LoadPalettes, LoadTiles, and DrawTileset routines are based on examples from:
  http://bigevilcorporation.co.uk/
 
+Code for hardware-specific fixes is also from http://bigevilcorporation.co.uk/
+
 This very detailed Echo Sound Engine setup tutorial was consulted: 
  http://devster.proboards.com/thread/1087/echo-sound-engine-setup-tutorial
 
@@ -61,8 +63,7 @@ Thanks to Drozerix for making dozens of .xm files available under public domain
   https://soundcloud.com/drozerix
   https://modarchive.org/index.php?request=view_profile&query=84702
 
-Thanks to BLuRry for making .xm files available under 
-Attribution Share Alike license
+Thanks to BLuRry sharing .xm files under the Attribution Share Alike license
  See LICENSE for the list of his tracks used in this demo
  The original compositions are also 1000x better than the conversions
  Check out his work at: 
