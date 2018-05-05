@@ -63,7 +63,7 @@ SceneSVideo:
 	; south wall
 	dc.l	PatternFrameSouthClosed
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000001011	; base pattern
+	dc.w	%1010000000001111	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D800000	; initial drawing location
 
@@ -77,7 +77,7 @@ SceneSVideo:
 	; top
 	dc.l	PatternFrameTop
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000000110	; base pattern
+	dc.w	%1010000000001010	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
 
@@ -98,61 +98,61 @@ SceneSVideo:
 	; top shelf
 	dc.l	PatternShelvesH	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000000100101	; base pattern
+	dc.w	%0100000000101001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$00800000	; initial drawing location
 
 	; middle shelf
 	dc.l	PatternShelvesM	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0010000000100101	; base pattern
+	dc.w	%0010000000101001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$01000000	; initial drawing location
 
 	; low shelf
 	dc.l	PatternShelvesL	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000100101	; base pattern
+	dc.w	%0000000000101001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$01800000	; initial drawing location
 
 	; shelves under counter
 	dc.l	Pattern3Tile24x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000100010	; base pattern
+	dc.w	%0000000000100110	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$0B800000+$00400000	; initial drawing location
 
 	; counter
 	dc.l	PatternCounterLow24x136	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000010011	; base pattern
+	dc.w	%0000000000010111	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$03800000+$00400000	; initial drawing location
 
 	; registers
 	dc.l	Pattern16x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000111010	; base pattern
+	dc.w	%1000000000111110	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$05000000+$00420000	; initial drawing location
 
 	dc.l	Pattern16x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000111010	; base pattern
+	dc.w	%1000000000111110	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$09000000+$00420000	; initial drawing location
 
 	; rack
 	dc.l	PatternSVideoRackHigh	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1100000000100101	; base pattern
+	dc.w	%1100000000101001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$000C0000+$04800000	; initial drawing location
 
 	dc.l	PatternSVideoRackLow	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000000100101	; base pattern
+	dc.w	%0100000000101001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$000C0000+$06000000	; initial drawing location
 

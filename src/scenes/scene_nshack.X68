@@ -73,91 +73,91 @@ SceneNShack:
 	; south wall
 	dc.l	PatternFrameSouthClosed
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000001001	; base pattern
+	dc.w	%1000000000001101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D800000	; initial drawing location
 
 	; right side
 	dc.l	PatternSideClosed
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000001001	; base pattern
+	dc.w	%1000000000001101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00800000+$004E0000	; initial drawing location
 
 	; top
 	dc.l	PatternFrameTop
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000000100	; base pattern
+	dc.w	%1000000000001000	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
 
 	; shelves under counter
 	dc.l	Pattern3Tile80x8	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011011	; base pattern
+	dc.w	%0000000000011111	; base pattern
 	dc.w	$0001	; repeat 1 time
 	dc.l	VDP_VRAM_WRITE_B+$001E0000+$04000000	; initial drawing location
 
 	; counter
 	dc.l	PatternCounterHigh80x16
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000010001	; base pattern
+	dc.w	%1000000000010101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$001E0000+$02800000	; initial drawing location
 
 	dc.l	PatternCounterLow80x16
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000010001	; base pattern
+	dc.w	%0000000000010101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$001E0000+$03800000	; initial drawing location
 
 	; display cases
 	dc.l	PatternNShackDisplayCaseHigh
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000011110	; base pattern
+	dc.w	%1010000000100010	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00020000+$02000000	; initial drawing location
 
 	dc.l	PatternNShackDisplayCaseLow
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0010000000011110	; base pattern
+	dc.w	%0010000000100010	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00020000+$02800000	; initial drawing location
 
 	dc.l	PatternNShackDisplayCaseHigh
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000011110	; base pattern
+	dc.w	%1010000000100010	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00320000+$02000000	; initial drawing location
 
 	dc.l	PatternNShackDisplayCaseLow
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0010000000011110	; base pattern
+	dc.w	%0010000000100010	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00320000+$02800000	; initial drawing location
 
 	; barrels
 	dc.l	Pattern32x32
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000001011001	; base pattern
+	dc.w	%0100000001011101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00320000+$07800000	; initial drawing location
 
 	dc.l	Pattern32x32
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000001011001	; base pattern
+	dc.w	%0100000001011101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00400000+$07800000	; initial drawing location
 
 	dc.l	Pattern32x32
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000001011001	; base pattern
+	dc.w	%0100000001011101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00160000+$07800000	; initial drawing location
 
 	dc.l	Pattern32x32
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000001011001	; base pattern
+	dc.w	%0100000001011101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$00080000+$07800000	; initial drawing location
 

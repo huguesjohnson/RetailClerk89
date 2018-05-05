@@ -58,3 +58,43 @@
 	dc.l	$9AAAAAA9
 	dc.l	$9AAAAAA9
 
+	; 06
+	dc.l	$99999999
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+
+	; 07
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$AAAAAAA9
+	dc.l	$99999999
+
+	; 08
+	dc.l	$99999999
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+
+	; 09
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$9AAAAAAA
+	dc.l	$99999999
+

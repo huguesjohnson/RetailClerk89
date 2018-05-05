@@ -61,14 +61,14 @@ SceneSouthCenter:
 	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
 
 	; top left entrance
-	dc.l	PatternSideEntranceLeft
+	dc.l	PatternSideEntranceLeftTop
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1000000000000101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
 
 	; bottom left entrance
-	dc.l	PatternSideEntranceLeft
+	dc.l	PatternSideEntranceLeftBottom
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1000000000000101	; base pattern
 	dc.w	$0000	; no repeat
@@ -77,19 +77,19 @@ SceneSouthCenter:
 	; left side entrance floor
 	dc.l	PatternSideEntranceFloorCarpet
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000001011	; base pattern
+	dc.w	%0000000000001111	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$05000000	; initial drawing location
 
 	; top right entrance
-	dc.l	PatternSideEntranceRight
+	dc.l	PatternSideEntranceRightTop
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1100000000000101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$004E0000	; initial drawing location
 
 	; bottom right entrance
-	dc.l	PatternSideEntranceRight
+	dc.l	PatternSideEntranceRightBottom
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1100000000000101	; base pattern
 	dc.w	$0000	; no repeat
@@ -98,35 +98,35 @@ SceneSouthCenter:
 	; right side entrance floor
 	dc.l	PatternSideEntranceFloorWood
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000000001111	; base pattern
+	dc.w	%0100000000010011	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$05000000+$004E0000	; initial drawing location
 
 	; shelves under counter
 	dc.l	PatternBoothMerch112x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0010000000101110	; base pattern
+	dc.w	%0010000000110010	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_B+$001A0000+$07800000	; initial drawing location
 
 	; kiosk counter
 	dc.l	PatternCounterLow112x80Closed
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0010000000011111	; base pattern
+	dc.w	%0010000000100011	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$03000000+$001A0000	; initial drawing location
 
 	; kiosk shelves
 	dc.l	PatternKioskShelves
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000110001	; base pattern
+	dc.w	%1010000000110101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$02800000+$001E0000	; initial drawing location
 
 	; kiosk shelves
 	dc.l	PatternKioskShelves
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000110001	; base pattern
+	dc.w	%1010000000110101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$02800000+$00280000	; initial drawing location
 

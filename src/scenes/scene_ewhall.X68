@@ -110,14 +110,14 @@ SceneEWHall:
 	dc.l	VDP_VRAM_WRITE_B+$0D800000	; initial drawing location
 
 	; south store frame - left side
-	dc.l	PatternHallSouthFrame	; location of pattern to load
+	dc.l	PatternHallSouthFrameLeft	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1100000000000001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D800000	; initial drawing location
 
 	; south store frame - right side
-	dc.l	PatternHallSouthFrame	; location of pattern to load
+	dc.l	PatternHallSouthFrameRight	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1100000000000001	; base pattern
 	dc.w	$0000	; no repeat

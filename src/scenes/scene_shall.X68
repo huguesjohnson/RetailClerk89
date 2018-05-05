@@ -19,8 +19,8 @@ SceneSouthHall:
 	dc.l	TileFloorTilesEnd	; end of hallway tiles
 
 	; tileset 2
-	dc.l	SideStoreEntranceTilesStart	; start of side entrance tiles
-	dc.l	SideStoreEntranceTilesEnd	; end of side entrance tiles
+	dc.l	SideStoreEntranceSquareTilesStart	; start of side entrance tiles
+	dc.l	SideStoreEntranceSquareTilesEnd	; end of side entrance tiles
 
 	; tileset 3
 	dc.l	SimpleTileFloorTilesStart	; start of left side floor tiles
@@ -54,14 +54,14 @@ SceneSouthHall:
 	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
 
 	; top left entrance
-	dc.l	PatternSideEntranceLeft
+	dc.l	PatternSideEntranceLeftTop
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1000000000000101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
 
 	; bottom left entrance
-	dc.l	PatternSideEntranceLeft
+	dc.l	PatternSideEntranceLeftBottom
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1000000000000101	; base pattern
 	dc.w	$0000	; no repeat
@@ -70,19 +70,19 @@ SceneSouthHall:
 	; left side entrance floor
 	dc.l	PatternSideEntranceFloorCarpet
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000001011	; base pattern
+	dc.w	%0000000000001111	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$05000000	; initial drawing location
 
 	; top right entrance
-	dc.l	PatternSideEntranceRight
+	dc.l	PatternSideEntranceRightTop
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1100000000000101	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$004E0000	; initial drawing location
 
 	; bottom right entrance
-	dc.l	PatternSideEntranceRight
+	dc.l	PatternSideEntranceRightBottom
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1100000000000101	; base pattern
 	dc.w	$0000	; no repeat
@@ -91,61 +91,61 @@ SceneSouthHall:
 	; right side entrance floor
 	dc.l	PatternSideEntranceFloorCarpet
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000000001011	; base pattern
+	dc.w	%0100000000001111	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$05000000+$004E0000	; initial drawing location
 
 	; phone high
 	dc.l	Pattern24x16
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000001101	; base pattern
+	dc.w	%1000000000010001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$04000000+$00200000	; initial drawing location
 
 	; phone low
 	dc.l	Pattern24x32
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000010011	; base pattern
+	dc.w	%0000000000010111	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$05000000+$00200000	; initial drawing location
 
 	; phone high
 	dc.l	Pattern24x16
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000001101	; base pattern
+	dc.w	%1000000000010001	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$04000000+$002A0000	; initial drawing location
 
 	; phone low
 	dc.l	Pattern24x32
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000010011	; base pattern
+	dc.w	%0000000000010111	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$05000000+$002A0000	; initial drawing location
 
 	; plant - left side
 	dc.l	PatternLongPlant88High	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000011111		; base pattern
+	dc.w	%1010000000100011		; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0C800000+$00020000	; initial drawing location
 
 	dc.l	PatternLongPlant88Low	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000011111		; base pattern
+	dc.w	%1010000000100011		; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D800000+$00020000	; initial drawing location
 
 	; plant - right side
 	dc.l	PatternLongPlant88High	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000011111		; base pattern
+	dc.w	%1010000000100011		; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0C800000+$00380000	; initial drawing location
 
 	dc.l	PatternLongPlant88Low	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1010000000011111		; base pattern
+	dc.w	%1010000000100011		; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$0D800000+$00380000	; initial drawing location
 
