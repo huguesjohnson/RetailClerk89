@@ -7,8 +7,7 @@ FadeIn:
 	move.w	#$0002,d3	; d3 is the number of times to loop
 LoadSceneFadeInOuterLoop:
 	move.w	d3,d2	; d2 will be used as the lsr loop counter
-	bsr.w	WaitVBlank	; force waiting for a frame
-	bsr.w	WaitVBlank	; force waiting for a frame
+	bsr.w	FadeFrameDelay	; fade in/out delay frames
 	bsr.w	WaitVBlankStart	; wait to load palettes until VBlank starts
 	move.l	#VDP_CRAM_WRITE,(VDP_CONTROL) ; set up VDP write to CRAM
 	lea	(MEM_SCENE_PALETTE),a0	; point a0 to the now previous scene palette
@@ -39,8 +38,7 @@ FadeOut:
 	move.w	#$0000,d3	; d3 is the number of times to loop
 FadeOutOuterLoop:
 	move.w	d3,d2	; d2 will be used as the lsr loop counter
-	bsr.w	WaitVBlank	; force waiting for a frame
-	bsr.w	WaitVBlank	; force waiting for a frame
+	bsr.w	FadeFrameDelay	; fade in/out delay frames
 	bsr.w	WaitVBlankStart	; wait to load palettes until VBlank starts
 	move.l	#VDP_CRAM_WRITE,(VDP_CONTROL) ; set up VDP write to CRAM
 	lea	(MEM_SCENE_PALETTE),a0	; point a0 to the now previous scene palette
@@ -59,4 +57,11 @@ FadeOutLsrLoop:
 	cmpi.w	#$0003,d3	; loop for three shifts
 	blt.s	FadeOutOuterLoop	; loop until fade is complete
 ExitFadeOut:
+	rts	; exit
+
+FadeFrameDelay:
+	move.w	#FADE_FRAME_DELAY,d1	; copy frame delay to d1
+FadeFrameDelayLoop:
+	bsr.w	WaitVBlank	; force waiting for a frame
+	dbf.w	d1,FadeFrameDelayLoop	; frame delay loop
 	rts	; exit
