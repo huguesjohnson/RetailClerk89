@@ -1,4 +1,3 @@
-
 ;-------------------------------------------------------------------------------
 ; default exit scene handler
 ;-------------------------------------------------------------------------------
@@ -63,6 +62,7 @@ DefaultExitSceneUpdatePlayerSprite:
 	; workaround to issue where links aren't set if the table is already sorted	
 	bsr.w	SetSpriteLinks
 ExitDefaultExit:
+	bsr.w	FadeIn ; fade in now that everything is loaded
 	rts
 
 ;-------------------------------------------------------------------------------

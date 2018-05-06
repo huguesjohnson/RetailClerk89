@@ -56,14 +56,14 @@ LoadSceneLoadExits:
 ; load sprite zero and player sprite
 ;-------------------------------------------------------------------------------
 LoadSpriteZeroTiles:
-	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
+	bsr.w	WaitVBlankStart	; added to resolve issue running in Genecyst
 	movea.l	#SpriteZeroTilesStart,a0	; set address of first tile to load
 	move.w	#SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
 	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
 	move.w	#$8,d0	; number of tiles in a sprite tileset
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
-LoadPlayerSpriteTiles:
-	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
+;LoadPlayerSpriteTiles:
+;	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
 	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; which sprite tiles to use?
 	beq.s	.1	; branch to use tiles for Dani
 	movea.l	#PlayerSpriteTilesStart,a0	; set address of first tile to load
@@ -148,19 +148,13 @@ LoadSceneLoadNPCSpritesLoop:
 	cmp.l	#$00000000,a0	; test if there is background music to play
 	bne.s	LoadScenePlayBGM	; there is music to play
 	bsr Echo_StopBGM	; otherwise stop the background music
-	bra.s	LoadSceneFadeIn	; move on
+	bra.s	ExitLoadScene	; move on
 LoadScenePlayBGM:
 	cmp.l	(MEM_SCENE_BGM),a0 ; test if scene BGM is already playing
-	beq.s	LoadSceneFadeIn	; same BGM, branch
+	beq.s	ExitLoadScene	; same BGM, branch
 LoadScenePlayBGMNewBGM:
 	move.l	a0,(MEM_SCENE_BGM)	; save reference to new BGM
 	bsr Echo_PlayBGM	; start the background music
-
-LoadSceneFadeIn:
-;-------------------------------------------------------------------------------
-; fade in new palette
-;-------------------------------------------------------------------------------
-	bsr.w	FadeIn
 
 ExitLoadScene:
 	move.w	#$2000,sr		; re-enable interrupts
@@ -224,14 +218,16 @@ LoadNPC:
 	add.l	#VDP_VRAM_WRITE_SPRITE,d6	; add to sprite table address
 	move.l	d6,(VDP_CONTROL)	; set write location in VDP
 	move.w	(STRUCT_SPRITE_BASE_PATTERN,a3),(VDP_DATA)	; copy the new pattern
+	move.l	a6,a4	; workaround caused by my lack of planning
+	move.l	a3,a6	; setup call to UpdateSpritePattern
+	bsr.w	UpdateSpritePattern ; branch to move SetSpritePattern
 	if	_SPRITE_COLLISION_
 	; block the sprite's initial map positon
-	move.l	a6,a4	; workaround caused by my lack of planning
 	move.l	a3,a6	; setup call to FlipSpriteMapPosition
 	; note - a3, d5, d6, and d7 are modified by this call
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
-	move.l	a4,a6	; workaround caused by my lack of planning
 	endif
+	move.l	a4,a6	; workaround caused by my lack of planning
 ExitLoadNPC:
 	addq	#$1,d2	; increment sprite ID
 	addq	#$1,(MEM_ACTIVE_NPC_COUNT)	; increment active scene NPC count

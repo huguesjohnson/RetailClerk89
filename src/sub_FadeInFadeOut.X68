@@ -4,6 +4,7 @@
 ; a0, d0-d3 are modified
 ;-------------------------------------------------------------------------------
 FadeIn:
+	move.w	#$2700,sr	; disable interrupts
 	move.w	#$0002,d3	; d3 is the number of times to loop
 LoadSceneFadeInOuterLoop:
 	move.w	d3,d2	; d2 will be used as the lsr loop counter
@@ -27,6 +28,7 @@ LoadSceneFadeInWritePaletteEntry:
 	dbf	d0,LoadSceneFadeInInnerLoop	; decrement d0 and loop
 	dbf	d3,LoadSceneFadeInOuterLoop	; decrement d3 and loop
 ExitFadeIn:
+	move.w	#$2000,sr	; re-enable interrupts
 	rts	; exit
 
 ;-------------------------------------------------------------------------------
@@ -35,6 +37,7 @@ ExitFadeIn:
 ; a0, d0-d3 are modified
 ;-------------------------------------------------------------------------------
 FadeOut:
+	move.w	#$2700,sr	; disable interrupts
 	move.w	#$0000,d3	; d3 is the number of times to loop
 FadeOutOuterLoop:
 	move.w	d3,d2	; d2 will be used as the lsr loop counter
@@ -57,6 +60,7 @@ FadeOutLsrLoop:
 	cmpi.w	#$0003,d3	; loop for three shifts
 	blt.s	FadeOutOuterLoop	; loop until fade is complete
 ExitFadeOut:
+	move.w	#$2000,sr	; re-enable interrupts
 	rts	; exit
 
 FadeFrameDelay:

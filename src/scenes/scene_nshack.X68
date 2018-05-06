@@ -253,7 +253,7 @@ SceneNShack:
 
 	dc.w	$0118	; starting x location of npc0
 	dc.w	$0098	; starting y location of npc0
-	dc.w	DIRECTION_LEFT	; starting direction of npc0
+	dc.w	DIRECTION_DOWN	; starting direction of npc0
 	dc.w	$0000	; movement frequency of npc0
 	dc.l	NPCMovementDownStart	; location of movement pattern for npc0
 	dc.w	(NPCMovementDownEnd-NPCMovementDownStart-1)	; pattern length

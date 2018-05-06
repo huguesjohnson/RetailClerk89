@@ -461,6 +461,7 @@ TestTitleLoadIntroScreen:
 	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
 	lea	SceneIntroDay00,a6	; address of the scene for the title screen
 	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	FadeIn	; fade in to the new scene
 	bra.w	MainGameLoop	;	return to start of game loop
 ;-------------------------------------------------------------------------------
 ; end screen
@@ -537,6 +538,7 @@ TestIntroScreenEnd:
 	; workaround to issue where links aren't set if the table is already sorted
 	bsr.w	SetSpriteLinks
 	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset frame counter
+	bsr.w	FadeIn	; fade in now that everything is setup
 	bra.w	MainGameLoop	;	return to start of game loop
 MainGameLoopEnd:
 	; test if sprites need to be reordered
