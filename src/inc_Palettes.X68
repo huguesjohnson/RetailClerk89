@@ -227,7 +227,7 @@ Store06PalettesPaused:
 
 ; store 07 (east hallway east)
 Store07PalettesPaused:
-	include 'palettes/pal_Paused_05.X68'
+	include 'palettes/pal_Paused_01.X68'
 	include 'palettes/pal_Paused_02.X68'
 	include 'palettes/pal_Paused_01.X68'
 	include 'palettes/pal_Paused_03.X68'
@@ -297,7 +297,7 @@ Store10PalettesPaused:
 
 ; store 11 (clothesnow)
 Store11PalettesPaused:
-	include 'palettes/pal_Paused_05.X68'
+	include 'palettes/pal_Paused_01.X68'
 	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_00.X68'
 	include 'palettes/pal_Paused_03.X68'
