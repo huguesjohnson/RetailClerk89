@@ -74,7 +74,7 @@ FindActionTargetObjectLoop:
 	; determine if this is an NPC
 	move.w	#NPC_LIST_LENGTH-1,d2	; if d3<NPC_LIST_LENGTH then we have an NPC
 	sub.w	d3,d2	; subtract d3 from d2
-	bpl.s	.1	; branch if the result is positive
+	bge.s	.1	; branch if the result is positive
 	move.w	#$FFFF,d2	; set NPC id as -1 
 .1
 	move.w	d2,(MEM_ACTION_TARGET_NPCID)	; store NPC id
@@ -84,6 +84,7 @@ FindActionTargetObjectLoopDbra:
 	dbra    d3,FindActionTargetObjectLoop	; decrement and loop
 ActionTargetNotFound:
 	move.w	#OBJ_NOTHING,(MEM_ACTION_TARGET_OBJID)	; nothing by default
+	move.w	#$FFFF,(MEM_ACTION_TARGET_NPCID)	; nothing by default
 ExitFindActionTarget:
 	rts
 
