@@ -355,3 +355,28 @@ ItemNameTable:
 	; OBJ_ITEM_HW_PRNTRIBBON
 	dc.l	ItemNameHWPrintRibbon
 
+;-------------------------------------------------------------------------------
+; store names
+;-------------------------------------------------------------------------------
+StoreNameTable:
+	dc.l	StoreName00
+	dc.l	StoreName01
+	dc.l	StoreName02
+	dc.l	StoreName03
+	dc.l	StoreName04
+	dc.l	StoreName05
+	dc.l	StoreName06
+	dc.l	StoreName07
+	dc.l	StoreName08
+	dc.l	StoreName09
+	dc.l	StoreName0A
+	dc.l	StoreName0B
+	dc.l	StoreName0C
+
+;-------------------------------------------------------------------------------
+; status screen objectives
+;-------------------------------------------------------------------------------
+StatusScreenObjectives:
+	dc.l	StatusScreenDay00Objective00
+	dc.l	StatusScreenDay01Objective00
+

@@ -1,7 +1,6 @@
 ;-------------------------------------------------------------------------------
 ; store palettes
 ;-------------------------------------------------------------------------------
-StorePalettes:
 
 ; store 00 (video buffet)
 Store00Palettes:
@@ -172,179 +171,6 @@ Store17Palettes:
 	include 'palettes/pal_People_00.X68'
 
 ;-------------------------------------------------------------------------------
-; game paused palettes
-;-------------------------------------------------------------------------------
-StorePalettesPaused:
-
-; store 00 (video buffet)
-Store00PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 01 (west hallway west)
-Store01PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 02 (west hallway east)
-Store02PalettesPaused:
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 03 (center)
-Store03PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_05.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 04 (south hallway)
-Store04PalettesPaused:
-	include 'palettes/pal_Paused_04.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_04.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 05 (parking log)
-Store05PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 06 (east hallway west)
-Store06PalettesPaused:
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 07 (east hallway east)
-Store07PalettesPaused:
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 08 (denim country)
-Store08PalettesPaused:
-	include 'palettes/pal_Paused_04.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_03.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 09 (checkers)
-Store09PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 0A (transistor lodge)
-Store0APalettesPaused:
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 0B (the cavern)
-Store0BPalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 0C (sunset video)
-Store0CPalettesPaused:
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 0D (santa's workshop)
-Store0DPalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_05.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 0E (nut shack)
-Store0EPalettesPaused:
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 0F (pogo dawg)
-Store0FPalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 10 (cassette planet)
-Store10PalettesPaused:
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 11 (clothesnow)
-Store11PalettesPaused:
-	include 'palettes/pal_Paused_01.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 12 (bookstore)
-Store12PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 13 (fish or cut bait - checkout)
-Store13PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 14 (fish or cut bait - firearms)
-Store14PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_05.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 15 (fish or cut bait - fishing)
-Store15PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 16 (fish or cut bait - camping)
-Store16PalettesPaused:
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_00.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-; store 17 (south center)
-Store17PalettesPaused:
-	include 'palettes/pal_Paused_04.X68'
-	include 'palettes/pal_Paused_02.X68'
-	include 'palettes/pal_Paused_04.X68'
-	include 'palettes/pal_Paused_03.X68'
-
-;-------------------------------------------------------------------------------
 ; day intro screen palettes
 ;-------------------------------------------------------------------------------
 DayIntroScreenPalettes:
@@ -371,3 +197,11 @@ PaletteEndScreen00:
 	include 'palettes/pal_EndScreen_02.X68'
 	include 'palettes/pal_EndScreen_03.X68'
 
+;-------------------------------------------------------------------------------
+; status screen palettes
+;-------------------------------------------------------------------------------
+PaletteStatusScreen:
+	include 'palettes/pal_StatusScreen_00.X68'
+	include 'palettes/pal_StatusScreen_01.X68'
+	include 'palettes/pal_StatusScreen_02.X68'
+	include 'palettes/pal_StatusScreen_03.X68'

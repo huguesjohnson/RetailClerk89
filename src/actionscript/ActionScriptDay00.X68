@@ -711,6 +711,7 @@ Day00End:
 	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
 	lea	SceneIntroDay01,a6	; address of the scene for the title screen
 	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	FadeIn	; fade-in
 	; queue the scripted event that starts day 1
 	lea ScriptedEventDay01Start,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event

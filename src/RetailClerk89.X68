@@ -102,6 +102,8 @@ SCENE_VDP=$0000			; write location for scene tiles
 FONT_VDP=$1200	; write location for font tiles
 SPRITE_VDP=$2200	; write location for sprite tiles
 PLAYER_SPRITE_VDP=SPRITE_VDP+$0020	; write location for player sprite tiles
+PLAYER_SPRITE_VDP_X=$780E0002	; write location for player sprite x
+PLAYER_SPRITE_VDP_Y=$78080002	; write location for player sprite x
 NPC0_SPRITE_VDP_X=$78100002
 NPC0_SPRITE_VDP_Y=$00160000
 ; screen & plane sizes
@@ -222,22 +224,26 @@ Pause:
 	bset.l	#STATE_FLAG_PAUSED,d7	; set the paused bit
 	; flip to paused palette
 	bsr	Echo_StopBGM	; pause the background music
-	lea	StorePalettesPaused,a0	; point to start of palettes
-	move.w	(MEM_ACTIVE_SCENE_ID),d0	; copy active scene ID to d0
-	mulu.w	#PALETTE_SET_SIZE,d0	; multiply scene ID by size of palette set
-	adda.w	d0,a0	; increment a0 to point to scene palette
-	move.w	#$0004,d0		; number of palettes to load
-	move.l	#VDP_CRAM_WRITE,d1	; initial write address
-	bsr.w	LoadPalettes	; branch to LoadPalettes subroutine
+SetPausedPalette:
+	move.w	#$2700,sr		; disable interrupts
+	lea	(MEM_SCENE_PALETTE),a0	; point a0 to the scene palette
+	bsr.w	WaitVBlankStart	; wait to load palettes until VBlank starts
+	move.l	#VDP_CRAM_WRITE,(VDP_CONTROL) ; set up VDP write to CRAM
+	move.w	#$003F,d0	; 64 words of palette data
+SetPausedPaletteLoop:
+	move.w	(a0)+,d1	; get the next palette entry
+	lsr	#1,d1	; shift color intensity
+	;	      0000BBBSGGGSRRRS
+	and.w	#%0000011001100110,d1	; prevent color overflow
+	move.w	d1,(VDP_DATA)	; write the palette entry
+	dbf	d0,SetPausedPaletteLoop	; decrement d0 and loop
+	move.w	#$2000,sr		; re-enable interrupts
 	bra.s	UpdatePause	; save the paused state
 Unpause:
 	bclr.l	#STATE_FLAG_PAUSED,d7	; clear the paused bit
 	bsr	Echo_ResumeBGM	; unpause the background music
-	lea	StorePalettes,a0	; point to start of palettes
-	move.w	(MEM_ACTIVE_SCENE_ID),d0	; copy active scene ID to d0
-	mulu.w	#PALETTE_SET_SIZE,d0	; multiply scene ID by size of palette set
-	adda.w	d0,a0	; increment a0 to point to scene palette
-	move.w	#$0004,d0		; number of palettes to load
+	lea	(MEM_SCENE_PALETTE),a0	; point to scene palette
+	move.w	#$0004,d0	; number of palettes to load
 	move.l	#VDP_CRAM_WRITE,d1	; initial write address
 	bsr.w	LoadPalettes	; branch to LoadPalettes subroutine
 UpdatePause:
@@ -331,7 +337,7 @@ ScriptedEventChangeSprite:
 TestDialog:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_DIALOG,d7 ; test game state
-	beq.w	TestExploring	; dialog not displaying, move to next test
+	beq.w	TestStatusScreen	; dialog not displaying, move to next test
 TestDialogUpdateFrequency:
 	cmpi.w	#DIALOG_UPDATE_FREQUENCY,(MEM_FRAME_COUNTER); is it time to update?
 	blt.s	TestDialogOpen	; branch if it's not time to move
@@ -348,12 +354,81 @@ TestDialogOpen:
 	bsr.w	ProcessDialog	; dialog is set, jump to process dialog sub-routine
 	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
+; determine if the player is on the status screen
+;-------------------------------------------------------------------------------
+TestStatusScreen:
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	btst.l	#STATE_FLAG_STATUS_SCREEN,d7 ; test game state
+	beq.w	TestExploring	; not in status screen, move to next test
+ProcessStatusScreen:
+ProcessStatusScreenTestBButtonPressed:	; test if the player pressed B
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.b	#BUTTON_B_PRESSED,d6	; test if the B button was pressed
+	beq.w	ExitProcessStatusScreen	; B button is not pressed
+CancelStatusScreen:
+	move.w	(MEM_ACTIVE_SCENE_ID),d6	; copy active scene ID to d6
+	mulu.w	#$4,d6	; multiply by 4 to get offset
+	lea	SceneDefinitionTable,a6	; point a6 to the scene definition table
+	adda.l	d6,a6	; add offset
+	move.l	(a6),a6	; have a6 point to the value at a6
+	move.w	(a6)+,d6	; discard first word
+	bsr.w	DrawScene	; branch to DrawScene subroutine
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bclr.l	#STATE_FLAG_STATUS_SCREEN,d7	; update game state
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+
+ReloadSprites:
+	; reload sprite tiles	
+	bsr.w	LoadSpriteZeroTiles
+	bsr.w	LoadPlayerSpriteTiles
+	; this gets the player tiles back but sprite is in wrong positions
+	bsr.w	LoadPlayerSprite
+	; player will be back at default location
+	if	_SPRITE_COLLISION_
+	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
+	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
+	endif
+	move.l	#PLAYER_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
+	move.w	(MEM_PLAYER_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
+	move.l	#PLAYER_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
+	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; copy the new y-coordinate
+	if	_SPRITE_COLLISION_
+	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
+	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
+	endif
+
+	; this seems to get all the NPC sprites right
+	bsr.w	LoadSceneLoadNPCSprites
+	; needed to get all sprites displaying
+	bsr.w	SetSpriteLinks
+
+	bsr.w	FadeIn	; fade in
+
+
+
+	; do status screen stuff here
+
+
+ExitProcessStatusScreen:
+	bra.w	MainGameLoop	; return to start of game loop
+;-------------------------------------------------------------------------------
 ; determine if the player is in free exploration mode
 ;-------------------------------------------------------------------------------
 TestExploring:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_EXPLORING,d7	; test game state
 	beq.w	TestTitleScreen	; not exploring, branch to next test
+TestCButtonPressed:	; test if the player pressed the C button
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.b	#BUTTON_C_PRESSED,d6	; test if the C button was pressed
+	beq.w	TestAButtonPressed	; C button is not pressed
+	lea	SceneStatus,a6	; address of the scene for the title screen
+	bsr.w	DrawScene	; branch to subroutine to draw the scene
+	bsr.w	FadeIn	; fade in the status screen
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bset.l	#STATE_FLAG_STATUS_SCREEN,d7	; update game state
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	bra.w	MainGameLoop	; go back the start of the game loop
 TestAButtonPressed: ; test if the player pressed the A button
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.b	#BUTTON_A_PRESSED,d6	; test if the A button was pressed
@@ -519,7 +594,7 @@ TestIntroScreenEndDay00Setup:
 	move.w	#$01AF,(MEM_NPC0_SPRITE_Y)	; copy y-coordinate
 	move.w	#$FFFF,(MEM_NPC0_MOVE_FREQUENCY)	; set move frequency to never
 	; update NPC0 in the sprite table
-	lea	PLAYER_SPRITE_VDP,a6
+	;lea	PLAYER_SPRITE_VDP,a6
 	move.l	#NPC0_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC0_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
 	move.l	#NPC0_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP

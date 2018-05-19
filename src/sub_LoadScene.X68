@@ -55,26 +55,8 @@ LoadSceneLoadExits:
 ;-------------------------------------------------------------------------------
 ; load sprite zero and player sprite
 ;-------------------------------------------------------------------------------
-LoadSpriteZeroTiles:
-	bsr.w	WaitVBlankStart	; added to resolve issue running in Genecyst
-	movea.l	#SpriteZeroTilesStart,a0	; set address of first tile to load
-	move.w	#SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
-	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
-	move.w	#$8,d0	; number of tiles in a sprite tileset
-	bsr.w	LoadTiles	; branch to LoadTiles subroutine
-;LoadPlayerSpriteTiles:
-;	bsr.w	WaitVBlank	; added to resolve issue running in Genecyst
-	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; which sprite tiles to use?
-	beq.s	.1	; branch to use tiles for Dani
-	movea.l	#PlayerSpriteTilesStart,a0	; set address of first tile to load
-	bra.s	.2	; branch to write tiles to VPD
-.1	; using the Dani tiles for the player sprite
-	movea.l	#NPCSpriteDaniTilesStart,a0	; set address of first tile to load
-.2	; write tiles to VDP
-	move.w	#PLAYER_SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
-	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
-	move.w	#SPRITE_TILESET_LWORDS,d0	; number of tiles in a sprite tileset
-	bsr.w	LoadTiles	; branch to LoadTiles subroutine
+	bsr.w	LoadSpriteZeroTiles
+	bsr.w	LoadPlayerSpriteTiles
 
 ;-------------------------------------------------------------------------------
 ; load NPCs
@@ -103,36 +85,9 @@ LoadSceneLoadNPCDataLoop:
 	addq	#$1,d6	; increment sprite ID
 	add.w	#NPC_BASE_TILE_INC,d5	; increment base tile
 	dbra    d7,LoadSceneLoadNPCDataLoop
-LoadSceneLoadNPCSprites:
-	; lookup which NPCs sprites are in this scene and add them
-	move.w	#$0000,(MEM_ACTIVE_NPC_COUNT)	; reset active scene NPC count 
-	lea	MEM_NPC_LOCATIONS,a1	; point a1 to the start of the list
-	move.w	(MEM_ACTIVE_SCENE_ID),d5	; copy active scene ID to d5
-	mulu.w	#NPC_LIST_LENGTH,d5	; multiply by list length
-	adda.w	d5,a1	; add result to a1 to move to npc list for active scene
-	;---------------------------------------------------------------------------
-	; setup loop control - 2 NPCs per word in MEM_NPC_LOCATIONS
-	;---------------------------------------------------------------------------
-	move.w	#(NPC_LIST_LENGTH/2)-1,d3	; use d3 for loop control
-	;---------------------------------------------------------------------------
-	; loop through all NPCs in the scene and add their sprites
-	;---------------------------------------------------------------------------
-	move.w	#$0002,d2	; use d2 to track sprite ID
 
-LoadSceneLoadNPCSpritesLoop:
-	move.w	(a1)+,d4	; copy next NPC pair to d4
-	move.w	d4,d5	; use d5 for first byte
-	and.w	#$FF00,d5	; clear low byte	
-	beq.s	.1	; branch if the result of the and is zero
-	lsr.w	#$8,d5	; shift upper word to lower
-	jsr	LoadNPC	; load this NPC sprite
-.1	; second NPC in the pair
-	move.w	d4,d5	; copy NPC pair to d5 again
-	and.w	#$00FF,d5	; clear high byte
-	beq.s	.2	; branch if the result of the and is zero
-	jsr	LoadNPC	; load this NPC sprite
-.2
-	dbra d3,LoadSceneLoadNPCSpritesLoop	; loop
+	bsr.w	LoadSceneLoadNPCSprites
+
 	; once all NPCs have been added, rebuild the object list
 	bsr.w	BuildNPCObjectList
 
@@ -160,6 +115,38 @@ ExitLoadScene:
 	move.w	#$2000,sr		; re-enable interrupts
 	rts
 
+LoadSceneLoadNPCSprites:
+	; lookup which NPCs sprites are in this scene and add them
+	move.w	#$0000,(MEM_ACTIVE_NPC_COUNT)	; reset active scene NPC count 
+	lea	MEM_NPC_LOCATIONS,a1	; point a1 to the start of the list
+	move.w	(MEM_ACTIVE_SCENE_ID),d5	; copy active scene ID to d5
+	mulu.w	#NPC_LIST_LENGTH,d5	; multiply by list length
+	adda.w	d5,a1	; add result to a1 to move to npc list for active scene
+	;---------------------------------------------------------------------------
+	; setup loop control - 2 NPCs per word in MEM_NPC_LOCATIONS
+	;---------------------------------------------------------------------------
+	move.w	#(NPC_LIST_LENGTH/2)-1,d3	; use d3 for loop control
+	;---------------------------------------------------------------------------
+	; loop through all NPCs in the scene and add their sprites
+	;---------------------------------------------------------------------------
+	move.w	#$0002,d2	; use d2 to track sprite ID
+LoadSceneLoadNPCSpritesLoop:
+	move.w	(a1)+,d4	; copy next NPC pair to d4
+	move.w	d4,d5	; use d5 for first byte
+	and.w	#$FF00,d5	; clear low byte	
+	beq.s	.1	; branch if the result of the and is zero
+	lsr.w	#$8,d5	; shift upper word to lower
+	jsr	LoadNPC	; load this NPC sprite
+.1	; second NPC in the pair
+	move.w	d4,d5	; copy NPC pair to d5 again
+	and.w	#$00FF,d5	; clear high byte
+	beq.s	.2	; branch if the result of the and is zero
+	jsr	LoadNPC	; load this NPC sprite
+.2
+	dbra d3,LoadSceneLoadNPCSpritesLoop	; loop
+ExitLoadSceneLoadNPCSprites:
+	rts
+
 LoadNPC:
 	lea	CharacterDefinitionStart,a2	; point a2 to the character definition
 	; d5 contains NPC ID
@@ -185,7 +172,7 @@ LoadNPC:
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 	; --------------------------------------------------------------------------
 	; update x, y, and pattern in the sprite table
-	; this could be optimized a bit to use fewer calculation
+	; this could be optimized a bit to use fewer calculations
 	; --------------------------------------------------------------------------
 	; y
 	move.l	d2,d6	; copy sprite ID to d1

@@ -10,6 +10,7 @@ STATE_FLAG_TITLE_SCREEN=$05	; title screen is displaying
 STATE_FLAG_EXITS_BLOCKED=$06	; blocks sprite from leaving scene
 STATE_FLAG_END_SCREEN=$07	; end screen is displaying
 STATE_FLAG_INTRO_SCREEN=$08	; day intro screen is displaying
+STATE_FLAG_STATUS_SCREEN=$09	; status screen is displaying
 ;-------------------------------------------------------------------------------
 ; dialog state flags
 ;-------------------------------------------------------------------------------

@@ -25,6 +25,8 @@
 
 	include	'sub_LoadPlayerSprite.X68'
 
+	include	'sub_LoadSpriteTiles.X68'
+
 	include 'sub_FindActionTarget.X68'
 
 	include 'sub_BuildNPCObjectList.X68'

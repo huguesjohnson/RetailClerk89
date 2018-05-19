@@ -1,3 +1,9 @@
+Pattern8x8:
+	dc.w	$0000	; 1 row
+	dc.w	$0000	; 1 column
+	; row 00
+	dc.w	$00
+
 Pattern8x16:
 	dc.w	$0001	; 2 rows
 	dc.w	$0000	; 1 column
@@ -213,6 +219,14 @@ Pattern72x16:
 	dc.w	$00,$01,$02,$03,$04,$05,$06,$07,$08
 	; row 01
 	dc.w	$09,$0A,$0B,$0C,$0D,$0E,$0F,$10,$11
+
+Pattern80x16:
+	dc.w	$0001	; 2 rows
+	dc.w	$0009	; A columns
+	; row 00
+	dc.w	$00,$01,$02,$03,$04,$05,$06,$07,$08,$09
+	; row 01
+	dc.w	$0A,$0B,$0C,$0D,$0E,$0F,$10,$11,$12,$13
 
 Pattern96x16:
 	dc.w	$0001	; 2 rows

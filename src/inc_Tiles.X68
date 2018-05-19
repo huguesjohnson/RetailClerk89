@@ -524,6 +524,21 @@ Scene17StaffNPCTilesStart:
 Scene17StaffNPCTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; status screen tiles
+;-------------------------------------------------------------------------------
+StatusScreenMapTilesStart:
+	include 'tiles/scene-tiles/tileset_status-map.X68'
+StatusScreenMapTilesEnd:
+
+StatusScreenMallLogoTilesStart:
+	include 'tiles/scene-tiles/tileset_status-mall-logo.X68'
+StatusScreenMallLogoTilesEnd:
+
+StatusScreenMapIconTilesStart:
+	include 'tiles/scene-tiles/tileset_status-map-icon.X68'
+StatusScreenMapIconTilesEnd:
+
+;-------------------------------------------------------------------------------
 ; used for development builds only
 ;-------------------------------------------------------------------------------
 	if	_DEBUG_

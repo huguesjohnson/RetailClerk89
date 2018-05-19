@@ -1421,6 +1421,88 @@ Day01IntroTip5:
 	dc.b	"Talk to NPCs to see what items they want",ETX
 
 ;-------------------------------------------------------------------------------
+; status screen
+;-------------------------------------------------------------------------------
+StatusScreenInventory:
+	dc.b	"Inventory",ETX
+
+StatusScreenSave:
+	dc.b	"Save",ETX
+
+StatusScreenStoreKeys:
+	dc.b	"Store keys",ETX
+
+StatusScreenYouAreHere:
+	dc.b	" = you are here",ETX
+
+StatusScreenDay00Objective00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"November 19, 1989: Your first day",LF
+	dc.b	"1) Help the customer who won't leave.",LF
+	dc.b	"2) Go home.",ETX
+
+StatusScreenDay01Objective00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"November 26, 1989: Black Friday",LF
+	dc.b	"How are all your friends handling",LF
+	dc.b	"the busiest day of the year?",ETX
+
+;-------------------------------------------------------------------------------
+; store names
+;-------------------------------------------------------------------------------
+StoreName00:
+	;		"1234567890123456"
+	dc.b	"Video Buffet"
+
+StoreName01:
+	;		"1234567890123456"
+	dc.b	"Cassette Planet"
+
+StoreName02:
+	;		"1234567890123456"
+	dc.b	"ThoreauBooks"
+
+StoreName03:
+	;		"1234567890123456"
+	dc.b	"ClothesNow"
+
+StoreName04:
+	;		"1234567890123456"
+	dc.b	"Pogo Dawg"
+
+StoreName05:
+	;		"1234567890123456"
+	dc.b	"Nut Shack"
+
+StoreName06:
+	;		"1234567890123456"
+	dc.b	"Checkers"
+
+StoreName07:
+	;		"1234567890123456"
+	dc.b	"The Cavern"
+
+StoreName08:
+	;		"1234567890123456"
+	dc.b	"Denim Country"
+
+StoreName09:
+	;		"1234567890123456"
+	dc.b	"Transistor Lodge"
+
+StoreName0A:
+	;		"1234567890123456"
+	dc.b	"Sunset Video"
+
+StoreName0B:
+	;		"1234567890123456"
+	dc.b	"Fish or Cut Bait"
+
+StoreName0C:
+	;		"1234567890123456"
+	dc.b	"Santa's Workshop"
+
+;-------------------------------------------------------------------------------
 ; end
 ;-------------------------------------------------------------------------------
 	align 2
