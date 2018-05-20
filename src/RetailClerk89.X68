@@ -152,6 +152,8 @@ SCENE_COUNT=$18	; total number of scenes
 ACTION_COUNT=$04	; total number of actions
 ACTION_COUNT_X4=(ACTION_COUNT*4)
 SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
+; used for status screen
+STATUS_SCREEN_MAP_ICON_BASE_PATTERN=%1110000000010001
 ; other constants
 CHAR_DQUOTE=$22	; ACSII code for double quote character
 MAX_ITEMS=$04	; maximum number of items the player can carry
@@ -364,6 +366,9 @@ ProcessStatusScreen:
 ProcessStatusScreenTestBButtonPressed:	; test if the player pressed B
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.b	#BUTTON_B_PRESSED,d6	; test if the B button was pressed
+
+	; do status screen stuff here
+
 	beq.w	ExitProcessStatusScreen	; B button is not pressed
 CancelStatusScreen:
 	move.w	(MEM_ACTIVE_SCENE_ID),d6	; copy active scene ID to d6
@@ -376,7 +381,6 @@ CancelStatusScreen:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	bclr.l	#STATE_FLAG_STATUS_SCREEN,d7	; update game state
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-
 ReloadSprites:
 	; reload sprite tiles	
 	bsr.w	LoadSpriteZeroTiles
@@ -396,19 +400,11 @@ ReloadSprites:
 	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
 	endif
-
 	; this seems to get all the NPC sprites right
 	bsr.w	LoadSceneLoadNPCSprites
 	; needed to get all sprites displaying
 	bsr.w	SetSpriteLinks
-
 	bsr.w	FadeIn	; fade in
-
-
-
-	; do status screen stuff here
-
-
 ExitProcessStatusScreen:
 	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
@@ -424,6 +420,7 @@ TestCButtonPressed:	; test if the player pressed the C button
 	beq.w	TestAButtonPressed	; C button is not pressed
 	lea	SceneStatus,a6	; address of the scene for the title screen
 	bsr.w	DrawScene	; branch to subroutine to draw the scene
+	bsr.w	BuildStatusScreen	; build the status screen
 	bsr.w	FadeIn	; fade in the status screen
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	bset.l	#STATE_FLAG_STATUS_SCREEN,d7	; update game state
@@ -754,6 +751,11 @@ TrapException:
 ; action table
 ;*******************************************************************************
 	include	'table_Actions.X68'
+
+;*******************************************************************************
+; status map icon location
+;*******************************************************************************
+	include	'table_StatusMapIconLocation.X68'
 
 	org	ROM_ADDR_RESOURCES
 

@@ -61,8 +61,7 @@ SceneStatus:
 
 	; map icon
 	dc.l	Pattern8x8	; location of pattern to load
-	; 		 pccvhnnnnnnnnnnn
-	dc.w	%1110000000010001	; base pattern
+	dc.w	STATUS_SCREEN_MAP_ICON_BASE_PATTERN	; base pattern
 	dc.w	$0000	; repeat 1 time
 	dc.l	VDP_VRAM_WRITE_A+$00020000+$07000000	; initial drawing location
 

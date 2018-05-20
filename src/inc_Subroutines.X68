@@ -69,5 +69,7 @@
 
 	include	'sub_FadeInFadeOut.X68'
 
+	include	'sub_BuildStatusScreen.X68'
+
 	include	'sub_EndDemo.X68'
 
