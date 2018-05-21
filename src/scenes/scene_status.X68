@@ -75,7 +75,7 @@ SceneStatus:
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
-	dc.w	$0003	; text count
+	dc.w	$0007	; text count
 
 	; caption for items
 	dc.l	StatusScreenInventory	; location of string to display
@@ -89,7 +89,7 @@ SceneStatus:
 
 	; caption for store keys
 	dc.l	StatusScreenStoreKeys	; location of string to display
-	dc.w	DIALOG_BASE_TILE+%0010000000000000	; base pattern
+	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$00800000+$00300000	; initial drawing location
 
 	; caption for map
@@ -97,4 +97,20 @@ SceneStatus:
 	dc.w	DIALOG_BASE_TILE+%0010000000000000	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$00040000+$07000000	; initial drawing location
 
+	; default save message
+	dc.l	StatusScreenEmptySave	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$00200000+$0B000000	; initial drawing location
+
+	dc.l	StatusScreenEmptySave	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$00200000+$0B800000	; initial drawing location
+
+	dc.l	StatusScreenEmptySave	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$00200000+$0C000000	; initial drawing location
+
+	dc.l	StatusScreenEmptySave	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$00200000+$0C800000	; initial drawing location
 

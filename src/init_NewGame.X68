@@ -17,6 +17,7 @@ InitGameState:
 	and.l	#$00000000,(MEM_SCENE_BGM)	; clear BGM
 	move.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; initial sprite
 	bsr.w	ClearPlayerInventory	; clear player inventory
+	and.l	#$00000000,(MEM_PLAYER_STORE_KEYS)	; clear store keys
 
 ;-------------------------------------------------------------------------------
 ; load the initial NPC locations

@@ -60,6 +60,7 @@ MEM_SCRIPTED_SPRITE_ADDR,4,which sprite to move
 ;-------------------------------------------------------------------------------
 MEM_PLAYER_ITEM_COUNT,2,how many items the player is holding
 MEM_PLAYER_ITEMS,8,four items
+MEM_PLAYER_STORE_KEYS,4,track which store keys the player has
 ;-------------------------------------------------------------------------------
 ; dialog & menu management
 ;-------------------------------------------------------------------------------
@@ -67,7 +68,7 @@ MEM_MENU_SELECTION,2,which menu item is selected - used for sprite
 MEM_MENU_RESPONSE,2,which dialog choice was selected
 MEM_DIALOG_FLAGS,4,used to manage dialogs
 MEM_DIALOG_TEXT,4,pointer to location of dialog text
-MEM_DIALOG_VPD,4,pointer to VPD location to write text
+MEM_DIALOG_VDP,4,pointer to VPD location to write text
 MEM_DIALOG_ITEM_LIST,4,pointer to location of item list to display
 MEM_DIALOG_ITEM_INDEX,2,track which item in the list is being drawn
 ;-------------------------------------------------------------------------------

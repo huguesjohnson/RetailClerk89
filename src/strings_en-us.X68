@@ -1438,69 +1438,77 @@ StatusScreenYouAreHere:
 StatusScreenDay00Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"November 19, 1989: Your first day",LF
-	dc.b	"1) Help the customer who won't leave.",LF
-	dc.b	"2) Go home.",ETX
+	;		"1234567890123456789012345678901234567"
+	dc.b	"1) Help the customer who won't leave",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"2) Go home",ETX
 
 StatusScreenDay01Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"November 26, 1989: Black Friday",LF
+	;		"1234567890123456789012345678901234567"
 	dc.b	"How are all your friends handling",LF
+	;		"1234567890123456789012345678901234567"
 	dc.b	"the busiest day of the year?",ETX
+
+StatusScreenEmptySave:
+	;		"1234567890123456789012"
+	dc.b	"{(not implemented yet)",ETX
 
 ;-------------------------------------------------------------------------------
 ; store names
 ;-------------------------------------------------------------------------------
 StoreName00:
 	;		"1234567890123456"
-	dc.b	"Video Buffet"
+	dc.b	"Video Buffet",ETX
 
 StoreName01:
 	;		"1234567890123456"
-	dc.b	"Cassette Planet"
+	dc.b	"Cassette Planet",ETX
 
 StoreName02:
 	;		"1234567890123456"
-	dc.b	"ThoreauBooks"
+	dc.b	"ThoreauBooks",ETX
 
 StoreName03:
 	;		"1234567890123456"
-	dc.b	"ClothesNow"
+	dc.b	"ClothesNow",ETX
 
 StoreName04:
 	;		"1234567890123456"
-	dc.b	"Pogo Dawg"
+	dc.b	"Pogo Dawg",ETX
 
 StoreName05:
 	;		"1234567890123456"
-	dc.b	"Nut Shack"
+	dc.b	"Nut Shack",ETX
 
 StoreName06:
 	;		"1234567890123456"
-	dc.b	"Checkers"
+	dc.b	"Checkers",ETX
 
 StoreName07:
 	;		"1234567890123456"
-	dc.b	"The Cavern"
+	dc.b	"The Cavern",ETX
 
 StoreName08:
 	;		"1234567890123456"
-	dc.b	"Denim Country"
+	dc.b	"Denim Country",ETX
 
 StoreName09:
 	;		"1234567890123456"
-	dc.b	"Transistor Lodge"
+	dc.b	"Transistor Lodge",ETX
 
 StoreName0A:
 	;		"1234567890123456"
-	dc.b	"Sunset Video"
+	dc.b	"Sunset Video",ETX
 
 StoreName0B:
 	;		"1234567890123456"
-	dc.b	"Fish or Cut Bait"
+	dc.b	"Fish or Cut Bait",ETX
 
 StoreName0C:
 	;		"1234567890123456"
-	dc.b	"Santa's Workshop"
+	dc.b	"Santa's Workshop",ETX
 
 ;-------------------------------------------------------------------------------
 ; end
