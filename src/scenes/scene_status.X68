@@ -40,17 +40,17 @@ SceneStatus:
 	dc.l	PatternStatusItems	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0000000000000000	
-	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
 	dc.w	$0000	; repeat 1 time
-	dc.l	VDP_VRAM_WRITE_A+$0A000000+$00020000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$0A000000+$00020000	; initial drawing location
 
 	; save
 	dc.l	PatternStatusSave	; location of pattern to load
 	; pccvhnnnnnnnnnnn
 	; 0000000000000000	
-	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
 	dc.w	$0000	; repeat 1 time
-	dc.l	VDP_VRAM_WRITE_A+$0A000000+$001E0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$0A000000+$001E0000	; initial drawing location
 
 	; map
 	dc.l	PatternStatusMap	; location of pattern to load
@@ -63,14 +63,14 @@ SceneStatus:
 	dc.l	Pattern8x8	; location of pattern to load
 	dc.w	STATUS_SCREEN_MAP_ICON_BASE_PATTERN	; base pattern
 	dc.w	$0000	; repeat 1 time
-	dc.l	VDP_VRAM_WRITE_A+$00020000+$07000000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00020000+$07000000	; initial drawing location
 
 	; mall logo
 	dc.l	Pattern80x16	; location of pattern to load
 	; 		 pccvhnnnnnnnnnnn
 	dc.w	%0110000000010010	; base pattern
 	dc.w	$0000	; repeat 1 time
-	dc.l	VDP_VRAM_WRITE_A+$00800000+$00020000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00800000+$00020000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text
@@ -79,38 +79,38 @@ SceneStatus:
 
 	; caption for items
 	dc.l	StatusScreenInventory	; location of string to display
-	dc.w	DIALOG_BASE_TILE	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$0A800000+$00040000	; initial drawing location
+	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
+	dc.l	VDP_VRAM_WRITE_B+$0A800000+$00040000	; initial drawing location
 
 	; caption for save
 	dc.l	StatusScreenSave	; location of string to display
-	dc.w	DIALOG_BASE_TILE	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$0A800000+$00200000	; initial drawing location
+	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
+	dc.l	VDP_VRAM_WRITE_B+$0A800000+$00200000	; initial drawing location
 
 	; caption for store keys
 	dc.l	StatusScreenStoreKeys	; location of string to display
-	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$00800000+$00300000	; initial drawing location
+	dc.w	DIALOG_BASE_TILE_LOW+%0110000000000000	; base pattern
+	dc.l	VDP_VRAM_WRITE_B+$00800000+$00300000	; initial drawing location
 
 	; caption for map
 	dc.l	StatusScreenYouAreHere	; location of string to display
-	dc.w	DIALOG_BASE_TILE+%0010000000000000	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$00040000+$07000000	; initial drawing location
+	dc.w	DIALOG_BASE_TILE_LOW+%0010000000000000	; base pattern
+	dc.l	VDP_VRAM_WRITE_B+$00040000+$07000000	; initial drawing location
 
 	; default save message
 	dc.l	StatusScreenEmptySave	; location of string to display
-	dc.w	DIALOG_BASE_TILE	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$00200000+$0B000000	; initial drawing location
+	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
+	dc.l	VDP_VRAM_WRITE_B+$00200000+$0B000000	; initial drawing location
 
 	dc.l	StatusScreenEmptySave	; location of string to display
-	dc.w	DIALOG_BASE_TILE	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$00200000+$0B800000	; initial drawing location
+	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
+	dc.l	VDP_VRAM_WRITE_B+$00200000+$0B800000	; initial drawing location
 
 	dc.l	StatusScreenEmptySave	; location of string to display
-	dc.w	DIALOG_BASE_TILE	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$00200000+$0C000000	; initial drawing location
+	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
+	dc.l	VDP_VRAM_WRITE_B+$00200000+$0C000000	; initial drawing location
 
 	dc.l	StatusScreenEmptySave	; location of string to display
-	dc.w	DIALOG_BASE_TILE	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$00200000+$0C800000	; initial drawing location
+	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
+	dc.l	VDP_VRAM_WRITE_B+$00200000+$0C800000	; initial drawing location
 

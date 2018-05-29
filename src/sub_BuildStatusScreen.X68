@@ -1,5 +1,16 @@
 BuildStatusScreen:
 	;---------------------------------------------------------------------------
+	; load sprite zero
+	;---------------------------------------------------------------------------
+	bsr.w	LoadSpriteZeroTiles	; load the tiles
+	; reload the sprite definition
+	lea     SpriteZeroDefinition,a0	; store address of sprite definition
+	move.w  #$01,d0	; 1 sprite = 2 longs
+	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
+.Loop:
+	move.l  (a0)+,(VDP_DATA)
+	dbra    d0,.Loop
+	;---------------------------------------------------------------------------
 	; determine spot for "you are here" icon
 	;---------------------------------------------------------------------------
 	move.w	(MEM_ACTIVE_SCENE_ID),d6	; copy active scene ID to d6
@@ -31,7 +42,7 @@ BuildStatusScreenObjectiveTextLoop:
 .1
 	; update d6 to point to the tile ID
 	sub.w	#$20,d6	; subtract 32 to get the character index
-	add.w	#DIALOG_BASE_TILE+%0010000000000000,d6	; add the base tile
+	add.w	#DIALOG_BASE_TILE_LOW+%0010000000000000,d6	; add the base tile
 	move.l	(MEM_DIALOG_VDP),(VDP_CONTROL)	; set VDP address
 	move.w  d6,(VDP_DATA)	; copy the character to VDP
 	; draw the next character
@@ -63,10 +74,10 @@ BuildStatusScreenStoreKeysLoopNextChar:
 	sub.w	#$20,d6	; subtract 32 to get the character index
 	btst.l	d7,d5	; does the player have this key?
 	beq.s	.1	; branch if player does not have the key
-	add.w	#DIALOG_BASE_TILE+%0010000000000000,d6	; add the base tile
+	add.w	#DIALOG_BASE_TILE_LOW+%0010000000000000,d6	; add the base tile
 	bra.s	.2
 .1
-	add.w	#DIALOG_BASE_TILE+%0100000000000000,d6	; add the base tile
+	add.w	#DIALOG_BASE_TILE_LOW+%0100000000000000,d6	; add the base tile
 .2
 	move.l	(MEM_DIALOG_VDP),(VDP_CONTROL)	; set VDP address
 	move.w  d6,(VDP_DATA)	; copy the character to VDP
@@ -77,7 +88,7 @@ BuildStatusScreenStoreKeysLoopDec:
 	dbra	d7,BuildStatusScreenStoreKeysLoop
 BuildStatusScreenInventory:
 	cmpi.w	#$0000,(MEM_PLAYER_ITEM_COUNT)	; is item count 0?
-	ble.w	ExitBuildStatusScreen	; branch if no items
+	ble.w	BuildStatusScreenNoItems	; branch if no items
 	move.w	(MEM_PLAYER_ITEM_COUNT),d7	; use d7 to loop through items
 	subq.w	#$1,d7	; loop counter needs to be one less than item count
 BuildStatusScreenInventoryLoop:
@@ -101,22 +112,56 @@ BuildStatusScreenInventoryLoop:
 	move.l	(a6),a0	; point a0 to the start of the next item name
 	; menu character for next item
 	clr	d6	; lazy way to prevent various bugs
-	move.w	#DIALOG_BASE_TILE+%0000000001011011,d6
+	move.w	#DIALOG_BASE_TILE_LOW+%0000000001011011,d6
 	move.l	(MEM_DIALOG_VDP),(VDP_CONTROL)	; set VDP address
 	add.l	#$00020000,(MEM_DIALOG_VDP)	; move to the next column
 	move.w  d6,(VDP_DATA)	; copy the character to VDP
 BuildStatusScreenInventoryLoopNextChar:
 	clr	d6	; lazy way to prevent various bugs
-	move.b	(a0)+,d6
-	cmpi.b	#ITEMNAMEEND,d6
-	beq.s	BuildStatusScreenInventoryLoopDec
+	move.b	(a0)+,d6	; copy the next character to d6
+	cmpi.b	#ITEMNAMEEND,d6	; test if this is the end of the item name
+	beq.s	BuildStatusScreenInventoryLoopDec	; branch if end of name
 	sub.w	#$20,d6	; subtract 32 to get the character index
-	add.w	#DIALOG_BASE_TILE,d6
+	add.w	#DIALOG_BASE_TILE_LOW,d6	; add base tile
 	move.l	(MEM_DIALOG_VDP),(VDP_CONTROL)	; set VDP address
 	move.w  d6,(VDP_DATA)	; copy the character to VDP
 	add.l	#$00020000,(MEM_DIALOG_VDP)	; move to the next column
 	bra.s	BuildStatusScreenInventoryLoopNextChar
 BuildStatusScreenInventoryLoopDec:
-	dbra	d7,BuildStatusScreenInventoryLoop
+	dbra	d7,BuildStatusScreenInventoryLoop	; decrement and branch
+	;---------------------------------------------------------------------------
+	; move the selector icon to the first item
+	;---------------------------------------------------------------------------
+	move.w	#$0004,(MEM_MENU_SELECTION)	; set menu selection to first item
+	;---------------------------------------------------------------------------
+	; update y
+	;---------------------------------------------------------------------------
+	move.l	#VDP_VRAM_WRITE_SPRITE,d6	; add to sprite table address
+	move.l	d6,(VDP_CONTROL)	; set write location in VDP
+	move.w	#$0130,(VDP_DATA)	; copy the new y-coordinate
+	;---------------------------------------------------------------------------
+	; update x
+	;---------------------------------------------------------------------------
+	add.l	#$00060000,d6	; move to x-coordinate
+	move.l	d6,(VDP_CONTROL)	; set write location in VDP
+	move.w	#$0090,(VDP_DATA)	; copy the new x-coordinate
+	bra.s	ExitBuildStatusScreen	; exit
+BuildStatusScreenNoItems:
+	;---------------------------------------------------------------------------
+	; move the selector icon to the first save slot
+	;---------------------------------------------------------------------------
+	move.w	#$0000,(MEM_MENU_SELECTION)	; set menu selection to first save slot
+	;---------------------------------------------------------------------------
+	; update y
+	;---------------------------------------------------------------------------
+	move.l	#VDP_VRAM_WRITE_SPRITE,d6	; add to sprite table address
+	move.l	d6,(VDP_CONTROL)	; set write location in VDP
+	move.w	#$0130,(VDP_DATA)	; copy the new y-coordinate
+	;---------------------------------------------------------------------------
+	; update x
+	;---------------------------------------------------------------------------
+	add.l	#$00060000,d6	; move to x-coordinate
+	move.l	d6,(VDP_CONTROL)	; set write location in VDP
+	move.w	#$0100,(VDP_DATA)	; copy the new x-coordinate
 ExitBuildStatusScreen:
 	rts

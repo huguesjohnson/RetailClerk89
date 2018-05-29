@@ -211,7 +211,7 @@ ProcessDialogTestButtonPressUp:	; up
 	bsr.w	FourChoiceUpDown	; inc/dec works the same
 	bra.s	.A	; move to next step
 .9	
-	bsr.w	DecrementMenuSelection	; increment the menu selection
+	bsr.w	DecrementMenuSelection	; decrement the menu selection
 .A
 	move.w	#$0000,(MEM_CONTROL_PRESSED)	; clear pressed buttons
 	bsr.w	MoveSelectorSprite	; move the selector sprite

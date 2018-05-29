@@ -71,5 +71,7 @@
 
 	include	'sub_BuildStatusScreen.X68'
 
+	include 'sub_ProcessStatusScreen.X68'
+
 	include	'sub_EndDemo.X68'
 

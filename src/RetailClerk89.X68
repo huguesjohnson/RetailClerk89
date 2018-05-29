@@ -134,6 +134,7 @@ OBJ_LIST_STRUCT_SIZE=$0006	; size of the data structure for object list entries
 ; dialog constants
 DIALOG_PATTERN_SIZE=$00C4	; size of the dialog pattern
 DIALOG_BASE_TILE=$8090	; base tile for dialogs
+DIALOG_BASE_TILE_LOW=$0090	; base tile for dialogs (low)
 DIALOG_ROWCOL=$09900000	; row 19 column 16=(128*19)+16=2448=990
 DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
 DIALOG_MENU_INIT_SELECTION_X=$C8	; x coordinate of initial menu selection
@@ -154,9 +155,9 @@ ACTION_COUNT_X4=(ACTION_COUNT*4)
 SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
 ; used for status screen
 STATUS_SCREEN_MAP_ICON_BASE_PATTERN=%1110000000010001
-STATUS_SCREEN_OBJECTIVE_VDP=VDP_VRAM_WRITE_A+$00020000+$08000000
-STATUS_SCREEN_STOREKEYS_VDP=VDP_VRAM_WRITE_A+$01300000
-STATUS_SCREEN_INVENTORY_VDP=VDP_VRAM_WRITE_A+$00040000+$0B000000
+STATUS_SCREEN_OBJECTIVE_VDP=VDP_VRAM_WRITE_B+$00020000+$08000000
+STATUS_SCREEN_STOREKEYS_VDP=VDP_VRAM_WRITE_B+$01300000
+STATUS_SCREEN_INVENTORY_VDP=VDP_VRAM_WRITE_B+$00040000+$0B000000
 ; other constants
 CHAR_DQUOTE=$22	; ACSII code for double quote character
 MAX_ITEMS=$04	; maximum number of items the player can carry
@@ -365,50 +366,10 @@ TestStatusScreen:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	btst.l	#STATE_FLAG_STATUS_SCREEN,d7 ; test game state
 	beq.w	TestExploring	; not in status screen, move to next test
-ProcessStatusScreen:
-ProcessStatusScreenTestBButtonPressed:	; test if the player pressed B
-	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
-	andi.b	#BUTTON_B_PRESSED,d6	; test if the B button was pressed
-
-	; do status screen stuff here
-
-	beq.w	ExitProcessStatusScreen	; B button is not pressed
-CancelStatusScreen:
-	move.w	(MEM_ACTIVE_SCENE_ID),d6	; copy active scene ID to d6
-	mulu.w	#$4,d6	; multiply by 4 to get offset
-	lea	SceneDefinitionTable,a6	; point a6 to the scene definition table
-	adda.l	d6,a6	; add offset
-	move.l	(a6),a6	; have a6 point to the value at a6
-	move.w	(a6)+,d6	; discard first word
-	bsr.w	DrawScene	; branch to DrawScene subroutine
-	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
-	bclr.l	#STATE_FLAG_STATUS_SCREEN,d7	; update game state
-	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-ReloadSprites:
-	; reload sprite tiles	
-	bsr.w	LoadSpriteZeroTiles
-	bsr.w	LoadPlayerSpriteTiles
-	; this gets the player tiles back but sprite is in wrong positions
-	bsr.w	LoadPlayerSprite
-	; player will be back at default location
-	if	_SPRITE_COLLISION_
-	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
-	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
-	endif
-	move.l	#PLAYER_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_PLAYER_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
-	move.l	#PLAYER_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; copy the new y-coordinate
-	if	_SPRITE_COLLISION_
-	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
-	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
-	endif
-	; this seems to get all the NPC sprites right
-	bsr.w	LoadSceneLoadNPCSprites
-	; needed to get all sprites displaying
-	bsr.w	SetSpriteLinks
-	bsr.w	FadeIn	; fade in
-ExitProcessStatusScreen:
+	;---------------------------------------------------------------------------
+	; player is on the status screen
+	;---------------------------------------------------------------------------
+	bsr.w	ProcessStatusScreen	; branch to process the status screen
 	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
 ; determine if the player is in free exploration mode
