@@ -20,7 +20,7 @@
 ;*******************************************************************************
 
 ;*******************************************************************************
-; conditional compilation directives
+; these are effectively conditional compilation directives
 ;*******************************************************************************
 _DEBUG_=$1	; enable/disable debug mode
 _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
@@ -48,6 +48,7 @@ _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
 	include	'const_RomMap.X68'
 	include 'const_SceneIDs.X68'
 	include	'const_StructFields.X68'
+	include	'const_StoreKeys.X68'
 
 ; sprite settings
 SPRITE_BASE_PATTERN=$6110	; base pattern of sprites
@@ -554,6 +555,11 @@ TestIntroScreenEndDay00Setup:
 	move.w	#$017F,(MEM_NPC0_SPRITE_X)	; copy x-coordinate
 	move.w	#$01AF,(MEM_NPC0_SPRITE_Y)	; copy y-coordinate
 	move.w	#$FFFF,(MEM_NPC0_MOVE_FREQUENCY)	; set move frequency to never
+	; fix order in sprite sort table
+	move.w	#$0002,d2	; NPC0 is the sprite to update
+	move.w	(MEM_NPC0_SPRITE_Y),d3	; new y-value	
+	bsr.w	UpdateSpriteSortTable	; update the table
+	bsr.w	OrderSprites	; force re-sort
 	; update NPC0 in the sprite table
 	;lea	PLAYER_SPRITE_VDP,a6
 	move.l	#NPC0_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP

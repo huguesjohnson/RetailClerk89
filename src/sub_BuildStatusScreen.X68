@@ -4,7 +4,7 @@ BuildStatusScreen:
 	;---------------------------------------------------------------------------
 	bsr.w	LoadSpriteZeroTiles	; load the tiles
 	; reload the sprite definition
-	lea     SpriteZeroDefinition,a0	; store address of sprite definition
+	lea     SpriteZeroLowDefinition,a0	; store address of sprite definition
 	move.w  #$01,d0	; 1 sprite = 2 longs
 	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
 .Loop:
@@ -101,12 +101,12 @@ BuildStatusScreenInventoryLoop:
 	; get the name of the next item
 	clr	d6	; lazy way to prevent various bugs
 	move.w	d7,d6
-	mulu.w	#$0002,d6
+	mulu.w	#WORD_SIZE,d6
 	lea	MEM_PLAYER_ITEMS,a6	; point a6 to player items
 	adda.l	d6,a6	; move to offset
 	move.w	(a6),d6	; copy item number to d6
 	and.w	#$0FFF,d6	; clear out item mask
-	mulu.w	#$0004,d6	
+	mulu.w	#LWORD_SIZE,d6	; addresses are 1 lword
 	lea	ItemNameTable,a6	; point a6 to the lookup table
 	adda.l	d6,a6	; move to offset
 	move.l	(a6),a0	; point a0 to the start of the next item name

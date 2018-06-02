@@ -356,6 +356,45 @@ ItemNameTable:
 	dc.l	ItemNameHWPrintRibbon
 
 ;-------------------------------------------------------------------------------
+; item descriptions
+;-------------------------------------------------------------------------------
+ItemDescriptionTable:
+	; OBJ_ITEM_NOTHING
+	dc.l	$00000000
+	; OBJ_ITEM_MAG_GAMEPRO
+	dc.l	ItemDescriptionMagGamePro
+	; OBJ_ITEM_MAG_EGM
+	dc.l	ItemDescriptionMagEGM
+	; OBJ_ITEM_MAG_ANTIC
+	dc.l	ItemDescriptionMagAntic
+	; OBJ_ITEM_MAG_ANALOG
+	dc.l	ItemDescriptionMagAnalog
+	; OBJ_ITEM_8BIT_MEGAMAN2
+	dc.l	ItemDescription8BitMegaMan2
+	; OBJ_ITEM_8BIT_SHADOWGATE
+	dc.l	ItemDescription8BitShadowgate
+	; OBJ_ITEM_8BIT_BAYOUBILLY
+	dc.l	ItemDescription8BitBayouBilly
+	; OBJ_ITEM_8BIT_TMNT
+	dc.l	ItemDescription8BitTMNT
+	; OBJ_ITEM_16BIT_GOLDENAXE
+	dc.l	ItemDescription16BitGoldenAxe
+	; OBJ_ITEM_16BIT_LASTBATTLE
+	dc.l	ItemDescription16BitLastBattle
+	; OBJ_ITEM_16BIT_GALAGA90
+	dc.l	ItemDescription16BitGalaga90
+	; OBJ_ITEM_16BIT_VIGILANTE
+	dc.l	ItemDescription16BitVigilante
+	; OBJ_ITEM_HW_SBLASTER
+	dc.l	ItemDescriptionHWSBlaster
+	; OBJ_ITEM_HW_PRODIGY
+	dc.l	ItemDescriptionHWProdigy
+	; OBJ_ITEM_HW_35DISKS
+	dc.l	ItemDescriptionHW35Disks
+	; OBJ_ITEM_HW_PRNTRIBBON
+	dc.l	ItemDescriptionHWPrintRibbon
+
+;-------------------------------------------------------------------------------
 ; store names
 ;-------------------------------------------------------------------------------
 StoreNameTable:

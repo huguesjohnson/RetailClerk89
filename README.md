@@ -10,9 +10,13 @@ Basic framework for:
 * Capturing controller input and moving a sprite based on it
 * Playing and pausing background music
 * Collision detection
-* Very simple game state management
-* Basic game script and event handling capabilities
-* Single room demo used to test all this stuff
+* Game state management
+* Game script and event processing
+* Dialog between characters
+* Branching dialog based on player choices
+* Transition between main playable characters
+* Title screens, intro screens, and ending screens
+* Short demo used to test all this stuff
 
 **Not implemented**
 
@@ -26,3 +30,10 @@ vasmm68k_mot -o RetailClerk89.bin -Fbin -spaces RetailClerk89.X68
 * the 'spaces' option was added to avoid headaches when linking to code from projects using an assembler that ignores spaces in statements
 
 This has been fully tested on Gens and BlastEm for Linux. It has been minimally tested on Genecyst and Gens for Windows. The latest build has issues on Genesis Plus and derivatives.
+
+**Disclaimers**
+
+This demo is (obviously) not licensed by Sega, there is no relationship between the author of this demo and Sega.
+
+Although this demo is inspired by late 80s mall culture all locations, characters, and events are fictitious. 
+

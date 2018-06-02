@@ -15,6 +15,7 @@ STATE_FLAG_STATUS_SCREEN=$09	; status screen is displaying
 ; dialog state flags
 ;-------------------------------------------------------------------------------
 ; high word of MEM_DIALOG_FLAGS is used to track the state
+DIALOG_FLAG_OPTION_PERSIST_SELECTOR=$14	; don't hide the selector after closing
 DIALOG_FLAG_STYLE_ITEM_MENU=$15	; item menu dialog
 DIALOG_FLAG_STYLE_MENU=$16	; overworld menu style dialog
 DIALOG_FLAG_STYLE_TEXT_4CHOICE=$17	; dialog has text with selection at the end

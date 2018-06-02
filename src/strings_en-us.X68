@@ -24,7 +24,7 @@ TitleScreenTextNewGame:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"    Unstable Spring 2018 WIP Build    ",ETX
+	dc.b	"     Mall Walker Demo (June 2018)     ",ETX
 
 ;-------------------------------------------------------------------------------
 ; end screen
@@ -1270,7 +1270,7 @@ NPCNameWorkshopStaff1:
 	dc.b	"Anthony",NPCNAMEEND
 
 ;-------------------------------------------------------------------------------
-; item names
+; item names and descriptions
 ;-------------------------------------------------------------------------------
 ItemNameNothing:
 	;		"1234567890"
@@ -1280,65 +1280,143 @@ ItemNameMagGamePro:
 	;		"1234567890"
 	dc.b	"GamePro",ITEMNAMEEND
 
+ItemDescriptionMagGamePro:
+	;		"1234567890123456789012"
+	dc.b	"Featuring a review of",LF
+	dc.b	"The Wizard movie.",ETX
+
 ItemNameMagEGM:
 	;		"1234567890"
 	dc.b	"EGM",ITEMNAMEEND
+
+ItemDescriptionMagEGM:
+	;		"1234567890123456789012"
+	dc.b	"Special 1990 buyer's",LF
+	dc.b	"guide included.",ETX
 
 ItemNameMagAntic:
 	;		"1234567890"
 	dc.b	"Antic",ITEMNAMEEND
 
+ItemDescriptionMagAntic:
+	;		"1234567890123456789012"
+	dc.b	"Includes source code",LF
+	dc.b	"for 4 programs.",ETX
+
 ItemNameMagAnalog:
 	;		"1234567890"
 	dc.b	"Analog",ITEMNAMEEND
+
+ItemDescriptionMagAnalog:
+	;		"1234567890123456789012"
+	dc.b	"This issue has a",LF
+	dc.b	"6502 assembler guide.",ETX
 
 ItemName8BitMegaMan2:
 	;		"1234567890"
 	dc.b	"Mega Man 2",ITEMNAMEEND
 
+ItemDescription8BitMegaMan2:
+	;		"1234567890123456789012"
+	dc.b	"The box is kinda dorky",LF
+	dc.b	"but it's selling.",ETX
+
 ItemName8BitShadowgate:
 	;		"1234567890"
 	dc.b	"Shadowgate",ITEMNAMEEND
+
+ItemDescription8BitShadowgate:
+	;		"1234567890123456789012"
+	dc.b	"It looks kinda creepy.",ETX
 
 ItemName8BitBayouBilly:
 	;		"1234567890"
 	dc.b	"BayouBilly",ITEMNAMEEND
 
+ItemDescription8BitBayouBilly:
+	;		"1234567890123456789012"
+	dc.b	"Fighting, driving, and",LF
+	dc.b	"racing in one game.",ETX
+
 ItemName8BitTMNT:
 	;		"1234567890"
 	dc.b	"TMNT",ITEMNAMEEND
+
+ItemDescription8BitTMNT:
+	;		"1234567890123456789012"
+	dc.b	"Not sure this is what",LF
+	dc.b	"people are expecting.",ETX
 
 ItemName16BitGoldenAxe:
 	;		"1234567890"
 	dc.b	"Golden Axe",ITEMNAMEEND
 
+ItemDescription16BitGoldenAxe:
+	;		"1234567890123456789012"
+	dc.b	"These characters need",LF
+	dc.b	"more clothing.",ETX
+
 ItemName16BitLastBattle:
 	;		"1234567890"
 	dc.b	"LastBattle",ITEMNAMEEND
+
+ItemDescription16BitLastBattle:
+	;		"1234567890123456789012"
+	dc.b	"The 'Last Battle', we",LF
+	dc.b	"can only hope.",ETX
 
 ItemName16BitGalaga90:
 	;		"1234567890"
 	dc.b	"Galaga '90",ITEMNAMEEND
 
+ItemDescription16BitGalaga90:
+	;		"1234567890123456789012"
+	dc.b	"A new take on an",LF
+	dc.b	"arcade classic.",ETX
+
 ItemName16BitVigilante:
 	;		"1234567890"
 	dc.b	"Vigilante",ITEMNAMEEND
+
+ItemDescription16BitVigilante:
+	;		"1234567890123456789012"
+	dc.b	"Video game girlfriends",LF
+	dc.b	"get kidnapped a lot.",ETX
 
 ItemNameHWSBlaster:
 	;		"1234567890"
 	dc.b	"SndBlaster",ITEMNAMEEND
 
+ItemDescriptionHWSBlaster:
+	;		"1234567890123456789012"
+	dc.b	"The latest in computer",LF
+	dc.b	"audio technology.",ETX
+
 ItemNameHWProdigy:
 	;		"1234567890"
 	dc.b	"Prodigy",ITEMNAMEEND
+
+ItemDescriptionHWProdigy:
+	;		"1234567890123456789012"
+	dc.b	"Includes the modem and",LF
+	dc.b	"software.",ETX
 
 ItemName35Disks:
 	;		"123  4            567890"
 	dc.b	"3.5",CHAR_DQUOTE," disks",ITEMNAMEEND
 
+ItemDescriptionHW35Disks:
+	;		"1234567890123456789012"
+	dc.b	"10-pack of 1.44 MB",LF
+	dc.b	"high-density disks.",ETX
+
 ItemNameHWPrintRibbon:
 	;		"1234567890"
 	dc.b	"PrntRibbon",ITEMNAMEEND
+
+ItemDescriptionHWPrintRibbon:
+	;		"1234567890123456789012"
+	dc.b	"Prints 1,000+ pages.",ETX
 
 ;-------------------------------------------------------------------------------
 ; store signs
@@ -1454,6 +1532,11 @@ StatusScreenDay01Objective00:
 StatusScreenEmptySave:
 	;		"1234567890123456789012"
 	dc.b	"{(not implemented yet)",ETX
+
+StatusScreenSaveDialog:
+	;		"1234567890123456789012"
+	dc.b	"Nope, saving is still",LF
+	dc.b	"not coded. Try later.",ETX
 
 ;-------------------------------------------------------------------------------
 ; store names

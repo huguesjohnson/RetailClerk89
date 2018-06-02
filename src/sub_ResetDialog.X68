@@ -21,6 +21,10 @@ ResetDialog:
 	bset.l	#DIALOG_FLAG_STYLE_SIMPLE_TEXT,d7	; set simple text style flag
 	bclr.l	#DIALOG_FLAG_SELECTION_WAIT,d7	; clear waiting for selection flag
 	move.l	d7,(MEM_DIALOG_FLAGS) ; copy game state back to d7
+	; test for option to persist the selector
+	btst.l	#DIALOG_FLAG_OPTION_PERSIST_SELECTOR,d7	; test option
+	bne.s	ExitResetDialog	; exit if flag is set
 	move.w	#DIALOG_NO_RESPONSE,(MEM_MENU_SELECTION)	; reset menu selection
 	bsr.w	HideSelectorSprite	; hide the selection icon
+ExitResetDialog:
 	rts

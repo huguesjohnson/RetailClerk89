@@ -1,8 +1,42 @@
 ProcessStatusScreen:
-ProcessStatusScreenTestBButtonPressed:	; test if the player pressed B
+	clr.w	d6	; lazy workaround to prevent some bugs
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
-	cmpi.w	#$0000,d6	; are any buttons pressed?
-	beq.w	ExitProcessStatusScreen ; no buttons are pressed, exit
+	cmpi.w	#$00,d6	; are any buttons pressed?
+	beq.w	ExitProcessStatusScreen	; exit
+ProcessStatusScreenTestACButtonPressed:	; test if the player pressed A
+	cmpi.w	#BUTTON_A_PRESSED,d6	; test if the A button was pressed
+	beq.s	ProcessStatusScreenACButtonPressed	; A button is pressed
+	cmpi.w	#BUTTON_C_PRESSED,d6	; test if the C button was pressed
+	bne.w	ProcessStatusScreenTestBButtonPressed	; C button is not pressed
+ProcessStatusScreenACButtonPressed:
+	; setup dialog
+	bsr.w	SetDialogOpening	; setup dialog
+	; set flag to not hide the selector after closing
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy current dialog state to d7
+	bset.l	#DIALOG_FLAG_OPTION_PERSIST_SELECTOR,d7	; set option
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save changes made to the dialog options
+	move.w	(MEM_MENU_SELECTION),d6	; copy menu selection to d6
+	; test if the selector is on the save or item menu
+	cmpi.w	#$0004,d6	; 0-3 are save, 4-7 are items
+	blt.s	ProcessStatusScreenACButtonPressedSave	; branch to save logic
+ProcessStatusScreenACButtonPressedItem:
+	; lookup description of selected item
+	subq.w	#$0004,d6	; subtract 4 to get item slot
+	mulu.w	#WORD_SIZE,d6	; items are 1 word
+	lea	MEM_PLAYER_ITEMS,a6	; point a6 to player items
+	adda.l	d6,a6	; move to offset
+	move.w	(a6),d6	; copy item number to d6
+	and.w	#$0FFF,d6	; clear out item mask
+	mulu.w	#LWORD_SIZE,d6	; addresses are 1 lword
+	lea	ItemDescriptionTable,a6	; point a6 to the lookup table
+	adda.l	d6,a6	; move to offset
+	move.l	(a6),(MEM_DIALOG_TEXT)	; copy value at a6 to MEM_DIALOG_TEXT
+	bra.w	ExitProcessStatusScreen	; exit
+ProcessStatusScreenACButtonPressedSave:
+	lea	StatusScreenSaveDialog,a6	; point a6 to the dialog text
+	move.l	a6,(MEM_DIALOG_TEXT)	; copy value at a6 to MEM_DIALOG_TEXT
+	bra.w	ExitProcessStatusScreen	; exit
+ProcessStatusScreenTestBButtonPressed:	; test if the player pressed B
 	cmpi.w	#BUTTON_B_PRESSED,d6	; test if the B button was pressed
 	bne.w	ProcessStatusScreenTestDPad	; B button is not pressed
 CancelStatusScreen:

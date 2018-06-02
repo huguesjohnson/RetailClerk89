@@ -14,7 +14,7 @@
 ;	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag
 ;	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 ;	move.l	(MEM_PLAYER_STORE_KEYS),d7
-;	bset.l	#$8,d7
+;	bset.l	#STORE_KEY_DCOUNTRY,d7
 ;	move.l	d7,(MEM_PLAYER_STORE_KEYS)
 ;
 ;	; queue the scripted event
@@ -24,9 +24,9 @@
 	;---------------------------------------------------------------------------
 	; used to test closing animation on day 0 scene 0
 	;---------------------------------------------------------------------------
-;	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
-;	bset.l	#$7,d7	; set flag 7
-;	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
+	bset.l	#$7,d7	; set flag 7
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
 
 	;---------------------------------------------------------------------------
 	; used to test exit sequence on day 0 scene 0

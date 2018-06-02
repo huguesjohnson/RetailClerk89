@@ -119,7 +119,10 @@ TestLF:
 ProcessDialogTextEnd:
 	bclr.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; done drawing, clear flag
 	bset.l	#DIALOG_FLAG_TEXT_OPEN,d7	; change state to open when done
+	btst.l	#DIALOG_FLAG_OPTION_PERSIST_SELECTOR,d7	; test option
+	bne.s	.3	; skip next step if persist selector option is set
 	move.w	#$0000,(MEM_MENU_SELECTION)	; select first item
+.3
 	move.w	#DIALOG_NO_RESPONSE,(MEM_MENU_RESPONSE)	; clear response
 	move.w	#$0000,(MEM_ACTIVE_ITEM)	; clear active item
 	bsr.w	MoveSelectorSprite	; move selector sprite if needed
@@ -231,7 +234,9 @@ ProcessDialogTestButtonPressC:	; c
 ProcessDialogSetClosing:
 	bset.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; set closing flag
 	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; closing, clear open flag
-	bsr.w	HideSelectorSprite	; hide selector sprite
+	btst.l	#DIALOG_FLAG_OPTION_PERSIST_SELECTOR,d7	; hide the selector?
+	bne.s	ExitProcessDialog	; don't hide if flag is set
+	bsr.w	HideSelectorSprite	; hide selector sprite if flag not set
 	bra.s	ExitProcessDialog	; exit
 ProcessDialogTestClosing:
 	btst.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; test if the dialog is closing
@@ -406,6 +411,9 @@ MoveSelectorSprite:	; this also sets DIALOG_FLAG_SELECTION_WAIT if appropriate
 	; store sprite x in d4, sprite y in d5
 	move.w	#$0000,d4	; set to 0 by default
 	move.w	#$0000,d5	; set to 0 by default
+	; test for option to persist the selector
+	btst.l	#DIALOG_FLAG_OPTION_PERSIST_SELECTOR,d7	; test flag
+	bne.w	ExitMoveSelectorSprite	; exit if flag is set
 	btst.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; test if the dialog is closing
 	bne.s	MoveSelectorSpriteUpdateXY	; flag is set move to update VDP section
 	btst.l	#DIALOG_FLAG_STYLE_MENU,d7	; test if this is a menu
