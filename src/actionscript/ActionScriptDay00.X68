@@ -92,8 +92,6 @@ Day00Scene00Register:
 	bsr.w QueueScriptedEvent	; queue the event
 	; update NPC locations
 	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	; current scene is 00 so no need to move pointer
-	move.l	#$03000000,(a5)	; update NPCs in scene 00
 	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
 	mulu.w	#LWORD_SIZE,d7	; multiply by word size
 	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
@@ -690,8 +688,9 @@ Day00Scene17Action03R0:
 ;-------------------------------------------------------------------------------
 Day00End:
 	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
-	; update NPCs in the parking lot
+	; update NPC locations
 	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.l	#$03000000,(a5)	; update NPCs in scene 00
 	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
 	mulu.w	#LWORD_SIZE,d7	; multiply by word size
 	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
@@ -707,6 +706,9 @@ Day00End:
 	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)	; clear day event flags
 	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission event flags
 	and.l	#$00000000,(MEM_SCENE_BGM)	; clear the background music reference
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7	; set the key that the player starts with
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; copy back
 	; set the intro screen counter
 	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
 	lea	SceneIntroDay01,a6	; address of the scene for the title screen
