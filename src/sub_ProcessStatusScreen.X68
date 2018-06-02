@@ -51,7 +51,7 @@ CancelStatusScreen:
 	bclr.l	#STATE_FLAG_STATUS_SCREEN,d7	; update game state
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 ReloadSprites:
-	; reload sprite tiles	
+	; reload sprite tiles
 	bsr.w	LoadSpriteZeroTiles
 	bsr.w	LoadPlayerSpriteTiles
 	; this gets the player tiles back but sprite is in wrong positions
@@ -70,9 +70,11 @@ ReloadSprites:
 	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
 	endif
 	; this seems to get all the NPC sprites right
+	move.w	#$2700,sr		; disable interrupts
 	bsr.w	LoadSceneLoadNPCSprites
 	; needed to get all sprites displaying
 	bsr.w	SetSpriteLinks
+	move.w	#$2000,sr		; re-enable interrupts
 	bsr.w	FadeIn	; fade in
 	bra.w	ExitProcessStatusScreen	; exit
 ProcessStatusScreenTestDPad:
