@@ -46,7 +46,7 @@ UpdateSpritePattern:
 	moveq	#$8,d7	; set animation frame to 1*8
 	bra.s	.3	; move to add step
 .2	; 3 logic
-	move.w	#$0010,d7	; set animation frame to 2*8
+	moveq	#$0010,d7	; set animation frame to 2*8
 .3: ; add (frame*8) to pattern
 	add.w	d7,d6 	; add result to d6
 DrawSprite:

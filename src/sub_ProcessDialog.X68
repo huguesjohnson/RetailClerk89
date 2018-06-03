@@ -10,7 +10,7 @@ ProcessDialogTestOpening:
 	movea.l	#PatternDialogClear,a0	; point a0 to start of dialog patterns
 	adda.l	d6,a0	; increment to current frame
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
-	move.w	#$0000,d1	; repeat
+	moveq	#$0000,d1	; repeat
 	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	addq	#$1,d7	; increment frame number
@@ -150,7 +150,7 @@ ProcessDialogTestButtonPress:
 	; clear out the dialog
 	movea.l	#PatternDialogFull,a0	; point a0 to start of dialog patterns
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
-	move.w	#$0000,d1	; repeat
+	moveq	#$0000,d1	; repeat
 	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	; reset flags to force text to start re-drawing
@@ -248,7 +248,7 @@ ProcessDialogTestClosing:
 	movea.l	#PatternDialogClear,a0	; point a0 to start of dialog patterns
 	adda.l	d6,a0	; decrement to current frame
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
-	move.w	#$0000,d1	; repeat
+	moveq	#$0000,d1	; repeat
 	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	subq	#$1,d7	; decrement frame number
@@ -409,8 +409,8 @@ ExitHideSelectorSprite:
 
 MoveSelectorSprite:	; this also sets DIALOG_FLAG_SELECTION_WAIT if appropriate
 	; store sprite x in d4, sprite y in d5
-	move.w	#$0000,d4	; set to 0 by default
-	move.w	#$0000,d5	; set to 0 by default
+	moveq	#$0000,d4	; set to 0 by default
+	moveq	#$0000,d5	; set to 0 by default
 	; test for option to persist the selector
 	btst.l	#DIALOG_FLAG_OPTION_PERSIST_SELECTOR,d7	; test flag
 	bne.w	ExitMoveSelectorSprite	; exit if flag is set
@@ -422,7 +422,7 @@ MoveSelectorSprite3Choice:
 	bset.l	#DIALOG_FLAG_SELECTION_WAIT,d7	; set waiting for selection flag 
 	move.w	#DIALOG_MENU_INIT_SELECTION_X,d4	; x value
 	; move x value based on which item is selected
-	move.w	#$0038,d6	; the selections are 38 apart
+	moveq	#$0038,d6	; the selections are 38 apart
 	mulu.w	(MEM_MENU_SELECTION),d6	; multiply by selection number
 	add.w	d6,d4	; add result to x
 	move.w	#DIALOG_MENU_INIT_SELECTION_Y,d5	; y value
@@ -435,7 +435,7 @@ MoveSelectorSprite2Choice:
 	move.w	#DIALOG_MENU_INIT_SELECTION_X,d4	; x value
 	move.w	#DIALOG_MENU_INIT_SELECTION_Y,d5	; y value
 	; move y value based on which item is selected
-	move.w	#$0008,d6	; the selections are 8 apart
+	moveq	#$0008,d6	; the selections are 8 apart
 	mulu.w	(MEM_MENU_SELECTION),d6	; multiply by selection number
 	add.w	d6,d5	; add result to y
 MoveSelectorSprite4Choice:
@@ -448,7 +448,7 @@ MoveSelectorSprite4Choice:
 	; if selection is 1 or 3 then move y value
 	btst.l	#$0,d6	; test if the first bit is set
 	beq.s	MoveSelectorSprite4ChoiceX	; branch if not
-	add.w	#$0008,d5	; increment y value to move down
+	addq	#$0008,d5	; increment y value to move down
 MoveSelectorSprite4ChoiceX:	; if selection is 2 or 3 then move x value
 	btst.l	#$1,d6	; test if the second bit is set
 	beq.s	MoveSelectorSpriteUpdateXY	; branch if not

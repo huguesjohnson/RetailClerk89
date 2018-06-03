@@ -63,7 +63,7 @@ LoadSceneLoadExits:
 ;-------------------------------------------------------------------------------
 LoadSceneLoadNPCData:
 	move.w	(a6)+,d7	; number of NPC slots in the scene
-	move.w	#$0002,d6	; use d6 to track sprite ID
+	moveq	#$0002,d6	; use d6 to track sprite ID
 	move.w	#NPC0_BASE_TILE,d5	; use d5 to track the base tile
 	lea	MEM_NPC0_SPRITE_ID,a0	; point a0 to the first NPC sprite
 	cmpi.w	#(NPC_LIST_LENGTH-1),d7	; test to defend against my own stupidity
@@ -129,7 +129,7 @@ LoadSceneLoadNPCSprites:
 	;---------------------------------------------------------------------------
 	; loop through all NPCs in the scene and add their sprites
 	;---------------------------------------------------------------------------
-	move.w	#$0002,d2	; use d2 to track sprite ID
+	moveq	#$0002,d2	; use d2 to track sprite ID
 LoadSceneLoadNPCSpritesLoop:
 	move.w	(a1)+,d4	; copy next NPC pair to d4
 	move.w	d4,d5	; use d5 for first byte

@@ -5,14 +5,14 @@
 ;-------------------------------------------------------------------------------
 FadeIn:
 	move.w	#$2700,sr	; disable interrupts
-	move.w	#$0002,d3	; d3 is the number of times to loop
+	moveq	#$0002,d3	; d3 is the number of times to loop
 LoadSceneFadeInOuterLoop:
 	move.w	d3,d2	; d2 will be used as the lsr loop counter
 	bsr.w	FadeFrameDelay	; fade in/out delay frames
 	bsr.w	WaitVBlankStart	; wait to load palettes until VBlank starts
 	move.l	#VDP_CRAM_WRITE,(VDP_CONTROL) ; set up VDP write to CRAM
 	lea	(MEM_SCENE_PALETTE),a0	; point a0 to the now previous scene palette
-	move.w	#$003F,d0	; 64 words of palette data
+	moveq	#$003F,d0	; 64 words of palette data
 LoadSceneFadeInInnerLoop:
 	move.w	(a0)+,d1	; get the next palette entry
 	tst.w	d3	; is d3 0?

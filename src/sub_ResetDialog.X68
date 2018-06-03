@@ -7,7 +7,7 @@ ResetDialog:
 	; clear out the dialog
 	movea.l	#PatternDialogFull,a0	; point a0 to start of dialog patterns
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
-	move.w	#$0000,d1	; repeat
+	moveq	#$0000,d1	; repeat
 	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	; reset flags to force text to start re-drawing

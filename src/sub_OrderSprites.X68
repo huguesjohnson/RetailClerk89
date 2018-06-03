@@ -19,12 +19,12 @@ OrderSprites:
 	; handle case where there are 0 NPCs
 	;---------------------------------------------------------------------------
 	; have sprite zero point to the player sprite
-	move.w	#$0000,d2	; sprite zero is the sprite to edit
-	move.w	#$0001,d3	; player sprite is the sprite to link to
+	moveq	#$0000,d2	; sprite zero is the sprite to edit
+	moveq	#$0001,d3	; player sprite is the sprite to link to
 	bsr.w	SetSpriteLink	; set the sprite link
 	; have player sprite point to sprite zero
-	move.w	#$0001,d2	; player sprite is the sprite to edit
-	move.w	#$0000,d3	; sprite zero is the sprite to link to
+	moveq	#$0001,d2	; player sprite is the sprite to edit
+	moveq	#$0000,d3	; sprite zero is the sprite to link to
 	bsr.w	SetSpriteLink	; set the sprite link
 	bra.w	ExitOrderSprites	; exit
 SpriteYSortLoopOuter:

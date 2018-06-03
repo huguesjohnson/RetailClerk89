@@ -66,7 +66,7 @@ LoadTitleScene:
 ; sprite zero is used on the menu screen
 LoadSpriteZero:
 	lea     SpriteZeroDefinition,a0	; store address of sprite definition
-	move.w  #$01,d0	; 1 sprite = 2 longs
+	moveq	#$01,d0	; 1 sprite = 2 longs
 	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
 LoadSpriteZeroLoop:
 	move.l  (a0)+,(VDP_DATA)

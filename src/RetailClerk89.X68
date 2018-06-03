@@ -236,7 +236,7 @@ SetPausedPalette:
 	lea	(MEM_SCENE_PALETTE),a0	; point a0 to the scene palette
 	bsr.w	WaitVBlankStart	; wait to load palettes until VBlank starts
 	move.l	#VDP_CRAM_WRITE,(VDP_CONTROL) ; set up VDP write to CRAM
-	move.w	#$003F,d0	; 64 words of palette data
+	moveq	#$003F,d0	; 64 words of palette data
 SetPausedPaletteLoop:
 	move.w	(a0)+,d1	; get the next palette entry
 	lsr	#1,d1	; shift color intensity
@@ -250,7 +250,7 @@ Unpause:
 	bclr.l	#STATE_FLAG_PAUSED,d7	; clear the paused bit
 	bsr	Echo_ResumeBGM	; unpause the background music
 	lea	(MEM_SCENE_PALETTE),a0	; point to scene palette
-	move.w	#$0004,d0	; number of palettes to load
+	moveq	#$0004,d0	; number of palettes to load
 	move.l	#VDP_CRAM_WRITE,d1	; initial write address
 	bsr.w	LoadPalettes	; branch to LoadPalettes subroutine
 UpdatePause:
@@ -583,14 +583,6 @@ TestIntroScreenEnd:
 	bsr.w	FadeIn	; fade in now that everything is setup
 	bra.w	MainGameLoop	;	return to start of game loop
 MainGameLoopEnd:
-	; test if sprites need to be reordered
-	tst.w	(MEM_SPRITE_Y_ORDER_CHANGED)	; has the sprite Y order changed?
-	beq.w	MainGameLoop	; hasn't changed, no need to order sprites
-	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
-	btst.l	#STATE_FLAG_EXPLORING,d7	; test game state
-	beq.w	MainGameLoop	; not exploring, no need to order sprites
-	; else order sprites and loop
-	bsr.w	OrderSprites	; reorder the sprites
 	bra.w	MainGameLoop	; return to start of game loop
 
 ;-------------------------------------------------------------------------------
@@ -603,7 +595,7 @@ WaitVBlank:
 WaitVBlankStart:
 	move.w	VDP_CONTROL,d0	; copy VDP status to d0
    	andi.w	#VDP_STATUS_VBLANK,d0	; check if the vblank status flag is set
-	beq.s	WaitVBlankStart	; wait for vblank to complete
+	beq.s	WaitVBlankStart	; wait for vblank to start
 	rts	; exit
 WaitVBlankEnd:
 	move.w	VDP_CONTROL,d0	; copy VDP status to d0
@@ -627,6 +619,16 @@ VBlank:
 
 VBlankReadJoypads:
 	bsr.w	ReadJoypads					; read controllers
+
+VBlankOrderSprites:
+	; test if sprites need to be re-ordered
+	tst.w	(MEM_SPRITE_Y_ORDER_CHANGED)	; has the sprite Y order changed?
+	beq.s	VBlankExit	; hasn't changed, no need to order sprites
+	move.l	(MEM_GAME_STATE),d0	; copy current game state to d0
+	btst.l	#STATE_FLAG_EXPLORING,d0	; test game state
+	beq.s	VBlankExit	; not exploring, no need to order sprites
+	; else order sprites and loop
+	bsr.w	OrderSprites	; reorder the sprites
 
 VBlankExit:
 	rte

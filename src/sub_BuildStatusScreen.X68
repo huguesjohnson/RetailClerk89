@@ -5,7 +5,7 @@ BuildStatusScreen:
 	bsr.w	LoadSpriteZeroTiles	; load the tiles
 	; reload the sprite definition
 	lea     SpriteZeroLowDefinition,a0	; store address of sprite definition
-	move.w  #$01,d0	; 1 sprite = 2 longs
+	moveq	#$01,d0	; 1 sprite = 2 longs
 	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
 .Loop:
 	move.l  (a0)+,(VDP_DATA)
@@ -49,7 +49,7 @@ BuildStatusScreenObjectiveTextLoop:
 	add.l	#$00020000,(MEM_DIALOG_VDP)	; move to the next column
 	bra.w	BuildStatusScreenObjectiveTextLoop ; loop until ETX
 BuildStatusScreenStoreKeys:
-	move.w	#$000C,d7	; loop counter / key number
+	moveq	#$000C,d7	; loop counter / key number
 BuildStatusScreenStoreKeysLoop:
 	; determine start position for next store name	
 	clr	d6	; lazy way to prevent various bugs

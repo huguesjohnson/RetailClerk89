@@ -1,7 +1,7 @@
 ProcessStatusScreen:
 	clr.w	d6	; lazy workaround to prevent some bugs
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
-	cmpi.w	#$00,d6	; are any buttons pressed?
+	;cmpi.w	#$00,d6	; are any buttons pressed?
 	beq.w	ExitProcessStatusScreen	; exit
 ProcessStatusScreenTestACButtonPressed:	; test if the player pressed A
 	cmpi.w	#BUTTON_A_PRESSED,d6	; test if the A button was pressed

@@ -5,7 +5,7 @@
 ;-------------------------------------------------------------------------------
 SetSpriteLinks:
 	; sprite zero points to the first record in the table
-	move.w	#$0000,d2
+	moveq	#$0000,d2
 	move.w	(MEM_SPRITE_SORT_TABLE_ID0),d3
 	bsr.w	SetSpriteLink
 	; loop through the others
@@ -13,11 +13,11 @@ SetSpriteLinks:
 	bne.s	.1	; exit if there aren't any NPCs
 	; no NPC sprites - set last link and exit
 	move.w	(MEM_SPRITE_SORT_TABLE_ID0),d2
-	move.w	#$0000,d3
+	moveq	#$0000,d3
 	bsr.w	SetSpriteLink
 	bra.s	ExitSetSpriteLinks	; exit
 .1
-	subq.w	#$1,d4	; NPC_COUNT-1 is size of loop
+	subq	#$1,d4	; NPC_COUNT-1 is size of loop
 	lea	MEM_SPRITE_SORT_TABLE_ID0,a4	; point a4 to the second of sort table
 SetSpriteLinksLoop:
 	move.w	(a4),d2	; copy sprite ID to d2
@@ -28,7 +28,7 @@ SetSpriteLinksLoop:
 	; save the link for the last sprite
 	; this is done so any sprites past NPC_COUNT-1 don't accidentally display
 	move.w	(a4),d2	; copy sprite ID to d2
-	move.w	#$0000,d3	; points to sprite 0
+	moveq	#$0000,d3	; points to sprite 0
 	bsr.w	SetSpriteLink	; save the link
 	move.w	#$0000,(MEM_SPRITE_Y_ORDER_CHANGED)	; clear Y order changed
 ExitSetSpriteLinks:	

@@ -51,7 +51,7 @@ TestUpCollisionLeftEdgeSetup:
 	andi.b	#%11111000,d3	; clear bits 0-2 to round to nearest power of 8
 	cmpi.w	#MAP_MID_X,d6	; is sprite on the left or right side of the screen?
 	blt.s	TestUpCollisionLeftEdge	; check if crossing the boundary
-	add.w	#$0004,d3		; on the right side, use 2nd lword for the column
+	addq	#$0004,d3		; on the right side, use 2nd lword for the column
 TestUpCollisionLeftEdge:
 	lea		MEM_COLLISION_DATA,a3	; move address of map data to a3
 	adda.w	d3,a3					; move to row
@@ -75,7 +75,7 @@ TestUpCollisionRightEdgeSetup:
 	add.w	#DEFAULT_SPRITE_WIDTH,d6	; move to right edge of sprite
 	cmpi.w	#MAP_MID_X,d6	; is right half on right side of the screen?
 	blt.s	TestUpCollisionRightEdge	; check if crossing the boundary
-	add.w	#$0004,d3		; on the right side, use 2nd lword for the column
+	addq	#$0004,d3		; on the right side, use 2nd lword for the column
 TestUpCollisionRightEdge:
 	lea		MEM_COLLISION_DATA,a3	; move address of map data to a3
 	adda.w	d3,a3					; move to row
@@ -126,7 +126,7 @@ TestDownCollisionRightEdgeSetup:
 	add.w	#DEFAULT_SPRITE_WIDTH,d6	; move to right edge of sprite
 	cmpi.w	#MAP_MID_X,d6	; is sprite on the left or right side of the screen?
 	blt.s	TestDownCollisionRightEdge	; check if crossing the boundary
-	add.w	#$0004,d3		; on the right side, use 2nd lword for the column
+	addq	#$0004,d3		; on the right side, use 2nd lword for the column
 TestDownCollisionRightEdge:
 	lea		MEM_COLLISION_DATA,a3	; move address of map data to a3
 	adda.w	d3,a3					; move to row
@@ -157,8 +157,8 @@ TestRightSetup:
 	add.w	#SPRITE_COLLISION_RIGHT,d6	; test right from sprite
 	cmpi.w	#MAP_MID_X,d6	; is collision on left or right side of the screen?
 	blt.s	TestRightCollisionTopEdge ; left side, go directly to collision test
-	add.w	#$0004,d3		; on the right side, use 2nd lword for the column
-	add.w	#$0004,d5		; on the right side, use 2nd lword for the column
+	addq	#$0004,d3		; on the right side, use 2nd lword for the column
+	addq	#$0004,d5		; on the right side, use 2nd lword for the column
 TestRightCollisionTopEdge:
 	lea		MEM_COLLISION_DATA,a3	; move address of map data to a3
 	adda.w	d5,a3	; move to row & col of top edge
@@ -198,8 +198,8 @@ TestLeftCollisionSetup:
 	sub.w	#SPRITE_COLLISION_LEFT,d6	; test left from sprite
 	cmpi.w	#MAP_MID_X,d6	; is collision on left or right side of the screen?
 	blt.s	TestLeftCollisionTopEdge ; left side, go directly to collision test
-	add.w	#$0004,d3		; on the right side, use 2nd lword for the column
-	add.w	#$0004,d5		; on the right side, use 2nd lword for the column
+	addq	#$0004,d3		; on the right side, use 2nd lword for the column
+	addq	#$0004,d5		; on the right side, use 2nd lword for the column
 TestLeftCollisionTopEdge:
 	lea		MEM_COLLISION_DATA,a3	; move address of map data to a3
 	adda.w	d5,a3	; move to row & col of top edge

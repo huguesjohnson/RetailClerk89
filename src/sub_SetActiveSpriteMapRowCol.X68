@@ -30,14 +30,14 @@ SetActiveSpriteLeftHighLow:
 	move.w	(STRUCT_SPRITE_Y,a6),d7	; store sprite y in d7
 	add.w	#$18,d7	; top edge of lower 1/4
 	move.w	d7,d5	; copy the adjusted y value 
-	add.w	#$08,d5	; move d5 to bottom edge of lower 1/4
+	addq	#$08,d5	; move d5 to bottom edge of lower 1/4
 	; map the sprite y position to a column
 	andi.b	#%11111000,d7	; clear bits 0-2 to round to nearest power of 8
 	andi.b	#%11111000,d5	; clear bits 0-2 to round to nearest power of 8
 	cmpi.w	#MAP_MID_X,d6	; is column on the left or right side of the screen?
 	blt.s	.2	; branch if on left side
-	add.w	#$0004,d7	; on the right side, use 2nd lword for the column
-	add.w	#$0004,d5	; on the right side, use 2nd lword for the column
+	addq	#$0004,d7	; on the right side, use 2nd lword for the column
+	addq	#$0004,d5	; on the right side, use 2nd lword for the column
 .2
 	move.w	d7,(MEM_ACTIVE_SPRITE_HIGH_LEFT)	; copy high left value 
 	move.w	d5,(MEM_ACTIVE_SPRITE_LOW_LEFT)	; copy low left value
@@ -56,14 +56,14 @@ SetActiveSpriteRightHighLow:
 	move.w	(STRUCT_SPRITE_Y,a6),d7	; store sprite y in d7
 	add.w	#$18,d7	; top edge of lower 1/4
 	move.w	d7,d5	; copy the adjusted y value 
-	add.w	#$08,d5	; move d5 to bottom edge of lower 1/4
+	addq	#$08,d5	; move d5 to bottom edge of lower 1/4
 	; map the sprite y position to a column
 	andi.b	#%11111000,d7	; clear bits 0-2 to round to nearest power of 8
 	andi.b	#%11111000,d5	; clear bits 0-2 to round to nearest power of 8
 	cmpi.w	#MAP_MID_X,d6	; is column on the left or right side of the screen?
 	blt.s	.4	; branch if on left side
-	add.w	#$0004,d7	; on the right side, use 2nd lword for the column
-	add.w	#$0004,d5	; on the right side, use 2nd lword for the column
+	addq	#$0004,d7	; on the right side, use 2nd lword for the column
+	addq	#$0004,d5	; on the right side, use 2nd lword for the column
 .4
 	move.w	d7,(MEM_ACTIVE_SPRITE_HIGH_RIGHT)	; copy high left value
 	move.w	d5,(MEM_ACTIVE_SPRITE_LOW_RIGHT)	; copy low left value

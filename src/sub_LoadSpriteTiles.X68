@@ -3,7 +3,7 @@ LoadSpriteZeroTiles:
 	movea.l	#SpriteZeroTilesStart,a0	; set address of first tile to load
 	move.w	#SPRITE_VDP,d1	; setup call to BuildVRAMWriteAddress
 	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
-	move.w	#$8,d0	; number of tiles in a sprite tileset
+	moveq	#$8,d0	; number of tiles in a sprite tileset
 	bsr.w	LoadTiles	; branch to LoadTiles subroutine
 	rts
 

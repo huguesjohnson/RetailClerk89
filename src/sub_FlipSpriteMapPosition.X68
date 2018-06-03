@@ -72,7 +72,7 @@ FlipSpriteMapPosition:
 	cmpi.w	#$001F,d7	; if left column is 1F the sprite is occupying 2 columns
 	beq.s	ExitFlipSpriteMapPosition	; exit if the sprite is only 2 columns
 	; otherwise block column 1F in the left rows
-	move.w	#$001F,d6	; copy left column to d6
+	moveq	#$001F,d6	; copy left column to d6
 	lea		MEM_COLLISION_DATA,a3	; move start address of map data to a3
 	adda.w	(MEM_ACTIVE_SPRITE_HIGH_LEFT),a3 ; move to row
 	move.l	(a3),d7	; copy row data to memory
