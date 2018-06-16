@@ -334,7 +334,7 @@ SceneCheckers:
 	dc.w	$012A	; starting x location of npc0
 	dc.w	$0098	; starting y location of npc0
 	dc.w	DIRECTION_DOWN	; starting direction of npc0
-	dc.w	$0001	; movement frequency of npc1
+	dc.w	$0000	; movement frequency of npc1
 	dc.l	NPCMovementDownStart	; location of movement pattern for npc0
 	dc.w	(NPCMovementDownEnd-NPCMovementDownStart-1)	; pattern length
 

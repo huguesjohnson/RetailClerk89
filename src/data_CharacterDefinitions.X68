@@ -89,3 +89,7 @@ CharacterScene0DStaffNPC0:
 CharacterScene0DStaffNPC1:
 	dc.l	Scene0DStaffNPC1TilesStart
 
+; 16 - OBJ_NPC_DB
+CharacterDefinitionDB:
+	dc.l	PlayerSpriteTilesStart
+

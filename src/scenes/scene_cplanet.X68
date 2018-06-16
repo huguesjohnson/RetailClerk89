@@ -297,7 +297,7 @@ SceneCPlanet:
 	dc.w	$01A0	; starting x location of npc0
 	dc.w	$0112	; starting y location of npc0
 	dc.w	DIRECTION_LEFT	; starting direction of npc0
-	dc.w	$00A1	; movement frequency of npc0
+	dc.w	$0059	; movement frequency of npc0
 	dc.l	NPCMovementScene10Start	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene10End-NPCMovementScene10Start-1)	; pattern length
 

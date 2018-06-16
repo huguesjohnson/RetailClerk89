@@ -174,7 +174,7 @@ TITLE_SCREEN_COUNTER_START=$2800	; how long to display title before reset
 ;-------------------------------------------------------------------------------
 	if	_DEBUG_
 DIALOG_UPDATE_FREQUENCY=$0000	; how often to update dialog animation
-SPRITE_MOVE_FREQUENCY=$0000 ; how many frames to wait between sprite moves
+SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
 INTRO_SCREEN_COUNTER_START=$0001	; how long to display intro screens
 FADE_FRAME_DELAY=$0001	; how many frames to wait between fade in/out
 	else
@@ -232,9 +232,8 @@ Pause:
 	; flip to paused palette
 	bsr	Echo_StopBGM	; pause the background music
 SetPausedPalette:
-	move.w	#$2700,sr		; disable interrupts
+	bsr.w	WaitVBlank	; wait to load palettes until VBlank
 	lea	(MEM_SCENE_PALETTE),a0	; point a0 to the scene palette
-	bsr.w	WaitVBlankStart	; wait to load palettes until VBlank starts
 	move.l	#VDP_CRAM_WRITE,(VDP_CONTROL) ; set up VDP write to CRAM
 	moveq	#$003F,d0	; 64 words of palette data
 SetPausedPaletteLoop:
@@ -244,11 +243,11 @@ SetPausedPaletteLoop:
 	and.w	#%0000011001100110,d1	; prevent color overflow
 	move.w	d1,(VDP_DATA)	; write the palette entry
 	dbf	d0,SetPausedPaletteLoop	; decrement d0 and loop
-	move.w	#$2000,sr		; re-enable interrupts
 	bra.s	UpdatePause	; save the paused state
 Unpause:
 	bclr.l	#STATE_FLAG_PAUSED,d7	; clear the paused bit
 	bsr	Echo_ResumeBGM	; unpause the background music
+	bsr.w	WaitVBlank	; wait to load palettes until VBlank
 	lea	(MEM_SCENE_PALETTE),a0	; point to scene palette
 	moveq	#$0004,d0	; number of palettes to load
 	move.l	#VDP_CRAM_WRITE,d1	; initial write address
@@ -423,6 +422,8 @@ MainGameLoopUpdateSprites:
 	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset counter to 0
 	bsr.w	MovePlayer	; move the player sprite
 	; move NPCs
+	tst.w	(MEM_ACTIVE_NPC_COUNT)	; are there any NPCs to move?
+	beq.w	MainGameLoop	; return to start of game loop if no NPCs
 	move.w	(MEM_ACTIVE_NPC_COUNT),(MEM_NPC_LOOP_COUNTER)	; setup loop control
 	lea	MEM_NPC0_SPRITE_ID,a5	; point to first NPC
 MainGameLoopUpdateNPCSpritesLoop:
@@ -432,9 +433,9 @@ MainGameLoopUpdateNPCSpritesLoop:
 	cmpi.w	#$0000,(STRUCT_SPRITE_MOVEMENT_COUNTER,a5)	; is the NPC moving?
 	bne	.2	; if MOVEMENT_COUNTER > 0 then the sprite is moving
 	; test if it's time for them to move again
-	bsr.w	PseudoRandomWord	; store a random number in d0
-	and.w	(STRUCT_SPRITE_MOVE_FREQUENCY,a5),d0	; and against it
-	cmp.w	(STRUCT_SPRITE_MOVE_FREQUENCY,a5),d0	; test 
+	move.w	(MEM_VBLANK_COUNTER),d6	; copy vblank counter
+	and.w	(STRUCT_SPRITE_MOVE_FREQUENCY,a5),d6	; and against it
+	cmp.w	(STRUCT_SPRITE_MOVE_FREQUENCY,a5),d6	; test 
 	bne.s	MainGameLoopUpdateNPCSpritesLoopEnd ; not time to move
 	move.w	#NPC_SPRITE_MOVE_STEPS,(STRUCT_SPRITE_MOVEMENT_COUNTER,a5)	; reset
 	; set the direction
@@ -466,6 +467,8 @@ MainGameLoopUpdateNPCSpritesLoopEnd:
 	; apparently dbra doesn't work against a memory address
 	subq	#$1,(MEM_NPC_LOOP_COUNTER)	; decrement loop counter
 	bgt.w	MainGameLoopUpdateNPCSpritesLoop	; branch
+	; done looping through NPC sprites
+	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
 ; title screen
 ;-------------------------------------------------------------------------------
@@ -581,7 +584,6 @@ TestIntroScreenEnd:
 	bsr.w	SetSpriteLinks
 	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset frame counter
 	bsr.w	FadeIn	; fade in now that everything is setup
-	bra.w	MainGameLoop	;	return to start of game loop
 MainGameLoopEnd:
 	bra.w	MainGameLoop	; return to start of game loop
 
@@ -589,8 +591,9 @@ MainGameLoopEnd:
 ; WaitVBlank
 ;-------------------------------------------------------------------------------
 WaitVBlank:
-	bsr.w	WaitVBlankStart	; wait for vblank to start
-	bsr.w	WaitVBlankEnd	; wait for vblank to end
+	btst	#STATE_FLAG_VBLANK,(MEM_GAME_STATE)	; test vblank flag
+	beq.s	WaitVBlank	; loop until flag changes
+	bclr	#STATE_FLAG_VBLANK,(MEM_GAME_STATE)	; clear vblank flag
 	rts	; exit
 WaitVBlankStart:
 	move.w	VDP_CONTROL,d0	; copy VDP status to d0
@@ -614,6 +617,7 @@ HBlank:
 	rte
 
 VBlank:
+	bset	#STATE_FLAG_VBLANK,(MEM_GAME_STATE)	; set vblank flag
 	addq	#$1,(MEM_VBLANK_COUNTER)	; increment debug counter 
 	addq	#$1,(MEM_FRAME_COUNTER)		; increment frame counter
 

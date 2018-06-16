@@ -690,7 +690,7 @@ Day00End:
 	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
 	; update NPC locations
 	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.l	#$03000000,(a5)	; update NPCs in scene 00
+	move.l	#$03160000,(a5)	; update NPCs in scene 00
 	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
 	mulu.w	#LWORD_SIZE,d7	; multiply by word size
 	adda.l	d7,a5	; move a5 to the address for parking lot NPCs

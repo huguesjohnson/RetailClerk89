@@ -46,9 +46,10 @@ InitNPCLocations:
 	move.l	#$0F000000,(a0)+	; location 13 (FCBCHECKOUT)
 	move.l	#$10000000,(a0)+	; location 14 (FCBFIREARMS)
 	move.l	#$11000000,(a0)+	; location 15 (FCBFISHING)
-	move.l	#$12000000,(a0)+	; location 16 (FCBCAMPING)
+	move.l	#$00000000,(a0)+	; location 16 (FCBCAMPING)
 	move.l	#$13000000,(a0)+	; location 17 (SOUTH_CENTER)
 
+	move.w	#$2000,sr		; re-enable interrupts
 ;-------------------------------------------------------------------------------
 ; load the initial scene
 ;-------------------------------------------------------------------------------

@@ -7,25 +7,37 @@ Day01Scene00Action00:	; ACTION_LOOK
 Day01Scene00Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
-	beq.s	Day01Scene00Action01NPC	; branch to text for the NPC
+	beq.s	Day01Scene00Action01NPCGreenberg	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DB,d6	; test target
+	beq.s	Day01Scene00Action01NPCDB	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day01Scene00Action01NPC:
+Day01Scene00Action01NPCGreenberg:
 	lea	DialogTextGreenbergDefaultTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene00Action01NPCDB:
+	lea	DialogTextDay01VBDBDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene00Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
-	beq.s	Day01Scene00Action02NPC	; branch to text for the NPC
+	beq.s	Day01Scene00Action02NPCGreenberg	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DB,d6	; test target
+	beq.s	Day01Scene00Action02NPCDB	; branch to text for the NPC
 	; default action
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day01Scene00Action02NPC:
+Day01Scene00Action02NPCGreenberg:
 	lea	DialogTextGreenbergDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene00Action02NPCDB:
+	lea	DialogTextDBDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene00Action03:	; ACTION_RESPOND

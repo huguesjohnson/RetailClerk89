@@ -1,6 +1,4 @@
 
-	include	'sub_PseudoRandomWord.X68'
-
 	include	'sub_LoadPalettes.X68'
 
 	include	'sub_ReadJoypads.X68'

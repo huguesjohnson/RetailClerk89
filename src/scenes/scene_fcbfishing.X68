@@ -268,7 +268,7 @@ SceneFCBFishing:
 	dc.w	$00F0	; starting x location of npc0
 	dc.w	$0110	; starting y location of npc0
 	dc.w	DIRECTION_DOWN	; starting direction of npc0
-	dc.w	$0092	; movement frequency of npc0
+	dc.w	$004F	; movement frequency of npc0
 	dc.l	NPCMovementScene15Start	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene15End-NPCMovementScene15Start-1)	; pattern length
 

@@ -6,7 +6,6 @@
 ReadJoypads:
 	move.w	#$2700,sr		; disable interrupts
 	lea	CTRL_1_DATA,a0		; load address to read controller 1 data
-
 	bsr.s	ReadJoypad		; read first joypad
 	; code to read second joypad, not used for this demo
 	; addq.w	#2,a0		; switch to second joypad data

@@ -157,6 +157,8 @@ DefaultNPCDescriptionTable:
 	dc.l	DialogTextWorkshopStaff0DefaultLook
 	; OBJ_NPC_WORKSHOP_STAFF1
 	dc.l	DialogTextWorkshopStaff1DefaultLook
+	; OBJ_NPC_DB
+	dc.l	DialogTextDBDefaultLook
 
 ;-------------------------------------------------------------------------------
 ; object names
@@ -315,6 +317,8 @@ NPCNameTable:
 	dc.l	NPCNameWorkshopStaff0
 	; OBJ_NPC_WORKSHOP_STAFF1
 	dc.l	NPCNameWorkshopStaff1
+	; OBJ_NPC_DB
+	dc.l	NPCNameDB
 
 ;-------------------------------------------------------------------------------
 ; item names

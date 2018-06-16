@@ -1,16 +1,17 @@
 ;-------------------------------------------------------------------------------
 ; game state flags
 ;-------------------------------------------------------------------------------
-STATE_FLAG_PAUSED=$00	; game is paused
-STATE_FLAG_EXPLORING=$01	; player is controlling the sprite on the map
-STATE_FLAG_DIALOG=$02	; player is interacting with a dialog
-STATE_FLAG_ACTION=$03	; there is an action queued
-STATE_FLAG_SCRIPTED_EVENT=$04	; a scripted event is running
-STATE_FLAG_TITLE_SCREEN=$05	; title screen is displaying
-STATE_FLAG_EXITS_BLOCKED=$06	; blocks sprite from leaving scene
-STATE_FLAG_END_SCREEN=$07	; end screen is displaying
-STATE_FLAG_INTRO_SCREEN=$08	; day intro screen is displaying
-STATE_FLAG_STATUS_SCREEN=$09	; status screen is displaying
+STATE_FLAG_VBLANK=$00	; vblank flag
+STATE_FLAG_PAUSED=$01	; game is paused
+STATE_FLAG_EXPLORING=$02	; player is controlling the sprite on the map
+STATE_FLAG_DIALOG=$03	; player is interacting with a dialog
+STATE_FLAG_ACTION=$04	; there is an action queued
+STATE_FLAG_SCRIPTED_EVENT=$05	; a scripted event is running
+STATE_FLAG_TITLE_SCREEN=$06	; title screen is displaying
+STATE_FLAG_EXITS_BLOCKED=$07	; blocks sprite from leaving scene
+STATE_FLAG_END_SCREEN=$08	; end screen is displaying
+STATE_FLAG_INTRO_SCREEN=$09	; day intro screen is displaying
+STATE_FLAG_STATUS_SCREEN=$0A	; status screen is displaying
 ;-------------------------------------------------------------------------------
 ; dialog state flags
 ;-------------------------------------------------------------------------------

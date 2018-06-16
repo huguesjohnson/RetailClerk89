@@ -249,7 +249,7 @@ SceneSVideo:
 	dc.w	$00E8	; starting x location of npc0
 	dc.w	$00F0	; starting y location of npc0
 	dc.w	DIRECTION_DOWN	; starting direction of npc0
-	dc.w	$0160	; movement frequency of npc0
+	dc.w	$007F	; movement frequency of npc0
 	dc.l	NPCMovementScene0CStart	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene0CEnd-NPCMovementScene0CStart-1)	; pattern length
 

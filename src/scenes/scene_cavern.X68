@@ -570,7 +570,7 @@ SceneCavern:
 	dc.w	$00CC	; starting x location of npc0
 	dc.w	$00F0	; starting y location of npc0
 	dc.w	DIRECTION_LEFT	; starting direction of npc0
-	dc.w	$02FE	; movement frequency of npc0
+	dc.w	$006D	; movement frequency of npc0
 	dc.l	NPCMovementScene0BStart	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene0BEnd-NPCMovementScene0BStart-1)	; pattern length
 

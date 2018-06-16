@@ -286,7 +286,7 @@ SceneDeminCountry:
 	dc.w	$00CE	; starting x location of npc0
 	dc.w	$00C0	; starting y location of npc0
 	dc.w	DIRECTION_LEFT	; starting direction of npc0
-	dc.w	$01F0	; movement frequency of npc0
+	dc.w	$0017	; movement frequency of npc0
 	dc.l	NPCMovementScene08Start	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene08End-NPCMovementScene08Start-1)	; pattern length
 

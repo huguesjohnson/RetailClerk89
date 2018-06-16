@@ -364,7 +364,7 @@ SceneCNow:
 	dc.w	$00CE	; starting x location of npc0
 	dc.w	$00E8	; starting y location of npc0
 	dc.w	DIRECTION_LEFT	; starting direction of npc0
-	dc.w	$0910	; movement frequency of npc0
+	dc.w	$0065	; movement frequency of npc0
 	dc.l	NPCMovementScene11Start	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene11End-NPCMovementScene11Start-1)	; pattern length
 

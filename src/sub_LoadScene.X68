@@ -19,7 +19,6 @@ LoadScene:
 	bsr.w	DrawScene	; branch to subroutine to draw the scene
 
 	move.w	#$2700,sr		; disable interrupts
-
 ;-------------------------------------------------------------------------------
 ; load objects
 ;-------------------------------------------------------------------------------
@@ -55,8 +54,12 @@ LoadSceneLoadExits:
 ;-------------------------------------------------------------------------------
 ; load sprite zero and player sprite
 ;-------------------------------------------------------------------------------
+	move.w	#$2000,sr		; re-enable interrupts
+
 	bsr.w	LoadSpriteZeroTiles
 	bsr.w	LoadPlayerSpriteTiles
+
+	move.w	#$2700,sr		; disable interrupts
 
 ;-------------------------------------------------------------------------------
 ; load NPCs

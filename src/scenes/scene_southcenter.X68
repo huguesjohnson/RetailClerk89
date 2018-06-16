@@ -197,7 +197,7 @@ SceneSouthCenter:
 	dc.w	$015C	; starting x location of npc0
 	dc.w	$00E6	; starting y location of npc0
 	dc.w	DIRECTION_DOWN	; starting direction of npc0
-	dc.w	$00F0	; movement frequency of npc0
+	dc.w	$0059	; movement frequency of npc0
 	dc.l	NPCMovementScene17Start	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene17End-NPCMovementScene17Start-1)	; pattern length
 

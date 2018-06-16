@@ -675,6 +675,11 @@ DialogTextDaniDefaultLook:
 	dc.b	"She seems moderately",LF
 	dc.b	"annoyed with you.",ETX
 
+DialogTextDBDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"He seems a little bit",LF
+	dc.b	"flustered right now.",ETX
+
 DialogTextGreenbergDefaultLook:
 	;		"1234567890123456789012"
 	dc.b	"`Do you need",LF
@@ -884,6 +889,13 @@ DialogTextWorkshopStaff1DefaultTalk:
 	dc.b	"to have a kid with   ^",FF
 	dc.b	"you to visit Santa?'",ETX
 
+DialogTextDay01VBDBDefaultTalk:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`I'm stuck",LF
+	dc.b	"closing tonight.     ^",FF
+	dc.b	"Head over to my store",LF
+	dc.b	"when your shift ends.'",ETX
+
 ;-------------------------------------------------------------------------------
 ; menus
 ;-------------------------------------------------------------------------------
@@ -947,6 +959,11 @@ TakeMenuDefault:
 DialogTextDaniDefaultGive:
 	;		"1234567890123456789012"
 	dc.b	"`Yeah, whatever.'",ETX
+
+DialogTextDBDefaultGive:
+	;		"1234567890123456789012"
+	dc.b	"He looks puzzled by",LF
+	dc.b	"by this interaction.",ETX
 
 DialogTextGreenbergDefaultGive:
 	;		"1234567890123456789012"
@@ -1209,6 +1226,9 @@ ObjectNameTent:
 NPCNameDani:
 	dc.b	"Dani",NPCNAMEEND
 
+NPCNameDB:
+	dc.b	"D.B.",NPCNAMEEND
+
 NPCNameMapperShopper0:
 	dc.b	"Business casual guy",NPCNAMEEND
 
@@ -1446,15 +1466,15 @@ Day00IntroText:
 
 Day00IntroTip0:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"Instructions",ETX
+	dc.b	"D-Pad: Move Player,change menu selection",ETX
 
 Day00IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"D-Pad: Move Player,change menu selection",ETX
+	dc.b	"A button: Interact with people & objects",ETX
 
 Day00IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"A button: Interact with people & objects",ETX
+	dc.b	"C button: Open the status screen",ETX
 
 Day00IntroTip3:
 	;		"1234567890123456789012345678901234567890"
@@ -1463,7 +1483,7 @@ Day00IntroTip3:
 
 Day00IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"B button: Cancel menu",ETX
+	dc.b	"B button: Cancel menu, exit status",ETX
 
 
 Day00IntroTip5:
