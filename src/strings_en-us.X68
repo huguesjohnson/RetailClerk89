@@ -846,6 +846,25 @@ DialogTextTBooksStaffDefaultTalk:
 	dc.b	"`Hey neighbor. Nice of",LF
 	dc.b	"you to stop by.'",ETX
 
+DialogTextTBooksStaffDay01Talk:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`My store's dead.",LF
+	dc.b	"Are you busy today?' ^",FF
+	dc.b	"Charles:`A little bit",LF
+	dc.b	"but I'm getting by.  ^",FF
+	dc.b	"Knowing it's my last",LF
+	dc.b	"winter here helps.'  ^",FF
+	dc.b	"Dani:`I'm almost done",LF
+	dc.b	"with this place too.'^",FF
+	dc.b	"It'll be weird not",LF
+	dc.b	"seeing you every day.^",FF
+	dc.b	"We've been neighbors,",LF
+	dc.b	"since kindergarten.' ^",FF
+	dc.b	"Charles:`Yeah, that",LF
+	dc.b	"sounds about right.  ^",FF
+	dc.b	"Let's plan to hang out",LF
+	dc.b	"next winter break.'",ETX
+
 DialogTextFCBCheckoutStaffDefaultTalk:
 	;		"1234567890123456789012"
 	dc.b	"`Are you going to buy",LF
@@ -1480,11 +1499,9 @@ Day00IntroTip3:
 	;		"1234567890123456789012345678901234567890"
 	dc.b	"A or C button: Confirm menu selection",ETX
 
-
 Day00IntroTip4:
 	;		"1234567890123456789012345678901234567890"
 	dc.b	"B button: Cancel menu, exit status",ETX
-
 
 Day00IntroTip5:
 	;		"1234567890123456789012345678901234567890"

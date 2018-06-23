@@ -595,7 +595,7 @@ Day01Scene12Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene12Action01NPC:
-	lea	DialogTextTBooksStaffDefaultTalk,a6	; load text
+	lea	DialogTextTBooksStaffDay01Talk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene12Action02:	; ACTION_TAKE_GIVE
