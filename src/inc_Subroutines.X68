@@ -7,6 +7,8 @@
 
 	include	'sub_DrawTileset.X68'
 
+	include	'sub_ClearVRAM.X68'
+
 	include	'sub_SetSpritePattern.X68'
 
 	include	'sub_TestSpriteCollision.X68'

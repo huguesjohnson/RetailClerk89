@@ -122,13 +122,16 @@ LoadSceneLoadNPCSprites:
 	; lookup which NPCs sprites are in this scene and add them
 	move.w	#$0000,(MEM_ACTIVE_NPC_COUNT)	; reset active scene NPC count 
 	lea	MEM_NPC_LOCATIONS,a1	; point a1 to the start of the list
+	clr	d5	; out of paranoia
 	move.w	(MEM_ACTIVE_SCENE_ID),d5	; copy active scene ID to d5
+	cmpi.w	#MAX_STORE_ID,d5	; test is this is a store
+	bgt.w	ExitLoadSceneLoadNPCSprites	; branch if not
 	mulu.w	#NPC_LIST_LENGTH,d5	; multiply by list length
 	adda.w	d5,a1	; add result to a1 to move to npc list for active scene
 	;---------------------------------------------------------------------------
 	; setup loop control - 2 NPCs per word in MEM_NPC_LOCATIONS
 	;---------------------------------------------------------------------------
-	move.w	#(NPC_LIST_LENGTH/2)-1,d3	; use d3 for loop control
+	move.w	#NPC_LIST_LOOP_CTRL,d3	; use d3 for loop control
 	;---------------------------------------------------------------------------
 	; loop through all NPCs in the scene and add their sprites
 	;---------------------------------------------------------------------------

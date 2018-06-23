@@ -32,6 +32,9 @@ InitVDPDataLoop:
 	move.w	(a0)+,(VDP_CONTROL)	; write the init data
 	dbf	d1,InitVDPDataLoop		; decrement value of d1 and loop if not 0
 
+; clear VRAM - prevents garbage tiles from showing at boot on clone systems
+	bsr.w	ClearVRAM	; clear VRAM
+
 ClearRAM:
 	lea	(RAM_START).l,a0
 	move.w	#$0000,d1

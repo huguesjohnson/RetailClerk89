@@ -13,19 +13,16 @@ DrawScene:
 ;-------------------------------------------------------------------------------
 	bsr.w	FadeOut
 
-	move.w	#$2700,sr		; disable interrupts
-
 ;-------------------------------------------------------------------------------
 ; clear VDP
 ;-------------------------------------------------------------------------------
-	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
-	bsr.w	WaitVBlankStart	; wait to clear screen until VBlank starts
-ClearVRAM:
-	move.l	#VDP_VRAM_WRITE,(VDP_CONTROL) 
-	move.w	#$7FFF,d1
-ClearVRAMLoop:
-	move.w	#$0000,(VDP_DATA)
-	dbra	d1,ClearVRAMLoop
+	bsr.w	WaitVBlank	; wait for vblank to end
+
+	move.w	#$2700,sr		; disable interrupts
+
+;	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
+;	bsr.w	WaitVBlankStart	; wait to clear screen until VBlank starts
+	bsr.w	ClearVRAM	; clear VRAM
 
 ;-------------------------------------------------------------------------------
 ; load tiles
@@ -36,8 +33,9 @@ ClearVRAMLoop:
 	move.w	#SCENE_VDP,d1	; use d1 to track write location
 	clr.l	d2	; use d2 to increment write location
 LoadSceneLoadTilesLoop:
-	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
-	bsr.w	WaitVBlankStart	; wait to load tiles until VBlank starts
+;	bsr.w	WaitVBlank	; wait for vblank to end
+;	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
+;	bsr.w	WaitVBlankStart	; wait to clear screen until VBlank starts
 	bsr.w	BuildVRAMWriteAddress
 	move.l	(a6)+,d3	; start address of tileset
 	move.l	(a6)+,d0	; end address of tileset
@@ -55,8 +53,9 @@ LoadSceneLoadTilesLoop:
 ; load the font tiles
 ;-------------------------------------------------------------------------------
 LoadFontTiles:
-	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
-	bsr.w	WaitVBlankStart	; wait to load tiles until VBlank starts
+;	bsr.w	WaitVBlank	; wait for vblank to end
+;	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
+;	bsr.w	WaitVBlankStart	; wait to clear screen until VBlank starts
 	move.w	#FONT_VDP,d1	; setup call to BuildVRAMWriteAddress
 	bsr.w	BuildVRAMWriteAddress	; build the VRAM write address
 	move.l	#FontTilesStart,d2	; start address of tileset
@@ -72,8 +71,8 @@ LoadFontTiles:
 	move.w	(a6)+,d0	; number of palettes to load
 	movea.l	(a6)+,a0	; start address of palettes
 	lea	MEM_SCENE_PALETTE,a1	; point a1 to scene palette address
-	mulu	#$10,d0	; multiply number of palettes by 16
-	subq	#$01,d0	; subtract 1 since the loop counts to 0
+	mulu.w	#$10,d0	; multiply number of palettes by 16
+	subq.w	#$01,d0	; subtract 1 since the loop counts to 0
 StorePalettesLoop:
 	move.w	(a0)+,(a1)+	; write the palette data
 	dbf	d0,StorePalettesLoop		; decrement value of d0 and loop if not 0
@@ -81,8 +80,9 @@ StorePalettesLoop:
 ;-------------------------------------------------------------------------------
 ; draw the scenery
 ;-------------------------------------------------------------------------------
-	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
-	bsr.w	WaitVBlankStart	; wait until VBlank to draw scene
+;	bsr.w	WaitVBlank	; wait for vblank to end
+;	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait
+;	bsr.w	WaitVBlankStart	; wait to clear screen until VBlank starts
 	move.w	(a6)+,d7	; number of scenery items to draw
 	cmpi.w	#$FFFF,d7	; is there any sceney to draw?
 	beq.s	LoadSceneDrawText	; if no scenery then move to next section

@@ -30,7 +30,7 @@ VDPInitDataStart:
 	; bit 7 = TMS9918 Mode (0: Genesis mode, 1: SMS mode)
 	;---------------------------------------------------------------------------
 	dc.w	$8174	; 74=01110100 -> Genesis display mode, DMA & V-int enabled
-	
+	             
 	;---------------------------------------------------------------------------
 	; Register 2: VRAM Address for Scroll A - [move.w #$82xx,($C00004)]
 	; bit 0 = Not used
