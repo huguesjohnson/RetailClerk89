@@ -3,6 +3,7 @@ BuildStatusScreen:
 	; load sprite zero
 	;---------------------------------------------------------------------------
 	bsr.w	LoadSpriteZeroTiles	; load the tiles
+	move.w	#$2700,sr		; disable interrupts
 	; reload the sprite definition
 	lea     SpriteZeroLowDefinition,a0	; store address of sprite definition
 	moveq	#$01,d0	; 1 sprite = 2 longs
@@ -14,7 +15,7 @@ BuildStatusScreen:
 	; determine spot for "you are here" icon
 	;---------------------------------------------------------------------------
 	move.w	(MEM_ACTIVE_SCENE_ID),d6	; copy active scene ID to d6
-	mulu.w	#$4,d6	; multiply by 4 to get offset
+	mulu.w	#LWORD_SIZE,d6	; multiply by LWORD_SIZE to get offset
 	lea	StatusMapIconLocationTable,a6	; point a6 to the lookup table
 	adda.l	d6,a6	; move to offset
 	move.l	(a6),(VDP_CONTROL) ; set drawing location
@@ -23,11 +24,11 @@ BuildStatusScreen:
 	; draw the objective text
 	;---------------------------------------------------------------------------
 BuildStatusScreenObjectiveText:
-	move.w	(MEM_DAY),d6	; copy active scene ID to d6
-	mulu.w	#$4,d6	; multiply by 4 to get offset
-	lea	StatusScreenObjectives,a6	; point a6 to the lookup table
-	adda.l	d6,a6	; move to offset
-	move.l	(a6),a0	; point a0 to the first character
+	move.w	(MEM_DAY),d6	; copy day to d6
+	mulu.w	#LWORD_SIZE,d6	; multiply by LWORD_SIZE to get offset
+	lea	StatusScreenObjectives,a5	; point a6 to the lookup table
+	adda.l	d6,a5	; move to offset
+	move.l	(a5),a0	; point a0 to the first character
 	move.l	#STATUS_SCREEN_OBJECTIVE_VDP,d7	; d7 is used in the loop for LF
 	move.l	#STATUS_SCREEN_OBJECTIVE_VDP,(MEM_DIALOG_VDP)
 BuildStatusScreenObjectiveTextLoop:
@@ -164,4 +165,5 @@ BuildStatusScreenNoItems:
 	move.l	d6,(VDP_CONTROL)	; set write location in VDP
 	move.w	#$0100,(VDP_DATA)	; copy the new x-coordinate
 ExitBuildStatusScreen:
+	move.w	#$2000,sr	; re-enable interrupts
 	rts

@@ -4,6 +4,7 @@
 ;-------------------------------------------------------------------------------
 LoadPlayerSprite:
 	bsr.w	WaitVBlank	; wait for vblank to complete
+	move.w	#$2700,sr		; disable interrupts
 	lea     SpriteZeroDefinition,a0	; store address of sprite definition
 	moveq	#$03,d0	; 1 sprite = 2 longs
 	move.l	#VDP_VRAM_WRITE_SPRITE,(VDP_CONTROL) ; set write location
@@ -18,4 +19,5 @@ LoadPlayerSpriteLoop:
 	lea (MEM_PLAYER_SPRITE_ID),a6	; setup call to StopSprite
 	bsr.w	StopSprite	; reset the sprite frame
 ExitLoadPlayerSprite:
+	move.w	#$2000,sr		; re-enable interrupts
 	rts

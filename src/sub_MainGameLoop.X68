@@ -340,7 +340,6 @@ TestIntroScreenLoadScene:
 	move.l	(a5),a6	; a5 has the address of the scene to load
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	bsr.w	LoadPlayerSprite	; load the player sprite
-	bsr.w	HideSelectorSprite	; hide the menu selector sprite
 	cmpi.w	#$0001,(MEM_DAY)	; is this day 01?
 	beq.s	TestIntroScreenDay01Setup	; if day 01, go to day 01 setup
 	cmpi.w	#$0000,(MEM_DAY)	; is this day 00?

@@ -54,6 +54,8 @@ public class CSVMemoryMap{
             long currentAddressInt=Long.valueOf(currentAddressHex,16);
             bufferedReader=new BufferedReader(new InputStreamReader(new FileInputStream(sourceFile)));
             outputStreamWriter=new FileWriter(outputFile);
+			outputStreamWriter.write("MEM_START=$"+defaultBaseAddress+newLine);
+			String address=defaultBaseAddress;
             while((currentLine=bufferedReader.readLine())!=null){
                 lineNumber++;
 	            StringBuffer stringBuffer=new StringBuffer();
@@ -66,7 +68,8 @@ public class CSVMemoryMap{
 		            }
 		            stringBuffer.append(split[0]);
 		            stringBuffer.append("=$");
-		            stringBuffer.append(Long.toHexString(currentAddressInt).toUpperCase());
+					address=Long.toHexString(currentAddressInt).toUpperCase();
+		            stringBuffer.append(address);
 		            stringBuffer.append("\t; ");
 		            stringBuffer.append(split[2]);
 		            int size=Integer.parseInt(split[1]);
@@ -75,7 +78,8 @@ public class CSVMemoryMap{
 	            stringBuffer.append(newLine);
 	            outputStreamWriter.write(stringBuffer.toString());
             }
-        }
+			outputStreamWriter.write("MEM_END=$"+address+newLine);
+		}
         catch(Exception x){
             if(lineNumber>0){
                 System.out.println("Error in line: "+lineNumber);

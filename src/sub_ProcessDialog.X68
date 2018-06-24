@@ -5,13 +5,15 @@ ProcessDialogTestOpening:
 	btst.l	#DIALOG_FLAG_TEXT_OPENING,d7	; test if the dialog is opening
 	beq.s	ProcessDialogTextDrawing	; dialog is not opening, go to next test
 	; dialog opening animation
+	clr	d6	; lazy workaround to various bugs	
 	move.w	d7,d6	; copy low word with frame number
 	mulu.w	#DIALOG_PATTERN_SIZE,d6	; multiply by size of dialog patterns
-	movea.l	#PatternDialogClear,a0	; point a0 to start of dialog patterns
+	lea	PatternDialogClear,a0	; point a0 to start of dialog patterns
 	adda.l	d6,a0	; increment to current frame
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
 	moveq	#$0000,d1	; repeat
-	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
+	lea	VDP_VRAM_WRITE_A,a1	; initial drawing location
+	adda.l	#DIALOG_ROWCOL,a1	; move to row & column
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	addq	#$1,d7	; increment frame number
 	cmpi.w	#DIALOG_FRAME_COUNT,d7	; are we at the last frame?
@@ -148,10 +150,11 @@ ProcessDialogTestButtonPress:
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VDP)	; base address
 	add.l	#$00820000,(MEM_DIALOG_VDP)	; add 132 to move 1 row and column	
 	; clear out the dialog
-	movea.l	#PatternDialogFull,a0	; point a0 to start of dialog patterns
+	lea PatternDialogFull,a0	; point a0 to start of dialog patterns
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
 	moveq	#$0000,d1	; repeat
-	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
+	lea	VDP_VRAM_WRITE_A,a1	; initial drawing location
+	adda.l	#DIALOG_ROWCOL,a1	; move to row & column
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	; reset flags to force text to start re-drawing
 	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; set drawing flag
@@ -245,11 +248,12 @@ ProcessDialogTestClosing:
 	move.w	d7,d6	; copy low word with frame number
 	subq	#$1,d6	; decrement frame number
 	mulu.w	#DIALOG_PATTERN_SIZE,d6	; multiply by size of dialog patterns
-	movea.l	#PatternDialogClear,a0	; point a0 to start of dialog patterns
+	lea	PatternDialogClear,a0	; point a0 to start of dialog patterns
 	adda.l	d6,a0	; decrement to current frame
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
 	moveq	#$0000,d1	; repeat
-	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
+	lea	VDP_VRAM_WRITE_A,a1	; initial drawing location
+	adda.l	#DIALOG_ROWCOL,a1	; move to row & column
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	subq	#$1,d7	; decrement frame number
 	cmpi.w	#$0000,d7	; are we at the last frame?

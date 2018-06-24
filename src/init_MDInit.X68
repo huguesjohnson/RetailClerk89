@@ -32,22 +32,30 @@ InitVDPDataLoop:
 	move.w	(a0)+,(VDP_CONTROL)	; write the init data
 	dbf	d1,InitVDPDataLoop		; decrement value of d1 and loop if not 0
 
+ClearCRAM:
+	move.l	#VDP_CRAM_WRITE,(VDP_CONTROL); set VDP ctrl to CRAM write
+	move.w	#$003f,d1	; 3f = 63 = (64 palettes in CRAM - 1)
+ClearCRAMLoop:
+	if _DEBUG_
+	move.w	#$FFFF,(VDP_DATA)
+	else
+	move.w	#$0000,(VDP_DATA)
+	endif
+	dbf	d1,ClearCRAMLoop
+
 ; clear VRAM - prevents garbage tiles from showing at boot on clone systems
 	bsr.w	ClearVRAM	; clear VRAM
 
 ClearRAM:
-	lea	(RAM_START).l,a0
-	move.w	#$0000,d1
+	lea	MEM_START,a0
+	move.w	#(MEM_END-MEM_START),d1
 ClearRAMLoop:
-	move.l	#0,(a0)+
+	if _DEBUG_
+	move.w	#$0000,(a0)+
+	else
+	move.w	#$0000,(a0)+
+	endif
 	dbf	d1,ClearRAMLoop
-
-ClearCRAM:
-	move.l	#VDP_CRAM_WRITE,(VDP_CONTROL); set VDP ctrl to CRAM write
-	move.w	#$3f,d1	; 3f = 63 = (64 palettes in CRAM - 1 since loop counts to 0)
-ClearCRAMLoop:
-	move.w	#0,(VDP_DATA)
-	dbf	d1,ClearCRAMLoop
 
 InitEcho:
 	lea (EchoPointerList),a0
