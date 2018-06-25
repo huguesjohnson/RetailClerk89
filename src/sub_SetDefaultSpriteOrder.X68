@@ -4,10 +4,10 @@
 ;-------------------------------------------------------------------------------
 SetDefaultSpriteOrder:
 	; clear the sprite order table - paranoid step really
-	and.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID0)
-	and.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID1)
-	and.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID2)
-	and.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID3)
+	move.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID0)
+	move.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID1)
+	move.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID2)
+	move.l	#$00000000,(MEM_SPRITE_SORT_TABLE_ID3)
 	move.w	(MEM_ACTIVE_NPC_COUNT),d4	; NPC_COUNT is max size of loop
 	clr	d3	; use d3 to store offset
 	move.w	d4,d3	; use d3 to store offset
@@ -19,6 +19,6 @@ SetDefaultSpriteOrderLoop:
 	move.w	(STRUCT_SPRITE_ID,a5),(a4)	; copy sprite ID
 	move.w	(STRUCT_SPRITE_Y,a5),(2,a4)	; copy Y-value
 	suba.l	#NPC_RECORD_SIZE,a5	; move to previous sprite
-	adda.l	#$0004,a4	; move to next sort table entry
+	adda.l	#LWORD_SIZE,a4	; move to next sort table entry
 	dbra	d4,SetDefaultSpriteOrderLoop	; decrement d4 and loop
 	rts

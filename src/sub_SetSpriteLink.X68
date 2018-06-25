@@ -17,7 +17,7 @@ SetSpriteLink:
 	; workaround for lack of mulu.l on 68000
 	mulu.w	#$0008,d2	; move to address of sprite to modify	
 	swap	d2	; move result to high word
-	and.l	$%11110000,d2	; clear low word
+	and.l	#$FFFF0000,d2	; clear low word
 	add.l	d2,d5	; add address of sprite to modify
 	add.l	#$00020000,d5	; move to index 2
 	add.w	#SPRITE_DEF_WORD2_BASE,d3	; add base value to link field in d3

@@ -60,7 +60,9 @@ DefaultExitSceneUpdatePlayerSprite:
 	bsr.w	UpdateSpriteSortTable	; update the sprite table
 	bsr.w	OrderSprites	; sort the sprite table
 	; workaround to issue where links aren't set if the table is already sorted	
+	move.w	#$2700,sr		; disable interrupts
 	bsr.w	SetSpriteLinks
+	move.w	#$2000,sr		; re-enable interrupts
 ExitDefaultExit:
 	bsr.w	FadeIn ; fade in now that everything is loaded
 	rts

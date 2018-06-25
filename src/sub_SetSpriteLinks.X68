@@ -4,6 +4,9 @@
 ; it also addresses the case where the player is the only sprite
 ;-------------------------------------------------------------------------------
 SetSpriteLinks:
+	; clearing d2 & d3 prevents a bug that only occurred on the Firecore
+	clr.l	d2
+	clr.l	d3
 	; sprite zero points to the first record in the table
 	moveq	#$0000,d2
 	move.w	(MEM_SPRITE_SORT_TABLE_ID0),d3

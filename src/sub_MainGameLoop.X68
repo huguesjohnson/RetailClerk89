@@ -372,7 +372,9 @@ TestIntroScreenEnd:
 	; reorder all the sprites
 	bsr.w	OrderSprites	; order sprites
 	; workaround to issue where links aren't set if the table is already sorted
+	move.w	#$2700,sr		; disable interrupts
 	bsr.w	SetSpriteLinks
+	move.w	#$2000,sr		; re-enable interrupts
 	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset frame counter
 	bsr.w	FadeIn	; fade in now that everything is setup
 MainGameLoopEnd:
