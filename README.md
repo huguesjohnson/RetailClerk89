@@ -1,8 +1,6 @@
 # Retail Clerk '89
 Retail Clerk '89 is a personal exercise to learn Sega Genesis programming. This might even turn into a real game demo one day.
 
-See http://HuguesJohnson.com/ for articles/devbloggy stuff about this project.
-
 **Currently implemented**
 
 Basic framework for:
@@ -30,6 +28,12 @@ vasmm68k_mot -o RetailClerk89.bin -Fbin -spaces RetailClerk89.X68
 * the 'spaces' option was added to avoid headaches when linking to code from projects using an assembler that ignores spaces in statements
 
 This has been fully tested on Gens and BlastEm for Linux. It has been minimally tested on Genecyst and Gens for Windows. After wrestling with AtGames Firecore it runs at that too. This makes it likely to run on other AtGames clones but only the Firecore has been explicitly tested. The latest build has issues on Genesis Plus derivatives on Android.
+
+**Links**
+
+Project page - http://www.huguesjohnson.com/rc89/
+
+Builds that mostly work - http://www.huguesjohnson.com/rc89/releases.html
 
 **Disclaimers**
 

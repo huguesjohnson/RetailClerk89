@@ -17,6 +17,18 @@
 ;*******************************************************************************
 
 ;-------------------------------------------------------------------------------
+; character constants
+;-------------------------------------------------------------------------------
+LF=$0A	; '\n' - used to break text into multiple lines
+FF=$0C	; form feed - used to break text into pages
+ETX=$03	; end of text
+OBJNAMEEND=$1E	; end of object name
+NPCNAMEEND=$1F	; end of NPC name
+ITEMNAMESTART=$1C	; indicator to draw the next item name
+ITEMNAMEEND=$1D	; end of item name
+CHAR_DQUOTE=$22	; ACSII code for double quote character
+
+;-------------------------------------------------------------------------------
 ; title screen
 ;-------------------------------------------------------------------------------
 TitleScreenTextNewGame:
@@ -391,9 +403,43 @@ DialogTextInfoDeskDay00R3:	; rumors
 	dc.b	"`I really shouldn't",LF
 	dc.b	"tell you this but..  ^",FF
 	dc.b	"One store here isn't",LF
-	dc.b	"doing well and might ^",FF
-	dc.b	"close next year. Don't",LF
+	dc.b	"doing well & might be^",FF
+	dc.b	"sold next year. Don't",LF
 	dc.b	"tell anyone please.'",ETX
+
+DialogTextInfoDeskDay01R0:	; mall news
+	;		"1234567890123456789012"
+	dc.b	"`Holiday weekend hours",LF
+	dc.b	"start tomorrow.      ^",FF
+	dc.b	"All stores will stay",LF
+	dc.b	"open until 10:00.'",ETX
+
+DialogTextInfoDeskDay01R1:	; events
+	;		"1234567890123456789012"
+	dc.b	"`We're trying to ",LF
+	dc.b	"organize a really fun^",FF
+	dc.b	"Secret Santa exchange",LF
+	dc.b	"for mall employees.  ^",FF
+	dc.b	"Sign-ups start next",LF
+	dc.b	"week, please join us!'",ETX
+
+DialogTextInfoDeskDay01R2:	; store news
+	;		"1234567890123456789012"
+	dc.b	"`Checkers is having an",LF
+	dc.b	"out of fashion sale. ^",FF
+	dc.b	"50% off anything",LF
+	dc.b	"older than a week.   ^",FF
+	dc.b	"They've been very busy",LF
+	dc.b	"today because of it.'",ETX
+
+DialogTextInfoDeskDay01R3:	; rumors
+	;		"1234567890123456789012"
+	dc.b	"`I really shouldn't",LF
+	dc.b	"tell you this but..  ^",FF
+	dc.b	"The mall manager still",LF
+	dc.b	"hasn't hired a new   ^",FF
+	dc.b	"snowplow company since",LF
+	dc.b	"the last one quit.'",ETX
 
 ;-------------------------------------------------------------------------------
 ; default object descriptions

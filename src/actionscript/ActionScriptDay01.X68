@@ -126,19 +126,19 @@ Day01Scene03Action03:	; ACTION_RESPOND
 	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
 	beq.s	Day01Scene03Action03R2	; branch to text for response 2
 	; must be response 3 then
-	lea	DialogTextInfoDeskDay00R3,a6	; load text
+	lea	DialogTextInfoDeskDay01R3,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene03Action03R0:
-	lea	DialogTextInfoDeskDay00R0,a6	; load text
+	lea	DialogTextInfoDeskDay01R0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene03Action03R1:
-	lea	DialogTextInfoDeskDay00R1,a6	; load text
+	lea	DialogTextInfoDeskDay01R1,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene03Action03R2:
-	lea	DialogTextInfoDeskDay00R2,a6	; load text
+	lea	DialogTextInfoDeskDay01R2,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

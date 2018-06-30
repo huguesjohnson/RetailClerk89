@@ -53,3 +53,8 @@ BUTTON_START_PRESSED=$80
 WORD_SIZE=$2
 LWORD_SIZE=$4
 LWORDS_PER_TILE=$8	; how many lwords of data in each tile
+VDP_PLANE_PIXELS_X=$0200	; width of VDP plane
+VDP_PLANE_PIXELS_Y=$0100	; height of VDP plane
+DISPLAY_PIXELS_X=$0140	; width of physical display
+DISPLAY_PIXELS_Y=$00E0	; height of physical display
+
