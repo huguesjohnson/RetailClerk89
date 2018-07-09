@@ -54,6 +54,15 @@ InitNPCLocations:
 ;-------------------------------------------------------------------------------
 ; load the initial scene
 ;-------------------------------------------------------------------------------
+DisplayLegalScene:
+	lea	SceneLegal,a6	; address of the scene for the title screen
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	FadeIn	; fade in to the intro scene
+	move.w	#LEGAL_SCREEN_LOOP,d7	; use d7 for loop control
+DisplayLegalSceneLoop:
+	bsr.w	WaitVBlank	; wait for vblank
+	dbf	d7,DisplayLegalSceneLoop	; loop
+
 LoadTitleScene:
 	lea	SceneTitle,a6	; address of the scene for the title screen
 	bsr.w	LoadScene	; branch to LoadScene subroutine

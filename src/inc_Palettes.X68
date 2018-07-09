@@ -171,6 +171,15 @@ Store17Palettes:
 	include 'palettes/pal_People_00.X68'
 
 ;-------------------------------------------------------------------------------
+; palettes for screens that only display text (legal, credits)
+;-------------------------------------------------------------------------------
+TextOnlyPalettes:
+	include 'palettes/pal_TextOnly_00.X68'
+	include 'palettes/pal_TextOnly_01.X68'
+	include 'palettes/pal_TextOnly_02.X68'
+	include 'palettes/pal_TextOnly_03.X68'
+
+;-------------------------------------------------------------------------------
 ; day intro screen palettes
 ;-------------------------------------------------------------------------------
 DayIntroScreenPalettes:

@@ -50,11 +50,7 @@ ClearRAM:
 	lea	MEM_START,a0
 	move.w	#(MEM_END-MEM_START),d1
 ClearRAMLoop:
-	if _DEBUG_
 	move.w	#$0000,(a0)+
-	else
-	move.w	#$0000,(a0)+
-	endif
 	dbf	d1,ClearRAMLoop
 
 InitEcho:

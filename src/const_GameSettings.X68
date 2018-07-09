@@ -17,11 +17,13 @@ DIALOG_UPDATE_FREQUENCY=$0000	; how often to update dialog animation
 SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
 INTRO_SCREEN_COUNTER_START=$0001	; how long to display intro screens
 FADE_FRAME_DELAY=$0001	; how many frames to wait between fade in/out
+LEGAL_SCREEN_LOOP=$0001	; how long to display the legal screen
 	else
 DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
 SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
-INTRO_SCREEN_COUNTER_START=$00B4	; how long to display intro screens
+INTRO_SCREEN_COUNTER_START=$001E	; how long to display intro screens
 FADE_FRAME_DELAY=$0003	; how many frames to wait between fade in/out
+LEGAL_SCREEN_LOOP=$0168	; how long to display the legal screen
 	endif
 
 ;-------------------------------------------------------------------------------

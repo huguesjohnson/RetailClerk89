@@ -1677,6 +1677,41 @@ StoreName0C:
 	dc.b	"Santa's Workshop",ETX
 
 ;-------------------------------------------------------------------------------
+; legal screen text
+;-------------------------------------------------------------------------------
+
+LegalScreenLine00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"           Retail Clerk '89           ",ETX
+LegalScreenLine01:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Copyright (c) 2015-2018 Hugues Johnson",ETX
+LegalScreenLine02:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"This demo is not licensed by Sega     ",ETX
+LegalScreenLine03:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"There is no relationship between the  ",ETX
+LegalScreenLine04:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"author of this demo and Sega          ",ETX
+LegalScreenLine05:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"This demo uses the Echo Sound Driver  ",ETX
+LegalScreenLine06:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Copyright (c) 2010-2017               ",ETX
+LegalScreenLine07:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Javier Degirolmo (sikthehedgehog)     ",ETX
+LegalScreenLine08:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Inspired by '80s malls but all events,",ETX
+LegalScreenLine09:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"characters, and places are fictitious ",ETX
+
+;-------------------------------------------------------------------------------
 ; end
 ;-------------------------------------------------------------------------------
 	align 2
