@@ -528,6 +528,11 @@ DialogTextMannequin:
 	dc.b	"Staring too long will",LF
 	dc.b	"get you kicked out.",ETX
 
+DialogTextTMannequin:
+	;		"1234567890123456789012"
+	dc.b	"This new suit color",LF
+	dc.b	"is really something.",ETX
+
 DialogTextClothing:
 	;		"1234567890123456789012"
 	dc.b	"Folded stacks of",LF
@@ -1175,6 +1180,9 @@ ObjectNameDaniCar:
 	dc.b	"Dani's car",OBJNAMEEND
 
 ObjectNameMannequin:
+	dc.b	"Mannequin",OBJNAMEEND
+
+ObjectNameTMannequin:
 	dc.b	"Mannequin",OBJNAMEEND
 
 ObjectNameClothing:

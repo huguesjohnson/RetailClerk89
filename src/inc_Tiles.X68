@@ -81,6 +81,9 @@ MannequinMTilesStart:
 	include 'tiles/scene-tiles/tileset_MannequinMA.X68'
 	include 'tiles/scene-tiles/tileset_MannequinMB.X68'
 	include 'tiles/scene-tiles/tileset_MannequinMC.X68'
+	include 'tiles/scene-tiles/tileset_MannequinMD.X68'
+	include 'tiles/scene-tiles/tileset_MannequinME.X68'
+	include 'tiles/scene-tiles/tileset_MannequinMF.X68'
 MannequinMTilesEnd:
 
 CheckersMerchandiseTilesStart:

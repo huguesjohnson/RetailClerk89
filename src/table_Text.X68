@@ -108,6 +108,8 @@ DefaultObjectDescriptionTable:
 	dc.l	DialogTextFirePit
 	; OBJ_SCENE_TENT
 	dc.l	DialogTextTent
+	; OBJ_SCENE_TMANNEQUIN
+	dc.l	DialogTextTMannequin
 
 ;-------------------------------------------------------------------------------
 ; default npc descriptions
@@ -269,6 +271,8 @@ ObjectNameTable:
 	dc.l	ObjectNameFirepit
 	; OBJ_SCENE_TENT
 	dc.l	ObjectNameTent
+	; OBJ_SCENE_TMANNEQUIN
+	dc.l	ObjectNameTMannequin
 
 ;-------------------------------------------------------------------------------
 ; npc names
