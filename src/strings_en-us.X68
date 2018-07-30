@@ -576,7 +576,7 @@ DialogTextVideoWall:
 DialogTextVideoRack:
 	;		"1234567890123456789012"
 	dc.b	"Here are the new and",LF
-	dc.b	"trendy releases.",ETX
+	dc.b	"exciting releases.",ETX
 
 DialogTextNutCase:
 	;		"1234567890123456789012"
@@ -825,6 +825,21 @@ DialogTextWorkshopStaff1DefaultLook:
 	;		"1234567890123456789012"
 	dc.b	"That outfit can't be",LF
 	dc.b	"comfortable.",ETX
+
+DialogTextNPCSecretShopperDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"It's obvious she's a",LF
+	dc.b	"mystery shopper.",ETX
+
+DialogTextNPCGuard0DefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"`Move along unless you",LF
+	dc.b	"want a lifetime ban.'",ETX
+
+DialogTextNPCTrendyGuyDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"That look must take a",LF
+	dc.b	"lot of effort.",ETX
 
 ;-------------------------------------------------------------------------------
 ; default NPC talk responses
@@ -1361,6 +1376,18 @@ NPCNameWorkshopStaff0:
 
 NPCNameWorkshopStaff1:
 	dc.b	"Anthony",NPCNAMEEND
+
+NPCNameSecretShopper:
+	;		"1234567890123456789012"
+	dc.b	"Overt mystery shopper",NPCNAMEEND
+
+NPCNameGuard0:
+	;		"1234567890123456789012"
+	dc.b	"Generic night guard",NPCNAMEEND
+
+NPCNameTrendyGuy:
+	;		"1234567890123456789012"
+	dc.b	"Trendy guy",NPCNAMEEND
 
 ;-------------------------------------------------------------------------------
 ; item names and descriptions

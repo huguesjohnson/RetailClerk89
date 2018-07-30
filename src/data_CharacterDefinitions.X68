@@ -93,3 +93,16 @@ CharacterScene0DStaffNPC1:
 CharacterDefinitionDB:
 	dc.l	PlayerSpriteTilesStart
 
+; 17 - OBJ_NPC_SECRET_SHOPPER
+CharacterDefinitionNPCSecretShopper:
+	dc.l	NPCSpriteSecretShopperTilesStart
+
+; 18 - OBJ_NPC_GUARD0
+CharacterDefinitionNPCGuard0:
+	dc.l	NPCSpriteGuard0TilesStart
+
+; 19 - OBJ_NPC_TRENDYGUY
+CharacterDefinitionNPCTrendyGuy:
+	dc.l	NPCSpriteTrendyGuyTilesStart
+
+

@@ -161,6 +161,12 @@ DefaultNPCDescriptionTable:
 	dc.l	DialogTextWorkshopStaff1DefaultLook
 	; OBJ_NPC_DB
 	dc.l	DialogTextDBDefaultLook
+	; OBJ_NPC_SECRET_SHOPPER
+	dc.l	DialogTextNPCSecretShopperDefaultLook
+	; OBJ_NPC_GUARD0
+	dc.l	DialogTextNPCGuard0DefaultLook
+	; OBJ_NCP_TRENDYGUY
+	dc.l	DialogTextNPCTrendyGuyDefaultLook
 
 ;-------------------------------------------------------------------------------
 ; object names
@@ -323,6 +329,12 @@ NPCNameTable:
 	dc.l	NPCNameWorkshopStaff1
 	; OBJ_NPC_DB
 	dc.l	NPCNameDB
+	; OBJ_NPC_SECRET_SHOPPER
+	dc.l	NPCNameSecretShopper
+	; OBJ_NPC_GUARD0
+	dc.l	NPCNameGuard0
+	; OBJ_NCP_TRENDYGUY
+	dc.l	NPCNameTrendyGuy
 
 ;-------------------------------------------------------------------------------
 ; item names

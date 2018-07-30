@@ -454,6 +454,18 @@ NPCSpriteGreenbergStart:
 	include 'tiles/sprite-tiles/tileset_NPCSprite3.X68'
 NPCSpriteGreenbergEnd:
 
+NPCSpriteSecretShopperTilesStart:
+	include 'tiles/sprite-tiles/tileset_NPCSpriteSecretShopper.X68'
+NPCSpriteSecretShopperTilesEnd:
+
+NPCSpriteGuard0TilesStart:
+	include 'tiles/sprite-tiles/tileset_NPCSpriteGuard0.X68'
+NPCSpriteGuard0TilesEnd
+
+NPCSpriteTrendyGuyTilesStart:
+	include 'tiles/sprite-tiles/tileset_NPCTrendyGuy.X68'
+NPCSpriteTrendyGuyTilesEnd
+
 Scene03StaffNPCTilesStart:
 	include 'tiles/sprite-tiles/tileset_Scene03StaffNPC.X68'
 Scene03StaffNPCTilesEnd:
