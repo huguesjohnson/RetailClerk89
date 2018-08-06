@@ -35,6 +35,7 @@ SCENE_ID_INTRO_DAY01=$0E01
 ;-------------------------------------------------------------------------------
 ; title & end screen
 ;-------------------------------------------------------------------------------
+SCENE_ID_CREDITS=$0FFC
 SCENE_ID_LEGAL=$0FFD
 SCENE_ID_END=$0FFE
 SCENE_ID_TITLE=$0FFF

@@ -32,7 +32,7 @@ InitNPCLocations:
 	move.l	#$00000000,(a0)+	; location 04 (SHALL)
 	move.l	#$00000000,(a0)+	; location 05 (PARKINGLOT)
 	move.l	#$00000000,(a0)+	; location 06 (EWHALL)
-	move.l	#$00000000,(a0)+	; location 07 (EEHALL)
+	move.l	#$18000000,(a0)+	; location 07 (EEHALL)
 	move.l	#$05000000,(a0)+	; location 08 (DENIMCOUNTRY)
 	move.l	#$06000000,(a0)+	; location 09 (CHECKERS)
 	move.l	#$07000000,(a0)+	; location 0A (TLODGE)

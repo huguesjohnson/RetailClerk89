@@ -6,6 +6,7 @@
 	include 'scenes/scene_day00.X68'
 	include 'scenes/scene_day01.X68'
 	include 'scenes/scene_end.X68'
+	include 'scenes/scene_credits.X68'
 
 	;---------------------------------------------------------------------------
 	; status screen

@@ -39,22 +39,143 @@ TitleScreenTextFooter:
 	dc.b	"     Mall Walker Demo (June 2018)     ",ETX
 
 ;-------------------------------------------------------------------------------
-; end screen
+; credits and end screen
 ;-------------------------------------------------------------------------------
 EndScreenTextLine1:
+	;		"12345678901234567890123456789012345678"
 	dc.b	"Thank you for trying this little demo.",ETX
 
 EndScreenTextLine2:
+	;		"12345678901234567890123456789012345678"
 	dc.b	"Follow the progress of this project at:",ETX
 
 EndScreenTextLine3:
+	;		"12345678901234567890123456789012345678"
 	dc.b	"http://HuguesJohnson.com/",ETX
 
 EndScreenTextLine4:
+	;		"12345678901234567890123456789012345678"
 	dc.b	"Look for the final game in stores",ETX
 
 EndScreenTextLine5:
+	;		"12345678901234567890123456789012345678"
 	dc.b	"sometime around Xmas 2040.",ETX
+
+EndScreenTextLine6:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Press the start button to reset.",ETX
+
+CreditsScreen00Line00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"                Credits               ",ETX
+
+CreditsScreen00Line01:
+	;		"12345678901234567890123456789012345678"
+	dc.b	" ",ETX
+
+CreditsScreen00Line02:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Story and program by Hugues Johnson",ETX
+
+CreditsScreen00Line03:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Echo Sound Driver by Javier Degirolmo",ETX
+
+CreditsScreen00Line04:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Some code is based on examples by ",ETX
+
+CreditsScreen00Line05:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Matt Phillips (tanglewoodgame.com)",ETX
+
+CreditsScreen00Line06:
+	;		"12345678901234567890123456789012345678"
+	dc.b	" ",ETX
+
+CreditsScreen00Line07:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"          3rd Party Graphics          ",ETX
+
+CreditsScreen00Line08:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Title screen font based on Audiowide",ETX
+
+CreditsScreen00Line09:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Copyright (c) 2012 Brian J Bonislawsky",ETX
+
+CreditsScreen00Line0A:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Dialog & menu font based on",ETX
+
+CreditsScreen00Line0B:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Deathwake font by Zee-3",ETX
+
+CreditsScreen00Line0C:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Some text is based on Tragic Marker",ETX
+
+CreditsScreen00Line0D:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Copyright (c) 2016 Missy Meyer",ETX
+
+CreditsScreen00Line0E:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Some scenery is based on tilesets",ETX
+
+CreditsScreen00Line0F:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"created by Sithjester",ETX
+
+CreditsScreen00Line10:
+	;		"12345678901234567890123456789012345678"
+	dc.b	" ",ETX
+
+CreditsScreen00Line11:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"            3rd Party Music           ",ETX
+
+CreditsScreen00Line12:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Soundtrack contains conversions of",ETX
+
+CreditsScreen00Line13:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Chip Overture, The Radix Point, and",ETX
+
+CreditsScreen00Line14:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"October Chip by Drozerix",ETX
+
+CreditsScreen00Line15:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"All under Public Domain license",ETX
+
+CreditsScreen00Line16:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Soundtrack contains a conversion of",ETX
+
+CreditsScreen00Line17:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"The Spirit of Mods by Blurry",ETX
+
+CreditsScreen00Line18:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Under Attribution Share Alike license",ETX
+
+CreditsScreen00Line19:
+	;		"12345678901234567890123456789012345678"
+	dc.b	" ",ETX
+
+CreditsScreen00Line1A:
+	;		"12345678901234567890123456789012345678"
+	dc.b	" ",ETX
+
+CreditsScreen00Line1B:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"See CREDITS & LICENSE for details",ETX
 
 ;-------------------------------------------------------------------------------
 ; messages
@@ -161,6 +282,7 @@ DialogTextDaniScene00Day00Exit2:
 DialogTextDaniScene05Day00:
 	;		"1234567890123456789012"
 	dc.b	"`Did you get lost?",LF
+	dc.b	"                     ^",FF
 	dc.b	"Just get in the car.'",ETX
 
 DialogTextGreenbergScene00Day00Exit:
@@ -307,6 +429,18 @@ DialogTextDaniCarDayEnd:
 	dc.b	"{Yeah, time to leave",LF
 	dc.b	"{Not yet",ETX
 
+DialogTextDaniCarGameEnd:
+	;		"1234567890123456789012"
+	dc.b	"Do you want to end",LF
+	dc.b	"this little demo?    ^",FF
+	dc.b	"{Yeah, I'm done",LF
+	dc.b	"{Not yet",ETX
+
+DialogTextDaniCarGameEndR0:
+	;		"1234567890123456789012"
+	dc.b	"OK, come back whenever",LF
+	dc.b	"you're ready.",ETX
+
 DialogTextDaniWalkingHome:
 	;		"1234567890123456789012"
 	dc.b	"Dani:`In 10 minutes",LF
@@ -370,6 +504,11 @@ DialogTextDay01Intro03:
 	dc.b	"mall for all I care. ^",FF
 	dc.b	"I'm think I'll take my",LF
 	dc.b	"break now.'",ETX
+
+DialogTextSecurityGuardDay00:
+	;		"1234567890123456789012"
+	dc.b	"`The mall is closed.",LF
+	dc.b	"Get a move on.'",ETX
 
 ;-------------------------------------------------------------------------------
 ; information desk

@@ -167,16 +167,37 @@ Day01Scene04Action03:	; ACTION_RESPOND
 Day01Scene05Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
+
 Day01Scene05Action01:	; ACTION_USE_TALK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
+	beq.s	Day01Scene05DaniCarLookUse	; same action for look and use	
+	; default action	
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+ExitDay01Scene05Action01:
 	rts
+
+Day01Scene05DaniCarLookUse:
+	; setup 2 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextDaniCarGameEnd,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
 Day01Scene05Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+
 Day01Scene05Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.w	EndGame	; branch to game end
+	; else exit
+	lea	DialogTextDaniCarGameEndR0,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

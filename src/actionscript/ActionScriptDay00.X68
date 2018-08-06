@@ -489,11 +489,27 @@ Day00Scene07Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day00Scene07Action01:	; ACTION_USE_TALK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_GUARD0,d6	; test target
+	beq.s	Day00Scene07Action01NPC	; branch to display text
+	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+Day00Scene07Action01NPC:
+	lea	DialogTextSecurityGuardDay00,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day00Scene07Action02:	; ACTION_TAKE_GIVE
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_GUARD0,d6	; test target
+	beq.s	Day00Scene07Action02NPC	; branch to text for the NPC
+	; default action
 	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene07Action02NPC:
+	lea	DialogTextSecurityGuardDay00,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day00Scene07Action03:	; ACTION_RESPOND
@@ -695,6 +711,11 @@ Day00End:
 	mulu.w	#LWORD_SIZE,d7	; multiply by word size
 	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
 	and.l	#$00000000,(a5)	; update NPCs in parking lot
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
+	and.l	#$00000000,(a5)	; update NPCs in east-east hall
 	; update the game state
 	bsr.w	ClearPlayerInventory	; clear player inventory
 	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
