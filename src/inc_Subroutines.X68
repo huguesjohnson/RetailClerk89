@@ -15,6 +15,8 @@
 
 	include	'sub_MoveSprite.X68'
 
+	include	'sub_FixSprites.X68'
+
 	include	'sub_SetActiveSpriteMapRowCol.X68'
 
 	include	'sub_FlipSpriteMapPosition.X68'

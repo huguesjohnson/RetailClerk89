@@ -71,7 +71,7 @@ TestScriptedEvent:
 	; dialog is not displaying, test if it is time to start a new action
 	;---------------------------------------------------------------------------
 	cmpi.w	#$0000,(MEM_SCRIPTED_EVENT_STEPS)	; test if 0
-	beq.s	NextScriptedEventAction	; if 0 then start next action
+	beq.w	NextScriptedEventAction	; if 0 then start next action
 	;---------------------------------------------------------------------------
 	; continue moving the sprite
 	;---------------------------------------------------------------------------
@@ -93,7 +93,9 @@ NextScriptedEventAction:
 	cmpi.w	#SCRIPTED_EVENT_DIALOG,d7	; display a dialog?
 	beq.s	ScriptedEventDialog	; if so branch
 	cmpi.w	#SCRIPTED_EVENT_CHANGE_SPRITE,d7	; changing the sprite?
-	beq.s	ScriptedEventChangeSprite	; if so branch
+	beq.w	ScriptedEventChangeSprite	; if so branch
+	cmpi.w	#SCRIPTED_EVENT_CHANGE_SCENE,d7	; change scene?
+	beq.w	ScriptedEventChangeScene	; if so branch
 	;---------------------------------------------------------------------------
 	; start moving the sprite
 	;---------------------------------------------------------------------------
@@ -128,6 +130,23 @@ ScriptedEventDialog:
 ScriptedEventChangeSprite:
 	move.l	(MEM_SCRIPTED_EVENT_ADDR),a6	; point a6 to next step
 	bsr.w	QueueScriptedEvent	; this will reset all variables
+	bra.w	MainGameLoop	; return to start of game loop
+ScriptedEventChangeScene:
+	move.w	(a6)+,d7	; copy scene ID to load to d7
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
+	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
+	mulu.w	#$4,d7	; multiply by 4 to get offset in scene definition table
+	lea	SceneDefinitionTable,a6	; point a6 to the scene definition table
+	adda.l	d7,a6	; add offset
+	move.l	(a6),a6	; have a6 point to the value at a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	LoadPlayerSprite	; load the player sprite
+	bsr.w	FixSprites	; move player sprite and reset sprite links
+	move.w	#EVENT_FRAME_DELAY,d7	; copy delay to d7
+ScriptedEventFadeInDelayLoop:
+	bsr.w	WaitVBlank
+	dbf	d7,ScriptedEventFadeInDelayLoop	; loop until counter is zero
+	bsr.w	FadeIn	; fade in to the new scene
 	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
 ; determine if the player is opening or interacting with a dialog

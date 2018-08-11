@@ -35,6 +35,7 @@
 	include 'const_ObjectIDs.X68'
 	include	'const_RomMap.X68'
 	include 'const_SceneIDs.X68'
+	include	'const_ScriptedEventCommands.X68'
 	include	'const_StructFields.X68'
 	include	'const_StoreKeys.X68'
 

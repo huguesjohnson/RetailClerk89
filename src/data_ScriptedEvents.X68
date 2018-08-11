@@ -141,3 +141,21 @@ ScriptedEventDay01Start:
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay01Intro03
 	dc.w	SCRIPTED_EVENT_END
+
+
+	if	_DEBUG_
+
+TestScriptedEventSceneChange:
+	dc.w	$0001	; player (Dani)
+	dc.w	DIRECTION_UP
+	dc.w	$003E
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_VB
+	dc.w	DIRECTION_DOWN
+	dc.w	$0020	
+	dc.w	DIRECTION_UP
+	dc.w	$0020	
+	dc.w	SCRIPTED_EVENT_END
+
+	endif
+

@@ -17,6 +17,7 @@ DIALOG_UPDATE_FREQUENCY=$0000	; how often to update dialog animation
 SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
 INTRO_SCREEN_COUNTER_START=$0001	; how long to display intro screens
 FADE_FRAME_DELAY=$0001	; how many frames to wait between fade in/out
+EVENT_FRAME_DELAY=$0008	; delay used for scripted event scene changes
 LEGAL_SCREEN_LOOP=$0001	; how long to display the legal screen
 CREDITS_SCREEN_LOOP=$0168	; how long to display the credits screen
 	else
@@ -24,6 +25,7 @@ DIALOG_UPDATE_FREQUENCY=$0002	; how often to update dialog animation
 SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
 INTRO_SCREEN_COUNTER_START=$001E	; how long to display intro screens
 FADE_FRAME_DELAY=$0003	; how many frames to wait between fade in/out
+EVENT_FRAME_DELAY=$0009	; delay used for scripted event scene changes
 CREDITS_SCREEN_LOOP=$0168	; how long to display the credits screen
 	endif
 
@@ -146,13 +148,6 @@ ROW_HEIGHT=$800000	; height of a tile row
 PALETTE_SET_SIZE=$80	; size of 4 palettes
 PLAYER_SPRITE_DB=$0000	; use tiles for DB as player sprite
 PLAYER_SPRITE_DANI=$0001	; use tiles for Dani as player sprite
-
-;-------------------------------------------------------------------------------
-; scripted event settings
-;-------------------------------------------------------------------------------
-SCRIPTED_EVENT_END=$FFFF	; end of scripted event
-SCRIPTED_EVENT_DIALOG=$EEEE	; show a dialog
-SCRIPTED_EVENT_CHANGE_SPRITE=$DDDD	; change the moving sprite
 
 ;-------------------------------------------------------------------------------
 ; action table settings
