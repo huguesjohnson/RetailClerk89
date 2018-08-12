@@ -149,6 +149,8 @@ TestScriptedEventSceneChange:
 	dc.w	$0001	; player (Dani)
 	dc.w	DIRECTION_UP
 	dc.w	$003E
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DB
 	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
 	dc.w	SCENE_ID_VB
 	dc.w	DIRECTION_DOWN

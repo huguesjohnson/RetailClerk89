@@ -96,6 +96,8 @@ NextScriptedEventAction:
 	beq.w	ScriptedEventChangeSprite	; if so branch
 	cmpi.w	#SCRIPTED_EVENT_CHANGE_SCENE,d7	; change scene?
 	beq.w	ScriptedEventChangeScene	; if so branch
+	cmpi.w	#SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE,d7	; change player sprite?
+	beq.w	ScriptedEventChangePlayerSprite	; if so branch
 	;---------------------------------------------------------------------------
 	; start moving the sprite
 	;---------------------------------------------------------------------------
@@ -147,6 +149,11 @@ ScriptedEventFadeInDelayLoop:
 	bsr.w	WaitVBlank
 	dbf	d7,ScriptedEventFadeInDelayLoop	; loop until counter is zero
 	bsr.w	FadeIn	; fade in to the new scene
+	bra.w	MainGameLoop	; return to start of game loop
+ScriptedEventChangePlayerSprite:
+	move.w	(a6)+,(MEM_PLAYER_SPRITE)	; update sprite
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
+	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
 	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
 ; determine if the player is opening or interacting with a dialog
