@@ -171,20 +171,37 @@ ExitScene05Down:
 ; exit scene 06 (SCENE_ID_EWHALL)
 ;-------------------------------------------------------------------------------
 ExitScene06:
-	cmpi.w	#$0000,(MEM_DAY)
-	beq.s	ExitScene06Day00	; branch to day 0 logic
-	bra.s	ExitScene06Day00CanExit	; use default handler
+	cmpi.w	#$0000,(MEM_DAY)	; is it day 00?
+	beq.s	ExitScene06Day00	; branch to day 00 logic
+	cmpi.w	#$0001,(MEM_DAY)	; is it day 01?
+	beq.s	ExitScene06Day01	; branch to day 01 logic
+	bra.s	ExitScene06Default	; use default handler
 ExitScene06Day00:
 	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene06Day00CanExit	; ok to exit
+	beq.s	ExitScene06Default	; ok to exit
 	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene06Day00CanExit	; ok to exit
+	beq.s	ExitScene06Default	; ok to exit
 	; can't exit the scene - display message
 	lea	DialogTextStoreClosing,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; setup dialog open
 	rts
-ExitScene06Day00CanExit: ; ok to exit scene
+ExitScene06Day01:
+	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)
+	bne.s	ExitScene06Default	; ok to exit
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy game state to d7
+	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; test flag blocking the exits
+	beq.s	ExitScene06Day01CantExit	; flag not set = can't exit
+	btst.l	#EVENT_FLAG_DAY01_SUB01_COMPLETE,d7	; test flag blocking the exits
+	beq.s	ExitScene06Day01CantExit	; flag not set = can't exit
+	bra.s	ExitScene06Default	; use default handler	
+ExitScene06Day01CantExit:
+	; can't exit the scene - display message
+	lea	DialogTextDay01CantReturnYet,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; setup dialog open
+	rts
+ExitScene06Default: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
@@ -211,19 +228,36 @@ ExitScene07Day00CanExit: ; ok to exit scene
 ; exit scene 17 (SCENE_ID_SOUTH_CENTER)
 ;-------------------------------------------------------------------------------
 ExitScene17:
-	cmpi.w	#$0000,(MEM_DAY)
-	beq.s	ExitScene17Day00	; branch to day 0 logic
-	bra.s	ExitScene17Day00CanExit	; use default handler
+	cmpi.w	#$0000,(MEM_DAY)	; is it day 00?
+	beq.s	ExitScene17Day00	; branch to day 00 logic
+	cmpi.w	#$0001,(MEM_DAY)	; is it day 01?
+	beq.s	ExitScene17Day01	; branch to day 01 logic
+	bra.s	ExitScene17Default	; use default handler
 ExitScene17Day00:
 	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene17Day00CanExit	; ok to exit
+	beq.s	ExitScene17Default	; ok to exit
 	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene17Day00CanExit	; ok to exit
+	beq.s	ExitScene17Default	; ok to exit
 	; can't exit the scene - display message
 	lea	DialogTextStoreClosing,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; setup dialog open
 	rts
-ExitScene17Day00CanExit: ; ok to exit scene
+ExitScene17Day01:
+	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)
+	bne.s	ExitScene17Default	; ok to exit
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy game state to d7
+	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; test flag blocking the exits
+	beq.s	ExitScene17Day01CantExit	; flag not set = can't exit
+	btst.l	#EVENT_FLAG_DAY01_SUB01_COMPLETE,d7	; test flag blocking the exits
+	beq.s	ExitScene17Day01CantExit	; flag not set = can't exit
+	bra.s	ExitScene17Default	; use default handler	
+ExitScene17Day01CantExit:
+	; can't exit the scene - display message
+	lea	DialogTextDay01CantReturnYet,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; setup dialog open
+	rts
+ExitScene17Default: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit

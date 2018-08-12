@@ -212,6 +212,11 @@ DialogTextStoreClosing:
 	dc.b	"It looks like they are",LF
 	dc.b	"closing for the night.",ETX
 
+DialogTextDay01CantReturnYet:
+	;		"1234567890123456789012"
+	dc.b	"`I'm not ready to deal",LF
+	dc.b	"with work again yet.'",ETX
+
 DialogTextLongWalk:
 	;		"1234567890123456789012"
 	dc.b	"It's an awful long way",LF

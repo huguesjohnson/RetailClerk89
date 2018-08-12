@@ -142,7 +142,9 @@ ScriptedEventDay01Start:
 	dc.l	DialogTextDay01Intro03
 	dc.w	SCRIPTED_EVENT_END
 
-
+	; --------------------------------------------------------------------------
+	; used to test scene and player sprite changes in scripted events
+	; --------------------------------------------------------------------------
 	if	_DEBUG_
 
 TestScriptedEventSceneChange:

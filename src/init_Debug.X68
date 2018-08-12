@@ -17,8 +17,12 @@
 	bset.l	#STORE_KEY_DCOUNTRY,d7
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)
 
-	; queue the scripted event
+;	; queue the scripted event
 ;	lea ScriptedEventDay01Start,a6	; point a6 to event to load
+;	bsr.w QueueScriptedEvent	; queue the event
+
+;	; test scene change scripted event
+;	lea TestScriptedEventSceneChange,a6	; point a6 to event to load
 ;	bsr.w QueueScriptedEvent	; queue the event
 
 ;	;---------------------------------------------------------------------------

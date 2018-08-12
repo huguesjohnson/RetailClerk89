@@ -41,7 +41,9 @@ EVENT_FLAG_DAY00_NPC01_GIVE01=$6	; 2nd time player gives an item to NPC1
 EVENT_FLAG_DAY00_NPC01_GIVE02=$7		; 3rd time player gives an item to NPC1
 EVENT_FLAG_DAY00_EVENT00_COMPLETE=$8	; 1st scripted event complete
 EVENT_FLAG_DAY00_EVENT01_COMPLETE=$9	; 2nd scripted event complete
+EVENT_FLAG_DAY01_SUB00_COMPLETE=$0	; sub-quest 0 in day 1 complete
+EVENT_FLAG_DAY01_SUB01_COMPLETE=$1	; sub-quest 1 in day 1 complete
 ;-------------------------------------------------------------------------------
-; mission event flags - used to track sub-quests within a day 
+; mission event flags - used to track progress within sub-quests 
 ;-------------------------------------------------------------------------------
 
