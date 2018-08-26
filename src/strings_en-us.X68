@@ -36,7 +36,7 @@ TitleScreenTextNewGame:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"     Mall Walker Demo (June 2018)     ",ETX
+	dc.b	"    Mall Walker Demo (August 2018)    ",ETX
 
 ;-------------------------------------------------------------------------------
 ; credits and end screen
