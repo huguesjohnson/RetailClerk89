@@ -48,6 +48,7 @@ MEM_DAY,2,what day is it in the story
 MEM_PLAYER_SPRITE,2,which sprite to use for the player
 MEM_DAY_EVENT_FLAGS,4,track events in the current day
 MEM_MISSION_EVENT_FLAGS,4,track events in the current mission
+MEM_CUSTOMER_FEEDBACK_SCORE,2,used for some missions
 ;-------------------------------------------------------------------------------
 ; scripted event management
 ;-------------------------------------------------------------------------------

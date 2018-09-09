@@ -16,6 +16,19 @@
 	move.l	(MEM_PLAYER_STORE_KEYS),d7
 	bset.l	#STORE_KEY_DCOUNTRY,d7
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	; update NPCs
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.l	#$03160000,(a5)	; update NPCs in scene 00
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
+	and.l	#$00000000,(a5)	; update NPCs in east-east hall
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_CHECKERS,d7	; copy east-east hall scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
+	move.l	#$06021719,(a5)	; update NPCs in checkers
 
 ;	; queue the scripted event
 ;	lea ScriptedEventDay01Start,a6	; point a6 to event to load

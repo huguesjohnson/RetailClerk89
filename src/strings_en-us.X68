@@ -36,7 +36,7 @@ TitleScreenTextNewGame:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"    Mall Walker Demo (August 2018)    ",ETX
+	dc.b	"  Mall Walker Demo  (September 2018)  ",ETX
 
 ;-------------------------------------------------------------------------------
 ; credits and end screen
@@ -1124,6 +1124,50 @@ DialogTextDay01VBDBDefaultTalk:
 	dc.b	"closing tonight.     ^",FF
 	dc.b	"Head over to my store",LF
 	dc.b	"when your shift ends.'",ETX
+
+DialogTextDay01Sub00Intro:
+	;		"1234567890123456789012"
+	dc.b	"Todd:`I'm glad you're ",LF
+	dc.b	"here. The rest of the^",FF
+	dc.b	"staff called in sick. ",LF
+	dc.b	"I'm stuck here alone ^",FF
+	dc.b	"and starving. Would   ",LF
+	dc.b	"you mind watching the^",FF
+	dc.b	"store for just a tiny ",LF
+	dc.b	"bit? I'll be fast.'  ^",FF
+	dc.b	"{Yeah, whatever",LF
+	dc.b	"{Give me five minutes",ETX
+
+DialogTextDay01Sub00Start00:
+	;		"1234567890123456789012"
+	dc.b	"Todd:`Thanks, I won't ",LF
+	dc.b	"be long I promise.   ^",FF
+	dc.b	"It's not like there's ",LF
+	dc.b	"many food choices.'   ",ETX
+
+DialogTextDay01Sub00Start01:
+	;		"1234567890123456789012"
+	dc.b	"`Just to warn you,    ",LF
+	dc.b	"thee customers here  ^",FF
+	dc.b	"can be pretty dim.'   ",ETX
+
+DialogTextDay01Sub00Start02:
+	;		"1234567890123456789012"
+	dc.b	"`You'll be OK. No one ",LF
+	dc.b	"shops here this late.'",ETX
+
+;MISSION_FLAG_DAY01_SUB00_NPC1_D0R0=$1	; player gave response 0 to dialog 0
+;MISSION_FLAG_DAY01_SUB00_NPC1_D0R1=$2	; player gave response 1 to dialog 0
+;MISSION_FLAG_DAY01_SUB00_NPC1_D1R0=$3	; player gave response 0 to dialog 1
+;MISSION_FLAG_DAY01_SUB00_NPC1_D1R1=$4	; player gave response 1 to dialog 1
+;MISSION_FLAG_DAY01_SUB00_NPC2_D0=$5	; first dialog with the NPC
+;MISSION_FLAG_DAY01_SUB00_NPC2_D1=$6	; second dialog with the NPC
+;MISSION_FLAG_DAY01_SUB00_NPC2_D2=$7	; third dialog with the NPC
+;MISSION_FLAG_DAY01_SUB00_NPC3_D0=$8	; first dialog with the NPC
+;MISSION_FLAG_DAY01_SUB00_NPC3_D1=$9	; second dialog with the NPC
+;MISSION_FLAG_DAY01_SUB00_NPC3_D2=$A	; third dialog with the NPC
+;MISSION_FLAG_DAY01_SUB00_NPC3_D2=$B	; fourth dialog with the NPC
+
 
 ;-------------------------------------------------------------------------------
 ; menus

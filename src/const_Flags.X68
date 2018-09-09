@@ -12,6 +12,7 @@ STATE_FLAG_EXITS_BLOCKED=$07	; blocks sprite from leaving scene
 STATE_FLAG_END_SCREEN=$08	; end screen is displaying
 STATE_FLAG_INTRO_SCREEN=$09	; day intro screen is displaying
 STATE_FLAG_STATUS_SCREEN=$0A	; status screen is displaying
+
 ;-------------------------------------------------------------------------------
 ; dialog state flags
 ;-------------------------------------------------------------------------------
@@ -28,6 +29,7 @@ DIALOG_FLAG_TEXT_DRAWING=$1C	; dialog text is drawing
 DIALOG_FLAG_TEXT_OPEN=$1D	; dialog is open
 DIALOG_FLAG_TEXT_NEW_PAGE=$1E	; dialog text has another page
 DIALOG_FLAG_TEXT_CLOSING=$1F	; dialog is closing
+
 ;-------------------------------------------------------------------------------
 ; day event flags - used to track events in the current day 
 ;-------------------------------------------------------------------------------
@@ -43,7 +45,20 @@ EVENT_FLAG_DAY00_EVENT00_COMPLETE=$8	; 1st scripted event complete
 EVENT_FLAG_DAY00_EVENT01_COMPLETE=$9	; 2nd scripted event complete
 EVENT_FLAG_DAY01_SUB00_COMPLETE=$0	; sub-quest 0 in day 1 complete
 EVENT_FLAG_DAY01_SUB01_COMPLETE=$1	; sub-quest 1 in day 1 complete
+
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 
 ;-------------------------------------------------------------------------------
+MISSION_FLAG_DAY01_SUB00_STARTED=$0	; sub-quest started
+MISSION_FLAG_DAY01_SUB00_NPC1_D0R0=$1	; player gave response 0 to dialog 0
+MISSION_FLAG_DAY01_SUB00_NPC1_D0R1=$2	; player gave response 1 to dialog 0
+MISSION_FLAG_DAY01_SUB00_NPC1_D1R0=$3	; player gave response 0 to dialog 1
+MISSION_FLAG_DAY01_SUB00_NPC1_D1R1=$4	; player gave response 1 to dialog 1
+MISSION_FLAG_DAY01_SUB00_NPC2_D0=$5	; first dialog with the NPC
+MISSION_FLAG_DAY01_SUB00_NPC2_D1=$6	; second dialog with the NPC
+MISSION_FLAG_DAY01_SUB00_NPC2_D2=$7	; third dialog with the NPC
+MISSION_FLAG_DAY01_SUB00_NPC3_D0=$8	; first dialog with the NPC
+MISSION_FLAG_DAY01_SUB00_NPC3_D1=$9	; second dialog with the NPC
+MISSION_FLAG_DAY01_SUB00_NPC3_D2=$A	; third dialog with the NPC
+MISSION_FLAG_DAY01_SUB00_NPC3_D3=$B	; fourth dialog with the NPC
 

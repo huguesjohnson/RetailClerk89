@@ -338,14 +338,37 @@ SceneCheckers:
 	;---------------------------------------------------------------------------
 	; NPC locations
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; one npc
+	dc.w	$0003	; four npcs
 
 	dc.w	$012A	; starting x location of npc0
 	dc.w	$0098	; starting y location of npc0
 	dc.w	DIRECTION_DOWN	; starting direction of npc0
-	dc.w	$0000	; movement frequency of npc1
+	dc.w	$0000	; movement frequency of npc0
 	dc.l	NPCMovementDownStart	; location of movement pattern for npc0
 	dc.w	(NPCMovementDownEnd-NPCMovementDownStart-1)	; pattern length
+
+	; the three shopper NPCs all start off screen
+
+	dc.w	$0100	; starting x location of npc1
+	dc.w	$0180	; starting y location of npc1
+	dc.w	DIRECTION_DOWN	; starting direction of npc1
+	dc.w	$FFFF	; movement frequency of npc1
+	dc.l	NullMovementStart	; location of movement pattern for npc1
+	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+
+	dc.w	$0100	; starting x location of npc1
+	dc.w	$0180	; starting y location of npc1
+	dc.w	DIRECTION_DOWN	; starting direction of npc2
+	dc.w	$FFFF	; movement frequency of npc2
+	dc.l	NPCMovementDownStart	; location of movement pattern for npc1
+	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+
+	dc.w	$0100	; starting x location of npc1
+	dc.w	$0180	; starting y location of npc1
+	dc.w	DIRECTION_DOWN	; starting direction of npc3
+	dc.w	$FFFF	; movement frequency of npc3
+	dc.l	NPCMovementDownStart	; location of movement pattern for npc3
+	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm
