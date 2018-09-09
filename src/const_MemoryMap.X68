@@ -161,4 +161,4 @@ MEM_OBJECT_LIST_NPCS=$FFFF01B2	; list of npcs in current map
 MEM_SCENE_BGM=$FFFF01CA	; reference to current background music
 MEM_SCENE_PALETTE=$FFFF01CE	; storing for fade in/out
 MEM_COLLISION_DATA=$FFFF024E	; collision data for the current map
-MEM_END=$FFFF024E
+MEM_END=$FFFF034E

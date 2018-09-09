@@ -78,7 +78,7 @@ public class CSVMemoryMap{
 	            stringBuffer.append(newLine);
 	            outputStreamWriter.write(stringBuffer.toString());
             }
-			outputStreamWriter.write("MEM_END=$"+address+newLine);
+			outputStreamWriter.write("MEM_END=$"+(Long.toHexString(currentAddressInt).toUpperCase())+newLine);
 		}
         catch(Exception x){
             if(lineNumber>0){
