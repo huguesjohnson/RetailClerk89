@@ -5,6 +5,9 @@ sh BMPtoCollisionData.sh
 # build the memory map
 echo "Building memory map..."
 sh CSVMemoryMap.sh ../MemoryMap.csv ../const_MemoryMap.X68 FFFF0000
+# build the sprite tiles
+echo "Building sprite tiles..."
+sh BuildSpriteTiles.sh
 cd ..
 
 # build the rom
