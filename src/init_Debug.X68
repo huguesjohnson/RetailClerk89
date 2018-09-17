@@ -38,6 +38,20 @@
 ;	lea TestScriptedEventSceneChange,a6	; point a6 to event to load
 ;	bsr.w QueueScriptedEvent	; queue the event
 
+	;---------------------------------------------------------------------------
+	; used to test checkers subquest in day 1
+	;---------------------------------------------------------------------------
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy game state to d7
+	bset.l	#MISSION_FLAG_DAY01_SUB00_STARTED,d7	;set flag to start mission
+
+
+	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC1_DONE,d7
+	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC2_DONE,d7
+	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC3_DONE,d7
+
+
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save game state
+
 ;	;---------------------------------------------------------------------------
 ;	; used to test closing animation on day 0 scene 0
 ;	;---------------------------------------------------------------------------

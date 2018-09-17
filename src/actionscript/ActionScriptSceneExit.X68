@@ -225,6 +225,49 @@ ExitScene07Day00CanExit: ; ok to exit scene
 	rts	; exit
 
 ;-------------------------------------------------------------------------------
+; exit scene 09 (SCENE_ID_CHECKERS)
+;-------------------------------------------------------------------------------
+ExitScene09:
+	cmpi.w	#$0001,(MEM_DAY)
+	beq.s	ExitScene09Day01	; branch to day 1 logic
+	bra.s	ExitScene09CanExit	; use default handler
+ExitScene09Day01:
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy game state to d7
+	btst.l	#MISSION_FLAG_DAY01_SUB00_STARTED,d7	; test if mission is ongoing
+	beq.s	ExitScene09CanExit	; flag not set = can exit
+	btst.l	#MISSION_FLAG_DAY01_SUB00_NPC1_DONE,d7	; test if NPC event is done
+	beq.s	ExitScene09CantExit	; flag not set = can't exit
+	btst.l	#MISSION_FLAG_DAY01_SUB00_NPC2_DONE,d7	; test if NPC event is done
+	beq.s	ExitScene09CantExit	; flag not set = can't exit
+	btst.l	#MISSION_FLAG_DAY01_SUB00_NPC3_DONE,d7	; test if NPC event is done
+	beq.s	ExitScene09CantExit	; flag not set = can't exit
+
+
+ExitScene09Sub00Ending: ; run the scripted event
+;TODO -- need to create the scripted event
+
+;	; display message
+;	lea	DialogTextCantLeaveStoreUnattended,a6	; load dialog text
+;	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+;	bsr.w	SetDialogOpening
+	bsr.w	DefaultExitScene	; use default handler
+	rts
+
+
+
+ExitScene09CantExit: ; can't exit scene yet
+	; display message
+	lea	DialogTextCantLeaveStoreUnattended,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening
+	rts
+
+ExitScene09CanExit: ; ok to exit scene
+	bsr.w	DefaultExitScene	; use default handler
+	rts	; exit
+
+
+;-------------------------------------------------------------------------------
 ; exit scene 17 (SCENE_ID_SOUTH_CENTER)
 ;-------------------------------------------------------------------------------
 ExitScene17:

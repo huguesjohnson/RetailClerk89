@@ -1156,18 +1156,199 @@ DialogTextDay01Sub00Start02:
 	dc.b	"`You'll be OK. No one ",LF
 	dc.b	"shops here this late.'",ETX
 
-;MISSION_FLAG_DAY01_SUB00_NPC1_D0R0=$1	; player gave response 0 to dialog 0
-;MISSION_FLAG_DAY01_SUB00_NPC1_D0R1=$2	; player gave response 1 to dialog 0
-;MISSION_FLAG_DAY01_SUB00_NPC1_D1R0=$3	; player gave response 0 to dialog 1
-;MISSION_FLAG_DAY01_SUB00_NPC1_D1R1=$4	; player gave response 1 to dialog 1
-;MISSION_FLAG_DAY01_SUB00_NPC2_D0=$5	; first dialog with the NPC
-;MISSION_FLAG_DAY01_SUB00_NPC2_D1=$6	; second dialog with the NPC
-;MISSION_FLAG_DAY01_SUB00_NPC2_D2=$7	; third dialog with the NPC
-;MISSION_FLAG_DAY01_SUB00_NPC3_D0=$8	; first dialog with the NPC
-;MISSION_FLAG_DAY01_SUB00_NPC3_D1=$9	; second dialog with the NPC
-;MISSION_FLAG_DAY01_SUB00_NPC3_D2=$A	; third dialog with the NPC
-;MISSION_FLAG_DAY01_SUB00_NPC3_D2=$B	; fourth dialog with the NPC
+DialogTextDay01Sub00NPC1D0:
+	;		"1234567890123456789012"
+	dc.b	"`Have we met before?' ",LF
+	dc.b	"                     ^",FF
+	dc.b	"{Maybe",LF
+	dc.b	"{Absolutely not",ETX
 
+DialogTextDay01Sub00NPC1D0R0:
+	;		"1234567890123456789012"
+	dc.b	"`Right, you were      ",LF
+	dc.b	"working at the shoe  ^",FF
+	dc.b	"store the other day.  ",LF
+	dc.b	"                     ^",FF
+	dc.b	"Do you have that new  ",LF
+	dc.b	"Stephen King book?'  ^",FF
+	dc.b	"{Yes",LF
+	dc.b	"{No",ETX
+
+DialogTextDay01Sub00NPC1D1R0:
+	;		"1234567890123456789012"
+	dc.b	"`It's in our west wing",LF
+	dc.b	"go out those doors & ^",FF
+	dc.b	"turn right. Keep going",LF
+	dc.b	"it'll be to the left.'",ETX
+
+DialogTextDay01Sub00NPC1D1R1:
+	;		"1234567890123456789012"
+	dc.b	"Customer:`Can you go  ",LF
+	dc.b	"see if you have it?' ^",FF
+	dc.b	"Dani:`Well this is a  ",LF
+	dc.b	"clothing store so..' ^",FF
+	dc.b	"Customer:`Hmm, that's ",LF
+	dc.b	"a good point.'        ",ETX
+
+DialogTextDay01Sub00NPC1D0R1:
+	;		"1234567890123456789012"
+	dc.b	"`This is some kind of ",LF
+	dc.b	"board game store?'   ^",FF
+	dc.b	"{Not even a little",LF
+	dc.b	"{In a way",ETX
+
+DialogTextDay01Sub00NPC1D2R0:
+	;		"1234567890123456789012"
+	dc.b	"Customer:`Are you     ",LF
+	dc.b	"sure?              ' ^",FF
+	dc.b	"Dani:`Yes, this store ",LF
+	dc.b	"has been in my family^",FF
+	dc.b	"for over seven        ",LF
+	dc.b	"generations now.'    ^",FF
+	dc.b	"Customer:`OK then.    ",ETX
+
+DialogTextDay01Sub00NPC1D2R1:
+	;		"1234567890123456789012"
+	dc.b	"Customer:`Great. I'm  ",LF
+	dc.b	"looking for this new ^",FF
+	dc.b	"board game. It's this",LF
+	dc.b	"real estate game like^",FF
+	dc.b	"Monopoly but it's     ",LF
+	dc.b	"based on..'          ^",FF
+	dc.b	"Dani:`Nope, stop right",LF
+	dc.b	"there. We are so not ^",FF
+	dc.b	"doing this. You should",LF
+	dc.b	"just move along now.' ",ETX
+
+DialogTextDay01Sub00NPC2D0:
+	;		"1234567890123456789012"
+	dc.b	"`I'm invited to the   ",LF
+	dc.b	"hottest New Years    ^",FF
+	dc.b	"party & can't afford  ",LF
+	dc.b	"to look like a loser.^",FF
+	dc.b	"I need a fresh style, ",LF
+	dc.b	"what do you have?'    ",ETX
+
+MenuMannequinSub00NPC2:
+	;		"1234567890123456789012"
+	dc.b	"{Show to customer",LF
+	dc.b	"{Nevermind",ETX
+
+DialogTextDay01Sub00NPC2D1:
+	;		"1234567890123456789012"
+	dc.b	"`How about this? It's ",LF
+	dc.b	"new and whatever.'   ^",FF
+	dc.b	"Customer:`All wrong. I",LF
+	dc.b	"need something nobody^",FF
+	dc.b	"has seen before, this ",LF
+	dc.b	"is way too average.'  ",ETX
+
+DialogTextDay01Sub00NPC2D2:
+	;		"1234567890123456789012"
+	dc.b	"`Here, this one is,   ",LF
+	dc.b	"really something.'   ^",FF
+	dc.b	"Customer:`What is that",LF
+	dc.b	"color? It's not blue,^",FF
+	dc.b	"it's not green, I've  ",LF
+	dc.b	"never seen it.'      ^",FF
+	dc.b	"Dani:`It's says it's",LF
+	dc.b	"called",CHAR_DQUOTE,"teal",CHAR_DQUOTE,".'^",FF
+	dc.b	"Customer:`It's the    ",LF
+	dc.b	"future. I'll take it!'",ETX
+
+DialogTextDay01Sub00NPC3D0:
+	;		"1234567890123456789012"
+	dc.b	"`Hello, good evening.'",LF
+	dc.b	"                     ^",FF
+	dc.b	"{How can I help!?",LF
+	dc.b	"{Fine, let's do this",ETX
+
+DialogTextDay01Sub00NPC3D1:
+	;		"1234567890123456789012"
+	dc.b	"`I don't see a nametag",LF
+	dc.b	"what's your name?'",FF
+	dc.b	"{Joy McHelpful",LF
+	dc.b	"{Morgan Fairchild",ETX
+
+DialogTextDay01Sub00NPC3D2:
+	;		"1234567890123456789012"
+	dc.b	"`Do you sell paisley",LF
+	dc.b	"kipper ties?'        ^",FF
+	dc.b	"{I'm so sorry but..",LF
+	dc.b	"{Not this decade",ETX
+
+DialogTextDay01Sub00NPC3D2R0:
+	;		"1234567890123456789012"
+	dc.b	"`Could I interest you",LF
+	dc.b	"in a suit instead?'",ETX
+
+DialogTextDay01Sub00NPC3D2R1:
+	;		"1234567890123456789012"
+	dc.b	"`Maybe there's a time",LF
+	dc.b	"portal around.'",ETX
+
+DialogTextDay01Sub00NPC3D4:
+	;		"1234567890123456789012"
+	dc.b	"`Do you have any deals",LF
+	dc.b	"you want to mention?'^",FF
+	dc.b	"{Yes of course",LF
+	dc.b	"{Please leave",ETX
+
+DialogTextDay01Sub00NPC3D4R0:
+	;		"1234567890123456789012"
+	dc.b	"`Yes, today only",LF
+	dc.b	"everything is two    ^",FF
+	dc.b	"for the price of two!'",ETX
+
+DialogTextDay01Sub00NPC3D4High:
+	;		"1234567890123456789012"
+	dc.b	"`That's wonderful!",LF
+	dc.b	"Thank you!'",ETX
+
+DialogTextDay01Sub00NPC3D4Med:
+	;		"1234567890123456789012"
+	dc.b	"`OK, well, good bye.'",ETX
+
+DialogTextDay01Sub00NPC3D4Low:
+	;		"1234567890123456789012"
+	dc.b	"`I.. I can't do this",LF
+	dc.b	"any longer.'",ETX
+
+DialogTextDay01Sub00NPC0Talk:
+	;		"1234567890123456789012"
+	dc.b	"`Thanks for helping.  ",LF
+	dc.b	"I really own you one.'",ETX
+
+DialogTextDay01Sub00End00:
+	;		"1234567890123456789012"
+	dc.b	"Todd:`Hey, wait sec!'",ETX
+
+DialogTextDay01Sub00End01:
+	;		"1234567890123456789012"
+	dc.b	"`Here, have a key to  ",LF
+	dc.b	"the store, you know, ^",FF
+	dc.b	"just in case you ever ",LF
+	dc.b	"need anything.'",ETX
+
+DialogTextDay01Sub00End02:
+	;		"1234567890123456789012"
+	dc.b	"`Hey wait, my parents ",LF
+	dc.b	"will be out of town  ^",FF
+	dc.b	"for New Years and they",LF
+	dc.b	"said I could have a  ^",FF
+	dc.b	"few people over. Why  ",LF
+	dc.b	"don't you come by?'   ",ETX
+
+DialogTextDay01Sub00End03:
+	;		"1234567890123456789012"
+	dc.b	"`Just as a friend!    ",LF
+	dc.b	"Just as a friend!    ^",FF
+	dc.b	"You can even bring    ",LF
+	dc.b	"someone, it's cool.'  ",ETX
+
+DialogTextDay01Sub00End04:
+	;		"1234567890123456789012"
+	dc.b	"`I didn't hear a no!' ",ETX
 
 ;-------------------------------------------------------------------------------
 ; menus

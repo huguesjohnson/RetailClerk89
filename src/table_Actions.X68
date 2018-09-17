@@ -222,7 +222,7 @@ SceneExitTable:
 	; scene 08 (SCENE_ID_DENIMCOUNTRY)
 	dc.l	DefaultExitScene
 	; scene 09 (SCENE_ID_CHECKERS)
-	dc.l	DefaultExitScene
+	dc.l	ExitScene09
 	; scene 0A (SCENE_ID_TLODGE)
 	dc.l	DefaultExitScene
 	; scene 0B (SCENE_ID_CAVERN)
