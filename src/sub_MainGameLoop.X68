@@ -98,6 +98,12 @@ NextScriptedEventAction:
 	beq.w	ScriptedEventChangeScene	; if so branch
 	cmpi.w	#SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE,d7	; change player sprite?
 	beq.w	ScriptedEventChangePlayerSprite	; if so branch
+	cmpi.w	#SCRIPTED_EVENT_SET_PLAYER_SPRITE_X,d7	; change player X?
+	beq.w	ScriptedEventSetPlayerSpriteX	; if so branch
+	cmpi.w	#SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y,d7	; change player Y?
+	beq.w	ScriptedEventSetPlayerSpriteY	; if so branch
+	cmpi.w	#SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION,d7	; change direction?
+	beq.w	ScriptedEventSetPlayerSpriteDirection	; if so branch
 	;---------------------------------------------------------------------------
 	; start moving the sprite
 	;---------------------------------------------------------------------------
@@ -152,6 +158,21 @@ ScriptedEventFadeInDelayLoop:
 	bra.w	MainGameLoop	; return to start of game loop
 ScriptedEventChangePlayerSprite:
 	move.w	(a6)+,(MEM_PLAYER_SPRITE)	; update sprite
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
+	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
+	bra.w	MainGameLoop	; return to start of game loop
+ScriptedEventSetPlayerSpriteX:
+	move.w	(a6)+,(MEM_PLAYER_SPRITE_X)	; update sprite
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
+	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
+	bra.w	MainGameLoop	; return to start of game loop
+ScriptedEventSetPlayerSpriteY:
+	move.w	(a6)+,(MEM_PLAYER_SPRITE_Y)	; update sprite
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
+	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
+	bra.w	MainGameLoop	; return to start of game loop
+ScriptedEventSetPlayerSpriteDirection:
+	move.w	(a6)+,(MEM_PLAYER_SPRITE_DIRECTION)	; update sprite
 	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
 	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
 	bra.w	MainGameLoop	; return to start of game loop
