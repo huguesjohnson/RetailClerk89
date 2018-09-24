@@ -142,26 +142,165 @@ ScriptedEventDay01Start:
 	dc.l	DialogTextDay01Intro03
 	dc.w	SCRIPTED_EVENT_END
 
-
 ScriptedEventDay01Sub00Start:
 	; --------------------------------------------------------------------------
 	; NPC 0 needs to move from $012A,$0098 to $0100,$0180
 	; --------------------------------------------------------------------------
-;DialogTextDay01Sub00Start00:
-;DialogTextDay01Sub00Start01:
-;DialogTextDay01Sub00Start02:
-
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_UP
+	dc.w	$0004
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0030
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
+	dc.w	DIRECTION_LEFT
+	dc.w	$0040
+	dc.w	DIRECTION_DOWN
+	dc.w	$0020
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00Start01
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00Start02
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
 	; --------------------------------------------------------------------------
 	; NPC 1 needs to move from $0100,$0180 to $0180,$011C
 	; --------------------------------------------------------------------------
-
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; NPC1
+	dc.w	DIRECTION_UP
+	dc.w	($0180-$011C)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_RIGHT
+	dc.w	($0180-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
 	; --------------------------------------------------------------------------
 	; NPC 2 needs to move from $0100,$0180 to $0102,$00C8
 	; --------------------------------------------------------------------------
-
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; NPC2
+	dc.w	DIRECTION_UP
+	dc.w	($0180-$00C8)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_RIGHT
+	dc.w	($0102-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
 	; --------------------------------------------------------------------------
 	; NPC 3 needs to move from $0100,$0180 to $00B8,$010C
 	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0005	; NPC3
+	dc.w	DIRECTION_UP
+	dc.w	($0180-$010C)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_LEFT
+	dc.w	($0100-$00B8)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01Sub00End:
+	dc.w	$0001	; player (Dani)
+	; --------------------------------------------------------------------------
+	; first dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00End00
+	; --------------------------------------------------------------------------
+	; player moves up
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	$0040
+	; --------------------------------------------------------------------------
+	; NPC moves closer to player
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_UP
+	dc.w	$0004
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0030
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
+	dc.w	DIRECTION_LEFT
+	dc.w	$0040
+	dc.w	DIRECTION_DOWN
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; second dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00End01
+	; --------------------------------------------------------------------------
+	; player starts to walk away
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player (Dani)
+	dc.w	DIRECTION_DOWN
+	dc.w	$0010
+	; --------------------------------------------------------------------------
+	; third dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00End02
+	; --------------------------------------------------------------------------
+	; player continues walking away
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0010
+	; --------------------------------------------------------------------------
+	; fourth dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00End03
+	dc.w	DIRECTION_DOWN
+	dc.w	$0010
+	; --------------------------------------------------------------------------
+	; player walks off screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; fifth dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00End04
+	; --------------------------------------------------------------------------
+	; change scene and end
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$008A
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION
+	dc.w	DIRECTION_DOWN
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_EWHALL
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01ChangePC:
+	; --------------------------------------------------------------------------
+	; change scene and player sprite
+	; --------------------------------------------------------------------------
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	SPRITE_PLAYER_INIT_X
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	SPRITE_PLAYER_INIT_Y
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION
+	dc.w	DIRECTION_DOWN
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DB
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_VB
+	; --------------------------------------------------------------------------
+	; TODO - move player toward counter
+	; --------------------------------------------------------------------------
+
+	; --------------------------------------------------------------------------
+	; TODO - some dialog
+	; --------------------------------------------------------------------------
+
+	dc.w	SCRIPTED_EVENT_END
 
 
 ; ------------------------------------------------------------------------------

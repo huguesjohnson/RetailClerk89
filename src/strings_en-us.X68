@@ -34,9 +34,15 @@ CHAR_DQUOTE=$22	; ACSII code for double quote character
 TitleScreenTextNewGame:
 	dc.b	"New Game",ETX
 
+	if _DEBUG_
+TitleScreenTextFooter:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Unstable Debug Build (September 2018) ",ETX
+	else
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"  Mall Walker Demo  (September 2018)  ",ETX
+	endif
 
 ;-------------------------------------------------------------------------------
 ; credits and end screen
@@ -1138,9 +1144,14 @@ DialogTextDay01Sub00Intro:
 	dc.b	"{Yeah, whatever",LF
 	dc.b	"{Give me five minutes",ETX
 
+DialogTextDay01Sub00IntroDecline:
+	;		"1234567890123456789012"
+	dc.b	"`Sure, whenever",LF
+	dc.b	"you're free is cool.'",ETX
+
 DialogTextDay01Sub00Start00:
 	;		"1234567890123456789012"
-	dc.b	"Todd:`Thanks, I won't ",LF
+	dc.b	"`Thanks, I won't ",LF
 	dc.b	"be long I promise.   ^",FF
 	dc.b	"It's not like there's ",LF
 	dc.b	"many food choices.'   ",ETX

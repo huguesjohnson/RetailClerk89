@@ -187,14 +187,17 @@ ExitScene06Day00:
 	bsr.w	SetDialogOpening	; setup dialog open
 	rts
 ExitScene06Day01:
-	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is
+	bne.s	ExitScene06Default	; ok to exit
+	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
 	bne.s	ExitScene06Default	; ok to exit
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy game state to d7
 	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; test flag blocking the exits
 	beq.s	ExitScene06Day01CantExit	; flag not set = can't exit
 	btst.l	#EVENT_FLAG_DAY01_SUB01_COMPLETE,d7	; test flag blocking the exits
 	beq.s	ExitScene06Day01CantExit	; flag not set = can't exit
-	bra.s	ExitScene06Default	; use default handler	
+	bsr.w	ExitSceneDay01SwitchPC	; switch to DB for the 2nd half of the day
+	rts
 ExitScene06Day01CantExit:
 	; can't exit the scene - display message
 	lea	DialogTextDay01CantReturnYet,a6	; load dialog text
@@ -232,6 +235,9 @@ ExitScene09:
 	beq.s	ExitScene09Day01	; branch to day 1 logic
 	bra.s	ExitScene09CanExit	; use default handler
 ExitScene09Day01:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
+	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; set flag 
+	bne.s	ExitScene09CanExit	; flag is set, player can exit
 	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy game state to d7
 	btst.l	#MISSION_FLAG_DAY01_SUB00_STARTED,d7	; test if mission is ongoing
 	beq.s	ExitScene09CanExit	; flag not set = can exit
@@ -241,31 +247,28 @@ ExitScene09Day01:
 	beq.s	ExitScene09CantExit	; flag not set = can't exit
 	btst.l	#MISSION_FLAG_DAY01_SUB00_NPC3_DONE,d7	; test if NPC event is done
 	beq.s	ExitScene09CantExit	; flag not set = can't exit
-
-
 ExitScene09Sub00Ending: ; run the scripted event
-;TODO -- need to create the scripted event
-
-;	; display message
-;	lea	DialogTextCantLeaveStoreUnattended,a6	; load dialog text
-;	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-;	bsr.w	SetDialogOpening
-	bsr.w	DefaultExitScene	; use default handler
+	; set that the mission is complete
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
+	bset.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; set flag 
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
+	; add the store key
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
+	bset.l	#STORE_KEY_CHECKERS,d7	; set checkers key
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save keys
+	; queue the scripted event
+	lea ScriptedEventDay01Sub00End,a6	; point a6 to event to load
+	bsr.w	QueueScriptedEvent	; queue the event
 	rts
-
-
-
 ExitScene09CantExit: ; can't exit scene yet
 	; display message
 	lea	DialogTextCantLeaveStoreUnattended,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening
 	rts
-
 ExitScene09CanExit: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
-
 
 ;-------------------------------------------------------------------------------
 ; exit scene 17 (SCENE_ID_SOUTH_CENTER)
@@ -287,14 +290,17 @@ ExitScene17Day00:
 	bsr.w	SetDialogOpening	; setup dialog open
 	rts
 ExitScene17Day01:
-	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is
+	bne.s	ExitScene17Default	; ok to exit
+	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
 	bne.s	ExitScene17Default	; ok to exit
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy game state to d7
 	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; test flag blocking the exits
 	beq.s	ExitScene17Day01CantExit	; flag not set = can't exit
 	btst.l	#EVENT_FLAG_DAY01_SUB01_COMPLETE,d7	; test flag blocking the exits
 	beq.s	ExitScene17Day01CantExit	; flag not set = can't exit
-	bra.s	ExitScene17Default	; use default handler	
+	bsr.w	ExitSceneDay01SwitchPC	; switch to DB for the 2nd half of the day
+	rts
 ExitScene17Day01CantExit:
 	; can't exit the scene - display message
 	lea	DialogTextDay01CantReturnYet,a6	; load dialog text
@@ -304,3 +310,15 @@ ExitScene17Day01CantExit:
 ExitScene17Default: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
+
+;-------------------------------------------------------------------------------
+; change the player sprite on day 1
+;-------------------------------------------------------------------------------
+ExitSceneDay01SwitchPC:
+	; scene changes after this event, need to remove DB as an NPC in scene 00
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.l	#$03000000,(a5)	; update NPCs in scene 00
+	; queue the scripted event
+	lea ScriptedEventDay01ChangePC,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	rts

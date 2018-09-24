@@ -283,15 +283,64 @@ Day01Scene09Action00:	; ACTION_LOOK
 Day01Scene09Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CHECKERS_STAFF,d6	; test target
-	beq.s	Day01Scene09Action01NPC	; branch to text for the NPC
+	beq.s	Day01Scene09Action01NPCStaff	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_SECRET_SHOPPER,d6	; test target
+	beq.s	Day01Scene09Action01NPCSecretShopperTalk	; branch to NPC
+	cmpi.w	#OBJ_NPC_TRENDYGUY,d6	; test target
+	beq.s	Day01Scene09Action01NPCTrendyGuyTalk	; branch to NPC
+	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
+	beq.s	Day01Scene09Action01NPCMaleShopperTalk	; branch to NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day01Scene09Action01NPC:
+Day01Scene09Action01NPCStaff:
+	;---------------------------------------------------------------------------
+	; Three scenarios for talking to OBJ_NPC_CHECKERS_STAFF on day 01
+	; 1) Playing as Dani - subquest not started
+	; 2) Playing as Dani - subquest complete (EVENT_FLAG_DAY01_SUB00_COMPLETE)
+	; 3) Playing as D.B. - default text
+	;---------------------------------------------------------------------------
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	bne.s	Day01Scene09Action01NPCStaffDefaultTalk	; use default text for DB
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; test if subquest complete
+	beq.s	Day01Scene09Action01NPCStaffStartSub00	; flag not set, branch
+	lea	DialogTextDay01Sub00NPC0Talk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts 
+Day01Scene09Action01NPCStaffStartSub00:
+	; setup 2 choice dialog	to begin subquest
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextDay01Sub00Intro,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts	
+Day01Scene09Action01NPCStaffDefaultTalk:
 	lea	DialogTextCheckersStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+
+
+Day01Scene09Action01NPCSecretShopperTalk:
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+
+Day01Scene09Action01NPCTrendyGuyTalk:
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+
+Day01Scene09Action01NPCMaleShopperTalk:
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+
 Day01Scene09Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CHECKERS_STAFF,d6	; test target
@@ -305,6 +354,51 @@ Day01Scene09Action02NPC:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene09Action03:	; ACTION_RESPOND
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_CHECKERS_STAFF,d6	; test target
+	beq.s	Day01Scene09Action03NPCStaff	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_SECRET_SHOPPER,d6	; test target
+	beq.s	Day01Scene09Action03NPCSecretShopperTalk	; branch to NPC
+	cmpi.w	#OBJ_NPC_TRENDYGUY,d6	; test target
+	beq.s	Day01Scene09Action03NPCTrendyGuyTalk	; branch to NPC
+	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
+	beq.s	Day01Scene09Action03NPCMaleShopperTalk	; branch to NPC
+	; default text
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+Day01Scene09Action03NPCStaff:
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.s	Day01Scene09Action03NPCStartEvent	; branch launch scripted event
+	; else display declined dialog
+	lea	DialogTextDay01Sub00IntroDecline,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene09Action03NPCStartEvent:
+	; flag that the mission has started
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#MISSION_FLAG_DAY01_SUB00_STARTED,d7	;set flag to start mission
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save event flags
+	; launch the scripted event
+	lea ScriptedEventDay01Sub00Start,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay01Sub00Start00,a6	; load first text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+Day01Scene09Action03NPCSecretShopperTalk:
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+Day01Scene09Action03NPCTrendyGuyTalk:
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+Day01Scene09Action03NPCMaleShopperTalk:
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts

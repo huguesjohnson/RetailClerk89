@@ -428,7 +428,7 @@ ExitDay00Scene05Action01:
 
 Day00Scene05DaniCarLookUse:
 	; setup 2 choice dialog	
-	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6
 	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
 	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
 	lea	DialogTextDaniCarDayEnd,a6	; load text

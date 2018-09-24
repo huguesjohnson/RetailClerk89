@@ -162,7 +162,7 @@ SceneCheckers:
 	; left stand - left mannequin
 	dc.l	Pattern16x16	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0010000001000110	; base pattern
+	dc.w	%1010000001000110	; base pattern
 	dc.w	$0000	; no repeat
 	dc.l	VDP_VRAM_WRITE_A+$000A0000+$06800000	; initial drawing location
 
