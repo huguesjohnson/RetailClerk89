@@ -334,12 +334,29 @@ Day01Scene09Action01NPCTrendyGuyTalk:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
-
 Day01Scene09Action01NPCMaleShopperTalk:
-	lea	DialogTextNothingHappens,a6	; load default text
+	; setup 2 choice dialog
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	; test flags to determine which text to use
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	btst.l	#MISSION_FLAG_DAY01_SUB00_NPC1_D0R1,d7	; test flag
+	bne.s	Day01Scene09Action01NPCMaleShopperTalkD2	; branch if flag set
+	btst.l	#MISSION_FLAG_DAY01_SUB00_NPC1_D0R0,d7	; test flag
+	bne.s	Day01Scene09Action01NPCMaleShopperTalkD1	; branch if flag set
+Day01Scene09Action01NPCMaleShopperTalkD0:
+	lea	DialogTextDay01Sub00NPC1D0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-
+Day01Scene09Action01NPCMaleShopperTalkD1:
+	lea	DialogTextDay01Sub00NPCD1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene09Action01NPCMaleShopperTalkD2:
+	lea	DialogTextDay01Sub00NPCD2,a6	; load initial text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 
 Day01Scene09Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
@@ -358,11 +375,11 @@ Day01Scene09Action03:	; ACTION_RESPOND
 	cmpi.w	#OBJ_NPC_CHECKERS_STAFF,d6	; test target
 	beq.s	Day01Scene09Action03NPCStaff	; branch to text for the NPC
 	cmpi.w	#OBJ_NPC_SECRET_SHOPPER,d6	; test target
-	beq.s	Day01Scene09Action03NPCSecretShopperTalk	; branch to NPC
+	beq.s	Day01Scene09Action03NPCSecretShopperRespond	; branch to NPC
 	cmpi.w	#OBJ_NPC_TRENDYGUY,d6	; test target
-	beq.s	Day01Scene09Action03NPCTrendyGuyTalk	; branch to NPC
+	beq.s	Day01Scene09Action03NPCTrendyGuyRespond	; branch to NPC
 	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
-	beq.s	Day01Scene09Action03NPCMaleShopperTalk	; branch to NPC
+	beq.s	Day01Scene09Action03NPCMaleShopperRespond	; branch to NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -388,18 +405,90 @@ Day01Scene09Action03NPCStartEvent:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
-Day01Scene09Action03NPCSecretShopperTalk:
+Day01Scene09Action03NPCSecretShopperRespond:
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
-Day01Scene09Action03NPCTrendyGuyTalk:
+Day01Scene09Action03NPCTrendyGuyRespond:
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
-Day01Scene09Action03NPCMaleShopperTalk:
-	lea	DialogTextNothingHappens,a6	; load default text
+Day01Scene09Action03NPCMaleShopperRespond:
+	bsr.w	ResetDialog	; reset the dialog
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	; test flags to determine which text to use
+	btst.l	#MISSION_FLAG_DAY01_SUB00_NPC1_D0R1,d7	; test flag
+	bne.w	Day01Scene09Action01NPCMaleShopperRespondD2	; branch if flag set
+	btst.l	#MISSION_FLAG_DAY01_SUB00_NPC1_D0R0,d7	; test flag
+	bne.s	Day01Scene09Action01NPCMaleShopperRespondD1	; branch if flag set
+	;---------------------------------------------------------------------------
+	; first dialog (D0)
+	;---------------------------------------------------------------------------
+Day01Scene09Action01NPCMaleShopperRespondD0:
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	bne.s	Day01Scene09Action01NPCMaleShopperRespondD0R1	; branch if set
+Day01Scene09Action01NPCMaleShopperRespondD0R0:
+	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC1_D0R1,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save flags
+	lea	DialogTextDay01Sub00NPC1D0R0,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene09Action01NPCMaleShopperRespondD0R1:
+	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC1_D0R0,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save flags
+	lea	DialogTextDay01Sub00NPC1D0R1,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+	;---------------------------------------------------------------------------
+	; dialog branch D1
+	;---------------------------------------------------------------------------
+
+
+
+
+
+Day01Scene09Action01NPCMaleShopperRespondD1:
+	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC1_DONE,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save flags
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	bne.s	Day01Scene09Action01NPCMaleShopperRespondD1R1	; branch if set
+Day01Scene09Action01NPCMaleShopperRespondD1R0:
+	; queue the scripted event
+	lea ScriptedEventDay01Sub00NPC1Exit,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay01Sub00NPC1D1R0,a6	; load first text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene09Action01NPCMaleShopperRespondD1R1:
+	; queue the scripted event
+	lea ScriptedEventDay01Sub00NPC1Exit,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay01Sub00NPC1D1R1,a6	; load first text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+	;---------------------------------------------------------------------------
+	; dialog branch D2
+	;---------------------------------------------------------------------------
+Day01Scene09Action01NPCMaleShopperRespondD2:
+	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC1_DONE,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save flags
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	bne.s	Day01Scene09Action01NPCMaleShopperRespondD2R1	; branch if set
+Day01Scene09Action01NPCMaleShopperRespondD2R0:
+	; queue the scripted event
+	lea ScriptedEventDay01Sub00NPC1Exit,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay01Sub00NPC1D2R0,a6	; load first text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene09Action01NPCMaleShopperRespondD2R1:
+	; queue the scripted event
+	lea ScriptedEventDay01Sub00NPC1Exit,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay01Sub00NPC1D2R1,a6	; load first text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

@@ -1178,8 +1178,10 @@ DialogTextDay01Sub00NPC1D0R0:
 	;		"1234567890123456789012"
 	dc.b	"`Right, you were      ",LF
 	dc.b	"working at the shoe  ^",FF
-	dc.b	"store the other day.  ",LF
-	dc.b	"                     ^",FF
+	dc.b	"store the other day.  ",ETX
+
+DialogTextDay01Sub00NPCD1:
+	;		"1234567890123456789012"
 	dc.b	"Do you have that new  ",LF
 	dc.b	"Stephen King book?'  ^",FF
 	dc.b	"{Yes",LF
@@ -1202,6 +1204,11 @@ DialogTextDay01Sub00NPC1D1R1:
 	dc.b	"a good point.'        ",ETX
 
 DialogTextDay01Sub00NPC1D0R1:
+	;		"1234567890123456789012"
+	dc.b	"`You kids all look",LF
+	dc.b	"the same.'",ETX
+
+DialogTextDay01Sub00NPCD2:
 	;		"1234567890123456789012"
 	dc.b	"`This is some kind of ",LF
 	dc.b	"board game store?'   ^",FF

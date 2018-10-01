@@ -176,6 +176,19 @@ ScriptedEventDay01Sub00Start:
 	dc.w	($0180-$0100)/SPRITE_STEP_PIXELS
 	dc.w	DIRECTION_DOWN
 	dc.w	SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01Sub00NPC1Exit:
+	dc.w	$0003	; NPC1
+	; --------------------------------------------------------------------------
+	; NPC 1 needs to move from $0180,$011C to $0100,$0180 
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($0180-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	($0180-$011C)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
 	; --------------------------------------------------------------------------
 	; NPC 2 needs to move from $0100,$0180 to $0102,$00C8
 	; --------------------------------------------------------------------------
@@ -187,6 +200,17 @@ ScriptedEventDay01Sub00Start:
 	dc.w	($0102-$0100)/SPRITE_STEP_PIXELS
 	dc.w	DIRECTION_DOWN
 	dc.w	SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01Sub00NPC2Exit:
+	dc.w	$0004	; NPC2
+	; --------------------------------------------------------------------------
+	; NPC 2 needs to move from $0102,$00C8 to $0100,$0180
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($0102-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	($0180-$00C8)/SPRITE_STEP_PIXELS
 	; --------------------------------------------------------------------------
 	; NPC 3 needs to move from $0100,$0180 to $00B8,$010C
 	; --------------------------------------------------------------------------
@@ -198,6 +222,43 @@ ScriptedEventDay01Sub00Start:
 	dc.w	($0100-$00B8)/SPRITE_STEP_PIXELS
 	dc.w	DIRECTION_DOWN
 	dc.w	SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01Sub00NPC3MoveRight:
+	dc.w	$0005	; NPC3
+	; --------------------------------------------------------------------------
+	; NPC 3 needs to move from $00B8,$010C to $0180,$010C
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_RIGHT
+	dc.w	($0180-$00B8)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01Sub00NPC3Exit:
+	dc.w	$0005	; NPC3
+	; --------------------------------------------------------------------------
+	; NPC 3 needs to move from $0180,$010C to $0100,$0180
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($0180-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	($0180-$010C)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; NPC 0 needs to move from $0100,$0180 to $012A,$0098
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_UP
+	dc.w	$00A0
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0040
+	dc.w	DIRECTION_UP
+	dc.w	$0040
+	dc.w	DIRECTION_LEFT
+	dc.w	$0030
+	dc.w	DIRECTION_DOWN
+	dc.w	$0004
 	dc.w	SCRIPTED_EVENT_END
 
 ScriptedEventDay01Sub00End:

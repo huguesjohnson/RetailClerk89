@@ -13,6 +13,7 @@ SecurityCheck:
 	move.l	#'SEGA',(REG_TMS)	; otherwise copy 'SEGA' to TMS register
 SkipSecurity:
 
+	if _ATGAMES_HACKS
     ; AtGames audio fix
 	; https://bigevilcorporation.co.uk/2018/04/18/taming-the-atgames-firecore/
 	move.w #$FFFF,($00000000)  ; Latch 0x0000
@@ -20,6 +21,7 @@ SkipSecurity:
 	move.b #$26,($00B01054)    ; Write new FM frequency
 	move.b #$20,($00B01055)    ; Write new FM clock
 	move.w #$FFF7,($00000000)  ; Latch 0x0000
+	endif
 
 InitController:
 	move.b	#$40,(CTRL_1_CONTROL)
