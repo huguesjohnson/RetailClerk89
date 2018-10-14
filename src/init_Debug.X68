@@ -43,7 +43,7 @@
 	;---------------------------------------------------------------------------
 ;	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy event flags to d7
 ;	bset.l	#MISSION_FLAG_DAY01_SUB00_STARTED,d7	;set flag to start mission
-;	; setting these three tests the exit scene
+;;	; setting these three tests the exit scene
 ;	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC1_DONE,d7
 ;	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC2_DONE,d7
 ;	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC3_DONE,d7

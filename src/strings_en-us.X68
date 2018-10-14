@@ -37,11 +37,11 @@ TitleScreenTextNewGame:
 	if _DEBUG_
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Unstable Debug Build (September 2018) ",ETX
+	dc.b	" Unstable Debug Build (October 2018)  ",ETX
 	else
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"  Mall Walker Demo  (September 2018)  ",ETX
+	dc.b	"   Mall Walker Demo (October 2018)    ",ETX
 	endif
 
 ;-------------------------------------------------------------------------------
@@ -675,7 +675,7 @@ DialogTextDaniCar:
 
 DialogTextMannequin:
 	;		"1234567890123456789012"
-	dc.b	"Staring too long will",LF
+	dc.b	"Keep this up & you'll",LF
 	dc.b	"get you kicked out.",ETX
 
 DialogTextTMannequin:
@@ -870,6 +870,11 @@ DialogTextMaleShopper00DefaultLook:
 	;		"1234567890123456789012"
 	dc.b	"He has been browsing",LF
 	dc.b	"for over an hour now.",ETX
+
+DialogTextMaleShopper00LookDay01:
+	;		"1234567890123456789012"
+	dc.b	"Great, this guy again.",LF
+	dc.b	"",ETX
 
 DialogTextDaniDefaultLook:
 	;		"1234567890123456789012"
@@ -1223,7 +1228,7 @@ DialogTextDay01Sub00NPC1D2R0:
 	dc.b	"has been in my family^",FF
 	dc.b	"for over seven        ",LF
 	dc.b	"generations now.'    ^",FF
-	dc.b	"Customer:`OK then.    ",ETX
+	dc.b	"Customer:`OK then.'   ",ETX
 
 DialogTextDay01Sub00NPC1D2R1:
 	;		"1234567890123456789012"
@@ -1247,10 +1252,22 @@ DialogTextDay01Sub00NPC2D0:
 	dc.b	"I need a fresh style, ",LF
 	dc.b	"what do you have?'    ",ETX
 
-MenuMannequinSub00NPC2:
+DialogTextDay01Sub00NPC2DefaultTalk:
 	;		"1234567890123456789012"
+	dc.b	"`I don't have forever,",LF
+	dc.b	"show me something.'",ETX
+
+MenuMannequinSub00NPC2Show:
+	;		"1234567890123456789012"
+	dc.b	"Show this suit to the",LF
+	dc.b	"customer?           ^",FF
 	dc.b	"{Show to customer",LF
 	dc.b	"{Nevermind",ETX
+
+MenuMannequinSub00NPC2ShowCancel:
+	;		"1234567890123456789012"
+	dc.b	"He looks like he's",LF
+	dc.b	"getting impatient.",ETX
 
 DialogTextDay01Sub00NPC2D1:
 	;		"1234567890123456789012"
@@ -1274,6 +1291,11 @@ DialogTextDay01Sub00NPC2D2:
 	dc.b	"Customer:`It's the    ",LF
 	dc.b	"future. I'll take it!'",ETX
 
+DialogTextDay01Sub00NPC2D3:
+	;		"1234567890123456789012"
+	dc.b	"`I don't have forever,",LF
+	dc.b	"ring me up already.'",ETX
+
 DialogTextDay01Sub00NPC3D0:
 	;		"1234567890123456789012"
 	dc.b	"`Hello, good evening.'",LF
@@ -1281,12 +1303,31 @@ DialogTextDay01Sub00NPC3D0:
 	dc.b	"{How can I help!?",LF
 	dc.b	"{Fine, let's do this",ETX
 
+DialogTextDay01Sub00NPC3D0R0:
+	;		"1234567890123456789012"
+	dc.b	"`Clearly you are our",LF
+	dc.b	"target demographic!'",ETX
+
+DialogTextDay01Sub00NPC3D0R1:
+	;		"1234567890123456789012"
+	dc.b	"`Just make it quick.'",ETX
+
 DialogTextDay01Sub00NPC3D1:
 	;		"1234567890123456789012"
 	dc.b	"`I don't see a nametag",LF
 	dc.b	"what's your name?'",FF
 	dc.b	"{Joy McHelpful",LF
 	dc.b	"{Morgan Fairchild",ETX
+
+DialogTextDay01Sub00NPC3D1R0:
+	;		"1234567890123456789012"
+	dc.b	"`And customer service",LF
+	dc.b	"is my true passion.'",ETX
+
+DialogTextDay01Sub00NPC3D1R1:
+	;		"1234567890123456789012"
+	dc.b	"`And I'm down on my",LF
+	dc.b	"luck right now.'",ETX
 
 DialogTextDay01Sub00NPC3D2:
 	;		"1234567890123456789012"
@@ -1305,32 +1346,26 @@ DialogTextDay01Sub00NPC3D2R1:
 	dc.b	"`Maybe there's a time",LF
 	dc.b	"portal around.'",ETX
 
-DialogTextDay01Sub00NPC3D4:
+DialogTextDay01Sub00NPC3D3:
 	;		"1234567890123456789012"
 	dc.b	"`Do you have any deals",LF
 	dc.b	"you want to mention?'^",FF
 	dc.b	"{Yes of course",LF
 	dc.b	"{Please leave",ETX
 
-DialogTextDay01Sub00NPC3D4R0:
+DialogTextDay01Sub00NPC3D3R0:
 	;		"1234567890123456789012"
 	dc.b	"`Yes, today only",LF
 	dc.b	"everything is two    ^",FF
-	dc.b	"for the price of two!'",ETX
+	dc.b	"for the price of two!'",LF
+	dc.b	"                     ^",FF
+	dc.b	"Shopper:`That's",LF
+	dc.b	"wonderful Thank you!'",ETX
 
-DialogTextDay01Sub00NPC3D4High:
+DialogTextDay01Sub00NPC3D3R1:
 	;		"1234567890123456789012"
-	dc.b	"`That's wonderful!",LF
-	dc.b	"Thank you!'",ETX
-
-DialogTextDay01Sub00NPC3D4Med:
-	;		"1234567890123456789012"
-	dc.b	"`OK, well, good bye.'",ETX
-
-DialogTextDay01Sub00NPC3D4Low:
-	;		"1234567890123456789012"
-	dc.b	"`I.. I can't do this",LF
-	dc.b	"any longer.'",ETX
+	dc.b	"Shopper:`OK, well..",LF
+	dc.b	"good bye.'",ETX
 
 DialogTextDay01Sub00NPC0Talk:
 	;		"1234567890123456789012"

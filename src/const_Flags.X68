@@ -57,9 +57,8 @@ MISSION_FLAG_DAY01_SUB00_NPC2_D0=$4	; first dialog with the NPC
 MISSION_FLAG_DAY01_SUB00_NPC2_D1=$5	; second dialog with the NPC
 MISSION_FLAG_DAY01_SUB00_NPC2_D2=$6	; third dialog with the NPC
 MISSION_FLAG_DAY01_SUB00_NPC2_DONE=$7	; done interacting with NPC2
-MISSION_FLAG_DAY01_SUB00_NPC3_D0=$8	; first dialog with the NPC
-MISSION_FLAG_DAY01_SUB00_NPC3_D1=$9	; second dialog with the NPC
-MISSION_FLAG_DAY01_SUB00_NPC3_D2=$A	; third dialog with the NPC
-MISSION_FLAG_DAY01_SUB00_NPC3_D3=$B	; fourth dialog with the NPC
-MISSION_FLAG_DAY01_SUB00_NPC3_DONE=$C	; done interacting with NPC3
+MISSION_FLAG_DAY01_SUB00_NPC3_D0=$8	; first dialog with the NPC3
+MISSION_FLAG_DAY01_SUB00_NPC3_D1=$9	; second dialog with the NPC3
+MISSION_FLAG_DAY01_SUB00_NPC3_D2=$A	; third dialog with the NPC3
+MISSION_FLAG_DAY01_SUB00_NPC3_DONE=$B	; done interacting with NPC3
 

@@ -231,26 +231,36 @@ ScriptedEventDay01Sub00NPC3MoveRight:
 	; --------------------------------------------------------------------------
 	dc.w	DIRECTION_RIGHT
 	dc.w	($0180-$00B8)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01Sub00NPC3MoveCounter:
+	dc.w	$0005	; NPC3
+	; --------------------------------------------------------------------------
+	; NPC 3 needs to move from $0180,$010C to $0130,$00CC
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($0180-$0130)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	($010C-$00CC)/SPRITE_STEP_PIXELS
 	dc.w	SCRIPTED_EVENT_END
 
 ScriptedEventDay01Sub00NPC3Exit:
 	dc.w	$0005	; NPC3
 	; --------------------------------------------------------------------------
-	; NPC 3 needs to move from $0180,$010C to $0100,$0180
+	; NPC 3 needs to move from $0130,$00CC to $0130,$0180
 	; --------------------------------------------------------------------------
-	dc.w	DIRECTION_LEFT
-	dc.w	($0180-$0100)/SPRITE_STEP_PIXELS
-	dc.w	DIRECTION_UP
-	dc.w	($0180-$010C)/SPRITE_STEP_PIXELS
 	dc.w	DIRECTION_DOWN
-	dc.w	SPRITE_STEP_PIXELS
+	dc.w	($0180-$00CC)/SPRITE_STEP_PIXELS
 	; --------------------------------------------------------------------------
 	; NPC 0 needs to move from $0100,$0180 to $012A,$0098
+	; NPC will be lower than $0180 though due to their movement pattern
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
 	dc.w	$0002	; NPC0
 	dc.w	DIRECTION_UP
-	dc.w	$00A0
+	dc.w	$0100
 	dc.w	DIRECTION_RIGHT
 	dc.w	$0040
 	dc.w	DIRECTION_UP
