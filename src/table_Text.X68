@@ -374,6 +374,8 @@ ItemNameTable:
 	dc.l	ItemName35Disks
 	; OBJ_ITEM_HW_PRNTRIBBON
 	dc.l	ItemNameHWPrintRibbon
+	; OBJ_ITEM_MYSTERY_PACKAGE
+	dc.l	ItemNameMysteryPackage
 
 ;-------------------------------------------------------------------------------
 ; item descriptions

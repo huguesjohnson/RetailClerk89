@@ -49,11 +49,11 @@
 ;	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC3_DONE,d7
 ;	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save event flags
 
-;	; test 2nd half of day 01
-;	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
-;	bset.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; set flag 
-;	bset.l	#EVENT_FLAG_DAY01_SUB01_COMPLETE,d7	; set flag 
-;	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
+	; test 2nd half of day 01
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
+	bset.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; set flag 
+	bset.l	#EVENT_FLAG_DAY01_SUB01_COMPLETE,d7	; set flag 
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
 
 ;	;---------------------------------------------------------------------------
 ;	; used to test closing animation on day 0 scene 0

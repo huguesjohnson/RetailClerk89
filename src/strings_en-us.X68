@@ -521,6 +521,8 @@ DialogTextSecurityGuardDay00:
 	dc.b	"`The mall is closed.",LF
 	dc.b	"Get a move on.'",ETX
 
+
+
 ;-------------------------------------------------------------------------------
 ; information desk
 ;-------------------------------------------------------------------------------
@@ -1134,7 +1136,22 @@ DialogTextDay01VBDBDefaultTalk:
 	dc.b	"Dani:`I'm stuck",LF
 	dc.b	"closing tonight.     ^",FF
 	dc.b	"Head over to my store",LF
-	dc.b	"when your shift ends.'",ETX
+	dc.b	"after your shift.    ^",FF
+	dc.b	"Here's a key so you",LF
+	dc.b	"can let yourself in. ^",FF
+	dc.b	"Let's share any keys",LF
+	dc.b	"we get, just in case.^",FF
+	dc.b	"I can make copies of",LF
+	dc.b	"them in our garage.  ^",FF
+	dc.b	"Dad taught me how when",LF
+	dc.b	"he was in fallout    ^",FF
+	dc.b	"shelter phase a few",LF
+	dc.b	"years ago.'",ETX
+
+DialogTextDay01VBDBTalk01:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`Head over to my ",LF
+	dc.b	"store after close.'",ETX
 
 DialogTextDay01Sub00Intro:
 	;		"1234567890123456789012"
@@ -1959,6 +1976,15 @@ ItemNameHWPrintRibbon:
 ItemDescriptionHWPrintRibbon:
 	;		"1234567890123456789012"
 	dc.b	"Prints 1,000+ pages.",ETX
+
+ItemNameMysteryPackage:
+	;		"1234567890"
+	dc.b	"Package",ITEMNAMEEND
+
+ItemDescriptionMysteryPackage:
+	;		"1234567890123456789012"
+	dc.b	"It's about the size of",LF
+	dc.b	"a VHS tape.",ETX
 
 ;-------------------------------------------------------------------------------
 ; store signs

@@ -19,7 +19,16 @@ Day01Scene00Action01NPCGreenberg:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene00Action01NPCDB:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
+	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; test flag 
+	bne.s	Day01Scene00Action01NPCDBSub00Complete	; flag is set, branch
+	bset.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; set flag 
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags	
 	lea	DialogTextDay01VBDBDefaultTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts	; exit
+Day01Scene00Action01NPCDBSub00Complete:
+	lea	DialogTextDay01VBDBTalk01,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene00Action02:	; ACTION_TAKE_GIVE
@@ -28,10 +37,15 @@ Day01Scene00Action02:	; ACTION_TAKE_GIVE
 	beq.s	Day01Scene00Action02NPCGreenberg	; branch to text for the NPC
 	cmpi.w	#OBJ_NPC_DB,d6	; test target
 	beq.s	Day01Scene00Action02NPCDB	; branch to text for the NPC
-	; default action
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	beq.s	Day01Scene00Action02Dani	; use default text for DB
+	bsr.w	Scene00DefaultTake	; use scene defaults
+	rts	; exit
+Day01Scene00Action02Dani:
+	; Dani can't take anything from this scene on day 01
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
+	rts	; exit
 Day01Scene00Action02NPCGreenberg:
 	lea	DialogTextGreenbergDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
