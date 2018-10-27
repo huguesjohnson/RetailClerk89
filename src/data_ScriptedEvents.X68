@@ -353,6 +353,10 @@ ScriptedEventDay01ChangePC:
 	; change scene and player sprite
 	; --------------------------------------------------------------------------
 	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while the screen is blank
+	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
 	dc.w	SPRITE_PLAYER_INIT_X
 	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
@@ -361,18 +365,12 @@ ScriptedEventDay01ChangePC:
 	dc.w	DIRECTION_DOWN
 	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
 	dc.w	PLAYER_SPRITE_DB
+	; --------------------------------------------------------------------------
+	; switch scenes
+	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
 	dc.w	SCENE_ID_VB
-	; --------------------------------------------------------------------------
-	; TODO - move player toward counter
-	; --------------------------------------------------------------------------
-
-	; --------------------------------------------------------------------------
-	; TODO - some dialog
-	; --------------------------------------------------------------------------
-
 	dc.w	SCRIPTED_EVENT_END
-
 
 ; ------------------------------------------------------------------------------
 ; used to test scene and player sprite changes in scripted events

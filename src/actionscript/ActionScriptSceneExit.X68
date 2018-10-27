@@ -49,6 +49,8 @@ ExitDefaultExit:
 ExitScene00:
 	cmpi.w	#$0000,(MEM_DAY)
 	beq.s	ExitScene00Day00	; branch to day 0
+	cmpi.w	#$0001,(MEM_DAY)
+	beq.s	ExitScene00Day01	; branch to day 1
 	bsr.w	DefaultExitScene	; use default handler
 	rts
 ExitScene00Day00:
@@ -67,6 +69,19 @@ ExitScene00Day00CanExit:
 	bset.l	#STATE_FLAG_EXITS_BLOCKED,d7	; test flag blocking the exits
 	move.l	d7,(MEM_GAME_STATE)	; copy game state to d7
 	rts
+ExitScene00Day01:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is
+	beq.s	ExitScene00Day01CanExit	; ok to exit
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	btst.l	#MISSION_FLAG_DAY01_SUB02_STARTED,d7	; test if flag is set
+	bne.s	ExitScene00Day01CanExit	; flag is set, OK to exit
+	lea	DialogTextDay01Sub02VBExit,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; open the dialog
+	rts	; exit
+ExitScene00Day01CanExit:
+	bsr.w	DefaultExitScene	; use default handler
+	rts	; exit
 
 ;-------------------------------------------------------------------------------
 ; exit scene 01 (SCENE_ID_WWHALL)
@@ -175,7 +190,7 @@ ExitScene06:
 	beq.s	ExitScene06Day00	; branch to day 00 logic
 	cmpi.w	#$0001,(MEM_DAY)	; is it day 01?
 	beq.s	ExitScene06Day01	; branch to day 01 logic
-	bra.s	ExitScene06Default	; use default handler
+	bra.w	ExitScene06Default	; use default handler
 ExitScene06Day00:
 	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)
 	beq.s	ExitScene06Default	; ok to exit
@@ -187,10 +202,10 @@ ExitScene06Day00:
 	bsr.w	SetDialogOpening	; setup dialog open
 	rts
 ExitScene06Day01:
-	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is
-	bne.s	ExitScene06Default	; ok to exit
 	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
 	bne.s	ExitScene06Default	; ok to exit
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is
+	bne.s	ExitScene06Day01Sub02	; must be in sub02
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy game state to d7
 	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; test flag blocking the exits
 	beq.s	ExitScene06Day01CantExit	; flag not set = can't exit
@@ -201,6 +216,18 @@ ExitScene06Day01:
 ExitScene06Day01CantExit:
 	; can't exit the scene - display message
 	lea	DialogTextDay01CantReturnYet,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; setup dialog open
+	rts
+ExitScene06Day01Sub02:
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy game state to d7
+	btst.l	#MISSION_FLAG_DAY01_SUB02_D1,d7	; test if mission is complete
+	beq.s	ExitScene06Day01Sub02CantExit	; flag not set = can't exit
+	bra.s	ExitScene06Default	; ok to exit
+	rts
+ExitScene06Day01Sub02CantExit:
+	; can't exit the scene - display message
+	lea	DialogTextDay01Sub02CantEnter,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; setup dialog open
 	rts
@@ -278,7 +305,7 @@ ExitScene17:
 	beq.s	ExitScene17Day00	; branch to day 00 logic
 	cmpi.w	#$0001,(MEM_DAY)	; is it day 01?
 	beq.s	ExitScene17Day01	; branch to day 01 logic
-	bra.s	ExitScene17Default	; use default handler
+	bra.w	ExitScene17Default	; use default handler
 ExitScene17Day00:
 	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
 	beq.s	ExitScene17Default	; ok to exit
@@ -290,10 +317,10 @@ ExitScene17Day00:
 	bsr.w	SetDialogOpening	; setup dialog open
 	rts
 ExitScene17Day01:
-	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is
-	bne.s	ExitScene17Default	; ok to exit
 	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
 	bne.s	ExitScene17Default	; ok to exit
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is
+	bne.s	ExitScene17Day01Sub02	; must be in sub02
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy game state to d7
 	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; test flag blocking the exits
 	beq.s	ExitScene17Day01CantExit	; flag not set = can't exit
@@ -307,6 +334,18 @@ ExitScene17Day01CantExit:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; setup dialog open
 	rts
+ExitScene17Day01Sub02:
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy game state to d7
+	btst.l	#MISSION_FLAG_DAY01_SUB02_D1,d7	; test if mission is complete
+	beq.s	ExitScene17Day01Sub02CantExit	; flag not set = can't exit
+	bra.s	ExitScene17Default	; ok to exit
+	rts
+ExitScene17Day01Sub02CantExit:
+	; can't exit the scene - display message
+	lea	DialogTextDay01Sub02CantEnter,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; setup dialog open
+	rts
 ExitScene17Default: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
@@ -315,6 +354,7 @@ ExitScene17Default: ; ok to exit scene
 ; change the player sprite on day 1
 ;-------------------------------------------------------------------------------
 ExitSceneDay01SwitchPC:
+	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission flags
 	; scene changes after this event, need to remove DB as an NPC in scene 00
 	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
 	move.l	#$03000000,(a5)	; update NPCs in scene 00

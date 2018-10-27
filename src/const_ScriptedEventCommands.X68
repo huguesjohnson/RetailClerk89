@@ -6,4 +6,4 @@ SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE=$BBBB	; switch player sprites
 SCRIPTED_EVENT_SET_PLAYER_SPRITE_X=$AAAA	; set player sprite X
 SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y=$9999	; set player sprite Y
 SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION=$8888	; set player direction
-
+SCRIPTED_EVENT_FADE_BLACK=$7777	; fade and blackout the palette

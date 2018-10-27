@@ -214,3 +214,4 @@ PaletteStatusScreen:
 	include 'palettes/pal_StatusScreen_01.X68'
 	include 'palettes/pal_StatusScreen_02.X68'
 	include 'palettes/pal_StatusScreen_03.X68'
+

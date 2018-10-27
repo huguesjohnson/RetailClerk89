@@ -104,6 +104,8 @@ NextScriptedEventAction:
 	beq.w	ScriptedEventSetPlayerSpriteY	; if so branch
 	cmpi.w	#SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION,d7	; change direction?
 	beq.w	ScriptedEventSetPlayerSpriteDirection	; if so branch
+	cmpi.w	#SCRIPTED_EVENT_FADE_BLACK,d7	; fade out?
+	beq.w	ScriptedEventFadeBlack	; if so branch
 	;---------------------------------------------------------------------------
 	; start moving the sprite
 	;---------------------------------------------------------------------------
@@ -173,6 +175,17 @@ ScriptedEventSetPlayerSpriteY:
 	bra.w	MainGameLoop	; return to start of game loop
 ScriptedEventSetPlayerSpriteDirection:
 	move.w	(a6)+,(MEM_PLAYER_SPRITE_DIRECTION)	; update sprite
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
+	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
+	bra.w	MainGameLoop	; return to start of game loop
+ScriptedEventFadeBlack:
+	bsr.w	FadeOut	; fade out
+	; blackout the palette
+	lea	MEM_SCENE_PALETTE,a1	; point a1 to scene palette address
+	move.w	#$003F,d7	; 64-1 palette entries
+ScriptedEventFadeBlackLoop:
+	move.w	#$0000,(a1)+	; write the palette data
+	dbf	d7,ScriptedEventFadeBlackLoop	; decrement d7 and loop if not 0
 	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
 	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
 	bra.w	MainGameLoop	; return to start of game loop

@@ -15,6 +15,37 @@ Day01Scene00Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene00Action01NPCGreenberg:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	beq.s	Day01Scene00Action01NPCGreenbergDani	; branch to text for Dani
+	; otherwise playing as D.B.
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	btst.l	#MISSION_FLAG_DAY01_SUB02_STARTED,d7	; test if flag is set
+	bne.w	Day01Scene00Action01NPCGreenbergDefault	; flag is set, branch
+	;---------------------------------------------------------------------------
+	; start the last mission of day 01
+	;---------------------------------------------------------------------------
+	bset.l	#MISSION_FLAG_DAY01_SUB02_STARTED,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save mission flags
+	; prevent bug if player fills inventory before talking to Greenberg	
+	move.w	(MEM_PLAYER_ITEM_COUNT),d6	; copy current item count to d6
+	cmpi.w	#MAX_ITEMS,d6	; check if inventory is full
+	blt.s	.1	; branch if there is an open inventory slot
+	; overwrite first item in inventory
+	lea MEM_PLAYER_ITEMS,a6	; point to start of item list
+	move.w	#OBJ_ITEM_MYSTERY_PACKAGE,(a6)	; overwrite the first item
+	bra.s	Day01Scene00Action01NPCGreenbergSub02Start
+.1
+	move.w	#OBJ_ITEM_MYSTERY_PACKAGE,d7	; add package to inventory
+	bsr.w	AddItem	; add item to inventory
+Day01Scene00Action01NPCGreenbergSub02Start:
+	lea	DialogTextDay01Sub02Start,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene00Action01NPCGreenbergDefault:
+	lea	DialogTextDay01Sub02TalkGreenberg,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene00Action01NPCGreenbergDani:
 	lea	DialogTextGreenbergDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -184,10 +215,16 @@ Day01Scene05Action00:	; ACTION_LOOK
 
 Day01Scene05Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	beq.s	Day01Scene05Action01NPCDani	; branch
 	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
-	beq.s	Day01Scene05DaniCarLookUse	; same action for look and use	
+	beq.s	Day01Scene05DaniCarLookUse	; same action for look and use
 	; default action	
 	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bra.s	ExitDay01Scene05Action01
+Day01Scene05Action01NPCDani:
+	lea	DialogTextDay01ParkingLot,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 ExitDay01Scene05Action01:
 	rts
@@ -241,11 +278,44 @@ Day01Scene07Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day01Scene07Action01:	; ACTION_USE_TALK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_GUARD0,d6	; test target
+	beq.s	Day01Scene07Action01NPC	; branch to display text
+	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+Day01Scene07Action01NPC:
+	lea	DialogTextSecurityGuardDay01,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day01Scene07Action02:	; ACTION_TAKE_GIVE
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_GUARD0,d6	; test target
+	beq.s	Day01Scene07Action02NPC	; branch to text for the NPC
+	; default action
 	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene07Action02NPC:
+	;---------------------------------------------------------------------------
+	; test if the item is the mystery package
+	;---------------------------------------------------------------------------
+	cmpi.w	#OBJ_ITEM_MYSTERY_PACKAGE,(MEM_ACTIVE_ITEM)	; test item
+	bne.s	Day01Scene07Action02NPCDefault	; branch if not mystery package
+	; update flags
+	bset.l	#MISSION_FLAG_DAY01_SUB02_D1,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	; remove the item from the player's inventory	
+	move.w	#OBJ_ITEM_MYSTERY_PACKAGE,d7	; copy object ID to d7
+	bsr.w	RemoveItem	; remove the item
+	; show the response message
+	lea	DialogTextDay01Sub02D1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+Day01Scene07Action02NPCDefault:
+	lea	DialogTextSecurityGuardDay01,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene07Action03:	; ACTION_RESPOND
@@ -268,6 +338,12 @@ Day01Scene08Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene08Action01NPC:
+	cmpi.w	#OBJ_NPC_DB,d6	; test target
+	bne.s	Day01Scene08Action01NPCDefault	; branch if not DB
+	lea	DialogTextDay01Sub02TalkNPCDCountry,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene08Action01NPCDefault:
 	lea	DialogTextDenimCountryStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -818,6 +894,16 @@ Day01Scene0CAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene0CAction01NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	beq.s	Day01Scene0CAction01NPCDefault	; branch to default text
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	btst.l	#MISSION_FLAG_DAY01_SUB02_D0,d7	; test if flag is set
+	beq.s	Day01Scene0CAction01NPCDefault	; flag is not set, branch
+	; otherwise use text after MISSION_FLAG_DAY01_SUB02_D0
+	lea	DialogTextDay01Sub02TalkNPCStaffSVideo,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene0CAction01NPCDefault:
 	lea	DialogTextSVideoStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -830,6 +916,31 @@ Day01Scene0CAction02:	; ACTION_TAKE_GIVE
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene0CAction02NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	beq.s	Day01Scene0CAction02NPCDefault	; branch to default text
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	btst.l	#MISSION_FLAG_DAY01_SUB02_D0,d7	; test if flag is set
+	bne.s	Day01Scene0CAction02NPCDefault	; flag is set, branch
+	;---------------------------------------------------------------------------
+	; test if the item is the mystery package
+	;---------------------------------------------------------------------------
+	cmpi.w	#OBJ_ITEM_MYSTERY_PACKAGE,(MEM_ACTIVE_ITEM)	; test item
+	bne.s	Day01Scene0CAction02NPCDefault	; branch if not mystery package
+	; update flags
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy flags to d7
+	bset.l	#MISSION_FLAG_DAY01_SUB02_D0,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	; move the night guard back into the map	
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
+	move.l	#$18000000,(a5)	; update NPCs in east-east hall
+	; show the response message
+	lea	DialogTextDay01Sub02D0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene0CAction02NPCDefault:
 	lea	DialogTextNPCSVideoStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts

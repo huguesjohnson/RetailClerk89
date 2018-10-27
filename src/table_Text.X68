@@ -415,6 +415,8 @@ ItemDescriptionTable:
 	dc.l	ItemDescriptionHW35Disks
 	; OBJ_ITEM_HW_PRNTRIBBON
 	dc.l	ItemDescriptionHWPrintRibbon
+	; OBJ_ITEM_MYSTERY_PACKAGE
+	dc.l	ItemDescriptionMysteryPackage
 
 ;-------------------------------------------------------------------------------
 ; store names
