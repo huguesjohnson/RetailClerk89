@@ -333,19 +333,34 @@ Day01Scene08Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,d6	; test target
 	beq.s	Day01Scene08Action01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	beq.s	Day01Scene08Action01Dani	; branch
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene08Action01NPC:
-	cmpi.w	#OBJ_NPC_DB,d6	; test target
-	bne.s	Day01Scene08Action01NPCDefault	; branch if not DB
-	lea	DialogTextDay01Sub02TalkNPCDCountry,a6	; load text
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	beq.s	Day01Scene08Action01NPCDefault	; branch if not DB
+	lea	DialogTextDenimCountryStaffDefaultTalkDB,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene08Action01NPCDefault:
 	lea	DialogTextDenimCountryStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene08Action01Dani:
+	; update NPC location
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
+	move.l	#$01000000,(a5)	; update NPCs in parking lot
+	; queue scripted event
+	lea ScriptedEventDay01End,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay01End,a6	; load first text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT	
 	rts
 Day01Scene08Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6

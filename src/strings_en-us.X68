@@ -883,20 +883,18 @@ DialogTextDay01Sub02D1:
 DialogTextDay01End:
 	;		"1234567890123456789012"
 	dc.b	"`You're just in time",LF
-	dc.b	"for once. Let's get  ^",FF
+	dc.b	"for once. I'm done   ^",FF
+	dc.b	"closing out the",LF
+	dc.b	"register. Let's get  ^",FF
 	dc.b	"home before it's too",LF
 	dc.b	"cold outside.'",ETX
-
-DialogTextDay01Sub02TalkNPCDCountry:
-	;		"1234567890123456789012"
-	dc.b	"`The way Dani talks",LF
-	dc.b	"about you, I thought ^",ETX
-	dc.b	"you'd be shorter.'",ETX
 
 DialogTextDay01ParkingLot:
 	;		"1234567890123456789012"
 	dc.b	"`So you're starting to",LF
-	dc.b	"make yourself useful.'",ETX
+	dc.b	"make yourself useful.^",FF
+	dc.b	"You still have a way",LF
+	dc.b	"to go though.'",ETX
 
 ;-------------------------------------------------------------------------------
 ; information desk
@@ -1387,6 +1385,12 @@ DialogTextDenimCountryStaffDefaultTalk:
 	dc.b	"here for Xmas season.^",FF
 	dc.b	"I hope they don't",LF
 	dc.b	"close the mall.'",ETX
+
+DialogTextDenimCountryStaffDefaultTalkDB:
+	;		"1234567890123456789012"
+	dc.b	"`The way Dani talks",LF
+	dc.b	"about you, I thought ^",ETX
+	dc.b	"you'd be shorter.'",ETX
 
 DialogTextCheckersStaffDefaultTalk:
 	;		"1234567890123456789012"

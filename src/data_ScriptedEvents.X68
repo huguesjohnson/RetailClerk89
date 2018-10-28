@@ -372,6 +372,22 @@ ScriptedEventDay01ChangePC:
 	dc.w	SCENE_ID_VB
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay01End:
+	dc.w	$0003	; npc1
+	; move sprite away from register	
+	dc.w	DIRECTION_LEFT
+	dc.w	($0038)/SPRITE_STEP_PIXELS
+	; move sprite toward door	
+	dc.w	DIRECTION_DOWN
+	dc.w	($005C)/SPRITE_STEP_PIXELS
+	; move sprite out of scene
+	dc.w	DIRECTION_LEFT
+	dc.w	($0020)/SPRITE_STEP_PIXELS
+	; move into hidden space to block movement pattern
+	dc.w	DIRECTION_DOWN
+	dc.w	($0010)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
 ; ------------------------------------------------------------------------------
 ; used to test scene and player sprite changes in scripted events
 ; ------------------------------------------------------------------------------

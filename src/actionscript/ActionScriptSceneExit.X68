@@ -358,6 +358,12 @@ ExitSceneDay01SwitchPC:
 	; scene changes after this event, need to remove DB as an NPC in scene 00
 	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
 	move.l	#$03000000,(a5)	; update NPCs in scene 00
+	; Dani is now an NPC again
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address 
+	move.l	#$05010000,(a5)	; update NPCs
 	; queue the scripted event
 	lea ScriptedEventDay01ChangePC,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
