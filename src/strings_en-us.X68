@@ -37,11 +37,11 @@ TitleScreenTextNewGame:
 	if _DEBUG_
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Unstable Debug Build (October 2018)  ",ETX
+	dc.b	" Unstable Debug Build (November 2018) ",ETX
 	else
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Mall Walker Demo (October 2018)    ",ETX
+	dc.b	"   Mall Walker Demo (November 2018)   ",ETX
 	endif
 
 ;-------------------------------------------------------------------------------
@@ -217,6 +217,11 @@ DialogTextStoreClosing:
 	;		"1234567890123456789012"
 	dc.b	"It looks like they are",LF
 	dc.b	"closing for the night.",ETX
+
+DialogTextStoreClosed:
+	;		"1234567890123456789012"
+	dc.b	"They are closed. Maybe",LF
+	dc.b	"if you had a key...",ETX
 
 DialogTextLongWalk:
 	;		"1234567890123456789012"
@@ -1389,7 +1394,7 @@ DialogTextDenimCountryStaffDefaultTalk:
 DialogTextDenimCountryStaffDefaultTalkDB:
 	;		"1234567890123456789012"
 	dc.b	"`The way Dani talks",LF
-	dc.b	"about you, I thought ^",ETX
+	dc.b	"about you, I thought ^",FF
 	dc.b	"you'd be shorter.'",ETX
 
 DialogTextCheckersStaffDefaultTalk:
