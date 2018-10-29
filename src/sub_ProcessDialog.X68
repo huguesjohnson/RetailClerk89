@@ -238,9 +238,9 @@ ProcessDialogSetClosing:
 	bset.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; set closing flag
 	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; closing, clear open flag
 	btst.l	#DIALOG_FLAG_OPTION_PERSIST_SELECTOR,d7	; hide the selector?
-	bne.s	ExitProcessDialog	; don't hide if flag is set
+	bne.w	ExitProcessDialog	; don't hide if flag is set
 	bsr.w	HideSelectorSprite	; hide selector sprite if flag not set
-	bra.s	ExitProcessDialog	; exit
+	bra.w	ExitProcessDialog	; exit
 ProcessDialogTestClosing:
 	btst.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; test if the dialog is closing
 	beq.s	ProcessDialogClearFlags	; dialog is not closing, exit
@@ -266,7 +266,10 @@ ProcessDialogTestClosing:
 	move.w	(MEM_ACTION_TARGET_NPCID),d1	; copy target NPC id to d1
 	mulu.w	#NPC_RECORD_SIZE,d1	; multiply by NPC_RECORD_SIZE to get offset
 	adda.l	d1,a6	; move to target NPC sprite
-	; restore NPC direction
+	; restore NPC direction if not in a scripted event
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	btst.l	#STATE_FLAG_SCRIPTED_EVENT,d7	; test the scripted event flag
+	bne.s	ProcessDialogClearFlags	; skip step to restore NPC direction
 	move.w	(MEM_ACTION_TARGET_NPC_DIRECTION),(STRUCT_SPRITE_DIRECTION,a6)
 ProcessDialogClearFlags:	; clear flags when done
 	andi.l	#$00000000,d7	; clear all dialog flags 
