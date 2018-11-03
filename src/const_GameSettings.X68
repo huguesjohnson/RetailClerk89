@@ -27,6 +27,7 @@ SPRITE_MOVE_FREQUENCY=$0001 ; how many frames to wait between sprite moves
 INTRO_SCREEN_COUNTER_START=$001E	; how long to display intro screens
 FADE_FRAME_DELAY=$0003	; how many frames to wait between fade in/out
 EVENT_FRAME_DELAY=$0009	; delay used for scripted event scene changes
+LEGAL_SCREEN_LOOP=$0100	; how long to display the legal screen
 CREDITS_SCREEN_LOOP=$0168	; how long to display the credits screen
 	endif
 

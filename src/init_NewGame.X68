@@ -11,7 +11,8 @@ InitGameState:
 	move.l	#$00000000,d0
 	bset.l	#STATE_FLAG_TITLE_SCREEN,d0	; set title screen flag
 	bset.l	#STATE_FLAG_EXITS_BLOCKED,d0	; set exits blocked flag
-	move.l	d0,(MEM_GAME_STATE)	; clear game state
+	bset.l	#STATE_FLAG_MALL_CLOSED,d0	; set mall closed flag
+	move.l	d0,(MEM_GAME_STATE)	; save game state
 	move.w	#$0000,(MEM_DAY)	; starting day is zero
 	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)	; clear event flags
 	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission flags

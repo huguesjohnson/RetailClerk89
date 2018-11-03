@@ -213,11 +213,6 @@ DialogTextCantLeaveStoreUnattended:
 	dc.b	"You can't leave the",LF
 	dc.b	"store unattended.",ETX
 
-DialogTextStoreClosing:
-	;		"1234567890123456789012"
-	dc.b	"It looks like they are",LF
-	dc.b	"closing for the night.",ETX
-
 DialogTextStoreClosed:
 	;		"1234567890123456789012"
 	dc.b	"They are closed. Maybe",LF

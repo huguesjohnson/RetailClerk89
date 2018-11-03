@@ -732,6 +732,7 @@ Day00End:
 	move.l	(MEM_GAME_STATE),d7	; copy game state
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
 	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag
+	bclr.l	#STATE_FLAG_MALL_CLOSED,d7	; clear mall closed flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)	; clear day event flags
 	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission event flags

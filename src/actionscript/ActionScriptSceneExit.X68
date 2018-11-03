@@ -10,6 +10,39 @@ DefaultExitScene:
 	move.w	(a6),d6	; copy location to d6
 	cmpi.w	#$FFFF,d6	; is this a valid exit?
 	beq.w	ExitDefaultExit	; if not a valid exit then exit subroutine
+	;---------------------------------------------------------------------------
+	; test if a key is needed to enter the new scene
+	;---------------------------------------------------------------------------
+	; only test for keys if the mall is closed	
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test mall closed flag
+	beq.s	DefaultExitSceneLoadNewScene	; branch if not set
+	; don't test for keys when entering/exiting any scene that's not a store	
+	cmpi.w	#$00FF,d6	; <$0100 means this this is a store
+	bgt.s	DefaultExitSceneLoadNewScene
+	cmpi.w	#$00FF,(MEM_ACTIVE_SCENE_ID)	; <$0100 means this this is a store
+	bgt.s	DefaultExitSceneLoadNewScene
+	; lookup if destination store needs a key
+	move.w	d6,d7	; copy destination store to d7 because d6 is used later
+	mulu.w	#$2,d7	; multiply by 2 to get offset
+	lea	SceneKeyLookupTable,a6	; point a6 to scene key lookup table
+	adda.l	d7,a6	; add offset
+	move.w	(a6),d7	; copy value of lookup table to d7
+	cmpi.w	#$FFFF,d7	; test if the scene has a key
+	beq.s	DefaultExitSceneLoadNewScene	; if lookup value is #FFFF branch	
+	; now test if the player has the key for this store
+	move.l	(MEM_PLAYER_STORE_KEYS),d5	; copy keys to d5
+	btst.l	d7,d5	; test if player has the key
+	bne.s	DefaultExitSceneLoadNewScene	; player has the key, branch
+	; display message
+	lea	DialogTextStoreClosed,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening
+	rts
+	;---------------------------------------------------------------------------
+	; load the new scene
+	;---------------------------------------------------------------------------
+DefaultExitSceneLoadNewScene:
 	mulu.w	#$4,d6	; multiply by 4 to get offset
 	lea	SceneDefinitionTable,a6	; point a6 to the scene definition table
 	adda.l	d6,a6	; add offset
@@ -18,6 +51,9 @@ DefaultExitScene:
 	bsr.w	LoadPlayerSprite	; load the player sprite
 	; move player to the correct position
 	move.w	(MEM_PLAYER_SPRITE_DIRECTION),d6	; copy player direction to d6
+	;---------------------------------------------------------------------------
+	; adjust player sprite x/y
+	;---------------------------------------------------------------------------
 DefaultExitSceneTestDown:
 	cmpi.w	#DIRECTION_DOWN,d6	; test for down
 	bne.s	DefaultExitSceneTestUp	; direction is not down, test for up
@@ -87,18 +123,6 @@ ExitScene00Day01CanExit:
 ; exit scene 01 (SCENE_ID_WWHALL)
 ;-------------------------------------------------------------------------------
 ExitScene01:
-	cmpi.w	#$0000,(MEM_DAY)
-	beq.s	ExitScene01Day00	; branch to day 0 logic
-	bra.s	ExitScene01Day00CanExit	; use default handler
-ExitScene01Day00:
-	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene01Day00CanExit	; ok to exit
-	; can't exit the scene - display message
-	lea	DialogTextStoreClosing,a6	; load dialog text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bsr.w	SetDialogOpening	; setup dialog open
-	rts
-ExitScene01Day00CanExit: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
@@ -106,20 +130,6 @@ ExitScene01Day00CanExit: ; ok to exit scene
 ; exit scene 02 (SCENE_ID_WEHALL)
 ;-------------------------------------------------------------------------------
 ExitScene02:
-	cmpi.w	#$0000,(MEM_DAY)
-	beq.s	ExitScene02Day00	; branch to day 0 logic
-	bra.s	ExitScene02Day00CanExit	; use default handler
-ExitScene02Day00:
-	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene02Day00CanExit	; ok to exit
-	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene02Day00CanExit	; ok to exit
-	; can't exit the scene - display message
-	lea	DialogTextStoreClosing,a6	; load dialog text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bsr.w	SetDialogOpening	; setup dialog open
-	rts
-ExitScene02Day00CanExit: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
@@ -127,22 +137,6 @@ ExitScene02Day00CanExit: ; ok to exit scene
 ; exit scene 03 (SCENE_ID_CENTER)
 ;-------------------------------------------------------------------------------
 ExitScene03:
-	cmpi.w	#$0000,(MEM_DAY)
-	beq.s	ExitScene03Day00	; branch to day 0 logic
-	bra.s	ExitScene03Day00CanExit	; use default handler
-ExitScene03Day00:
-	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene03Day00CanExit	; ok to exit
-	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene03Day00CanExit	; ok to exit
-	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene03Day00CanExit	; ok to exit
-	; can't exit the scene - display message
-	lea	DialogTextStoreClosing,a6	; load dialog text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bsr.w	SetDialogOpening	; setup dialog open
-	rts
-ExitScene03Day00CanExit: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
@@ -150,20 +144,6 @@ ExitScene03Day00CanExit: ; ok to exit scene
 ; exit scene 04 (SCENE_ID_SHALL)
 ;-------------------------------------------------------------------------------
 ExitScene04:
-	cmpi.w	#$0000,(MEM_DAY)
-	beq.s	ExitScene04Day00	; branch to day 0 logic
-	bra.s	ExitScene04Day00CanExit	; use default handler
-ExitScene04Day00:
-	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene04Day00CanExit	; ok to exit
-	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene04Day00CanExit	; ok to exit
-	; can't exit the scene - display message
-	lea	DialogTextStoreClosing,a6	; load dialog text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bsr.w	SetDialogOpening	; setup dialog open
-	rts
-ExitScene04Day00CanExit: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
@@ -186,21 +166,9 @@ ExitScene05Down:
 ; exit scene 06 (SCENE_ID_EWHALL)
 ;-------------------------------------------------------------------------------
 ExitScene06:
-	cmpi.w	#$0000,(MEM_DAY)	; is it day 00?
-	beq.s	ExitScene06Day00	; branch to day 00 logic
 	cmpi.w	#$0001,(MEM_DAY)	; is it day 01?
 	beq.s	ExitScene06Day01	; branch to day 01 logic
 	bra.w	ExitScene06Default	; use default handler
-ExitScene06Day00:
-	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene06Default	; ok to exit
-	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene06Default	; ok to exit
-	; can't exit the scene - display message
-	lea	DialogTextStoreClosing,a6	; load dialog text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bsr.w	SetDialogOpening	; setup dialog open
-	rts
 ExitScene06Day01:
 	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
 	bne.s	ExitScene06Default	; ok to exit
@@ -239,18 +207,6 @@ ExitScene06Default: ; ok to exit scene
 ; exit scene 07 (SCENE_ID_EEHALL)
 ;-------------------------------------------------------------------------------
 ExitScene07:
-	cmpi.w	#$0000,(MEM_DAY)
-	beq.s	ExitScene07Day00	; branch to day 0 logic
-	bra.s	ExitScene07Day00CanExit	; use default handler
-ExitScene07Day00:
-	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene07Day00CanExit	; ok to exit
-	; can't exit the scene - display message
-	lea	DialogTextStoreClosing,a6	; load dialog text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bsr.w	SetDialogOpening	; setup dialog open
-	rts
-ExitScene07Day00CanExit: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
@@ -263,7 +219,7 @@ ExitScene09:
 	bra.s	ExitScene09CanExit	; use default handler
 ExitScene09Day01:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
-	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; set flag 
+	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; test flag 
 	bne.s	ExitScene09CanExit	; flag is set, player can exit
 	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy game state to d7
 	btst.l	#MISSION_FLAG_DAY01_SUB00_STARTED,d7	; test if mission is ongoing
@@ -301,21 +257,9 @@ ExitScene09CanExit: ; ok to exit scene
 ; exit scene 17 (SCENE_ID_SOUTH_CENTER)
 ;-------------------------------------------------------------------------------
 ExitScene17:
-	cmpi.w	#$0000,(MEM_DAY)	; is it day 00?
-	beq.s	ExitScene17Day00	; branch to day 00 logic
 	cmpi.w	#$0001,(MEM_DAY)	; is it day 01?
 	beq.s	ExitScene17Day01	; branch to day 01 logic
 	bra.w	ExitScene17Default	; use default handler
-ExitScene17Day00:
-	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene17Default	; ok to exit
-	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene17Default	; ok to exit
-	; can't exit the scene - display message
-	lea	DialogTextStoreClosing,a6	; load dialog text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bsr.w	SetDialogOpening	; setup dialog open
-	rts
 ExitScene17Day01:
 	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
 	bne.s	ExitScene17Default	; ok to exit

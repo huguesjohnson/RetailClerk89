@@ -382,7 +382,7 @@ ScriptedEventDay01End:
 	dc.w	($005C)/SPRITE_STEP_PIXELS
 	; move sprite out of scene
 	dc.w	DIRECTION_LEFT
-	dc.w	($0020)/SPRITE_STEP_PIXELS
+	dc.w	($0028)/SPRITE_STEP_PIXELS
 	; move into hidden space to block movement pattern
 	dc.w	DIRECTION_DOWN
 	dc.w	($0010)/SPRITE_STEP_PIXELS

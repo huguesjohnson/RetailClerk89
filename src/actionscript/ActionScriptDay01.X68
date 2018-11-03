@@ -51,9 +51,9 @@ Day01Scene00Action01NPCGreenbergDani:
 	rts
 Day01Scene00Action01NPCDB:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
-	btst.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; test flag 
+	btst.l	#EVENT_FLAG_DAY01_SUB01_COMPLETE,d7	; test flag 
 	bne.s	Day01Scene00Action01NPCDBSub00Complete	; flag is set, branch
-	bset.l	#EVENT_FLAG_DAY01_SUB00_COMPLETE,d7	; set flag 
+	bset.l	#EVENT_FLAG_DAY01_SUB01_COMPLETE,d7	; set flag 
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags	
 	lea	DialogTextDay01VBDBDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -350,12 +350,21 @@ Day01Scene08Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene08Action01Dani:
-	; update NPC location
+	; update game state
+	move.l	(MEM_GAME_STATE),d7	; copy game state
+	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	; update NPC locations
 	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
 	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
 	mulu.w	#LWORD_SIZE,d7	; multiply by word size
 	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
 	move.l	#$01000000,(a5)	; update NPCs in parking lot
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy denim country scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
+	move.l	#$05000000,(a5)	; update NPCs in denim country
 	; queue scripted event
 	lea ScriptedEventDay01End,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
