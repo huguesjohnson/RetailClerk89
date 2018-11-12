@@ -53,11 +53,11 @@ EndScreenTextLine1:
 
 EndScreenTextLine2:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Follow the progress of this project at:",ETX
+	dc.b	"Follow the progress of this project at",ETX
 
 EndScreenTextLine3:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"http://HuguesJohnson.com/",ETX
+	dc.b	"https://HuguesJohnson.com/",ETX
 
 EndScreenTextLine4:
 	;		"12345678901234567890123456789012345678"
@@ -204,10 +204,6 @@ DialogTextCantTake:
 	;		"1234567890123456789012"
 	dc.b	"You can't take this.",ETX
 
-DialogTextAlreadyHaveIt:
-	;		"1234567890123456789012"
-	dc.b	"You already have one.",ETX
-
 DialogTextCantLeaveStoreUnattended:
 	;		"1234567890123456789012"
 	dc.b	"You can't leave the",LF
@@ -215,8 +211,10 @@ DialogTextCantLeaveStoreUnattended:
 
 DialogTextStoreClosed:
 	;		"1234567890123456789012"
-	dc.b	"They are closed. Maybe",LF
-	dc.b	"if you had a key...",ETX
+	dc.b	"They are closed for ",LF
+	dc.b	"the night.           ^",FF
+	dc.b	"Maybe if you had a key",LF
+	dc.b	"...",ETX
 
 DialogTextLongWalk:
 	;		"1234567890123456789012"
@@ -293,12 +291,12 @@ DialogTextDaniScene05Day00:
 
 DialogTextGreenbergScene00Day00Exit:
 	;		"1234567890123456789012"
-	dc.b	"`Did I just",LF
-	dc.b	"see a guy walking out^",FF
-	dc.b	"with a copy of Baby",LF
-	dc.b	"Boomer? You're the   ^",FF
-	dc.b	"best sales person I",LF
-	dc.b	"hired this season.   ^",FF
+	dc.b	"`Did I just see a guy",LF
+	dc.b	"walking out with a   ^",FF
+	dc.b	"copy of Baby Boomer?",LF
+	dc.b	"You're the best sales^",FF
+	dc.b	"person I hired this",LF
+	dc.b	"season.              ^",FF
 	dc.b	"Sorry for being gone a",LF
 	dc.b	"while, there was a   ^",FF
 	dc.b	"sale at the other end",LF
@@ -310,8 +308,7 @@ DialogTextGreenbergScene00Day00Talk:
 	;		"1234567890123456789012"
 	dc.b	"`Don't keep",LF
 	dc.b	"that nice young lady ^",FF
-	dc.b	"waiting. I sure",LF
-	dc.b	"wouldn't.'",ETX
+	dc.b	"waiting too long.'",ETX
 
 DialogTextGreenbergScene00Day00Give:
 	;		"1234567890123456789012"
@@ -323,7 +320,7 @@ DialogTextGreenbergScene00Day00Give:
 DialogTextScene00Day00Event0D0:
 	;		"1234567890123456789012"
 	dc.b	"Dani:`This is taking",LF
-	dc.b	"forever.'            ^",ETX
+	dc.b	"forever.'",ETX
 
 DialogTextScene00Day00Event0D1:
 	;		"1234567890123456789012"
@@ -420,8 +417,8 @@ DialogTextMaleShopper0Scene00Day00Flag5Give:
 
 DialogTextMaleShopper0Scene00Day00Flag6Give:
 	;		"1234567890123456789012"
-	dc.b	"`Did you even listen",LF
-	dc.b	"to me?'",ETX
+	dc.b	"`Did you listen to me",LF
+	dc.b	"at all?'",ETX
 
 DialogTextMaleShopperDefaultGive:
 	;		"1234567890123456789012"
@@ -526,7 +523,7 @@ DialogTextDay01Intro03:
 	dc.b	"to state.            ^",FF
 	dc.b	"They can bulldoze the",LF
 	dc.b	"mall for all I care. ^",FF
-	dc.b	"I'm think I'll take my",LF
+	dc.b	"I think I'll take my",LF
 	dc.b	"break now.'",ETX
 
 DialogTextSecurityGuardDay01:
@@ -547,7 +544,7 @@ DialogTextDay01VBDBDefaultTalk:
 	dc.b	"I can make copies of",LF
 	dc.b	"them in our garage.  ^",FF
 	dc.b	"Dad taught me how when",LF
-	dc.b	"he was in fallout    ^",FF
+	dc.b	"he was in his fallout^",FF
 	dc.b	"shelter phase a few",LF
 	dc.b	"years ago.'",ETX
 
@@ -578,13 +575,13 @@ DialogTextDay01Sub00Start00:
 	;		"1234567890123456789012"
 	dc.b	"`Thanks, I won't ",LF
 	dc.b	"be long I promise.   ^",FF
-	dc.b	"It's not like there's ",LF
-	dc.b	"many food choices.'   ",ETX
+	dc.b	"It's not like they're",LF
+	dc.b	"many choices here.'   ",ETX
 
 DialogTextDay01Sub00Start01:
 	;		"1234567890123456789012"
 	dc.b	"`Just to warn you,    ",LF
-	dc.b	"thee customers here  ^",FF
+	dc.b	"the customers here  ^",FF
 	dc.b	"can be pretty dim.'   ",ETX
 
 DialogTextDay01Sub00Start02:
@@ -607,7 +604,7 @@ DialogTextDay01Sub00NPC1D0R0:
 
 DialogTextDay01Sub00NPCD1:
 	;		"1234567890123456789012"
-	dc.b	"Do you have that new  ",LF
+	dc.b	"`Do you have that new  ",LF
 	dc.b	"Stephen King book?'  ^",FF
 	dc.b	"{Yes",LF
 	dc.b	"{No",ETX
@@ -861,8 +858,8 @@ DialogTextDay01Sub02D0:
 	dc.b	"be an old beta tape. ^",FF
 	dc.b	"Check back sometime, ",LF
 	dc.b	"we get stuff for your^",FF
-	dc.b	"store every other week",LF
-	dc.b	"or so.'",ETX
+	dc.b	"store every once a",LF
+	dc.b	"week or so.'",ETX
 
 DialogTextDay01Sub02TalkNPCStaffSVideo:
 	;		"1234567890123456789012"
@@ -872,7 +869,7 @@ DialogTextDay01Sub02TalkNPCStaffSVideo:
 DialogTextDay01Sub02D1:
 	;		"1234567890123456789012"
 	dc.b	"`Hey, we've been",LF
-	dc.b	"looking for that! ^",FF
+	dc.b	"looking for that!    ^",FF
 	dc.b	"It's a replacement",LF
 	dc.b	"tape for our security^",FF
 	dc.b	"system. The old one ",LF
@@ -895,6 +892,32 @@ DialogTextDay01ParkingLot:
 	dc.b	"make yourself useful.^",FF
 	dc.b	"You still have a way",LF
 	dc.b	"to go though.'",ETX
+
+DialogTextCheckersStaffDay01MallClosed:
+	;		"1234567890123456789012"
+	dc.b	"`Hey, I'm trying to",LF
+	dc.b	"close the register.  ^",FF
+	dc.b	"Can this wait until",LF
+	dc.b	"tomorrow?'",ETX
+
+DialogTextTBooksStaffDay01Talk:
+	;		"1234567890123456789012"
+	dc.b	"Dani:`My store's dead.",LF
+	dc.b	"Are you busy today?' ^",FF
+	dc.b	"Charles:`A little bit",LF
+	dc.b	"but I'm getting by.  ^",FF
+	dc.b	"Knowing it's my last",LF
+	dc.b	"winter here helps.'  ^",FF
+	dc.b	"Dani:`I'm almost done",LF
+	dc.b	"with this place too.'^",FF
+	dc.b	"It'll be weird not",LF
+	dc.b	"seeing you every day.^",FF
+	dc.b	"We've been neighbors,",LF
+	dc.b	"since kindergarten.' ^",FF
+	dc.b	"Charles:`Yeah, that",LF
+	dc.b	"sounds about right.  ^",FF
+	dc.b	"Let's plan to hang out",LF
+	dc.b	"next winter break.'",ETX
 
 ;-------------------------------------------------------------------------------
 ; information desk
@@ -1080,7 +1103,7 @@ DialogTextCellPhone:
 
 DialogTextRCCar:
 	;		"1234567890123456789012"
-	dc.b	"This year's hot xmas",LF
+	dc.b	"This year's hot Xmas",LF
 	dc.b	"gift apparently.",ETX
 
 DialogTextComputer:
@@ -1125,7 +1148,7 @@ DialogTextTrash:
 
 DialogTextTapes:
 	;		"1234567890123456789012"
-	dc.b	"Too bad the car only",LF
+	dc.b	"Too bad our car only",LF
 	dc.b	"has an 8-track.",ETX
 
 DialogTextCDs:
@@ -1206,7 +1229,7 @@ DialogTextFence:
 DialogTextPole:
 	;		"1234567890123456789012"
 	dc.b	"Festive candy cane",LF
-	dc.b	"xmas pole.",ETX
+	dc.b	"Xmas pole.",ETX
 
 DialogTextWorshop:
 	;		"1234567890123456789012"
@@ -1293,8 +1316,7 @@ DialogTextCavernStaffDefaultLook:
 
 DialogTextSVideoStaffDefaultLook:
 	;		"1234567890123456789012"
-	dc.b	"`So what's your deal?'",LF
-	dc.b	" ",ETX
+	dc.b	"`So what's your deal?'",ETX
 
 DialogTextNShackStaffDefaultLook:
 	;		"1234567890123456789012"
@@ -1441,31 +1463,12 @@ DialogTextCNowStaffDefaultTalk:
 	dc.b	"                     ^",FF
 	dc.b	"'..and that's why I'm ",LF
 	dc.b	"waiting until after   ^",FF
-	dc.b	"after I get married!'",ETX
+	dc.b	"I get married!'",ETX
 
 DialogTextTBooksStaffDefaultTalk:
 	;		"1234567890123456789012"
 	dc.b	"`Hey neighbor. Nice of",LF
 	dc.b	"you to stop by.'",ETX
-
-DialogTextTBooksStaffDay01Talk:
-	;		"1234567890123456789012"
-	dc.b	"Dani:`My store's dead.",LF
-	dc.b	"Are you busy today?' ^",FF
-	dc.b	"Charles:`A little bit",LF
-	dc.b	"but I'm getting by.  ^",FF
-	dc.b	"Knowing it's my last",LF
-	dc.b	"winter here helps.'  ^",FF
-	dc.b	"Dani:`I'm almost done",LF
-	dc.b	"with this place too.'^",FF
-	dc.b	"It'll be weird not",LF
-	dc.b	"seeing you every day.^",FF
-	dc.b	"We've been neighbors,",LF
-	dc.b	"since kindergarten.' ^",FF
-	dc.b	"Charles:`Yeah, that",LF
-	dc.b	"sounds about right.  ^",FF
-	dc.b	"Let's plan to hang out",LF
-	dc.b	"next winter break.'",ETX
 
 DialogTextFCBCheckoutStaffDefaultTalk:
 	;		"1234567890123456789012"
@@ -1976,7 +1979,7 @@ ItemName8BitShadowgate:
 
 ItemDescription8BitShadowgate:
 	;		"1234567890123456789012"
-	dc.b	"It looks kinda creepy.",ETX
+	dc.b	"It looks creepy.",ETX
 
 ItemName8BitBayouBilly:
 	;		"1234567890"
