@@ -429,7 +429,7 @@ Day01Scene09Action01TestNPCs:
 	cmpi.w	#OBJ_NPC_CHECKERS_STAFF,d6	; test target
 	beq.s	Day01Scene09Action01NPCStaff	; branch to text for the NPC
 	cmpi.w	#OBJ_NPC_SECRET_SHOPPER,d6	; test target
-	beq.s	Day01Scene09Action01NPCSecretShopperTalk	; branch to NPC
+	beq.w	Day01Scene09Action01NPCSecretShopperTalk	; branch to NPC
 	cmpi.w	#OBJ_NPC_TRENDYGUY,d6	; test target
 	beq.w	Day01Scene09Action01NPCTrendyGuyTalk	; branch to NPC
 	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
@@ -440,13 +440,14 @@ Day01Scene09Action01TestNPCs:
 	rts
 Day01Scene09Action01NPCStaff:
 	;---------------------------------------------------------------------------
-	; Three scenarios for talking to OBJ_NPC_CHECKERS_STAFF on day 01
+	; Four scenarios for talking to OBJ_NPC_CHECKERS_STAFF on day 01
 	; 1) Playing as Dani - subquest not started
 	; 2) Playing as Dani - subquest complete
-	; 3) Playing as D.B. - default text
+	; 3) Playing as D.B. while mall is open - default text
+	; 4) Talking to NPC after mall is closed
 	;---------------------------------------------------------------------------
 	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
-	bne.s	Day01Scene09Action01NPCStaffDefaultTalk	; use default text for DB
+	bne.s	Day01Scene09Action01NPCStaffDB	; use text for DB
 	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy day event flags to d7
 	btst.l	#MISSION_FLAG_DAY01_SUB00_NPC3_DONE,d7	; test if subquest complete
 	beq.s	Day01Scene09Action01NPCStaffStartSub00	; flag not set, branch
@@ -460,7 +461,14 @@ Day01Scene09Action01NPCStaffStartSub00:
 	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
 	lea	DialogTextDay01Sub00Intro,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts	
+	rts
+Day01Scene09Action01NPCStaffDB:
+	move.l	(MEM_GAME_STATE),d7	; copy game state
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test mall closed flag
+	beq.s	Day01Scene09Action01NPCStaffDefaultTalk	; mall is open, default text
+	lea	DialogTextCheckersStaffDay01MallClosed,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day01Scene09Action01NPCStaffDefaultTalk:
 	lea	DialogTextCheckersStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -1175,7 +1183,13 @@ Day01Scene12Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene12Action01NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	bne.s	Day01Scene12Action01NPCDefault	; not Dani, use default text
 	lea	DialogTextTBooksStaffDay01Talk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day01Scene12Action01NPCDefault:
+	lea	DialogTextTBooksStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene12Action02:	; ACTION_TAKE_GIVE
