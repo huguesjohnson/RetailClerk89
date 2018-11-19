@@ -1,8 +1,0 @@
-	include 'tiles/sprite-tiles/tileset_PlayerSprite_DownFrame0.X68'
-	include 'tiles/sprite-tiles/tileset_PlayerSprite_DownFrames12.X68'
-	include 'tiles/sprite-tiles/tileset_PlayerSprite_UpFrame0.X68'
-	include 'tiles/sprite-tiles/tileset_PlayerSprite_UpFrames12.X68'
-	include 'tiles/sprite-tiles/tileset_PlayerSprite_LeftFrame0.X68'
-	include 'tiles/sprite-tiles/tileset_PlayerSprite_LeftFrames12.X68'
-	include 'tiles/sprite-tiles/tileset_PlayerSprite_RightFrame0.X68'
-	include 'tiles/sprite-tiles/tileset_PlayerSprite_RightFrames12.X68'
