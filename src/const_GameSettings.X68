@@ -5,7 +5,7 @@
 ;-------------------------------------------------------------------------------
 ; these are effectively conditional compilation directives
 ;-------------------------------------------------------------------------------
-_DEBUG_=$1	; enable/disable debug mode
+_DEBUG_=$0	; enable/disable debug mode
 _EMULATOR_DIAGNOSTICS_=$0	; enable/disable emulator diagnostic mode
 _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
 _ATGAMES_HACKS=$1	; enable/disable hacks for AtGames devices

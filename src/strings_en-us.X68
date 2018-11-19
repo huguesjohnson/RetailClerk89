@@ -41,7 +41,7 @@ TitleScreenTextFooter:
 	else
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Mall Walker Demo (November 2018)   ",ETX
+	dc.b	" Story Demo: Days 1-2 (November 2018) ",ETX
 	endif
 
 ;-------------------------------------------------------------------------------
