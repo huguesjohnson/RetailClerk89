@@ -435,13 +435,13 @@ SpriteZeroTilesStart:
 SpriteZeroTilesEnd:
 
 PlayerSpriteTilesStart:
-	include 'tiles/sprite-tiles/tileset_PlayerSprite.X68'
+	include 'tiles/sprite-tiles/tileset_PlayerDB.X68'
 	; swap for this tileset for the debug pattern
 	;include 'tiles/sprite-tiles/tileset_SpriteDebug.X68'
 PlayerSpriteTilesEnd:
 
 NPCSpriteDaniTilesStart:
-	include 'tiles/sprite-tiles/tileset_NPCSprite1.X68'
+	include 'tiles/sprite-tiles/tileset_PlayerDani.X68'
 	; swap for this tileset for the debug pattern
 	;include 'tiles/sprite-tiles/tileset_SpriteDebug.X68'
 NPCSprite1TilesEnd:
