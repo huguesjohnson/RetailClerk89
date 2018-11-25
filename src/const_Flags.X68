@@ -18,14 +18,16 @@ STATE_FLAG_MALL_CLOSED=$0B	; mall is closed for the night
 ; dialog state flags
 ;-------------------------------------------------------------------------------
 ; high word of MEM_DIALOG_FLAGS is used to track the state
-DIALOG_FLAG_OPTION_PERSIST_SELECTOR=$14	; don't hide the selector after closing
-DIALOG_FLAG_STYLE_ITEM_MENU=$15	; item menu dialog
-DIALOG_FLAG_STYLE_MENU=$16	; overworld menu style dialog
-DIALOG_FLAG_STYLE_TEXT_4CHOICE=$17	; dialog has text with selection at the end
-DIALOG_FLAG_STYLE_TEXT_2CHOICE=$18	; dialog has text with selection at the end
-DIALOG_FLAG_STYLE_SIMPLE_TEXT=$19	; dialog is a simple text dialog
-DIALOG_FLAG_SELECTION_WAIT=$1A	; waiting for the player to make a selection 
-DIALOG_FLAG_TEXT_OPENING=$1B	; dialog is opening
+DIALOG_FLAG_OPTION_PERSIST_SELECTOR=$12	; don't hide the selector after closing
+DIALOG_FLAG_STYLE_TITLED=$13	; show dialog with title
+DIALOG_FLAG_STYLE_ITEM_MENU=$14	; item menu dialog
+DIALOG_FLAG_STYLE_MENU=$15	; overworld menu style dialog
+DIALOG_FLAG_STYLE_TEXT_4CHOICE=$16	; dialog has text with selection at the end
+DIALOG_FLAG_STYLE_TEXT_2CHOICE=$17	; dialog has text with selection at the end
+DIALOG_FLAG_STYLE_SIMPLE_TEXT=$18	; dialog is a simple text dialog
+DIALOG_FLAG_SELECTION_WAIT=$19	; waiting for the player to make a selection 
+DIALOG_FLAG_TEXT_OPENING=$1A	; dialog is opening
+DIALOG_FLAG_TEXT_TITLE_DRAWING=$1B	; dialog title text is drawing
 DIALOG_FLAG_TEXT_DRAWING=$1C	; dialog text is drawing
 DIALOG_FLAG_TEXT_OPEN=$1D	; dialog is open
 DIALOG_FLAG_TEXT_NEW_PAGE=$1E	; dialog text has another page

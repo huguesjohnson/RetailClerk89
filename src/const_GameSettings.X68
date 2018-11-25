@@ -106,6 +106,7 @@ DIALOG_BASE_TILE=$8090	; base tile for dialogs
 DIALOG_BASE_TILE_LOW=$0090	; base tile for dialogs (low)
 DIALOG_ROWCOL=$09100000	; row 18 column 16=(128*18)+16=2320=910
 DIALOG_TEXT_ROWCOL=$0A920000	; DIALOG_ROWCOL + 3 rows + 1 column
+DIALOG_TITLE_ROWCOL=$09940000	; DIALOG_ROWCOL + 1 row + 2 columns
 DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
 DIALOG_MENU_INIT_SELECTION_X=$C8	; x coordinate of initial menu selection
 DIALOG_MENU_INIT_SELECTION_Y=$128	; y coordinate of initial menu selection

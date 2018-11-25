@@ -318,23 +318,42 @@ DialogTextGreenbergScene00Day00Give:
 	dc.b	"employee today.'",ETX
 
 DialogTextScene00Day00Event0D0:
+	;		"12345678"
+	dc.b	"Dani",NPCNAMEEND
 	;		"1234567890123456789012"
-	dc.b	"Dani:`This is taking",LF
-	dc.b	"forever.'",ETX
+	dc.b	"This is taking",LF
+	dc.b	"forever.",ETX
 
 DialogTextScene00Day00Event0D1:
+	;		"12345678"
+	dc.b	"Dani",NPCNAMEEND
 	;		"1234567890123456789012"
-	dc.b	"Dani:`This is the game",LF
-	dc.b	"your kid wants.'     ^",FF
-	dc.b	"Shopper:`Baby Boomer?",LF
+	dc.b	"Here, this is the game",LF
+	dc.b	"your kid wants.      ^",FF
+	;		"12345678"
+	dc.b	"Shopper",NPCNAMEEND
+	;		"1234567890123456789012"
+	dc.b	"Baby Boomer?",LF
 	dc.b	"That can't be right. ^",FF
+	;		"12345678"
+	dc.b	"Shopper",NPCNAMEEND
+	;		"1234567890123456789012"
 	dc.b	"Do you even work",LF
-	dc.b	"here?'               ^",FF
-	dc.b	"Dani:`Trust me. It's",LF
+	dc.b	"here?                ^",FF
+	;		"12345678"
+	dc.b	"Dani",NPCNAMEEND
+	;		"1234567890123456789012"
+	dc.b	"Trust me. It's",LF
 	dc.b	"what all the kids    ^",FF
+	;		"12345678"
+	dc.b	"Dani",NPCNAMEEND
+	;		"1234567890123456789012"
 	dc.b	"are playing today.",LF
-	dc.b	"It's really popular.'^",FF
-	dc.b	"Shopper:`Uh, OK.'",ETX
+	dc.b	"It's really popular. ^",FF
+	;		"12345678"
+	dc.b	"Shopper",NPCNAMEEND
+	;		"1234567890123456789012"
+	dc.b	"Uh, OK.",ETX
 
 DialogTextMaleShopper0Scene00Day00Flag0:
 	;		"1234567890123456789012"

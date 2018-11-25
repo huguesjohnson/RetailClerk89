@@ -2,6 +2,7 @@
 ; dialog
 ;-------------------------------------------------------------------------------
 	include 'patterns/pattern_Dialog.X68'
+	include 'patterns/pattern_DialogTitled.X68'
 
 ;-------------------------------------------------------------------------------
 ; status screen

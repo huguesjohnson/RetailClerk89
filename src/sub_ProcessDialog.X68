@@ -3,12 +3,18 @@ ProcessDialog:
 	move.l	(MEM_DIALOG_FLAGS),d7	; copy current dialog state to d7
 ProcessDialogTestOpening:
 	btst.l	#DIALOG_FLAG_TEXT_OPENING,d7	; test if the dialog is opening
-	beq.s	ProcessDialogTextDrawing	; dialog is not opening, go to next test
+	beq.s	ProcessDialogTestTextTitleDrawing	; dialog not opening, next test
 	; dialog opening animation
 	clr	d6	; lazy workaround to various bugs	
 	move.w	d7,d6	; copy low word with frame number
 	mulu.w	#DIALOG_PATTERN_SIZE,d6	; multiply by size of dialog patterns
+	btst.l	#DIALOG_FLAG_STYLE_TITLED,d7	; test if the dialog is titled
+	beq.s	.1	; flag is not set
+	lea	PatternDialogTitledClear,a0	; point a0 to start of dialog patterns
+	bra.s	.2
+.1
 	lea	PatternDialogClear,a0	; point a0 to start of dialog patterns
+.2
 	adda.l	d6,a0	; increment to current frame
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
 	moveq	#$0000,d1	; repeat
@@ -19,11 +25,45 @@ ProcessDialogTestOpening:
 	cmpi.w	#DIALOG_FRAME_COUNT,d7	; are we at the last frame?
 	ble.w	ExitProcessDialog ; not at the last frame, exit
 	bclr.l	#DIALOG_FLAG_TEXT_OPENING,d7	; done opening, clear flag
+	btst.l	#DIALOG_FLAG_STYLE_TITLED,d7	; is this a titled dialog?
+	beq.s	ProcessDialogSetTextDrawing	; not titled, branch
+ProcessDialogSetTextTitleDrawing:
+	bset.l	#DIALOG_FLAG_TEXT_TITLE_DRAWING,d7	; change state to title drawing
+	; reset the drawing location for the dialog text
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TITLE_ROWCOL),(MEM_DIALOG_VDP)
+	bra.w	ExitProcessDialog	; exit
+ProcessDialogSetTextDrawing:
 	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; change state to text drawing
 	; reset the drawing location for the dialog text
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL),(MEM_DIALOG_VDP)
 	bra.w	ExitProcessDialog	; exit
-ProcessDialogTextDrawing:
+ProcessDialogTestTextTitleDrawing:
+	btst.l	#DIALOG_FLAG_TEXT_TITLE_DRAWING,d7	; test if title is drawing
+	beq.s	ProcessDialogTestTextDrawing	; title is not drawing, next test
+	clr.w	d6	; prevent some issues
+	move.l	(MEM_DIALOG_TEXT),a0	; point a0 to the current character
+	move.b	(a0),d6	; copy current character to d6
+TestNPCNameEnd:
+	cmpi.b	#NPCNAMEEND,d6	; is this the end of the name?
+	beq.s	TitleEnd	; end of name, branch to setup text
+	; update d6 to point to the tile ID
+	sub.w	#$20,d6	; subtract 32 to get the character index
+	add.w	#DIALOG_BASE_TILE,d6	; add the base tile
+	move.l	(MEM_DIALOG_VDP),(VDP_CONTROL)	; set VDP address
+	move.w  d6,(VDP_DATA)	; copy the character to VPD
+	; draw the next character
+	add.l	#$00020000,(MEM_DIALOG_VDP)	; move to the next column
+	add.l	#$0001,(MEM_DIALOG_TEXT)	; move to the next character
+	bra.w	ExitProcessDialog
+TitleEnd:
+	bclr.l	#DIALOG_FLAG_TEXT_TITLE_DRAWING,d7	; clear title drawing flag
+	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; change state to text drawing
+	; reset the drawing location for the dialog text
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL),(MEM_DIALOG_VDP)
+	; move to the next character so the NPC menu isn't drawn
+	add.l	#$0001,(MEM_DIALOG_TEXT)
+	bra.w	ExitProcessDialog	; exit
+ProcessDialogTestTextDrawing:
 	btst.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; test if text is drawing
 	beq.w	ProcessDialogTestOpen	; text is not drawing, go to next test
 	clr.w	d6	; prevent some issues
@@ -100,7 +140,7 @@ TestItemNameEnd:
 	bra.w	ExitProcessDialog
 TestLF:
 	cmpi.b	#LF,d6	; is this a new line character
-	bne.s	.1	; not a new character
+	bne.s	.1	; not a line feed character
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL+$00800000),(MEM_DIALOG_VDP)
 	bra.s	.2	; go to increment text step
 .1
@@ -141,17 +181,31 @@ ProcessDialogTestButtonPress:
 	;---------------------------------------------------------------------------
 	; moving to a new page of text
 	;---------------------------------------------------------------------------
+ProcessDialogNewPage:
 	add.l	#$0001,(MEM_DIALOG_TEXT)	; move to the next character
+	btst.l	#DIALOG_FLAG_STYLE_TITLED,d7	; test if the dialog is titled
+	beq.s	.1	; flag is not set
+	; reset the drawing location for the dialog text
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TITLE_ROWCOL),(MEM_DIALOG_VDP)
+	; clear out the dialog
+	lea PatternDialogTitledFull,a0	; point a0 to start of dialog patterns
+	bra.s	.2
+.1
 	; reset the drawing location for the dialog text
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL),(MEM_DIALOG_VDP)
 	; clear out the dialog
 	lea PatternDialogFull,a0	; point a0 to start of dialog patterns
+.2
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
 	moveq	#$0000,d1	; repeat
 	lea	VDP_VRAM_WRITE_A,a1	; initial drawing location
 	adda.l	#DIALOG_ROWCOL,a1	; move to row & column
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	; reset flags to force text to start re-drawing
+	btst.l	#DIALOG_FLAG_STYLE_TITLED,d7	; test if the dialog is titled
+	beq.s	.3	; flag is not set
+	bset.l	#DIALOG_FLAG_TEXT_TITLE_DRAWING,d7	; set title drawing flag
+.3
 	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; set drawing flag
 	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; clear open flag
 	bclr.l	#DIALOG_FLAG_TEXT_NEW_PAGE,d7	; clear new page flag
@@ -243,7 +297,13 @@ ProcessDialogTestClosing:
 	move.w	d7,d6	; copy low word with frame number
 	subq	#$1,d6	; decrement frame number
 	mulu.w	#DIALOG_PATTERN_SIZE,d6	; multiply by size of dialog patterns
+	btst.l	#DIALOG_FLAG_STYLE_TITLED,d7	; test if the dialog is titled
+	beq.s	.1	; flag is not set
+	lea	PatternDialogTitledClear,a0	; point a0 to start of dialog patterns
+	bra.s	.2
+.1
 	lea	PatternDialogClear,a0	; point a0 to start of dialog patterns
+.2
 	adda.l	d6,a0	; decrement to current frame
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
 	moveq	#$0000,d1	; repeat
