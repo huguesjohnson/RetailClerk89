@@ -37,6 +37,12 @@ ScriptedEventDay00Right:
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextScene00Day00Event0D1
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene00Day00Event0D2
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene00Day00Event0D3
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene00Day00Event0D4
 	; --------------------------------------------------------------------------
 	; move the shopper (NPC2) up to the register
 	; --------------------------------------------------------------------------

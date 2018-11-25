@@ -183,28 +183,16 @@ ProcessDialogTestButtonPress:
 	;---------------------------------------------------------------------------
 ProcessDialogNewPage:
 	add.l	#$0001,(MEM_DIALOG_TEXT)	; move to the next character
-	btst.l	#DIALOG_FLAG_STYLE_TITLED,d7	; test if the dialog is titled
-	beq.s	.1	; flag is not set
-	; reset the drawing location for the dialog text
-	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TITLE_ROWCOL),(MEM_DIALOG_VDP)
-	; clear out the dialog
-	lea PatternDialogTitledFull,a0	; point a0 to start of dialog patterns
-	bra.s	.2
-.1
 	; reset the drawing location for the dialog text
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL),(MEM_DIALOG_VDP)
-	; clear out the dialog
-	lea PatternDialogFull,a0	; point a0 to start of dialog patterns
-.2
+	; clear out the dialog text
+	lea PatternDialogClearTextArea,a0	; point a0 to pattern for clear text
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
 	moveq	#$0000,d1	; repeat
 	lea	VDP_VRAM_WRITE_A,a1	; initial drawing location
-	adda.l	#DIALOG_ROWCOL,a1	; move to row & column
+	adda.l	#DIALOG_TEXT_AREA_ROWCOL,a1	; move to row & column
 	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	; reset flags to force text to start re-drawing
-	btst.l	#DIALOG_FLAG_STYLE_TITLED,d7	; test if the dialog is titled
-	beq.s	.3	; flag is not set
-	bset.l	#DIALOG_FLAG_TEXT_TITLE_DRAWING,d7	; set title drawing flag
 .3
 	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; set drawing flag
 	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; clear open flag

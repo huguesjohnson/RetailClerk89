@@ -253,8 +253,10 @@ DialogTextDaniScene00Day00Flag8:
 	dc.b	"get out of here.'",ETX
 
 DialogTextDaniScene00Day00Exit0:
+	;		"12345678"
+	dc.b	"Dani",NPCNAMEEND
 	;		"1234567890123456789012"
-	dc.b	"`You know what your",LF
+	dc.b	"You know what your",LF
 	dc.b	"problem is?          ^",FF
 	dc.b	"You tried listening to",LF
 	dc.b	"the customer.        ^",FF
@@ -267,21 +269,25 @@ DialogTextDaniScene00Day00Exit0:
 	dc.b	"Just figure out what",LF
 	dc.b	"they want to hear.   ^",FF
 	dc.b	"That will get them to",LF
-	dc.b	"buy anything & leave.'",ETX
+	dc.b	"buy anything & leave.",ETX
 
 DialogTextDaniScene00Day00Exit1:
+	;		"12345678"
+	dc.b	"Dani",NPCNAMEEND
 	;		"1234567890123456789012"
-	dc.b	"`I can't believe",LF
+	dc.b	"I can't believe",LF
 	dc.b	"your manager is MIA. ^",FF
 	dc.b	"He better give you a",LF
-	dc.b	"a key tomorrow.'",ETX
+	dc.b	"a key tomorrow.",ETX
 
 DialogTextDaniScene00Day00Exit2:
+	;		"12345678"
+	dc.b	"Dani",NPCNAMEEND
 	;		"1234567890123456789012"
-	dc.b	"`Meet me at the",LF
+	dc.b	"Meet me at the",LF
 	dc.b	"car whenever he      ^",FF
 	dc.b	"bothers to show up",LF
-	dc.b	"again.'",ETX
+	dc.b	"again.",ETX
 
 DialogTextDaniScene05Day00:
 	;		"1234567890123456789012"
@@ -290,8 +296,10 @@ DialogTextDaniScene05Day00:
 	dc.b	"Just get in the car.'",ETX
 
 DialogTextGreenbergScene00Day00Exit:
+	;		"12345678"
+	dc.b	"Grunberg",NPCNAMEEND
 	;		"1234567890123456789012"
-	dc.b	"`Did I just see a guy",LF
+	dc.b	"Did I just see a guy",LF
 	dc.b	"walking out with a   ^",FF
 	dc.b	"copy of Baby Boomer?",LF
 	dc.b	"You're the best sales^",FF
@@ -302,7 +310,7 @@ DialogTextGreenbergScene00Day00Exit:
 	dc.b	"sale at the other end",LF
 	dc.b	"of the mall.         ^",FF
 	dc.b	"You did fine though so",LF
-	dc.b	"get on home.'",ETX
+	dc.b	"get on home.",ETX
 
 DialogTextGreenbergScene00Day00Talk:
 	;		"1234567890123456789012"
@@ -329,27 +337,24 @@ DialogTextScene00Day00Event0D1:
 	dc.b	"Dani",NPCNAMEEND
 	;		"1234567890123456789012"
 	dc.b	"Here, this is the game",LF
-	dc.b	"your kid wants.      ^",FF
+	dc.b	"your kid wants.      ^",ETX
+DialogTextScene00Day00Event0D2:
 	;		"12345678"
 	dc.b	"Shopper",NPCNAMEEND
 	;		"1234567890123456789012"
 	dc.b	"Baby Boomer?",LF
 	dc.b	"That can't be right. ^",FF
-	;		"12345678"
-	dc.b	"Shopper",NPCNAMEEND
-	;		"1234567890123456789012"
 	dc.b	"Do you even work",LF
-	dc.b	"here?                ^",FF
+	dc.b	"here?                ^",ETX
+DialogTextScene00Day00Event0D3:
 	;		"12345678"
 	dc.b	"Dani",NPCNAMEEND
 	;		"1234567890123456789012"
 	dc.b	"Trust me. It's",LF
 	dc.b	"what all the kids    ^",FF
-	;		"12345678"
-	dc.b	"Dani",NPCNAMEEND
-	;		"1234567890123456789012"
 	dc.b	"are playing today.",LF
-	dc.b	"It's really popular. ^",FF
+	dc.b	"It's really popular. ^",ETX
+DialogTextScene00Day00Event0D4:
 	;		"12345678"
 	dc.b	"Shopper",NPCNAMEEND
 	;		"1234567890123456789012"
@@ -504,8 +509,10 @@ DialogTextDay01Sub02CantEnter:
 	dc.b	"this package first.'",ETX
 
 DialogTextDay01Intro00:
+	;		"12345678"
+	dc.b	"Lisa",NPCNAMEEND
 	;		"1234567890123456789012"
-	dc.b	"Lisa:`This is bad.",LF
+	dc.b	"This is bad.",LF
 	dc.b	"This is really bad.  ^",FF
 	dc.b	"Today should be the",LF
 	dc.b	"busiest day all year,^",FF
@@ -517,24 +524,31 @@ DialogTextDay01Intro00:
 	dc.b	"new store to move in?^",FF
 	dc.b	"That Santa thing there",LF
 	dc.b	"now doesn't count.   ^",FF
-	dc.b	"Our store may close if",LF
+	dc.b	"Our store may close f",LF
 	dc.b	"sales don't improve.'",ETX
 
 DialogTextDay01Intro01:
+	;		"12345678"
+	dc.b	"Dani",NPCNAMEEND
 	;		"1234567890123456789012"
-	dc.b	"Dani: `Whatever.'",ETX
+	dc.b	"Whatever.",ETX
 
 DialogTextDay01Intro02:
+	;		"12345678"
+	dc.b	"Lisa",NPCNAMEEND
 	;		"123456  7            89012345  6           789012"
-	dc.b	"Lisa:`",CHAR_DQUOTE,"Whatever",CHAR_DQUOTE,"?!",LF
+	dc.b	"",CHAR_DQUOTE,"Whatever",CHAR_DQUOTE,"?!",LF
 	;		"1234567890123456789012"
 	dc.b	"                     ^",FF
 	dc.b	"Don't you care about",LF
-	dc.b	"your career?'",ETX
+	dc.b	"your career?",ETX
 
 DialogTextDay01Intro03:
+	;		"12345678"
+	dc.b	"Dani",NPCNAMEEND
 	;		"1234567890123456789012"
-	dc.b	"Dani:`My career?",LF
+
+	dc.b	"My career?",LF
 	dc.b	"                     ^",FF
 	dc.b	"I have one semester of",LF
 	dc.b	"junior college left, ^",FF
@@ -543,7 +557,7 @@ DialogTextDay01Intro03:
 	dc.b	"They can bulldoze the",LF
 	dc.b	"mall for all I care. ^",FF
 	dc.b	"I think I'll take my",LF
-	dc.b	"break now.'",ETX
+	dc.b	"break now.",ETX
 
 DialogTextSecurityGuardDay01:
 	;		"1234567890123456789012"
@@ -598,12 +612,16 @@ DialogTextDay01Sub00Start00:
 	dc.b	"many choices here.'   ",ETX
 
 DialogTextDay01Sub00Start01:
+	;		"12345678"
+	dc.b	"Todd",NPCNAMEEND
 	;		"1234567890123456789012"
 	dc.b	"`Just to warn you,    ",LF
 	dc.b	"the customers here  ^",FF
 	dc.b	"can be pretty dim.'   ",ETX
 
 DialogTextDay01Sub00Start02:
+	;		"12345678"
+	dc.b	"Todd",NPCNAMEEND
 	;		"1234567890123456789012"
 	dc.b	"`You'll be OK. No one ",LF
 	dc.b	"shops here this late.'",ETX
@@ -809,10 +827,14 @@ DialogTextDay01Sub00NPC0Talk:
 	dc.b	"I really own you one.'",ETX
 
 DialogTextDay01Sub00End00:
+	;		"12345678"
+	dc.b	"Todd",NPCNAMEEND
 	;		"1234567890123456789012"
 	dc.b	"Todd:`Hey, wait sec!'",ETX
 
 DialogTextDay01Sub00End01:
+	;		"12345678"
+	dc.b	"Todd",NPCNAMEEND
 	;		"1234567890123456789012"
 	dc.b	"`Here, have a key to  ",LF
 	dc.b	"the store, you know, ^",FF
@@ -820,6 +842,8 @@ DialogTextDay01Sub00End01:
 	dc.b	"need anything.'",ETX
 
 DialogTextDay01Sub00End02:
+	;		"12345678"
+	dc.b	"Todd",NPCNAMEEND
 	;		"1234567890123456789012"
 	dc.b	"`Hey wait, my parents ",LF
 	dc.b	"will be out of town  ^",FF
@@ -829,6 +853,8 @@ DialogTextDay01Sub00End02:
 	dc.b	"don't you come by?'   ",ETX
 
 DialogTextDay01Sub00End03:
+	;		"12345678"
+	dc.b	"Todd",NPCNAMEEND
 	;		"1234567890123456789012"
 	dc.b	"`Just as a friend!    ",LF
 	dc.b	"Just as a friend!    ^",FF
@@ -836,18 +862,20 @@ DialogTextDay01Sub00End03:
 	dc.b	"someone, it's cool.'  ",ETX
 
 DialogTextDay01Sub00End04:
+	;		"12345678"
+	dc.b	"Todd",NPCNAMEEND
 	;		"1234567890123456789012"
 	dc.b	"`I didn't hear a no!' ",ETX
 
 DialogTextDay01Sub02VBExit:
 	;		"1234567890123456789012"
-	dc.b	"Greenberg:`I need to",LF
+	dc.b	"Grunberg:`I need to",LF
 	dc.b	"talk to you before   ^",FF
 	dc.b	"you leave.'  ",ETX
 
 DialogTextDay01Sub02Start:
 	;		"1234567890123456789012"
-	dc.b	"Greenberg:`It's slow",LF
+	dc.b	"Grunberg:`It's slow",LF
 	dc.b	"tonight so go ahead  ^",FF
 	dc.b	"& leave early. There's",LF
 	dc.b	"just one thing first.^",FF
@@ -1887,7 +1915,7 @@ NPCNameMapperShopper0:
 	dc.b	"Business casual guy",NPCNAMEEND
 
 NPCNameGreenberg:
-	dc.b	"Greenberg",NPCNAMEEND
+	dc.b	"Grunberg",NPCNAMEEND
 
 NPCNameCenterStaff:
 	dc.b	"Holly",NPCNAMEEND
