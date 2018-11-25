@@ -147,13 +147,13 @@ SceneCheckers:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000100000	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00080000+$07800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00080000+$07800000	; initial drawing location
 
 	dc.l	PatternMannequinStand	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000100000	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00380000+$07800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00380000+$07800000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; mannequins

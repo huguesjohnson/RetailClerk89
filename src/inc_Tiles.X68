@@ -47,6 +47,10 @@ RegisterTilesEnd:
 
 	include 'tiles/scene-tiles/tileset_16BitRack.X68'
 
+	include 'tiles/scene-tiles/tileset_HandheldRack.X68'
+
+	include 'tiles/scene-tiles/tileset_PCRack.X68'
+
 StoreVBTilesEnd:
 
 ;-------------------------------------------------------------------------------
@@ -76,6 +80,10 @@ DenimCountryMerchandiseTilesEnd:
 MannequinStandTilesStart:
 	include 'tiles/scene-tiles/tileset_MannequinStand.X68'
 MannequinStandTilesEnd:
+
+MannequinStandNarrowTilesStart:
+	include 'tiles/scene-tiles/tileset_MannequinStandNarrow.X68'
+MannequinStandNarrowTilesEnd:
 
 MannequinMTilesStart:
 	include 'tiles/scene-tiles/tileset_MannequinMA.X68'

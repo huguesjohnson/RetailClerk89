@@ -121,31 +121,31 @@ ScenePogoDawg:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000101000	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00180000+$0B800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00180000+$0B800000	; initial drawing location
 
 	dc.l	Pattern16x16
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000101000	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00240000+$0B800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00240000+$0B800000	; initial drawing location
 
 	dc.l	Pattern16x16
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000101000	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00300000+$0B800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00300000+$0B800000	; initial drawing location
 
 	dc.l	Pattern16x16
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000101000	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$003C0000+$0B800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$003C0000+$0B800000	; initial drawing location
 
 	dc.l	Pattern16x16
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000101000	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00480000+$0B800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00480000+$0B800000	; initial drawing location
 
 	; tables
 	dc.l	PatternCounterLow24x40

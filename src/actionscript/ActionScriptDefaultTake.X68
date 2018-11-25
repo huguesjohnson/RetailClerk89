@@ -42,7 +42,7 @@ Scene00DefaultTake:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	lea	ItemListVBMagazine,a6	; load item list
 	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
-	bra.s	ExitScene00DefaultTake	; exit
+	bra.w	ExitScene00DefaultTake	; exit
 .1	; test for OBJ_SCENE_VB_8BIT
 	cmpi.w	#OBJ_SCENE_VB_8BIT,d6	; is the magazine rack the target?
 	bne.s	.2	; most to next test
@@ -50,9 +50,9 @@ Scene00DefaultTake:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	lea	ItemListVB8Bit,a6	; load item list
 	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
-	bra.s	ExitScene00DefaultTake	; exit
+	bra.w	ExitScene00DefaultTake	; exit
 .2	; test for OBJ_SCENE_VB_HARDWARE
-	cmpi.w	#OBJ_SCENE_VB_HARDWARE,d6	; is the magazine rack the target?
+	cmpi.w	#OBJ_SCENE_VB_HARDWARE,d6	; is the hardware rack the target?
 	bne.s	.3	; most to next test
 	lea	TakeMenuDefault,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -60,14 +60,30 @@ Scene00DefaultTake:
 	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
 	bra.s	ExitScene00DefaultTake	; exit
 .3	; test for OBJ_SCENE_VB_16BIT
-	cmpi.w	#OBJ_SCENE_VB_16BIT,d6	; is the magazine rack the target?
+	cmpi.w	#OBJ_SCENE_VB_16BIT,d6	; is the 16-bit rack the target?
 	bne.s	.4	; most to next test
 	lea	TakeMenuGames,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	lea	ItemListVB16Bit,a6	; load item list
 	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
 	bra.s	ExitScene00DefaultTake	; exit
-.4	; default for anything else in the scene
+.4	; test for OBJ_SCENE_VB_HANDHELD
+	cmpi.w	#OBJ_SCENE_VB_HANDHELD,d6	; is the handheld rack the target?
+	bne.s	.5	; most to next test
+	lea	TakeMenuGames,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	lea	ItemListVBHandheld,a6	; load item list
+	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
+	bra.s	ExitScene00DefaultTake	; exit
+.5	; test for OBJ_SCENE_VB_PC
+	cmpi.w	#OBJ_SCENE_VB_PC,d6	; is the PC rack the target?
+	bne.s	.6	; most to next test
+	lea	TakeMenuDefault,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	lea	ItemListVBPC,a6	; load item list
+	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
+	bra.s	ExitScene00DefaultTake	; exit
+.6	; default for anything else in the scene
 	lea	DialogTextCantTake,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts

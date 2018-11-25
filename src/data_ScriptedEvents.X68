@@ -6,25 +6,22 @@ ScriptedEventDay00Right:
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextScene00Day00Event0D0
 	; --------------------------------------------------------------------------
-	; move right until sprite hits the 16-bit game rack
+	; move to the wall of 8-bit games
 	; --------------------------------------------------------------------------
 	dc.w	DIRECTION_RIGHT
-	dc.w	$0018
-	; --------------------------------------------------------------------------
-	; move up to the wall of 8-bit games
-	; --------------------------------------------------------------------------
+	dc.w	$0010
 	dc.w	DIRECTION_UP
 	dc.w	$0078
 	; --------------------------------------------------------------------------
 	; move down to be on same X-axis as the shopper (NPC2)
 	; --------------------------------------------------------------------------
 	dc.w	DIRECTION_DOWN
-	dc.w	$007D
+	dc.w	$0098
 	; --------------------------------------------------------------------------
 	; move left to face the shopper (NPC2)
 	; --------------------------------------------------------------------------
 	dc.w	DIRECTION_LEFT
-	dc.w	$00B0
+	dc.w	$00A8
 	; --------------------------------------------------------------------------
 	; switch to the shopper (NPC2)
 	; --------------------------------------------------------------------------
@@ -41,15 +38,10 @@ ScriptedEventDay00Right:
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextScene00Day00Event0D1
 	; --------------------------------------------------------------------------
-	; move the shopper (NPC2) around Dani
-	; --------------------------------------------------------------------------
-	dc.w	DIRECTION_DOWN
-	dc.w	$0018
-	dc.w	DIRECTION_RIGHT
-	dc.w	$0078
-	; --------------------------------------------------------------------------
 	; move the shopper (NPC2) up to the register
 	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0078
 	dc.w	DIRECTION_UP
 	dc.w	$0060
 	dc.w	SCRIPTED_EVENT_END
@@ -58,14 +50,12 @@ ScriptedEventDay00Exit:
 	dc.w	$0004	; NPC2
 	dc.w	DIRECTION_DOWN	; move them offscreen
 	dc.w	$0190
-	dc.w	DIRECTION_LEFT	; move them into hidden space
-	dc.w	$0048
 	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
 	dc.w	$0003	; NPC1
 	dc.w	DIRECTION_RIGHT
 	dc.w	$0060
 	dc.w	DIRECTION_UP
-	dc.w	$0020
+	dc.w	$0030
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDaniScene00Day00Exit0
 	dc.w	DIRECTION_DOWN	; start moving them offscren
@@ -77,9 +67,7 @@ ScriptedEventDay00Exit:
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDaniScene00Day00Exit2
 	dc.w	DIRECTION_DOWN	; finish moving them offscren
-	dc.w	$0080
-	dc.w	DIRECTION_LEFT	; move them into hidden space
-	dc.w	$0048
+	dc.w	$0060
 	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
 	dc.w	$0002	; NPC0
 	dc.w	DIRECTION_LEFT	; move them out of hidden space

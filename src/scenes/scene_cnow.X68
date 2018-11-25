@@ -39,8 +39,8 @@ SceneCNow:
 	dc.l	RegisterAlt3TilesEnd	; end of register tiles
 
 	; tileset 7
-	dc.l	MannequinStandTilesStart	; start of stand tiles
-	dc.l	MannequinStandTilesEnd	; end of stand tiles
+	dc.l	MannequinStandNarrowTilesStart	; start of stand tiles
+	dc.l	MannequinStandNarrowTilesEnd	; end of stand tiles
 
 	; tileset 8
 	dc.l	MannequinFTilesStart	; start of mannequin tiles

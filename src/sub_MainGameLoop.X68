@@ -345,9 +345,6 @@ TestTitleLoadIntroScreen:
 	; --------------------------------------------------------------------------
 	bclr.l	#STATE_FLAG_TITLE_SCREEN,d7 ; clear game state flag
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
-	ifeq	_DEBUG_
-	bset.l	#STATE_FLAG_EXITS_BLOCKED,d7	; set flag blocking the exits
-	endif
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 	; set the intro screen counter
 	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)

@@ -141,25 +141,25 @@ SceneNShack:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0100000001011101	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00320000+$07800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$00320000+$07000000	; initial drawing location
 
 	dc.l	Pattern32x32
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0100000001011101	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00400000+$07800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$00400000+$07000000	; initial drawing location
 
 	dc.l	Pattern32x32
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0100000001011101	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00160000+$07800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$00160000+$07000000	; initial drawing location
 
 	dc.l	Pattern32x32
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0100000001011101	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$00080000+$07800000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$00080000+$07000000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text
@@ -187,25 +187,25 @@ SceneNShack:
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%0011000010100000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0011000011111000
+	dc.w	%0011000011110000
 
 	dc.w	OBJ_SCENE_NUTBARREL
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%0011000011011000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0011000011111000
+	dc.w	%0011000011110000
 
 	dc.w	OBJ_SCENE_NUTBARREL
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%0011000101001000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0011000011111000
+	dc.w	%0011000011110000
 
 	dc.w	OBJ_SCENE_NUTBARREL
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%0011000110000000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0011000011111000
+	dc.w	%0011000011110000
 
 	dc.w	OBJ_NPC_NSHACK_STAFF
 	; 		%wwwwwwwxxxxxxxxx

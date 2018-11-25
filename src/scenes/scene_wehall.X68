@@ -177,25 +177,25 @@ SceneWEHall:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000101111	; base pattern
 	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_A+$08800000+$00100000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$08000000+$00100000	; initial drawing location
 
 	dc.l	PatternBenchSimple	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000101111	; base pattern
 	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_A+$08800000+$01E0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$08000000+$01E0000	; initial drawing location
 
 	dc.l	PatternBenchSimple	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000101111	; base pattern
 	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_A+$08800000+$002C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$08000000+$002C0000	; initial drawing location
 
 	dc.l	PatternBenchSimple	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000101111	; base pattern
 	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_A+$08800000+$003A0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$08000000+$003A0000	; initial drawing location
 
 	; posters
 	dc.l	PatternPoster	; location of pattern to load
@@ -275,25 +275,25 @@ SceneWEHall:
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%0100000011000000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0010000100001000
+	dc.w	%0010000100000000
 
 	dc.w	OBJ_SCENE_BENCH
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%0100000011111000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0010000100001000
+	dc.w	%0010000100000000
 
 	dc.w	OBJ_SCENE_BENCH
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%0100000100110000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0010000100001000
+	dc.w	%0010000100000000
 
 	dc.w	OBJ_SCENE_BENCH
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%0100000101101000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0010000100001000
+	dc.w	%0010000100000000
 
 	dc.w	OBJ_NOTHING
 	dc.w	$0000

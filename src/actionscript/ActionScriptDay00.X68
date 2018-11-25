@@ -127,6 +127,8 @@ Day00Scene00Action02:	; ACTION_TAKE_GIVE
 	cmpi.w	#OBJ_SCENE_VB_8BIT,d6	; is the player looking at 8-bit games?
 	beq.s	Day00Scene00Action02LaunchScriptedEvent	; if so, launch event
 	cmpi.w	#OBJ_SCENE_VB_16BIT,d6	; is the player looking at 16-bit games?
+	beq.s	Day00Scene00Action02LaunchScriptedEvent	; if so, launch event
+	cmpi.w	#OBJ_SCENE_VB_HANDHELD,d6	; is player looking at handheld games?
 	bne.s	Day00Scene00Action02DefaultTake	; if not branch
 Day00Scene00Action02LaunchScriptedEvent:
 	; set flag to indicate the scripted event ran

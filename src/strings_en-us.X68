@@ -1026,6 +1026,15 @@ DialogText16Bit:
 	dc.b	"Here are the latest",LF
 	dc.b	"16-bit games.",ETX
 
+DialogTextHandheldGames:
+	;		"1234567890123456789012"
+	dc.b	"They're monochrome but",LF
+	dc.b	"extremely popular.",ETX
+
+DialogTextPCSoftware:
+	;		"1234567890123456789012"
+	dc.b	"PC utilities & games.",ETX
+
 DialogTextJeans:
 	;		"1234567890123456789012"
 	dc.b	"Neatly folded pile of",LF
@@ -1690,6 +1699,12 @@ ObjectNameComputerHardware:
 ObjectName16Bit:
 	dc.b	"Rack of 16-bit games",OBJNAMEEND
 
+ObjectNameHandheld:
+	dc.b	"Handheld games",OBJNAMEEND
+
+ObjectNamePCSoftware:
+	dc.b	"PC software",OBJNAMEEND
+
 ObjectNameMagazines:
 	dc.b	"Magazine rack",OBJNAMEEND
 
@@ -1966,7 +1981,7 @@ ItemDescriptionMagAnalog:
 
 ItemName8BitMegaMan2:
 	;		"1234567890"
-	dc.b	"Mega Man 2",ITEMNAMEEND
+	dc.b	"MegaMan2",ITEMNAMEEND
 
 ItemDescription8BitMegaMan2:
 	;		"1234567890123456789012"
@@ -2001,7 +2016,7 @@ ItemDescription8BitTMNT:
 
 ItemName16BitGoldenAxe:
 	;		"1234567890"
-	dc.b	"Golden Axe",ITEMNAMEEND
+	dc.b	"GoldenAxe",ITEMNAMEEND
 
 ItemDescription16BitGoldenAxe:
 	;		"1234567890123456789012"
@@ -2019,7 +2034,7 @@ ItemDescription16BitLastBattle:
 
 ItemName16BitGalaga90:
 	;		"1234567890"
-	dc.b	"Galaga '90",ITEMNAMEEND
+	dc.b	"Galaga90",ITEMNAMEEND
 
 ItemDescription16BitGalaga90:
 	;		"1234567890123456789012"
@@ -2078,6 +2093,77 @@ ItemDescriptionMysteryPackage:
 	;		"1234567890123456789012"
 	dc.b	"It's about the size of",LF
 	dc.b	"a VHS tape.",ETX
+
+ItemNameHandheldAlleyway:
+	;		"1234567890"
+	dc.b	"Alleyway",ITEMNAMEEND
+
+ItemDescriptionHandheldAlleyway:
+	;		"1234567890123456789012"
+	dc.b	"This idea seems a",LF
+	dc.b	"little familiar.",ETX
+
+ItemNameHandheldMarioLand:
+	;		"1234567890"
+	dc.b	"MarioLand",ITEMNAMEEND
+
+ItemDescriptionHandheldMarioLand:
+	;		"1234567890123456789012"
+	dc.b	"This looks fun.",ETX
+
+ItemNameHandheldContraLCD:
+	;		"1234567890"
+	dc.b	"Contra LCD",ITEMNAMEEND
+
+ItemDescriptionHandheldContraLCD:
+	;		"1234567890123456789012"
+	dc.b	"If you don't have any",LF
+	dc.b	"other options I guess.",ETX
+
+ItemNameHandheldTopGunLCD:
+	;		"1234567890"
+	dc.b	"TopGun LCD",ITEMNAMEEND
+
+ItemDescriptionHandheldTopGunLCD:
+	;		"1234567890123456789012"
+	dc.b	"It can't be worse than",LF
+	dc.b	"the cartridge version.",ETX
+
+ItemNamePCWindows:
+	;		"1234567890"
+	dc.b	"Windows 2",ITEMNAMEEND
+
+ItemDescriptionPCWindows:
+	;		"1234567890123456789012"
+	dc.b	"For some reason people",LF
+	dc.b	"get angry about this.",ETX
+
+ItemNamePCPrintShop:
+	;		"1234567890"
+	dc.b	"PrintShop",ITEMNAMEEND
+
+ItemDescriptionPCPrintShop:
+	;		"1234567890123456789012"
+	dc.b	"Perfect for making",LF
+	dc.b	"giant banners.",ETX
+
+ItemNamePCJMFootball:
+	;		"1234567890"
+	dc.b	"JMFootball",ITEMNAMEEND
+
+ItemDescriptionPCJMFootball:
+	;		"1234567890123456789012"
+	dc.b	"Was this guy a famous",LF
+	dc.b	"player or something?",ETX
+
+ItemNamePCSimCity:
+	;		"1234567890"
+	dc.b	"SimCity",ITEMNAMEEND
+
+ItemDescriptionPCSimCity:
+	;		"1234567890123456789012"
+	dc.b	"This looks way too",LF
+	dc.b	"complicated.",ETX
 
 ;-------------------------------------------------------------------------------
 ; store signs

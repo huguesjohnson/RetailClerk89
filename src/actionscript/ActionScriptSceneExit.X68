@@ -92,18 +92,11 @@ ExitScene00:
 ExitScene00Day00:
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
 	btst.l	#STATE_FLAG_EXITS_BLOCKED,d7	; test flag blocking the exits
-	beq.s	ExitScene00Day00CanExit	; branch if flag is set
+	beq.w	DefaultExitScene	; branch if flag is not set
 	; display message
 	lea	DialogTextCantLeaveStoreUnattended,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening
-	rts
-ExitScene00Day00CanExit:
-	bsr.w	DefaultExitScene	; use default handler
-	; re-set flag to block exits
-	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
-	bset.l	#STATE_FLAG_EXITS_BLOCKED,d7	; test flag blocking the exits
-	move.l	d7,(MEM_GAME_STATE)	; copy game state to d7
 	rts
 ExitScene00Day01:
 	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is

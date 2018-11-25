@@ -148,7 +148,7 @@ SceneTBooks:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1000000000110000	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$08800000+$00020000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$08800000+$00020000	; initial drawing location
 
 	dc.l	PatternBookshelf72x48x10Low	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
@@ -166,7 +166,7 @@ SceneTBooks:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1100000000110000	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$03000000+$003C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$03000000+$003C0000	; initial drawing location
 
 	dc.l	PatternBookshelf72x48x10Low	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
@@ -184,7 +184,7 @@ SceneTBooks:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1000000001011010	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$03000000+$00020000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$03000000+$00020000	; initial drawing location
 
 	dc.l	PatternBookshelf72x48x10Low	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
@@ -202,7 +202,7 @@ SceneTBooks:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1100000001011010	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$08800000+$003C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$08800000+$003C0000	; initial drawing location
 
 	dc.l	PatternBookshelf72x48x10Low	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn

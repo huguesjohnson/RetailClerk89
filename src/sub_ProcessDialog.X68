@@ -21,8 +21,7 @@ ProcessDialogTestOpening:
 	bclr.l	#DIALOG_FLAG_TEXT_OPENING,d7	; done opening, clear flag
 	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; change state to text drawing
 	; reset the drawing location for the dialog text
-	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VDP)	; base address
-	add.l	#$00820000,(MEM_DIALOG_VDP)	; add 132 to move 1 row and column
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL),(MEM_DIALOG_VDP)
 	bra.w	ExitProcessDialog	; exit
 ProcessDialogTextDrawing:
 	btst.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; test if text is drawing
@@ -44,16 +43,14 @@ TestFF:
 TestObjMenu:
 	cmpi.b	#OBJNAMEEND,d6	; draw the object menu?
 	bne.s	TestNPCMenu	; not the OBJMENU character, continue to next test
-	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VDP)	; base address
-	add.l	#$01020000,(MEM_DIALOG_VDP)	; add 258 to move 2 rows and column
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL+$00800000),(MEM_DIALOG_VDP)
 	lea	ObjectMenu,a6	; load object menu text
 	move.l	a6,(MEM_DIALOG_TEXT)	; copy address to MEM_DIALOG_TEXT
 	bra.w	ExitProcessDialog	; exit
 TestNPCMenu:
 	cmpi.b	#NPCNAMEEND,d6	; draw the npc menu?
 	bne.s	TestItemNameStart	; not the NPCMENU character, next test
-	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VDP)	; base address
-	add.l	#$01020000,(MEM_DIALOG_VDP)	; add 258 to move 2 rows and column
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL+$00800000),(MEM_DIALOG_VDP)
 	lea	NPCMenu,a6	; load npc menu text
 	move.l	a6,(MEM_DIALOG_TEXT)	; copy address to MEM_DIALOG_TEXT
 	bra.w	ExitProcessDialog	; exit
@@ -104,8 +101,7 @@ TestItemNameEnd:
 TestLF:
 	cmpi.b	#LF,d6	; is this a new line character
 	bne.s	.1	; not a new character
-	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VDP)	; base address
-	add.l	#$01020000,(MEM_DIALOG_VDP)	; add 258 to move 2 rows and column
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL+$00800000),(MEM_DIALOG_VDP)
 	bra.s	.2	; go to increment text step
 .1
 	; update d6 to point to the tile ID
@@ -147,8 +143,7 @@ ProcessDialogTestButtonPress:
 	;---------------------------------------------------------------------------
 	add.l	#$0001,(MEM_DIALOG_TEXT)	; move to the next character
 	; reset the drawing location for the dialog text
-	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VDP)	; base address
-	add.l	#$00820000,(MEM_DIALOG_VDP)	; add 132 to move 1 row and column	
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL),(MEM_DIALOG_VDP)
 	; clear out the dialog
 	lea PatternDialogFull,a0	; point a0 to start of dialog patterns
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
@@ -482,19 +477,19 @@ SetItemMenuDrawLocation:
 	cmpi.w	#$0001,d6	; is it one?
 	bne.s	.1	; branch if not
 	; move down 2 rows
-	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL+$01020000),(MEM_DIALOG_VDP)
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL+$00800000),(MEM_DIALOG_VDP)
 	bra.s	ExitSetItemMenuDrawLocation	; exit
 .1	; test for 0002
 	cmpi.w	#$0002,d6	; is it two?
 	bne.s	.2	; branch if not
 	; move down 1 row
-	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL+$00980000),(MEM_DIALOG_VDP)
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL+$00160000),(MEM_DIALOG_VDP)
 	bra.s	ExitSetItemMenuDrawLocation	; exit
 .2	; test for 0003
-	cmpi.w	#$0003,d6	; is it theee?
+	cmpi.w	#$0003,d6	; is it three?
 	bne.s	ExitSetItemMenuDrawLocation	; exit if not
 	; move down 1 row and column
-	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL+$01180000),(MEM_DIALOG_VDP)
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL+$00960000),(MEM_DIALOG_VDP)
 ExitSetItemMenuDrawLocation:
 	rts
 

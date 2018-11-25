@@ -5,7 +5,7 @@
 ;-------------------------------------------------------------------------------
 ; these are effectively conditional compilation directives
 ;-------------------------------------------------------------------------------
-_DEBUG_=$0	; enable/disable debug mode
+_DEBUG_=$1	; enable/disable debug mode
 _EMULATOR_DIAGNOSTICS_=$0	; enable/disable emulator diagnostic mode
 _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
 _ATGAMES_HACKS=$1	; enable/disable hacks for AtGames devices
@@ -101,13 +101,14 @@ CHARACTER_DEFINITION_SIZE=CharacterDefinitionPlayerEnd-CharacterDefinitionPlayer
 ;-------------------------------------------------------------------------------
 ; dialog settings
 ;-------------------------------------------------------------------------------
-DIALOG_PATTERN_SIZE=$00C4	; size of the dialog pattern
+DIALOG_PATTERN_SIZE=$0124	; size of dialog pattern (#tiles*2+4 for loop ctrl)
 DIALOG_BASE_TILE=$8090	; base tile for dialogs
 DIALOG_BASE_TILE_LOW=$0090	; base tile for dialogs (low)
-DIALOG_ROWCOL=$09900000	; row 19 column 16=(128*19)+16=2448=990
+DIALOG_ROWCOL=$09100000	; row 18 column 16=(128*18)+16=2320=910
+DIALOG_TEXT_ROWCOL=$0A920000	; DIALOG_ROWCOL + 3 rows + 1 column
 DIALOG_FRAME_COUNT=$000B	; number of animation frames for dialogs
 DIALOG_MENU_INIT_SELECTION_X=$C8	; x coordinate of initial menu selection
-DIALOG_MENU_INIT_SELECTION_Y=$120	; y coordinate of initial menu selection
+DIALOG_MENU_INIT_SELECTION_Y=$128	; y coordinate of initial menu selection
 DIALOG_NO_RESPONSE=$FFFF	; no response or dialog cancelled 
 
 ;-------------------------------------------------------------------------------

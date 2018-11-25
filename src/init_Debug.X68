@@ -5,10 +5,10 @@
 
 	if	_DEBUG_
 
-;	move.w	(MEM_GAME_STATE),d7	; copy game state to d7
-;	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
-;	move.w	d7,(MEM_GAME_STATE)	; save game state
-
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	bclr.l	#STATE_FLAG_MALL_CLOSED,d7	; clear mall closed flag
+	bclr.l	#STATE_FLAG_EXITS_BLOCKED,d7	; clear exits blocked flag
+	move.l	d7,(MEM_GAME_STATE)	; save game state
 
 	;---------------------------------------------------------------------------
 	; used to test starting at day 1
@@ -76,9 +76,9 @@
 ;	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
 ;	move.w	d7,(MEM_GAME_STATE)	; save game state
 
-;	;---------------------------------------------------------------------------
-;	; used to test closing animation on day 0 scene 0
-;	;---------------------------------------------------------------------------
+	;---------------------------------------------------------------------------
+	; used to test closing animation on day 0 scene 0
+	;---------------------------------------------------------------------------
 ;	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
 ;	bset.l	#$7,d7	; set flag 7
 ;	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back

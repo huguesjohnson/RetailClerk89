@@ -107,7 +107,7 @@ SceneCenter:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000110110	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$08000000+$00140000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$08000000+$00140000	; initial drawing location
 
 	; info desk high
 	dc.l	PatternInfoDeskHigh ; location of pattern to load

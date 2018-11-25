@@ -39,7 +39,7 @@ SceneVB:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$000F	; scenery count - 1
+	dc.w	$0013	; scenery count - 1
 
 	; floor
 	dc.l	PatternFloor	; location of pattern to load
@@ -129,28 +129,56 @@ SceneVB:
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0000000001000101	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$07800000+$00080000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$05000000+$00020000	; initial drawing location
 
 	; hardware rack - high
 	dc.l	PatternHWRackHigh	; location of first pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1000000001000101	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$05000000+$00080000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$02800000+$00020000	; initial drawing location
+
+	; pc software rack - low
+	dc.l	PatternPCRackLow	; location of first pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0100000001110111	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$0A000000+$00020000	; initial drawing location
+
+	; pc software - high
+	dc.l	PatternPCRackHigh	; location of first pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1100000001110111	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$07800000+$00020000	; initial drawing location
 
 	; 16-bit rack - low
 	dc.l	Pattern16BitRackLow	; location of first pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000001010100	; base pattern
+	dc.w	%0100000001010001	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$08000000+$003E0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$0A000000+$00400000	; initial drawing location
 
 	; 16-bit rack - high
 	dc.l	Pattern16BitRackHigh	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1100000001010100	; base pattern
+	dc.w	%1100000001010001	; base pattern
 	dc.w	$0000	; no repeat
-	dc.l	VDP_VRAM_WRITE_A+$05800000+$003E0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$07800000+$00400000	; initial drawing location
+
+	; handheld rack - low
+	dc.l	PatternHandheldRackLow	; location of first pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%0100000001101000	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$05000000+$00400000	; initial drawing location
+
+	; handheld rack - high
+	dc.l	PatternHandheldRackHigh	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1100000001101000	; base pattern
+	dc.w	$0000	; no repeat
+	dc.l	VDP_VRAM_WRITE_A+$02800000+$00400000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text
@@ -190,7 +218,7 @@ SceneVB:
 	dc.w	OBJ_SCENE_VB_MAGS
 	; x0=240 width=114 = 1110010 011110000 = E4F0
 	dc.w	$E4F0
-	; height=8 [0001000] y0=224 [011100000]  = 0001100 011100000 = 18E0
+	; height=8 [0001000] y0=224 [011100000]
 	dc.w	%0001000011100000
 
 	dc.w	OBJ_SCENE_COUNTER
@@ -206,23 +234,28 @@ SceneVB:
 	dc.w	$40B2
 
 	dc.w	OBJ_SCENE_VB_HARDWARE
-	; x0=164 width=38 = 0100110 010100100 = 4CA4
-	dc.w	$4CA4
-	; y0=238 height=26= 0011010 011101110 = 34EE
-	dc.w	$34EE
+	; width=40 [0101000] x0=136 [010001000]
+	dc.w	%0101000010001000
+	; height=32 [0100000] y0=192 [011000000]
+	dc.w	%0100000011000000
 
 	dc.w	OBJ_SCENE_VB_16BIT
-	; width=30 [0011110] x0=372 [101110100]
-	dc.w	%0011110101110100
-	; height=24 [0011000] y0=248 [011111000]
-	dc.w	%0011000011111000
+	; width=40 [0101000] x0=390 [110000110]
+	dc.w	%0101000110000110
+	; height=32 [0100000] y0=272 [100010000]
+	dc.w	%0100000100010000
 
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
-	dc.w	OBJ_NOTHING
-	dc.w	$0000
-	dc.w	$0000
+	dc.w	OBJ_SCENE_VB_HANDHELD
+	; width=40 [0101000] x0=390 [110000110]
+	dc.w	%0101000110000110
+	; height=32 [0100000] y0=192 [011000000]
+	dc.w	%0100000011000000
+
+	dc.w	OBJ_SCENE_VB_PC
+	; width=40 [0101000] x0=136 [010001000]
+	dc.w	%0101000010001000
+	; height=32 [0100000] y0=272 [100010000]
+	dc.w	%0100000100010000
 
 	;---------------------------------------------------------------------------
 	; collision data
@@ -262,7 +295,7 @@ SceneVB:
 
 	; npc2
 	dc.w	$00B0	; starting x location of npc2
-	dc.w	$0104	; starting y location of npc2
+	dc.w	$0120	; starting y location of npc2
 	dc.w	DIRECTION_DOWN	; starting direction of npc2
 	dc.w	$002F	; movement frequency of npc2
 	dc.l	RandomNPCMovement1Start	; location of movement pattern for npc2

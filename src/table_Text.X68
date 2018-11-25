@@ -110,6 +110,10 @@ DefaultObjectDescriptionTable:
 	dc.l	DialogTextTent
 	; OBJ_SCENE_TMANNEQUIN
 	dc.l	DialogTextTMannequin
+	; OBJ_SCENE_VB_HANDHELD
+	dc.l	DialogTextHandheldGames	
+	; OBJ_SCENE_VB_PC
+	dc.l	DialogTextPCSoftware	
 
 ;-------------------------------------------------------------------------------
 ; default npc descriptions
@@ -279,6 +283,10 @@ ObjectNameTable:
 	dc.l	ObjectNameTent
 	; OBJ_SCENE_TMANNEQUIN
 	dc.l	ObjectNameTMannequin
+	; OBJ_SCENE_VB_HANDHELD
+	dc.l	ObjectNameHandheld
+	; OBJ_SCENE_VB_PC
+	dc.l	ObjectNamePCSoftware
 
 ;-------------------------------------------------------------------------------
 ; npc names
@@ -376,6 +384,22 @@ ItemNameTable:
 	dc.l	ItemNameHWPrintRibbon
 	; OBJ_ITEM_MYSTERY_PACKAGE
 	dc.l	ItemNameMysteryPackage
+	; OBJ_ITEM_HANDHELD_ALLEYWAY
+	dc.l	ItemNameHandheldAlleyway
+	; OBJ_ITEM_HANDHELD_MARIOLAND
+	dc.l	ItemNameHandheldMarioLand
+	; OBJ_ITEM_HANDHELD_CONTRALCD
+	dc.l	ItemNameHandheldContraLCD
+	; OBJ_ITEM_HANDHELD_TOPGUNLCD
+	dc.l	ItemNameHandheldTopGunLCD
+	; OBJ_ITEM_PC_WINDOWS
+	dc.l	ItemNamePCWindows
+	; OBJ_ITEM_PC_PRINTSHOP
+	dc.l	ItemNamePCPrintShop
+	; OBJ_ITEM_PC_JMFOOTBALL
+	dc.l	ItemNamePCJMFootball
+	; OBJ_ITEM_PC_SIMCITY
+	dc.l	ItemNamePCSimCity
 
 ;-------------------------------------------------------------------------------
 ; item descriptions
@@ -417,6 +441,22 @@ ItemDescriptionTable:
 	dc.l	ItemDescriptionHWPrintRibbon
 	; OBJ_ITEM_MYSTERY_PACKAGE
 	dc.l	ItemDescriptionMysteryPackage
+	; OBJ_ITEM_HANDHELD_ALLEYWAY
+	dc.l	ItemDescriptionHandheldAlleyway
+	; OBJ_ITEM_HANDHELD_MARIOLAND
+	dc.l	ItemDescriptionHandheldMarioLand
+	; OBJ_ITEM_HANDHELD_CONTRALCD
+	dc.l	ItemDescriptionHandheldContraLCD
+	; OBJ_ITEM_HANDHELD_TOPGUNLCD
+	dc.l	ItemDescriptionHandheldTopGunLCD
+	; OBJ_ITEM_PC_WINDOWS
+	dc.l	ItemDescriptionPCWindows
+	; OBJ_ITEM_PC_PRINTSHOP
+	dc.l	ItemDescriptionPCPrintShop
+	; OBJ_ITEM_PC_JMFOOTBALL
+	dc.l	ItemDescriptionPCJMFootball
+	; OBJ_ITEM_PC_SIMCITY
+	dc.l	ItemDescriptionPCSimCity
 
 ;-------------------------------------------------------------------------------
 ; store names
