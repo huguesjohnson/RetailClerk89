@@ -341,8 +341,10 @@ NPCNameTable:
 	dc.l	NPCNameSecretShopper
 	; OBJ_NPC_GUARD0
 	dc.l	NPCNameGuard0
-	; OBJ_NCP_TRENDYGUY
+	; OBJ_NPC_TRENDYGUY
 	dc.l	NPCNameTrendyGuy
+	; OBJ_NPC_GENERICSHOPPER
+	dc.l	NPCNameGenericShopper
 
 ;-------------------------------------------------------------------------------
 ; item names

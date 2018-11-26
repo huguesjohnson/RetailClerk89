@@ -89,6 +89,7 @@ OBJ_NPC_DB=OBJ_NPC_BASE+$16
 OBJ_NPC_SECRET_SHOPPER=OBJ_NPC_BASE+$17
 OBJ_NPC_GUARD0=OBJ_NPC_BASE+$18
 OBJ_NPC_TRENDYGUY=OBJ_NPC_BASE+$19
+OBJ_NPC_GENERICSHOPPER=OBJ_NPC_BASE+$1A
 
 ;-------------------------------------------------------------------------------
 ; items

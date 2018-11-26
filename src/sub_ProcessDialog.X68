@@ -3,11 +3,8 @@ ProcessDialog:
 	move.l	(MEM_DIALOG_FLAGS),d7	; copy current dialog state to d7
 ProcessDialogTestOpening:
 	btst.l	#DIALOG_FLAG_TEXT_OPENING,d7	; test if the dialog is opening
-	beq.s	ProcessDialogTestTextTitleDrawing	; dialog not opening, next test
-	; dialog opening animation
-	clr	d6	; lazy workaround to various bugs	
-	move.w	d7,d6	; copy low word with frame number
-	mulu.w	#DIALOG_PATTERN_SIZE,d6	; multiply by size of dialog patterns
+	beq.w	ProcessDialogTestTextTitleDrawing	; dialog not opening, next test
+	; setup dialog opening animation
 	btst.l	#DIALOG_FLAG_STYLE_TITLED,d7	; test if the dialog is titled
 	beq.s	.1	; flag is not set
 	lea	PatternDialogTitledClear,a0	; point a0 to start of dialog patterns
@@ -15,6 +12,9 @@ ProcessDialogTestOpening:
 .1
 	lea	PatternDialogClear,a0	; point a0 to start of dialog patterns
 .2
+	clr	d6	; lazy workaround to various bugs	
+	move.w	d7,d6	; copy low word with frame number
+	mulu.w	#DIALOG_PATTERN_SIZE,d6	; multiply by size of dialog patterns
 	adda.l	d6,a0	; increment to current frame
 	move.w	#DIALOG_BASE_TILE,d0	; base pattern
 	moveq	#$0000,d1	; repeat
@@ -31,6 +31,15 @@ ProcessDialogSetTextTitleDrawing:
 	bset.l	#DIALOG_FLAG_TEXT_TITLE_DRAWING,d7	; change state to title drawing
 	; reset the drawing location for the dialog text
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TITLE_ROWCOL),(MEM_DIALOG_VDP)
+	; lookup the NPC name
+	clr	d6	; lazy workaround to various bugs
+	move.l	(MEM_DIALOG_TEXT),a0	; point a0 to the NPC ID
+	move.w	(a0),d6	; copy NPC ID to d6
+	andi.w	#$0FFF,d6	; clear the base value
+	mulu.w	#$4,d6	; multiply by 4 to get the offset
+	lea	NPCNameTable,a0	; point to npc name table
+	adda.l	d6,a0	; add offset
+	move.l	(a0),(MEM_DIALOG_TITLE)	; copy value at a6 to MEM_DIALOG_TEXT
 	bra.w	ExitProcessDialog	; exit
 ProcessDialogSetTextDrawing:
 	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; change state to text drawing
@@ -41,7 +50,7 @@ ProcessDialogTestTextTitleDrawing:
 	btst.l	#DIALOG_FLAG_TEXT_TITLE_DRAWING,d7	; test if title is drawing
 	beq.s	ProcessDialogTestTextDrawing	; title is not drawing, next test
 	clr.w	d6	; prevent some issues
-	move.l	(MEM_DIALOG_TEXT),a0	; point a0 to the current character
+	move.l	(MEM_DIALOG_TITLE),a0	; point a0 to the current character
 	move.b	(a0),d6	; copy current character to d6
 TestNPCNameEnd:
 	cmpi.b	#NPCNAMEEND,d6	; is this the end of the name?
@@ -53,15 +62,15 @@ TestNPCNameEnd:
 	move.w  d6,(VDP_DATA)	; copy the character to VPD
 	; draw the next character
 	add.l	#$00020000,(MEM_DIALOG_VDP)	; move to the next column
-	add.l	#$0001,(MEM_DIALOG_TEXT)	; move to the next character
+	add.l	#$0001,(MEM_DIALOG_TITLE)	; move to the next character
 	bra.w	ExitProcessDialog
 TitleEnd:
 	bclr.l	#DIALOG_FLAG_TEXT_TITLE_DRAWING,d7	; clear title drawing flag
 	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; change state to text drawing
 	; reset the drawing location for the dialog text
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL),(MEM_DIALOG_VDP)
-	; move to the next character so the NPC menu isn't drawn
-	add.l	#$0001,(MEM_DIALOG_TEXT)
+	; increment MEM_DIALOG_TEXT by 2 to account for NPC ID being first
+	add.l	#$0002,(MEM_DIALOG_TEXT)
 	bra.w	ExitProcessDialog	; exit
 ProcessDialogTestTextDrawing:
 	btst.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; test if text is drawing

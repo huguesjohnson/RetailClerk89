@@ -5,6 +5,10 @@ ScriptedEventDay00Right:
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextScene00Day00Event0D0
+
+;	dc.w	SCRIPTED_EVENT_DIALOG
+;	dc.l	DialogTextDaniScene00Day00Exit0
+
 	; --------------------------------------------------------------------------
 	; move to the wall of 8-bit games
 	; --------------------------------------------------------------------------
