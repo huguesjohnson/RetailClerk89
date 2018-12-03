@@ -690,7 +690,6 @@ Day01Scene09Action03NPCSecretShopperRespondD3R1:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
-
 Day01Scene09Action03NPCTrendyGuyRespond:
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -732,14 +731,14 @@ Day01Scene09Action01NPCMaleShopperRespondD1:
 	bne.s	Day01Scene09Action01NPCMaleShopperRespondD1R1	; branch if set
 Day01Scene09Action01NPCMaleShopperRespondD1R0:
 	; queue the scripted event
-	lea ScriptedEventDay01Sub00NPC1Exit,a6	; point a6 to event to load
+	lea ScriptedEventDay01Sub00NPC1Exit0,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
 	lea	DialogTextDay01Sub00NPC1D1R0,a6	; load first text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene09Action01NPCMaleShopperRespondD1R1:
 	; queue the scripted event
-	lea ScriptedEventDay01Sub00NPC1Exit,a6	; point a6 to event to load
+	lea ScriptedEventDay01Sub00NPC1Exit1,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
 	lea	DialogTextDay01Sub00NPC1D1R1,a6	; load first text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -754,14 +753,14 @@ Day01Scene09Action01NPCMaleShopperRespondD2:
 	bne.s	Day01Scene09Action01NPCMaleShopperRespondD2R1	; branch if set
 Day01Scene09Action01NPCMaleShopperRespondD2R0:
 	; queue the scripted event
-	lea ScriptedEventDay01Sub00NPC1Exit,a6	; point a6 to event to load
+	lea ScriptedEventDay01Sub00NPC1Exit2,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
 	lea	DialogTextDay01Sub00NPC1D2R0,a6	; load first text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day01Scene09Action01NPCMaleShopperRespondD2R1:
 	; queue the scripted event
-	lea ScriptedEventDay01Sub00NPC1Exit,a6	; point a6 to event to load
+	lea ScriptedEventDay01Sub00NPC1Exit3,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
 	lea	DialogTextDay01Sub00NPC1D2R1,a6	; load first text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -1185,8 +1184,11 @@ Day01Scene12Action01:	; ACTION_USE_TALK
 Day01Scene12Action01NPC:
 	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
 	bne.s	Day01Scene12Action01NPCDefault	; not Dani, use default text
-	lea	DialogTextTBooksStaffDay01Talk,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	; queue scripted event
+	lea ScriptedEventDay01Scene12Action01,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextTBooksStaffDay01Talk0,a6	; load first text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT	
 	rts
 Day01Scene12Action01NPCDefault:
 	lea	DialogTextTBooksStaffDefaultTalk,a6	; load text

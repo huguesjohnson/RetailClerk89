@@ -21,6 +21,7 @@
 ;-------------------------------------------------------------------------------
 LF=$0A	; '\n' - used to break text into multiple lines
 FF=$0C	; form feed - used to break text into pages
+FFR=$0D	; form feed & reset dialog style
 ETX=$03	; end of text
 OBJNAMEEND=$1E	; end of object name
 NPCNAMEEND=$1F	; end of NPC name
@@ -37,11 +38,11 @@ TitleScreenTextNewGame:
 	if _DEBUG_
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Unstable Debug Build (November 2018) ",ETX
+	dc.b	" Unstable Debug Build (December 2018) ",ETX
 	else
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Story Demo: Days 1-2 (November 2018) ",ETX
+	dc.b	" Story Demo: Days 1-2 (December 2018) ",ETX
 	endif
 
 ;-------------------------------------------------------------------------------
@@ -214,7 +215,7 @@ DialogTextStoreClosed:
 	dc.b	"They are closed for ",LF
 	dc.b	"the night.           ^",FF
 	dc.b	"Maybe if you had a key",LF
-	dc.b	"...",ETX
+	dc.b	"to the store...",ETX
 
 DialogTextLongWalk:
 	;		"1234567890123456789012"
@@ -231,26 +232,32 @@ DialogTextDaniScene00Day00Action0:
 	dc.b	"you'll be walking home",LF
 	dc.b	"if you take too long.",ETX
 
+	align 2
 DialogTextDaniScene00Day00Flag0:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`It's 10 minutes past",LF
+	dc.b	"It's 10 minutes past",LF
 	dc.b	"closing time already.^",FF
 	dc.b	"Get that guy out of",LF
-	dc.b	"here so we can leave.'",ETX
+	dc.b	"here so we can leave.",ETX
 
+	align 2
 DialogTextDaniScene00Day00Flag1:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`Maybe you should",LF
+	dc.b	"Maybe you should",LF
 	dc.b	"actually talk to him.^",FF
 	dc.b	"`You know, like",LF
-	dc.b	"do your job.'",ETX
+	dc.b	"do your job.",ETX
 
+	align 2
 DialogTextDaniScene00Day00Flag8:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`Do I have to explain",LF
+	dc.b	"Do I have to explain",LF
 	dc.b	"everything to you?   ^",FF
 	dc.b	"Go ring him up & let's",LF
-	dc.b	"get out of here.'",ETX
+	dc.b	"get out of here.",ETX
 
 	align 2
 DialogTextDaniScene00Day00Exit0:
@@ -289,11 +296,13 @@ DialogTextDaniScene00Day00Exit2:
 	dc.b	"bothers to show up",LF
 	dc.b	"again.",ETX
 
+	align 2
 DialogTextDaniScene05Day00:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`Did you get lost?",LF
+	dc.b	"Did you get lost?",LF
 	dc.b	"                     ^",FF
-	dc.b	"Just get in the car.'",ETX
+	dc.b	"Just get in the car.",ETX
 
 	align 2
 DialogTextGreenbergScene00Day00Exit:
@@ -312,18 +321,22 @@ DialogTextGreenbergScene00Day00Exit:
 	dc.b	"You did fine though so",LF
 	dc.b	"get on home.",ETX
 
+	align 2
 DialogTextGreenbergScene00Day00Talk:
+	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"`Don't keep",LF
+	dc.b	"Don't keep",LF
 	dc.b	"that nice young lady ^",FF
-	dc.b	"waiting too long.'",ETX
+	dc.b	"waiting too long.",ETX
 
+	align 2
 DialogTextGreenbergScene00Day00Give:
+	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"`You're not",LF
+	dc.b	"You're not",LF
 	dc.b	"stealing either?     ^",FF
 	dc.b	"You're the model",LF
-	dc.b	"employee today.'",ETX
+	dc.b	"employee today.",ETX
 
 	align 2 
 DialogTextScene00Day00Event0D0:
@@ -359,33 +372,39 @@ DialogTextScene00Day00Event0D3:
 
 	align 2
 DialogTextScene00Day00Event0D4:
-	dc.w	OBJ_NPC_DANI
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
 	dc.b	"Uh, OK.",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag0:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`If I have a mouse on",LF
+	dc.b	"If I have a mouse on",LF
 	dc.b	"COM2 using IRQ3 can I^",FF
 	dc.b	"hookup a modem on",LF
-	dc.b	"COM4 using IRQ4?'    ^",FF
+	dc.b	"COM4 using IRQ4?    ^",FFR
 	dc.b	"{Sure, why not?",LF
 	dc.b	"{I make $3.35 an hour.",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag0R0:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Great, thanks.",FF
+	dc.b	"Great, thanks.",FF
 	dc.b	"There's one more thing",LF
 	dc.b	"I need tonight.      ^",FF
 	dc.b	"My kid wants this one",LF
 	dc.b	"video game for Xmas. ^",FF
-	dc.b	"Do you have it?'     ^",FF
+	dc.b	"Do you have it?     ^",FFR
 	dc.b	"{Um, what's it called?",LF
 	dc.b	"{What system is it on?",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag0R1:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Sorry I asked.",LF
+	dc.b	"Sorry I asked.",LF
 	dc.b	"                     ^",FF
 	dc.b	"Maybe you can help",LF
 	dc.b	"with something else. ^",FF
@@ -394,63 +413,81 @@ DialogTextMaleShopper0Scene00Day00Flag0R1:
 	dc.b	"It has a guy on the",LF
 	dc.b	"box or maybe a car.^",FF
 	dc.b	"Do you know the one",LF
-	dc.b	"I'm talking about?'  ^",FF
+	dc.b	"I'm talking about?  ^",FFR
 	dc.b	"{Oh yeah, that one.",LF
 	dc.b	"{It's sold out.",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag2R0:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Someone and Iggy vs",LF
+	dc.b	"Someone and Iggy vs",LF
 	dc.b	"whatever & something.^",FF
 	dc.b	"You know all these ",LF
-	dc.b	"games, go find it.'",ETX
+	dc.b	"games, go find it.",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag2R1:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`It's the one with two",LF
+	dc.b	"It's the one with two",LF
 	dc.b	"controllers on the TV^",FF
 	dc.b	"I thought you were",LF
-	dc.b	"the expert on this.'",ETX
+	dc.b	"the expert on this.",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag3R0:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Great, go get it.",LF
-	dc.b	"I'll wait here.'",ETX
+	dc.b	"Great, go get it.",LF
+	dc.b	"I'll wait here.",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag3R1:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Can you check anyway?",LF
-	dc.b	"I'm sure it's here.'",ETX
+	dc.b	"Can you check anyway?",LF
+	dc.b	"I'm sure it's here.",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag4:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Have you found that",LF
-	dc.b	"game yet?'",ETX
+	dc.b	"Have you found that",LF
+	dc.b	"game yet?",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag8:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Ring this up, I don't",LF
-	dc.b	"have all night.'",ETX
+	dc.b	"Ring this up, I don't",LF
+	dc.b	"have all night.",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag4Give:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`That doesn't look",LF
-	dc.b	"right at all.'",ETX
+	dc.b	"That doesn't look",LF
+	dc.b	"right at all.",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag5Give:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`No, that's even",LF
-	dc.b	"worse.'",ETX
+	dc.b	"No, that's even worse.",ETX
 
+	align 2
 DialogTextMaleShopper0Scene00Day00Flag6Give:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Did you listen to me",LF
-	dc.b	"at all?'",ETX
+	dc.b	"Did you listen to me",LF
+	dc.b	"at all?",ETX
 
+	align 2
 DialogTextMaleShopperDefaultGive:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"He accepts it with a",LF
-	dc.b	"look of confusion.",ETX
+	dc.b	"What's this for?",ETX
 
 DialogTextDaniCarDayEnd:
 	;		"1234567890123456789012"
@@ -471,45 +508,55 @@ DialogTextDaniCarGameEndR0:
 	dc.b	"OK, come back whenever",LF
 	dc.b	"you're ready.",ETX
 
+	align 2
 DialogTextDaniWalkingHome:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Dani:`In 10 minutes",LF
-	dc.b	"you're walking home.'",ETX
+	dc.b	"In 10 minutes",LF
+	dc.b	"you're walking home.",ETX
 
+	align 2
 DialogTextNPCSouthCenterStaffDay00:
+	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Are you going home",LF
-	dc.b	"for the night?'      ^",FF
+	dc.b	"Are you going home",LF
+	dc.b	"for the night?       ^",FFR
 	dc.b	"{Uh, sure",LF
 	dc.b	"{No I'm sleeping here",ETX
 
+	align 2
 DialogTextNPCSouthCenterStaffDay00R0:
+	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Well you have a good",LF
-	dc.b	"night and stay warm.'",ETX
+	dc.b	"Well you have a good",LF
+	dc.b	"night and stay warm.",ETX
 
+	align 2
 DialogTextNPCSouthCenterStaffDay00R1:
+	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Oh, at least you're",LF
-	dc.b	"indoors tonight.'",ETX
+	dc.b	"Oh, at least you're",LF
+	dc.b	"indoors tonight.",ETX
 
+	align 2
 DialogTextSecurityGuardDay00:
+	dc.w	OBJ_NPC_GUARD0
 	;		"1234567890123456789012"
-	dc.b	"`The mall is closed.",LF
-	dc.b	"Get a move on.'",ETX
+	dc.b	"The mall is closed.",LF
+	dc.b	"Get a move on.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 01
 ;-------------------------------------------------------------------------------
 DialogTextDay01CantReturnYet:
 	;		"1234567890123456789012"
-	dc.b	"`I'm not ready to deal",LF
-	dc.b	"with work again yet.'",ETX
+	dc.b	"You're not ready to",LF
+	dc.b	"deal with work again.",ETX
 
 DialogTextDay01Sub02CantEnter:
 	;		"1234567890123456789012"
-	dc.b	"`I have to get rid of",LF
-	dc.b	"this package first.'",ETX
+	dc.b	"You have to get rid",LF
+	dc.b	"of this package first.",ETX
 
 	align 2
 DialogTextDay01Intro00:
@@ -561,14 +608,18 @@ DialogTextDay01Intro03:
 	dc.b	"I think I'll take my",LF
 	dc.b	"break now.",ETX
 
+	align 2
 DialogTextSecurityGuardDay01:
+	dc.w	OBJ_NPC_GUARD0
 	;		"1234567890123456789012"
-	dc.b	"`Mall's closing in 5.",LF
-	dc.b	"minutes, move along.'",ETX
+	dc.b	"Mall's closing in 5.",LF
+	dc.b	"minutes, move along.",ETX
 
+	align 2
 DialogTextDay01VBDBDefaultTalk:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Dani:`I'm stuck",LF
+	dc.b	"I'm stuck",LF
 	dc.b	"closing tonight.     ^",FF
 	dc.b	"Head over to my store",LF
 	dc.b	"after your shift.    ^",FF
@@ -581,138 +632,191 @@ DialogTextDay01VBDBDefaultTalk:
 	dc.b	"Dad taught me how when",LF
 	dc.b	"he was in his fallout^",FF
 	dc.b	"shelter phase a few",LF
-	dc.b	"years ago.'",ETX
+	dc.b	"years ago.",ETX
 
+	align 2
 DialogTextDay01VBDBTalk01:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Dani:`Head over to my ",LF
-	dc.b	"store after close.'",ETX
+	dc.b	"Head over to my ",LF
+	dc.b	"store after close.",ETX
 
+	align 2
 DialogTextDay01Sub00Intro:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Todd:`I'm glad you're ",LF
+	dc.b	"I'm glad you're ",LF
 	dc.b	"here. The rest of the^",FF
 	dc.b	"staff called in sick. ",LF
 	dc.b	"I'm stuck here alone ^",FF
 	dc.b	"and starving. Would   ",LF
 	dc.b	"you mind watching the^",FF
 	dc.b	"store for just a tiny ",LF
-	dc.b	"bit? I'll be fast.'  ^",FF
+	dc.b	"bit? I'll be fast.   ^",FFR
 	dc.b	"{Yeah, whatever",LF
 	dc.b	"{Give me five minutes",ETX
 
+	align 2
 DialogTextDay01Sub00IntroDecline:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Sure, whenever",LF
-	dc.b	"you're free is cool.'",ETX
+	dc.b	"Sure, whenever",LF
+	dc.b	"you're free is cool.",ETX
 
+	align 2
 DialogTextDay01Sub00Start00:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Thanks, I won't ",LF
+	dc.b	"Thanks, I won't ",LF
 	dc.b	"be long I promise.   ^",FF
-	dc.b	"It's not like they're",LF
-	dc.b	"many choices here.'   ",ETX
+	dc.b	"It's not like there",LF
+	dc.b	"are many choices here.",ETX
 
 	align 2
 DialogTextDay01Sub00Start01:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Just to warn you,    ",LF
+	dc.b	"Just to warn you,    ",LF
 	dc.b	"the customers here  ^",FF
-	dc.b	"can be pretty dim.'   ",ETX
+	dc.b	"can be pretty dim.",ETX
 
 	align 2
 DialogTextDay01Sub00Start02:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
-	dc.b	"Todd",NPCNAMEEND
 	;		"1234567890123456789012"
-	dc.b	"`You'll be OK. No one ",LF
-	dc.b	"shops here this late.'",ETX
+	dc.b	"You'll be OK. No one ",LF
+	dc.b	"shops here this late.",ETX
 
+	align 2
 DialogTextDay01Sub00NPC1D0:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Have we met before?' ",LF
-	dc.b	"                     ^",FF
+	dc.b	"Have we met before? ",LF
+	dc.b	"                     ^",FFR
 	dc.b	"{Maybe",LF
 	dc.b	"{Absolutely not",ETX
 
+	align 2
 DialogTextDay01Sub00NPC1D0R0:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Right, you were      ",LF
+	dc.b	"Right, you were      ",LF
 	dc.b	"working at the shoe  ^",FF
 	dc.b	"store the other day.  ",ETX
 
+	align 2
 DialogTextDay01Sub00NPCD1:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Do you have that new  ",LF
-	dc.b	"Stephen King book?'  ^",FF
+	dc.b	"Do you have that new  ",LF
+	dc.b	"Stephen King book?   ^",FFR
 	dc.b	"{Yes",LF
 	dc.b	"{No",ETX
 
+	align 2
 DialogTextDay01Sub00NPC1D1R0:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`It's in our west wing",LF
+	dc.b	"It's in our west wing",LF
 	dc.b	"go out those doors & ^",FF
 	dc.b	"turn right. Keep going",LF
-	dc.b	"it'll be to the left.'",ETX
+	dc.b	"it'll be to the left.",ETX
 
+	align 2
 DialogTextDay01Sub00NPC1D1R1:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"Customer:`Can you go  ",LF
-	dc.b	"see if you have it?' ^",FF
-	dc.b	"Dani:`Well this is a  ",LF
-	dc.b	"clothing store so..' ^",FF
-	dc.b	"Customer:`Hmm, that's ",LF
-	dc.b	"a good point.'        ",ETX
+	dc.b	"Can you go  ",LF
+	dc.b	"see if you have it?",ETX
 
+	align 2
+DialogTextDay01Sub00NPC1D1R1Dani:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Well this is a  ",LF
+	dc.b	"clothing store so..",ETX
+
+	align 2
+DialogTextDay01Sub00NPC1D1R1NPC:
+	dc.w	OBJ_NPC_GENERICSHOPPER
+	;		"1234567890123456789012"
+	dc.b	"Hmm, that's a good",LF
+	dc.b	"point.",ETX
+
+	align 2
 DialogTextDay01Sub00NPC1D0R1:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`You kids all look",LF
-	dc.b	"the same.'",ETX
+	dc.b	"You kids all look",LF
+	dc.b	"the same.",ETX
 
+	align 2
 DialogTextDay01Sub00NPCD2:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`This is some kind of ",LF
-	dc.b	"board game store?'   ^",FF
+	dc.b	"This is some kind of ",LF
+	dc.b	"board game store?    ^",FFR
 	dc.b	"{Not even a little",LF
 	dc.b	"{In a way",ETX
 
+	align 2
 DialogTextDay01Sub00NPC1D2R0:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"Customer:`Are you     ",LF
-	dc.b	"sure?              ' ^",FF
-	dc.b	"Dani:`Yes, this store ",LF
+	dc.b	"Are you sure?",ETX
+
+	align 2
+DialogTextDay01Sub00NPC1D2R0Dani:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Yes, this store ",LF
 	dc.b	"has been in my family^",FF
 	dc.b	"for over seven        ",LF
-	dc.b	"generations now.'    ^",FF
-	dc.b	"Customer:`OK then.'   ",ETX
+	dc.b	"generations now.    ^",ETX
 
-DialogTextDay01Sub00NPC1D2R1:
+	align 2
+DialogTextDay01Sub00NPC1D2R0NPC:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"Customer:`Great. I'm  ",LF
+	dc.b	"OK then.",ETX
+
+	align 2
+DialogTextDay01Sub00NPC1D2R1:
+	dc.w	OBJ_NPC_GENERICSHOPPER
+	;		"1234567890123456789012"
+	dc.b	"Great. I'm  ",LF
 	dc.b	"looking for this new ^",FF
 	dc.b	"board game. It's this",LF
 	dc.b	"real estate game like^",FF
 	dc.b	"Monopoly but it's     ",LF
-	dc.b	"based on..'          ^",FF
-	dc.b	"Dani:`Nope, stop right",LF
+	dc.b	"based on..           ^",ETX
+
+	align 2
+DialogTextDay01Sub00NPC1D2R1Dani:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Nope, stop right",LF
 	dc.b	"there. We are so not ^",FF
 	dc.b	"doing this. You should",LF
-	dc.b	"just move along now.' ",ETX
+	dc.b	"just move along now. ",ETX
 
+	align 2
 DialogTextDay01Sub00NPC2D0:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`I'm invited to the   ",LF
+	dc.b	"I'm invited to the",LF
 	dc.b	"hottest New Years    ^",FF
-	dc.b	"party & can't afford  ",LF
+	dc.b	"party & can't afford",LF
 	dc.b	"to look like a loser.^",FF
 	dc.b	"I need a fresh style, ",LF
-	dc.b	"what do you have?'    ",ETX
+	dc.b	"what do you have?",ETX
 
+	align 2
 DialogTextDay01Sub00NPC2DefaultTalk:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`I don't have forever,",LF
-	dc.b	"show me something.'",ETX
+	dc.b	"I don't have forever,",LF
+	dc.b	"show me something.",ETX
 
 MenuMannequinSub00NPC2Show:
 	;		"1234567890123456789012"
@@ -726,162 +830,212 @@ MenuMannequinSub00NPC2ShowCancel:
 	dc.b	"He looks like he's",LF
 	dc.b	"getting impatient.",ETX
 
+	align 2
 DialogTextDay01Sub00NPC2D1:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`How about this? It's ",LF
-	dc.b	"new and whatever.'   ^",FF
-	dc.b	"Customer:`All wrong. I",LF
+	dc.b	"All wrong. I",LF
 	dc.b	"need something nobody^",FF
 	dc.b	"has seen before, this ",LF
-	dc.b	"is way too average.'  ",ETX
+	dc.b	"is way too average.",ETX
 
+	align 2
 DialogTextDay01Sub00NPC2D2:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`Here, this one is,   ",LF
-	dc.b	"really something.'   ^",FF
-	dc.b	"Customer:`What is that",LF
+	dc.b	"Here, this one is,   ",LF
+	dc.b	"really something.",ETX
+
+	align 2
+DialogTextDay01Sub00NPC2D2NPC:
+	dc.w	OBJ_NPC_GENERICSHOPPER
+	;		"1234567890123456789012"
+	dc.b	"What is that",LF
 	dc.b	"color? It's not blue,^",FF
 	dc.b	"it's not green, I've  ",LF
-	dc.b	"never seen it.'      ^",FF
-	dc.b	"Dani:`It's says it's",LF
-	dc.b	"called",CHAR_DQUOTE,"teal",CHAR_DQUOTE,".'^",FF
-	dc.b	"Customer:`It's the    ",LF
-	dc.b	"future. I'll take it!'",ETX
+	dc.b	"never seen it.",ETX
 
+	align 2
+DialogTextDay01Sub00NPC2D2Dani:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"It's says it's",LF
+	dc.b	"called",CHAR_DQUOTE,"teal",CHAR_DQUOTE,".",ETX
+
+	align 2
+DialogTextDay01Sub00NPC2D2NPC2:
+	dc.w	OBJ_NPC_GENERICSHOPPER
+	;		"1234567890123456789012"
+	dc.b	"It's the future.",LF
+	dc.b	"I'll take it!",ETX
+
+	align 2
 DialogTextDay01Sub00NPC2D3:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
 	dc.b	"`I don't have forever,",LF
 	dc.b	"ring me up already.'",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D0:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Hello, good evening.'",LF
+	dc.b	"Hello, good evening.",LF
 	dc.b	"                     ^",FF
 	dc.b	"{How can I help!?",LF
 	dc.b	"{Fine, let's do this",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D0R0:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`Clearly you are our",LF
-	dc.b	"target demographic!'",ETX
+	dc.b	"Clearly you are our",LF
+	dc.b	"target demographic!",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D0R1:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`Just make it quick.'",ETX
+	dc.b	"Just make it quick.",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D1:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`I don't see a nametag",LF
-	dc.b	"what's your name?'",FF
+	dc.b	"I don't see a nametag",LF
+	dc.b	"what's your name?",FFR
 	dc.b	"{Joy McHelpful",LF
 	dc.b	"{Morgan Fairchild",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D1R0:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`And customer service",LF
-	dc.b	"is my true passion.'",ETX
+	dc.b	"And customer service",LF
+	dc.b	"is my true passion.",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D1R1:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`And I'm down on my",LF
-	dc.b	"luck right now.'",ETX
+	dc.b	"And I'm down on my",LF
+	dc.b	"luck right now.",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D2:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Do you sell paisley",LF
-	dc.b	"kipper ties?'        ^",FF
+	dc.b	"Do you sell paisley",LF
+	dc.b	"kipper ties?        ^",FFR
 	dc.b	"{I'm so sorry but..",LF
 	dc.b	"{Not this decade",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D2R0:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`Could I interest you",LF
-	dc.b	"in a suit instead?'",ETX
+	dc.b	"Could I interest you",LF
+	dc.b	"in a suit instead?",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D2R1:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`Maybe there's a time",LF
-	dc.b	"portal around.'",ETX
+	dc.b	"Maybe there's a time",LF
+	dc.b	"portal around.",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D3:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Do you have any deals",LF
-	dc.b	"you want to mention?'^",FF
+	dc.b	"Do you have any deals",LF
+	dc.b	"you want to mention? ^",FF
 	dc.b	"{Yes of course",LF
 	dc.b	"{Please leave",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D3R0:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`Yes, today only",LF
+	dc.b	"Yes, today only",LF
 	dc.b	"everything is two    ^",FF
-	dc.b	"for the price of two!'",LF
-	dc.b	"                     ^",FF
-	dc.b	"Shopper:`That's",LF
-	dc.b	"wonderful Thank you!'",ETX
+	dc.b	"for the price of two!",ETX
 
+	align 2
 DialogTextDay01Sub00NPC3D3R1:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"Shopper:`OK, well..",LF
-	dc.b	"good bye.'",ETX
+	dc.b	"...",ETX
 
-DialogTextDay01Sub00NPC0Talk:
+	align 2
+DialogTextDay01Sub00NPC3D3NPC:
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`Thanks for helping.  ",LF
-	dc.b	"I really own you one.'",ETX
+	dc.b	"Good bye.",ETX
+
+	align 2
+DialogTextDay01Sub00NPC0Talk:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Thanks for helping.  ",LF
+	dc.b	"I really own you one.",ETX
 
 	align 2
 DialogTextDay01Sub00End00:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Todd:`Hey, wait sec!'",ETX
+	dc.b	"Hey, wait sec!",ETX
 
 	align 2
 DialogTextDay01Sub00End01:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Here, have a key to  ",LF
+	dc.b	"Here, have a key to  ",LF
 	dc.b	"the store, you know, ^",FF
 	dc.b	"just in case you ever ",LF
-	dc.b	"need anything.'",ETX
+	dc.b	"need anything.",ETX
 
 	align 2
 DialogTextDay01Sub00End02:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Hey wait, my parents ",LF
+	dc.b	"Hey wait, my parents ",LF
 	dc.b	"will be out of town  ^",FF
 	dc.b	"for New Years and they",LF
 	dc.b	"said I could have a  ^",FF
 	dc.b	"few people over. Why  ",LF
-	dc.b	"don't you come by?'   ",ETX
+	dc.b	"don't you come by?",ETX
 
 	align 2
 DialogTextDay01Sub00End03:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Just as a friend!    ",LF
+	dc.b	"Just as a friend!    ",LF
 	dc.b	"Just as a friend!    ^",FF
 	dc.b	"You can even bring    ",LF
-	dc.b	"someone, it's cool.'  ",ETX
+	dc.b	"someone, it's cool.",ETX
 
 	align 2
 DialogTextDay01Sub00End04:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`I didn't hear a no!' ",ETX
+	dc.b	"I didn't hear a no.",ETX
 
+	align 2
 DialogTextDay01Sub02VBExit:
+	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"Grunberg:`I need to",LF
-	dc.b	"talk to you before   ^",FF
-	dc.b	"you leave.'  ",ETX
+	dc.b	"I need to talk to you",LF
+	dc.b	"before you leave.",ETX
 
+	align 2
 DialogTextDay01Sub02Start:
+	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"Grunberg:`It's slow",LF
-	dc.b	"tonight so go ahead  ^",FF
-	dc.b	"& leave early. There's",LF
-	dc.b	"just one thing first.^",FF
+	dc.b	"It's slow tonight so",LF
+	dc.b	"you can leave early. ^",FF
+	dc.b	"I need your help with",LF
+	dc.b	"one thing though.    ^",FF
 	dc.b	"The delivery guy left ",LF
 	dc.b	"this package here but^",FF
 	dc.b	"it's not for us. It",LF
@@ -889,18 +1043,22 @@ DialogTextDay01Sub02Start:
 	dc.b	"I can't tell, the",LF
 	dc.b	"label is worn off.   ^",FF
 	dc.b	"Find out who this is",LF
-	dc.b	"for on your way out.'^",FF
-	dc.b	"Received",LF
-	dc.b	"Mystery Package.",ETX
+	dc.b	"for on your way out.^",FFR
+	dc.b	"[Received",LF
+	dc.b	"Mystery Package]",ETX
 
+	align 2
 DialogTextDay01Sub02TalkGreenberg:
+	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"`I know you can figure",LF
-	dc.b	"this out.'",ETX
+	dc.b	"I know you can figure",LF
+	dc.b	"this out.",ETX
 
+	align 2
 DialogTextDay01Sub02D0:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`The delivery guy gets",LF
+	dc.b	"The delivery guy gets",LF
 	dc.b	"our stores confused  ^",FF
 	dc.b	"all the time, but this",LF
 	dc.b	"one isn't for us.    ^",FF
@@ -909,135 +1067,178 @@ DialogTextDay01Sub02D0:
 	dc.b	"Check back sometime, ",LF
 	dc.b	"we get stuff for your^",FF
 	dc.b	"store every once a",LF
-	dc.b	"week or so.'",ETX
+	dc.b	"week or so.",ETX
 
+	align 2
 DialogTextDay01Sub02TalkNPCStaffSVideo:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`We have to look out",LF
-	dc.b	"for each other.'",ETX
+	dc.b	"We have to look out",LF
+	dc.b	"for each other.",ETX
 
+	align 2
 DialogTextDay01Sub02D1:
+	dc.w	OBJ_NPC_GUARD0
 	;		"1234567890123456789012"
-	dc.b	"`Hey, we've been",LF
+	dc.b	"Hey, we've been",LF
 	dc.b	"looking for that!    ^",FF
 	dc.b	"It's a replacement",LF
 	dc.b	"tape for our security^",FF
 	dc.b	"system. The old one ",LF
 	dc.b	"is so worn out that  ^",FF
 	dc.b	"we couldn't see who.. ",LF
-	dc.b	"nevermind. Thanks.'",ETX
+	dc.b	"nevermind. Thanks.",ETX
 
+	align 2
 DialogTextDay01End:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`You're just in time",LF
+	dc.b	"You're just in time",LF
 	dc.b	"for once. I'm done   ^",FF
 	dc.b	"closing out the",LF
 	dc.b	"register. Let's get  ^",FF
 	dc.b	"home before it's too",LF
-	dc.b	"cold outside.'",ETX
+	dc.b	"cold outside.",ETX
 
+	align 2
 DialogTextDay01ParkingLot:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`So you're starting to",LF
+	dc.b	"So you're starting to",LF
 	dc.b	"make yourself useful.^",FF
 	dc.b	"You still have a way",LF
-	dc.b	"to go though.'",ETX
+	dc.b	"to go though.",ETX
 
+	align 2
 DialogTextCheckersStaffDay01MallClosed:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Hey, I'm trying to",LF
+	dc.b	"Hey, I'm trying to",LF
 	dc.b	"close the register.  ^",FF
 	dc.b	"Can this wait until",LF
-	dc.b	"tomorrow?'",ETX
+	dc.b	"tomorrow?",ETX
 
-DialogTextTBooksStaffDay01Talk:
+	align 2
+DialogTextTBooksStaffDay01Talk0:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Dani:`My store's dead.",LF
-	dc.b	"Are you busy today?' ^",FF
-	dc.b	"Charles:`A little bit",LF
-	dc.b	"but I'm getting by.  ^",FF
+	dc.b	"My store's dead.",LF
+	dc.b	"Are you busy today?",ETX
+
+	align 2
+DialogTextTBooksStaffDay01Talk1:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"A little bit but I'm",LF
+	dc.b	"getting by alright. ^",FF
 	dc.b	"Knowing it's my last",LF
-	dc.b	"winter here helps.'  ^",FF
-	dc.b	"Dani:`I'm almost done",LF
-	dc.b	"with this place too.'^",FF
+	dc.b	"winter here helps.",ETX
+
+	align 2
+DialogTextTBooksStaffDay01Talk2:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I'm almost done with",LF
+	dc.b	"this place too.      ^",FF
 	dc.b	"It'll be weird not",LF
 	dc.b	"seeing you every day.^",FF
 	dc.b	"We've been neighbors,",LF
-	dc.b	"since kindergarten.' ^",FF
-	dc.b	"Charles:`Yeah, that",LF
-	dc.b	"sounds about right.  ^",FF
+	dc.b	"since kindergarten.",ETX
+
+	align 2
+DialogTextTBooksStaffDay01Talk3:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Yeah, that sounds",LF
+	dc.b	"about right.         ^",FF
 	dc.b	"Let's plan to hang out",LF
-	dc.b	"next winter break.'",ETX
+	dc.b	"next winter break.",ETX
 
 ;-------------------------------------------------------------------------------
 ; information desk
 ;-------------------------------------------------------------------------------
 
+	align 2
 DialogTextInfoDeskDay00R0:	; mall news
+	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Santa's Workshop just",LF
+	dc.b	"Santa's Workshop just",LF
 	dc.b	"opened this morning. ^",FF
 	dc.b	"It was already very",LF
-	dc.b	"busy there today.'",ETX
+	dc.b	"busy there today.",ETX
 
+	align 2
 DialogTextInfoDeskDay00R1:	; events
+	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`This is exciting! The",LF
+	dc.b	"This is exciting! The",LF
 	dc.b	"mall will be open at ^",FF
 	dc.b	"6:00 AM on Black",LF
-	dc.b	"Friday this year.'",ETX
+	dc.b	"Friday this year.",ETX
 
+	align 2
 DialogTextInfoDeskDay00R2:	; store news
+	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`The first Fish or Cut",LF
+	dc.b	"The first Fish or Cut",LF
 	dc.b	"Bait store in our    ^",FF
 	dc.b	"area is open now. They",LF
 	dc.b	"have this fun gimmick^",FF
 	dc.b	"where their staff",LF
-	dc.b	"dress as lumberjacks.'",ETX
+	dc.b	"dress as lumberjacks.",ETX
 
+	align 2
 DialogTextInfoDeskDay00R3:	; rumors
+	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`I really shouldn't",LF
+	dc.b	"I really shouldn't",LF
 	dc.b	"tell you this but..  ^",FF
 	dc.b	"One store here isn't",LF
 	dc.b	"doing well & might be^",FF
 	dc.b	"sold next year. Don't",LF
-	dc.b	"tell anyone please.'",ETX
+	dc.b	"tell anyone please.",ETX
 
+	align 2
 DialogTextInfoDeskDay01R0:	; mall news
+	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Holiday weekend hours",LF
+	dc.b	"Holiday weekend hours",LF
 	dc.b	"start tomorrow.      ^",FF
 	dc.b	"All stores will stay",LF
-	dc.b	"open until 10:00.'",ETX
+	dc.b	"open until 10:00.",ETX
 
+	align 2
 DialogTextInfoDeskDay01R1:	; events
+	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`We're trying to ",LF
+	dc.b	"We're trying to ",LF
 	dc.b	"organize a really fun^",FF
 	dc.b	"Secret Santa exchange",LF
 	dc.b	"for mall employees.  ^",FF
 	dc.b	"Sign-ups start next",LF
-	dc.b	"week, please join us!'",ETX
+	dc.b	"week, please join us!",ETX
 
+	align 2
 DialogTextInfoDeskDay01R2:	; store news
+	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Checkers is having an",LF
+	dc.b	"Checkers is having an",LF
 	dc.b	"out of fashion sale. ^",FF
 	dc.b	"50% off anything",LF
 	dc.b	"older than a week.   ^",FF
 	dc.b	"They've been very busy",LF
-	dc.b	"today because of it.'",ETX
+	dc.b	"today because of it.",ETX
 
+	align 2
 DialogTextInfoDeskDay01R3:	; rumors
+	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`I really shouldn't",LF
+	dc.b	"I really shouldn't",LF
 	dc.b	"tell you this but..  ^",FF
 	dc.b	"The mall manager still",LF
 	dc.b	"hasn't hired a new   ^",FF
 	dc.b	"snowplow company since",LF
-	dc.b	"the last one quit.'",ETX
+	dc.b	"the last one quit.",ETX
 
 ;-------------------------------------------------------------------------------
 ; default object descriptions
@@ -1345,13 +1546,13 @@ DialogTextDBDefaultLook:
 
 DialogTextGreenbergDefaultLook:
 	;		"1234567890123456789012"
-	dc.b	"`Do you need",LF
-	dc.b	"something?'",ETX
+	dc.b	"He nods a brief",LF
+	dc.b	"hello to you.",ETX
 
 DialogTextCenterStaffDefaultLook:
 	;		"1234567890123456789012"
-	dc.b	"`Hi! How can I help",LF
-	dc.b	"you today?'",ETX
+	dc.b	"She is looking at",LF
+	dc.b	"some brochures.",ETX
 
 DialogTextDenimCountryStaffDefaultLook:
 	;		"1234567890123456789012"
@@ -1444,8 +1645,8 @@ DialogTextNPCSecretShopperDefaultLook:
 
 DialogTextNPCGuard0DefaultLook:
 	;		"1234567890123456789012"
-	dc.b	"`Move along unless you",LF
-	dc.b	"want a lifetime ban.'",ETX
+	dc.b	"His shirt needs a trip",LF
+	dc.b	"to the dry cleaners.",ETX
 
 DialogTextNPCTrendyGuyDefaultLook:
 	;		"1234567890123456789012"
@@ -1455,122 +1656,159 @@ DialogTextNPCTrendyGuyDefaultLook:
 ;-------------------------------------------------------------------------------
 ; default NPC talk responses
 ;-------------------------------------------------------------------------------
+	align 2
 DialogTextGreenbergDefaultTalk:
+	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"`Did you see the new",LF
-	dc.b	"games that came in?'",ETX
+	dc.b	"Did you see the new",LF
+	dc.b	"games that came in?",ETX
 
+	align 2
 DialogTextDenimCountryStaffDefaultTalk:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`It's way too slow",LF
+	dc.b	"It's way too slow",LF
 	dc.b	"here for Xmas season.^",FF
 	dc.b	"I hope they don't",LF
-	dc.b	"close the mall.'",ETX
+	dc.b	"close the mall.",ETX
 
+	align 2
 DialogTextDenimCountryStaffDefaultTalkDB:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`The way Dani talks",LF
+	dc.b	"The way Dani talks",LF
 	dc.b	"about you, I thought ^",FF
-	dc.b	"you'd be shorter.'",ETX
+	dc.b	"you'd be shorter.",ETX
 
+	align 2
 DialogTextCheckersStaffDefaultTalk:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Hey. What's going on",LF
-	dc.b	"with you today?'",ETX
+	dc.b	"Hey. What's going on",LF
+	dc.b	"with you today?",ETX
 
+	align 2
 DialogTextTLodgeStaffDefaultTalk:
+	dc.w	OBJ_NPC_TLODGE_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`You know what the",LF
+	dc.b	"You know what the",LF
 	dc.b	"perfect Xmas gift is?^",FF
 	dc.b	"An extended warranty",LF
-	dc.b	"for your new phone.'",ETX
+	dc.b	"for your new phone.",ETX
 
+	align 2
 DialogTextCavernStaffDefaultTalk:
+	dc.w	OBJ_NPC_CAVERN_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`What do you need?'",ETX
+	dc.b	"What do you need?",ETX
 
+	align 2
 DialogTextSVideoStaffDefaultTalk:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`If you're looking for",LF
+	dc.b	"If you're looking for",LF
 	dc.b	"a specific movie we  ^",FF
-	dc.b	"probably have it.'",ETX
+	dc.b	"probably have it.",ETX
 
+	align 2
 DialogTextNShackStaffDefaultTalk:
+	dc.w	OBJ_NPC_NSHACK_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Welcome. Please take",LF
-	dc.b	"your time.'",ETX
+	dc.b	"Welcome. Please take",LF
+	dc.b	"your time.",ETX
 
+	align 2
 DialogTextPogoDawgStaffDefaultTalk:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
 	;		"1234567890123456789012"
-	dc.b	"He doesn't appear to",LF
-	dc.b	"be listening.",ETX
+	dc.b	"...",ETX
 
+	align 2
 DialogTextCPlanetStaffDefaultTalk:
+	dc.w	OBJ_NPC_CPLANET_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`You look like you're",LF
+	dc.b	"You look like you're",LF
 	dc.b	"here for that new    ^",FF
 	dc.b	"boy band Xmas album.",LF
-	dc.b	"It's in the CD bins.'",ETX
+	dc.b	"It's on the CD rack.",ETX
 
+	align 2
 DialogTextCNowStaffDefaultTalk:
+	dc.w	OBJ_NPC_CNOW_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Hi! I'm so happy",LF
+	dc.b	"Hi! I'm so happy",LF
 	dc.b	"you're here!         ^",FF
 	dc.b	"You won't believe what",LF
-	dc.b	"happened today!'     ^",FF
+	dc.b	"happened today!'     ^",FFR
 	dc.b	"(30 minutes later)",LF
 	dc.b	"                     ^",FF
 	dc.b	"'..and that's why I'm ",LF
 	dc.b	"waiting until after   ^",FF
-	dc.b	"I get married!'",ETX
+	dc.b	"I get married!",ETX
 
+	align 2
 DialogTextTBooksStaffDefaultTalk:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Hey neighbor. Nice of",LF
-	dc.b	"you to stop by.'",ETX
+	dc.b	"Hey neighbor. Nice of",LF
+	dc.b	"you to stop by.",ETX
 
+	align 2
 DialogTextFCBCheckoutStaffDefaultTalk:
+	dc.w	OBJ_NPC_FCBCHECKOUT_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Are you going to buy",LF
+	dc.b	"Are you going to buy",LF
 	dc.b	"something or are you ^",FF
 	dc.b	"just here to annoy",LF
-	dc.b	"me?'",ETX
+	dc.b	"me?",ETX
 
+	align 2
 DialogTextFCBFirearmsStaffDefaultTalk:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`There's no better",LF
+	dc.b	"There's no better",LF
 	dc.b	"gift for someone you ^",FF
 	dc.b	"care about than a new",LF
-	dc.b	"RK62 rifle.'",ETX
+	dc.b	"RK62 rifle'",ETX
 
+	align 2
 DialogTextFCBFishingStaffDefaultTalk:
+	dc.w	OBJ_NPC_FCBFISHING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Ice fishing season is",LF
+	dc.b	"Ice fishing season is",LF
 	dc.b	"almost here. We have ^",FF
 	dc.b	"everything you need",LF
-	dc.b	"to catch a ton.'",ETX
+	dc.b	"to catch a ton.",ETX
 
+	align 2
 DialogTextFCBCampingStaffDefaultTalk:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Oh hey. Yeah. Welcome",LF
+	dc.b	"Oh hey. Yeah. Welcome",LF
 	dc.b	"to the store I guess.^",FF
-	dc.b	"How can I help you?'",ETX
+	dc.b	"How can I help you?",ETX
 
+	align 2
 DialogTextSouthCenterStaffDefaultTalk:
+	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Good evening.'",ETX
+	dc.b	"Good evening.",ETX
 
+	align 2
 DialogTextWorkshopStaff0DefaultTalk:
+	dc.w	OBJ_NPC_WORKSHOP_STAFF0
 	;		"1234567890123456789012"
-	dc.b	"`Sorry, only children",LF
+	dc.b	"Sorry, only children",LF
 	dc.b	"under 12 can take    ^",FF
-	dc.b	"photos with Santa.'",ETX
+	dc.b	"photos with Santa.",ETX
 
+	align 2
 DialogTextWorkshopStaff1DefaultTalk:
+	dc.w	OBJ_NPC_WORKSHOP_STAFF1
 	;		"1234567890123456789012"
-	dc.b	"`Aren't you supposed",LF
+	dc.b	"Aren't you supposed",LF
 	dc.b	"to have a kid with   ^",FF
-	dc.b	"you to visit Santa?'",ETX
+	dc.b	"you to visit Santa?",ETX
 
 ;-------------------------------------------------------------------------------
 ; menus
@@ -1632,110 +1870,149 @@ TakeMenuDefault:
 ;-------------------------------------------------------------------------------
 ; default give messages
 ;-------------------------------------------------------------------------------
+	align 2
 DialogTextDaniDefaultGive:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"`Yeah, whatever.'",ETX
+	dc.b	"Yeah, whatever.",ETX
 
+	align 2
 DialogTextDBDefaultGive:
+	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
-	dc.b	"He looks puzzled by",LF
-	dc.b	"by this interaction.",ETX
+	dc.b	"...",ETX
 
+	align 2
 DialogTextGreenbergDefaultGive:
+	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"`I don't need that.'",ETX
+	dc.b	"I don't need that.",ETX
 
+	align 2
 DialogTextNPCCenterStaffDefaultGive:
+	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Sorry, but the lost &",LF
-	dc.b	"found is full.'",ETX
+	dc.b	"Sorry, but the lost &",LF
+	dc.b	"found is full.",ETX
 
+	align 2
 DialogTextNPCDenimCountryStaffDefaultGive:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Huh? Why don't you",LF
-	dc.b	"keep that.'",ETX
+	dc.b	"Huh? Why don't you",LF
+	dc.b	"keep that.",ETX
 
+	align 2
 DialogTextNPCCheckersStaffDefaultGive:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Dude, get that out",LF
-	dc.b	"of here.'",ETX
+	dc.b	"Get that out of here.",ETX
 
+	align 2
 DialogTextNPCTLodgeStaffDefaultGive:
+	dc.w	OBJ_NPC_TLODGE_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`I can't do anything",LF
-	dc.b	"with that.'",ETX
+	dc.b	"I can't do anything",LF
+	dc.b	"with that.",ETX
 
+	align 2
 DialogTextNPCCavernStaffDefaultGive:
+	dc.w	OBJ_NPC_CAVERN_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Not interested.'",ETX
+	dc.b	"Not interested.",ETX
 
+	align 2
 DialogTextNPCSVideoStaffDefaultGive:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`That's interesting",LF
-	dc.b	"but you keep it.'",ETX
+	dc.b	"That's interesting",LF
+	dc.b	"but you keep it.",ETX
 
+	align 2
 DialogTextNPCNShackStaffDefaultGive:
+	dc.w	OBJ_NPC_NSHACK_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`No thanks.'",ETX
+	dc.b	"No thanks.",ETX
 
+	align 2
 DialogTextNPCPogoDawgStaffDefaultGive:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
 	;		"1234567890123456789012"
-	dc.b	"He isn't paying any",LF
-	dc.b	"attention to you.",ETX
+	dc.b	"...",ETX
 
+	align 2
 DialogTextNPCCPlanetStaffDefaultGive:
+	dc.w	OBJ_NPC_CPLANET_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`You're kinda weird.",LF
-	dc.b	"You hang on to this.'",ETX
+	dc.b	"You're kinda weird.",LF
+	dc.b	"You hang on to this.",ETX
 
+	align 2
 DialogTextNPCCNowStaffDefaultGive:
+	dc.w	OBJ_NPC_CNOW_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Is this a gift?",LF
-	dc.b	"I can't accept it.'",ETX
+	dc.b	"Is this a gift?",LF
+	dc.b	"I can't accept it.",ETX
 
+	align 2
 DialogTextNPCTBooksStaffDefaultGive:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`No thanks, maybe",LF
-	dc.b	"another time.'",ETX
+	dc.b	"No thanks, maybe",LF
+	dc.b	"another time.",ETX
 
+	align 2
 DialogTextNPCFCBCheckoutStaffDefaultGive:
+	dc.w	OBJ_NPC_FCBCHECKOUT_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Do you want me to",LF
+	dc.b	"Do you want me to",LF
 	dc.b	"ring this up?        ^",FF
 	dc.b	"Hold on a second, we",LF
-	dc.b	"don't sell this.'",ETX
+	dc.b	"don't sell this.",ETX
 
+	align 2
 DialogTextNPCFCBFirearmsStaffDefaultGive:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Best keep that to",LF
-	dc.b	"yourself.'",ETX
+	dc.b	"Best keep that to",LF
+	dc.b	"yourself.",ETX
 
+	align 2
 DialogTextNPCFCBFishingStaffDefaultGive:
+	dc.w	OBJ_NPC_FCBFISHING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`That's pretty neat",LF
-	dc.b	"but I don't want it.'",ETX
+	dc.b	"That's pretty neat",LF
+	dc.b	"but I don't want it.",ETX
 
+	align 2
 DialogTextNPCFCBCampingStaffDefaultGive:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`Thanks but I don't",LF
-	dc.b	"have room for this.'",ETX
+	dc.b	"Thanks but I don't",LF
+	dc.b	"have room for this.",ETX
 
+	align 2
 DialogTextNPCSouthCenterStaffDefaultGive:
+	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"`It's nice to see you",LF
+	dc.b	"It's nice to see you",LF
 	dc.b	"in the giving spirit.^",FF
 	dc.b	"But you should give",LF
-	dc.b	"this to someone else.'",ETX
+	dc.b	"this to someone else.",ETX
 
+	align 2
 DialogTextNPCWorkshopStaff0DefaultGive:
+	dc.w	OBJ_NPC_WORKSHOP_STAFF0
 	;		"1234567890123456789012"
-	dc.b	"`Sorry, we're not",LF
-	dc.b	"taking donations now.'",ETX
+	dc.b	"Sorry, we're not",LF
+	dc.b	"taking donations now.",ETX
 
+	align 2
 DialogTextNPCWorkshopStaff1DefaultGive:
+	dc.w	OBJ_NPC_WORKSHOP_STAFF0
 	;		"1234567890123456789012"
-	dc.b	"`What do you want me",LF
-	dc.b	"to do with that?'",ETX
+	dc.b	"What do you want me",LF
+	dc.b	"to do with that?",ETX
 
 ;-------------------------------------------------------------------------------
 ; object names

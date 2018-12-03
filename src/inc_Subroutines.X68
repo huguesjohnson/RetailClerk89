@@ -57,6 +57,8 @@
 
 	include	'sub_ResetDialog.X68'
 
+	include	'sub_ClearDialog.X68'
+
 	include	'sub_ShowSelectionDialog.X68'
 
 	include	'sub_ProcessAction.X68'

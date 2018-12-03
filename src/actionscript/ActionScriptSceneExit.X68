@@ -104,6 +104,9 @@ ExitScene00Day01:
 	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
 	btst.l	#MISSION_FLAG_DAY01_SUB02_STARTED,d7	; test if flag is set
 	bne.s	ExitScene00Day01CanExit	; flag is set, OK to exit
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TITLED,d7	; set titled flag
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated flags
 	lea	DialogTextDay01Sub02VBExit,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; open the dialog

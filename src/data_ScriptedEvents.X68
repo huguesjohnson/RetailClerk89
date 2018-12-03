@@ -176,8 +176,99 @@ ScriptedEventDay01Sub00Start:
 	dc.w	SPRITE_STEP_PIXELS
 	dc.w	SCRIPTED_EVENT_END
 
-ScriptedEventDay01Sub00NPC1Exit:
+ScriptedEventDay01Sub00NPC1Exit0:
 	dc.w	$0003	; NPC1
+	; --------------------------------------------------------------------------
+	; NPC 1 needs to move from $0180,$011C to $0100,$0180 
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($0180-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	($0180-$011C)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; NPC 2 needs to move from $0100,$0180 to $0102,$00C8
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; NPC2
+	dc.w	DIRECTION_UP
+	dc.w	($0180-$00C8)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_RIGHT
+	dc.w	($0102-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01Sub00NPC1Exit1:
+	dc.w	$0003	; NPC1
+	; --------------------------------------------------------------------------
+	; dialog 
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00NPC1D1R1Dani
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00NPC1D1R1NPC
+	; --------------------------------------------------------------------------
+	; NPC 1 needs to move from $0180,$011C to $0100,$0180 
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($0180-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	($0180-$011C)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; NPC 2 needs to move from $0100,$0180 to $0102,$00C8
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; NPC2
+	dc.w	DIRECTION_UP
+	dc.w	($0180-$00C8)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_RIGHT
+	dc.w	($0102-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01Sub00NPC1Exit2:
+	dc.w	$0003	; NPC1
+	; --------------------------------------------------------------------------
+	; dialog 
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00NPC1D2R0Dani
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00NPC1D2R0NPC
+	; --------------------------------------------------------------------------
+	; NPC 1 needs to move from $0180,$011C to $0100,$0180 
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($0180-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	($0180-$011C)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; NPC 2 needs to move from $0100,$0180 to $0102,$00C8
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; NPC2
+	dc.w	DIRECTION_UP
+	dc.w	($0180-$00C8)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_RIGHT
+	dc.w	($0102-$0100)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01Sub00NPC1Exit3:
+	dc.w	$0003	; NPC1
+	; --------------------------------------------------------------------------
+	; dialog 
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00NPC1D2R1Dani
 	; --------------------------------------------------------------------------
 	; NPC 1 needs to move from $0180,$011C to $0100,$0180 
 	; --------------------------------------------------------------------------
@@ -202,6 +293,11 @@ ScriptedEventDay01Sub00NPC1Exit:
 
 ScriptedEventDay01Sub00NPC2Exit:
 	dc.w	$0004	; NPC2
+	; --------------------------------------------------------------------------
+	; dialog 
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00NPC3D3NPC
 	; --------------------------------------------------------------------------
 	; NPC 2 needs to move from $0102,$00C8 to $0100,$0180
 	; --------------------------------------------------------------------------
@@ -235,6 +331,15 @@ ScriptedEventDay01Sub00NPC3MoveRight:
 
 ScriptedEventDay01Sub00NPC3MoveCounter:
 	dc.w	$0005	; NPC3
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00NPC2D2NPC
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00NPC2D2Dani
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay01Sub00NPC2D2NPC2
 	; --------------------------------------------------------------------------
 	; NPC 3 needs to move from $0180,$010C to $0130,$00CC
 	; --------------------------------------------------------------------------
@@ -384,6 +489,19 @@ ScriptedEventDay01End:
 	; move into hidden space to block movement pattern
 	dc.w	DIRECTION_DOWN
 	dc.w	($0010)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay01Scene12Action01:
+	dc.w	$0001	; player (Dani)
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextTBooksStaffDay01Talk1
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextTBooksStaffDay01Talk2
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextTBooksStaffDay01Talk3
 	dc.w	SCRIPTED_EVENT_END
 
 ; ------------------------------------------------------------------------------

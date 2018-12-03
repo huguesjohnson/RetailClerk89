@@ -31,15 +31,7 @@ ProcessDialogSetTextTitleDrawing:
 	bset.l	#DIALOG_FLAG_TEXT_TITLE_DRAWING,d7	; change state to title drawing
 	; reset the drawing location for the dialog text
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TITLE_ROWCOL),(MEM_DIALOG_VDP)
-	; lookup the NPC name
-	clr	d6	; lazy workaround to various bugs
-	move.l	(MEM_DIALOG_TEXT),a0	; point a0 to the NPC ID
-	move.w	(a0),d6	; copy NPC ID to d6
-	andi.w	#$0FFF,d6	; clear the base value
-	mulu.w	#$4,d6	; multiply by 4 to get the offset
-	lea	NPCNameTable,a0	; point to npc name table
-	adda.l	d6,a0	; add offset
-	move.l	(a0),(MEM_DIALOG_TITLE)	; copy value at a6 to MEM_DIALOG_TEXT
+	bsr.w	ProcessDialogLookupNPCName	; lookup the NPC name
 	bra.w	ExitProcessDialog	; exit
 ProcessDialogSetTextDrawing:
 	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; change state to text drawing
@@ -84,7 +76,12 @@ TestETX:
 	bra.w	ProcessDialogTextEnd	; flag not set so this is the end of text
 TestFF:
 	cmpi.b	#FF,d6	; is there another page of text?
+	bne.s	TestFFR	; not the new page character, continue to next test
+	bra.s	ProcessDialogFF	; skip TestFFR
+TestFFR:
+	cmpi.b	#FFR,d6	; is there another page of text?
 	bne.s	TestObjMenu	; not the new page character, continue to next test
+ProcessDialogFF:
 	bset.l	#DIALOG_FLAG_TEXT_NEW_PAGE,d7	; flag there is another page
 	bclr.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; done drawing, clear flag
 	bset.l	#DIALOG_FLAG_TEXT_OPEN,d7	; change state to open when done
@@ -191,18 +188,19 @@ ProcessDialogTestButtonPress:
 	; moving to a new page of text
 	;---------------------------------------------------------------------------
 ProcessDialogNewPage:
+	; clear the text area	
+	bsr.w	ClearDialogTextArea
+	move.l	(MEM_DIALOG_TEXT),a0	; point a0 to the current character
+	move.b	(a0),d6	; copy current character to d6
+	cmpi.b	#FFR,d6	; is the current character a form feed + reset?
+	bne.s	ProcessDialogNewPageResetText	; not a reset, branch
+	bsr.w	ClearDialogDefault	; clear the dialog to default style	
+ProcessDialogNewPageResetText:
 	add.l	#$0001,(MEM_DIALOG_TEXT)	; move to the next character
 	; reset the drawing location for the dialog text
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL),(MEM_DIALOG_VDP)
-	; clear out the dialog text
-	lea PatternDialogClearTextArea,a0	; point a0 to pattern for clear text
-	move.w	#DIALOG_BASE_TILE,d0	; base pattern
-	moveq	#$0000,d1	; repeat
-	lea	VDP_VRAM_WRITE_A,a1	; initial drawing location
-	adda.l	#DIALOG_TEXT_AREA_ROWCOL,a1	; move to row & column
-	bsr.w	DrawTileset		; branch to DrawTileset subroutine
 	; reset flags to force text to start re-drawing
-.3
+ProcessDialogNewPageResetFlags:
 	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; set drawing flag
 	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; clear open flag
 	bclr.l	#DIALOG_FLAG_TEXT_NEW_PAGE,d7	; clear new page flag
@@ -550,4 +548,15 @@ SetItemMenuDrawLocation:
 ExitSetItemMenuDrawLocation:
 	rts
 
+ProcessDialogLookupNPCName:
+	; lookup the NPC name
+	clr	d6	; lazy workaround to various bugs
+	move.l	(MEM_DIALOG_TEXT),a0	; point a0 to the NPC ID
+	move.w	(a0),d6	; copy NPC ID to d6
+	andi.w	#$0FFF,d6	; clear the base value
+	mulu.w	#$4,d6	; multiply by 4 to get the offset
+	lea	NPCNameTable,a0	; point to npc name table
+	adda.l	d6,a0	; add offset
+	move.l	(a0),(MEM_DIALOG_TITLE)	; copy value at a0 to MEM_DIALOG_TEXT
+	rts
 

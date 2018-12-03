@@ -1,16 +1,10 @@
 ; resets the dialog so new text can be drawn without closing & reopening
 ResetDialog:
-	move.l	(MEM_DIALOG_FLAGS),d7	; copy current dialog state to d7
-	; reset the drawing location for the dialog text
+	; reset the drawing location for the dialog title
+	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TITLE_ROWCOL),(MEM_DIALOG_VDP)
 	move.l	#(VDP_VRAM_WRITE_A+DIALOG_TEXT_ROWCOL),(MEM_DIALOG_VDP)
-;	move.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),(MEM_DIALOG_VDP)	; base address
-;	add.l	#$00820000,(MEM_DIALOG_VDP)	; add 132 to move 1 row and column	
-	; clear out the dialog
-	movea.l	#PatternDialogFull,a0	; point a0 to start of dialog patterns
-	move.w	#DIALOG_BASE_TILE,d0	; base pattern
-	moveq	#$0000,d1	; repeat
-	movea.l	#(VDP_VRAM_WRITE_A+DIALOG_ROWCOL),a1	; initial drawing location
-	bsr.w	DrawTileset		; branch to DrawTileset subroutine
+	; clear out text in the dialog	
+	bsr.w	ClearDialog
 	; reset flags to force text to start re-drawing
 	bset.l	#DIALOG_FLAG_TEXT_DRAWING,d7	; set text drawing flag
 	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; clear open flag
