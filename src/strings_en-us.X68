@@ -489,6 +489,11 @@ DialogTextMaleShopperDefaultGive:
 	;		"1234567890123456789012"
 	dc.b	"What's this for?",ETX
 
+DialogTextNotTimeToLeave:
+	;		"1234567890123456789012"
+	dc.b	"It's too early to",LF
+	dc.b	"leave for the day.",ETX
+
 DialogTextDaniCarDayEnd:
 	;		"1234567890123456789012"
 	dc.b	"Are you ready to go",LF
@@ -1739,11 +1744,11 @@ DialogTextCNowStaffDefaultTalk:
 	dc.b	"Hi! I'm so happy",LF
 	dc.b	"you're here!         ^",FF
 	dc.b	"You won't believe what",LF
-	dc.b	"happened today!'     ^",FFR
+	dc.b	"happened today!'     ^",FF
 	dc.b	"(30 minutes later)",LF
 	dc.b	"                     ^",FF
 	dc.b	"'..and that's why I'm ",LF
-	dc.b	"waiting until after   ^",FF
+	dc.b	"waiting until after  ^",FF
 	dc.b	"I get married!",ETX
 
 	align 2
@@ -1769,7 +1774,7 @@ DialogTextFCBFirearmsStaffDefaultTalk:
 	dc.b	"There's no better",LF
 	dc.b	"gift for someone you ^",FF
 	dc.b	"care about than a new",LF
-	dc.b	"RK62 rifle'",ETX
+	dc.b	"RK62 rifle.",ETX
 
 	align 2
 DialogTextFCBFishingStaffDefaultTalk:
@@ -1825,10 +1830,12 @@ ItemMenu:
 	;		"1234567890123456789012"
 	dc.b	"{",ITEMNAMESTART
 
+	align 2
 InfoDeskMenu:
-	;		"{1234567890{1234567890"
-	dc.b	"`What do you want to",LF
-	dc.b	"know about today?'   ^",FF
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"{1234567890{1234567890"	
+	dc.b	"What do you want to",LF
+	dc.b	"know about today?    ^",FFR
 	dc.b	"{Mall news {Store news",LF
 	dc.b	"{Events    {Rumors",ETX
 
@@ -2072,7 +2079,11 @@ ObjectNameMannequin:
 	dc.b	"Mannequin",OBJNAMEEND
 
 ObjectNameTMannequin:
+	if	_DEBUG_
+	dc.b	"TMannequin",OBJNAMEEND
+	else
 	dc.b	"Mannequin",OBJNAMEEND
+	endif
 
 ObjectNameClothing:
 	dc.b	"Shelves of clothing",OBJNAMEEND
@@ -2185,6 +2196,9 @@ ObjectNameTent:
 ;-------------------------------------------------------------------------------
 ; npc names
 ;-------------------------------------------------------------------------------
+NPCNameUnknown:
+	dc.b	"????",NPCNAMEEND
+
 NPCNameDani:
 	dc.b	"Dani",NPCNAMEEND
 
@@ -2574,6 +2588,174 @@ Day01IntroTip5:
 	;		"1234567890123456789012345678901234567890"
 	dc.b	"Talk to NPCs to see what items they want",ETX
 
+Day02IntroText:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"           November 26, 1989            ",ETX
+
+Day02IntroTip0:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 0",ETX
+
+Day02IntroTip1:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 1",ETX
+
+Day02IntroTip2:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 2",ETX
+
+Day02IntroTip3:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 3",ETX
+
+Day02IntroTip4:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 4",ETX
+
+Day02IntroTip5:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 5",ETX
+
+Day03IntroText:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"            December 3, 1989            ",ETX
+
+Day03IntroTip0:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 0",ETX
+
+Day03IntroTip1:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 1",ETX
+
+Day03IntroTip2:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 2",ETX
+
+Day03IntroTip3:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 3",ETX
+
+Day03IntroTip4:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 4",ETX
+
+Day03IntroTip5:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 5",ETX
+
+Day04IntroText:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"            December 10, 1989           ",ETX
+
+Day04IntroTip0:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 0",ETX
+
+Day04IntroTip1:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 1",ETX
+
+Day04IntroTip2:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 2",ETX
+
+Day04IntroTip3:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 3",ETX
+
+Day04IntroTip4:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 4",ETX
+
+Day04IntroTip5:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 5",ETX
+
+Day05IntroText:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"            December 17, 1989           ",ETX
+
+Day05IntroTip0:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 0",ETX
+
+Day05IntroTip1:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 1",ETX
+
+Day05IntroTip2:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 2",ETX
+
+Day05IntroTip3:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 3",ETX
+
+Day05IntroTip4:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 4",ETX
+
+Day05IntroTip5:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 5",ETX
+
+Day06IntroText:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"            December 24, 1989           ",ETX
+
+Day06IntroTip0:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 0",ETX
+
+Day06IntroTip1:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 1",ETX
+
+Day06IntroTip2:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 2",ETX
+
+Day06IntroTip3:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 3",ETX
+
+Day06IntroTip4:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 4",ETX
+
+Day06IntroTip5:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 5",ETX
+
+Day07IntroText:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	" December 31, 1989: Last Day of the 80s",ETX
+
+Day07IntroTip0:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 0",ETX
+
+Day07IntroTip1:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 1",ETX
+
+Day07IntroTip2:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 2",ETX
+
+Day07IntroTip3:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 3",ETX
+
+Day07IntroTip4:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 4",ETX
+
+Day07IntroTip5:
+	;		"1234567890123456789012345678901234567890"
+	dc.b	"line 5",ETX
+
 ;-------------------------------------------------------------------------------
 ; status screen
 ;-------------------------------------------------------------------------------
@@ -2599,11 +2781,59 @@ StatusScreenDay00Objective00:
 
 StatusScreenDay01Objective00:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"November 26, 1989: Black Friday",LF
+	dc.b	"November 24, 1989: Black Friday",LF
 	;		"1234567890123456789012345678901234567"
 	dc.b	"How are all your friends handling",LF
 	;		"1234567890123456789012345678901234567"
 	dc.b	"the busiest day of the year?",ETX
+
+StatusScreenDay02Objective00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"November 26, 1989: whatever",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some stuff",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some more stuff",ETX
+
+StatusScreenDay03Objective00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 3, 1989: whatever",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some stuff",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some more stuff",ETX
+
+StatusScreenDay04Objective00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 10, 1989: whatever",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some stuff",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some more stuff",ETX
+
+StatusScreenDay05Objective00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 17, 1989: The Blizzard",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some stuff",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some more stuff",ETX
+
+StatusScreenDay06Objective00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 24, 1989: Christmas Eve",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some stuff",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some more stuff",ETX
+
+StatusScreenDay07Objective00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 31, 1989: Epilogue",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some stuff",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"some more stuff",ETX
 
 StatusScreenEmptySave:
 	;		"1234567890123456789012"

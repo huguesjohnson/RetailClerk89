@@ -556,7 +556,11 @@ ProcessDialogLookupNPCName:
 	andi.w	#$0FFF,d6	; clear the base value
 	mulu.w	#$4,d6	; multiply by 4 to get the offset
 	lea	NPCNameTable,a0	; point to npc name table
+	; prevent issues if an NPC name is missing
+	cmpi.w	#NPC_NAME_TABLE_SIZE,d6	; check if d6 is past end of table
+	bgt.s	.1	; branch if so
 	adda.l	d6,a0	; add offset
+.1
 	move.l	(a0),(MEM_DIALOG_TITLE)	; copy value at a0 to MEM_DIALOG_TEXT
 	rts
 

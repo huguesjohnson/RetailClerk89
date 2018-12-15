@@ -169,4 +169,4 @@ SCENE_COUNT_X_ACTION_COUNT_X4=(SCENE_COUNT*ACTION_COUNT_X4)
 MAX_ITEMS=$04	; maximum number of items the player can carry
 MAX_STORE_ID=$0017	; maximum number of stores
 TITLE_SCREEN_COUNTER_START=$2800	; how long to display title before reset
-
+NPC_NAME_TABLE_SIZE=NPCNameTableEnd-NPCNameTable

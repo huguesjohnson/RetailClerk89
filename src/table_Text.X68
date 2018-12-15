@@ -292,7 +292,7 @@ ObjectNameTable:
 ; npc names
 ;-------------------------------------------------------------------------------
 NPCNameTable:
-	dc.l	$00000000
+	dc.l	NPCNameUnknown
 	; OBJ_NPC_DANI
 	dc.l	NPCNameDani
 	; OBJ_NPC_MALE_SHOPPER0
@@ -345,6 +345,7 @@ NPCNameTable:
 	dc.l	NPCNameTrendyGuy
 	; OBJ_NPC_GENERICSHOPPER
 	dc.l	NPCNameGenericShopper
+NPCNameTableEnd:
 
 ;-------------------------------------------------------------------------------
 ; item names
@@ -484,4 +485,5 @@ StoreNameTable:
 StatusScreenObjectives:
 	dc.l	StatusScreenDay00Objective00
 	dc.l	StatusScreenDay01Objective00
+	dc.l	StatusScreenDay02Objective00
 

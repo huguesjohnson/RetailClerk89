@@ -140,6 +140,15 @@ ExitScene03:
 ; exit scene 04 (SCENE_ID_SHALL)
 ;-------------------------------------------------------------------------------
 ExitScene04:
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test mall closed flag
+	bne.s	ExitScene04MallClosed	; mall is not closed, branch
+	; display message
+	lea	DialogTextNotTimeToLeave,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
+	rts	; exit
+ExitScene04MallClosed:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 

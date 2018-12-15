@@ -13,14 +13,14 @@
 	;---------------------------------------------------------------------------
 	; used to test starting at day 1
 	;---------------------------------------------------------------------------
-;	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
-;	move.w	#$0001,(MEM_DAY)	; move to day 01
-;	move.l	(MEM_GAME_STATE),d7	; copy game state
-;	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag
-;	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-;	move.l	(MEM_PLAYER_STORE_KEYS),d7
-;	bset.l	#STORE_KEY_DCOUNTRY,d7
-;	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
+	move.w	#$0001,(MEM_DAY)	; move to day 01
+	move.l	(MEM_GAME_STATE),d7	; copy game state
+	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
 ;	; update NPCs
 ;	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
 ;	move.l	#$03160000,(a5)	; update NPCs in scene 00
@@ -61,20 +61,20 @@
 ;	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
 
 	; test end of day 01
-;	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
-;	bset.l	#MISSION_FLAG_DAY01_SUB02_D1,d7	; set flag
-;	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
-;	move.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; update sprite
-;	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-;	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
-;	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-;	adda.l	d7,a5	; move a5 to the address 
-;	move.l	#$05010000,(a5)	; update NPCs
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	bset.l	#MISSION_FLAG_DAY01_SUB02_D1,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	move.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; update sprite
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address 
+	move.l	#$05010000,(a5)	; update NPCs
 
 	; test store key handling
-;	move.w	(MEM_GAME_STATE),d7	; copy game state to d7
-;	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
-;	move.w	d7,(MEM_GAME_STATE)	; save game state
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
+	move.l	d7,(MEM_GAME_STATE)	; save game state
 
 	;---------------------------------------------------------------------------
 	; used to test closing animation on day 0 scene 0

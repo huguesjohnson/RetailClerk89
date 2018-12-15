@@ -304,13 +304,13 @@ SceneCheckers:
 
 	dc.w	OBJ_SCENE_MANNEQUIN
 	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%0010000101101000
+	dc.w	%0000111101101000
 	; 		%hhhhhhhyyyyyyyyy
 	dc.w	%0101000011101000
 
 	dc.w	OBJ_SCENE_TMANNEQUIN
 	; 		%wwwwwwwxxxxxxxxx
-	dc.w	%0010000101111000
+	dc.w	%0010110101110000
 	; 		%hhhhhhhyyyyyyyyy
 	dc.w	%0100000011110000
 

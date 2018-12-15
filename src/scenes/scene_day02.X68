@@ -26,12 +26,12 @@
 ;	-BGM
 ;		-reference to location of background music
 ;-------------------------------------------------------------------------------
-SceneIntroDay00:
+SceneIntroDay02:
 
 	;---------------------------------------------------------------------------
 	; scene ID
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_INTRO_DAY00
+	dc.w	SCENE_ID_INTRO_DAY02
 
 	;---------------------------------------------------------------------------
 	; tiles
@@ -95,31 +95,31 @@ SceneIntroDay00:
 	;---------------------------------------------------------------------------
 	dc.w	$0006	; text count
 
-	dc.l	Day00IntroText	; location of string to display
+	dc.l	Day02IntroText	; location of string to display
 	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$06800000	; initial drawing location
 
-	dc.l	Day00IntroTip0	; location of string to display
+	dc.l	Day02IntroTip0	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$08000000	; initial drawing location
 
-	dc.l	Day00IntroTip1	; location of string to display
+	dc.l	Day02IntroTip1	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$09000000	; initial drawing location
 
-	dc.l	Day00IntroTip2	; location of string to display
+	dc.l	Day02IntroTip2	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$0A000000	; initial drawing location
 
-	dc.l	Day00IntroTip3	; location of string to display
+	dc.l	Day02IntroTip3	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$0B000000	; initial drawing location
 
-	dc.l	Day00IntroTip4	; location of string to display
+	dc.l	Day02IntroTip4	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$0C000000	; initial drawing location
 
-	dc.l	Day00IntroTip5	; location of string to display
+	dc.l	Day02IntroTip5	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$0D000000	; initial drawing location
 
@@ -168,10 +168,10 @@ SceneIntroDay00:
 	; exits
 	;---------------------------------------------------------------------------
 	if	_DEBUG_
-	dc.w	SCENE_ID_SHALL	; north exit
-	dc.w	SCENE_ID_SHALL	; south exit
-	dc.w	SCENE_ID_SHALL	; east exit
-	dc.w	SCENE_ID_SHALL	; west exit
+	dc.w	SCENE_ID_VB	; north exit
+	dc.w	SCENE_ID_VB	; south exit
+	dc.w	SCENE_ID_VB	; east exit
+	dc.w	SCENE_ID_VB	; west exit
 	else
 	dc.w	SCENE_ID_VB	; north exit
 	dc.w	SCENE_ID_VB	; south exit

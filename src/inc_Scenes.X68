@@ -5,6 +5,7 @@
 	include 'scenes/scene_title.X68'
 	include 'scenes/scene_day00.X68'
 	include 'scenes/scene_day01.X68'
+	include 'scenes/scene_day02.X68'
 	include 'scenes/scene_end.X68'
 	include 'scenes/scene_credits.X68'
 
