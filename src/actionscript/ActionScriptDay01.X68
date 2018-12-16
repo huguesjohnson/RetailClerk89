@@ -1391,35 +1391,40 @@ Day01Scene17Action03:	; ACTION_RESPOND
 ;-------------------------------------------------------------------------------
 Day01End:
 	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
-;	;---------------------------------------------------------------------------	
-;	; update NPC locations
-;	;---------------------------------------------------------------------------	
-;	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-;	move.l	#$03160000,(a5)	; update NPCs in scene 00
-;	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
-;	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-;	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
-;	and.l	#$00000000,(a5)	; update NPCs in parking lot
-;	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-;	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
-;	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-;	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
-;	and.l	#$00000000,(a5)	; update NPCs in east-east hall
-;	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-;	move.w	#SCENE_ID_CHECKERS,d7	; copy east-east hall scene ID to d7
-;	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-;	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
-;	move.l	#$06021719,(a5)	; update NPCs in checkers
+	;---------------------------------------------------------------------------	
+	; update NPC locations
+	;---------------------------------------------------------------------------	
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.l	#$03000000,(a5)	; update NPCs in scene 00
+	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
+	and.l	#$00000000,(a5)	; update NPCs in parking lot
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
+	and.l	#$00000000,(a5)	; update NPCs in east-east hall
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_CHECKERS,d7	; copy east-east hall scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
+	move.l	#$06000000,(a5)	; update NPCs in checkers
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address 
+	move.l	#$05010000,(a5)	; update NPCs
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	
 	bsr.w	ClearPlayerInventory	; clear player inventory
-;	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
-	move.w	#$0002,(MEM_DAY)	; move to day 01
+	move.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; update sprite
+	move.w	#$0002,(MEM_DAY)	; move to day 02
 	move.l	(MEM_GAME_STATE),d7	; copy game state
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
 	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag
-	bclr.l	#STATE_FLAG_MALL_CLOSED,d7	; clear mall closed flag
+;	bclr.l	#STATE_FLAG_MALL_CLOSED,d7	; clear mall closed flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)	; clear day event flags
 	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission event flags
@@ -1431,6 +1436,12 @@ Day01End:
 	lea	SceneIntroDay02,a6	; address of the scene for the title screen
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	bsr.w	FadeIn	; fade-in
+	;---------------------------------------------------------------------------	
+	; set player sprite position
+	;---------------------------------------------------------------------------	
+	move.w	#SPRITE_PLAYER_INIT_X,(MEM_PLAYER_SPRITE_X)	; set player sprite x
+	move.w	#SPRITE_PLAYER_INIT_Y,(MEM_PLAYER_SPRITE_Y)	; set player sprite y
+	move.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; set direction
 	;---------------------------------------------------------------------------	
 	; queue the scripted event that starts day 2
 	;---------------------------------------------------------------------------	

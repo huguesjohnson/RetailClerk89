@@ -291,10 +291,9 @@ DialogTextDaniScene00Day00Exit1:
 DialogTextDaniScene00Day00Exit2:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Meet me at the",LF
-	dc.b	"car whenever he      ^",FF
-	dc.b	"bothers to show up",LF
-	dc.b	"again.",ETX
+	dc.b	"Meet me at the car",LF
+	dc.b	"whenever he bothers  ^",FF
+	dc.b	"to show up again.",ETX
 
 	align 2
 DialogTextDaniScene05Day00:
@@ -1158,6 +1157,66 @@ DialogTextTBooksStaffDay01Talk3:
 	dc.b	"about right.         ^",FF
 	dc.b	"Let's plan to hang out",LF
 	dc.b	"next winter break.",ETX
+
+;-------------------------------------------------------------------------------
+; dialog text - day 02
+;-------------------------------------------------------------------------------
+	align 2
+DialogTextDaniScene05Day02:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2",ETX
+
+;-------------------------------------------------------------------------------
+; dialog text - day 03
+;-------------------------------------------------------------------------------
+	align 2
+DialogTextDaniScene05Day03:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2",ETX
+
+;-------------------------------------------------------------------------------
+; dialog text - day 04
+;-------------------------------------------------------------------------------
+	align 2
+DialogTextDaniScene05Day04:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2",ETX
+
+;-------------------------------------------------------------------------------
+; dialog text - day 05
+;-------------------------------------------------------------------------------
+	align 2
+DialogTextDaniScene05Day05:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2",ETX
+
+;-------------------------------------------------------------------------------
+; dialog text - day 06
+;-------------------------------------------------------------------------------
+	align 2
+DialogTextDaniScene05Day06:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2",ETX
+
+;-------------------------------------------------------------------------------
+; dialog text - day 07
+;-------------------------------------------------------------------------------
+	align 2
+DialogTextDaniScene05Day07:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2",ETX
 
 ;-------------------------------------------------------------------------------
 ; information desk
@@ -2789,7 +2848,7 @@ StatusScreenDay01Objective00:
 
 StatusScreenDay02Objective00:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"November 26, 1989: whatever",LF
+	dc.b	"November 26, 1989: Running errands",LF
 	;		"1234567890123456789012345678901234567"
 	dc.b	"some stuff",LF
 	;		"1234567890123456789012345678901234567"
@@ -2797,7 +2856,7 @@ StatusScreenDay02Objective00:
 
 StatusScreenDay03Objective00:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"December 3, 1989: whatever",LF
+	dc.b	"December 3, 1989: Making new friends",LF
 	;		"1234567890123456789012345678901234567"
 	dc.b	"some stuff",LF
 	;		"1234567890123456789012345678901234567"
@@ -2805,35 +2864,35 @@ StatusScreenDay03Objective00:
 
 StatusScreenDay04Objective00:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"December 10, 1989: whatever",LF
+	dc.b	"December 10, 1989: Secret Santa",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some stuff",LF
+	dc.b	"The Secret Santa exchange is a",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some more stuff",ETX
+	dc.b	"good way to earn a new store key.",ETX
 
 StatusScreenDay05Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"December 17, 1989: The Blizzard",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some stuff",LF
+	dc.b	"If you're snowed-in you'll need to",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some more stuff",ETX
+	dc.b	"find food and a place to sleep.",ETX
 
 StatusScreenDay06Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"December 24, 1989: Christmas Eve",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some stuff",LF
+	dc.b	"Help Jordan sneak into Santa's",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some more stuff",ETX
+	dc.b	"Workshop while avoiding the guards.",ETX
 
 StatusScreenDay07Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"December 31, 1989: Epilogue",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some stuff",LF
+	dc.b	"New Year's Eve is a great time to see",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some more stuff",ETX
+	dc.b	"friends and wrap-up loose ends.",ETX
 
 StatusScreenEmptySave:
 	;		"1234567890123456789012"

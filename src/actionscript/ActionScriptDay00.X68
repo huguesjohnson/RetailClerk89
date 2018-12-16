@@ -721,9 +721,9 @@ Day00End:
 	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
 	and.l	#$00000000,(a5)	; update NPCs in east-east hall
 	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_CHECKERS,d7	; copy east-east hall scene ID to d7
+	move.w	#SCENE_ID_CHECKERS,d7	; copy checkers scene ID to d7
 	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
+	adda.l	d7,a5	; move a5 to the address for checkers NPCs
 	move.l	#$06021719,(a5)	; update NPCs in checkers
 	;---------------------------------------------------------------------------	
 	; update the game state

@@ -6,6 +6,11 @@
 	include 'scenes/scene_day00.X68'
 	include 'scenes/scene_day01.X68'
 	include 'scenes/scene_day02.X68'
+	include 'scenes/scene_day03.X68'
+	include 'scenes/scene_day04.X68'
+	include 'scenes/scene_day05.X68'
+	include 'scenes/scene_day06.X68'
+	include 'scenes/scene_day07.X68'
 	include 'scenes/scene_end.X68'
 	include 'scenes/scene_credits.X68'
 

@@ -155,16 +155,43 @@ Day03Scene04Action03:	; ACTION_RESPOND
 Day03Scene05Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
+
 Day03Scene05Action01:	; ACTION_USE_TALK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	beq.s	Day03Scene05Action01NPCDani	; branch
+	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
+	beq.s	Day03Scene05DaniCarLookUse	; same action for look and use
+	; default action	
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bra.s	ExitDay03Scene05Action01
+Day03Scene05Action01NPCDani:
+	lea	DialogTextDaniScene05Day03,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+ExitDay03Scene05Action01:
 	rts
+
+Day03Scene05DaniCarLookUse:
+	; setup 2 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextDaniCarDayEnd,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
 Day03Scene05Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+
 Day03Scene05Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.w	Day03End	; branch to day end
+	; else exit
+	lea	DialogTextDaniCarGameEndR0,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -782,6 +809,57 @@ Day03Scene17Action03:	; ACTION_RESPOND
 ; end day 03
 ;-------------------------------------------------------------------------------
 Day03End:
-	bsr.w	EndGame	; end the game
+	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
+	;---------------------------------------------------------------------------	
+	; update NPC locations
+	;---------------------------------------------------------------------------	
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.l	#$03160000,(a5)	; update NPCs in scene 00
+	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
+	and.l	#$00000000,(a5)	; update NPCs in parking lot
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
+	and.l	#$00000000,(a5)	; update NPCs in east-east hall
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address 
+	move.l	#$05000000,(a5)	; update NPCs
+	;---------------------------------------------------------------------------	
+	; update the game state
+	;---------------------------------------------------------------------------	
+	bsr.w	ClearPlayerInventory	; clear player inventory
+	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
+	move.w	#$0004,(MEM_DAY)	; move to day 04
+	move.l	(MEM_GAME_STATE),d7	; copy game state
+	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
+	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag
+;	bclr.l	#STATE_FLAG_MALL_CLOSED,d7	; clear mall closed flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)	; clear day event flags
+	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission event flags
+	and.l	#$00000000,(MEM_SCENE_BGM)	; clear the background music reference
+	;---------------------------------------------------------------------------	
+	; set the intro screen counter
+	;---------------------------------------------------------------------------	
+	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
+	lea	SceneIntroDay04,a6	; address of the scene for the title screen
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	FadeIn	; fade-in
+	;---------------------------------------------------------------------------	
+	; set player sprite position
+	;---------------------------------------------------------------------------	
+	move.w	#SPRITE_PLAYER_INIT_X,(MEM_PLAYER_SPRITE_X)	; set player sprite x
+	move.w	#SPRITE_PLAYER_INIT_Y,(MEM_PLAYER_SPRITE_Y)	; set player sprite y
+	move.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; set direction
+	;---------------------------------------------------------------------------	
+	; queue the scripted event that starts day 4
+	;---------------------------------------------------------------------------	
+;	lea ScriptedEventDay01Start,a6	; point a6 to event to load
+;	bsr.w QueueScriptedEvent	; queue the event
 	rts
 

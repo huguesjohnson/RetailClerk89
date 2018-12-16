@@ -486,4 +486,9 @@ StatusScreenObjectives:
 	dc.l	StatusScreenDay00Objective00
 	dc.l	StatusScreenDay01Objective00
 	dc.l	StatusScreenDay02Objective00
+	dc.l	StatusScreenDay03Objective00
+	dc.l	StatusScreenDay04Objective00
+	dc.l	StatusScreenDay05Objective00
+	dc.l	StatusScreenDay06Objective00
+	dc.l	StatusScreenDay07Objective00
 

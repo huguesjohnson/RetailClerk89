@@ -142,13 +142,16 @@ ExitScene03:
 ExitScene04:
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
 	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test mall closed flag
-	bne.s	ExitScene04MallClosed	; mall is not closed, branch
+	bne.s	ExitScene04DefaultExit	; mall is closed, branch
+	; mall is still open so the player can't exit south
+	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)
+	bne.s	ExitScene04DefaultExit	; not exiting south
 	; display message
 	lea	DialogTextNotTimeToLeave,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; flag to open dialog
 	rts	; exit
-ExitScene04MallClosed:
+ExitScene04DefaultExit:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
