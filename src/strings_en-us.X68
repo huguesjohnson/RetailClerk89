@@ -38,11 +38,11 @@ TitleScreenTextNewGame:
 	if _DEBUG_
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Unstable Debug Build (December 2018) ",ETX
+	dc.b	" Unstable Debug Build (January 2019)  ",ETX
 	else
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Story Demo: Days 1-2 (December 2018) ",ETX
+	dc.b	" Story Demo: Days 1-2 (January 2019)  ",ETX
 	endif
 
 ;-------------------------------------------------------------------------------
@@ -1161,6 +1161,13 @@ DialogTextTBooksStaffDay01Talk3:
 ;-------------------------------------------------------------------------------
 ; dialog text - day 02
 ;-------------------------------------------------------------------------------
+	align 2
+DialogTextScriptedEventDay02Start:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"line1",LF
+	dc.b	"line2",ETX
+
 	align 2
 DialogTextDaniScene05Day02:
 	dc.w	OBJ_NPC_DANI

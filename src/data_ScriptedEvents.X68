@@ -6,9 +6,6 @@ ScriptedEventDay00Right:
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextScene00Day00Event0D0
 
-;	dc.w	SCRIPTED_EVENT_DIALOG
-;	dc.l	DialogTextDaniScene00Day00Exit0
-
 	; --------------------------------------------------------------------------
 	; move to the wall of 8-bit games
 	; --------------------------------------------------------------------------
@@ -80,10 +77,8 @@ ScriptedEventDay00Exit:
 	dc.w	$0060
 	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
 	dc.w	$0002	; NPC0
-	dc.w	DIRECTION_LEFT	; move them out of hidden space
-	dc.w	$0040
 	dc.w	DIRECTION_UP	; move them onto the screen
-	dc.w	$0100
+	dc.w	$0086
 	dc.w	DIRECTION_DOWN	; move down 1 to show the front of the sprite
 	dc.w	$0001
 	dc.w	SCRIPTED_EVENT_DIALOG
@@ -502,6 +497,16 @@ ScriptedEventDay01Scene12Action01:
 	dc.l	DialogTextTBooksStaffDay01Talk2
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextTBooksStaffDay01Talk3
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay02Start:
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_UP	; move them onto the screen
+	dc.w	$0086
+	dc.w	DIRECTION_DOWN	; move down 1 to show the front of the sprite
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScriptedEventDay02Start
 	dc.w	SCRIPTED_EVENT_END
 
 ; ------------------------------------------------------------------------------

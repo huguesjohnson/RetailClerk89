@@ -398,14 +398,16 @@ TestIntroScreenLoadScene:
 	move.l	(a5),a6	; a5 has the address of the scene to load
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	bsr.w	LoadPlayerSprite	; load the player sprite
+	cmpi.w	#$0002,(MEM_DAY)	; is this day 01?
+	beq.s	TestIntroScreenEndDays0002Setup	; if day 02, go to day 02 setup
 	cmpi.w	#$0001,(MEM_DAY)	; is this day 01?
 	beq.s	TestIntroScreenDay01Setup	; if day 01, go to day 01 setup
 	cmpi.w	#$0000,(MEM_DAY)	; is this day 00?
 	bne.s	TestIntroScreenEnd	; if not, skip day 00 setup
-TestIntroScreenEndDay00Setup:
+TestIntroScreenEndDays0002Setup:
 	; move NPC0 out of frame here
-	move.w	#$017F,(MEM_NPC0_SPRITE_X)	; copy x-coordinate
-	move.w	#$01AF,(MEM_NPC0_SPRITE_Y)	; copy y-coordinate
+	move.w	#$0140,(MEM_NPC0_SPRITE_X)	; copy x-coordinate
+	move.w	#$0160,(MEM_NPC0_SPRITE_Y)	; copy y-coordinate
 	move.w	#$FFFF,(MEM_NPC0_MOVE_FREQUENCY)	; set move frequency to never
 	; fix order in sprite sort table
 	move.w	#$0002,d2	; NPC0 is the sprite to update
@@ -413,7 +415,6 @@ TestIntroScreenEndDay00Setup:
 	bsr.w	UpdateSpriteSortTable	; update the table
 	bsr.w	OrderSprites	; force re-sort
 	; update NPC0 in the sprite table
-	;lea	PLAYER_SPRITE_VDP,a6
 	move.l	#NPC0_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC0_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
 	move.l	#NPC0_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP

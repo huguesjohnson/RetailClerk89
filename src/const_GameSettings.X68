@@ -48,8 +48,8 @@ SPRITE_VDP=$2200	; write location for sprite tiles
 PLAYER_SPRITE_VDP=SPRITE_VDP+$0020	; write location for player sprite tiles
 PLAYER_SPRITE_VDP_X=$780E0002	; write location for player sprite x
 PLAYER_SPRITE_VDP_Y=$78080002	; write location for player sprite x
-NPC0_SPRITE_VDP_X=$78100002	; write location for npc0 sprite x
-NPC0_SPRITE_VDP_Y=$00160000	; write location for npc0 sprite y
+NPC0_SPRITE_VDP_X=$78160002	; write location for npc0 sprite x
+NPC0_SPRITE_VDP_Y=$78100002	; write location for npc0 sprite y
 
 ;-------------------------------------------------------------------------------
 ; directions
