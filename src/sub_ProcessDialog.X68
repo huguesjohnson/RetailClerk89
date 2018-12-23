@@ -194,7 +194,8 @@ ProcessDialogNewPage:
 	move.b	(a0),d6	; copy current character to d6
 	cmpi.b	#FFR,d6	; is the current character a form feed + reset?
 	bne.s	ProcessDialogNewPageResetText	; not a reset, branch
-	bsr.w	ClearDialogDefault	; clear the dialog to default style	
+	bsr.w	ClearDialogDefault	; clear the dialog to default style
+	bclr.l	#DIALOG_FLAG_STYLE_TITLED,d7	; clear titled flag	
 ProcessDialogNewPageResetText:
 	add.l	#$0001,(MEM_DIALOG_TEXT)	; move to the next character
 	; reset the drawing location for the dialog text
