@@ -1182,11 +1182,63 @@ DialogTextScriptedEventDay02Start:
 	dc.b	"[Received $10 bill]",ETX
 
 	align 2
+DialogTextCavernStaffDay02Sub00:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You're from that video",LF
+	dc.b	"game store right?    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"First you steal all my",LF
+	dc.b	"business now you want^",FF
+	;		"1234567890123456789012"
+	dc.b	"all my change too? I'm",LF
+	dc.b	"not the bank kid.    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"...",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Sorry, I'm cranky from",LF
+	dc.b	"working too long.    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Here, have a roll of",LF
+	dc.b	"quarters.            ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Do yourself a favor &",LF
+	dc.b	"don't work too hard. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"It's not worth it in",LF
+	dc.b	"the end.             ^",FFR
+	;		"1234567890123456789012"
+	dc.b	"[Received Quarters]",ETX
+
+	align 2
 DialogTextGreenbergDay02Sub00NotComplete:
 	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
 	dc.b	"I hope you have better",LF
 	dc.b	"luck than I did.",ETX
+
+	align 2
+DialogTextGreenbergDay02Sub00Complete:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Did you have any luck?",ETX
+
+	align 2
+DialogTextGreenbergDay02Transition:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Great job, I knew you",LF
+	dc.b	"could get it done.   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I have to leave early",LF
+	dc.b	"but I think you can  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"handle closing on your",LF
+	dc.b	"own. Here's a key so ^",FF
+	;		"1234567890123456789012"
+	dc.b	"you can lock up. Don't",LF
+	dc.b	"worry, it'll be fine.",ETX
 
 	align 2
 DialogTextDay02SubsNotComplete:
@@ -1235,12 +1287,24 @@ DialogTextTBooksStaffDay02TalkSub01Mid:
 	;		"1234567890123456789012"
 	dc.b	"Thanks for looking ",LF
 	dc.b	"into this. It's odd. ^",FF
+	;		"1234567890123456789012"
 	dc.b	"I don't see any real",LF
 	dc.b	"connection between   ^",FF
+	;		"1234567890123456789012"
 	dc.b	"these missing items.",LF
 	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
 	dc.b	"We need to keep an eye",LF
-	dc.b	"on this for a while.",ETX
+	dc.b	"on this for a while. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I don't remember ever",LF
+	dc.b	"giving you a key.    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Here, take one now &",LF
+	dc.b	"stop by to borrow    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"whatever you like",LF
+	dc.b	"after the mall closes.",ETX
 
 	align 2
 DialogTextTBooksStaffDay02TalkSub01Complete:
@@ -1257,8 +1321,8 @@ DialogTextDenimCountryStaffDay02Sub01Talk:
 	dc.b	"that I've seen.",ETX
 
 	align 2
-DialogTextDenimCountryDaniSub01Talk:
-	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+DialogTextDenimCountryDaniDay02Talk:
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Does your boss think",LF
 	dc.b	"you're working?",ETX
@@ -1563,6 +1627,44 @@ DialogTextInfoDeskDay01R3:	; rumors
 	dc.b	"hasn't hired a new   ^",FF
 	dc.b	"snowplow company since",LF
 	dc.b	"the last one quit.",ETX
+
+	align 2
+DialogTextInfoDeskDay02R0:	; mall news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Day 02 mall news",LF
+	dc.b	"blah blah blah^",FF
+	dc.b	"blah blah blah",LF
+	dc.b	"blah blah blah.",ETX
+
+	align 2
+DialogTextInfoDeskDay02R1:	; events
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"The mall employee",LF
+	dc.b	"Secret Santa exchange^",FF
+	dc.b	"will be on 12/10.",LF
+	dc.b	"Please don't forget  ^",FF
+	dc.b	"to sign-up, you might",LF
+	dc.b	"get something good.",ETX
+
+	align 2
+DialogTextInfoDeskDay02R2:	; store news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Day 02 store news",LF
+	dc.b	"blah blah blah^",FF
+	dc.b	"blah blah blah",LF
+	dc.b	"blah blah blah.",ETX
+
+	align 2
+DialogTextInfoDeskDay02R3:	; rumors
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I really shouldn't",LF
+	dc.b	"tell you this but..  ^",FF
+	dc.b	"Day 02 rumor",LF
+	dc.b	"blah blah blah.",ETX
 
 ;-------------------------------------------------------------------------------
 ; default object descriptions
