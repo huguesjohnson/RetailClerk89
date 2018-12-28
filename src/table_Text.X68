@@ -403,6 +403,10 @@ ItemNameTable:
 	dc.l	ItemNamePCJMFootball
 	; OBJ_ITEM_PC_SIMCITY
 	dc.l	ItemNamePCSimCity
+	; OBJ_ITEM_TEN_DOLLAR
+	dc.l	ItemNameTenDollar
+	; OBJ_ITEM_QUARTERS
+	dc.l	ItemNameQuarters
 
 ;-------------------------------------------------------------------------------
 ; item descriptions
@@ -460,6 +464,10 @@ ItemDescriptionTable:
 	dc.l	ItemDescriptionPCJMFootball
 	; OBJ_ITEM_PC_SIMCITY
 	dc.l	ItemDescriptionPCSimCity
+	; OBJ_ITEM_TEN_DOLLAR
+	dc.l	ItemDescriptionTenDollar
+	; OBJ_ITEM_QUARTERS
+	dc.l	ItemDescriptionQuarters
 
 ;-------------------------------------------------------------------------------
 ; store names

@@ -6,7 +6,7 @@
 	if	_DEBUG_
 	
 	;---------------------------------------------------------------------------
-	; used to test starting at day 2
+	; used to test starting at day 02
 	;---------------------------------------------------------------------------
 	move.l	(MEM_PLAYER_STORE_KEYS),d7
 	bset.l	#STORE_KEY_DCOUNTRY,d7
@@ -39,6 +39,11 @@
 	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag
 	bclr.l	#STATE_FLAG_MALL_CLOSED,d7	; clear mall closed flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)	; clear day event flags
+	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission event flags
+	and.l	#$00000000,(MEM_SCENE_BGM)	; clear the background music reference
+	move.w	#OBJ_ITEM_TEN_DOLLAR,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
 	lea ScriptedEventDay02Start,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
 

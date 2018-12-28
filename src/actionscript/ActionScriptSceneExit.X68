@@ -119,8 +119,27 @@ ExitScene00Day01CanExit:
 ; exit scene 01 (SCENE_ID_WWHALL)
 ;-------------------------------------------------------------------------------
 ExitScene01:
+	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
+	bne.s	ExitScene01Default	; not exiting north
+	cmpi.w	#$0002,(MEM_DAY)	; is this day 02?
+	beq.s	ExitScene01Day02	; branch to day 02
+ExitScene01Default:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
+ExitScene01Day02:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY02_SUB00_COMPLETE,d7	; test if flag is set
+	beq.s	ExitScene01Day02CantExit	; flag not set, branch
+	btst.l	#EVENT_FLAG_DAY02_SUB01_COMPLETE,d7	; test if flag is set
+	beq.s	ExitScene01Day02CantExit	; flag not set, branch
+	bra.w	DefaultExitScene	; use default handler
+	rts	
+ExitScene01Day02CantExit:
+	; display message
+	lea	DialogTextDay02SubsNotComplete,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening
+	rts
 
 ;-------------------------------------------------------------------------------
 ; exit scene 02 (SCENE_ID_WEHALL)

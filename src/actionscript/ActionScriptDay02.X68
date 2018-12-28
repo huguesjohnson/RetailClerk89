@@ -13,6 +13,15 @@ Day02Scene00Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day02Scene00Action01NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	beq.s	Day02Scene00Action01NPCDefault	; branch to default text
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY02_SUB00_COMPLETE,d7	; test for event flag
+	bne.s	Day02Scene00Action01NPCDefault	; flag set, use default text
+	lea	DialogTextGreenbergDay02Sub00NotComplete,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene00Action01NPCDefault:
 	lea	DialogTextGreenbergDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -610,6 +619,34 @@ Day02Scene12Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day02Scene12Action01NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	beq.s	Day02Scene12Action01NPCDefault	; branch to default text
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY02_SUB01_COMPLETE,d7	; test flag
+	bne.s	Day02Scene12Action01NPCSub01Complete	; branch if set
+	btst.l	#EVENT_FLAG_DAY02_SUB01_MID,d7	; test flag
+	bne.s	Day02Scene12Action01NPCSub01Mid	; branch if set
+	btst.l	#EVENT_FLAG_DAY02_SUB01_STARTED,d7	; test flag
+	bne.s	Day02Scene12Action01NPCSub01Started	; branch if set
+	; else set the flag to start sub 01
+	bset.l	#EVENT_FLAG_DAY02_SUB01_STARTED,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	lea	DialogTextTBooksStaffDay02TalkSub01NotStarted,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene12Action01NPCSub01Complete:
+	lea	DialogTextTBooksStaffDay02TalkSub01Complete,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene12Action01NPCSub01Mid:
+	lea	DialogTextTBooksStaffDay02TalkSub01Mid,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene12Action01NPCSub01Started:
+	lea	DialogTextTBooksStaffDay02TalkSub01Started,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene12Action01NPCDefault:
 	lea	DialogTextTBooksStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -803,6 +840,23 @@ Day02Scene17Action02NPC:
 Day02Scene17Action03:	; ACTION_RESPOND
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+;-------------------------------------------------------------------------------
+; test if all the events of sub 01 are complete
+;-------------------------------------------------------------------------------
+Day02TestSub01Mid:
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	btst.l	#MISSION_FLAG_DAY02_SUB01_D0,d7	; test if flag is set
+	beq.s	ExitDay02TestSub01Complete	; not set, branch
+	btst.l	#MISSION_FLAG_DAY02_SUB01_D1,d7	; test if flag is set
+	beq.s	ExitDay02TestSub01Complete	; not set, branch
+	btst.l	#MISSION_FLAG_DAY02_SUB01_D2,d7	; test if flag is set
+	beq.s	ExitDay02TestSub01Complete	; not set, branch
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	bset.l	#EVENT_FLAG_DAY02_SUB01_MID,d7	; set event complete flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save day event flags
+ExitDay02TestSub01Complete:
 	rts
 
 ;-------------------------------------------------------------------------------

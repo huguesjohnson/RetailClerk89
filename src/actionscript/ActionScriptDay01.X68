@@ -1430,6 +1430,11 @@ Day01End:
 	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission event flags
 	and.l	#$00000000,(MEM_SCENE_BGM)	; clear the background music reference
 	;---------------------------------------------------------------------------	
+	; add item the player starts with on day 2
+	;---------------------------------------------------------------------------	
+	move.w	#OBJ_ITEM_TEN_DOLLAR,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
+	;---------------------------------------------------------------------------	
 	; set the intro screen counter
 	;---------------------------------------------------------------------------	
 	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
@@ -1445,7 +1450,7 @@ Day01End:
 	;---------------------------------------------------------------------------	
 	; queue the scripted event that starts day 2
 	;---------------------------------------------------------------------------	
-;	lea ScriptedEventDay01Start,a6	; point a6 to event to load
-;	bsr.w QueueScriptedEvent	; queue the event
+	lea ScriptedEventDay02Start,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
 	rts
 

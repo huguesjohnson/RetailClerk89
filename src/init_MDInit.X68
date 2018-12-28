@@ -57,6 +57,6 @@ ClearRAMLoop:
 
 InitEcho:
 	lea (EchoPointerList),a0
-	bsr.w Echo_Init
+	jsr Echo_Init
 
 	move.w	#$2000,sr		; re-enable interrupts

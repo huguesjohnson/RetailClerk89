@@ -48,7 +48,10 @@ EVENT_FLAG_DAY00_EVENT00_COMPLETE=$8	; 1st scripted event complete
 EVENT_FLAG_DAY00_EVENT01_COMPLETE=$9	; 2nd scripted event complete
 EVENT_FLAG_DAY01_SUB00_COMPLETE=$0	; sub-quest 0 in day 1 complete
 EVENT_FLAG_DAY01_SUB01_COMPLETE=$1	; sub-quest 1 in day 1 complete
-;EVENT_FLAG_DAY01_SUB02_COMPLETE=$2	; sub-quest 2 in day 1 complete
+EVENT_FLAG_DAY02_SUB00_COMPLETE=$0	; sub-quest 0 in day 2 complete
+EVENT_FLAG_DAY02_SUB01_STARTED=$1	; sub-quest 1 in day 2 complete
+EVENT_FLAG_DAY02_SUB01_MID=$2	; sub-quest 1 in day 2 midpoint
+EVENT_FLAG_DAY02_SUB01_COMPLETE=$3	; player can re-enter after subquests complete
 
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 
@@ -68,5 +71,6 @@ MISSION_FLAG_DAY01_SUB00_NPC3_DONE=$B	; done interacting with NPC3
 MISSION_FLAG_DAY01_SUB02_STARTED=$0	; sub-quest started
 MISSION_FLAG_DAY01_SUB02_D0=$1	; first dialog complete
 MISSION_FLAG_DAY01_SUB02_D1=$2	; second dialog complete
-
-
+MISSION_FLAG_DAY02_SUB01_D0=$0	; first event dialog complete
+MISSION_FLAG_DAY02_SUB01_D1=$1	; second event dialog complete
+MISSION_FLAG_DAY02_SUB01_D2=$2	; third event dialog complete

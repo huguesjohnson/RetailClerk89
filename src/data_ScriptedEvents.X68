@@ -502,11 +502,19 @@ ScriptedEventDay01Scene12Action01:
 ScriptedEventDay02Start:
 	dc.w	$0002	; NPC0
 	dc.w	DIRECTION_UP	; move them onto the screen
-	dc.w	$0086
-	dc.w	DIRECTION_DOWN	; move down 1 to show the front of the sprite
+	dc.w	$0060
+	dc.w	DIRECTION_LEFT	; move left to talk to player
+	dc.w	$0030
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_RIGHT	; have the player face the npc
 	dc.w	$0001
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextScriptedEventDay02Start
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_DOWN	; have the NPC face down
+	dc.w	$0001
 	dc.w	SCRIPTED_EVENT_END
 
 ; ------------------------------------------------------------------------------

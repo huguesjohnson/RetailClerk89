@@ -1165,15 +1165,268 @@ DialogTextTBooksStaffDay01Talk3:
 DialogTextScriptedEventDay02Start:
 	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2",ETX
+	dc.b	"We're out of quarters",LF
+	dc.b	"& no one on this end ^",FF
+	dc.b	"of the mall had any to",LF
+	dc.b	"spare. Why don't you ^",FF
+	dc.b	"try other stores. You",LF
+	dc.b	"might have good luck.^",FF
+	dc.b	"By the way, when I",LF
+	dc.b	"stopped over at the  ^",FF
+	dc.b	"bookstore your friend",LF
+	dc.b	"asked me to tell you ^",FF
+	dc.b	"to come over to talk",LF
+	dc.b	"about something.     ^",FF
+	dc.b	"Anyway here's $10, see",LF
+	dc.b	"if anyone has change.^",FFR
+	dc.b	"[Received $10 bill]",ETX
+
+	align 2
+DialogTextGreenbergDay02Sub00NotComplete:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"I hope you have better",LF
+	dc.b	"luck than I did.",ETX
+
+	align 2
+DialogTextDay02SubsNotComplete:
+	;		"1234567890123456789012"
+	dc.b	"There are still things",LF
+	dc.b	"you need to finish.",ETX
+
+	align 2
+DialogTextTBooksStaffDay02TalkSub01NotStarted:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"We have a problem. You",LF
+	dc.b	"& Dani are the only  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"ones I trust to help.",LF
+	dc.b	"I think there's a pro^",FF
+	;		"1234567890123456789012"
+	dc.b	"shoplifter working",LF
+	dc.b	"this mall. We got hit^",FF
+	;		"1234567890123456789012"
+	dc.b	"by them. When I took",LF
+	dc.b	"inventory some pricey^",FF
+	;		"1234567890123456789012"
+	dc.b	"science books were",LF
+	dc.b	"missing. I think they^",FF
+	;		"1234567890123456789012"
+	dc.b	"are being resold. I'm",LF
+	dc.b	"stuck alone today so ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I need you to ask the",LF
+	dc.b	"other stores if they ^",FF
+	;		"1234567890123456789012"
+	dc.b	"were hit. Let me know",LF
+	dc.b	"everything you heard.",ETX
+
+	align 2
+DialogTextTBooksStaffDay02TalkSub01Started:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Doesn't sound like you",LF
+	dc.b	"found enough info yet.",ETX
+
+	align 2
+DialogTextTBooksStaffDay02TalkSub01Mid:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Thanks for looking ",LF
+	dc.b	"into this. It's odd. ^",FF
+	dc.b	"I don't see any real",LF
+	dc.b	"connection between   ^",FF
+	dc.b	"these missing items.",LF
+	dc.b	"                     ^",FF
+	dc.b	"We need to keep an eye",LF
+	dc.b	"on this for a while.",ETX
+
+	align 2
+DialogTextTBooksStaffDay02TalkSub01Complete:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"There's something odd",LF
+	dc.b	"about these thefts.",ETX
+
+	align 2
+DialogTextDenimCountryStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Anything missing? Not",LF
+	dc.b	"that I've seen.",ETX
+
+	align 2
+DialogTextDenimCountryDaniSub01Talk:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Does your boss think",LF
+	dc.b	"you're working?",ETX
+
+	align 2
+DialogTextCheckersStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"No, nothing unusual",LF
+	dc.b	"lately.              ^",FF
+	dc.b	"Hey, did you sister",LF
+	dc.b	"say anything about.. ^",FF
+	dc.b	"Oh nevermind.",ETX
+
+	align 2
+DialogTextTLodgeStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Nothing's been stolen",LF
+	dc.b	"but we are missing a ^",FF
+	;		"1234567890123456789012"
+	dc.b	"shipment. It's for the",LF
+	dc.b	"new line of police   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"scanners. They support",LF
+	dc.b	"over 20K frequencies,^",FF
+	;		"1234567890123456789012"
+	dc.b	"extended warranty ",LF
+	dc.b	"available for $20.   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I assumed they shipped",LF
+	dc.b	"to the wrong store.",ETX
+
+	align 2
+DialogTextCavernStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Stolen items? Yeah",LF
+	dc.b	"some guy just took a ^",FF
+	dc.b	"roll of quarters from",LF
+	dc.b	"me. I don't suppose  ^",FF
+	dc.b	"you know anything",LF
+	dc.b	"about that?",ETX
+
+	align 2
+DialogTextSVideoStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Nothing is missing",LF
+	dc.b	"from the shelves but ^",FF
+	dc.b	"there is something",LF
+	dc.b	"weird here. Movies   ^",FF
+	dc.b	"that don't sell get",LF
+	dc.b	"thrown out but first ^",FF
+	dc.b	"we run them through ",LF
+	dc.b	"a tape eraser. Keeps ^",FF
+	dc.b	"the dumpster divers",LF
+	dc.b	"away. Well overnight ^",FF
+	dc.b	"someone broke in and",LF
+	dc.b	"stole the eraser     ^",FF
+	dc.b	"out of our backroom.",LF
+	dc.b	"Who would do that?",ETX
+
+	align 2
+DialogTextNShackStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"It's been quiet here,",LF
+	dc.b	"nothing like that.",ETX
+
+	align 2
+DialogTextPogoDawgStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Dude. Did you say?",LF
+	dc.b	"Dude. Huh? Dude..",ETX
+
+	align 2
+DialogTextCPlanetStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_CPLANET_STAFF
+	;		"1234567890123456789012"
+	dc.b	"There are some boy",LF
+	dc.b	"band CDs that I wish ^",FF
+	dc.b	"would get stolen. Go",LF
+	dc.b	"ahead and take them.",ETX
+
+	align 2
+DialogTextCNowStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Nothing's missing from",LF
+	dc.b	"here but this reminds^",FF
+	dc.b	"me of a story from",LF
+	dc.b	"last summer..        ^",FF
+	dc.b	"[30 minutes pass]",LF
+	dc.b	"                     ^",FF
+	dc.b	".. he never said why",LF
+	dc.b	"he didn't call back.",ETX
+
+	align 2
+DialogTextFCBCheckoutStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_FCBCHECKOUT_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Shoplifters can't",LF
+	dc.b	"get past me.",ETX
+
+	align 2
+DialogTextFCBFirearmsStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Everything here is",LF
+	dc.b	"behind a glass case.",ETX
+
+	align 2
+DialogTextFCBFishingStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_FCBFISHING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Sorry, I haven't seen",LF
+	dc.b	"anything suspicious.",ETX
+
+	align 2
+DialogTextFCBCampingStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Why are you asking me",LF
+	dc.b	"about this?          ^",FF
+	dc.b	"Why do you think I",LF
+	dc.b	"know about it?",ETX
+
+	align 2
+DialogTextSouthCenterStaffDay02Sub01Talk:
+	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Funny you should ask.",LF
+	dc.b	"I swear someone has  ^",FF
+	dc.b	"been stealing from us",LF
+	dc.b	"at night. In the     ^",FF
+	dc.b	"morning we always seem",LF
+	dc.b	"to be missing a few  ^",FF
+	dc.b	"small things we locked",LF
+	dc.b	"up at close. I was   ^",FF
+	dc.b	"worried about rodents",LF
+	dc.b	"but could it be a    ^",FF
+	dc.b	"person taking things",LF
+	dc.b	"overnight?",ETX
+
+	align 2
+DialogTextWorkshopStaff0Day02Sub01Talk:
+	dc.w	OBJ_NPC_WORKSHOP_STAFF0
+	;		"1234567890123456789012"
+	dc.b	"I don't have time for",LF
+	dc.b	"this today.",ETX
+
+	align 2
+DialogTextWorkshopStaff1Day02Sub01Talk:
+	dc.w	OBJ_NPC_WORKSHOP_STAFF1
+	;		"1234567890123456789012"
+	dc.b	"Nothing unusual here.",LF
+	dc.b	"Why are you asking?",ETX
 
 	align 2
 DialogTextDaniScene05Day02:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2",ETX
+	dc.b	"That was some day.",LF
+	dc.b	"Pretty typical for   ^",FF
+	dc.b	"this time of year",LF
+	dc.b	"though. Let's go.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 03
@@ -1187,7 +1440,7 @@ DialogTextDaniScene05Day03:
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 04
-;-------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
 	align 2
 DialogTextDaniScene05Day04:
 	dc.w	OBJ_NPC_DANI
@@ -2576,6 +2829,22 @@ ItemDescriptionPCSimCity:
 	dc.b	"This looks way too",LF
 	dc.b	"complicated.",ETX
 
+ItemNameTenDollar:
+	;		"1234567890"
+	dc.b	"$10 bill",ITEMNAMEEND
+
+ItemDescriptionTenDollar:
+	;		"1234567890123456789012"
+	dc.b	"A crisp $10 bill.",ETX
+
+ItemNameQuarters:
+	;		"1234567890"
+	dc.b	"Quarters",ITEMNAMEEND
+
+ItemDescriptionQuarters:
+	;		"1234567890123456789012"
+	dc.b	"A roll of quarters.",ETX
+
 ;-------------------------------------------------------------------------------
 ; store signs
 ;-------------------------------------------------------------------------------
@@ -2855,7 +3124,7 @@ StatusScreenDay01Objective00:
 
 StatusScreenDay02Objective00:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"November 26, 1989: Running errands",LF
+	dc.b	"November 26, 1989: Missing items",LF
 	;		"1234567890123456789012345678901234567"
 	dc.b	"some stuff",LF
 	;		"1234567890123456789012345678901234567"
