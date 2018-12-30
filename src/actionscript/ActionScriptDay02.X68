@@ -34,6 +34,14 @@ Day02Scene00Action02:	; ACTION_TAKE_GIVE
 Day02Scene00Action02NPC:
 	cmpi.w	#OBJ_ITEM_QUARTERS,(MEM_ACTIVE_ITEM)	; test item
 	bne.s	Day02Scene00Action02NPCDefault	; branch if not quarters
+	; update NPCs
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.l	#$161A1200,(a5)	; update NPCs
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address 
+	move.l	#$00050000,(a5)	; update NPCs
 	; remove the item from the player's inventory
 	move.w	#OBJ_ITEM_QUARTERS,d7	; copy object ID to d7
 	bsr.w	RemoveItem	; remove the item
@@ -47,7 +55,6 @@ Day02Scene00Action02NPC:
 	lea	DialogTextGreenbergDay02Transition,a6	; load first text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT	
 	rts
-
 
 Day02Scene00Action02NPCDefault:
 	lea	DialogTextGreenbergDefaultGive,a6	; load text

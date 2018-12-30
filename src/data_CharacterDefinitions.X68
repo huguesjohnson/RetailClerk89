@@ -105,4 +105,7 @@ CharacterDefinitionNPCGuard0:
 CharacterDefinitionNPCTrendyGuy:
 	dc.l	NPCSpriteTrendyGuyTilesStart
 
+; 1A - OBJ_NPC_FEMALE_SHOPPER0
+CharacterDefinitionFemaleShopper0:
+	dc.l	NPCSpriteFemaleShopper0Start
 

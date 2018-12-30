@@ -296,7 +296,7 @@ NPCNameTable:
 	; OBJ_NPC_DANI
 	dc.l	NPCNameDani
 	; OBJ_NPC_MALE_SHOPPER0
-	dc.l	NPCNameMapperShopper0
+	dc.l	NPCNameMaleShopper0
 	; OBJ_NPC_GREENBERG
 	dc.l	NPCNameGreenberg
 	; OBJ_NPC_CENTER_STAFF
@@ -343,6 +343,8 @@ NPCNameTable:
 	dc.l	NPCNameGuard0
 	; OBJ_NPC_TRENDYGUY
 	dc.l	NPCNameTrendyGuy
+	; OBJ_NPC_FEMALE_SHOPPER0
+	dc.l	NPCNameGenericShopper
 	; OBJ_NPC_GENERICSHOPPER
 	dc.l	NPCNameGenericShopper
 NPCNameTableEnd:

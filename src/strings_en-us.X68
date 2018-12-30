@@ -1241,6 +1241,21 @@ DialogTextGreenbergDay02Transition:
 	dc.b	"worry, it'll be fine.",ETX
 
 	align 2
+DialogTextDay02Transition00:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I thought you said",LF
+	dc.b	"D.B. was meeting you ^",FF
+	dc.b	"here an hour ago?",LF
+	dc.b	"Your shift is over.",ETX
+
+	align 2
+DialogTextDay02Transition01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"He probably got lost.",ETX
+
+	align 2
 DialogTextDay02SubsNotComplete:
 	;		"1234567890123456789012"
 	dc.b	"There are still things",LF
@@ -2626,7 +2641,7 @@ NPCNameDani:
 NPCNameDB:
 	dc.b	"D.B.",NPCNAMEEND
 
-NPCNameMapperShopper0:
+NPCNameMaleShopper0:
 	dc.b	"Business casual guy",NPCNAMEEND
 
 NPCNameGreenberg:

@@ -539,6 +539,14 @@ ScriptedEventDay02ChangePC:
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
 	dc.w	SCENE_ID_DENIMCOUNTRY
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_RIGHT	; have the NPC face right
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay02Transition00
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay02Transition01
 	dc.w	SCRIPTED_EVENT_END
 
 ; ------------------------------------------------------------------------------

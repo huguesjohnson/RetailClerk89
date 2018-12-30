@@ -443,15 +443,19 @@ SpriteZeroTilesStart:
 SpriteZeroTilesEnd:
 
 PlayerSpriteTilesStart:
+	if _SPRITE_TILE_DEBUG_
+	include 'tiles/sprite-tiles/tileset_SpriteDebug.X68'
+	else
 	include 'tiles/sprite-tiles/tileset_PlayerDB.X68'
-	; swap for this tileset for the debug pattern
-	;include 'tiles/sprite-tiles/tileset_SpriteDebug.X68'
+	endif
 PlayerSpriteTilesEnd:
 
 NPCSpriteDaniTilesStart:
+	if _SPRITE_TILE_DEBUG_
+	include 'tiles/sprite-tiles/tileset_SpriteDebug.X68'
+	else
 	include 'tiles/sprite-tiles/tileset_PlayerDani.X68'
-	; swap for this tileset for the debug pattern
-	;include 'tiles/sprite-tiles/tileset_SpriteDebug.X68'
+	endif
 NPCSprite1TilesEnd:
 
 NPCSpriteMaleShopper0Start:
@@ -461,6 +465,10 @@ NPCSpriteMaleShopper0End:
 NPCSpriteGreenbergStart:
 	include 'tiles/sprite-tiles/tileset_NPCSprite3.X68'
 NPCSpriteGreenbergEnd:
+
+NPCSpriteFemaleShopper0Start:
+	include 'tiles/sprite-tiles/tileset_NPCSprite4.X68'
+NPCSpriteFemaleShopper0End:
 
 NPCSpriteSecretShopperTilesStart:
 	include 'tiles/sprite-tiles/tileset_NPCSpriteSecretShopper.X68'

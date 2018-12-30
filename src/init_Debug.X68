@@ -13,7 +13,7 @@
 	bset.l	#STORE_KEY_CHECKERS,d7
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)
 	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.l	#$03000000,(a5)	; update NPCs in scene 00
+	move.l	#$00030000,(a5)	; update NPCs in scene 00
 	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
 	mulu.w	#LWORD_SIZE,d7	; multiply by word size
 	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
@@ -46,6 +46,21 @@
 	bsr.w	AddItem	; add item to inventory
 	lea ScriptedEventDay02Start,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
+
+	;---------------------------------------------------------------------------
+	; used to test starting at the second half of day 2
+	;---------------------------------------------------------------------------
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_TBOOKS,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	move.w	#OBJ_ITEM_TEN_DOLLAR,d7	; copy item id to d7
+	bsr.w	RemoveItem	; remove item from inventory
+	move.w	#OBJ_ITEM_QUARTERS,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
+	move.l	(MEM_DAY_EVENT_FLAGS),d7
+	bset.l	#EVENT_FLAG_DAY02_SUB00_COMPLETE,d7	
+	bset.l	#EVENT_FLAG_DAY02_SUB01_COMPLETE,d7	
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)
 
 	;---------------------------------------------------------------------------
 	; used to test starting at day 1
