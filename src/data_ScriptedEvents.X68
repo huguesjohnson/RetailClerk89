@@ -549,6 +549,114 @@ ScriptedEventDay02ChangePC:
 	dc.l	DialogTextDay02Transition01
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay02Mid:
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; move Dani offscreen while screen is blank - change Y only
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0160
+	; --------------------------------------------------------------------------
+	; switch scenes
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_VB
+	; --------------------------------------------------------------------------
+	; move Dani onscreen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	$0040
+	; --------------------------------------------------------------------------
+	; move shopper to counter
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; npc1
+	dc.w	DIRECTION_LEFT
+	dc.w	$0028
+	dc.w	DIRECTION_UP
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; dialog between shopper and D.B.
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Mid00
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Mid01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Mid02
+	; --------------------------------------------------------------------------
+	; move Jordan to counter
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; npc2
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0060
+	dc.w	DIRECTION_UP
+	dc.w	$0060
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; dialog between Jordan and shopper
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Mid03
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; npc1
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Mid04
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Mid05
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Mid06
+	; --------------------------------------------------------------------------
+	; move shopper offscreen
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; npc1
+	dc.w	DIRECTION_DOWN
+	dc.w	$0090
+	; --------------------------------------------------------------------------
+	; move Dani up to counter
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_UP
+	dc.w	$0040
+	; --------------------------------------------------------------------------
+	; dialog between Dani and Jordan
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Mid07
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; npc2
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Mid08
+	; --------------------------------------------------------------------------
+	; move Jordan offscreen
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; npc2
+	dc.w	DIRECTION_DOWN
+	dc.w	$0090
+	; --------------------------------------------------------------------------
+	; dialog from Dani
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Mid09
+	dc.w	SCRIPTED_EVENT_END
+
 ; ------------------------------------------------------------------------------
 ; used to test scene and player sprite changes in scripted events
 ; ------------------------------------------------------------------------------

@@ -52,6 +52,8 @@ EVENT_FLAG_DAY02_SUB00_COMPLETE=$0	; sub-quest 0 in day 2 complete
 EVENT_FLAG_DAY02_SUB01_STARTED=$1	; sub-quest 1 in day 2 complete
 EVENT_FLAG_DAY02_SUB01_MID=$2	; sub-quest 1 in day 2 midpoint
 EVENT_FLAG_DAY02_SUB01_COMPLETE=$3	; player can re-enter after subquests complete
+EVENT_FLAG_DAY02_MID_EVENT=$4	; midpoint event complete
+EVENT_FLAG_DAY02_END_EVENT=$5	; end event complete
 
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 

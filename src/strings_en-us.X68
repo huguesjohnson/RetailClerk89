@@ -1499,6 +1499,149 @@ DialogTextWorkshopStaff1Day02Sub01Talk:
 	dc.b	"Why are you asking?",ETX
 
 	align 2
+DialogTextCheckersStaffDay02DaniTalkGood:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"There was secret",LF
+	dc.b	"shopper here last    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"week & our review was",LF
+	dc.b	"amazing. We're all   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"getting a big bonus.",LF
+	dc.b	"I'm spending mine to ^",FF
+	;		"1234567890123456789012"
+	dc.b	"make my New Years",LF
+	dc.b	"party the best ever.",ETX
+
+	align 2
+DialogTextCheckersStaffDay02DaniTalkMid:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I guess we had a ",LF
+	dc.b	"secret shopper last  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"week. I don't remember",LF
+	dc.b	"them at all.         ^",FF
+	;		"1234567890123456789012"
+	dc.b	"We did OK I guess. It",LF
+	dc.b	"could have been worse.",ETX
+
+	align 2
+DialogTextCheckersStaffDay02DaniTalkBad:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Be careful at your",LF
+	dc.b	"store. We just got a ^",FF
+	;		"1234567890123456789012"
+	dc.b	"really bad secret",LF
+	dc.b	"shopper review here. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Now we all have to",LF
+	dc.b	"take extra training.",ETX
+
+	align 2
+ScriptedEventDay02Mid00:
+	dc.w	OBJ_NPC_FEMALE_SHOPPER0
+	;		"1234567890123456789012"
+	dc.b	"I can't decide which",LF
+	dc.b	"game system to get my^",FF
+	;		"1234567890123456789012"
+	dc.b	"kids. They want the",LF
+	dc.b	"new 16-bit one. Is it^",FF
+	;		"1234567890123456789012"
+	dc.b	"this Turbo 16 one or",LF
+	dc.b	"the Sega Gemini?",ETX
+
+	align 2
+ScriptedEventDay02Mid01:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Yeah. The TuboGrafx",LF
+	dc.b	"has 16 right there   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"in the name so that's",LF
+	dc.b	"the right one.",ETX
+
+	align 2
+ScriptedEventDay02Mid02:
+	dc.w	OBJ_NPC_FEMALE_SHOPPER0
+	;		"1234567890123456789012"
+	dc.b	"Great, thanks. I'll ",LF
+	dc.b	"take it then.",ETX
+
+	align 2
+ScriptedEventDay02Mid03:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"No wait, you're making",LF
+	dc.b	"a terrible mistake.",ETX
+
+	align 2
+ScriptedEventDay02Mid04:
+	dc.w	OBJ_NPC_FEMALE_SHOPPER0
+	;		"1234567890123456789012"
+	dc.b	"Excuse me? What are",LF
+	dc.b	"you talking about?",ETX
+
+	align 2
+ScriptedEventDay02Mid05:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You have to believe me",LF
+	dc.b	"on this. In a year   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"you won't be able to",LF
+	dc.b	"find any games for   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"that thing. It'll be ",LF
+	dc.b	"complete waste.      ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I can't tell you how I",LF
+	dc.b	"know this, I just do.^",FF
+	;		"1234567890123456789012"
+	dc.b	"And if you don't",LF
+	dc.b	"listen to me your    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"kids will eventually",LF
+	dc.b	"be very disappointed.",ETX
+
+	align 2
+ScriptedEventDay02Mid06:
+	dc.w	OBJ_NPC_FEMALE_SHOPPER0
+	;		"1234567890123456789012"
+	dc.b	"This is too confusing.",LF
+	dc.b	"I'm leaving.",ETX
+
+	align 2
+ScriptedEventDay02Mid07:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"What's your problem?",LF
+	dc.b	"You just blew a sale.^",FF
+	;		"1234567890123456789012"
+	dc.b	"You need to mind your",LF
+	dc.b	"own business.",ETX
+
+	align 2
+ScriptedEventDay02Mid08:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I.. I'm sorry, I just",LF
+	dc.b	"don't like to see    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"people make mistakes",LF
+	dc.b	"they can't undo.",ETX
+
+	align 2
+ScriptedEventDay02Mid09:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I'm not done with that",LF
+	dc.b	"guy yet.",ETX
+
+; unused for the moment
+	align 2
 DialogTextDaniScene05Day02:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
@@ -1605,10 +1748,10 @@ DialogTextInfoDeskDay00R3:	; rumors
 DialogTextInfoDeskDay01R0:	; mall news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Holiday weekend hours",LF
-	dc.b	"start tomorrow.      ^",FF
-	dc.b	"All stores will stay",LF
-	dc.b	"open until 10:00.",ETX
+	dc.b	"It's secret shopper",LF
+	dc.b	"at the mall. All our ^",FF
+	dc.b	"stores are being rated",LF
+	dc.b	"by undercover experts.",ETX
 
 	align 2
 DialogTextInfoDeskDay01R1:	; events
@@ -1647,10 +1790,10 @@ DialogTextInfoDeskDay01R3:	; rumors
 DialogTextInfoDeskDay02R0:	; mall news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Day 02 mall news",LF
-	dc.b	"blah blah blah^",FF
-	dc.b	"blah blah blah",LF
-	dc.b	"blah blah blah.",ETX
+	dc.b	"December weekend ",LF
+	dc.b	"hours start soon.    ^",FF
+	dc.b	"All stores will stay",LF
+	dc.b	"open until 10:00.",ETX
 
 	align 2
 DialogTextInfoDeskDay02R1:	; events
@@ -1667,19 +1810,23 @@ DialogTextInfoDeskDay02R1:	; events
 DialogTextInfoDeskDay02R2:	; store news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Day 02 store news",LF
-	dc.b	"blah blah blah^",FF
-	dc.b	"blah blah blah",LF
-	dc.b	"blah blah blah.",ETX
+	dc.b	"Transistor Lodge is ",LF
+	dc.b	"getting all kinds of ^",FF
+	dc.b	"exciting new products",LF
+	dc.b	"just in time for Xmas.",ETX
 
 	align 2
 DialogTextInfoDeskDay02R3:	; rumors
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"I really shouldn't",LF
-	dc.b	"tell you this but..  ^",FF
-	dc.b	"Day 02 rumor",LF
-	dc.b	"blah blah blah.",ETX
+	dc.b	"You're friends with",LF
+	dc.b	"Charles right?       ^",FF
+	;		"1234567890123456789012"
+	dc.b	"It's not my business",LF
+	dc.b	"but he seems really  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"upset every time I see",LF
+	dc.b	"him. I hope he's OK.",ETX
 
 ;-------------------------------------------------------------------------------
 ; default object descriptions

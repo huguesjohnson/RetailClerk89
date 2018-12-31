@@ -42,6 +42,11 @@ Day02Scene00Action02NPC:
 	mulu.w	#LWORD_SIZE,d7	; multiply by word size
 	adda.l	d7,a5	; move a5 to the address 
 	move.l	#$00050000,(a5)	; update NPCs
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_FCBCAMPING,d7	; copy scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address 
+	move.l	#$00000000,(a5)	; update NPCs
 	; remove the item from the player's inventory
 	move.w	#OBJ_ITEM_QUARTERS,d7	; copy object ID to d7
 	bsr.w	RemoveItem	; remove the item
@@ -49,6 +54,8 @@ Day02Scene00Action02NPC:
 	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
 	bset.l	#STORE_KEY_VB,d7	; set key
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save keys
+	; clear all mission flags
+	and.l #$00000000,(MEM_MISSION_EVENT_FLAGS)
 	; queue the scripted event
 	lea ScriptedEventDay02ChangePC,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -331,6 +338,28 @@ Day02Scene09Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day02Scene09Action01NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	bne.s	Day02Scene09Action01NPCDB ; branch	
+Day02Scene09Action01NPCDani:
+	move.w	(MEM_CUSTOMER_FEEDBACK_SCORE),d7	; copy feedback score to d7
+	cmpi.w	#$0000,d7	; is the score zero
+	beq.s	Day02Scene09Action01NPCDaniBad ; branch if 0
+	cmpi.w	#$0003,d7	; is the score zero
+	beq.s	Day02Scene09Action01NPCDaniGood ; branch if 3
+	; else use default
+Day02Scene09Action01NPCDaniMid:
+	lea	DialogTextCheckersStaffDay02DaniTalkMid,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene09Action01NPCDaniBad:
+	lea	DialogTextCheckersStaffDay02DaniTalkBad,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene09Action01NPCDaniGood:
+	lea	DialogTextCheckersStaffDay02DaniTalkGood,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene09Action01NPCDB:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
 	btst.l	#EVENT_FLAG_DAY02_SUB01_STARTED,d7	; test if sub 01 is started
 	beq.s	Day02Scene09Action01NPCDefault	; sub 01 not started, branch

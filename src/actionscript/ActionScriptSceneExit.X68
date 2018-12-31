@@ -132,6 +132,12 @@ ExitScene01Day02:
 	beq.s	ExitScene01Day02CantExit	; flag not set, branch
 	btst.l	#EVENT_FLAG_DAY02_SUB01_COMPLETE,d7	; test if flag is set
 	beq.s	ExitScene01Day02CantExit	; flag not set, branch
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is
+	bne.s	ExitScene01Day02Default	; branch to default handler
+	; test if the midpoint scripted event needs to run	
+	btst.l	#EVENT_FLAG_DAY02_MID_EVENT,d7	; test if flag is set
+	beq.s	ExitScene01Day02ScriptedEvent	; flag not set, branch
+ExitScene01Day02Default:
 	bra.w	DefaultExitScene	; use default handler
 	rts	
 ExitScene01Day02CantExit:
@@ -139,6 +145,13 @@ ExitScene01Day02CantExit:
 	lea	DialogTextDay02SubsNotComplete,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening
+	rts
+ExitScene01Day02ScriptedEvent:
+	bset.l	#EVENT_FLAG_DAY02_MID_EVENT,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save event flags	
+	; queue the scripted event
+	lea ScriptedEventDay02Mid,a6	; point a6 to event to load
+	bsr.w	QueueScriptedEvent	; queue the event
 	rts
 
 ;-------------------------------------------------------------------------------
