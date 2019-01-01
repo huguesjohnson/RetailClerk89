@@ -1560,15 +1560,20 @@ ScriptedEventDay02Mid01:
 	dc.b	"Yeah. The TuboGrafx",LF
 	dc.b	"has 16 right there   ^",FF
 	;		"1234567890123456789012"
-	dc.b	"in the name so that's",LF
-	dc.b	"the right one.",ETX
+	dc.b	"in the name & is $10",LF
+	dc.b	"cheaper making it the^",FF
+	;		"1234567890123456789012"
+	dc.b	"more family budget",LF
+	dc.b	"friendly option.",ETX
 
 	align 2
 ScriptedEventDay02Mid02:
 	dc.w	OBJ_NPC_FEMALE_SHOPPER0
 	;		"1234567890123456789012"
-	dc.b	"Great, thanks. I'll ",LF
-	dc.b	"take it then.",ETX
+	dc.b	"Wow, that's exactly",LF
+	dc.b	"what I wanted hear.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I'll take it then.",ETX
 
 	align 2
 ScriptedEventDay02Mid03:
@@ -3507,7 +3512,7 @@ LegalScreenLine00:
 	dc.b	"           Retail Clerk '89           ",ETX
 LegalScreenLine01:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Copyright (c) 2015-2018 Hugues Johnson",ETX
+	dc.b	"Copyright (c) 2015-2019 Hugues Johnson",ETX
 LegalScreenLine02:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"This demo is not licensed by Sega     ",ETX
