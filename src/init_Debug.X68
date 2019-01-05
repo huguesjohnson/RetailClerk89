@@ -44,8 +44,8 @@
 	and.l	#$00000000,(MEM_SCENE_BGM)	; clear the background music reference
 	move.w	#OBJ_ITEM_TEN_DOLLAR,d7	; copy item id to d7
 	bsr.w	AddItem	; add item to inventory
-	lea ScriptedEventDay02Start,a6	; point a6 to event to load
-	bsr.w QueueScriptedEvent	; queue the event
+;	lea ScriptedEventDay02Start,a6	; point a6 to event to load
+;	bsr.w QueueScriptedEvent	; queue the event
 
 	;---------------------------------------------------------------------------
 	; used to test starting at the second half of day 2
@@ -61,6 +61,23 @@
 	bset.l	#EVENT_FLAG_DAY02_SUB00_COMPLETE,d7	
 	bset.l	#EVENT_FLAG_DAY02_SUB01_COMPLETE,d7	
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)
+
+	;---------------------------------------------------------------------------
+	; used to test end of day 02
+	;---------------------------------------------------------------------------
+	; update NPCs in SCENE_VB
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.l	#$16000000,(a5)	; update NPCs
+	move.l	(MEM_DAY_EVENT_FLAGS),d7
+	bset.l	#EVENT_FLAG_DAY02_SUB02_COMPLETE,d7	
+	bset.l	#EVENT_FLAG_DAY02_MID_EVENT,d7
+	bset.l	#EVENT_FLAG_DAY02_SUB02_STARTED,d7
+	bset.l	#EVENT_FLAG_DAY02_SUB02_MID,d7	
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)
+	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_VB,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
 
 	;---------------------------------------------------------------------------
 	; used to test starting at day 1

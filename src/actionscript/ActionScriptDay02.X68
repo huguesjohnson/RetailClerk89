@@ -8,6 +8,8 @@ Day02Scene00Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
 	beq.s	Day02Scene00Action01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DB,d6	; test target
+	beq.s	Day02Scene00Action01NPCDB	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -22,6 +24,40 @@ Day02Scene00Action01NPC:
 Day02Scene00Action01NPCSub00Complete:
 	lea	DialogTextGreenbergDay02Sub00Complete,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene00Action01NPCDB:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY02_SUB02_COMPLETE,d7	; test for event flag
+	bne.s	Day02Scene00Action01NPCDBCompleted	; flag set, branch
+	btst.l	#EVENT_FLAG_DAY02_SUB02_MID,d7	; test for event flag
+	bne.s	Day02Scene00Action01NPCDBMid	; flag set, branch
+	; default
+	lea	DialogTextDBDay02Sub02StartedTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene00Action01NPCDBMid:
+	lea	DialogTextDBDay02Sub02MidTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene00Action01NPCDBCompleted:
+	; the mall is now closed
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
+	move.l	d7,(MEM_GAME_STATE)	; save game state
+	; update NPCs
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.l	#$00000000,(a5)	; update NPCs in scene 00
+	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
+	move.l	#$01000000,(a5)	; update NPCs in parking lot
+	; clear all mission flags
+	and.l #$00000000,(MEM_MISSION_EVENT_FLAGS)
+	; queue the scripted event
+	lea ScriptedEventDay02Night01,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	ScriptedEventDay02Sub02End00,a6	; load first text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT	
 	rts
 Day02Scene00Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
@@ -62,7 +98,6 @@ Day02Scene00Action02NPC:
 	lea	DialogTextGreenbergDay02Transition,a6	; load first text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT	
 	rts
-
 Day02Scene00Action02NPCDefault:
 	lea	DialogTextGreenbergDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -176,8 +211,29 @@ Day02Scene04Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day02Scene04Action01:	; ACTION_USE_TALK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_FCBCAMPING_STAFF,d6	; test target
+	beq.s	Day02Scene04Action01NPC	; branch to text for the NPC
+	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene04Action01NPC:
+	; update game state
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	bset.l	#EVENT_FLAG_DAY02_SUB02_COMPLETE,d7	; set sub 02 complete
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; update NPCs in the south hall
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_SHALL,d7	; copy scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address 
+	move.l	#$00000000,(a5)	; update NPCs
+	; queue the scripted event
+	lea ScriptedEventDay02Night00,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	ScriptedEventDay02Sub02Mid00,a6	; load first text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT	
 	rts
 Day02Scene04Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
@@ -344,8 +400,8 @@ Day02Scene09Action01NPCDani:
 	move.w	(MEM_CUSTOMER_FEEDBACK_SCORE),d7	; copy feedback score to d7
 	cmpi.w	#$0000,d7	; is the score zero
 	beq.s	Day02Scene09Action01NPCDaniBad ; branch if 0
-	cmpi.w	#$0003,d7	; is the score zero
-	beq.s	Day02Scene09Action01NPCDaniGood ; branch if 3
+	cmpi.w	#$0004,d7	; is the score four 
+	beq.s	Day02Scene09Action01NPCDaniGood ; branch if 4
 	; else use default
 Day02Scene09Action01NPCDaniMid:
 	lea	DialogTextCheckersStaffDay02DaniTalkMid,a6	; load text
@@ -887,6 +943,8 @@ Day02Scene13Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day02Scene13Action01NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	beq.s	Day02Scene13Action01NPCDani
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
 	btst.l	#EVENT_FLAG_DAY02_SUB01_STARTED,d7	; test if sub 01 is started
 	beq.s	Day02Scene13Action01NPCDefault	; sub 01 not started, branch
@@ -894,6 +952,21 @@ Day02Scene13Action01NPC:
 	bne.s	Day02Scene13Action01NPCDefault	; sub 01 is complete, branch
 	; use the sub 01 dialog
 	lea	DialogTextFCBCheckoutStaffDay02Sub01Talk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene13Action01NPCDani:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY02_SUB02_STARTED,d7	; test if sub 02 is started
+	beq.s	Day02Scene13Action01NPCDefault	; sub 02 not started, branch
+	btst.l	#EVENT_FLAG_DAY02_SUB02_COMPLETE,d7	; test if sub 02 is complete
+	bne.s	Day02Scene13Action01NPCDefault	; sub 02 is complete, branch
+	; update mission flags
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	bset.l	#MISSION_FLAG_DAY02_SUB02_D0,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	bsr.w	Day02TestSub02Mid	; check if mid flag should be set
+	; use the sub 02 dialog
+	lea	DialogTextFCBCheckoutStaffDay02Sub02Talk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day02Scene13Action01NPCDefault:
@@ -932,6 +1005,8 @@ Day02Scene14Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day02Scene14Action01NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	beq.s	Day02Scene14Action01NPCDani
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
 	btst.l	#EVENT_FLAG_DAY02_SUB01_STARTED,d7	; test if sub 01 is started
 	beq.s	Day02Scene14Action01NPCDefault	; sub 01 not started, branch
@@ -939,6 +1014,21 @@ Day02Scene14Action01NPC:
 	bne.s	Day02Scene14Action01NPCDefault	; sub 01 is complete, branch
 	; use the sub 01 dialog
 	lea	DialogTextFCBFirearmsStaffDay02Sub01Talk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene14Action01NPCDani:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY02_SUB02_STARTED,d7	; test if sub 02 is started
+	beq.s	Day02Scene14Action01NPCDefault	; sub 02 not started, branch
+	btst.l	#EVENT_FLAG_DAY02_SUB02_COMPLETE,d7	; test if sub 02 is complete
+	bne.s	Day02Scene14Action01NPCDefault	; sub 02 is complete, branch
+	; update mission flags
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	bset.l	#MISSION_FLAG_DAY02_SUB02_D1,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	bsr.w	Day02TestSub02Mid	; check if mid flag should be set
+	; use the sub 02 dialog
+	lea	DialogTextFCBFirearmsStaffDay02Sub02Talk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day02Scene14Action01NPCDefault:
@@ -977,6 +1067,8 @@ Day02Scene15Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day02Scene15Action01NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test main character
+	beq.s	Day02Scene15Action01NPCDani
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
 	btst.l	#EVENT_FLAG_DAY02_SUB01_STARTED,d7	; test if sub 01 is started
 	beq.s	Day02Scene15Action01NPCDefault	; sub 01 not started, branch
@@ -984,6 +1076,21 @@ Day02Scene15Action01NPC:
 	bne.s	Day02Scene15Action01NPCDefault	; sub 01 is complete, branch
 	; use the sub 01 dialog
 	lea	DialogTextFCBFishingStaffDay02Sub01Talk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene15Action01NPCDani:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY02_SUB02_STARTED,d7	; test if sub 02 is started
+	beq.s	Day02Scene15Action01NPCDefault	; sub 02 not started, branch
+	btst.l	#EVENT_FLAG_DAY02_SUB02_COMPLETE,d7	; test if sub 02 is complete
+	bne.s	Day02Scene15Action01NPCDefault	; sub 02 is complete, branch
+	; update mission flags
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	bset.l	#MISSION_FLAG_DAY02_SUB02_D2,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	bsr.w	Day02TestSub02Mid	; check if mid flag should be set
+	; use the sub 02 dialog
+	lea	DialogTextFCBFishingStaffDay02Sub02Talk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day02Scene15Action01NPCDefault:
@@ -1121,9 +1228,37 @@ ExitDay02TestSub01Complete:
 	rts
 
 ;-------------------------------------------------------------------------------
+; test if all the events of sub 02 are complete
+;-------------------------------------------------------------------------------
+Day02TestSub02Mid:
+	; the 3 places this is called from all have MEM_MISSION_EVENT_FLAGS in d7
+;	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	btst.l	#MISSION_FLAG_DAY02_SUB02_D0,d7	; test if flag is set
+	beq.s	ExitDay02TestSub02Complete	; not set, branch
+	btst.l	#MISSION_FLAG_DAY02_SUB02_D1,d7	; test if flag is set
+	beq.s	ExitDay02TestSub02Complete	; not set, branch
+	btst.l	#MISSION_FLAG_DAY02_SUB02_D2,d7	; test if flag is set
+	beq.s	ExitDay02TestSub02Complete	; not set, branch
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	bset.l	#EVENT_FLAG_DAY02_SUB02_MID,d7	; set event complete flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save day event flags
+	; move npc to south hall
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_SHALL,d7	; copy scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address 
+	move.l	#$12000000,(a5)	; update NPCs
+ExitDay02TestSub02Complete:
+	rts
+
+;-------------------------------------------------------------------------------
 ; end day 02
 ;-------------------------------------------------------------------------------
 Day02End:
+
+	bsr.w	EndGame	; end the game
+	rts
+
 	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
 	;---------------------------------------------------------------------------	
 	; update NPC locations
@@ -1174,8 +1309,8 @@ Day02End:
 	;---------------------------------------------------------------------------	
 	; queue the scripted event that starts day 3
 	;---------------------------------------------------------------------------	
-	lea ScriptedEventDay02Start,a6	; point a6 to event to load
-	bsr.w QueueScriptedEvent	; queue the event
+;	lea ScriptedEventDay02Start,a6	; point a6 to event to load
+;	bsr.w QueueScriptedEvent	; queue the event
 	rts
 
 

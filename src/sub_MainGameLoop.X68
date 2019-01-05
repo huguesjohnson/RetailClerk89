@@ -22,7 +22,7 @@ TestPauseToggle:
 Pause:
 	bset.l	#STATE_FLAG_PAUSED,d7	; set the paused bit
 	; flip to paused palette
-	bsr	Echo_StopBGM	; pause the background music
+	jsr	Echo_StopBGM	; pause the background music
 SetPausedPalette:
 	bsr.w	WaitVBlank	; wait to load palettes until VBlank
 	lea	(MEM_SCENE_PALETTE),a0	; point a0 to the scene palette
@@ -38,7 +38,7 @@ SetPausedPaletteLoop:
 	bra.s	UpdatePause	; save the paused state
 Unpause:
 	bclr.l	#STATE_FLAG_PAUSED,d7	; clear the paused bit
-	bsr	Echo_ResumeBGM	; unpause the background music
+	jsr	Echo_ResumeBGM	; unpause the background music
 	bsr.w	WaitVBlank	; wait to load palettes until VBlank
 	lea	(MEM_SCENE_PALETTE),a0	; point to scene palette
 	moveq	#$0004,d0	; number of palettes to load

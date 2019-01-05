@@ -657,6 +657,80 @@ ScriptedEventDay02Mid:
 	dc.l	ScriptedEventDay02Mid09
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay02Night00:
+	dc.w	$0002	; npc0
+	; --------------------------------------------------------------------------
+	; dialog between Dani and Jordan
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Sub02Mid01
+	; --------------------------------------------------------------------------
+	; move Jordan offscreen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	$0020
+	dc.w	DIRECTION_UP
+	dc.w	$008A
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay02Night01:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; move Dani offscreen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	$0060
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0030
+	dc.w	DIRECTION_DOWN
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; dialog from D.B.
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; npc1
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	ScriptedEventDay02Sub02End01
+	; --------------------------------------------------------------------------
+	; move D.B. offscreen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	$0060
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0030
+	dc.w	DIRECTION_DOWN
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change & move player sprite
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DB
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_WWHALL
+	; --------------------------------------------------------------------------
+	; move player sprite down a few steps
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_DOWN
+	dc.w	$0008
+	dc.w	SCRIPTED_EVENT_END
+
 ; ------------------------------------------------------------------------------
 ; used to test scene and player sprite changes in scripted events
 ; ------------------------------------------------------------------------------

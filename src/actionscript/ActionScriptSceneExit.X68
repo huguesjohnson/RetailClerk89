@@ -87,6 +87,8 @@ ExitScene00:
 	beq.s	ExitScene00Day00	; branch to day 0
 	cmpi.w	#$0001,(MEM_DAY)
 	beq.s	ExitScene00Day01	; branch to day 1
+	cmpi.w	#$0002,(MEM_DAY)
+	beq.s	ExitScene00Day02	; branch to day 2
 	bsr.w	DefaultExitScene	; use default handler
 	rts
 ExitScene00Day00:
@@ -112,6 +114,16 @@ ExitScene00Day01:
 	bsr.w	SetDialogOpening	; open the dialog
 	rts	; exit
 ExitScene00Day01CanExit:
+	bsr.w	DefaultExitScene	; use default handler
+	rts	; exit
+ExitScene00Day02:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY02_MID_EVENT,d7	; test if flag is set
+	beq.s	ExitScene00Day02Default	; flag not set, branch
+	; update NPCs in SCENE_VB
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.l	#$16000000,(a5)	; update NPCs
+ExitScene00Day02Default:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
@@ -148,6 +160,7 @@ ExitScene01Day02CantExit:
 	rts
 ExitScene01Day02ScriptedEvent:
 	bset.l	#EVENT_FLAG_DAY02_MID_EVENT,d7	; set flag
+	bset.l	#EVENT_FLAG_DAY02_SUB02_STARTED,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save event flags	
 	; queue the scripted event
 	lea ScriptedEventDay02Mid,a6	; point a6 to event to load

@@ -42,7 +42,7 @@ TitleScreenTextFooter:
 	else
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Story Demo: Days 1-2 (January 2019)  ",ETX
+	dc.b	" Story Demo: Days 1-3 (January 2019)  ",ETX
 	endif
 
 ;-------------------------------------------------------------------------------
@@ -822,6 +822,7 @@ DialogTextDay01Sub00NPC2DefaultTalk:
 	dc.b	"I don't have forever,",LF
 	dc.b	"show me something.",ETX
 
+	align 2
 MenuMannequinSub00NPC2Show:
 	;		"1234567890123456789012"
 	dc.b	"Show this suit to the",LF
@@ -829,6 +830,7 @@ MenuMannequinSub00NPC2Show:
 	dc.b	"{Show to customer",LF
 	dc.b	"{Nevermind",ETX
 
+	align 2
 MenuMannequinSub00NPC2ShowCancel:
 	;		"1234567890123456789012"
 	dc.b	"He looks like he's",LF
@@ -836,7 +838,7 @@ MenuMannequinSub00NPC2ShowCancel:
 
 	align 2
 DialogTextDay01Sub00NPC2D1:
-	dc.w	OBJ_NPC_GENERICSHOPPER
+;	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
 	dc.b	"All wrong. I",LF
 	dc.b	"need something nobody^",FF
@@ -845,7 +847,7 @@ DialogTextDay01Sub00NPC2D1:
 
 	align 2
 DialogTextDay01Sub00NPC2D2:
-	dc.w	OBJ_NPC_DANI
+;	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Here, this one is,   ",LF
 	dc.b	"really something.",ETX
@@ -1645,7 +1647,97 @@ ScriptedEventDay02Mid09:
 	dc.b	"I'm not done with that",LF
 	dc.b	"guy yet.",ETX
 
-; unused for the moment
+	align 2
+DialogTextFCBCheckoutStaffDay02Sub02Talk:
+	dc.w	OBJ_NPC_FCBCHECKOUT_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I think I'd notice if",LF
+	dc.b	"he left & came back. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Why are you looking at",LF
+	dc.b	"me like that?        ^",FF
+	;		"1234567890123456789012"
+	dc.b	"OK, fine. I was asleep",LF
+	dc.b	"for the past hour.",ETX
+
+	align 2
+DialogTextFCBFirearmsStaffDay02Sub02Talk:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"That guy never talks",LF
+	dc.b	"to me.               ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I don't care where he",LF
+	dc.b	"is.",ETX
+
+	align 2
+DialogTextFCBFishingStaffDay02Sub02Talk:
+	dc.w	OBJ_NPC_FCBFISHING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I haven't seen him",LF
+	dc.b	"since he went on his ^",FF
+	;		"1234567890123456789012"
+	dc.b	"30-minute break. He's",LF
+	dc.b	"usually back by now.",ETX
+
+	align 2
+DialogTextDBDay02Sub02StartedTalk:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I think that guy works",LF
+	dc.b	"next door.",ETX
+
+	align 2
+DialogTextDBDay02Sub02MidTalk:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"He hasn't gone back to",LF
+	dc.b	"his store yet.       ^",FF
+	;		"1234567890123456789012"
+	dc.b	"He must be somewhere",LF
+	dc.b	"else in the mall.",ETX
+
+	align 2
+ScriptedEventDay02Sub02Mid00:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Hey, you can mess up",LF
+	dc.b	"your own store all   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"you want by leave my",LF
+	dc.b	"brother alone.       ^",FF
+	;		"1234567890123456789012"
+	dc.b	"He's trying to save",LF
+	dc.b	"for college and can't^",FF
+	;		"1234567890123456789012"
+	dc.b	"afford to lose",LF
+	dc.b	"another job.",ETX
+
+	align 2
+ScriptedEventDay02Sub02Mid01:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"OK, I'm sorry.",LF
+	dc.b	"I just..             ^",FF
+	dc.b	"It won't happen again.",ETX
+
+	align 2
+ScriptedEventDay02Sub02End00:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Alright, I found him.",LF
+	dc.b	"Let me know if he    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"bugs you again. Finish",LF
+	dc.b	"closing & let's leave.",ETX
+
+	align 2
+ScriptedEventDay02Sub02End01:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"ok.. so F9 then 'Y'.",LF
+	dc.b	"I think that's right.",ETX
+
 	align 2
 DialogTextDaniScene05Day02:
 	dc.w	OBJ_NPC_DANI
@@ -3198,27 +3290,27 @@ Day02IntroText:
 
 Day02IntroTip0:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 0",ETX
+	dc.b	"Store keys let you enter a store after",ETX
 
 Day02IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 1",ETX
+	dc.b	"the mall is closed and borrow items",ETX
 
 Day02IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 2",ETX
+	dc.b	"Keys can be earned by completing tasks",ETX
 
 Day02IntroTip3:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 3",ETX
+	dc.b	"that help the store",ETX
 
 Day02IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 4",ETX
+	dc.b	"Try talking to other mall employees to",ETX
 
 Day02IntroTip5:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 5",ETX
+	dc.b	"see who needs help each day.",ETX
 
 Day03IntroText:
 	;		"1234567890123456789012345678901234567890"
@@ -3395,9 +3487,9 @@ StatusScreenDay02Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"November 26, 1989: Missing items",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some stuff",LF
+	dc.b	"It won't hurt to talk to everyone",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some more stuff",ETX
+	dc.b	"in the mall today.",ETX
 
 StatusScreenDay03Objective00:
 	;		"12345678901234567890123456789012345678"
