@@ -5,7 +5,7 @@
 ;-------------------------------------------------------------------------------
 ; these are effectively conditional compilation directives
 ;-------------------------------------------------------------------------------
-_DEBUG_=$0	; enable/disable debug mode
+_DEBUG_=$1	; enable/disable debug mode
 _EMULATOR_DIAGNOSTICS_=$0	; enable/disable emulator diagnostic mode
 _SPRITE_TILE_DEBUG_=$0	; enable/disable debug sprite tiles
 _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
@@ -29,7 +29,7 @@ INTRO_SCREEN_COUNTER_START=$001E	; how long to display intro screens
 FADE_FRAME_DELAY=$0003	; how many frames to wait between fade in/out
 EVENT_FRAME_DELAY=$0009	; delay used for scripted event scene changes
 LEGAL_SCREEN_LOOP=$0100	; how long to display the legal screen
-CREDITS_SCREEN_LOOP=$0168	; how long to display the credits screen
+CREDITS_SCREEN_LOOP=$0258	; how long to display the credits screen
 	endif
 
 ;-------------------------------------------------------------------------------

@@ -1255,10 +1255,6 @@ ExitDay02TestSub02Complete:
 ; end day 02
 ;-------------------------------------------------------------------------------
 Day02End:
-
-	bsr.w	EndGame	; end the game
-	rts
-
 	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
 	;---------------------------------------------------------------------------	
 	; update NPC locations
@@ -1279,6 +1275,11 @@ Day02End:
 	mulu.w	#LWORD_SIZE,d7	; multiply by word size
 	adda.l	d7,a5	; move a5 to the address 
 	move.l	#$05010000,(a5)	; update NPCs
+	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
+	move.w	#SCENE_ID_FCBCAMPING,d7	; copy scene ID to d7
+	mulu.w	#LWORD_SIZE,d7	; multiply by word size
+	adda.l	d7,a5	; move a5 to the address 
+	move.l	#$12000000,(a5)	; update NPCs
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	
