@@ -355,16 +355,8 @@ Day01Scene08Action01Dani:
 	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 	; update NPC locations
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
-	move.l	#$01000000,(a5)	; update NPCs in parking lot
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy denim country scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
-	move.l	#$05000000,(a5)	; update NPCs in denim country
+	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	; queue scripted event
 	lea ScriptedEventDay01End,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -962,11 +954,7 @@ Day01Scene0CAction02NPC:
 	bset.l	#MISSION_FLAG_DAY01_SUB02_D0,d7	; set flag
 	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
 	; move the night guard back into the map	
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
-	move.l	#$18000000,(a5)	; update NPCs in east-east hall
+	move.l	#$18000000,(MEM_NPC_LOCATION_EEHALL)
 	; show the response message
 	lea	DialogTextDay01Sub02D0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -1394,27 +1382,10 @@ Day01End:
 	;---------------------------------------------------------------------------	
 	; update NPC locations
 	;---------------------------------------------------------------------------	
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.l	#$03000000,(a5)	; update NPCs in scene 00
-	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
-	and.l	#$00000000,(a5)	; update NPCs in parking lot
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
-	and.l	#$00000000,(a5)	; update NPCs in east-east hall
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_CHECKERS,d7	; copy east-east hall scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
-	move.l	#$06000000,(a5)	; update NPCs in checkers
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address 
-	move.l	#$05010000,(a5)	; update NPCs
+	move.l	#$00000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
+	move.l	#$06000000,(MEM_NPC_LOCATION_CHECKERS)
+	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	

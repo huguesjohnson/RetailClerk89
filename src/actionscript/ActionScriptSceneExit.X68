@@ -121,8 +121,7 @@ ExitScene00Day02:
 	btst.l	#EVENT_FLAG_DAY02_MID_EVENT,d7	; test if flag is set
 	beq.s	ExitScene00Day02Default	; flag not set, branch
 	; update NPCs in SCENE_VB
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.l	#$16000000,(a5)	; update NPCs
+	move.l	#$16000000,(MEM_NPC_LOCATION_VB)	; update NPCs
 ExitScene00Day02Default:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
@@ -353,14 +352,9 @@ ExitScene17Default: ; ok to exit scene
 ExitSceneDay01SwitchPC:
 	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission flags
 	; scene changes after this event, need to remove DB as an NPC in scene 00
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.l	#$03000000,(a5)	; update NPCs in scene 00
+	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
 	; Dani is now an NPC again
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address 
-	move.l	#$05010000,(a5)	; update NPCs
+	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	; queue the scripted event
 	lea ScriptedEventDay01ChangePC,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event

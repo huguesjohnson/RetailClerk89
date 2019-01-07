@@ -91,11 +91,7 @@ Day00Scene00Register:
 	lea ScriptedEventDay00Exit,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
 	; update NPC locations
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
-	move.l	#$01000000,(a5)	; update NPCs in parking lot
+	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
 	lea	DialogTextRegisterDay0Use,a6	; load dialog text
 	bra.s	Day00Scene00Action01CopyDialogText	; branch to setup dialog
 Day00Scene00Action01NPCGreenberg:
@@ -709,22 +705,10 @@ Day00End:
 	;---------------------------------------------------------------------------	
 	; update NPC locations
 	;---------------------------------------------------------------------------	
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.l	#$03160000,(a5)	; update NPCs in scene 00
-	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
-	and.l	#$00000000,(a5)	; update NPCs in parking lot
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
-	and.l	#$00000000,(a5)	; update NPCs in east-east hall
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_CHECKERS,d7	; copy checkers scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for checkers NPCs
-	move.l	#$06021719,(a5)	; update NPCs in checkers
+	move.l	#$03160000,(MEM_NPC_LOCATION_VB)
+	move.l	#$00000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
+	move.l	#$06021719,(MEM_NPC_LOCATION_CHECKERS)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	
