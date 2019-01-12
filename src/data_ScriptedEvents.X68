@@ -731,6 +731,39 @@ ScriptedEventDay02Night01:
 	dc.w	$0008
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay03Start:
+	; --------------------------------------------------------------------------
+	; move Jordan onto the screen
+	; --------------------------------------------------------------------------
+	dc.w	$0002	; npc0
+	dc.w	DIRECTION_LEFT
+	dc.w	($01F0-$0108)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	; --------------------------------------------------------------------------
+	; move D.B. onto the screen
+	; --------------------------------------------------------------------------
+	dc.w	$0001	; player
+	dc.w	DIRECTION_DOWN
+	dc.w	($00A5-$0064)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	; --------------------------------------------------------------------------
+	; have the sprites face each other
+	; --------------------------------------------------------------------------
+	dc.w	$0002	; npc0
+	dc.w	DIRECTION_UP
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScriptedEventDay03Start
+	; --------------------------------------------------------------------------
+	; move Jordan off the screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($0180-$0070)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
 ; ------------------------------------------------------------------------------
 ; used to test scene and player sprite changes in scripted events
 ; ------------------------------------------------------------------------------

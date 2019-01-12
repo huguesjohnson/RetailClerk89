@@ -493,9 +493,18 @@ StoreNameTable:
 ; status screen objectives
 ;-------------------------------------------------------------------------------
 StatusScreenObjectives:
+	; 00 = day 00
 	dc.l	StatusScreenDay00Objective00
+	; 01 = day 01 - first half
 	dc.l	StatusScreenDay01Objective00
+	; 02 = day 01 - second half
+	dc.l	StatusScreenDay01Objective01
+	; 03 = day 02 - first half
 	dc.l	StatusScreenDay02Objective00
+	; 04 = day 02 - start of second half
+	dc.l	StatusScreenDay02Objective01
+	; 05 = day 02 - end of second half
+	dc.l	StatusScreenDay02Objective02
 	dc.l	StatusScreenDay03Objective00
 	dc.l	StatusScreenDay04Objective00
 	dc.l	StatusScreenDay05Objective00

@@ -45,6 +45,7 @@ MEM_ACTIVE_ITEM,2,item that is currently being used
 MEM_NPC_LOCATIONS,96,table to track where NPCs are located
 MEM_INTRO_SCENE_COUNTER,2,counter for displaying the intro screen
 MEM_DAY,2,what day is it in the story
+MEM_OBJECTIVE,2,which text to show on objectives
 MEM_PLAYER_SPRITE,2,which sprite to use for the player
 MEM_DAY_EVENT_FLAGS,4,track events in the current day
 MEM_MISSION_EVENT_FLAGS,4,track events in the current mission

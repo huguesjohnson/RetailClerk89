@@ -715,6 +715,7 @@ Day00End:
 	bsr.w	ClearPlayerInventory	; clear player inventory
 	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
 	move.w	#$0001,(MEM_DAY)	; move to day 01
+	add.w	#$0001,(MEM_OBJECTIVE)	; increment objective
 	move.l	(MEM_GAME_STATE),d7	; copy game state
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
 	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag

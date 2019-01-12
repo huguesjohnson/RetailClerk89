@@ -398,12 +398,23 @@ TestIntroScreenLoadScene:
 	move.l	(a5),a6	; a5 has the address of the scene to load
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	bsr.w	LoadPlayerSprite	; load the player sprite
-	cmpi.w	#$0002,(MEM_DAY)	; is this day 01?
+	cmpi.w	#$0003,(MEM_DAY)	; is this day 03?
+	beq.s	TestIntroScreenDay03Setup	; if day 03, go to day 03 setup
+	cmpi.w	#$0002,(MEM_DAY)	; is this day 02?
 	beq.s	TestIntroScreenEndDays0002Setup	; if day 02, go to day 02 setup
 	cmpi.w	#$0001,(MEM_DAY)	; is this day 01?
-	beq.s	TestIntroScreenDay01Setup	; if day 01, go to day 01 setup
+	beq.w	TestIntroScreenDay01Setup	; if day 01, go to day 01 setup
 	cmpi.w	#$0000,(MEM_DAY)	; is this day 00?
-	bne.s	TestIntroScreenEnd	; if not, skip day 00 setup
+	bne.w	TestIntroScreenEnd	; if not, skip day 00 setup
+TestIntroScreenDay03Setup:
+	move.w	#$0102,(MEM_PLAYER_SPRITE_X)	; starting x location
+	move.w	#$0064,(MEM_PLAYER_SPRITE_Y)	; starting y location
+	move.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; direction
+	move.l	#PLAYER_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
+	move.w	(MEM_PLAYER_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
+	move.l	#PLAYER_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
+	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
+	bra.s	TestIntroScreenEnd	; finish intro screen seup
 TestIntroScreenEndDays0002Setup:
 	; move NPC0 out of frame here
 	move.w	#$0140,(MEM_NPC0_SPRITE_X)	; copy x-coordinate
@@ -419,7 +430,7 @@ TestIntroScreenEndDays0002Setup:
 	move.w	(MEM_NPC0_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
 	move.l	#NPC0_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC0_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
-	bra.s	TestIntroScreenEnd	; finish intro screen seup
+	bra.s	TestIntroScreenEnd	; finish intro screen setup
 TestIntroScreenDay01Setup:
 	; move player sprite into starting position
 	move.w	#SPRITE_PLAYER_INIT_X,(MEM_PLAYER_SPRITE_X)	; starting x location

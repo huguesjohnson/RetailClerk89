@@ -160,7 +160,9 @@ ExitScene01Day02CantExit:
 ExitScene01Day02ScriptedEvent:
 	bset.l	#EVENT_FLAG_DAY02_MID_EVENT,d7	; set flag
 	bset.l	#EVENT_FLAG_DAY02_SUB02_STARTED,d7	; set flag
-	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save event flags	
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save event flags
+	; increment the objective text
+	add.w	#$0001,(MEM_OBJECTIVE)
 	; queue the scripted event
 	lea ScriptedEventDay02Mid,a6	; point a6 to event to load
 	bsr.w	QueueScriptedEvent	; queue the event

@@ -1751,6 +1751,25 @@ DialogTextDaniScene05Day02:
 ; dialog text - day 03
 ;-------------------------------------------------------------------------------
 	align 2
+DialogTextScriptedEventDay03Start:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm sorry to stop you",LF
+	dc.b	"on your break.       ^",FF
+	dc.b	"I wanted to apologize",LF
+	dc.b	"for last week.       ^",FF
+	dc.b	"I can't explain why I",LF
+	dc.b	"acted that way.      ^",FF
+	dc.b	"I guess I thought I",LF
+	dc.b	"was being helpful.   ^",FF
+	dc.b	"If it's OK I'd like to",LF
+	dc.b	"stop by again.       ^",FF
+	dc.b	"Just to look at games,",LF
+	dc.b	"it cheers me up.     ^",FF
+	dc.b	"I won't be a problem.",LF
+	dc.b	"I promise.",ETX
+
+	align 2
 DialogTextDaniScene05Day03:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
@@ -1924,6 +1943,160 @@ DialogTextInfoDeskDay02R3:	; rumors
 	;		"1234567890123456789012"
 	dc.b	"upset every time I see",LF
 	dc.b	"him. I hope he's OK.",ETX
+
+	align 2
+DialogTextInfoDeskDay03R0:	; mall news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Santa's Workshop has ",LF
+	dc.b	"been a big success.  ^",FF
+	dc.b	"The mall manager is",LF
+	dc.b	"already planning for ^",FF
+	dc.b	"something even larger",LF
+	dc.b	"next year!",ETX
+
+	align 2
+DialogTextInfoDeskDay03R1:	; events
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Only one week until ",LF
+	dc.b	"our very first mall  ^",FF
+	dc.b	"employee Secret Santa",LF
+	dc.b	"exchange! I'll be fun!",ETX
+
+	align 2
+DialogTextInfoDeskDay03R2:	; store news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Transistor Lodge is ",LF
+	dc.b	"expecting some really^",FF
+	dc.b	"exciting new items",LF
+	dc.b	"this month!          ^",FF
+	dc.b	"You should go see what",LF
+	dc.b	"they have!",ETX
+
+	align 2
+DialogTextInfoDeskDay03R3:	; rumors
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I really shouldn't ",LF
+	dc.b	"tell you this but...",FF
+	dc.b	"The mall manager is",LF
+	dc.b	"interviewing for more^",FF
+	dc.b	"night guards due to",LF
+	dc.b	"the recent thefts.",ETX
+
+	align 2
+DialogTextInfoDeskDay04R0:	; mall news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 04 mall news ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay04R1:	; events
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 04 events ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay04R2:	; store news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 04 store news ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay04R3:	; rumors
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 04 rumors ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay05R0:	; mall news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 05 mall news ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay05R1:	; events
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 05 events ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay05R2:	; store news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 05 store news ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay05R3:	; rumors
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 05 rumors ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay06R0:	; mall news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 06 mall news ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay06R1:	; events
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 06 events ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay06R2:	; store news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 06 store news ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay06R3:	; rumors
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 06 rumors ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay07R0:	; mall news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 07 mall news ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay07R1:	; events
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 07 events ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay07R2:	; store news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 07 store news ",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskDay07R3:	; rumors
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"day 07 rumors ",LF
+	dc.b	"",ETX
 
 ;-------------------------------------------------------------------------------
 ; default object descriptions
@@ -3318,27 +3491,27 @@ Day03IntroText:
 
 Day03IntroTip0:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 0",ETX
+	dc.b	"Some store missions might take multiple",ETX
 
 Day03IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 1",ETX
+	dc.b	"days to complete.",ETX
 
 Day03IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 2",ETX
+	dc.b	"The tasks in these missions may only",ETX
 
 Day03IntroTip3:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 3",ETX
+	dc.b	"be available when the mall is open.",ETX
 
 Day03IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 4",ETX
+	dc.b	"When the mall closes all shoppers leave",ETX
 
 Day03IntroTip5:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 5",ETX
+	dc.b	"and it's possible to miss events.",ETX
 
 Day04IntroText:
 	;		"1234567890123456789012345678901234567890"
@@ -3346,27 +3519,27 @@ Day04IntroText:
 
 Day04IntroTip0:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 0",ETX
+	dc.b	"Some days have multiple missions but",ETX
 
 Day04IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 1",ETX
+	dc.b	"you can only choose to play one of them.",ETX
 
 Day04IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 2",ETX
+	dc.b	"Try playing again if you're curious",ETX
 
 Day04IntroTip3:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 3",ETX
+	dc.b	"how the other missions turned out.",ETX
 
 Day04IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 4",ETX
+	dc.b	"In some missions the choices you make",ETX
 
 Day04IntroTip5:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 5",ETX
+	dc.b	"impact events later in the story.",ETX
 
 Day05IntroText:
 	;		"1234567890123456789012345678901234567890"
@@ -3374,27 +3547,27 @@ Day05IntroText:
 
 Day05IntroTip0:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 0",ETX
+	dc.b	"Bayhurst mall opened back in 1975.",ETX
 
 Day05IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 1",ETX
+	dc.b	"They say it's never once closed due to",ETX
 
 Day05IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 2",ETX
+	dc.b	"bad weather in that time.",ETX
 
 Day05IntroTip3:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 3",ETX
+	dc.b	"Will this streak last 15 years?",ETX
 
 Day05IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 4",ETX
+	dc.b	"Or is something coming that will finally",ETX
 
 Day05IntroTip5:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 5",ETX
+	dc.b	"force a closure for just one night..",ETX
 
 Day06IntroText:
 	;		"1234567890123456789012345678901234567890"
@@ -3402,27 +3575,27 @@ Day06IntroText:
 
 Day06IntroTip0:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 0",ETX
+	dc.b	"If the night guard catches you doing",ETX
 
 Day06IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 1",ETX
+	dc.b	"something suspicious you'll have to",ETX
 
 Day06IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 2",ETX
+	dc.b	"restart the mission from the beginning.",ETX
 
 Day06IntroTip3:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 3",ETX
+	dc.b	"You can enter stores to hide from the",ETX
 
 Day06IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 4",ETX
+	dc.b	"night guard if you have a key to them.",ETX
 
 Day06IntroTip5:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 5",ETX
+	dc.b	"Be careful & don't get busted.",ETX
 
 Day07IntroText:
 	;		"1234567890123456789012345678901234567890"
@@ -3430,27 +3603,27 @@ Day07IntroText:
 
 Day07IntroTip0:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 0",ETX
+	dc.b	"Xmas is over & the mall is quiet again.",ETX
 
 Day07IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 1",ETX
+	dc.b	"Use today for any unfinished business.",ETX
 
 Day07IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 2",ETX
+	dc.b	"Or go straight to the end, your call.",ETX
 
 Day07IntroTip3:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 3",ETX
+	dc.b	"Choices today may change the ending.",ETX
 
 Day07IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 4",ETX
+	dc.b	"",ETX
 
 Day07IntroTip5:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"line 5",ETX
+	dc.b	"Thanks for playing this far.",ETX
 
 ;-------------------------------------------------------------------------------
 ; status screen
@@ -3483,27 +3656,52 @@ StatusScreenDay01Objective00:
 	;		"1234567890123456789012345678901234567"
 	dc.b	"the busiest day of the year?",ETX
 
+StatusScreenDay01Objective01:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"November 24, 1989: Black Friday",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"Track down the owner of the mystery",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"package and meet your sister.",ETX
+
 StatusScreenDay02Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"November 26, 1989: Missing items",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"It won't hurt to talk to everyone",LF
+	dc.b	"1) Make change for your store",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"in the mall today.",ETX
+	dc.b	"2) Help your friend at the bookstore",ETX
+
+StatusScreenDay02Objective01:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"November 26, 1989: Missing items",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"That's weird, your brother is",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"supposed to be done with work by now.",ETX
+
+StatusScreenDay02Objective02:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"November 26, 1989: Missing items",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"1) Track that guy down",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"2) Go home",ETX
+
 
 StatusScreenDay03Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"December 3, 1989: Making new friends",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some stuff",LF
+	dc.b	"Maybe someone has an update on the",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"some more stuff",ETX
+	dc.b	"items missing from their store?",ETX
 
 StatusScreenDay04Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"December 10, 1989: Secret Santa",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"The Secret Santa exchange is a",LF
+	dc.b	"The Secret Santa exchange might be a",LF
 	;		"1234567890123456789012345678901234567"
 	dc.b	"good way to earn a new store key.",ETX
 

@@ -114,19 +114,19 @@ Day05Scene03Action03:	; ACTION_RESPOND
 	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
 	beq.s	Day05Scene03Action03R2	; branch to text for response 2
 	; must be response 3 then
-	lea	DialogTextInfoDeskDay00R3,a6	; load text
+	lea	DialogTextInfoDeskDay05R3,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day05Scene03Action03R0:
-	lea	DialogTextInfoDeskDay00R0,a6	; load text
+	lea	DialogTextInfoDeskDay05R0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day05Scene03Action03R1:
-	lea	DialogTextInfoDeskDay00R1,a6	; load text
+	lea	DialogTextInfoDeskDay05R1,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day05Scene03Action03R2:
-	lea	DialogTextInfoDeskDay00R2,a6	; load text
+	lea	DialogTextInfoDeskDay05R2,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -835,6 +835,7 @@ Day05End:
 	bsr.w	ClearPlayerInventory	; clear player inventory
 	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
 	move.w	#$0006,(MEM_DAY)	; move to day 06
+	add.w	#$0001,(MEM_OBJECTIVE)	; increment objective
 	move.l	(MEM_GAME_STATE),d7	; copy game state
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
 	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag

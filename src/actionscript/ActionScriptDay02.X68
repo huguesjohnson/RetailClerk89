@@ -78,6 +78,8 @@ Day02Scene00Action02NPC:
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save keys
 	; clear all mission flags
 	and.l #$00000000,(MEM_MISSION_EVENT_FLAGS)
+	; update the objective text
+	add.w	#$0001,(MEM_OBJECTIVE)	; increment objective
 	; queue the scripted event
 	lea ScriptedEventDay02ChangePC,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -1237,16 +1239,19 @@ Day02End:
 	;---------------------------------------------------------------------------	
 	; update NPC locations
 	;---------------------------------------------------------------------------	
+	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
 	move.l	#$00000000,(MEM_NPC_LOCATION_PARKINGLOT)
-	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)	; update NPCs in east-east hall
+	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
 	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	move.l	#$12000000,(MEM_NPC_LOCATION_FCBCAMPING)
+	move.l	#$12000000,(MEM_NPC_LOCATION_WWHALL)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	
 	bsr.w	ClearPlayerInventory	; clear player inventory
 	move.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; update sprite
 	move.w	#$0003,(MEM_DAY)	; move to day 03
+	add.w	#$0001,(MEM_OBJECTIVE)	; increment objective
 	move.l	(MEM_GAME_STATE),d7	; copy game state
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
 	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag
@@ -1263,16 +1268,9 @@ Day02End:
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	bsr.w	FadeIn	; fade-in
 	;---------------------------------------------------------------------------	
-	; set player sprite position
-	;---------------------------------------------------------------------------	
-	move.w	#SPRITE_PLAYER_INIT_X,(MEM_PLAYER_SPRITE_X)	; set player sprite x
-	move.w	#SPRITE_PLAYER_INIT_Y,(MEM_PLAYER_SPRITE_Y)	; set player sprite y
-	move.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; set direction
-	;---------------------------------------------------------------------------	
 	; queue the scripted event that starts day 3
 	;---------------------------------------------------------------------------	
-;	lea ScriptedEventDay02Start,a6	; point a6 to event to load
-;	bsr.w QueueScriptedEvent	; queue the event
+	lea ScriptedEventDay03Start,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
 	rts
-
 
