@@ -24,7 +24,7 @@ BuildStatusScreen:
 	; draw the objective text
 	;---------------------------------------------------------------------------
 BuildStatusScreenObjectiveText:
-	move.w	(MEM_DAY),d6	; copy day to d6
+	move.w	(MEM_OBJECTIVE),d6	; copy objective to d6
 	mulu.w	#LWORD_SIZE,d6	; multiply by LWORD_SIZE to get offset
 	lea	StatusScreenObjectives,a5	; point a6 to the lookup table
 	adda.l	d6,a5	; move to offset
