@@ -281,7 +281,7 @@ SceneDeminCountry:
 	;---------------------------------------------------------------------------
 	; NPC locations
 	;---------------------------------------------------------------------------
-	dc.w	$0001	; two npc slots
+	dc.w	$0002	; three npc slots
 
 	dc.w	$00CE	; starting x location of npc0
 	dc.w	$00C0	; starting y location of npc0
@@ -296,6 +296,14 @@ SceneDeminCountry:
 	dc.w	$FFFF	; movement frequency of npc0
 	dc.l	NPCMovementRightStart	; location of movement pattern for npc1
 	dc.w	(NPCMovementRightEnd-NPCMovementRightStart-1)	; pattern length
+
+	dc.w	$0060	; starting x location of npc3
+	dc.w	$00D8	; starting y location of npc3
+	dc.w	DIRECTION_RIGHT	; starting direction of npc3
+	dc.w	$FFFF	; movement frequency of npc3
+	dc.l	NullMovementStart	; location of movement pattern for npc3
+	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+
 
 	;---------------------------------------------------------------------------
 	; bgm

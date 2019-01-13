@@ -56,6 +56,8 @@ EVENT_FLAG_DAY02_MID_EVENT=$4	; midpoint event complete
 EVENT_FLAG_DAY02_SUB02_STARTED=$5	; sub-quest 2 in day 2 started
 EVENT_FLAG_DAY02_SUB02_MID=$6	; sub-quest 2 in day 2 midpoint
 EVENT_FLAG_DAY02_SUB02_COMPLETE=$7	; sub-quest 2 in day 2 complete
+EVENT_FLAG_DAY03_SUB_TLODGE_STARTED=$0	; tlodge sub-quest day 3 started
+EVENT_FLAG_DAY03_SUB_TLODGE_COMPLETE=$1	; tlodge sub-quest day 3 complete
 
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 
@@ -81,4 +83,10 @@ MISSION_FLAG_DAY02_SUB01_D2=$2	; third event dialog complete
 MISSION_FLAG_DAY02_SUB02_D0=$3	; first event dialog complete
 MISSION_FLAG_DAY02_SUB02_D1=$4	; second event dialog complete
 MISSION_FLAG_DAY02_SUB02_D2=$5	; third event dialog complete
+MISSION_FLAG_DAY03_CAMERA1_GET=$0	; found the first camera
+MISSION_FLAG_DAY03_CAMERA1_GIVE=$1	; gave the first camera
+MISSION_FLAG_DAY03_CAMERA2_GET=$2	; found the second camera
+MISSION_FLAG_DAY03_CAMERA2_GIVE=$3	; gave the second camera
+MISSION_FLAG_DAY03_CAMERA3_GET=$4	; found the third camera
+MISSION_FLAG_DAY03_CAMERA3_GIVE=$5	; gave the third camera
 

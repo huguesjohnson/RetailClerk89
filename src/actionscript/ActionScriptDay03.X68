@@ -37,6 +37,25 @@ Day03Scene00Action03:	; ACTION_RESPOND
 ; day 03 - scene 01 (SCENE_ID_WWHALL)
 ;-------------------------------------------------------------------------------
 Day03Scene01Action00:	; ACTION_LOOK
+	cmp.w	#OBJ_SCENE_BENCH,(MEM_ACTION_TARGET_OBJID)	; is this the plant?
+	bne.s	Day03Scene01Action00Default	; if not, branch to default
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_STARTED,d7	; mission started?
+	beq.s	Day03Scene01Action00Default	; not started, use default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_COMPLETE,d7	; mission complete?
+	bne.s	Day03Scene01Action00Default	; complete, use default text
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission event flags to d7
+	btst.l	#MISSION_FLAG_DAY03_CAMERA1_GET,d7	; found this camera already?
+	bne.s	Day03Scene01Action00Default	; found camera, use default text
+	bset.l	#MISSION_FLAG_DAY03_CAMERA1_GET,d7	; set found flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	move.w	#OBJ_ITEM_CAMERA1,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
+	; found item text
+	lea	DialogTextDay03FindCamera1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene01Action00Default:
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day03Scene01Action01:	; ACTION_USE_TALK
@@ -75,6 +94,25 @@ Day03Scene02Action03:	; ACTION_RESPOND
 ; day 03 - scene 03 (SCENE_ID_CENTER)
 ;-------------------------------------------------------------------------------
 Day03Scene03Action00:	; ACTION_LOOK
+	cmp.w	#OBJ_SCENE_PLANT_ALT,(MEM_ACTION_TARGET_OBJID)	; is this the plant?
+	bne.s	Day03Scene03Action00Default	; if not, branch to default
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_STARTED,d7	; mission started?
+	beq.s	Day03Scene03Action00Default	; not started, use default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_COMPLETE,d7	; mission complete?
+	bne.s	Day03Scene03Action00Default	; complete, use default text
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission event flags to d7
+	btst.l	#MISSION_FLAG_DAY03_CAMERA3_GET,d7	; found this camera already?
+	bne.s	Day03Scene03Action00Default	; found camera, use default text
+	bset.l	#MISSION_FLAG_DAY03_CAMERA3_GET,d7	; set found flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	move.w	#OBJ_ITEM_CAMERA3,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
+	; found item text
+	lea	DialogTextDay03FindCamera3,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene03Action00Default:
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day03Scene03Action01:	; ACTION_USE_TALK
@@ -218,6 +256,25 @@ Day03Scene06Action03:	; ACTION_RESPOND
 ; day 03 - scene 07 (SCENE_ID_EEHALL)
 ;-------------------------------------------------------------------------------
 Day03Scene07Action00:	; ACTION_LOOK
+	cmp.w	#OBJ_SCENE_PLANT,(MEM_ACTION_TARGET_OBJID)	; is this the plant?
+	bne.s	Day03Scene07Action00Default	; if not, branch to default
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_STARTED,d7	; mission started?
+	beq.s	Day03Scene07Action00Default	; not started, use default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_COMPLETE,d7	; mission complete?
+	bne.s	Day03Scene07Action00Default	; complete, use default text
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission event flags to d7
+	btst.l	#MISSION_FLAG_DAY03_CAMERA2_GET,d7	; found this camera already?
+	bne.s	Day03Scene07Action00Default	; found camera, use default text
+	bset.l	#MISSION_FLAG_DAY03_CAMERA2_GET,d7	; set found flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	move.w	#OBJ_ITEM_CAMERA2,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
+	; found item text
+	lea	DialogTextDay03FindCamera2,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene07Action00Default:
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day03Scene07Action01:	; ACTION_USE_TALK
@@ -243,12 +300,18 @@ Day03Scene08Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,d6	; test target
 	beq.s	Day03Scene08Action01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	beq.s	Day03Scene08Action01NPCDani	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene08Action01NPC:
 	lea	DialogTextDenimCountryStaffDefaultTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene08Action01NPCDani:
+	lea	DialogTextDaniScene08Day03,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene08Action02:	; ACTION_TAKE_GIVE
@@ -318,7 +381,53 @@ Day03Scene0AAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0AAction01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_STARTED,d7	; mission started?
+	beq.s	Day03Scene0AAction01NPCStartMission	; flag not set, branch
+	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_COMPLETE,d7	; mission in-progress?
+	beq.s	Day03Scene0AAction01NPCUpdateMission	; flag not set, branch
+	; mission is complete, use default text
 	lea	DialogTextTLodgeStaffDefaultTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction01NPCStartMission:
+	; setup 2 choice dialog	to begin subquest
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextScene09Day03Intro,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction01NPCUpdateMission:
+	; how many cameras have been found?	
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	and.w	#$0000,d6	; clear d6
+	btst.l	#MISSION_FLAG_DAY03_CAMERA1_GIVE,d7
+	beq.s	.1
+	addq	#$1,d6
+.1
+	btst.l	#MISSION_FLAG_DAY03_CAMERA2_GIVE,d7
+	beq.s	.2
+	addq	#$1,d6
+.2
+	btst.l	#MISSION_FLAG_DAY03_CAMERA3_GIVE,d7
+	beq.s	.3
+	addq	#$1,d6
+.3
+	cmpi.w	#$0001,d6
+	beq.s	Day03Scene0AAction01NPCUpdateMissionFound1
+	cmpi.w	#$0002,d6
+	beq.s	Day03Scene0AAction01NPCUpdateMissionFound2
+Day03Scene0AAction01NPCUpdateMissionFound0:
+	lea	DialogTextScene09Day03Found0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction01NPCUpdateMissionFound1:
+	lea	DialogTextScene09Day03Found1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction01NPCUpdateMissionFound2:
+	lea	DialogTextScene09Day03Found2,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0AAction02:	; ACTION_TAKE_GIVE
@@ -330,11 +439,93 @@ Day03Scene0AAction02:	; ACTION_TAKE_GIVE
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0AAction02NPC:
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission event flags to d7
+	cmpi.w	#OBJ_ITEM_CAMERA1,(MEM_ACTIVE_ITEM)	; test item
+	bne.s	.1	; branch if not camera 1
+	bset.l	#MISSION_FLAG_DAY03_CAMERA1_GIVE,d7	; set flag
+	bra.s	Day03Scene0AAction02NPCGiveCamera	; branch
+.1
+	cmpi.w	#OBJ_ITEM_CAMERA2,(MEM_ACTIVE_ITEM)	; test item
+	bne.s	.2	; branch if not camera 2
+	bset.l	#MISSION_FLAG_DAY03_CAMERA2_GIVE,d7	; set flag
+	bra.s	Day03Scene0AAction02NPCGiveCamera	; branch
+.2
+	cmpi.w	#OBJ_ITEM_CAMERA3,(MEM_ACTIVE_ITEM)	; test item
+	bne.w	Day03Scene0AAction02NPCDefault	; branch if not camera 3
+	bset.l	#MISSION_FLAG_DAY03_CAMERA3_GIVE,d7	; set flag
+Day03Scene0AAction02NPCGiveCamera:	
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	; remove the item from the player's inventory	
+	move.w	(MEM_ACTIVE_ITEM),d7	; copy object ID to d7
+	bsr.w	RemoveItem	; remove the item
+	; how many cameras have been found?	
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	and.w	#$0000,d6	; clear d6
+	btst.l	#MISSION_FLAG_DAY03_CAMERA1_GIVE,d7
+	beq.s	.1
+	addq	#$1,d6
+.1
+	btst.l	#MISSION_FLAG_DAY03_CAMERA2_GIVE,d7
+	beq.s	.2
+	addq	#$1,d6
+.2
+	btst.l	#MISSION_FLAG_DAY03_CAMERA3_GIVE,d7
+	beq.s	.3
+	addq	#$1,d6
+.3
+	cmpi.w	#$0001,d6
+	beq.s	Day03Scene0AAction02NPCGiveCamera1
+	cmpi.w	#$0002,d6
+	beq.s	Day03Scene0AAction02NPCGiveCamera2
+	;---------------------------------------------------------------------------
+	; transition to second half of the day
+	;---------------------------------------------------------------------------
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#EVENT_FLAG_DAY03_SUB_TLODGE_COMPLETE,d7	; set complete flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; player now has the tlogdge key
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
+	bset.l	#STORE_KEY_TLODGE,d7	; set key
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save keys
+	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission flags
+	addq	#$1,(MEM_OBJECTIVE)	; increment the objective
+	; update NPCs
+	move.l	#$03160000,(MEM_NPC_LOCATION_VB)
+	move.l	#$1A050B00,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	move.l	#$00000000,(MEM_NPC_LOCATION_WWHALL)
+
+	; queue the scripted event
+	lea ScriptedEventDay03ChangePC,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay03ScriptedEventMid00,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+
+Day03Scene0AAction02NPCGiveCamera1:
+	lea	DialogTextScene09Day03Give1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction02NPCGiveCamera2:
+	lea	DialogTextScene09Day03Give2,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction02NPCDefault:	
 	lea	DialogTextNPCTLodgeStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0AAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.s	Day03Scene0AAction03StartMission	; branch launch scripted event
+	; else display declined dialog
+	lea	DialogTextScene09Day03IntroR1,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction03StartMission:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day flags to d7
+	bset.l	#EVENT_FLAG_DAY03_SUB_TLODGE_STARTED,d7	; set mission started flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	lea	DialogTextScene09Day03IntroR0,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

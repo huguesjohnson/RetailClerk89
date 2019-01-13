@@ -114,6 +114,8 @@ DefaultObjectDescriptionTable:
 	dc.l	DialogTextHandheldGames	
 	; OBJ_SCENE_VB_PC
 	dc.l	DialogTextPCSoftware	
+	; OBJ_SCENE_PLANT_ALT
+	dc.l	DialogTextPlant
 
 ;-------------------------------------------------------------------------------
 ; default npc descriptions
@@ -287,6 +289,8 @@ ObjectNameTable:
 	dc.l	ObjectNameHandheld
 	; OBJ_SCENE_VB_PC
 	dc.l	ObjectNamePCSoftware
+	; OBJ_SCENE_PLANT_ALT
+	dc.l	ObjectNamePlant
 
 ;-------------------------------------------------------------------------------
 ; npc names
@@ -409,6 +413,12 @@ ItemNameTable:
 	dc.l	ItemNameTenDollar
 	; OBJ_ITEM_QUARTERS
 	dc.l	ItemNameQuarters
+	; OBJ_ITEM_CAMERA1
+	dc.l	ItemNameCamera1
+	; OBJ_ITEM_CAMERA2
+	dc.l	ItemNameCamera2
+	; OBJ_ITEM_CAMERA3
+	dc.l	ItemNameCamera3
 
 ;-------------------------------------------------------------------------------
 ; item descriptions
@@ -470,6 +480,12 @@ ItemDescriptionTable:
 	dc.l	ItemDescriptionTenDollar
 	; OBJ_ITEM_QUARTERS
 	dc.l	ItemDescriptionQuarters
+	; OBJ_ITEM_CAMERA1
+	dc.l	ItemDescriptionCamera1
+	; OBJ_ITEM_CAMERA2
+	dc.l	ItemDescriptionCamera2
+	; OBJ_ITEM_CAMERA3
+	dc.l	ItemDescriptionCamera3
 
 ;-------------------------------------------------------------------------------
 ; store names
@@ -505,9 +521,16 @@ StatusScreenObjectives:
 	dc.l	StatusScreenDay02Objective01
 	; 05 = day 02 - end of second half
 	dc.l	StatusScreenDay02Objective02
+	; 06 = day 03 - first half
 	dc.l	StatusScreenDay03Objective00
+	; 07 = day 03 - second half
+	dc.l	StatusScreenDay03Objective01
+	; 08 = day 04
 	dc.l	StatusScreenDay04Objective00
+	; 09 = day 05
 	dc.l	StatusScreenDay05Objective00
+	; 0A = day 06
 	dc.l	StatusScreenDay06Objective00
+	; 0B = day 07
 	dc.l	StatusScreenDay07Objective00
 

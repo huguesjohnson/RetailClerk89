@@ -139,7 +139,7 @@ SceneCenter:
 	; 		%hhhhhhhyyyyyyyyy
 	dc.w	%0100000010001000
 
-	dc.w	OBJ_SCENE_PLANT
+	dc.w	OBJ_SCENE_PLANT_ALT
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%0011000011001000
 	; 		%hhhhhhhyyyyyyyyy

@@ -1770,6 +1770,196 @@ DialogTextScriptedEventDay03Start:
 	dc.b	"I promise.",ETX
 
 	align 2
+DialogTextDaniScene08Day03:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Break time again?",LF
+	dc.b	"How is that possible?",ETX
+
+	align 2
+DialogTextScene09Day03Intro:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Hey, are you still",LF
+	dc.b	"interested in finding^",FF
+	dc.b	"missing items from",LF
+	dc.b	"stores?              ^",FFR
+	dc.b	"{Go on...",LF
+	dc.b	"{Maybe later",ETX
+
+	align 2
+DialogTextScene09Day03IntroR0:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"We had a shipment of 4",LF
+	dc.b	"spy cameras get lost.^",FF
+	;		"1234567890123456789012"
+	dc.b	"They're a hot Xmas",LF
+	dc.b	"gift this year.      ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Extended warranty",LF
+	dc.b	"available for $15.   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I thought they were",LF
+	dc.b	"gone for good.       ^",FF
+	;		"1234567890123456789012"
+	dc.b	"The other day I went",LF
+	dc.b	"to make a call and   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I saw one hidden by",LF
+	dc.b	"the phone booths.    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Someone's using it to",LF
+	dc.b	"spy on people here.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I can't leave today to",LF
+	dc.b	"look for the other 3.^",FF
+	;		"1234567890123456789012"
+	dc.b	"If you find them, I'll",LF
+	dc.b	"come up with a reward.",ETX
+
+	align 2
+DialogTextScene09Day03IntroR1:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"OK, stop by if you're",LF
+	dc.b	"interested later.",ETX
+
+	align 2
+DialogTextScene09Day03Found0:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"There should be 3 more",LF
+	dc.b	"cameras hidden around^",FF
+	dc.b	"the mall if my theory",LF
+	dc.b	"is correct.",ETX
+
+	align 2
+DialogTextScene09Day03Found1:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"There should be 2 more",LF
+	dc.b	"cameras hiding.",ETX
+
+	align 2
+DialogTextScene09Day03Found2:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"So close, just 1 more",LF
+	dc.b	"camera out there.",ETX
+
+	align 2
+DialogTextScene09Day03Give1:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Alright! 1 down and 2",LF
+	dc.b	"more to go.",ETX
+
+	align 2
+DialogTextScene09Day03Give2:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Thanks! Just 1 more",LF
+	dc.b	"camera to find.",ETX
+
+DialogTextDay03FindCamera1:
+	;		"1234567890123456789012"
+	dc.b	"Hey, there's something",LF
+	dc.b	"under the bench..",FF
+	dc.b	"(Found Camera)",LF
+	dc.b	"",ETX
+
+DialogTextDay03FindCamera2:
+	;		"1234567890123456789012"
+	dc.b	"You dig through the",LF
+	dc.b	"plant for a minute..",FF
+	dc.b	"(Found Camera)",LF
+	dc.b	"",ETX
+
+DialogTextDay03FindCamera3:
+	;		"1234567890123456789012"
+	dc.b	"There's something",LF
+	dc.b	"hidden in this pot..",FF
+	dc.b	"(Found Camera)",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextDay03CantEnterVB:
+	;		"1234567890123456789012"
+	dc.b	"There's still time",LF
+	dc.b	"left on your break.",ETX
+
+	align 2
+DialogTextDay03ScriptedEventMid00:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Thanks for finding",LF
+	dc.b	"these cameras.       ^",FF
+	dc.b	"Have a key to the",LF
+	dc.b	"store in return.     ^",FF
+	dc.b	"Feel free to use the",LF
+	dc.b	"computer or borrow   ^",FF
+	dc.b	"anything you want",LF
+	dc.b	"after hours.         ^",FF
+	dc.b	"I don't understand why",LF
+	dc.b	"someone wants to spy ^",FF
+	dc.b	"on the mall. Nothing",LF
+	dc.b	"exciting happens here.",ETX
+
+	align 2
+DialogTextDay03ScriptedEventMid01:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Hey, yeah. So like,",LF
+	dc.b	"that dude. Todd.     ^",FF
+	dc.b	"He was just at, where",LF
+	dc.b	"was it again? Uh..   ^",FF
+	dc.b	"That place I work with",LF
+	dc.b	"the food. He said you^",FF
+	dc.b	"were watching his",LF
+	dc.b	"store for him.       ^",FF
+	dc.b	"So like, do you help",LF
+	dc.b	"with other stuff too?",ETX
+
+	align 2
+DialogTextDay03ScriptedEventMid02:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"That was two weeks  ",LF
+	dc.b	"ago.",ETX
+
+	align 2
+DialogTextDay03ScriptedEventMid03:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Huh. Yeah. Dude, yeah",LF
+	dc.b	"OK. So we're going to^",FF
+	dc.b	"close at the end of,",LF
+	dc.b	"uh, the month, if we ^",FF
+	dc.b	"don't get more, what",LF
+	dc.b	"are they called?     ^",FF
+	dc.b	"Right, customers. Can",LF
+	dc.b	"you help get people  ^",FF
+	dc.b	"to like eat at our",LF
+	dc.b	"restaurant more?",ETX
+
+	align 2
+DialogTextDay03ScriptedEventMid04:
+	;		"1234567890123456789012"
+	dc.w	OBJ_NPC_DANI
+	dc.b	"I guess I've done",LF
+	dc.b	"worse things.",ETX
+
+	align 2
+DialogTextDay03ScriptedEventMid05:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Oh. Uh. Thanks. So we",LF
+	dc.b	"have, like, I think ^",FF
+	dc.b	"until the end of the",LF
+	dc.b	"month or we'll close.",ETX
+
+	align 2
 DialogTextDaniScene05Day03:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
@@ -3379,6 +3569,33 @@ ItemDescriptionQuarters:
 	;		"1234567890123456789012"
 	dc.b	"A roll of quarters.",ETX
 
+ItemNameCamera1:
+	;		"1234567890"
+	dc.b	"Camera",ITEMNAMEEND
+
+ItemDescriptionCamera1:
+	;		"1234567890123456789012"
+	dc.b	"This was hidden under",LF
+	dc.b	"a bench by your store.",ETX
+
+ItemNameCamera2:
+	;		"1234567890"
+	dc.b	"Camera",ITEMNAMEEND
+
+ItemDescriptionCamera2:
+	;		"1234567890123456789012"
+	dc.b	"This was hidden in the",LF
+	dc.b	"easternmost hallway.",ETX
+
+ItemNameCamera3:
+	;		"1234567890"
+	dc.b	"Camera",ITEMNAMEEND
+
+ItemDescriptionCamera3:
+	;		"1234567890123456789012"
+	dc.b	"This was in a plant",LF
+	dc.b	"by Santa's Workshop.",ETX
+
 ;-------------------------------------------------------------------------------
 ; store signs
 ;-------------------------------------------------------------------------------
@@ -3688,7 +3905,6 @@ StatusScreenDay02Objective02:
 	;		"1234567890123456789012345678901234567"
 	dc.b	"2) Go home",ETX
 
-
 StatusScreenDay03Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"December 3, 1989: Making new friends",LF
@@ -3696,6 +3912,14 @@ StatusScreenDay03Objective00:
 	dc.b	"Maybe someone has an update on the",LF
 	;		"1234567890123456789012345678901234567"
 	dc.b	"items missing from their store?",ETX
+
+StatusScreenDay03Objective01:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 3, 1989: Making new friends",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"Roam around & talk to D.B. whenever",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"you are ready to go home for the day.",ETX
 
 StatusScreenDay04Objective00:
 	;		"12345678901234567890123456789012345678"
