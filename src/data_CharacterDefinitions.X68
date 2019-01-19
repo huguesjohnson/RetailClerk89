@@ -109,3 +109,7 @@ CharacterDefinitionNPCTrendyGuy:
 CharacterDefinitionFemaleShopper0:
 	dc.l	NPCSpriteFemaleShopper0Start
 
+; 1B - OBJ_NPC_BILLY
+CharacterDefinitionBilly:
+	dc.l	NPCSpriteBillyStart
+

@@ -60,8 +60,7 @@
 	move.l	(MEM_PLAYER_STORE_KEYS),d7
 	bset.l	#STORE_KEY_VB,d7
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)
-	move.w	#$0005,(MEM_OBJECTIVE)
-
+	move.w	#OBJECTIVE_D2_O2,(MEM_OBJECTIVE)
 
 	;---------------------------------------------------------------------------
 	; used to test starting at day 1

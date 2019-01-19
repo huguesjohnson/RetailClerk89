@@ -488,7 +488,7 @@ Day03Scene0AAction02NPCGiveCamera:
 	bset.l	#STORE_KEY_TLODGE,d7	; set key
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save keys
 	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission flags
-	addq	#$1,(MEM_OBJECTIVE)	; increment the objective
+	move.w	#OBJECTIVE_D3_O1,(MEM_OBJECTIVE)	; update the objective
 	; update NPCs
 	move.l	#$03160000,(MEM_NPC_LOCATION_VB)
 	move.l	#$1A050B00,(MEM_NPC_LOCATION_DENIMCOUNTRY)
@@ -1026,7 +1026,7 @@ Day03End:
 	bsr.w	ClearPlayerInventory	; clear player inventory
 	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
 	move.w	#$0004,(MEM_DAY)	; move to day 04
-	add.w	#$0001,(MEM_OBJECTIVE)	; increment objective
+	move.w	#OBJECTIVE_D4_O0,(MEM_OBJECTIVE)	; update objective
 	move.l	(MEM_GAME_STATE),d7	; copy game state
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
 	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag

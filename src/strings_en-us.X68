@@ -3320,6 +3320,10 @@ NPCNameTrendyGuy:
 	;		"1234567890123456789012"
 	dc.b	"Trendy guy",NPCNAMEEND
 
+NPCNameBilly:
+	;		"1234567890123456789012"
+	dc.b	"Billy",NPCNAMEEND
+
 NPCNameGenericShopper:
 	;		"1234567890123456789012"
 	dc.b	"Shopper",NPCNAMEEND

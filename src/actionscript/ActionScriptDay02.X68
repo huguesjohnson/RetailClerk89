@@ -79,7 +79,7 @@ Day02Scene00Action02NPC:
 	; clear all mission flags
 	and.l #$00000000,(MEM_MISSION_EVENT_FLAGS)
 	; update the objective text
-	add.w	#$0001,(MEM_OBJECTIVE)	; increment objective
+	move.w	#OBJECTIVE_D2_O1,(MEM_OBJECTIVE)	; increment objective
 	; queue the scripted event
 	lea ScriptedEventDay02ChangePC,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -1251,7 +1251,7 @@ Day02End:
 	bsr.w	ClearPlayerInventory	; clear player inventory
 	move.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; update sprite
 	move.w	#$0003,(MEM_DAY)	; move to day 03
-	add.w	#$0001,(MEM_OBJECTIVE)	; increment objective
+	move.w	#OBJECTIVE_D3_O0,(MEM_OBJECTIVE)	; increment objective
 	move.l	(MEM_GAME_STATE),d7	; copy game state
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
 	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag

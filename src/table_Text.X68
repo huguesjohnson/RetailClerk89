@@ -349,6 +349,8 @@ NPCNameTable:
 	dc.l	NPCNameTrendyGuy
 	; OBJ_NPC_FEMALE_SHOPPER0
 	dc.l	NPCNameGenericShopper
+	; OBJ_NPC_BILLY
+	dc.l	NPCNameBilly
 	; OBJ_NPC_GENERICSHOPPER
 	dc.l	NPCNameGenericShopper
 NPCNameTableEnd:
@@ -509,28 +511,16 @@ StoreNameTable:
 ; status screen objectives
 ;-------------------------------------------------------------------------------
 StatusScreenObjectives:
-	; 00 = day 00
 	dc.l	StatusScreenDay00Objective00
-	; 01 = day 01 - first half
 	dc.l	StatusScreenDay01Objective00
-	; 02 = day 01 - second half
 	dc.l	StatusScreenDay01Objective01
-	; 03 = day 02 - first half
 	dc.l	StatusScreenDay02Objective00
-	; 04 = day 02 - start of second half
 	dc.l	StatusScreenDay02Objective01
-	; 05 = day 02 - end of second half
 	dc.l	StatusScreenDay02Objective02
-	; 06 = day 03 - first half
 	dc.l	StatusScreenDay03Objective00
-	; 07 = day 03 - second half
 	dc.l	StatusScreenDay03Objective01
-	; 08 = day 04
 	dc.l	StatusScreenDay04Objective00
-	; 09 = day 05
 	dc.l	StatusScreenDay05Objective00
-	; 0A = day 06
 	dc.l	StatusScreenDay06Objective00
-	; 0B = day 07
 	dc.l	StatusScreenDay07Objective00
 

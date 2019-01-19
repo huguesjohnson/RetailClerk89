@@ -470,6 +470,10 @@ NPCSpriteFemaleShopper0Start:
 	include 'tiles/sprite-tiles/tileset_NPCSprite4.X68'
 NPCSpriteFemaleShopper0End:
 
+NPCSpriteBillyStart:
+	include 'tiles/sprite-tiles/tileset_NPCSprite5.X68'
+NPCSpriteBillyEnd:
+
 NPCSpriteSecretShopperTilesStart:
 	include 'tiles/sprite-tiles/tileset_NPCSpriteSecretShopper.X68'
 NPCSpriteSecretShopperTilesEnd:

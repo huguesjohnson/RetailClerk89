@@ -26,7 +26,7 @@ Day01Scene00Action01NPCGreenberg:
 	;---------------------------------------------------------------------------
 	bset.l	#MISSION_FLAG_DAY01_SUB02_STARTED,d7	; set flag
 	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save mission flags
-	add.w	#$0001,(MEM_OBJECTIVE)	; increment objective
+	move.w	#OBJECTIVE_D1_O1,(MEM_OBJECTIVE)	; increment objective
 	; prevent bug if player fills inventory before talking to Greenberg	
 	move.w	(MEM_PLAYER_ITEM_COUNT),d6	; copy current item count to d6
 	cmpi.w	#MAX_ITEMS,d6	; check if inventory is full
@@ -1394,7 +1394,7 @@ Day01End:
 	bsr.w	ClearPlayerInventory	; clear player inventory
 	move.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; update sprite
 	move.w	#$0002,(MEM_DAY)	; move to day 02
-	add.w	#$0001,(MEM_OBJECTIVE)	; increment objective
+	move.w	#OBJECTIVE_D2_O0,(MEM_OBJECTIVE)	; increment objective
 	move.l	(MEM_GAME_STATE),d7	; copy game state
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
 	bclr.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag

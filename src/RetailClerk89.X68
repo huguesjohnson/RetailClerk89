@@ -34,6 +34,7 @@
 	include 'const_GameSettings.X68'
 	include 'const_MemNPCLocations.X68'
 	include 'const_ObjectIDs.X68'
+	include 'const_Objectives.X68'
 	include	'const_RomMap.X68'
 	include 'const_SceneIDs.X68'
 	include	'const_ScriptedEventCommands.X68'
