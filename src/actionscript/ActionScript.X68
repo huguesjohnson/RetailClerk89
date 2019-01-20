@@ -57,7 +57,7 @@ DisplayCreditsScene:
 	bsr.w	FadeIn	; fade in to the intro scene
 	move.w	#CREDITS_SCREEN_LOOP,d7	; use d7 for loop control
 DisplayCreditsSceneLoop:
-	bsr.w	WaitVBlank	; wait for vblank
+	jsr	WaitVBlank	; wait for vblank
 	dbf	d7,DisplayCreditsSceneLoop	; loop
 	; set the end game flag
 	move.l	(MEM_GAME_STATE),d7	; copy game state

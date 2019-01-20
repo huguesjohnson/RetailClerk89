@@ -43,8 +43,8 @@ SceneTitle:
 	dc.l	TransparentTileEnd	; end of scene tiles
 
 	; tileset 1
-	dc.l	TileScreenTilesStart	; start of scene tiles
-	dc.l	TileScreenTilesEnd	; end of scene tiles
+	dc.l	TitleScreenTilesStart	; start of scene tiles
+	dc.l	TitleScreenTilesEnd	; end of scene tiles
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -55,7 +55,11 @@ SceneTitle:
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
+	if	_DEBUG_
+	dc.w	$0005	; scenery count
+	else
 	dc.w	$0004	; scenery count
+	endif
 
 	; title
 	dc.l	PatternTitleLogo	; location of pattern to load
@@ -89,6 +93,16 @@ SceneTitle:
 	dc.w	$0000	; repeat 1 time
 	dc.l	VDP_VRAM_WRITE_A+$0A000000+$003C0000	; initial drawing location
 
+	if	_DEBUG_
+	; menu
+	dc.l	PatternTitleMenu	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 0110000000000000	
+	dc.w	$6000	; base pattern
+	dc.w	$0000	; repeat 1 time
+	dc.l	VDP_VRAM_WRITE_A+$0B000000+$003C0000	; initial drawing location
+	endif
+
 	; footer
 	dc.l	PatternTitleFooter	; location of pattern to load
 	; pccvhnnnnnnnnnnn
@@ -100,12 +114,23 @@ SceneTitle:
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
+	if	_DEBUG_
+	dc.w	$0002	; text count
+	else
 	dc.w	$0001	; text count
+	endif
 
 	; new game text
 	dc.l	TitleScreenTextNewGame	; location of string to display
 	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$0A000000+$00400000	; initial drawing location
+
+	if	_DEBUG_
+	; debug text
+	dc.l	TitleScreenTextDebug	; location of string to display
+	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$0B000000+$00400000	; initial drawing location
+	endif
 
 	; footer
 	dc.l	TitleScreenTextFooter	; location of string to display

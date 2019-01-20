@@ -41,6 +41,9 @@ SCENE_ID_INTRO_DAY07=$0E07
 ;-------------------------------------------------------------------------------
 ; title & end screen
 ;-------------------------------------------------------------------------------
+	if	_DEBUG_
+SCENE_ID_DEBUGMENU=$0FF0
+	endif
 SCENE_ID_CREDITS=$0FFC
 SCENE_ID_LEGAL=$0FFD
 SCENE_ID_END=$0FFE

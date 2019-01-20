@@ -66,7 +66,7 @@ MEM_PLAYER_STORE_KEYS,4,track which store keys the player has
 ;-------------------------------------------------------------------------------
 ; dialog & menu management
 ;-------------------------------------------------------------------------------
-MEM_MENU_SELECTION,2,which menu item is selected - used for sprite
+MEM_MENU_SELECTION,2,which menu item is selected - used for sprite 0
 MEM_MENU_RESPONSE,2,which dialog choice was selected
 MEM_DIALOG_FLAGS,4,used to manage dialogs
 MEM_DIALOG_TITLE,4,pointer to location of dialog title

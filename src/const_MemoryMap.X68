@@ -67,7 +67,7 @@ MEM_PLAYER_STORE_KEYS=$FFFF00BE	; track which store keys the player has
 ;-------------------------------------------------------------------------------
 ; dialog & menu management
 ;-------------------------------------------------------------------------------
-MEM_MENU_SELECTION=$FFFF00C2	; which menu item is selected - used for sprite
+MEM_MENU_SELECTION=$FFFF00C2	; which menu item is selected - used for sprite 0
 MEM_MENU_RESPONSE=$FFFF00C4	; which dialog choice was selected
 MEM_DIALOG_FLAGS=$FFFF00C6	; used to manage dialogs
 MEM_DIALOG_TITLE=$FFFF00CA	; pointer to location of dialog title

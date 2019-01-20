@@ -43,8 +43,8 @@ SceneIntroDay07:
 	dc.l	TransparentTileEnd	; end of scene tiles
 
 	; tileset 1
-	dc.l	TileScreenTilesStart	; start of scene tiles
-	dc.l	TileScreenTilesEnd	; end of scene tiles
+	dc.l	TitleScreenTilesStart	; start of scene tiles
+	dc.l	TitleScreenTilesEnd	; end of scene tiles
 
 	;---------------------------------------------------------------------------
 	; palettes

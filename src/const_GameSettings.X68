@@ -5,7 +5,7 @@
 ;-------------------------------------------------------------------------------
 ; these are effectively conditional compilation directives
 ;-------------------------------------------------------------------------------
-_DEBUG_=$1	; enable/disable debug mode
+_DEBUG_=$0	; enable/disable debug mode
 _EMULATOR_DIAGNOSTICS_=$0	; enable/disable emulator diagnostic mode
 _SPRITE_TILE_DEBUG_=$0	; enable/disable debug sprite tiles
 _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
@@ -158,7 +158,6 @@ PLAYER_SPRITE_DANI=$0001	; use tiles for Dani as player sprite
 ;-------------------------------------------------------------------------------
 ; action table settings
 ;-------------------------------------------------------------------------------
-DAY_COUNT=$01	; total number of days
 SCENE_COUNT=$18	; total number of scenes
 ACTION_COUNT=$04	; total number of actions
 ACTION_COUNT_X4=(ACTION_COUNT*4)

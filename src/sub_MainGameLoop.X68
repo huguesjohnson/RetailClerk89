@@ -5,6 +5,10 @@ MainGameLoop:
 	bsr.w	WaitVBlank ; wait for vblank to complete
 	addq	#$1,(MEM_MAINLOOP_COUNTER) ; increment counter
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	if _DEBUG_
+	btst.l	#STATE_FLAG_DEBUG_MENU,d7 ; test game state
+	bne.w	ProcessDebugScreen
+	endif
 	btst.l	#STATE_FLAG_EXPLORING,d7 ; test game state
 	beq.w	TestTitleScreen	; not exploring, branch
 ;-------------------------------------------------------------------------------
@@ -332,7 +336,42 @@ TestTitleScreen:
 TestTitleScreenTestStartPressed:
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.b	#BUTTON_START_PRESSED,d6	; test if the start button was pressed
+	;---------------------------------------------------------------------------
+	; handle selector movement when in debug mode
+	;---------------------------------------------------------------------------
+	if	_DEBUG_
+	bne.w	TestTitleLoadIntroScreen	; start button pressed, load intro	
+TestTitleScreenTestDPadPressed:
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.b	#BUTTON_UP_PRESSED,d6	; test if the up button was pressed
+	bne.s	TestTitleScreenTestToggleSelector	; dpad pressed, branch
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.b	#BUTTON_DOWN_PRESSED,d6	; test if the down button was pressed
+	bne.s	TestTitleScreenTestToggleSelector	; dpad pressed, branch
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.b	#BUTTON_LEFT_PRESSED,d6	; test if the left button was pressed
+	bne.s	TestTitleScreenTestToggleSelector	; dpad pressed, branch
+	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
+	andi.b	#BUTTON_RIGHT_PRESSED,d6	; test if the right button was pressed
+	bne.s	TestTitleScreenTestToggleSelector	; dpad pressed, branch
+	bra.s	TestTitleScreenTestStartPressedLoop	; dpad not pressed
+TestTitleScreenTestToggleSelector:
+	tst.w	(MEM_MENU_SELECTION)	; is the menu selection 0?
+	bne.s	.1	; branch if not
+	move.w	#$0001,(MEM_MENU_SELECTION)	; menu selection is now 1
+	move.l	#VDP_VRAM_WRITE_SPRITE,d6	; add to sprite table address
+	move.l	d6,(VDP_CONTROL)	; set write location in VDP
+	move.w	#$0130,(VDP_DATA)	; copy the new y-coordinate;
+	bra.s	TestTitleScreenTestStartPressedLoop	; continue
+.1	; selector is in the second position
+	move.w	#$0000,(MEM_MENU_SELECTION)	; menu selection is now 0
+	move.l	#VDP_VRAM_WRITE_SPRITE,d6	; add to sprite table address
+	move.l	d6,(VDP_CONTROL)	; set write location in VDP
+	move.w	#$0120,(VDP_DATA)	; copy the new y-coordinate;
+	else
 	bne.s	TestTitleLoadIntroScreen	; start button pressed, load intro
+	endif
+TestTitleScreenTestStartPressedLoop:
 	subq	#$1,(MEM_INTRO_SCENE_COUNTER)	; decrement counter
 	bne.w	MainGameLoop	; loop until the counter is zero
 	bra.w	NewGame	; counter is zero, restart
@@ -341,10 +380,23 @@ TestTitleLoadIntroScreen:
 	move.w	#$0000,(MEM_CONTROL_PRESSED)
 	; --------------------------------------------------------------------------
 	; start button was pressed on the title screen
-	; in this iteration there is only one menu option
+	; in this iteration there is only one menu option (unless in debug mode)
 	; future versions will need to determine which action was selected
 	; --------------------------------------------------------------------------
 	bclr.l	#STATE_FLAG_TITLE_SCREEN,d7 ; clear game state flag
+	if	_DEBUG_
+	tst.w	(MEM_MENU_SELECTION)	; which item was selected?
+	beq.s	TestTitleLoadIntroScreenDefault	; new game selected
+	move.w	#$0000,(MEM_MENU_SELECTION)	; clear menu selection
+	bset.l	#STATE_FLAG_DEBUG_MENU,d7 ; set debug menu flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	lea	SceneDebugMenu,a6	; address of the scene for the debug menu
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	LoadPlayerSprite	; load the player sprite
+	bsr.w	FadeIn	; fade in to the new scene
+	bra.w	MainGameLoop	;	return to start of game loop
+	endif
+TestTitleLoadIntroScreenDefault:
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 	; set the intro screen counter
@@ -405,7 +457,8 @@ TestIntroScreenLoadScene:
 	cmpi.w	#$0001,(MEM_DAY)	; is this day 01?
 	beq.w	TestIntroScreenDay01Setup	; if day 01, go to day 01 setup
 	cmpi.w	#$0000,(MEM_DAY)	; is this day 00?
-	bne.w	TestIntroScreenEnd	; if not, skip day 00 setup
+	beq.w	TestIntroScreenEndDays0002Setup	; if day 00, go to day 00 setup
+	bra.w	TestIntroScreenEnd	; if not, skip day setup
 TestIntroScreenDay03Setup:
 	move.w	#$0102,(MEM_PLAYER_SPRITE_X)	; starting x location
 	move.w	#$0064,(MEM_PLAYER_SPRITE_Y)	; starting y location

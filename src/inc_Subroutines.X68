@@ -79,3 +79,6 @@
 
 	include	'sub_EndDemo.X68'
 
+	if _DEBUG_
+	include	'init_Debug.X68'
+	endif

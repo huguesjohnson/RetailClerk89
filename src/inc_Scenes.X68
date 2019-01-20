@@ -13,6 +13,9 @@
 	include 'scenes/scene_day07.X68'
 	include 'scenes/scene_end.X68'
 	include 'scenes/scene_credits.X68'
+	if	_DEBUG_
+	include 'scenes/scene_debugmenu.X68'
+	endif
 
 	;---------------------------------------------------------------------------
 	; status screen

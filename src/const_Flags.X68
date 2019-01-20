@@ -13,6 +13,9 @@ STATE_FLAG_END_SCREEN=$08	; end screen is displaying
 STATE_FLAG_INTRO_SCREEN=$09	; day intro screen is displaying
 STATE_FLAG_STATUS_SCREEN=$0A	; status screen is displaying
 STATE_FLAG_MALL_CLOSED=$0B	; mall is closed for the night
+	if	_DEBUG_
+STATE_FLAG_DEBUG_MENU=$0F	; debug menu is displaying
+	endif
 
 ;-------------------------------------------------------------------------------
 ; dialog state flags

@@ -29,9 +29,9 @@
 ;-------------------------------------------------------------------------------
 ; program-specific constants
 ;-------------------------------------------------------------------------------
+	include 'const_GameSettings.X68'
 	include 'const_ActionIDs.X68'
 	include 'const_Flags.X68'
-	include 'const_GameSettings.X68'
 	include 'const_MemNPCLocations.X68'
 	include 'const_ObjectIDs.X68'
 	include 'const_Objectives.X68'
@@ -68,8 +68,6 @@ Main:
 	endif
 
 	include	'init_NewGame.X68'
-
-	include	'init_Debug.X68'
 
 	include	'sub_MainGameLoop.X68'
 

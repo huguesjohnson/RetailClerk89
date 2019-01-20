@@ -36,13 +36,137 @@ TitleScreenTextNewGame:
 	dc.b	"New Game",ETX
 
 	if _DEBUG_
+
+TitleScreenTextDebug:
+	dc.b	"Debug",ETX
+
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
 	dc.b	" Unstable Debug Build (January 2019)  ",ETX
+
 	else
+
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Story Demo: Days 1-3 (January 2019)  ",ETX
+	dc.b	" Story Demo: Days 1-4 (January 2019)  ",ETX
+	endif
+
+	if _DEBUG_
+
+	; 28 lines available on the debug screen (28-1 = 1B)
+
+	DebugScreenLine00:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"Debug starting scene",ETX
+
+	DebugScreenLine01:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Day 0 title screen",ETX
+
+	DebugScreenLine02:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Day 0 After demo mission",ETX
+
+	DebugScreenLine03:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Day 1 title screen",ETX
+
+	DebugScreenLine04:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Day 1 mid point",ETX
+
+	DebugScreenLine05:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Day 1 end",ETX
+
+	DebugScreenLine06:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Day 2 title screen",ETX
+
+	DebugScreenLine07:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Day 2 mid point",ETX
+
+	DebugScreenLine08:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Day 2 end",ETX
+
+	DebugScreenLine09:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Day 3 title",ETX
+
+	DebugScreenLine0A:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Day 3 mid point",ETX
+
+	DebugScreenLine0B:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine0C:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine0D:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine0E:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine0F:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine10:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine11:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine12:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine13:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine14:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine15:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine16:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine17:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine18:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine19:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine1A:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ (not implemented)",ETX
+
+	DebugScreenLine1B:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"{ Ending credits",ETX
+
 	endif
 
 ;-------------------------------------------------------------------------------

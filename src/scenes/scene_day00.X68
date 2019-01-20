@@ -43,8 +43,8 @@ SceneIntroDay00:
 	dc.l	TransparentTileEnd	; end of scene tiles
 
 	; tileset 1
-	dc.l	TileScreenTilesStart	; start of scene tiles
-	dc.l	TileScreenTilesEnd	; end of scene tiles
+	dc.l	TitleScreenTilesStart	; start of scene tiles
+	dc.l	TitleScreenTilesEnd	; end of scene tiles
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -167,17 +167,10 @@ SceneIntroDay00:
 	;---------------------------------------------------------------------------
 	; exits
 	;---------------------------------------------------------------------------
-	if	_DEBUG_
-	dc.w	SCENE_ID_PARKINGLOT	; north exit
-	dc.w	SCENE_ID_PARKINGLOT	; south exit
-	dc.w	SCENE_ID_PARKINGLOT	; east exit
-	dc.w	SCENE_ID_PARKINGLOT	; west exit
-	else
 	dc.w	SCENE_ID_VB	; north exit
 	dc.w	SCENE_ID_VB	; south exit
 	dc.w	SCENE_ID_VB	; east exit
 	dc.w	SCENE_ID_VB	; west exit
-	endif
 
 	;---------------------------------------------------------------------------
 	; NPC locations
