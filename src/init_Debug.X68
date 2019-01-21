@@ -16,7 +16,7 @@ DebugTable:
 	dc.l	DebugStartDay2End	
 	dc.l	DebugStartDay3Title	
 	dc.l	DebugStartDay3Mid	
-	dc.l	DebugStartDay0Title	
+	dc.l	DebugStartDay4Title	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
@@ -238,7 +238,7 @@ DebugStartDay3Mid:
 	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission flags
 	move.w	#OBJECTIVE_D3_O1,(MEM_OBJECTIVE)	; update the objective
 	; update NPCs
-	move.l	#$03160000,(MEM_NPC_LOCATION_VB)
+	move.l	#$031B0000,(MEM_NPC_LOCATION_VB)
 	move.l	#$1A050B00,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	move.l	#$00000000,(MEM_NPC_LOCATION_WWHALL)
 	; queue the scripted event
@@ -246,6 +246,17 @@ DebugStartDay3Mid:
 	bsr.w QueueScriptedEvent	; queue the event
 	lea	DialogTextDay03ScriptedEventMid00,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+DebugStartDay4Title:
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_TBOOKS,d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7
+	bset.l	#STORE_KEY_VB,d7
+	bset.l	#STORE_KEY_CHECKERS,d7
+	bset.l	#STORE_KEY_SVIDEO,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	bsr.w	Day03End
 	rts
 
 DebugStartEnd:

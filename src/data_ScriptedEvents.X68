@@ -764,7 +764,6 @@ ScriptedEventDay03Start:
 	dc.w	($0180-$0070)/SPRITE_STEP_PIXELS
 	dc.w	SCRIPTED_EVENT_END
 
-
 ScriptedEventDay03ChangePC:
 	dc.w	$0001	; player
 	; --------------------------------------------------------------------------
@@ -826,6 +825,57 @@ ScriptedEventDay03ChangePC:
 	dc.w	($0100-$00D8)/SPRITE_STEP_PIXELS
 	dc.w	DIRECTION_LEFT
 	dc.w	($009E-$0070)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay03SubVBComplete:
+	dc.w	$0002	; npc0
+	dc.w	DIRECTION_UP
+	dc.w	$00A0
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0060
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay03DayEnd:
+	; --------------------------------------------------------------------------
+	; move Dani off the screen
+	; --------------------------------------------------------------------------
+	dc.w	$0001	; player
+	dc.w	DIRECTION_RIGHT
+	dc.w	($00B4/SPRITE_STEP_PIXELS)
+	; --------------------------------------------------------------------------
+	; move D.B. off the screen
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; npc0
+	dc.w	DIRECTION_RIGHT
+	dc.w	($00B4/SPRITE_STEP_PIXELS)
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while the screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0080
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$00D8
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION
+	dc.w	DIRECTION_RIGHT
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DB
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_CENTER
+	; --------------------------------------------------------------------------
+	; move player a couple steps and end
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0004
 	dc.w	SCRIPTED_EVENT_END
 
 ; ------------------------------------------------------------------------------

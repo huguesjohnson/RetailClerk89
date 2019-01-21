@@ -101,7 +101,7 @@ TitleScreenTextFooter:
 
 	DebugScreenLine0B:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 4 title",ETX
 
 	DebugScreenLine0C:
 	;		"12345678901234567890123456789012345678"
@@ -2084,11 +2084,119 @@ DialogTextDay03ScriptedEventMid05:
 	dc.b	"month or we'll close.",ETX
 
 	align 2
+DialogTextDay03Scene08NPCShopper:
+	dc.w	OBJ_NPC_FEMALE_SHOPPER0
+	;		"1234567890123456789012"
+	dc.b	"I just can't decide.",ETX
+
+	align 2
+DialogTextDay03BillyDefault:
+	dc.w	OBJ_NPC_BILLY
+	;		"1234567890123456789012"
+	dc.b	"I'm not causing any",LF
+	dc.b	"trouble here.",ETX
+
+	align 2
+DialogTextDay03BillySubStarted:
+	dc.w	OBJ_NPC_BILLY
+	;		"1234567890123456789012"
+	dc.b	"You're not going to",LF
+	dc.b	"kick me out are you?",ETX
+
+	align 2
+DialogTextDay03GreenbergStartSub:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Where's D.B.? Oh, I",LF
+	dc.b	"sent him to find that^",FF
+	;		"1234567890123456789012"
+	dc.b	"young man's parent so",LF
+	dc.b	"we can close. I think^",FF
+	;		"1234567890123456789012"
+	dc.b	"they must work in the",LF
+	dc.b	"mall and their sitter^",FF
+	;		"1234567890123456789012"
+	dc.b	"canceled. Here's been",LF
+	dc.b	"here quite a while.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I bet he could use a",LF
+	dc.b	"hand searching.",ETX
+
+	align 2
+DialogTextDay03GreenbergSubInProgress:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Any luck finding that",LF
+	dc.b	"young fellow's parent?",ETX
+
+	align 2
+DialogTextDay03GreenbergSubComplete:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"If you find D.B. tell",LF
+	dc.b	"him he can go home.",ETX
+
+	align 2
+DialogTextDay03GreenbergMallClosed:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"I don't need any help",LF
+	dc.b	"closing tonight.",ETX
+
+	align 2
+DialogTextScene17Day03Event:
+	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Oh Billy? He's my",LF
+	dc.b	"grandson. His parents^",FF
+	;		"1234567890123456789012"
+	dc.b	"had tickets to a show",LF
+	dc.b	"tonight & asked me to^",FF
+	;		"1234567890123456789012"
+	dc.b	"watch him. He would",LF
+	dc.b	"have been so bored   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"here so I sent him to",LF
+	dc.b	"the game store.      ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I hope he didn't get",LF
+	dc.b	"in the way too badly.^",FF
+	;		"1234567890123456789012"
+	dc.b	"It's almost closing",LF
+	dc.b	"time so I'll get him.",ETX
+
+	align 2
+DialogTextDay03End:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I took care of your",LF
+	dc.b	"store's kid problem. ^",FF
+	dc.b	"You're welcome.",LF
+	dc.b	"Everyone is trying to^",FF
+	dc.b	"close now so let's get",LF
+	dc.b	"out of here already.",ETX
+
+	align 2
+DialogTextDay03Scene02Action00NPCDB:
+	;		"1234567890123456789012"
+	dc.b	"(Why is he searching",LF
+	dc.b	"here anyway?)",ETX
+
+	align 2
+DialogTextDay03Scene07NPCGuard:
+	dc.w	OBJ_NPC_GUARD0
+	;		"1234567890123456789012"
+	dc.b	"Finish up your",LF
+	dc.b	"business & leave.",ETX
+
+	align 2
 DialogTextDaniScene05Day03:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2",ETX
+	dc.b	"I hear you're playing",LF
+	dc.b	"detective now.       ^",FF
+	dc.b	"Don't get yourself",LF
+	dc.b	"into any trouble.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 04

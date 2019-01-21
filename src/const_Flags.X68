@@ -61,6 +61,8 @@ EVENT_FLAG_DAY02_SUB02_MID=$6	; sub-quest 2 in day 2 midpoint
 EVENT_FLAG_DAY02_SUB02_COMPLETE=$7	; sub-quest 2 in day 2 complete
 EVENT_FLAG_DAY03_SUB_TLODGE_STARTED=$0	; tlodge sub-quest day 3 started
 EVENT_FLAG_DAY03_SUB_TLODGE_COMPLETE=$1	; tlodge sub-quest day 3 complete
+EVENT_FLAG_DAY03_SUB_VB_STARTED=$2	; vb sub-quest day 3 started
+EVENT_FLAG_DAY03_SUB_VB_COMPLETE=$3	; vb sub-quest day 3 complete
 
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 

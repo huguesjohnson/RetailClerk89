@@ -8,12 +8,51 @@ Day03Scene00Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
 	beq.s	Day03Scene00Action01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_BILLY,d6	; test target
+	beq.s	Day03Scene00Action01NPCBilly	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene00Action01NPC:
-	lea	DialogTextGreenbergDefaultTalk,a6	; load text
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; if the mall closed?
+	bne.s	Day03Scene00Action01NPCMallClosed	; branch to mall closed text
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene00Action01NPCSubComplete	; flag set, branch
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	bne.s	Day03Scene00Action01NPCSubInProgress	; flag set, branch
+Day03Scene00Action01NPCStartSub:
+	; set event flag
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy flags to d7
+	bset.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; set mission started flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; show text
+	lea	DialogTextDay03GreenbergStartSub,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene00Action01NPCSubInProgress:
+	lea	DialogTextDay03GreenbergSubInProgress,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene00Action01NPCSubComplete:
+	lea	DialogTextDay03GreenbergSubComplete,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene00Action01NPCMallClosed:
+	lea	DialogTextDay03GreenbergMallClosed,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene00Action01NPCBilly:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	bne.s	.1	; flag set, branch
+	lea	DialogTextDay03BillyDefault,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+.1
+	lea	DialogTextDay03BillySubStarted,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene00Action02:	; ACTION_TAKE_GIVE
@@ -37,7 +76,7 @@ Day03Scene00Action03:	; ACTION_RESPOND
 ; day 03 - scene 01 (SCENE_ID_WWHALL)
 ;-------------------------------------------------------------------------------
 Day03Scene01Action00:	; ACTION_LOOK
-	cmp.w	#OBJ_SCENE_BENCH,(MEM_ACTION_TARGET_OBJID)	; is this the plant?
+	cmpi.w	#OBJ_SCENE_BENCH,(MEM_ACTION_TARGET_OBJID)	; is this the plant?
 	bne.s	Day03Scene01Action00Default	; if not, branch to default
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
 	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_STARTED,d7	; mission started?
@@ -75,10 +114,33 @@ Day03Scene01Action03:	; ACTION_RESPOND
 ; day 03 - scene 02 (SCENE_ID_WEHALL)
 ;-------------------------------------------------------------------------------
 Day03Scene02Action00:	; ACTION_LOOK
+	cmpi.w	#OBJ_NPC_DB,(MEM_ACTION_TARGET_OBJID)	; is this D.B.?
+	beq.s	Day03Scene01Action00DB	; branch to text for D.B.
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
+Day03Scene01Action00DB:
+	lea	DialogTextDay03Scene02Action00NPCDB,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day03Scene02Action01:	; ACTION_USE_TALK
+	cmpi.w	#OBJ_NPC_DB,(MEM_ACTION_TARGET_OBJID)	; is this D.B.?
+	beq.s	Day03Scene01Action01DB	; branch to text for D.B.
 	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene01Action01DB:
+	; mall is now closed
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	; update NPCs	
+	move.l	#$18000000,(MEM_NPC_LOCATION_EEHALL)
+	move.l	#$00000000,(MEM_NPC_LOCATION_WEHALL)
+	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	; queue the scripted event
+	lea ScriptedEventDay03DayEnd,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay03End,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene02Action02:	; ACTION_TAKE_GIVE
@@ -256,7 +318,9 @@ Day03Scene06Action03:	; ACTION_RESPOND
 ; day 03 - scene 07 (SCENE_ID_EEHALL)
 ;-------------------------------------------------------------------------------
 Day03Scene07Action00:	; ACTION_LOOK
-	cmp.w	#OBJ_SCENE_PLANT,(MEM_ACTION_TARGET_OBJID)	; is this the plant?
+	cmpi.w	#OBJ_NPC_GUARD0,(MEM_ACTION_TARGET_OBJID)	; is this the guard?
+	beq.s	Day03Scene07Action00NPCGuard	; branch to text for guard
+	cmpi.w	#OBJ_SCENE_PLANT,(MEM_ACTION_TARGET_OBJID)	; is this the plant?
 	bne.s	Day03Scene07Action00Default	; if not, branch to default
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
 	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_STARTED,d7	; mission started?
@@ -276,6 +340,10 @@ Day03Scene07Action00:	; ACTION_LOOK
 	rts
 Day03Scene07Action00Default:
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	rts
+Day03Scene07Action00NPCGuard:
+	lea	DialogTextDay03Scene07NPCGuard,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene07Action01:	; ACTION_USE_TALK
 	lea	DialogTextNothingHappens,a6	; load default text
@@ -302,6 +370,8 @@ Day03Scene08Action01:	; ACTION_USE_TALK
 	beq.s	Day03Scene08Action01NPC	; branch to text for the NPC
 	cmpi.w	#OBJ_NPC_DANI,d6	; test target
 	beq.s	Day03Scene08Action01NPCDani	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_FEMALE_SHOPPER0,d6	; test target
+	beq.s	Day03Scene08Action01NPCShopper	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -312,6 +382,10 @@ Day03Scene08Action01NPC:
 	rts
 Day03Scene08Action01NPCDani:
 	lea	DialogTextDaniScene08Day03,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene08Action01NPCShopper:
+	lea	DialogTextDay03Scene08NPCShopper,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene08Action02:	; ACTION_TAKE_GIVE
@@ -490,18 +564,15 @@ Day03Scene0AAction02NPCGiveCamera:
 	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission flags
 	move.w	#OBJECTIVE_D3_O1,(MEM_OBJECTIVE)	; update the objective
 	; update NPCs
-	move.l	#$03160000,(MEM_NPC_LOCATION_VB)
+	move.l	#$031B0000,(MEM_NPC_LOCATION_VB)
 	move.l	#$1A050B00,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	move.l	#$00000000,(MEM_NPC_LOCATION_WWHALL)
-
 	; queue the scripted event
 	lea ScriptedEventDay03ChangePC,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
 	lea	DialogTextDay03ScriptedEventMid00,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-
-
 Day03Scene0AAction02NPCGiveCamera1:
 	lea	DialogTextScene09Day03Give1,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -976,6 +1047,24 @@ Day03Scene17Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene17Action01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene17Action01NPCDefault	; flag not set, branch
+	; set complete flag
+	bset.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; update NPCs
+	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
+	move.l	#$00000000,(MEM_NPC_LOCATION_SOUTH_CENTER)
+	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	move.l	#$16000000,(MEM_NPC_LOCATION_WEHALL)
+	; setup scripted event and dialog	
+	lea ScriptedEventDay03SubVBComplete,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextScene17Day03Event,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene17Action01NPCDefault:
 	lea	DialogTextSouthCenterStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -1004,22 +1093,12 @@ Day03End:
 	;---------------------------------------------------------------------------	
 	; update NPC locations
 	;---------------------------------------------------------------------------	
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.l	#$03160000,(a5)	; update NPCs in scene 00
-	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
-	and.l	#$00000000,(a5)	; update NPCs in parking lot
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
-	and.l	#$00000000,(a5)	; update NPCs in east-east hall
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address 
-	move.l	#$05000000,(a5)	; update NPCs
+	move.l	#$03160000,(MEM_NPC_LOCATION_VB)
+	move.l	#$13000000,(MEM_NPC_LOCATION_SOUTH_CENTER)
+	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
+	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	move.l	#$00000000,(MEM_NPC_LOCATION_WEHALL)
+	move.l	#$00000000,(MEM_NPC_LOCATION_PARKINGLOT)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	
