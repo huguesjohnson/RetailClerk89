@@ -28,6 +28,8 @@ Day03Scene00Action01NPCStartSub:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy flags to d7
 	bset.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; set mission started flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; update objective
+	move.w	#OBJECTIVE_D3_O2,(MEM_OBJECTIVE)
 	; show text
 	lea	DialogTextDay03GreenbergStartSub,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -377,6 +379,16 @@ Day03Scene08Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene08Action01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene08Action01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene08Action01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextDenimCountryStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene08Action01NPCDefault:
 	lea	DialogTextDenimCountryStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -420,6 +432,16 @@ Day03Scene09Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene09Action01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene09Action01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene09Action01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextCheckersStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene09Action01NPCDefault:
 	lea	DialogTextCheckersStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -460,6 +482,15 @@ Day03Scene0AAction01NPC:
 	beq.s	Day03Scene0AAction01NPCStartMission	; flag not set, branch
 	btst.l	#EVENT_FLAG_DAY03_SUB_TLODGE_COMPLETE,d7	; mission in-progress?
 	beq.s	Day03Scene0AAction01NPCUpdateMission	; flag not set, branch
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene0AAction01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene0AAction01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextTLodgeStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction01NPCDefault:
 	; mission is complete, use default text
 	lea	DialogTextTLodgeStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -615,6 +646,16 @@ Day03Scene0BAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0BAction01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene0BAction01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene0BAction01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextCavernStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0BAction01NPCDefault:
 	lea	DialogTextCavernStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -650,6 +691,16 @@ Day03Scene0CAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0CAction01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene0CAction01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene0CAction01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextSVideoStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0CAction01NPCDefault:
 	lea	DialogTextSVideoStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -687,10 +738,30 @@ Day03Scene0DAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0DAction01NPC0:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene0DAction01NPC0Default	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene0DAction01NPC0Default	; complete, default text
+	; else text for subquest	
+	lea	DialogTextWorkshopStaff0Day03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0DAction01NPC0Default:
 	lea	DialogTextWorkshopStaff0DefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0DAction01NPC1:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene0DAction01NPC1Default	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene0DAction01NPC1Default	; complete, default text
+	; else text for subquest	
+	lea	DialogTextWorkshopStaff1Day03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0DAction01NPC1Default:
 	lea	DialogTextWorkshopStaff1DefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -732,6 +803,16 @@ Day03Scene0EAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0EAction01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene0EAction01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene0EAction01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextNShackStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0EAction01NPCDefault:
 	lea	DialogTextNShackStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -767,6 +848,16 @@ Day03Scene0FAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0FAction01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene0FAction01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene0FAction01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextPogoDawgStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0FAction01NPCDefault:
 	lea	DialogTextPogoDawgStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -802,6 +893,16 @@ Day03Scene10Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene10Action01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene10Action01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene10Action01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextCPlanetStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene10Action01NPCDefault:
 	lea	DialogTextCPlanetStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -837,6 +938,16 @@ Day03Scene11Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene11Action01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene11Action01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene11Action01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextCNowStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene11Action01NPCDefault:
 	lea	DialogTextCNowStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -872,6 +983,16 @@ Day03Scene12Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene12Action01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene12Action01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene12Action01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextTBooksStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene12Action01NPCDefault:
 	lea	DialogTextTBooksStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -907,6 +1028,16 @@ Day03Scene13Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene13Action01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene13Action01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene13Action01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextFCBCheckoutStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene13Action01NPCDefault:
 	lea	DialogTextFCBCheckoutStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -942,6 +1073,16 @@ Day03Scene14Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene14Action01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene14Action01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene14Action01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextFCBFirearmsStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene14Action01NPCDefault:
 	lea	DialogTextFCBFirearmsStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -977,6 +1118,16 @@ Day03Scene15Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene15Action01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene15Action01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene15Action01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextFCBFishingStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene15Action01NPCDefault:
 	lea	DialogTextFCBFishingStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -1012,6 +1163,16 @@ Day03Scene16Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene16Action01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_STARTED,d7	; sub started?
+	beq.s	Day03Scene16Action01NPCDefault	; not started, default text
+	btst.l	#EVENT_FLAG_DAY03_SUB_VB_COMPLETE,d7	; sub complete?
+	bne.s	Day03Scene16Action01NPCDefault	; complete, default text
+	; else text for subquest	
+	lea	DialogTextFCBCampingStaffDay03SubVBTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene16Action01NPCDefault:
 	lea	DialogTextFCBCampingStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts

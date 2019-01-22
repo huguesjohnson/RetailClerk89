@@ -2166,6 +2166,136 @@ DialogTextScene17Day03Event:
 	dc.b	"time so I'll get him.",ETX
 
 	align 2
+DialogTextTBooksStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Sorry, I don't know",LF
+	dc.b	"whose kid that is.",ETX
+
+	align 2
+DialogTextDenimCountryStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Why are you still here",LF
+	dc.b	"this late?",ETX
+
+	align 2
+DialogTextCheckersStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm just glad they ",LF
+	dc.b	"weren't ditched here.",ETX
+
+	align 2
+DialogTextTLodgeStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"That's definitely not",LF
+	dc.b	"my kid.              ^",FF
+	;		"1234567890123456789012"
+	dc.b	"While you're here, any",LF
+	dc.b	"interest in a new PC?",ETX
+
+	align 2
+DialogTextCavernStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"If I had kids I sure",LF
+	dc.b	"wouldn't leave them  ^",FF
+	dc.b	"unsupervised here.",LF
+	dc.b	"There are some real  ^",FF
+	dc.b	"unsavory types that",LF
+	dc.b	"hang around this mall.",ETX
+
+	align 2
+DialogTextSVideoStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I think he was ditched",LF
+	dc.b	"here once too.       ^",FF
+	dc.b	"I don't know who left",LF
+	dc.b	"him here though.",ETX
+
+	align 2
+DialogTextNShackStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Sorry, I don't know",LF
+	dc.b	"anything about it.",ETX
+
+	align 2
+DialogTextPogoDawgStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Huh? Where's who?",ETX
+
+	align 2
+DialogTextCPlanetStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_CPLANET_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You're really asking",LF
+	dc.b	"me about some kid?",ETX
+
+	align 2
+DialogTextCNowStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Kids are great but I ",LF
+	dc.b	"don't have any yet.  ^",FF
+	dc.b	"One day though I'd",LF
+	dc.b	"like to have some.   ^",FF
+	dc.b	"I've already picked",LF
+	dc.b	"out names like..     ^",FF
+	dc.b	"[30 minutes pass]",LF
+	dc.b	"                     ^",FF
+	dc.b	".. I'll invite you to",LF
+	dc.b	"all the showers too!",ETX
+
+	align 2
+DialogTextFCBCheckoutStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_FCBCHECKOUT_STAFF
+	;		"1234567890123456789012"
+	dc.b	"My ex in Jersey has",LF
+	dc.b	"the kids.",ETX
+
+	align 2
+DialogTextFCBFirearmsStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"That store sure has a",LF
+	dc.b	"lot of problems.",ETX
+
+	align 2
+DialogTextFCBFishingStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_FCBFISHING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Sorry, I don't know",LF
+	dc.b	"about that at all.",ETX
+
+	align 2
+DialogTextFCBCampingStaffDay03SubVBTalk:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"That's a weird thing",LF
+	dc.b	"to ask about.        ^",FF
+	dc.b	"I'm not even married",LF
+	dc.b	"yet.",ETX
+
+	align 2
+DialogTextWorkshopStaff0Day03SubVBTalk:
+	dc.w	OBJ_NPC_WORKSHOP_STAFF0
+	;		"1234567890123456789012"
+	dc.b	"I don't have time to",LF
+	dc.b	"deal with this today.",ETX
+
+	align 2
+DialogTextWorkshopStaff1Day03SubVBTalk:
+	dc.w	OBJ_NPC_WORKSHOP_STAFF1
+	;		"1234567890123456789012"
+	dc.b	"I'm sure the parents",LF
+	dc.b	"will return for him.",ETX
+
+	align 2
 DialogTextDay03End:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
@@ -4153,9 +4283,17 @@ StatusScreenDay03Objective01:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"December 3, 1989: Making new friends",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"Roam around & talk to D.B. whenever",LF
+	dc.b	"Free time, go find to D.B. whenever",LF
 	;		"1234567890123456789012345678901234567"
 	dc.b	"you are ready to go home for the day.",ETX
+
+StatusScreenDay03Objective02:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 3, 1989: Making new friends",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"You have to find that kid's parents",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"and D.B. before you can leave.",ETX
 
 StatusScreenDay04Objective00:
 	;		"12345678901234567890123456789012345678"

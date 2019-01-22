@@ -229,6 +229,7 @@ DebugStartDay3Mid:
 	bset.l	#STATE_FLAG_EXPLORING,d7	; clear exploring flag
 	move.l	d7,(MEM_GAME_STATE)	; save it back
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#EVENT_FLAG_DAY03_SUB_TLODGE_STARTED,d7	; set started flag
 	bset.l	#EVENT_FLAG_DAY03_SUB_TLODGE_COMPLETE,d7	; set complete flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
 	; update keys

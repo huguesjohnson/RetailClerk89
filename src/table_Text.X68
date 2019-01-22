@@ -523,4 +523,5 @@ StatusScreenObjectives:
 	dc.l	StatusScreenDay05Objective00
 	dc.l	StatusScreenDay06Objective00
 	dc.l	StatusScreenDay07Objective00
+	dc.l	StatusScreenDay03Objective02
 
