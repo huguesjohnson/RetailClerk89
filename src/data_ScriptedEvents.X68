@@ -878,6 +878,38 @@ ScriptedEventDay03DayEnd:
 	dc.w	$0004
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay04Start:
+	; --------------------------------------------------------------------------
+	; move player to be on same X-axis as the NPC0
+	; --------------------------------------------------------------------------
+	dc.w	$0001	; player (Dani)
+	dc.w	DIRECTION_UP
+	dc.w	$003E
+	; --------------------------------------------------------------------------
+	; have NPC0 walk toward the player
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; have have the player face NPC0
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player (Dani)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0000
+	; --------------------------------------------------------------------------
+	; dialog betweek NPC0 and player
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScriptedEventDay04Start00
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScriptedEventDay04Start01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScriptedEventDay04Start02
+	dc.w	SCRIPTED_EVENT_END
+
 ; ------------------------------------------------------------------------------
 ; used to test scene and player sprite changes in scripted events
 ; ------------------------------------------------------------------------------

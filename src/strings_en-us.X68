@@ -42,13 +42,13 @@ TitleScreenTextDebug:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Unstable Debug Build (January 2019)  ",ETX
+	dc.b	" Unstable Debug Build (February 2019) ",ETX
 
 	else
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Story Demo: Days 1-4 (January 2019)  ",ETX
+	dc.b	" Story Demo: Days 1-5 (February 2019) ",ETX
 	endif
 
 	if _DEBUG_
@@ -2331,6 +2331,123 @@ DialogTextDaniScene05Day03:
 ;-------------------------------------------------------------------------------
 ; dialog text - day 04
 ;------------------------------------------------------------------------------
+
+	align 2
+DialogTextScriptedEventDay04Start00:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Hey, I got that Todd",LF
+	dc.b	"guy in the employee  ^",FF
+	dc.b	"Secret Santa Exchange.",LF
+	dc.b	"You went to high     ^",FF
+	dc.b	"school with him right?",LF
+	dc.b	"What should I get him?",ETX
+
+	align 2
+DialogTextScriptedEventDay04Start01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"(some snarky reply)",LF
+	dc.b	" ",ETX
+
+	align 2
+DialogTextScriptedEventDay04Start02:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Uh, OK. I'll see what ",LF
+	dc.b	"I can do there..     ^",FF
+	dc.b	"You should sign-up for",LF
+	dc.b	"the exchange too.    ^",FF
+	dc.b	"A little holiday cheer",LF
+	dc.b	"wouldn't kill you.",ETX
+
+	align 2
+DialogTextDay04Scene03SubNotStarted:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Are you here for the",LF
+	dc.b	"Secret Santa exchange?",FFR
+	dc.b	"{Apparently so",LF
+	dc.b	"{Are you kidding?",ETX
+
+	align 2
+DialogTextDay04Scene03SubNotStartedR0:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Wow! You were the last",LF
+	dc.b	"person I expected.   ^",FF
+	dc.b	"We have just one",LF
+	dc.b	"small problem though.^",FF
+	dc.b	"There was a mix-up &",LF
+	dc.b	"we could really use  ^",FF
+	dc.b	"one more person. Do",LF
+	dc.b	"you think you could  ^",FF
+	dc.b	"find one more person",LF
+	dc.b	"to sign-up today?",ETX
+
+	align 2
+DialogTextDay04Scene03SubNotStartedR1:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Stop back if you",LF
+	dc.b	"change your mind.",ETX
+
+	align 2
+DialogTextDay04Scene03SubStarted0:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"When you find the ",LF
+	dc.b	"perfect give please  ^",FF
+	dc.b	"give it to me. I'll",LF
+	dc.b	"take care of the rest.",ETX
+
+	align 2
+DialogTextDay04Scene03SubStartedGive:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Is this the gift you",LF
+	dc.b	"want to give?",FFR
+	dc.b	"{Yeah, it's the one",LF
+	dc.b	"{On second thought..",ETX
+
+	align 2
+DialogTextDay04Scene03SubStartedGiveR0:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Great! I'll make sure",LF
+	dc.b	"they get it.         ^",FF
+	dc.b	"Stop by tonight to get",LF
+	dc.b	"your secret gift.",ETX
+
+	align 2
+DialogTextDay04Scene03StartSub:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"OK, here's how it",LF
+	dc.b	"works. Inside these  ^",FF
+	dc.b	"envelopes are the",LF
+	dc.b	"names of who you are ^",FF
+	dc.b	"finding gifts for.",LF
+	dc.b	"Once you find a gift ^",FF
+	dc.b	"bring it back here.",LF
+	dc.b	"Which do you want?   ^",FF
+	dc.b	"{Envelope 1",LF
+	dc.b	"{Envelope 2",ETX
+
+	align 2
+DialogTextDay04Scene03StartSubR:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Here you go, good luck",LF
+	dc.b	"and have fun shopping!",ETX
+
+	align 2
+DialogTextDay04Scene03TalkNPC:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I wonder who we'll",LF
+	dc.b	"each get?",ETX
+
 	align 2
 DialogTextDaniScene05Day04:
 	dc.w	OBJ_NPC_DANI
@@ -2537,34 +2654,6 @@ DialogTextInfoDeskDay03R3:	; rumors
 	dc.b	"interviewing for more^",FF
 	dc.b	"night guards due to",LF
 	dc.b	"the recent thefts.",ETX
-
-	align 2
-DialogTextInfoDeskDay04R0:	; mall news
-	dc.w	OBJ_NPC_CENTER_STAFF
-	;		"1234567890123456789012"
-	dc.b	"day 04 mall news ",LF
-	dc.b	"",ETX
-
-	align 2
-DialogTextInfoDeskDay04R1:	; events
-	dc.w	OBJ_NPC_CENTER_STAFF
-	;		"1234567890123456789012"
-	dc.b	"day 04 events ",LF
-	dc.b	"",ETX
-
-	align 2
-DialogTextInfoDeskDay04R2:	; store news
-	dc.w	OBJ_NPC_CENTER_STAFF
-	;		"1234567890123456789012"
-	dc.b	"day 04 store news ",LF
-	dc.b	"",ETX
-
-	align 2
-DialogTextInfoDeskDay04R3:	; rumors
-	dc.w	OBJ_NPC_CENTER_STAFF
-	;		"1234567890123456789012"
-	dc.b	"day 04 rumors ",LF
-	dc.b	"",ETX
 
 	align 2
 DialogTextInfoDeskDay05R0:	; mall news
@@ -3961,6 +4050,20 @@ ItemDescriptionCamera3:
 	;		"1234567890123456789012"
 	dc.b	"This was in a plant",LF
 	dc.b	"by Santa's Workshop.",ETX
+
+ItemNameEnvelope:
+	;		"1234567890"
+	dc.b	"Envelope",ITEMNAMEEND
+
+ItemDescriptionEnvelope1:
+	;		"1234567890123456789012"
+	dc.b	"Sunset Video: Annette",LF
+	dc.b	"Interests: ",ETX
+
+ItemDescriptionEnvelope2:
+	;		"1234567890123456789012"
+	dc.b	"Cassette Planet: Eliza",LF
+	dc.b	"Interests: ",ETX
 
 ;-------------------------------------------------------------------------------
 ; store signs

@@ -421,6 +421,10 @@ ItemNameTable:
 	dc.l	ItemNameCamera2
 	; OBJ_ITEM_CAMERA3
 	dc.l	ItemNameCamera3
+	; OBJ_ITEM_ENVELOPE1
+	dc.l	ItemNameEnvelope
+	; OBJ_ITEM_ENVELOPE2
+	dc.l	ItemNameEnvelope
 
 ;-------------------------------------------------------------------------------
 ; item descriptions
@@ -488,6 +492,10 @@ ItemDescriptionTable:
 	dc.l	ItemDescriptionCamera2
 	; OBJ_ITEM_CAMERA3
 	dc.l	ItemDescriptionCamera3
+	; OBJ_ITEM_ENVELOPE1
+	dc.l	ItemDescriptionEnvelope1
+	; OBJ_ITEM_ENVELOPE2
+	dc.l	ItemDescriptionEnvelope2
 
 ;-------------------------------------------------------------------------------
 ; store names

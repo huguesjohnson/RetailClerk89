@@ -18,6 +18,10 @@ NPCMovementDownStart:
     dc.w	DIRECTION_DOWN
 NPCMovementDownEnd:
 
+NPCMovementUpStart:
+    dc.w	DIRECTION_UP
+NPCMovementUpEnd:
+
 NPCMovementRightStart:
     dc.w	DIRECTION_RIGHT
 NPCMovementRightEnd:

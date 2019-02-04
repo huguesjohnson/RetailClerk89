@@ -86,13 +86,13 @@ Day04Scene03Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene03Action01NPC:
-	; setup 4 choice dialog	
-	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
-	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d6	; set text choice flag
-	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
-	lea	InfoDeskMenu,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
+;	; setup 4 choice dialog	
+;	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
+;	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d6	; set text choice flag
+;	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+;	lea	InfoDeskMenu,a6	; load text
+;	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+;	rts
 Day04Scene03Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
@@ -107,27 +107,15 @@ Day04Scene03Action02NPC:
 	rts
 Day04Scene03Action03:	; ACTION_RESPOND
 	bsr.w	ResetDialog	; reset the dialog
-	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
-	beq.s	Day04Scene03Action03R0	; branch to text for response 0
-	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
-	beq.s	Day04Scene03Action03R1	; branch to text for response 1
-	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
-	beq.s	Day04Scene03Action03R2	; branch to text for response 2
-	; must be response 3 then
-	lea	DialogTextInfoDeskDay04R3,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day04Scene03Action03R0:
-	lea	DialogTextInfoDeskDay04R0,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day04Scene03Action03R1:
-	lea	DialogTextInfoDeskDay04R1,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day04Scene03Action03R2:
-	lea	DialogTextInfoDeskDay04R2,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+;	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+;	beq.s	Day04Scene03Action03R0	; branch to text for response 0
+;	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
+;	beq.s	Day04Scene03Action03R1	; branch to text for response 1
+;	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
+;	beq.s	Day04Scene03Action03R2	; branch to text for response 2
+;	; must be response 3 then
+;	lea	DialogTextInfoDeskDay04R3,a6	; load text
+;	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
