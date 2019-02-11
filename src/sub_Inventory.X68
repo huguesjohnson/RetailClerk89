@@ -12,11 +12,29 @@ AddItem:
 	move.w	(MEM_PLAYER_ITEM_COUNT),d6	; copy current item count to d6
 	cmpi.w	#MAX_ITEMS,d6	; check if inventory is full 
 	bge.s	ExitAddItem	; branch if already at the limit
+AddItemFindOpenSlot:
 	addq	#$1,(MEM_PLAYER_ITEM_COUNT)	; increment item count
 	mulu.w	#WORD_SIZE,d6	; find index of location to write the item
 	lea MEM_PLAYER_ITEMS,a1	; point to start of item list
 	move.w	d7,(a1,d6)	; copy the item	
 ExitAddItem:
+	rts
+
+;-------------------------------------------------------------------------------
+; adds an item to the player's inventory
+; overwrites first item if the player's inventory is full  
+; d7 = item to add
+; d6 is modified by this subroutine
+; a1 is modified by this subroutine
+;-------------------------------------------------------------------------------
+AddItemOverwrite:
+	move.w	(MEM_PLAYER_ITEM_COUNT),d6	; copy current item count to d6
+	cmpi.w	#MAX_ITEMS,d6	; check if inventory is full 
+	blt.w	AddItemFindOpenSlot	; branch if below the limit
+	; overwrite the first item
+	lea MEM_PLAYER_ITEMS,a1	; point to start of item list
+	move.w	d7,a1	; copy the item	
+ExitAddItemOverwrite:
 	rts
 
 ;-------------------------------------------------------------------------------

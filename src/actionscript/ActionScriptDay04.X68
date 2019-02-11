@@ -8,8 +8,26 @@ Day04Scene00Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
 	beq.s	Day04Scene00Action01NPC	; branch to text for the NPC
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_DB,d6	; test target
+	beq.s	Day04Scene00Action01DB	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene00Action01DB:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene00Action01DBDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene00Action01DBDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextDBDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene00Action01DBDefault:
+	lea	DialogTextDBDay04,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene00Action01NPC:
@@ -81,18 +99,50 @@ Day04Scene03Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
 	beq.s	Day04Scene03Action01NPC	; branch to display text
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_FCBCAMPING_STAFF,d6	; test target
+	beq.s	Day04Scene03Action01NPCFCBCamping	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+Day04Scene03Action01NPCFCBCamping:
+	lea	DialogTextDay04Scene03TalkNPC,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day04Scene03Action01NPC:
-;	; setup 4 choice dialog	
-;	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
-;	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d6	; set text choice flag
-;	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
-;	lea	InfoDeskMenu,a6	; load text
-;	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-;	rts
+	; test state of sub-quest for the day
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	; is the sub-quest complete?
+	btst.l	#EVENT_FLAG_DAY04_SUB_COMPLETE,d7	; test complete flag
+	bne.s	Day04Scene03Action01NPCComplete	; branch
+	; has an NPC joined the sub-quest?
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test npc flag
+	bne.s	Day04Scene03Action01NPCSubStartedNotCompleteNPC	; branch
+	; not complete & no NPC - test if started
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test started flag
+	bne.s	Day04Scene03Action01NPCSubStartedNotCompleteNoNPC	; branch        
+	; none of the flags are set -> start the sub-quest
+Day04Scene03Action01NPCSubNotStarted:
+	; setup 4 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d7	; set text choice flag
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextDay04Scene03SubNotStarted,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene03Action01NPCSubStartedNotCompleteNoNPC:
+	lea	DialogTextDay04Scene03SubNotStartedR0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene03Action01NPCSubStartedNotCompleteNPC:
+	lea	DialogTextDay04Scene03SubStarted0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene03Action01NPCComplete:
+	lea	DialogTextDay04Scene03SubComplete,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day04Scene03Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
@@ -107,15 +157,80 @@ Day04Scene03Action02NPC:
 	rts
 Day04Scene03Action03:	; ACTION_RESPOND
 	bsr.w	ResetDialog	; reset the dialog
-;	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
-;	beq.s	Day04Scene03Action03R0	; branch to text for response 0
-;	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
-;	beq.s	Day04Scene03Action03R1	; branch to text for response 1
-;	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
-;	beq.s	Day04Scene03Action03R2	; branch to text for response 2
-;	; must be response 3 then
-;	lea	DialogTextInfoDeskDay04R3,a6	; load text
-;	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	;---------------------------------------------------------------------------
+	; there are 3 possible times a response can be reached in day04
+	; 1) Start of sub-quest (EVENT_FLAG_DAY04_SUB_STARTED = 0)
+	; 2) Choose envelope (EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED = 0)
+	; 3) Give item (EVENT_FLAG_DAY04_SUB_GIFT_GIVEN = 0)
+	;---------------------------------------------------------------------------
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	; test started flag
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test started flag
+	beq.s	Day04Scene03Action03ChooseStartSub	; branch if not set
+	; test NPC added flag
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test started flag
+	beq.s	Day04Scene03Action03ChooseEnvelope	; branch if not set
+	; must be the 3rd option
+Day04Scene03Action03GiveGift:
+	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
+	beq.s	Day04Scene03Action03GiveGiftR1	; branch if 1
+Day04Scene03Action03GiveGiftR0:
+	; update flags
+	bset.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7	; set started flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	
+	;---------------------------------------------------------------------------
+	; TODO - "good gift" logic goes here
+	;---------------------------------------------------------------------------
+
+	; remove the item from the player's inventory	
+	move.w	(MEM_ACTIVE_ITEM),d7	; copy object ID to d7
+	bsr.w	RemoveItem	; remove the item
+	; show the response text
+	lea	DialogTextDay04Scene03SubStartedGiveR0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene03Action03GiveGiftR1:
+	; show the response text
+	lea	DialogTextDay04Scene03SubStarted0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene03Action03ChooseStartSub:
+	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
+	beq.s	Day04Scene03Action03ChooseStartSubR1	; branch if 1
+Day04Scene03Action03ChooseStartSubR0:
+	; update flags
+	bset.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; set started flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; show the response text
+	lea	DialogTextDay04Scene03SubNotStartedR0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene03Action03ChooseStartSubR1:
+	lea	DialogTextDay04Scene03SubNotStartedR1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene03Action03ChooseEnvelope:
+	; update flags
+	bset.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; set started flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
+	beq.s	Day04Scene03Action03ChooseEnvelopeR1	; branch if 1
+Day04Scene03Action03ChooseEnvelopeR0:
+	; add item to the player's inventory
+	move.w	#OBJ_ITEM_ENVELOPE1,d7
+	bsr.w	AddItemOverwrite
+	; show the envelope description
+	lea	ItemDescriptionEnvelope1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene03Action03ChooseEnvelopeR1:
+	; add item to the player's inventory
+	move.w	#OBJ_ITEM_ENVELOPE2,d7
+	bsr.w	AddItemOverwrite
+	; show the envelope description
+	lea	ItemDescriptionEnvelope2,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
@@ -236,6 +351,17 @@ Day04Scene08Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene08Action01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene08Action01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene08Action01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextDenimCountryStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene08Action01NPCDefault:
 	lea	DialogTextDenimCountryStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -271,6 +397,17 @@ Day04Scene09Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene09Action01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene09Action01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene09Action01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextCheckersStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene09Action01NPCDefault:
 	lea	DialogTextCheckersStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -306,6 +443,17 @@ Day04Scene0AAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0AAction01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene0AAction01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene0AAction01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextCheckersStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0AAction01NPCDefault:
 	lea	DialogTextTLodgeStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -341,6 +489,17 @@ Day04Scene0BAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0BAction01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene0BAction01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene0BAction01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextTLodgeStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0BAction01NPCDefault:
 	lea	DialogTextCavernStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -376,6 +535,17 @@ Day04Scene0CAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0CAction01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene0CAction01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene0CAction01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextSVideoStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0CAction01NPCDefault:
 	lea	DialogTextSVideoStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -413,10 +583,32 @@ Day04Scene0DAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0DAction01NPC0:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene0DAction01NPC0Default	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene0DAction01NPC0Default	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextWorkshopStaff0Day04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0DAction01NPC0Default:
 	lea	DialogTextWorkshopStaff0DefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0DAction01NPC1:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene0DAction01NPC1Default	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene0DAction01NPC1Default	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextWorkshopStaff1Day04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0DAction01NPC1Default:
 	lea	DialogTextWorkshopStaff1DefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -458,6 +650,17 @@ Day04Scene0EAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0EAction01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene0EAction01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene0EAction01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextNShackStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0EAction01NPCDefault:
 	lea	DialogTextNShackStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -493,6 +696,17 @@ Day04Scene0FAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0FAction01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene0FAction01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene0FAction01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextPogoDawgStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0FAction01NPCDefault:
 	lea	DialogTextPogoDawgStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -528,6 +742,17 @@ Day04Scene10Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene10Action01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene10Action01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene10Action01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextCPlanetStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene10Action01NPCDefault:
 	lea	DialogTextCPlanetStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -563,6 +788,17 @@ Day04Scene11Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene11Action01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	DialogTextCNowStaffDefaultTalk	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	DialogTextCNowStaffDefaultTalk	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextCPlanetStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene11Action01NPCDefault:
 	lea	DialogTextCNowStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -598,6 +834,17 @@ Day04Scene12Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene12Action01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene12Action01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene12Action01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextTBooksStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene12Action01NPCDefault:
 	lea	DialogTextTBooksStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -633,6 +880,17 @@ Day04Scene13Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene13Action01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene13Action01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene13Action01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextFCBCheckoutStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene13Action01NPCDefault:
 	lea	DialogTextFCBCheckoutStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -668,6 +926,17 @@ Day04Scene14Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene14Action01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene14Action01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene14Action01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextFCBFirearmsStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene14Action01NPCDefault:
 	lea	DialogTextFCBFirearmsStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -703,6 +972,17 @@ Day04Scene15Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene15Action01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	DialogTextFCBFishingStaffDefaultTalk	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	DialogTextFCBFishingStaffDefaultTalk	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextFCBFishingStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene15Action01NPCDefault:
 	lea	DialogTextFCBFishingStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -738,6 +1018,25 @@ Day04Scene16Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene16Action01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene16Action01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene16Action01NPCDefault	; npc found, branch
+	; update game state
+	bset.l	#EVENT_FLAG_DAY04_SUB_NPCFOUND,d7	; set npc found flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; update NPC locations
+	move.l	#$00000000,(MEM_NPC_LOCATION_FCBCAMPING)
+	move.l	#$04120000,(MEM_NPC_LOCATION_CENTER)
+	; launch scripted event for sub-quest
+	lea ScriptedEventDay04MoveNPC,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextFCBCampingStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene16Action01NPCDefault:
 	lea	DialogTextFCBCampingStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -773,6 +1072,17 @@ Day04Scene17Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene17Action01NPC:
+	; check if in the sub-quest to find an NPC npc the secret santa exchange
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
+	beq.s	Day04Scene17Action01NPCDefault	; not started, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene17Action01NPCDefault	; npc found, branch
+	; use text for sub-quest
+	lea	DialogTextSouthCenterStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene17Action01NPCDefault:
 	lea	DialogTextSouthCenterStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts

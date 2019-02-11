@@ -1254,7 +1254,7 @@ Day03End:
 	;---------------------------------------------------------------------------	
 	; update NPC locations
 	;---------------------------------------------------------------------------	
-	move.l	#$03160000,(MEM_NPC_LOCATION_VB)
+	move.l	#$16000000,(MEM_NPC_LOCATION_VB)
 	move.l	#$13000000,(MEM_NPC_LOCATION_SOUTH_CENTER)
 	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
 	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)

@@ -64,12 +64,13 @@ EVENT_FLAG_DAY03_SUB_TLODGE_COMPLETE=$1	; tlodge sub-quest day 3 complete
 EVENT_FLAG_DAY03_SUB_VB_STARTED=$2	; vb sub-quest day 3 started
 EVENT_FLAG_DAY03_SUB_VB_COMPLETE=$3	; vb sub-quest day 3 complete
 EVENT_FLAG_DAY04_SUB_STARTED=$0	; secret santa sub-quest started
-EVENT_FLAG_DAY04_SUB_NPCADDED=$1	; found npc to join sub-quest
-EVENT_FLAG_DAY04_SUB_CHOICE0=$2	; envelope choice 0 was selected
-EVENT_FLAG_DAY04_SUB_CHOICE1=$3	; envelope choice 1 was selected
-EVENT_FLAG_DAY04_SUB_GIFT_GIVEN=$4	; gift given
-EVENT_FLAG_DAY04_SUB_GOOD_GIFT=$5	; whether a good gift was given
-EVENT_FLAG_DAY04_SUB_COMPLETE=$6	; secret santa sub-quest complete
+EVENT_FLAG_DAY04_SUB_NPCFOUND=$1	; found npc to join sub-quest
+EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED=$2	; looking for a gift
+EVENT_FLAG_DAY04_SUB_CHOICE0=$3	; envelope choice 0 was selected
+EVENT_FLAG_DAY04_SUB_CHOICE1=$4	; envelope choice 1 was selected
+EVENT_FLAG_DAY04_SUB_GIFT_GIVEN=$5	; gift given
+EVENT_FLAG_DAY04_SUB_GOOD_GIFT=$6	; whether a good gift was given
+EVENT_FLAG_DAY04_SUB_COMPLETE=$7	; secret santa sub-quest complete
 
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 

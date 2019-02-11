@@ -910,6 +910,12 @@ ScriptedEventDay04Start:
 	dc.l	DialogTextScriptedEventDay04Start02
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay04MoveNPC:
+	dc.w	$0002	; npc0
+	dc.w	DIRECTION_DOWN
+	dc.w	$0070
+	dc.w	SCRIPTED_EVENT_END
+
 ; ------------------------------------------------------------------------------
 ; used to test scene and player sprite changes in scripted events
 ; ------------------------------------------------------------------------------

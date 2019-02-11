@@ -2442,11 +2442,189 @@ DialogTextDay04Scene03StartSubR:
 	dc.b	"and have fun shopping!",ETX
 
 	align 2
+DialogTextDay04Scene03SubComplete:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"The gift exchange",LF
+	dc.b	"went perfectly!      ^",FF
+	dc.b	"I can't wait until",LF
+	dc.b	"next year!",ETX
+
+	align 2
 DialogTextDay04Scene03TalkNPC:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"I wonder who we'll",LF
 	dc.b	"each get?",ETX
+
+	align 2
+DialogTextDBDay04:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Is your manager ever",LF
+	dc.b	"here anymore?",ETX
+
+	align 2
+DialogTextDBDay04SubFindNPC:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Gift exchange? Were",LF
+	dc.b	"you replaced with a  ^",FF
+	dc.b	"clone overnight?",LF
+	dc.b	"I'm probably alone   ^",FF
+	dc.b	"tonight so I can't",LF
+	dc.b	"help with all of that.",ETX
+
+	align 2
+DialogTextDBDay04SubFindGift:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Hey, I'm taking ",LF
+	dc.b	"something for this   ^",FF
+	dc.b	"gift exchange. I",LF
+	dc.b	"assume you don't care.",ETX
+
+	align 2
+DialogTextTBooksStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm already in the ",LF
+	dc.b	"gift exchange.       ^",FF
+	dc.b	"Feel free to grab",LF
+	dc.b	"something from here  ^",FF
+	dc.b	"when you're looking",LF
+	dc.b	"for a gift.",ETX
+
+	align 2
+DialogTextDenimCountryStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You're really doing",LF
+	dc.b	"the gift exchange?   ^",FF
+	dc.b	"That's so, not, oh,",LF
+	dc.b	"nevermind I guess.",ETX
+
+	align 2
+DialogTextCheckersStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Wish I could help but",LF
+	dc.b	"I joined yesterday.  ^",FF
+	dc.b	"I have no idea what to",LF
+	dc.b	"get my person.",ETX
+
+	align 2
+DialogTextTLodgeStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm in the Secret",LF
+	dc.b	"Santa exchange.      ^",FF
+	dc.b	"I'm going to nail",LF
+	dc.b	"my gift too..",ETX
+
+	align 2
+DialogTextCavernStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Gift exchange?",LF
+	dc.b	"Sorry, not my thing.",ETX
+
+	align 2
+DialogTextSVideoStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm signed-up for it",LF
+	dc.b	"already.",ETX
+
+	align 2
+DialogTextNShackStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"It sounds interesting",LF
+	dc.b	"but I never know     ^",FF
+	dc.b	"what to get people so",LF
+	dc.b	"I'll pass this time.",ETX
+
+	align 2
+DialogTextPogoDawgStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Huh? Did you say you",LF
+	dc.b	"bought me a present?",ETX
+
+	align 2
+DialogTextCPlanetStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_CPLANET_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Oh I'm signed-up.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Whoever got my name",LF
+	dc.b	"better get it right.",ETX
+
+	align 2
+DialogTextCNowStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm in already, I love",LF
+	dc.b	"presents. Last year..^",FF
+	dc.b	"(30 minutes later)",LF
+	dc.b	"                     ^",FF
+	dc.b	"..the doctor said she",LF
+	dc.b	"never saw it before.",ETX
+
+	align 2
+DialogTextFCBCheckoutStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_FCBCHECKOUT_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Are you trying to",LF
+	dc.b	"prank me?",ETX
+
+	align 2
+DialogTextFCBFirearmsStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Nah, I don't have time",LF
+	dc.b	"for that.",ETX
+
+	align 2
+DialogTextFCBFishingStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_FCBFISHING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Not only did I join",LF
+	dc.b	"but I'm done shopping.",ETX
+
+	align 2
+DialogTextFCBCampingStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Secret Santa? Yeah,",LF
+	dc.b	"yeah, OK, I'll do it.^",FF
+	dc.b	"Consider it my way",LF
+	dc.b	"of apologizing.      ^",FF
+	dc.b	"Plus I know everyone",LF
+	dc.b	"here well by now.",ETX
+
+DialogTextSouthCenterStaffDay04SubFindNPC:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Too late, I signed-up",LF
+	dc.b	"this morning.",ETX
+
+	align 2
+DialogTextWorkshopStaff0Day04SubFindNPC:
+	dc.w	OBJ_NPC_WORKSHOP_STAFF0
+	;		"1234567890123456789012"
+	dc.b	"I'm already signed-up,",LF
+	dc.b	"don't know when I'll ^",FF
+	dc.b	"get a long enough",LF
+	dc.b	"break to shop.",ETX
+
+	align 2
+DialogTextWorkshopStaff1Day04SubFindNPC:
+	dc.w	OBJ_NPC_WORKSHOP_STAFF1
+	;		"1234567890123456789012"
+	dc.b	"Sorry, I have my hands",LF
+	dc.b	"full with real Santa.",ETX
 
 	align 2
 DialogTextDaniScene05Day04:
