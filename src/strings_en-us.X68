@@ -2347,8 +2347,8 @@ DialogTextScriptedEventDay04Start00:
 DialogTextScriptedEventDay04Start01:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"(some snarky reply)",LF
-	dc.b	" ",ETX
+	dc.b	"A clue would be a",LF
+	dc.b	"good start.",ETX
 
 	align 2
 DialogTextScriptedEventDay04Start02:
@@ -2397,9 +2397,36 @@ DialogTextDay04Scene03SubStarted0:
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
 	dc.b	"When you find the ",LF
-	dc.b	"perfect give please  ^",FF
+	dc.b	"perfect gift please  ^",FF
 	dc.b	"give it to me. I'll",LF
 	dc.b	"take care of the rest.",ETX
+
+	align 2
+DialogTextDay04Scene03SubChoose:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Thanks for finding",LF
+	dc.b	"someone else!        ^",FF
+	dc.b	"Which Secret Santa",LF
+	dc.b	"envelope do you want?^",FFR
+	dc.b	"{Envelope 1",LF
+	dc.b	"{Envelope 2",ETX
+
+	align 2
+DialogTextDay04Scene03SubChoose0:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Here you go!",LF
+	dc.b	"                     ^",FFR
+	dc.b	"(Received Envelope)",ETX
+
+	align 2
+DialogTextDay04Scene03SubChoose1:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Interesting pick.",LF
+	dc.b	"Good luck!           ^",FFR
+	dc.b	"(Received Envelope)",ETX
 
 	align 2
 DialogTextDay04Scene03SubStartedGive:
@@ -4242,6 +4269,166 @@ ItemDescriptionEnvelope2:
 	;		"1234567890123456789012"
 	dc.b	"Cassette Planet: Eliza",LF
 	dc.b	"Interests: ",ETX
+
+ItemNameRBook1:
+	;		"1234567890"
+	dc.b	"Sexy Scot",ITEMNAMEEND
+
+ItemDescriptionRBook1:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"Sometimes you",LF
+	;		"1234567890123456789012"
+	dc.b	"kiss a Sexy Scot",CHAR_DQUOTE,ETX
+
+ItemNameRBook2:
+	;		"1234567890"
+	dc.b	"Dash Duke",ITEMNAMEEND
+
+ItemDescriptionRBook2:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"Sometimes you",LF
+	;		"1234567890123456789012"
+	dc.b	"marry a Dashing Duke",CHAR_DQUOTE,ETX
+
+ItemNameRBook3:
+	;		"1234567890"
+	dc.b	"RecklRogue",ITEMNAMEEND
+
+ItemDescriptionRBook3:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"Sometimes you",LF
+	;		"1234567890123456789012"
+	dc.b	"dare a Reckless Rogue",CHAR_DQUOTE,ETX
+
+ItemNameRBook4:
+	;		"1234567890"
+	dc.b	"GetAGhost",ITEMNAMEEND
+
+ItemDescriptionRBook4:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"New paranormal",LF
+	;		"1234567890123456789012"
+	dc.b	"romance series",CHAR_DQUOTE,ETX
+
+ItemNameHBook1:
+	;		"1234567890"
+	dc.b	"BelgnRevo",ITEMNAMEEND
+
+ItemDescriptionHBook1:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"History of the",LF
+	;		"1234567890123456789012"
+	dc.b	"Belgian Revolution",CHAR_DQUOTE,ETX
+
+ItemNameHBook2:
+	;		"1234567890"
+	dc.b	"LastMilkmn",ITEMNAMEEND
+
+ItemDescriptionHBook2:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"True story of",LF
+	;		"1234567890123456789012"
+	dc.b	"the last milkman",CHAR_DQUOTE,ETX
+
+ItemNameHBook3:
+	;		"1234567890"
+	dc.b	"MathHstory",ITEMNAMEEND
+
+ItemDescriptionHBook3:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"The complete",LF
+	;		"1234567890123456789012"
+	dc.b	"history of math",CHAR_DQUOTE,ETX
+
+ItemNameHBook4:
+	;		"1234567890"
+	dc.b	"TheLastWar",ITEMNAMEEND
+
+ItemDescriptionHBook4:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"How our last",LF
+	;		"1234567890123456789012"
+	dc.b	"war will be the last",CHAR_DQUOTE,ETX
+
+ItemNameCBook1:
+	;		"1234567890"
+	dc.b	"Cheap Chef",ITEMNAMEEND
+
+ItemDescriptionCBook1:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"stuff",LF
+	;		"1234567890123456789012"
+	dc.b	"stuff",CHAR_DQUOTE,ETX
+
+ItemNameCBook2:
+	;		"1234567890"
+	dc.b	"HolidayMix",ITEMNAMEEND
+
+ItemDescriptionCBook2:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"Holiday meals",LF
+	;		"1234567890123456789012"
+	dc.b	"using only a blender",CHAR_DQUOTE,ETX
+
+ItemNameCBook3:
+	;		"1234567890"
+	dc.b	"MicrowaveG",ITEMNAMEEND
+
+ItemDescriptionCBook3:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"Microwave",LF
+	;		"1234567890123456789012"
+	dc.b	"Gourmet, 1989 edition",CHAR_DQUOTE,ETX
+
+ItemNameCBook4:
+	;		"1234567890"
+	dc.b	"VegCurious",ITEMNAMEEND
+
+ItemDescriptionCBook4:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"Are you ready",LF
+	;		"1234567890123456789012"
+	dc.b	"for a meat-free life?",CHAR_DQUOTE,ETX
+
+ItemNameFBook1:
+	;		"1234567890"
+	dc.b	"BlackQrter",ITEMNAMEEND
+
+ItemDescriptionFBook1:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"An author deals",LF
+	;		"1234567890123456789012"
+	dc.b	"with four identities",CHAR_DQUOTE,ETX
+
+ItemNameFBook2:
+	;		"1234567890"
+	dc.b	"WzrdOfHysl",ITEMNAMEEND
+
+ItemDescriptionFBook2:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"Can Peachflame",LF
+	;		"1234567890123456789012"
+	dc.b	"save Hysleria?",CHAR_DQUOTE,ETX
+
+ItemNameFBook3:
+	;		"1234567890"
+	dc.b	"GneralThrt",ITEMNAMEEND
+
+ItemDescriptionFBook3:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"Traitor general",LF
+	;		"1234567890123456789012"
+	dc.b	"steals a Soviet sub",CHAR_DQUOTE,ETX
+
+ItemNameFBook4:
+	;		"1234567890"
+	dc.b	"Vodkaland",ITEMNAMEEND
+
+ItemDescriptionFBook4:
+	;		"1              234567890123456"
+	dc.b	"",CHAR_DQUOTE,"A collection of",LF
+	;		"1234567890123456789012"
+	dc.b	"short stories",CHAR_DQUOTE,ETX
 
 ;-------------------------------------------------------------------------------
 ; store signs

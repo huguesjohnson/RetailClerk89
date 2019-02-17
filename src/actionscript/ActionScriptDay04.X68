@@ -115,16 +115,19 @@ Day04Scene03Action01NPC:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
 	; is the sub-quest complete?
 	btst.l	#EVENT_FLAG_DAY04_SUB_COMPLETE,d7	; test complete flag
-	bne.s	Day04Scene03Action01NPCComplete	; branch
+	bne.s	Day04Scene03Action01NPCComplete	; branch if set
 	; has an NPC joined the sub-quest?
-	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test npc flag
+	btst.l	#EVENT_FLAG_DAY04_SUB_NPCFOUND,d7	; test flag
+	bne.s	Day04Scene03Action01ChooseEnvelope	; branch if set
+	; is the find gift part started?
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test flag
 	bne.s	Day04Scene03Action01NPCSubStartedNotCompleteNPC	; branch
 	; not complete & no NPC - test if started
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test started flag
 	bne.s	Day04Scene03Action01NPCSubStartedNotCompleteNoNPC	; branch        
 	; none of the flags are set -> start the sub-quest
 Day04Scene03Action01NPCSubNotStarted:
-	; setup 4 choice dialog	
+	; setup 2 choice dialog	
 	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
 	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d7	; set text choice flag
 	move.l	d7,(MEM_DIALOG_FLAGS)	; save it back
@@ -137,6 +140,14 @@ Day04Scene03Action01NPCSubStartedNotCompleteNoNPC:
 	rts
 Day04Scene03Action01NPCSubStartedNotCompleteNPC:
 	lea	DialogTextDay04Scene03SubStarted0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene03Action01ChooseEnvelope:
+	; setup 2 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d7	; set text choice flag
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextDay04Scene03SubChoose,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene03Action01NPCComplete:
@@ -220,16 +231,16 @@ Day04Scene03Action03ChooseEnvelopeR0:
 	; add item to the player's inventory
 	move.w	#OBJ_ITEM_ENVELOPE1,d7
 	bsr.w	AddItemOverwrite
-	; show the envelope description
-	lea	ItemDescriptionEnvelope1,a6	; load text
+	; show message
+	lea	DialogTextDay04Scene03SubChoose0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene03Action03ChooseEnvelopeR1:
 	; add item to the player's inventory
 	move.w	#OBJ_ITEM_ENVELOPE2,d7
 	bsr.w	AddItemOverwrite
-	; show the envelope description
-	lea	ItemDescriptionEnvelope2,a6	; load text
+	; show message
+	lea	DialogTextDay04Scene03SubChoose1,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

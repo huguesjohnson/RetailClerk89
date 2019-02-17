@@ -425,6 +425,38 @@ ItemNameTable:
 	dc.l	ItemNameEnvelope
 	; OBJ_ITEM_ENVELOPE2
 	dc.l	ItemNameEnvelope
+	; OBJ_ITEM_RBOOK1
+	dc.l	ItemNameRBook1
+	; OBJ_ITEM_RBOOK2
+	dc.l	ItemNameRBook2
+	; OBJ_ITEM_RBOOK3
+	dc.l	ItemNameRBook3
+	; OBJ_ITEM_RBOOK4
+	dc.l	ItemNameRBook4
+	; OBJ_ITEM_HBOOK1
+	dc.l	ItemNameHBook1
+	; OBJ_ITEM_HBOOK2
+	dc.l	ItemNameHBook2
+	; OBJ_ITEM_HBOOK3
+	dc.l	ItemNameHBook3
+	; OBJ_ITEM_HBOOK4
+	dc.l	ItemNameHBook4
+	; OBJ_ITEM_CBOOK1
+	dc.l	ItemNameCBook1
+	; OBJ_ITEM_CBOOK2
+	dc.l	ItemNameCBook2
+	; OBJ_ITEM_CBOOK3
+	dc.l	ItemNameCBook3
+	; OBJ_ITEM_CBOOK4
+	dc.l	ItemNameCBook4
+	; OBJ_ITEM_FBOOK1
+	dc.l	ItemNameFBook1
+	; OBJ_ITEM_FBOOK2
+	dc.l	ItemNameFBook2
+	; OBJ_ITEM_FBOOK3
+	dc.l	ItemNameFBook3
+	; OBJ_ITEM_FBOOK4
+	dc.l	ItemNameFBook4
 
 ;-------------------------------------------------------------------------------
 ; item descriptions
@@ -496,6 +528,38 @@ ItemDescriptionTable:
 	dc.l	ItemDescriptionEnvelope1
 	; OBJ_ITEM_ENVELOPE2
 	dc.l	ItemDescriptionEnvelope2
+	; OBJ_ITEM_RBOOK1
+	dc.l	ItemDescriptionRBook1
+	; OBJ_ITEM_RBOOK2
+	dc.l	ItemDescriptionRBook2
+	; OBJ_ITEM_RBOOK3
+	dc.l	ItemDescriptionRBook3
+	; OBJ_ITEM_RBOOK4
+	dc.l	ItemDescriptionRBook4
+	; OBJ_ITEM_HBOOK1
+	dc.l	ItemDescriptionHBook1
+	; OBJ_ITEM_HBOOK2
+	dc.l	ItemDescriptionHBook2
+	; OBJ_ITEM_HBOOK3
+	dc.l	ItemDescriptionHBook3
+	; OBJ_ITEM_HBOOK4
+	dc.l	ItemDescriptionHBook4
+	; OBJ_ITEM_CBOOK1
+	dc.l	ItemDescriptionCBook1
+	; OBJ_ITEM_CBOOK2
+	dc.l	ItemDescriptionCBook2
+	; OBJ_ITEM_CBOOK3
+	dc.l	ItemDescriptionCBook3
+	; OBJ_ITEM_CBOOK4
+	dc.l	ItemDescriptionCBook4
+	; OBJ_ITEM_FBOOK1
+	dc.l	ItemDescriptionFBook1
+	; OBJ_ITEM_FBOOK2
+	dc.l	ItemDescriptionFBook2
+	; OBJ_ITEM_FBOOK3
+	dc.l	ItemDescriptionFBook3
+	; OBJ_ITEM_FBOOK4
+	dc.l	ItemDescriptionFBook4
 
 ;-------------------------------------------------------------------------------
 ; store names
