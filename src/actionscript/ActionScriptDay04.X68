@@ -195,8 +195,7 @@ Day04Scene03Action03GiveGiftR0:
 	;---------------------------------------------------------------------------
 
 	; remove the item from the player's inventory	
-	move.w	(MEM_ACTIVE_ITEM),d7	; copy object ID to d7
-	bsr.w	RemoveItem	; remove the item
+	bsr.w	RemoveActiveItem	; remove the item
 	; show the response text
 	lea	DialogTextDay04Scene03SubStartedGiveR0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -224,21 +223,32 @@ Day04Scene03Action03ChooseStartSubR1:
 Day04Scene03Action03ChooseEnvelope:
 	; update flags
 	bset.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; set started flag
-	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; update NPC locations
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
 	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
 	beq.s	Day04Scene03Action03ChooseEnvelopeR1	; branch if 1
 Day04Scene03Action03ChooseEnvelopeR0:
+	bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7	; set choice flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
 	; add item to the player's inventory
 	move.w	#OBJ_ITEM_ENVELOPE1,d7
 	bsr.w	AddItemOverwrite
+	; queue scripted event
+	lea ScriptedEventDay04StartSub,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
 	; show message
 	lea	DialogTextDay04Scene03SubChoose0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene03Action03ChooseEnvelopeR1:
+	bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE1,d7	; set choice flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
 	; add item to the player's inventory
 	move.w	#OBJ_ITEM_ENVELOPE2,d7
 	bsr.w	AddItemOverwrite
+	; queue scripted event
+	lea ScriptedEventDay04StartSub,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
 	; show message
 	lea	DialogTextDay04Scene03SubChoose1,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -860,6 +870,36 @@ Day04Scene12Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene12Action02:	; ACTION_TAKE_GIVE
+	;---------------------------------------------------------------------------
+	; if EVENT_FLAG_DAY04_SUB_TBOOKS_DIALOG is set
+	; and
+	; EVENT_FLAG_DAY04_SUB_GIFT_GIVEN is not set
+	; then show subquest give/take options
+	;---------------------------------------------------------------------------
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_TBOOKS_DIALOG,d7	; test flag
+	beq.s	Day04Scene12Action02Default	; flag not set, use default
+	btst.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7	; test flag
+	bne.s	Day04Scene12Action02Default	; flag set, use default
+	; can't give away the envelope
+	cmpi.w	#OBJ_ITEM_ENVELOPE1,(MEM_ACTIVE_ITEM)	; test item
+	beq.s	Day04Scene12Action02Default	; flag not set, use default
+	cmpi.w	#OBJ_ITEM_ENVELOPE2,(MEM_ACTIVE_ITEM)	; test item
+	beq.s	Day04Scene12Action02Default	; flag not set, use default
+Day04Scene12Action02Sub:
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_TBOOKS_STAFF,d6	; test target
+	beq.s	Day04Scene12Action02SubNPC	; branch to text for the NPC
+	; else show the take menu
+	bsr.w	Scene12DefaultTake	; use scene defaults
+	rts
+Day04Scene12Action02SubNPC:
+	bsr.w	RemoveActiveItem	; remove the active item
+	; show the response text
+	lea	DialogTextDay04Scene03NPCGive,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene12Action02Default:
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_TBOOKS_STAFF,d6	; test target
 	beq.s	Day04Scene12Action02NPC	; branch to text for the NPC
@@ -1122,22 +1162,10 @@ Day04End:
 	;---------------------------------------------------------------------------	
 	; update NPC locations
 	;---------------------------------------------------------------------------	
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.l	#$03000000,(a5)	; update NPCs in scene 00
-	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
-	and.l	#$00000000,(a5)	; update NPCs in parking lot
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
-	and.l	#$00000000,(a5)	; update NPCs in east-east hall
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address 
-	move.l	#$05010000,(a5)	; update NPCs
+	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
+	move.l	#$00000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
+	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	

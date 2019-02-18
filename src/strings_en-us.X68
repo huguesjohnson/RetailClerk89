@@ -2429,6 +2429,80 @@ DialogTextDay04Scene03SubChoose1:
 	dc.b	"(Received Envelope)",ETX
 
 	align 2
+DialogTextDay04Scene03SubStartGift0:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"The rules are simple,",LF
+	dc.b	"find a gift for the  ^",FF
+	dc.b	"name in your envelope.",LF
+	dc.b	"Then give it to me.  ^",FF
+	dc.b	"I'll wrap it & give it",LF
+	dc.b	"to them before Xmas.",ETX
+
+	align 2
+DialogTextDay04Scene03SubStartGift1:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Sweet, mine is really",LF
+	dc.b	"easy.",ETX
+
+
+	align 2
+DialogTextDay04Scene03SubTBooks0:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Hey, glad you're here.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Are you interested in ",LF
+	dc.b	"making a trade?",ETX
+
+	align 2
+DialogTextDay04Scene03SubTBooks1:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Go on..",ETX
+
+	align 2
+DialogTextDay04Scene03SubTBooks2:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I need something from",LF
+	dc.b	"your store for my    ^",FF
+	dc.b	"Secret Santa gift. So",LF
+	dc.b	"how about you take   ^",FF
+	dc.b	"whatever you need from",LF
+	dc.b	"here for your gift   ^",FF
+	dc.b	"in exchange? Consider",LF
+	dc.b	"it an even trade.",ETX
+
+	align 2
+DialogTextDay04Scene03SubTBooks3:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Let me consider the",LF
+	dc.b	"ethical implications.^",FF
+	dc.b	"...",LF
+	dc.b	"Yes.",ETX
+
+	align 2
+DialogTextDay04Scene03SubTBooks4:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Great, just take",LF
+	dc.b	"whatever you want.   ^",FF
+	dc.b	"If you change your",LF
+	dc.b	"mind about a book    ^",FF
+	dc.b	"give it to me and I'll",LF
+	dc.b	"put it back.",ETX
+
+	align 2
+DialogTextDay04Scene03NPCGive:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'll put this one back",LF
+	dc.b	"on the right shelf.",ETX
+
+	align 2
 DialogTextDay04Scene03SubStartedGive:
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
@@ -2443,7 +2517,7 @@ DialogTextDay04Scene03SubStartedGiveR0:
 	;		"1234567890123456789012"
 	dc.b	"Great! I'll make sure",LF
 	dc.b	"they get it.         ^",FF
-	dc.b	"Stop by tonight to get",LF
+	dc.b	"Stop by later to get",LF
 	dc.b	"your secret gift.",ETX
 
 	align 2
@@ -3564,6 +3638,12 @@ TakeMenuMagazines:
 TakeMenuGames:
 	;		"1234567890123456789012"
 	dc.b	"Which game do you",LF
+	dc.b	"want to take?        ^",FF
+	dc.b	"{",ITEMNAMESTART
+
+TakeMenuBooks:
+	;		"1234567890123456789012"
+	dc.b	"Which book do you",LF
 	dc.b	"want to take?        ^",FF
 	dc.b	"{",ITEMNAMESTART
 

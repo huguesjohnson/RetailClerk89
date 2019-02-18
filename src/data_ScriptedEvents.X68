@@ -900,7 +900,7 @@ ScriptedEventDay04Start:
 	dc.w	DIRECTION_LEFT
 	dc.w	$0000
 	; --------------------------------------------------------------------------
-	; dialog betweek NPC0 and player
+	; dialog between NPC0 and player
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextScriptedEventDay04Start00
@@ -914,6 +914,71 @@ ScriptedEventDay04MoveNPC:
 	dc.w	$0002	; npc0
 	dc.w	DIRECTION_DOWN
 	dc.w	$0070
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay04StartSub:
+	dc.w	$0003	; npc1
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay04Scene03SubStartGift0
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay04Scene03SubStartGift1
+	; --------------------------------------------------------------------------
+	; move npc1 off the screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_RIGHT
+	dc.w	($0118-$0070)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay04TBooks:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; change scene & player Y
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_TBOOKS
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; move player into the store
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	($0030)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; move npc toward the player
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; npc0
+	dc.w	DIRECTION_RIGHT
+	dc.w	($00E2-$00A2)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	($0020)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay04Scene03SubTBooks0
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay04Scene03SubTBooks1
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay04Scene03SubTBooks2
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay04Scene03SubTBooks3
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay04Scene03SubTBooks4
+	; --------------------------------------------------------------------------
+	; move npc back
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	($0020)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_LEFT
+	dc.w	($00D8-$00A2)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; done
+	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_END
 
 ; ------------------------------------------------------------------------------

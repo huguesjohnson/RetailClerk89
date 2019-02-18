@@ -561,8 +561,7 @@ Day03Scene0AAction02NPC:
 Day03Scene0AAction02NPCGiveCamera:	
 	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
 	; remove the item from the player's inventory	
-	move.w	(MEM_ACTIVE_ITEM),d7	; copy object ID to d7
-	bsr.w	RemoveItem	; remove the item
+	bsr.w	RemoveActiveItem	; remove the item
 	; how many cameras have been found?	
 	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
 	and.w	#$0000,d6	; clear d6

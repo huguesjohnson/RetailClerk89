@@ -139,8 +139,7 @@ Day00Scene00Action02DefaultTake:
 	bsr.w	Scene00DefaultTake	; use scene defaults
 	bra.w	ExitDay00Scene00Action02	; exit
 Day00Scene00Action02GiveNPC:
-	move.w	(MEM_ACTIVE_ITEM),d7	; copy item being given to d7
-	bsr.w	RemoveItem	; remove the item
+	bsr.w	RemoveActiveItem	; remove the item
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
 	bne.s	Day00Scene00Action02GiveNPCTest2	; branch if not MALE_SHOPPER0

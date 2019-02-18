@@ -69,6 +69,8 @@ ExitHasItem:
 ; d5 and d6 are modified by this subroutine
 ; a1 is modified by this subroutine
 ;-------------------------------------------------------------------------------
+RemoveActiveItem:
+	move.w	(MEM_ACTIVE_ITEM),d7	; copy active item to d7
 RemoveItem:
 	bsr.w	HasItem	; test if the item is in the inventory
 	cmpi.w	#$FFFF,d6	; test if the item was found

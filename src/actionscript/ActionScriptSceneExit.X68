@@ -130,6 +130,13 @@ ExitScene00Day02Default:
 ; exit scene 01 (SCENE_ID_WWHALL)
 ;-------------------------------------------------------------------------------
 ExitScene01:
+
+	move.w	#$1111,(MEM_DEBUG_1)
+	move.w	(MEM_DAY),(MEM_DEBUG_2)
+
+
+	cmpi.w	#$0004,(MEM_DAY)	; is this day 04?
+	beq.w	ExitScene01Day04	; branch to day 04
 	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
 	bne.s	ExitScene01Default	; not exiting north
 	cmpi.w	#$0002,(MEM_DAY)	; is this day 02?
@@ -180,6 +187,31 @@ ExitScene01Day03CantExit:
 	lea	DialogTextDay03CantEnterVB,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening
+	rts
+ExitScene01Day04:
+	; test if player is trying to enter tbooks
+	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)
+	bne.s	ExitScene01Day04Default	; not exiting north
+	;---------------------------------------------------------------------------
+	; if EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED is set
+	; and
+	; EVENT_FLAG_DAY04_SUB_TBOOKS_DIALOG is not set
+	; then launch scripted event and set EVENT_FLAG_DAY04_SUB_TBOOKS_DIALOG
+	;---------------------------------------------------------------------------
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if flag is set
+	beq.s	ExitScene01Day04Default	; not set, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_TBOOKS_DIALOG,d7	; test if flag is set
+	bne.s	ExitScene01Day04Default	; flag set, branch
+	; launch the scripted event
+	bset.l	#EVENT_FLAG_DAY04_SUB_TBOOKS_DIALOG,d7	; set flag 
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; copy flags back
+	; queue the scripted event
+	lea ScriptedEventDay04TBooks,a6	; point a6 to event to load
+	bsr.w	QueueScriptedEvent	; queue the event
+	rts
+ExitScene01Day04Default:
+	bra.w	DefaultExitScene	; use default handler
 	rts
 
 ;-------------------------------------------------------------------------------

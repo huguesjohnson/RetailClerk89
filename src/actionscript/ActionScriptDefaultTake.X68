@@ -44,7 +44,7 @@ Scene00DefaultTake:
 	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
 	bra.w	ExitScene00DefaultTake	; exit
 .1	; test for OBJ_SCENE_VB_8BIT
-	cmpi.w	#OBJ_SCENE_VB_8BIT,d6	; is the magazine rack the target?
+	cmpi.w	#OBJ_SCENE_VB_8BIT,d6	; is the 8-bit shelf the target?
 	bne.s	.2	; most to next test
 	lea	TakeMenuGames,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -88,6 +88,53 @@ Scene00DefaultTake:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 ExitScene00DefaultTake:
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d7	; set text choice flag
+	bset.l	#DIALOG_FLAG_STYLE_ITEM_MENU,d7	; set item menu flag
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated dialog flags
+	rts
+
+;-------------------------------------------------------------------------------
+; scene12 (SCENE_ID_TBOOKS)
+;-------------------------------------------------------------------------------
+Scene12DefaultTake:
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_SCENE_BOOKS_ROMANCE,d6	; are r. books the target?
+	bne.s	.1	; most to next test
+	lea	TakeMenuBooks,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	lea	ItemListTBooksR,a6	; load item list
+	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
+	bra.w	ExitScene12DefaultTake	; exit
+.1	; test for OBJ_SCENE_BOOKS_FICTION
+	cmpi.w	#OBJ_SCENE_BOOKS_FICTION,d6	; are f. books the target?
+	bne.s	.2	; most to next test
+	lea	TakeMenuBooks,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	lea	ItemListTBooksF,a6	; load item list
+	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
+	bra.w	ExitScene12DefaultTake	; exit
+.2	; test for OBJ_SCENE_BOOKS_HISTORY
+	cmpi.w	#OBJ_SCENE_BOOKS_HISTORY,d6	; are h. books the target?
+	bne.s	.3	; most to next test
+	lea	TakeMenuBooks,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	lea	ItemListTBooksH,a6	; load item list
+	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
+	bra.s	ExitScene12DefaultTake	; exit
+.3	; test for OBJ_SCENE_BOOKS_COOKING
+	cmpi.w	#OBJ_SCENE_BOOKS_COOKING,d6	; are c. books the target?
+	bne.s	.4	; most to next test
+	lea	TakeMenuBooks,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	lea	ItemListTBooksC,a6	; load item list
+	move.l	a6,MEM_DIALOG_ITEM_LIST	; copy address to MEM_DIALOG_ITEM_LIST
+	bra.s	ExitScene12DefaultTake	; exit
+.4	; default for anything else in the scene
+	lea	DialogTextCantTake,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+ExitScene12DefaultTake:
 	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
 	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d7	; set text choice flag
 	bset.l	#DIALOG_FLAG_STYLE_ITEM_MENU,d7	; set item menu flag
