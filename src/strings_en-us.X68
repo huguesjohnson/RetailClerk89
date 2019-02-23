@@ -105,11 +105,11 @@ TitleScreenTextFooter:
 
 	DebugScreenLine0C:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 4 end",ETX
 
 	DebugScreenLine0D:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 5 title",ETX
 
 	DebugScreenLine0E:
 	;		"12345678901234567890123456789012345678"
@@ -2446,7 +2446,6 @@ DialogTextDay04Scene03SubStartGift1:
 	dc.b	"Sweet, mine is really",LF
 	dc.b	"easy.",ETX
 
-
 	align 2
 DialogTextDay04Scene03SubTBooks0:
 	dc.w	OBJ_NPC_TBOOKS_STAFF
@@ -2501,6 +2500,13 @@ DialogTextDay04Scene03NPCGive:
 	;		"1234567890123456789012"
 	dc.b	"I'll put this one back",LF
 	dc.b	"on the right shelf.",ETX
+
+	align 2
+DialogTextDay04Scene00NPCGive:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Here, you're taking",LF
+	dc.b	"this. Don't complain.",ETX
 
 	align 2
 DialogTextDay04Scene03SubStartedGive:
@@ -2728,11 +2734,202 @@ DialogTextWorkshopStaff1Day04SubFindNPC:
 	dc.b	"full with real Santa.",ETX
 
 	align 2
+DialogTextSVideoStaffDay04SubFindGift0:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"My little brother,",LF
+	;		"1234567890123456789012"
+	dc.b	"definitely not me,   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"got your name in the",LF
+	;		"1234567890123456789012"
+	dc.b	"Secret Santa exchange.",ETX
+
+	align 2
+DialogTextSVideoStaffDay04SubFindGift1:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You mean D.B.? He",LF
+	;		"1234567890123456789012"
+	dc.b	"seems nice.          ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Is he really just a",LF
+	;		"1234567890123456789012"
+	dc.b	"senior?",ETX
+
+	align 2
+DialogTextSVideoStaffDay04SubFindGift2:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Yeah, he might even",LF
+	;		"1234567890123456789012"
+	dc.b	"graduate this year.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"So what do you want",LF
+	;		"1234567890123456789012"
+	dc.b	"anyway?",ETX
+
+	align 2
+DialogTextSVideoStaffDay04SubFindGift3:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I just started junior",LF
+	;		"1234567890123456789012"
+	dc.b	"college in August.   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I'm thinking of",LF
+	;		"1234567890123456789012"
+	dc.b	"majoring in math or  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"computer science.",LF
+	;		"1234567890123456789012"
+	dc.b	"I can't decide.      ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I'm really interested",LF
+	;		"1234567890123456789012"
+	dc.b	"in both right now.",ETX
+
+	align 2
+DialogTextSVideoStaffDay04SubFindGift4:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"OK, maybe he can",LF
+	;		"1234567890123456789012"
+	dc.b	"manage that.",ETX
+
+	align 2
+DialogTextCPlanetStaffDay04SubFindGift0:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Hey so that Secret",LF
+	;		"1234567890123456789012"
+	dc.b	"Santa exchange,      ^",FF
+	dc.b	"It's really dumb",LF
+	;		"1234567890123456789012"
+	dc.b	"right?",ETX
+
+	align 2
+DialogTextCPlanetStaffDay04SubFindGift1:
+	dc.w	OBJ_NPC_CPLANET_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Yeah, I only signed-up",LF
+	;		"1234567890123456789012"
+	dc.b	"as a joke.           ^",FF
+	;		"1234567890123456789012"
+	dc.b	"You know, to mess with",LF
+	;		"1234567890123456789012"
+	dc.b	"people.",ETX
+
+	align 2
+DialogTextCPlanetStaffDay04SubFindGift2:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Of course. So my",LF
+	;		"1234567890123456789012"
+	dc.b	"brother, not me,     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"signed-up and got your",LF
+	;		"1234567890123456789012"
+	dc.b	"name. He's kind of   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"useless so could you",LF
+	;		"1234567890123456789012"
+	dc.b	"give me an idea..    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"For him, not me.",ETX
+
+	align 2
+DialogTextCPlanetStaffDay04SubFindGift3:
+	dc.w	OBJ_NPC_CPLANET_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Anything that's dark",LF
+	;		"1234567890123456789012"
+	dc.b	"and mysterious,      ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Like my heart.",ETX
+
+	align 2
+DialogTextCPlanetStaffDay04SubFindGift4:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"OK, yeah, he'll figure",LF
+	;		"1234567890123456789012"
+	dc.b	"something out I guess.",ETX
+
+	align 2
+DialogTextDay04ScriptedEventTransition:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Alright, I'm just",LF
+	dc.b	"about done closing.  ^",FF
+	dc.b	"Go ahead and leave for",LF
+	dc.b	"the night.           ^",FF
+	dc.b	"I'll take care of",LF
+	dc.b	"cleaning-up tonight  ^",FF
+	dc.b	"Since you were alone",LF
+	dc.b	"most of the day.",ETX
+
+	align 2
+DialogTextVBStaffDay04MallClosed:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Did you forget",LF
+	dc.b	"something?",ETX
+
+	align 2
+DialogTextTBooksStaffDay04MallClosed:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"What brings you here",LF
+	dc.b	"this late?",ETX
+
+	align 2
+DialogTextCheckersStaffDay04MallClosed:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Hey, so did.. oh",LF
+	dc.b	"nevermind I guess.",ETX
+
+	align 2
+DialogTextDCountryStaffDay04MallClosed:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Dani just left a ",LF
+	dc.b	"second ago.",ETX
+
+	align 2
+DialogTextSVideoStaffDay04MallClosed:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I have to stop by the",LF
+	dc.b	"info desk before they^",FF
+	dc.b	"leave to see what I ",LF
+	dc.b	"got in the exchange.",ETX
+
+	align 2
+DialogTextCenterStaffDay04MallClosed:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Please tell your",LF
+	dc.b	"sister to stop by &  ^",FF
+	dc.b	"pick-up her Secret",LF
+	dc.b	"Santa gift soon.",ETX
+
+	align 2
+DialogTextSouthCenterStaffDay04MallClosed:
+	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I hope security finds",LF
+	dc.b	"the person who's been^",FF
+	dc.b	"stealing from us",LF
+	dc.b	"overnight.",ETX
+
+	align 2
 DialogTextDaniScene05Day04:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2",ETX
+	dc.b	"Don't ask about it,",LF
+	dc.b	"let's just go.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 05
@@ -4343,12 +4540,12 @@ ItemNameEnvelope:
 ItemDescriptionEnvelope1:
 	;		"1234567890123456789012"
 	dc.b	"Sunset Video: Annette",LF
-	dc.b	"Interests: ",ETX
+	dc.b	"Interests: Academics",ETX
 
 ItemDescriptionEnvelope2:
 	;		"1234567890123456789012"
 	dc.b	"Cassette Planet: Eliza",LF
-	dc.b	"Interests: ",ETX
+	dc.b	"Interests: The Occult",ETX
 
 ItemNameRBook1:
 	;		"1234567890"
@@ -4436,9 +4633,9 @@ ItemNameCBook1:
 
 ItemDescriptionCBook1:
 	;		"1              234567890123456"
-	dc.b	"",CHAR_DQUOTE,"stuff",LF
+	dc.b	"",CHAR_DQUOTE,"100 easy meals",LF
 	;		"1234567890123456789012"
-	dc.b	"stuff",CHAR_DQUOTE,ETX
+	dc.b	"for under 10 cents",CHAR_DQUOTE,ETX
 
 ItemNameCBook2:
 	;		"1234567890"

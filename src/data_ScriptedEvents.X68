@@ -981,6 +981,59 @@ ScriptedEventDay04TBooks:
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay04FindGiftSVideo:
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextSVideoStaffDay04SubFindGift1
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextSVideoStaffDay04SubFindGift2
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextSVideoStaffDay04SubFindGift3
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextSVideoStaffDay04SubFindGift4
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay04FindGiftCPlanet:
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextCPlanetStaffDay04SubFindGift1
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextCPlanetStaffDay04SubFindGift2
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextCPlanetStaffDay04SubFindGift3
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextCPlanetStaffDay04SubFindGift4
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay04Transition:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while the screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0190
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$012A
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION
+	dc.w	DIRECTION_UP
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DB
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_VB
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay04ScriptedEventTransition
+	dc.w	SCRIPTED_EVENT_END
+
 ; ------------------------------------------------------------------------------
 ; used to test scene and player sprite changes in scripted events
 ; ------------------------------------------------------------------------------

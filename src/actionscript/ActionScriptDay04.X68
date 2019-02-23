@@ -20,9 +20,11 @@ Day04Scene00Action01DB:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
 	beq.s	Day04Scene00Action01DBDefault	; not started, branch
-	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	btst.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7	; test if gift given
 	bne.s	Day04Scene00Action01DBDefault	; npc found, branch
-	; use text for sub-quest
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
+	bne.s	Day04Scene00Action01DBFindGift	; npc found, branch
+	; use text for npc search
 	lea	DialogTextDBDay04SubFindNPC,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -30,20 +32,62 @@ Day04Scene00Action01DBDefault:
 	lea	DialogTextDBDay04,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+Day04Scene00Action01DBFindGift:
+	lea	DialogTextDBDay04SubFindGift,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day04Scene00Action01NPC:
-	lea	DialogTextGreenbergDefaultTalk,a6	; load text
+	; NPC is only in VB after the mall is closed this day 
+	lea	DialogTextVBStaffDay04MallClosed,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene00Action02:	; ACTION_TAKE_GIVE
+	;---------------------------------------------------------------------------
+	; if EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED is set
+	; and
+	; EVENT_FLAG_DAY04_SUB_GIFT_GIVEN is not set
+	; then show subquest give/take options
+	;---------------------------------------------------------------------------
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test flag
+	beq.s	Day04Scene00Action02Default	; flag not set, use default
+	btst.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7	; test flag
+	bne.s	Day04Scene00Action02Default	; flag set, use default
+	; can't give away the envelope
+	cmpi.w	#OBJ_ITEM_ENVELOPE1,(MEM_ACTIVE_ITEM)	; test item
+	beq.s	Day04Scene00Action02Default	; flag not set, use default
+	cmpi.w	#OBJ_ITEM_ENVELOPE2,(MEM_ACTIVE_ITEM)	; test item
+	beq.s	Day04Scene00Action02Default	; flag not set, use default
+Day04Scene00Action02Sub:
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_DB,d6	; test target
+	beq.s	Day04Scene00Action02SubNPC	; branch to text for the NPC
+	; else show the take menu
+	bsr.w	Scene00DefaultTake	; use scene defaults
+	rts
+Day04Scene00Action02SubNPC:
+	bsr.w	RemoveActiveItem	; remove the active item
+	; show the response text
+	lea	DialogTextDay04Scene00NPCGive,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene00Action02Default:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
 	beq.s	Day04Scene00Action02NPC	; branch to text for the NPC
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_DB,d6	; test target
+	beq.s	Day04Scene00Action02DB	; branch to text for the NPC
 	; default action
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene00Action02NPC:
 	lea	DialogTextGreenbergDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene00Action02DB:
+	lea	DialogTextDBDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene00Action03:	; ACTION_RESPOND
@@ -111,6 +155,10 @@ Day04Scene03Action01NPCFCBCamping:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene03Action01NPC:
+	; test if mall is closed
+	move.l	(MEM_GAME_STATE),d7	; copy flags to d7
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test if mall closed
+	bne.w	Day04Scene03Action01NPCMallClosed	; mall closed, branch
 	; test state of sub-quest for the day
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
 	; is the sub-quest complete?
@@ -154,6 +202,10 @@ Day04Scene03Action01NPCComplete:
 	lea	DialogTextDay04Scene03SubComplete,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+Day04Scene03Action01NPCMallClosed:
+	lea	DialogTextCenterStaffDay04MallClosed,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
 Day04Scene03Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
@@ -163,6 +215,32 @@ Day04Scene03Action02:	; ACTION_TAKE_GIVE
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene03Action02NPC:
+	;---------------------------------------------------------------------------
+	; if EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED is set
+	; and
+	; EVENT_FLAG_DAY04_SUB_GIFT_GIVEN is not set
+	; then show the give gift dialog
+	;---------------------------------------------------------------------------
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test flag
+	beq.s	Day04Scene03Action02NPCDefault	; flag set, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7	; test flag
+	bne.s	Day04Scene03Action02NPCDefault	; flag not set, branch
+	; can't give away the envelope as a gift
+	cmpi.w	#OBJ_ITEM_ENVELOPE1,(MEM_ACTIVE_ITEM)
+	beq.s	Day04Scene03Action02NPCDefault	; flag set, branch
+	cmpi.w	#OBJ_ITEM_ENVELOPE2,(MEM_ACTIVE_ITEM)
+	beq.s	Day04Scene03Action02NPCDefault	; flag set, branch
+	; workaround due to dialog clearing MEM_ACTIVE_ITEM
+	move.w	(MEM_ACTIVE_ITEM),(MEM_MISSION_EVENT_FLAGS)
+	; setup 2 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d7	; set text choice flag
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextDay04Scene03SubStartedGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene03Action02NPCDefault:
 	lea	DialogTextNPCCenterStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -177,25 +255,34 @@ Day04Scene03Action03:	; ACTION_RESPOND
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	; test started flag
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test started flag
-	beq.s	Day04Scene03Action03ChooseStartSub	; branch if not set
+	beq.w	Day04Scene03Action03ChooseStartSub	; branch if not set
 	; test NPC added flag
 	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test started flag
-	beq.s	Day04Scene03Action03ChooseEnvelope	; branch if not set
+	beq.w	Day04Scene03Action03ChooseEnvelope	; branch if not set
 	; must be the 3rd option
 Day04Scene03Action03GiveGift:
 	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
 	beq.s	Day04Scene03Action03GiveGiftR1	; branch if 1
 Day04Scene03Action03GiveGiftR0:
-	; update flags
+	; workaround due to dialog clearing MEM_ACTIVE_ITEM
+	move.w	(MEM_MISSION_EVENT_FLAGS),(MEM_ACTIVE_ITEM)
+	and.w	#$0000,(MEM_MISSION_EVENT_FLAGS)
+	; remove the item from the player's inventory	
+	bsr.w	RemoveActiveItem	; remove the item	; update flags
 	bset.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7	; set started flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
-	
-	;---------------------------------------------------------------------------
-	; TODO - "good gift" logic goes here
-	;---------------------------------------------------------------------------
-
-	; remove the item from the player's inventory	
-	bsr.w	RemoveActiveItem	; remove the item
+	bsr.w	Day04CheckGoodGift	; check for good gift
+	; queue scripted event
+	lea ScriptedEventDay04Transition,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	; setup stuff for end of day
+	bsr.w	ClearPlayerInventory
+	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
+	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 	; show the response text
 	lea	DialogTextDay04Scene03SubStartedGiveR0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -372,6 +459,10 @@ Day04Scene08Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene08Action01NPC:
+	; test if mall is closed
+	move.l	(MEM_GAME_STATE),d7	; copy flags to d7
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test if mall closed
+	bne.s	Day04Scene08Action01NPCMallClosed	; mall closed, branch
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
@@ -380,6 +471,10 @@ Day04Scene08Action01NPC:
 	bne.s	Day04Scene08Action01NPCDefault	; npc found, branch
 	; use text for sub-quest
 	lea	DialogTextDenimCountryStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene08Action01NPCMallClosed:
+	lea	DialogTextDCountryStaffDay04MallClosed,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene08Action01NPCDefault:
@@ -418,6 +513,10 @@ Day04Scene09Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene09Action01NPC:
+	; test if mall is closed
+	move.l	(MEM_GAME_STATE),d7	; copy flags to d7
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test if mall closed
+	bne.s	Day04Scene09Action01NPCMallClosed	; mall closed, branch
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
@@ -426,6 +525,10 @@ Day04Scene09Action01NPC:
 	bne.s	Day04Scene09Action01NPCDefault	; npc found, branch
 	; use text for sub-quest
 	lea	DialogTextCheckersStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene09Action01NPCMallClosed:
+	lea	DialogTextCheckersStaffDay04MallClosed,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene09Action01NPCDefault:
@@ -517,7 +620,7 @@ Day04Scene0BAction01NPC:
 	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
 	bne.s	Day04Scene0BAction01NPCDefault	; npc found, branch
 	; use text for sub-quest
-	lea	DialogTextTLodgeStaffDay04SubFindNPC,a6	; load text
+	lea	DialogTextCavernStaffDay04SubFindNPC,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0BAction01NPCDefault:
@@ -556,18 +659,38 @@ Day04Scene0CAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0CAction01NPC:
+	; test if mall is closed
+	move.l	(MEM_GAME_STATE),d7	; copy flags to d7
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test if mall closed
+	bne.s	Day04Scene0CAction01NPCMallClosed	; mall closed, branch
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
 	beq.s	Day04Scene0CAction01NPCDefault	; not started, branch
-	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
-	bne.s	Day04Scene0CAction01NPCDefault	; npc found, branch
-	; use text for sub-quest
+	btst.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7	; test if complete
+	bne.s	Day04Scene0CAction01NPCDefault	; complete, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7	; test if finding gift for npc
+	bne.s	Day04Scene0CAction01NPCSubFindGift	; not gift for npc, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test npc joined
+	bne.s	Day04Scene0CAction01NPCDefault	; flag set, branch
+Day04Scene0CAction01NPCFindNPC:
+	; otherwise use text 
 	lea	DialogTextSVideoStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0CAction01NPCMallClosed:
+	lea	DialogTextSVideoStaffDay04MallClosed,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0CAction01NPCDefault:
 	lea	DialogTextSVideoStaffDefaultTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0CAction01NPCSubFindGift:
+	; queue scripted event
+	lea ScriptedEventDay04FindGiftSVideo,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextSVideoStaffDay04SubFindGift0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0CAction02:	; ACTION_TAKE_GIVE
@@ -767,14 +890,26 @@ Day04Scene10Action01NPC:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
 	beq.s	Day04Scene10Action01NPCDefault	; not started, branch
-	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
-	bne.s	Day04Scene10Action01NPCDefault	; npc found, branch
-	; use text for sub-quest
+	btst.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7	; test if complete
+	bne.s	Day04Scene10Action01NPCDefault	; complete, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_CHOICE1,d7	; test if finding gift for npc
+	bne.s	Day04Scene10Action01NPCSubFindGift	; not gift for npc, branch
+	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test npc joined
+	bne.s	Day04Scene10Action01NPCDefault	; flag set, branch
+Day04Scene10Action01NPCFindNPC:
+	; otherwise use text 
 	lea	DialogTextCPlanetStaffDay04SubFindNPC,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene10Action01NPCDefault:
 	lea	DialogTextCPlanetStaffDefaultTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene10Action01NPCSubFindGift:
+	; queue scripted event
+	lea ScriptedEventDay04FindGiftCPlanet,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextCPlanetStaffDay04SubFindGift0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene10Action02:	; ACTION_TAKE_GIVE
@@ -855,6 +990,10 @@ Day04Scene12Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene12Action01NPC:
+	; test if mall is closed
+	move.l	(MEM_GAME_STATE),d7	; copy flags to d7
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test if mall closed
+	bne.s	Day04Scene12Action01NPCMallClosed	; mall closed, branch
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
@@ -863,6 +1002,10 @@ Day04Scene12Action01NPC:
 	bne.s	Day04Scene12Action01NPCDefault	; npc found, branch
 	; use text for sub-quest
 	lea	DialogTextTBooksStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene12Action01NPCMallClosed:
+	lea	DialogTextTBooksStaffDay04MallClosed,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene12Action01NPCDefault:
@@ -1123,6 +1266,10 @@ Day04Scene17Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene17Action01NPC:
+	; test if mall is closed
+	move.l	(MEM_GAME_STATE),d7	; copy flags to d7
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test if mall closed
+	bne.s	Day04Scene17Action01NPCMallClosed	; mall closed, branch
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
@@ -1131,6 +1278,10 @@ Day04Scene17Action01NPC:
 	bne.s	Day04Scene17Action01NPCDefault	; npc found, branch
 	; use text for sub-quest
 	lea	DialogTextSouthCenterStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene17Action01NPCMallClosed:
+	lea	DialogTextSouthCenterStaffDay04MallClosed,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene17Action01NPCDefault:
@@ -1152,6 +1303,35 @@ Day04Scene17Action02NPC:
 Day04Scene17Action03:	; ACTION_RESPOND
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+;-------------------------------------------------------------------------------
+; logic to determine if a good gift was given
+;-------------------------------------------------------------------------------
+Day04CheckGoodGift:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy flags to d7
+	bset.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7	; set gift given flag
+	btst.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7	; test choice
+	bne.s	Day04CheckGoodGiftNPCCPlanet	; branch if choice 1
+Day04CheckGoodGiftNPCSVideo:
+	cmpi.w	#OBJ_ITEM_HBOOK3,(MEM_ACTIVE_ITEM)	; test item
+	beq.s	.1
+	cmpi.w	#OBJ_ITEM_MAG_ANALOG,(MEM_ACTIVE_ITEM)	; test item
+	beq.s	.1
+	bra.s	Day04CheckGoodGiftExit	; exit
+.1
+	bset.l	#EVENT_FLAG_DAY04_SUB_GOOD_GIFT,d7	; set good gift flag
+	bra.s	Day04CheckGoodGiftExit	; exit
+Day04CheckGoodGiftNPCCPlanet:
+	cmpi.w	#OBJ_ITEM_RBOOK4,(MEM_ACTIVE_ITEM)	; test item
+	beq.s	.2
+	cmpi.w	#OBJ_ITEM_8BIT_SHADOWGATE,(MEM_ACTIVE_ITEM)	; test item
+	beq.s	.2
+	bra.s	Day04CheckGoodGiftExit	; exit
+.2
+	bset.l	#EVENT_FLAG_DAY04_SUB_GOOD_GIFT,d7	; set good gift flag
+Day04CheckGoodGiftExit:
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
 	rts
 
 ;-------------------------------------------------------------------------------

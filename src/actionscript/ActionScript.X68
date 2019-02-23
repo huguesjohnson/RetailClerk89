@@ -53,7 +53,7 @@ EndGame:
 
 DisplayCreditsScene:
 	lea	SceneCredits,a6	; address of the scene for the title screen
-	bsr.w	LoadScene	; branch to LoadScene subroutine
+	jsr	LoadScene	; branch to LoadScene subroutine
 	bsr.w	FadeIn	; fade in to the intro scene
 	move.w	#CREDITS_SCREEN_LOOP,d7	; use d7 for loop control
 DisplayCreditsSceneLoop:
@@ -66,7 +66,7 @@ DisplayCreditsSceneLoop:
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 	; load end scene
 	lea	SceneEnd,a6	; address of the scene for the title screen
-	bsr.w	LoadScene	; branch to LoadScene subroutine
+	jsr	LoadScene	; branch to LoadScene subroutine
 	bsr.w	FadeIn	; fade in
 	rts
 
