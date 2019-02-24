@@ -317,6 +317,9 @@ Day04Scene03Action03ChooseEnvelope:
 Day04Scene03Action03ChooseEnvelopeR0:
 	bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7	; set choice flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7	; copy global event flags to d7
+	bset.l	#GLOBAL_FLAG_JKEY_CPLANET,d7	; set flag for later use
+	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)	; save updated flags
 	; add item to the player's inventory
 	move.w	#OBJ_ITEM_ENVELOPE1,d7
 	bsr.w	AddItemOverwrite
@@ -330,6 +333,9 @@ Day04Scene03Action03ChooseEnvelopeR0:
 Day04Scene03Action03ChooseEnvelopeR1:
 	bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE1,d7	; set choice flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7	; copy global event flags to d7
+	bset.l	#GLOBAL_FLAG_JKEY_SVIDEO,d7	; set flag for later use
+	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)	; save updated flags
 	; add item to the player's inventory
 	move.w	#OBJ_ITEM_ENVELOPE2,d7
 	bsr.w	AddItemOverwrite
@@ -567,6 +573,10 @@ Day04Scene0AAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0AAction01NPC:
+	; test if mall is closed
+	move.l	(MEM_GAME_STATE),d7	; copy flags to d7
+	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test if mall closed
+	bne.s	Day04Scene0AAction01NPCMallClosed	; mall closed, branch
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
@@ -575,6 +585,10 @@ Day04Scene0AAction01NPC:
 	bne.s	Day04Scene0AAction01NPCDefault	; npc found, branch
 	; use text for sub-quest
 	lea	DialogTextCheckersStaffDay04SubFindNPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0AAction01NPCMallClosed:
+	lea	DialogTextTLodgeStaffDay04MallClosed,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0AAction01NPCDefault:
@@ -659,10 +673,6 @@ Day04Scene0CAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0CAction01NPC:
-	; test if mall is closed
-	move.l	(MEM_GAME_STATE),d7	; copy flags to d7
-	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test if mall closed
-	bne.s	Day04Scene0CAction01NPCMallClosed	; mall closed, branch
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
@@ -676,10 +686,6 @@ Day04Scene0CAction01NPC:
 Day04Scene0CAction01NPCFindNPC:
 	; otherwise use text 
 	lea	DialogTextSVideoStaffDay04SubFindNPC,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day04Scene0CAction01NPCMallClosed:
-	lea	DialogTextSVideoStaffDay04MallClosed,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0CAction01NPCDefault:

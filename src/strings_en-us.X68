@@ -42,13 +42,13 @@ TitleScreenTextDebug:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Unstable Debug Build (February 2019) ",ETX
+	dc.b	"   Unstable Debug Build (March 2019)  ",ETX
 
 	else
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	" Story Demo: Days 1-5 (February 2019) ",ETX
+	dc.b	"   Story Demo: Days 1-6 (March 2019)  ",ETX
 	endif
 
 	if _DEBUG_
@@ -105,15 +105,15 @@ TitleScreenTextFooter:
 
 	DebugScreenLine0C:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 4 end",ETX
+	dc.b	"{ Day 4 mid point",ETX
 
 	DebugScreenLine0D:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 5 title",ETX
+	dc.b	"{ Day 4 end",ETX
 
 	DebugScreenLine0E:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 5 title",ETX
 
 	DebugScreenLine0F:
 	;		"12345678901234567890123456789012345678"
@@ -2898,7 +2898,7 @@ DialogTextDCountryStaffDay04MallClosed:
 	dc.b	"second ago.",ETX
 
 	align 2
-DialogTextSVideoStaffDay04MallClosed:
+DialogTextTLodgeStaffDay04MallClosed:
 	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
 	dc.b	"I have to stop by the",LF

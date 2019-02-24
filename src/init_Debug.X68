@@ -17,9 +17,9 @@ DebugTable:
 	dc.l	DebugStartDay3Title	
 	dc.l	DebugStartDay3Mid	
 	dc.l	DebugStartDay4Title	
+	dc.l	DebugStartDay4Mid	
 	dc.l	DebugStartDay4End	
 	dc.l	DebugStartDay5Title	
-	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
@@ -255,9 +255,53 @@ DebugStartDay4Title:
 	bset.l	#STORE_KEY_DCOUNTRY,d7
 	bset.l	#STORE_KEY_VB,d7
 	bset.l	#STORE_KEY_CHECKERS,d7
-	bset.l	#STORE_KEY_SVIDEO,d7
+	bset.l	#STORE_KEY_TLODGE,d7
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)
 	bsr.w	Day03End
+	rts
+
+DebugStartDay4Mid:
+	move.w	#$0004,(MEM_DAY)	; move to day 04
+	move.w	#OBJECTIVE_D4_O0,(MEM_OBJECTIVE)	; update objective
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_TBOOKS,d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7
+	bset.l	#STORE_KEY_VB,d7
+	bset.l	#STORE_KEY_CHECKERS,d7
+	bset.l	#STORE_KEY_TLODGE,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	move.l	(MEM_GAME_STATE),d7
+	bclr.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear screen flag
+	bset.l	#STATE_FLAG_EXPLORING,d7	; set exploring flag
+	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
+	move.l	d7,(MEM_GAME_STATE)
+	move.l	(MEM_DAY_EVENT_FLAGS),d7
+	bset.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7
+	bset.l	#EVENT_FLAG_DAY04_SUB_NPCFOUND,d7
+	bset.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7
+	bset.l	#EVENT_FLAG_DAY04_SUB_TBOOKS_DIALOG,d7
+	;bset.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7
+	;bset.l	#EVENT_FLAG_DAY04_SUB_COMPLETE,d7
+	; toggle these to test different transitions	
+	bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7
+	;bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE1,d7
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)
+	; add some good and bad items to the inventory
+	move.w	#OBJ_ITEM_RBOOK4,d7
+	bsr.w	AddItem
+	move.w	#OBJ_ITEM_RBOOK1,d7
+	bsr.w	AddItem
+	move.w	#OBJ_ITEM_HBOOK4,d7
+	bsr.w	AddItem
+	move.w	#OBJ_ITEM_HBOOK1,d7
+	bsr.w	AddItem
+	; load scene
+	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)
+	lea	SceneCenter,a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	LoadPlayerSprite
+	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	bsr.w	FadeIn	; fade in to the new scene
 	rts
 
 DebugStartDay4End:
@@ -268,7 +312,7 @@ DebugStartDay4End:
 	bset.l	#STORE_KEY_DCOUNTRY,d7
 	bset.l	#STORE_KEY_VB,d7
 	bset.l	#STORE_KEY_CHECKERS,d7
-	bset.l	#STORE_KEY_SVIDEO,d7
+	bset.l	#STORE_KEY_TLODGE,d7
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)
 	move.l	(MEM_GAME_STATE),d7
 	bclr.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear screen flag
@@ -282,10 +326,6 @@ DebugStartDay4End:
 	bset.l	#EVENT_FLAG_DAY04_SUB_TBOOKS_DIALOG,d7
 	bset.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7
 	bset.l	#EVENT_FLAG_DAY04_SUB_COMPLETE,d7
-	; toggle these three to test different day05 intros	
-	bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7
-	;bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE1,d7
-	;bset.l	#EVENT_FLAG_DAY04_SUB_GOOD_GIFT,d7
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)
 	; update NPCs
 	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
@@ -297,7 +337,6 @@ DebugStartDay4End:
 	bsr.w	LoadPlayerSprite
 	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
 	bsr.w	FadeIn	; fade in to the new scene
-
 	rts
 
 DebugStartDay5Title:
@@ -306,11 +345,10 @@ DebugStartDay5Title:
 	bset.l	#STORE_KEY_DCOUNTRY,d7
 	bset.l	#STORE_KEY_VB,d7
 	bset.l	#STORE_KEY_CHECKERS,d7
-	bset.l	#STORE_KEY_SVIDEO,d7
+	bset.l	#STORE_KEY_TLODGE,d7
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)
 	bsr.w	Day04End
 	rts
-
 
 DebugStartEnd:
 	bsr.w	EndGame

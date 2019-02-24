@@ -37,6 +37,16 @@ DIALOG_FLAG_TEXT_NEW_PAGE=$1E	; dialog text has another page
 DIALOG_FLAG_TEXT_CLOSING=$1F	; dialog is closing
 
 ;-------------------------------------------------------------------------------
+; global event flags - used to track events across days 
+;-------------------------------------------------------------------------------
+GLOBAL_FLAG_PDAWG_CUSTOMER0=$0	; customer 1 of 4 referred
+GLOBAL_FLAG_PDAWG_CUSTOMER1=$1	; customer 2 of 4 referred
+GLOBAL_FLAG_PDAWG_CUSTOMER2=$2	; customer 3 of 4 referred
+GLOBAL_FLAG_PDAWG_CUSTOMER3=$3	; customer 4 of 4 referred
+GLOBAL_FLAG_JKEY_CPLANET=$4	; npc jordan has the cplanet key
+GLOBAL_FLAG_JKEY_SVIDEO=$5	; npc jordan has the svideo key
+
+;-------------------------------------------------------------------------------
 ; day event flags - used to track events in the current day 
 ;-------------------------------------------------------------------------------
 EVENT_FLAG_DAY00_NPC00_DIALOG00=$1	; 1st dialog with NPC0
