@@ -89,6 +89,8 @@ ExitScene00:
 	beq.s	ExitScene00Day01	; branch to day 1
 	cmpi.w	#$0002,(MEM_DAY)
 	beq.s	ExitScene00Day02	; branch to day 2
+	cmpi.w	#$0004,(MEM_DAY)
+	beq.w	ExitScene00Day04	; branch to day 4
 	bsr.w	DefaultExitScene	; use default handler
 	rts
 ExitScene00Day00:
@@ -125,16 +127,50 @@ ExitScene00Day02:
 ExitScene00Day02Default:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
+ExitScene00Day04:
+	; test if a good gift scripted event needs to run
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY04_SUB_GOOD_GIFT,d7	; test flag
+	beq.s	ExitScene00Day04Default	; not set, branch to default exit
+	bclr.l	#EVENT_FLAG_DAY04_SUB_GOOD_GIFT,d7	; clear flag to prevent replay
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	
+	
+;	bclr.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7
+;	btst.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7	; test choice
+;	beq.s	ExitScene00Day04Gift1	; branch if choice 1
+
+	btst.l	#EVENT_FLAG_DAY04_SUB_CHOICE1,d7	; test which branch to follow
+	bne.s	ExitScene00Day04Gift1
+ExitScene00Day04Gift0:
+	move.l	#$09000000,(MEM_NPC_LOCATION_WWHALL)	; move npc to hallway
+	; add store key
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
+	bset.l	#STORE_KEY_SVIDEO,d7	; set key
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save keys
+	; queue the scripted event
+	lea ScriptedEventDay04GoodGift0,a6	; point a6 to event to load
+	bsr.w	QueueScriptedEvent	; queue the event
+	rts
+ExitScene00Day04Gift1:
+	move.l	#$0C000000,(MEM_NPC_LOCATION_WWHALL)	; move npc to hallway
+	; add store key
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
+	bset.l	#STORE_KEY_CPLANET,d7	; set key
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save keys
+	; queue the scripted event
+	lea ScriptedEventDay04GoodGift1,a6	; point a6 to event to load
+	bsr.w	QueueScriptedEvent	; queue the event
+	rts
+ExitScene00Day04Default:
+	bsr.w	DefaultExitScene	; use default handler
+	rts	; exit
+
 
 ;-------------------------------------------------------------------------------
 ; exit scene 01 (SCENE_ID_WWHALL)
 ;-------------------------------------------------------------------------------
 ExitScene01:
-
-	move.w	#$1111,(MEM_DEBUG_1)
-	move.w	(MEM_DAY),(MEM_DEBUG_2)
-
-
 	cmpi.w	#$0004,(MEM_DAY)	; is this day 04?
 	beq.w	ExitScene01Day04	; branch to day 04
 	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)

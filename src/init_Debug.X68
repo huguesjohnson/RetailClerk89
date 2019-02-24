@@ -280,20 +280,18 @@ DebugStartDay4Mid:
 	bset.l	#EVENT_FLAG_DAY04_SUB_NPCFOUND,d7
 	bset.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7
 	bset.l	#EVENT_FLAG_DAY04_SUB_TBOOKS_DIALOG,d7
-	;bset.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7
-	;bset.l	#EVENT_FLAG_DAY04_SUB_COMPLETE,d7
 	; toggle these to test different transitions	
-	bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7
-	;bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE1,d7
+	;bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7
+	bset.l	#EVENT_FLAG_DAY04_SUB_CHOICE1,d7
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)
 	; add some good and bad items to the inventory
 	move.w	#OBJ_ITEM_RBOOK4,d7
 	bsr.w	AddItem
-	move.w	#OBJ_ITEM_RBOOK1,d7
+	move.w	#OBJ_ITEM_CAMERA1,d7
 	bsr.w	AddItem
-	move.w	#OBJ_ITEM_HBOOK4,d7
+	move.w	#OBJ_ITEM_HBOOK3,d7
 	bsr.w	AddItem
-	move.w	#OBJ_ITEM_HBOOK1,d7
+	move.w	#OBJ_ITEM_MYSTERY_PACKAGE,d7
 	bsr.w	AddItem
 	; load scene
 	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)

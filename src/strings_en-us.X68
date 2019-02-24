@@ -2925,6 +2925,59 @@ DialogTextSouthCenterStaffDay04MallClosed:
 	dc.b	"overnight.",ETX
 
 	align 2
+DialogTextSVideoStaffDay04MallClosed:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I didn't think you'd",LF
+	dc.b	"stop by so soon.     ^",FF
+	dc.b	"I have to study for",LF
+	dc.b	"finals tonight.      ^",FF
+	dc.b	"So maybe another time.",ETX
+
+	align 2
+DialogTextCPlanetStaffDay04MallClosed:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You sure don't wait",LF
+	dc.b	"long, huh.           ^",FF
+	dc.b	"I can't talk tonight,",LF
+	dc.b	"I'm going to see the ^",FF
+	dc.b	"Rocky Horror Picture",LF
+	dc.b	"show in a little bit.^",LF
+	dc.b	"Just as a joke you",LF
+	dc.b	"know.",ETX
+
+	align 2
+DialogTextDay04SVideoGoodGift:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I know it was you who",LF
+	dc.b	"found my Secret Santa^",FF
+	dc.b	"gift. Thanks, it was",LF
+	dc.b	"really great.        ^",FF
+	dc.b	"Have a key to my store",LF
+	dc.b	"and stop by anytime.",ETX
+
+	align 2
+DialogTextDay04CPlanetGoodGift:
+	dc.w	OBJ_NPC_CPLANET_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Thanks for that Secret",LF
+	dc.b	"Santa gift.          ^",FF
+	dc.b	"I never would have",LF
+	dc.b	"thought to buy it.   ^",FF
+	dc.b	"You might be alright",LF
+	dc.b	"after all.           ^",FF
+	dc.b	"Have a key to my store",LF
+	dc.b	"a don't be a stranger.",ETX
+
+	align 2
+DialogTextDay04SDBGoodGift:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"(...)",ETX
+
+	align 2
 DialogTextDaniScene05Day04:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
