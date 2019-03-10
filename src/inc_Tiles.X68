@@ -267,6 +267,22 @@ JunkerCarTilesStart:
 	include 'tiles/scene-tiles/tileset_junker.X68'
 JunkerCarTilesEnd:
 
+JunkerCarSnowTilesStart:
+	include 'tiles/scene-tiles/tileset_junkersnow.X68'
+JunkerCarSnowTilesEnd:
+
+SnowTilesStart:
+	include 'tiles/scene-tiles/tileset_snow.X68'
+SnowTilesEnd:
+
+SnowFallingTilesStart:
+	include 'tiles/scene-tiles/tileset_snowfalling.X68'
+SnowFallingTilesEnd:
+
+ParkingLotEdgeBlizzardTilesStart:
+	include 'tiles/scene-tiles/tileset_parkinglotedgeblizzard.X68'
+ParkingLotEdgeBlizzardTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; cavern scene tiles
 ;-------------------------------------------------------------------------------
@@ -299,7 +315,7 @@ WorkshopFrameTilesStart:
 WorkshopFrameTilesEnd:
 
 SnowFloorTilesStart:
-	include 'tiles/scene-tiles/tileset_snow.X68'
+	include 'tiles/scene-tiles/tileset_snowfloor.X68'
 SnowFloorTilesEnd:
 
 FenceTilesStart:

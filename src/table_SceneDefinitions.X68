@@ -75,4 +75,6 @@ SceneDefinitionTable:
 	; SCENE_ID_SOUTH_CENTER=$0017
 	dc.l	SceneSouthCenter
 
+	; SCENE_ID_PARKINGLOT_BLIZZARD=$0018
+	dc.l	SceneParkingLotBlizzard
 

@@ -171,6 +171,16 @@ Store17Palettes:
 	include 'palettes/pal_People_00.X68'
 
 ;-------------------------------------------------------------------------------
+; cut-scene palettes
+;-------------------------------------------------------------------------------
+
+CutSceneParkingLotBlizzardPalettes:
+	include 'palettes/pal_Store_parking_00.X68'
+	include 'palettes/pal_Store_parkingBlizzard_01.X68'
+	include 'palettes/pal_Store_parkingBlizzard_02.X68'
+	include 'palettes/pal_People_00.X68'
+
+;-------------------------------------------------------------------------------
 ; palettes for screens that only display text (legal, credits)
 ;-------------------------------------------------------------------------------
 TextOnlyPalettes:

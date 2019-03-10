@@ -1,9 +1,9 @@
-SceneParkingLot:
+SceneParkingLotBlizzard:
 
 	;---------------------------------------------------------------------------
 	; scene ID
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_PARKINGLOT
+	dc.w	SCENE_ID_PARKINGLOT_BLIZZARD
 
 	;---------------------------------------------------------------------------
 	; tiles
@@ -15,8 +15,8 @@ SceneParkingLot:
 	dc.l	TransparentTileEnd
 
 	; tileset 1
-	dc.l	PavementTilesStart	; start of pavement tiles
-	dc.l	PavementTilesEnd	; end of pavement tiles
+	dc.l	SnowTilesStart	; start of snow tiles
+	dc.l	SnowTilesEnd	; end of snow tiles
 
 	; tileset 2
 	dc.l	MallExteriorTilesStart	; start of mall exterior tiles
@@ -25,33 +25,33 @@ SceneParkingLot:
 	; tileset 3
 	dc.l	TileFloorTilesStart	; start of hallway tiles
 	dc.l	TileFloorTilesEnd	; end of hallway tiles
-
-	; tileset 4
-	dc.l	ParkingStripeTilesStart	; start of parking stripe tiles
-	dc.l	ParkingStripeTilesEnd	; end of parking stripe tiles
 	
-	; tileset 5
-	dc.l	ParkingLotEdgeTilesStart	; start of edge tiles
-	dc.l	ParkingLotEdgeTilesEnd	; end of edge tiles
+	; tileset 4
+	dc.l	ParkingLotEdgeBlizzardTilesStart	; start of edge tiles
+	dc.l	ParkingLotEdgeBlizzardTilesEnd	; end of edge tiles
 
-	; tileset 6
+	; tileset 5
 	dc.l	MallSignTilesStart	; start of mall sign tiles
 	dc.l	MallSignTilesEnd	; end of mall sign tiles
 
+	; tileset 6
+	dc.l	SnowFallingTilesStart	; start of snow falling tiles
+	dc.l	SnowFallingTilesEnd	; end of snow falling tiles
+
 	; tileset 7
-	dc.l	JunkerCarTilesStart	; start of junker car tiles
-	dc.l	JunkerCarTilesEnd	; end of junker car tiles
+	dc.l	JunkerCarSnowTilesStart	; start of junker car tiles
+	dc.l	JunkerCarSnowTilesEnd	; end of junker car tiles
 
 	;---------------------------------------------------------------------------
 	; palettes
 	;---------------------------------------------------------------------------
 	dc.w	$0004	; four palettes
-	dc.l	Store05Palettes	; start of first palette to load
+	dc.l	CutSceneParkingLotBlizzardPalettes	; start of first palette to load
 
 	;---------------------------------------------------------------------------
 	; scenery
 	;---------------------------------------------------------------------------
-	dc.w	$0014	; scenery count
+	dc.w	$0009	; scenery count - 1
 
 	; north mall floor
 	dc.l	PatternTileFloor	; location of pattern to load
@@ -60,19 +60,19 @@ SceneParkingLot:
 	dc.w	$0001	; repeat 1 time
 	dc.l	VDP_VRAM_WRITE_B	; initial drawing location
 
-	; pavement
+	; snow
 	dc.l	Pattern32x32Tile	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000000001	; base pattern
+	dc.w	%0010000000000001	; base pattern
 	dc.w	$000B	; repeat 12 times
 	dc.l	VDP_VRAM_WRITE_B+$02000000	; initial drawing location
 
 	; mall exterior - sign
 	dc.l	PatternMallExteriorSign	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1000000000110100	; base pattern
+	dc.w	%1000000000110001	; base pattern
 	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_A+$00180000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00180000	; initial drawing location
 
 	; mall exterior - left side
 	dc.l	PatternMallExteriorSide	; location of pattern to load
@@ -91,102 +91,36 @@ SceneParkingLot:
 	; left edge
 	dc.l	PatternParkingLotEdgeLeft	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0010000000011100	; base pattern
+	dc.w	%0010000000011001	; base pattern
 	dc.w	$0002	; repeat 2 times
 	dc.l	VDP_VRAM_WRITE_B+$02000000	; initial drawing location
 
 	; right edge
 	dc.l	PatternParkingLotEdgeRight	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0010000000011100	; base pattern
+	dc.w	%0010000000011001	; base pattern
 	dc.w	$0002	; repeat 2 times
 	dc.l	VDP_VRAM_WRITE_B+$004C0000+$02000000	; initial drawing location
 
-	; parking stripes
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00040000+$02000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00040000+$04000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00040000+$06000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00040000+$08000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00040000+$0A000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00040000+$0C000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00380000+$02000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00380000+$04000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00380000+$06000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00380000+$08000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00380000+$0A000000	; initial drawing location
-
-	dc.l	PatternParkingStripe	; location of pattern to load
-	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0000000000011001	; base pattern
-	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_B+$00380000+$0C000000	; initial drawing location
-
 	; car
-	dc.l	Pattern96x16	; location of pattern to load
+	dc.l	Pattern88x48	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%1100000000111000	; base pattern
+	dc.w	%0010000001000101	; base pattern
 	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_A+$00360000+$06000000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00360000+$06000000	; initial drawing location
 
-	dc.l	Pattern96x32	; location of pattern to load
+	; falling snow
+	dc.l	Pattern32x32Tile	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
-	dc.w	%0100000001010000	; base pattern
+	dc.w	%1010000000110101	; base pattern
+	dc.w	$000B	; repeat 12 times
+	dc.l	VDP_VRAM_WRITE_A+$02000000	; initial drawing location
+
+	dc.l	Pattern32x32Tile	; location of pattern to load
+	; 		%pccvhnnnnnnnnnnn
+	dc.w	%1010000000110101	; base pattern
 	dc.w	$0000	; repeat 0 times
-	dc.l	VDP_VRAM_WRITE_A+$00360000+$07000000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text

@@ -161,7 +161,7 @@ TitleScreenTextFooter:
 
 	DebugScreenLine1A:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Parking lot blizzard scene",ETX
 
 	DebugScreenLine1B:
 	;		"12345678901234567890123456789012345678"

@@ -31,7 +31,7 @@ DebugTable:
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
-	dc.l	DebugStartDay0Title	
+	dc.l	DebugParkingLotBlizzardScene	
 	dc.l	DebugStartEnd	
 
 ProcessDebugScreen:
@@ -346,6 +346,13 @@ DebugStartDay5Title:
 	bset.l	#STORE_KEY_TLODGE,d7
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)
 	bsr.w	Day04End
+	rts
+
+DebugParkingLotBlizzardScene:
+	lea	SceneParkingLotBlizzard,a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+;	bsr.w	LoadPlayerSprite
+	bsr.w	FadeIn	; fade in to the new scene
 	rts
 
 DebugStartEnd:

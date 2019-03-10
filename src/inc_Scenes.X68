@@ -96,3 +96,7 @@
 
 	; SCENE_ID_SOUTH_CENTER=$0017
 	include 'scenes/scene_southcenter.X68'
+	
+	; SCENE_ID_PARKINGLOT_BLIZZARD=$0018
+	include 'scenes/scene_parkinglotblizzard.X68'
+
