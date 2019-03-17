@@ -813,22 +813,10 @@ Day05End:
 	;---------------------------------------------------------------------------	
 	; update NPC locations
 	;---------------------------------------------------------------------------	
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.l	#$03160000,(a5)	; update NPCs in scene 00
-	move.w	#SCENE_ID_PARKINGLOT,d7	; copy parking lot scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for parking lot NPCs
-	and.l	#$00000000,(a5)	; update NPCs in parking lot
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_EEHALL,d7	; copy east-east hall scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address for east-east hall NPCs
-	and.l	#$00000000,(a5)	; update NPCs in east-east hall
-	lea MEM_NPC_LOCATIONS,a5	; point a5 to start of NPC location table
-	move.w	#SCENE_ID_DENIMCOUNTRY,d7	; copy scene ID to d7
-	mulu.w	#LWORD_SIZE,d7	; multiply by word size
-	adda.l	d7,a5	; move a5 to the address 
-	move.l	#$05000000,(a5)	; update NPCs
+	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
+	move.l	#$00000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
+	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	

@@ -351,6 +351,8 @@ NPCNameTable:
 	dc.l	NPCNameGenericShopper
 	; OBJ_NPC_BILLY
 	dc.l	NPCNameBilly
+	; OBJ_NPC_FIRE
+	dc.l	NPCNameFire
 	; OBJ_NPC_GENERICSHOPPER
 	dc.l	NPCNameGenericShopper
 NPCNameTableEnd:
@@ -596,4 +598,7 @@ StatusScreenObjectives:
 	dc.l	StatusScreenDay06Objective00
 	dc.l	StatusScreenDay07Objective00
 	dc.l	StatusScreenDay03Objective02
+	dc.l	StatusScreenDay05Objective01
+	dc.l	StatusScreenDay05Objective02
+	dc.l	StatusScreenDay05Objective03
 

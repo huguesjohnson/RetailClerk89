@@ -45,6 +45,7 @@ GLOBAL_FLAG_PDAWG_CUSTOMER2=$2	; customer 3 of 4 referred
 GLOBAL_FLAG_PDAWG_CUSTOMER3=$3	; customer 4 of 4 referred
 GLOBAL_FLAG_JKEY_CPLANET=$4	; npc jordan has the cplanet key
 GLOBAL_FLAG_JKEY_SVIDEO=$5	; npc jordan has the svideo key
+GLOBAL_FLAG_DANI_GIFT=$6	; Dani has received the secret shopper gift
 
 ;-------------------------------------------------------------------------------
 ; day event flags - used to track events in the current day 
@@ -82,6 +83,13 @@ EVENT_FLAG_DAY04_SUB_CHOICE1=$5	; envelope choice 1 was selected
 EVENT_FLAG_DAY04_SUB_GIFT_GIVEN=$6	; gift given
 EVENT_FLAG_DAY04_SUB_GOOD_GIFT=$7	; whether a good gift was given
 EVENT_FLAG_DAY04_SUB_COMPLETE=$8	; secret santa sub-quest complete
+EVENT_FLAG_DAY05_EVENT_WEATHER=$0	; heard blizzard forecast
+EVENT_FLAG_DAY05_EVENT_LEAVING=$1	; trying to leave the mall
+EVENT_FLAG_DAY05_EVENT_SNOWEDIN=$2	; snowed-in to the mall
+EVENT_FLAG_DAY05_SUB_STARTED=$3	; subquest to find items started
+EVENT_FLAG_DAY05_SUB_COMPLETE=$4	; subquest to find items complete
+EVENT_FLAG_DAY05_CAMP_STARTED=$5	; camping scene started
+EVENT_FLAG_DAY05_CAMP_COMPLETE=$6	; camping scene complete
 
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 
@@ -113,4 +121,8 @@ MISSION_FLAG_DAY03_CAMERA2_GET=$2	; found the second camera
 MISSION_FLAG_DAY03_CAMERA2_GIVE=$3	; gave the second camera
 MISSION_FLAG_DAY03_CAMERA3_GET=$4	; found the third camera
 MISSION_FLAG_DAY03_CAMERA3_GIVE=$5	; gave the third camera
+MISSION_FLAG_DAY05_READBOOK=$0	; read the cookbook
+MISSION_FLAG_DAY05_FOOD0=$1	; found food item 0
+MISSION_FLAG_DAY05_FOOD1=$2	; found food item 1
+
 

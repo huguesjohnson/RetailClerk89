@@ -113,3 +113,7 @@ CharacterDefinitionFemaleShopper0:
 CharacterDefinitionBilly:
 	dc.l	NPCSpriteBillyStart
 
+; 1C - OBJ_NPC_FIRE - used for fire animation
+CharacterDefinitionFire:
+	dc.l	FireSpriteTilesStart
+

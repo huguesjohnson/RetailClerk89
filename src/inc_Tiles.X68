@@ -574,6 +574,10 @@ Scene17StaffNPCTilesStart:
 	include 'tiles/sprite-tiles/tileset_Scene17StaffNPC.X68'
 Scene17StaffNPCTilesEnd:
 
+FireSpriteTilesStart:
+	include 'tiles/sprite-tiles/tileset_FireSprite.X68'
+FireSpriteTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; status screen tiles
 ;-------------------------------------------------------------------------------

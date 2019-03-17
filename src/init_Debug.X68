@@ -30,9 +30,9 @@ DebugTable:
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
-	dc.l	DebugStartDay0Title	
-	dc.l	DebugParkingLotBlizzardScene	
 	dc.l	DebugStartEnd	
+	dc.l	DebugParkingLotBlizzardScene	
+	dc.l	DebugCampfireScene
 
 ProcessDebugScreen:
 	; process start press
@@ -354,6 +354,24 @@ DebugParkingLotBlizzardScene:
 ;	bsr.w	LoadPlayerSprite
 	bsr.w	FadeIn	; fade in to the new scene
 	rts
+
+DebugCampfireScene:
+	move.l	(MEM_GAME_STATE),d7
+	bclr.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear screen flag
+	bset.l	#STATE_FLAG_EXPLORING,d7	; set exploring flag
+	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
+	move.l	d7,(MEM_GAME_STATE)
+
+	move.l	#$16120A1C,(MEM_NPC_LOCATION_FCBCAMPING)
+
+;	move.l	#$16000000,(MEM_NPC_LOCATION_FCBCAMPING)
+
+	lea	SceneFCBCamping,a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	LoadPlayerSprite
+	bsr.w	FadeIn	; fade in to the new scene
+	rts
+
 
 DebugStartEnd:
 	bsr.w	EndGame

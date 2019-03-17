@@ -157,15 +157,15 @@ TitleScreenTextFooter:
 
 	DebugScreenLine19:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Ending credits",ETX
 
 	DebugScreenLine1A:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Parking lot blizzard scene",ETX
+	dc.b	"{ Test parking lot blizzard scene",ETX
 
 	DebugScreenLine1B:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Ending credits",ETX
+	dc.b	"{ Test campfire scene",ETX
 
 	endif
 
@@ -702,7 +702,7 @@ DialogTextDay01Intro00:
 	dc.b	"new store to move in?^",FF
 	dc.b	"That Santa thing there",LF
 	dc.b	"now doesn't count.   ^",FF
-	dc.b	"Our store may close f",LF
+	dc.b	"Our store may close if",LF
 	dc.b	"sales don't improve.'",ETX
 
 	align 2
@@ -3841,14 +3841,17 @@ DialogTextWorkshopStaff1DefaultTalk:
 ;-------------------------------------------------------------------------------
 ; menus
 ;-------------------------------------------------------------------------------
+	align 2
 NPCMenu:
 	;		"1234567890123456789012"
 	dc.b	"{Look  {Talk  {Give",ETX
 
+	align 2
 ObjectMenu:
 	;		"1234567890123456789012"
 	dc.b	"{Look  {Use   {Take",ETX
 
+	align 2
 ItemMenu:
 	;		"1234567890123456789012"
 	dc.b	"{",ITEMNAMESTART
@@ -4309,6 +4312,10 @@ NPCNameTrendyGuy:
 NPCNameBilly:
 	;		"1234567890123456789012"
 	dc.b	"Billy",NPCNAMEEND
+
+NPCNameFire:
+	;		"1234567890123456789012"
+	dc.b	"Small fire",NPCNAMEEND
 
 NPCNameGenericShopper:
 	;		"1234567890123456789012"
@@ -5105,9 +5112,33 @@ StatusScreenDay05Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"December 17, 1989: The Blizzard",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"If you're snowed-in you'll need to",LF
+	dc.b	"There has to be some place where you",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"find food and a place to sleep.",ETX
+	dc.b	"can check the weather forecast.",ETX
+
+StatusScreenDay05Objective01:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 17, 1989: The Blizzard",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"Can you make it out of the mall",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"before the storm hits?",ETX
+
+StatusScreenDay05Objective02:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 17, 1989: The Blizzard",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"You'll need to find a place to stay",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"& supplies to get through the night.",ETX
+
+StatusScreenDay05Objective03:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 17, 1989: The Blizzard",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"You're stuck here overnight,",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"might as well make the best of it.",ETX
 
 StatusScreenDay06Objective00:
 	;		"12345678901234567890123456789012345678"

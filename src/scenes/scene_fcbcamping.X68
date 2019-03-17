@@ -238,7 +238,7 @@ SceneFCBCamping:
 	;---------------------------------------------------------------------------
 	; NPC locations
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; one npc slot
+	dc.w	$0004	; four npc slots
 
 	dc.w	$00A0	; starting x location of npc0
 	dc.w	$0100	; starting y location of npc0
@@ -246,6 +246,27 @@ SceneFCBCamping:
 	dc.w	$0097	; movement frequency of npc0
 	dc.l	NPCMovementScene16Start	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene16End-NPCMovementScene16Start-1)	; pattern length
+
+	dc.w	$0100	; starting x location of npc1
+	dc.w	$00DC	; starting y location of npc1
+	dc.w	DIRECTION_RIGHT	; starting direction of npc1
+	dc.w	$0000	; movement frequency of npc1
+	dc.l	NPCMovementRightStart	; location of movement pattern for npc1
+	dc.w	(NPCMovementRightEnd-NPCMovementRightStart-1)	; pattern length
+
+	dc.w	$0136	; starting x location of npc2
+	dc.w	$00DC	; starting y location of npc2
+	dc.w	DIRECTION_LEFT	; starting direction of npc2
+	dc.w	$0000	; movement frequency of npc2
+	dc.l	NPCMovementLeftStart	; location of movement pattern for npc2
+	dc.w	(NPCMovementLeftEnd-NPCMovementLeftStart-1)	; pattern length
+
+	dc.w	$0116	; starting x location of npc3
+	dc.w	$00E0	; starting y location of npc3
+	dc.w	DIRECTION_RIGHT	; starting direction of npc3
+	dc.w	$FFFF	; movement frequency of npc3
+	dc.l	NPCMovementCampfireStart	; location of movement pattern for npc3
+	dc.w	(NPCMovementCampfireEnd-NPCMovementCampfireStart-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm
