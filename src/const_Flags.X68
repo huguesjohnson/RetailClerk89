@@ -85,11 +85,12 @@ EVENT_FLAG_DAY04_SUB_GOOD_GIFT=$7	; whether a good gift was given
 EVENT_FLAG_DAY04_SUB_COMPLETE=$8	; secret santa sub-quest complete
 EVENT_FLAG_DAY05_EVENT_WEATHER=$0	; heard blizzard forecast
 EVENT_FLAG_DAY05_EVENT_LEAVING=$1	; trying to leave the mall
-EVENT_FLAG_DAY05_EVENT_SNOWEDIN=$2	; snowed-in to the mall
-EVENT_FLAG_DAY05_SUB_STARTED=$3	; subquest to find items started
-EVENT_FLAG_DAY05_SUB_COMPLETE=$4	; subquest to find items complete
-EVENT_FLAG_DAY05_CAMP_STARTED=$5	; camping scene started
-EVENT_FLAG_DAY05_CAMP_COMPLETE=$6	; camping scene complete
+EVENT_FLAG_DAY05_EVENT_TALKDANI=$2	; after dialog with Dani
+EVENT_FLAG_DAY05_EVENT_SNOWEDIN=$3	; snowed-in to the mall
+EVENT_FLAG_DAY05_SUB_STARTED=$4	; subquest to find items started
+EVENT_FLAG_DAY05_SUB_COMPLETE=$5	; subquest to find items complete
+EVENT_FLAG_DAY05_CAMP_STARTED=$6	; camping scene started
+EVENT_FLAG_DAY05_CAMP_COMPLETE=$7	; camping scene complete
 
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 
@@ -122,7 +123,9 @@ MISSION_FLAG_DAY03_CAMERA2_GIVE=$3	; gave the second camera
 MISSION_FLAG_DAY03_CAMERA3_GET=$4	; found the third camera
 MISSION_FLAG_DAY03_CAMERA3_GIVE=$5	; gave the third camera
 MISSION_FLAG_DAY05_READBOOK=$0	; read the cookbook
-MISSION_FLAG_DAY05_FOOD0=$1	; found food item 0
-MISSION_FLAG_DAY05_FOOD1=$2	; found food item 1
+MISSION_FLAG_DAY05_FOOD0GET=$1	; found food item 0
+MISSION_FLAG_DAY05_FOOD1GET=$2	; found food item 1
+MISSION_FLAG_DAY05_FOOD0GIVE=$3	; gave food item 0
+MISSION_FLAG_DAY05_FOOD1GIVE=$4	; gave food item 1
 
 

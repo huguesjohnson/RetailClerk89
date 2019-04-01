@@ -220,14 +220,24 @@ SceneSouthHall:
 	;---------------------------------------------------------------------------
 	; NPC locations
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; one npc slot, which is just a placeholder
-
+	dc.w	$0001	; two npc slots
+	
+	; by the phone booth
 	dc.w	$0104	; starting x location of npc0
 	dc.w	$00E0	; starting y location of npc0
 	dc.w	DIRECTION_UP	; starting direction of npc0
 	dc.w	$FFFF	; movement frequency of npc0
 	dc.l	NullMovementStart	; location of movement pattern for npc0
 	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+
+	; by the exit
+	dc.w	$0128	; starting x location of npc1
+	dc.w	$0128	; starting y location of npc1
+	dc.w	DIRECTION_DOWN	; starting direction of npc1
+	dc.w	$FFFF	; movement frequency of npc1
+	dc.l	NullMovementStart	; location of movement pattern for npc1
+	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+
 
 	;---------------------------------------------------------------------------
 	; bgm

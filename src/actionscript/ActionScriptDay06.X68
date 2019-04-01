@@ -849,7 +849,7 @@ Day06End:
 	;---------------------------------------------------------------------------	
 	move.w	#INTRO_SCREEN_COUNTER_START,(MEM_INTRO_SCENE_COUNTER)
 	lea	SceneIntroDay07,a6	; address of the scene for the title screen
-	bsr.w	LoadScene	; branch to LoadScene subroutine
+	jsr	LoadScene	; branch to LoadScene subroutine
 	bsr.w	FadeIn	; fade-in
 	;---------------------------------------------------------------------------	
 	; set player sprite position

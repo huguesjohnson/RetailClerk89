@@ -1400,7 +1400,7 @@ Day04End:
 	;---------------------------------------------------------------------------	
 	; queue the scripted event that starts day 5
 	;---------------------------------------------------------------------------	
-;	lea ScriptedEventDay01Start,a6	; point a6 to event to load
-;	bsr.w QueueScriptedEvent	; queue the event
+	lea ScriptedEventDay05Intro,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
 	rts
 

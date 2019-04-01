@@ -32,6 +32,7 @@ DrawScene:
 	beq.s	LoadFontTiles	; if no tiles then move to next section
 	move.w	#SCENE_VDP,d1	; use d1 to track write location
 	clr.l	d2	; use d2 to increment write location
+
 LoadSceneLoadTilesLoop:
 ;	bsr.w	WaitVBlank	; wait for vblank to end
 ;	bsr.w	WaitVBlankEnd	; if currently in VBlank, wait

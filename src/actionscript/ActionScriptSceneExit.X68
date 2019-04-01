@@ -34,6 +34,17 @@ DefaultExitScene:
 	move.l	(MEM_PLAYER_STORE_KEYS),d5	; copy keys to d5
 	btst.l	d7,d5	; test if player has the key
 	bne.s	DefaultExitSceneLoadNewScene	; player has the key, branch
+	;--------------------------------------------------------------------------- 
+	; at this point the played needs a key for the store
+	; if the day is 05 and EVENT_FLAG_DAY05_EVENT_LEAVING is set
+	; then there are different rules
+	;--------------------------------------------------------------------------- 
+	cmpi.w	#$0005,(MEM_DAY)
+	bne.s	DefaultExitSceneNoKey	; branch to default
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_EVENT_LEAVING,d7	; test flag
+	bne.w	ExitSceneDay05Blizzard	; flag set, branch
+DefaultExitSceneNoKey:
 	; display message
 	lea	DialogTextStoreClosed,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -134,12 +145,6 @@ ExitScene00Day04:
 	beq.s	ExitScene00Day04Default	; not set, branch to default exit
 	bclr.l	#EVENT_FLAG_DAY04_SUB_GOOD_GIFT,d7	; clear flag to prevent replay
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
-	
-	
-;	bclr.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7
-;	btst.l	#EVENT_FLAG_DAY04_SUB_CHOICE0,d7	; test choice
-;	beq.s	ExitScene00Day04Gift1	; branch if choice 1
-
 	btst.l	#EVENT_FLAG_DAY04_SUB_CHOICE1,d7	; test which branch to follow
 	bne.s	ExitScene00Day04Gift1
 ExitScene00Day04Gift0:
@@ -166,11 +171,12 @@ ExitScene00Day04Default:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
-
 ;-------------------------------------------------------------------------------
 ; exit scene 01 (SCENE_ID_WWHALL)
 ;-------------------------------------------------------------------------------
 ExitScene01:
+	cmpi.w	#$0005,(MEM_DAY)	; is this day 05?
+	beq.w	ExitScene01Day05	; branch to day 05
 	cmpi.w	#$0004,(MEM_DAY)	; is this day 04?
 	beq.w	ExitScene01Day04	; branch to day 04
 	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
@@ -249,6 +255,29 @@ ExitScene01Day04:
 ExitScene01Day04Default:
 	bra.w	DefaultExitScene	; use default handler
 	rts
+ExitScene01Day05:
+	; test if player is trying to enter fcbcheckout
+	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)
+	bne.s	ExitScene01Day05Default	; not exiting west
+	;---------------------------------------------------------------------------	
+	; scripted event should launch if
+	; EVENT_FLAG_DAY05_EVENT_SNOWEDIN = 1
+	; EVENT_FLAG_DAY05_SUB_STARTED = 0
+	;---------------------------------------------------------------------------	
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_EVENT_SNOWEDIN,d7	; test if flag is set
+	beq.s	ExitScene01Day05Default	; flag not set, branch
+	btst.l	#EVENT_FLAG_DAY05_SUB_STARTED,d7	; test if flag is set
+	bne.s	ExitScene01Day05Default	; flag set, branch
+	bset.l	#EVENT_FLAG_DAY05_SUB_STARTED,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; launch the scripted event
+	lea ScriptedEventDay05StartSub,a6	; point a6 to event to load
+	bsr.w	QueueScriptedEvent	; queue the event
+	rts
+ExitScene01Day05Default:
+	bra.w	DefaultExitScene	; use default handler
+	rts
 
 ;-------------------------------------------------------------------------------
 ; exit scene 02 (SCENE_ID_WEHALL)
@@ -268,14 +297,70 @@ ExitScene03:
 ; exit scene 04 (SCENE_ID_SHALL)
 ;-------------------------------------------------------------------------------
 ExitScene04:
+	; different rules for day05 only
+	cmpi.w	#$0005,(MEM_DAY)	; test day
+	beq.s	ExitScene04Day05	; branch if day05
+	; all other days
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
 	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test mall closed flag
-	bne.s	ExitScene04DefaultExit	; mall is closed, branch
+	bne.w	ExitScene04DefaultExit	; mall is closed, branch
 	; mall is still open so the player can't exit south
 	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)
-	bne.s	ExitScene04DefaultExit	; not exiting south
+	bne.w	ExitScene04DefaultExit	; not exiting south
 	; display message
 	lea	DialogTextNotTimeToLeave,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
+	rts	; exit
+ExitScene04Day05:
+	; test if not going to the parking lot
+	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)
+	beq.s	ExitScene04Day05ParkingLot	; exiting south
+	; test if NPCs need to be cleared from the scene
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_EVENT_SNOWEDIN,d7	; test flag
+	beq.w	ExitScene04DefaultExit	; branch if not set
+	move.l	#$00000000,(MEM_NPC_LOCATION_SHALL)	; clear NPCs	
+	bra.w	ExitScene04DefaultExit	; exit
+ExitScene04Day05ParkingLot:
+	; test if the player is snowed-in for the night
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_EVENT_SNOWEDIN,d7	; test flag
+	bne.s	ExitScene04Day05SnowedIn	; branch if set
+	; test if the scripted event should run
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_EVENT_TALKDANI,d7	; test flag
+	bne.s	ExitScene04Day05ScriptedEvent	; branch if set
+	; test if the player is trying to leave early
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_EVENT_LEAVING,d7	; test flag
+	bne.s	ExitScene04Day05Leaving	; branch if set
+	; default
+	lea	DialogTextNotTimeToLeave,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
+	rts	; exit
+ExitScene04Day05SnowedIn:
+	lea	DialogTextDay05ExitParkingLot1,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
+	rts	; exit
+ExitScene04Day05ScriptedEvent:
+	; update game state
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#EVENT_FLAG_DAY05_EVENT_SNOWEDIN,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; update NPCs
+	move.l	#$12160000,(MEM_NPC_LOCATION_FCBCHECKOUT)
+	move.l	#$00000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	; update objective
+	move.w	#OBJECTIVE_D5_O2,(MEM_OBJECTIVE)
+	; queue the scripted event
+	lea ScriptedEventDay05SnowedIn,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	rts	; exit
+ExitScene04Day05Leaving:
+	lea	DialogTextDay05ExitParkingLot0,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; flag to open dialog
 	rts	; exit
@@ -443,3 +528,26 @@ ExitSceneDay01SwitchPC:
 	lea ScriptedEventDay01ChangePC,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
 	rts
+
+;-------------------------------------------------------------------------------
+; exit scene day 05 during blizzard
+;-------------------------------------------------------------------------------
+ExitSceneDay05Blizzard:
+	;---------------------------------------------------------------------------
+	; d6 should still have the destination scene id
+	; test for stores that are still open during the blizzard
+	;---------------------------------------------------------------------------
+	cmpi.w	#SCENE_ID_FCBCHECKOUT,d6
+	beq.w	DefaultExitSceneLoadNewScene
+	cmpi.w	#SCENE_ID_NSHACK,d6
+	beq.w	DefaultExitSceneLoadNewScene
+	cmpi.w	#SCENE_ID_POGODAWG,d6
+	beq.w	DefaultExitSceneLoadNewScene
+	cmpi.w	#SCENE_ID_CAVERN,d6
+	beq.w	DefaultExitSceneLoadNewScene
+	; else show store closed early text
+	lea	DialogTextStoreClosedDay05Storm,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening
+	rts
+

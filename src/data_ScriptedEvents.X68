@@ -471,7 +471,7 @@ ScriptedEventDay01ChangePC:
 	dc.w	SCRIPTED_EVENT_END
 
 ScriptedEventDay01End:
-	dc.w	$0003	; npc1
+	dc.w	$0003	; npc2 (Dani)
 	; move sprite away from register	
 	dc.w	DIRECTION_LEFT
 	dc.w	($0038)/SPRITE_STEP_PIXELS
@@ -1136,6 +1136,191 @@ ScriptedEventDay04GoodGift1:
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay04SDBGoodGift
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay05Intro:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; move the player sprite toward the counter
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventIntro00
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay05GoodExcuseToLeave:
+	dc.w	$0003	; npc2 (Dani)
+	; --------------------------------------------------------------------------
+	; move sprite out of the store
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($0038)/SPRITE_STEP_PIXELS
+	; move sprite toward door	
+	dc.w	DIRECTION_DOWN
+	dc.w	($005C)/SPRITE_STEP_PIXELS
+	; move sprite out of scene
+	dc.w	DIRECTION_LEFT
+	dc.w	($0028)/SPRITE_STEP_PIXELS
+	; move into hidden space to block movement pattern
+	dc.w	DIRECTION_DOWN
+	dc.w	($0010)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay05SnowedIn:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; move player offscreen
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0180
+	; --------------------------------------------------------------------------
+	; show the blizzard scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_PARKINGLOT_BLIZZARD
+	; --------------------------------------------------------------------------
+	; used for delay - sprite should be in completely blocked space
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	($0080)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; return to the south hallway
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_SHALL
+	; --------------------------------------------------------------------------
+	; have the player walk back onto the screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	($0046)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventSnowedIn
+	; --------------------------------------------------------------------------
+	; move npc off screen
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; npc2
+	dc.w	DIRECTION_RIGHT
+	dc.w	($0020)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	($00D0)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay05StartSub:
+	dc.w	$0003	; npc2 (D.B.)
+	; --------------------------------------------------------------------------
+	; change scene and player sprite
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while the screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0164
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$00B4
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION
+	dc.w	DIRECTION_LEFT
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DANI
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_FCBCHECKOUT
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene13Day05NPC12SnowedIn
+	; --------------------------------------------------------------------------
+	; move npc (D.B.) into scene
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($01F0-$015E)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventStartSub00
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventStartSub01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventStartSub02
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventStartSub03
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventStartSub04
+	; --------------------------------------------------------------------------
+	; have player face down for next dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventStartSub05
+	; --------------------------------------------------------------------------
+	; move npc (D.B.) out of scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; npc2 (D.B.)
+	dc.w	DIRECTION_RIGHT
+	dc.w	($01F0-$015E)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; have player face left for the rest of the dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventStartSub06
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventStartSub07
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventStartSub08
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventStartSub09
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay05Sub00:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventSub00D1
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventSub00D2
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay05Sub01:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventSub01D1
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventSub01D2
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventSub01D3
 	dc.w	SCRIPTED_EVENT_END
 
 ; ------------------------------------------------------------------------------

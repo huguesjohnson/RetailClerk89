@@ -459,6 +459,11 @@ ItemNameTable:
 	dc.l	ItemNameFBook3
 	; OBJ_ITEM_FBOOK4
 	dc.l	ItemNameFBook4
+	; OBJ_ITEM_RELISH
+	dc.l	ItemNameRelish
+	; OBJ_ITEM_MIXEDNUTS
+	dc.l	ItemNameMixedNuts
+
 
 ;-------------------------------------------------------------------------------
 ; item descriptions
@@ -562,6 +567,10 @@ ItemDescriptionTable:
 	dc.l	ItemDescriptionFBook3
 	; OBJ_ITEM_FBOOK4
 	dc.l	ItemDescriptionFBook4
+	; OBJ_ITEM_RELISH
+	dc.l	ItemDescriptionRelish
+	; OBJ_ITEM_MIXEDNUTS
+	dc.l	ItemDescriptionMixedNuts
 
 ;-------------------------------------------------------------------------------
 ; store names
@@ -600,5 +609,4 @@ StatusScreenObjectives:
 	dc.l	StatusScreenDay03Objective02
 	dc.l	StatusScreenDay05Objective01
 	dc.l	StatusScreenDay05Objective02
-	dc.l	StatusScreenDay05Objective03
 

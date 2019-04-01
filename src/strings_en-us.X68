@@ -42,13 +42,13 @@ TitleScreenTextDebug:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Unstable Debug Build (March 2019)  ",ETX
+	dc.b	"   Unstable Debug Build (April 2019)  ",ETX
 
 	else
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Story Demo: Days 1-6 (March 2019)  ",ETX
+	dc.b	"   Story Demo: Days 1-6 (April 2019)  ",ETX
 	endif
 
 	if _DEBUG_
@@ -117,7 +117,7 @@ TitleScreenTextFooter:
 
 	DebugScreenLine0F:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 5 parking lot blizzard scene",ETX
 
 	DebugScreenLine10:
 	;		"12345678901234567890123456789012345678"
@@ -338,6 +338,13 @@ DialogTextStoreClosed:
 	;		"1234567890123456789012"
 	dc.b	"They are closed for ",LF
 	dc.b	"the night.           ^",FF
+	dc.b	"Maybe if you had a key",LF
+	dc.b	"to the store...",ETX
+
+DialogTextStoreClosedDay05Storm:
+	;		"1234567890123456789012"
+	dc.b	"Looks like they closed",LF
+	dc.b	"because of the storm.^",FF
 	dc.b	"Maybe if you had a key",LF
 	dc.b	"to the store...",ETX
 
@@ -2987,12 +2994,298 @@ DialogTextDaniScene05Day04:
 ;-------------------------------------------------------------------------------
 ; dialog text - day 05
 ;-------------------------------------------------------------------------------
+
 	align 2
-DialogTextDaniScene05Day05:
+DialogTextDay05ScriptedEventIntro00:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"We haven't had any",LF
+	dc.b	"shoppers for an hour.^",FF
+	dc.b	"I heard something",LF
+	dc.b	"about a blizzard in  ^",FF
+	dc.b	"the forecast tonight,",LF
+	dc.b	"maybe it's early?    ^",FF
+	dc.b	"Can you go find out",LF
+	dc.b	"what's going on?",ETX
+
+	align 2
+DialogTextGreenbergScene00Day05Storm:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"If that storm is",LF
+	dc.b	"heading here then you^",FF
+	dc.b	"should get out while",LF
+	dc.b	"you still can.       ^",FF
+	dc.b	"No point in both of ",LF
+	dc.b	"us being stuck here.",ETX
+
+	align 2
+DialogTextGreenbergScene00Day05SnowedIn:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Don't worry about me.",LF
+	dc.b	"This is giving me the^",FF
+	dc.b	"time to catch-up",LF
+	dc.b	"on taking inventory.",ETX
+
+	align 2
+DialogTextScene04Day05NPC11SnowedIn:
+	dc.w	OBJ_NPC_FCBFISHING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Sorry, not now.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I'm trying to reach my",LF
+	dc.b	"friend with the ATV.",ETX
+
+	align 2
+DialogTextScene04Day05NPC01SnowedIn:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2",ETX
+	dc.b	"Bad news.",LF
+	dc.b	"Go see for yourself.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventSnowedIn:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"We better find a place",LF
+	dc.b	"to wait this out.    ^",FF
+	dc.b	"We might be stuck here",LF
+	dc.b	"all night.",ETX
+
+	align 2
+DialogTextScene14Day05NPC10SnowedIn:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm staying here all",LF
+	dc.b	"night if I have to.  ^",FF
+	dc.b	"This is exactly when",LF
+	dc.b	"looters come out.",ETX
+
+	align 2
+DialogTextScene0EDay05NPC0ASnowedIn:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I wish I could leave",LF
+	dc.b	"like everyone else,  ^",FF
+	dc.b	"but I don't have car.",LF
+	dc.b	"I'll be OK.",ETX
+
+	align 2
+DialogTextScene0FDay05NPC0BSnowedIn:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"It's like, yeah, real",LF
+	dc.b	"slow today. Dude.",ETX
+
+	align 2
+DialogTextScene13Day05NPC12SnowedIn:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Half of my store left",LF
+	dc.b	"early.               ^",FF
+	dc.b	"What are you still",LF
+	dc.b	"doing here?",ETX
+
+	align 2
+DialogTextScene13Day05NPC08SnowedIn:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Why's everyone leaving",LF
+	dc.b	"over a little snow?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventGoodExcuse:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Blizzard?",LF
+	dc.b	"                     ^",FF
+	dc.b	"That's a good enough",LF
+	dc.b	"excuse to leave.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventStartSub00:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Yeah, we're kind of",LF
+	dc.b	"stranded here.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventStartSub01:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"That's too bad but it",LF
+	dc.b	"will be OK, I swear. ^",FF
+	dc.b	"You can stay in the",LF
+	dc.b	"camping are here.    ^",FF
+	dc.b	"It won't be a problem",LF
+	dc.b	"at all.              ^",FF
+	dc.b	"There are enough tents",LF
+	dc.b	"for all of us.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventStartSub02:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"What's the catch?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventStartSub03:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"No catch, I'm not like",LF
+	dc.b	"that at all.         ^",FF
+	dc.b	"How about you find us",LF
+	dc.b	"something to eat and ^",FF
+	dc.b	"we'll call it even?",LF
+	dc.b	"I wouldn't complain  ^",FF
+	dc.b	"if you found something",LF
+	dc.b	"for heat too.        ^",FF
+	dc.b	"It gets cold back ",LF
+	dc.b	"there at night.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventStartSub04:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Alright, I'll cover",LF
+	dc.b	"the food.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventStartSub05:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You go find something",LF
+	dc.b	"highly flammable.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventStartSub06:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"So what do you want",LF
+	dc.b	"anyway?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventStartSub07:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm on a strict vegan",LF
+	dc.b	"& gluten-free diet.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventStartSub08:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"(what's gluten?)",LF
+	dc.b	"(wait, what's vegan?)^",FF
+	dc.b	"OK, I'll see what I",LF
+	dc.b	"can manage.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventStartSub09:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I know it's a limited",LF
+	dc.b	"selection here but   ^",FF
+	dc.b	"you should be able to",LF
+	dc.b	"find a couple things.",ETX
+
+	align 2
+DialogTextDay05Scene12UseBookshelf:
+	dc.b	"Alright, let's see..",LF
+	dc.b	"So gluten is just    ^",FF
+	dc.b	"like bread & vegan has",LF
+	dc.b	"no animal stuff.     ^",FF
+	dc.b	"So no bread & no meat,",LF
+	dc.b	"yeah that sounds easy.",ETX
+		
+	align 2
+DialogTextDay05SubDontKnow:
+	dc.b	"(I still don't know",LF
+	dc.b	"what I'm looking for)^",FF
+	dc.b	"(Maybe a cookbook",LF
+	dc.b	"would help)",ETX
+
+	align 2
+DialogTextDay05SubNoChance:
+	dc.b	"(No chance I'll find",LF
+	dc.b	"anything here)",ETX
+
+	align 2
+DialogTextDay05ScriptedEventSub00D0:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Yeah I need something",LF
+	dc.b	"without animal stuff ^",FF
+	dc.b	"and something called",LF
+	dc.b	"gluten.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventSub00D1:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"This must be for",LF
+	dc.b	"Jordan. He's here all^",FF
+	dc.b	"the time. Here are a",LF
+	dc.b	"few things for him.",ETX
+
+	align 2
+DialogTextScene0EDay05NPCSub00:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Thanks for the invite,",LF
+	dc.b	"I'll head over soon.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventSub00D2:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"OK, thanks. Hey, I'm",LF
+	dc.b	"sure he'd invite you ^",FF
+	dc.b	"to the camp out if he",LF
+	dc.b	"knew you were here.  ^",FFR
+	dc.b	"(Received mixed",LF
+	dc.b	"nuts)",ETX
+
+	align 2
+DialogTextDay05ScriptedEventSub01D0:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"How much meat is in a",LF
+	dc.b	"pogo dog anyway?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventSub01D1:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Uh, some I think.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventSub01D2:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"OK, just give me a few",LF
+	dc.b	"bowls of relish then.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventSub01D3:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Dude, even I think",LF
+	dc.b	"this is weird.",FFR
+	dc.b	"(Received relish)",ETX
+
+	align 2
+DialogTextDay05ExitParkingLot0:
+	;		"1234567890123456789012"
+	dc.b	"(I should get a ride",LF
+	dc.b	"before leaving)",ETX
+
+	align 2
+DialogTextDay05ExitParkingLot1:
+	;		"1234567890123456789012"
+	dc.b	"(We're not making it",LF
+	dc.b	"out tonight)",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 06
@@ -3188,29 +3481,37 @@ DialogTextInfoDeskDay03R3:	; rumors
 DialogTextInfoDeskDay05R0:	; mall news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 05 mall news ",LF
-	dc.b	"",ETX
+	dc.b	"The mall plans to stay",LF
+	dc.b	"open today despite   ^",FF
+	dc.b	"the weather forecast.",ETX
 
 	align 2
 DialogTextInfoDeskDay05R1:	; events
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 05 events ",LF
-	dc.b	"",ETX
+	dc.b	"Santa's Workshop will ",LF
+	dc.b	"be open all the way  ^",FF
+	dc.b	"through Xmas Eve.",ETX
 
 	align 2
 DialogTextInfoDeskDay05R2:	; store news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 05 store news ",LF
-	dc.b	"",ETX
+	dc.b	"There's only one week",LF
+	dc.b	"until Xmas so most   ^",FF
+	dc.b	"stores are having",LF
+	dc.b	"their best sales now.",ETX
 
 	align 2
 DialogTextInfoDeskDay05R3:	; rumors
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 05 rumors ",LF
-	dc.b	"",ETX
+	dc.b	"I really shouldn't",LF
+	dc.b	"tell you this but..  ^",FF
+	dc.b	"a few people told me",LF
+	dc.b	"they plan to close   ^",FF
+	dc.b	"early if there is a",LF
+	dc.b	"blizzard today.",ETX
 
 	align 2
 DialogTextInfoDeskDay06R0:	; mall news
@@ -3267,6 +3568,251 @@ DialogTextInfoDeskDay07R3:	; rumors
 	;		"1234567890123456789012"
 	dc.b	"day 07 rumors ",LF
 	dc.b	"",ETX
+
+;-------------------------------------------------------------------------------
+; radio stations
+;-------------------------------------------------------------------------------
+
+	align 2
+DialogTextRadioDay00R0:	; WNWT (news and weather)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay00R1:	; WOCX (talk radio)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay00R2:	; WCAS (top 40)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay00R3:	; WVVX (hair metal)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay01R0:	; WNWT (news and weather)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay01R1:	; WOCX (talk radio)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay01R2:	; WCAS (top 40)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay01R3:	; WVVX (hair metal)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay02R0:	; WNWT (news and weather)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay02R1:	; WOCX (talk radio)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay02R2:	; WCAS (top 40)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay02R3:	; WVVX (hair metal)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay03R0:	; WNWT (news and weather)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay03R1:	; WOCX (talk radio)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay03R2:	; WCAS (top 40)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay03R3:	; WVVX (hair metal)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay04R0:	; WNWT (news and weather)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay04R1:	; WOCX (talk radio)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay04R2:	; WCAS (top 40)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay04R3:	; WVVX (hair metal)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay05R0:	; WNWT (news and weather)
+	;		"1234567890123456789012"
+	dc.b	"It's 7:05 so time for",LF
+	dc.b	"weather on the primes^",FF
+	dc.b	"& we're in for a rough",LF
+	dc.b	"one tonight folks.   ^",FF
+	dc.b	"At least 2ft of snow",LF
+	dc.b	"is headed our way.   ^",FF
+	dc.b	"It should be hitting",LF
+	dc.b	"Bayhurst Mall soon.  ^",FF
+	dc.b	"Downtown should be",LF
+	dc.b	"covered by 10:00.    ^",FF
+	dc.b	"Stay off the roads",LF
+	dc.b	"tonight folks.       ^",FF
+	dc.b	"And now it's time for",LF
+	dc.b	"traffic on the evens.",ETX
+
+DialogTextRadioDay05R1:	; WOCX (talk radio)
+	;		"1234567890123456789012"
+	dc.b	"You're listening to",LF
+	dc.b	"Dash Diggler.        ^",FF
+	dc.b	"Don't touch that dial",LF
+	dc.b	"because after 10:00  ^",FF
+	dc.b	"is Sea to Sea with",LF
+	dc.b	"Barty George.",ETX
+
+DialogTextRadioDay05R2:	; WCAS (top 40)
+	;		"1234567890123456789012"
+	dc.b	"Up next is the latest",LF
+	dc.b	"from Milli Vanilli.  ^",FF
+	dc.b	"It was #1 a couple",LF
+	dc.b	"weeks ago & I think  ^",FF
+	dc.b	"you'll be hearing from",LF
+	dc.b	"them for a long time. ",ETX
+
+DialogTextRadioDay05R3:	; WVVX (hair metal)
+	;		"1234567890123456789012"
+	dc.b	"This was a demo song",LF
+	dc.b	"from an underground  ^",FF
+	dc.b	"midwest metal band",LF
+	dc.b	"called Wrath.        ^",FF
+	dc.b	"Up next is a new band",LF
+	dc.b	"from Seattle...",ETX
+
+DialogTextRadioDay06R0:	; WNWT (news and weather)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay06R1:	; WOCX (talk radio)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay06R2:	; WCAS (top 40)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay06R3:	; WVVX (hair metal)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay07R0:	; WNWT (news and weather)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay07R1:	; WOCX (talk radio)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay07R2:	; WCAS (top 40)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
+
+DialogTextRadioDay07R3:	; WVVX (hair metal)
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"stuff^",FF
+	dc.b	"stuff",LF
+	dc.b	"stuff.",ETX
 
 ;-------------------------------------------------------------------------------
 ; default object descriptions
@@ -3864,6 +4410,12 @@ InfoDeskMenu:
 	dc.b	"know about today?    ^",FFR
 	dc.b	"{Mall news {Store news",LF
 	dc.b	"{Events    {Rumors",ETX
+
+	align 2
+RadioMenu:
+	;		"{1234567890{1234567890"	
+	dc.b	"{WNWT      {WCAS",LF
+	dc.b	"{WOCX      {WVVX",ETX
 
 ;-------------------------------------------------------------------------------
 ; take menus and messages
@@ -4767,6 +5319,23 @@ ItemDescriptionFBook4:
 	;		"1234567890123456789012"
 	dc.b	"short stories",CHAR_DQUOTE,ETX
 
+ItemNameRelish:
+	;		"1234567890"
+	dc.b	"Relish",ITEMNAMEEND
+
+ItemDescriptionRelish:
+	;		"1234567890123456789012"
+	dc.b	"It looks pretty gross.",ETX
+
+ItemNameMixedNuts:
+	;		"1234567890"
+	dc.b	"Mixed Nuts",ITEMNAMEEND
+
+ItemDescriptionMixedNuts:
+	;		"1234567890123456789012"
+	dc.b	"It's mostly almonds",LF
+	dc.b	"and cashews.",ETX
+
 ;-------------------------------------------------------------------------------
 ; store signs
 ;-------------------------------------------------------------------------------
@@ -5131,14 +5700,6 @@ StatusScreenDay05Objective02:
 	dc.b	"You'll need to find a place to stay",LF
 	;		"1234567890123456789012345678901234567"
 	dc.b	"& supplies to get through the night.",ETX
-
-StatusScreenDay05Objective03:
-	;		"12345678901234567890123456789012345678"
-	dc.b	"December 17, 1989: The Blizzard",LF
-	;		"1234567890123456789012345678901234567"
-	dc.b	"You're stuck here overnight,",LF
-	;		"1234567890123456789012345678901234567"
-	dc.b	"might as well make the best of it.",ETX
 
 StatusScreenDay06Objective00:
 	;		"12345678901234567890123456789012345678"

@@ -221,7 +221,7 @@ SceneWWHall:
 	;---------------------------------------------------------------------------
 	; NPC locations
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; one npc slot, which is just a placeholder
+	dc.w	$0000	; one npc slot
 
 	dc.w	$01F0	; starting x location of npc0
 	dc.w	$00B4	; starting y location of npc0
