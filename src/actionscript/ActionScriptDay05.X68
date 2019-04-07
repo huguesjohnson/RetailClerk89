@@ -876,19 +876,69 @@ Day05Scene13Action01NPC:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day05Scene13Action01NPCCamping:
+	; test game state
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_SUB_STARTED,d7	; test flag
+	beq.s	Day05Scene13Action01NPCSub	; branch if set
+	; default text
 	lea	DialogTextScene13Day05NPC12SnowedIn,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day05Scene13Action01NPCSub:
+	lea	DialogTextDay05ScriptedEventStartSub09,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day05Scene13Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_FCBCHECKOUT_STAFF,d6	; test target
 	beq.s	Day05Scene13Action02NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_FCBCAMPING_STAFF,d6	; test target
+	beq.s	Day05Scene13Action02NPCCamping	; branch to text for the NPC
 	; default action
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day05Scene13Action02NPC:
 	lea	DialogTextNPCFCBCheckoutStaffDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day05Scene13Action02NPCCamping:
+	cmpi.w	#OBJ_ITEM_RELISH,(MEM_ACTIVE_ITEM)	; test item
+	beq.s	Day05Scene13Action02NPCCampingExpectedItem	; branch if item
+	cmpi.w	#OBJ_ITEM_MIXEDNUTS,(MEM_ACTIVE_ITEM)	; test item
+	beq.s	Day05Scene13Action02NPCCampingExpectedItem	; branch if item
+	; neither expected item - use default text
+	lea	DialogTextNPCFCBCampingStaffDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day05Scene13Action02NPCCampingExpectedItem:
+	bsr.w	RemoveActiveItem	; remove the active item
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#MISSION_FLAG_DAY05_FOOD0GIVE,d7	; test flag
+	bne.s	Day05Scene13Action02NPCCampingGive1	; branch if set
+Day05Scene13Action02NPCCampingGive0:
+	; update game state - d7 should have MEM_MISSION_EVENT_FLAGS here
+	bset.l	#MISSION_FLAG_DAY05_FOOD0GIVE,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	; show text
+	lea	DialogTextDay05Scene13Give0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day05Scene13Action02NPCCampingGive1:	; transition to camp scene
+	; update game state - d7 should have MEM_MISSION_EVENT_FLAGS here
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#MISSION_FLAG_DAY05_FOOD1GIVE,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#EVENT_FLAG_DAY05_CAMP_STARTED,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; update NPCs
+	move.l	#$16120A1C,(MEM_NPC_LOCATION_FCBCAMPING)
+	; queue scripted event
+	lea ScriptedEventDay05Camp,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	; show initial text
+	lea	DialogTextDay05ScriptedEventCamp00,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day05Scene13Action03:	; ACTION_RESPOND

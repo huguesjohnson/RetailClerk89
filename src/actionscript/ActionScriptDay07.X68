@@ -774,7 +774,7 @@ Day07Scene16Action03:	; ACTION_RESPOND
 ; day 07 - scene 17 (SCENE_ID_SOUTH_CENTER)
 ;-------------------------------------------------------------------------------
 Day07Scene17Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	jsr	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day07Scene17Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6

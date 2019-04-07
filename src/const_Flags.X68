@@ -128,4 +128,3 @@ MISSION_FLAG_DAY05_FOOD1GET=$2	; found food item 1
 MISSION_FLAG_DAY05_FOOD0GIVE=$3	; gave food item 0
 MISSION_FLAG_DAY05_FOOD1GIVE=$4	; gave food item 1
 
-

@@ -254,7 +254,7 @@ SceneFCBCamping:
 	dc.l	NPCMovementRightStart	; location of movement pattern for npc1
 	dc.w	(NPCMovementRightEnd-NPCMovementRightStart-1)	; pattern length
 
-	dc.w	$0136	; starting x location of npc2
+	dc.w	$0130	; starting x location of npc2
 	dc.w	$00DC	; starting y location of npc2
 	dc.w	DIRECTION_LEFT	; starting direction of npc2
 	dc.w	$0000	; movement frequency of npc2

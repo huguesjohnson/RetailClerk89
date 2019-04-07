@@ -121,7 +121,7 @@ TitleScreenTextFooter:
 
 	DebugScreenLine10:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 5 camp scene",ETX
 
 	DebugScreenLine11:
 	;		"12345678901234567890123456789012345678"
@@ -157,15 +157,15 @@ TitleScreenTextFooter:
 
 	DebugScreenLine19:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Ending credits",ETX
+	dc.b	"{ (not implemented)",ETX
 
 	DebugScreenLine1A:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Test parking lot blizzard scene",ETX
+	dc.b	"{ (not implemented)",ETX
 
 	DebugScreenLine1B:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Test campfire scene",ETX
+	dc.b	"{ Ending credits",ETX
 
 	endif
 
@@ -3280,6 +3280,31 @@ DialogTextDay05ExitParkingLot0:
 	;		"1234567890123456789012"
 	dc.b	"(I should get a ride",LF
 	dc.b	"before leaving)",ETX
+
+	align 2
+DialogTextDay05Scene13Give0:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Alright, that's a",LF
+	dc.b	"good start.",ETX
+
+DialogTextDay05ScriptedEventCamp00:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Thanks, this will be",LF
+	dc.b	"great too.",ETX
+
+DialogTextDay05ScriptedEventCamp01:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Looks like we're all",LF
+	dc.b	"set for tonight.",ETX
+
+DialogTextDay05ScriptedEventCamp02:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"(and now we're in the",LF
+	dc.b	"camp scene)",ETX
 
 	align 2
 DialogTextDay05ExitParkingLot1:
