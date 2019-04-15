@@ -842,7 +842,7 @@ SceneExitTable:
 	; scene 12 (SCENE_ID_TBOOKS)
 	dc.l	DefaultExitScene
 	; scene 13 (SCENE_ID_FCBCHECKOUT)
-	dc.l	DefaultExitScene
+	dc.l	ExitScene13
 	; scene 14 (SCENE_ID_FCBFIREARMS)
 	dc.l	DefaultExitScene
 	; scene 15 (SCENE_ID_FCBFISHING)

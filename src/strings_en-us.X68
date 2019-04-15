@@ -125,11 +125,11 @@ TitleScreenTextFooter:
 
 	DebugScreenLine11:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 5 end                     ",ETX
 
 	DebugScreenLine12:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 6 title                   ",ETX
 
 	DebugScreenLine13:
 	;		"12345678901234567890123456789012345678"
@@ -3288,23 +3288,498 @@ DialogTextDay05Scene13Give0:
 	dc.b	"Alright, that's a",LF
 	dc.b	"good start.",ETX
 
+	align 2
 DialogTextDay05ScriptedEventCamp00:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Thanks, this will be",LF
 	dc.b	"great too.",ETX
 
+	align 2
 DialogTextDay05ScriptedEventCamp01:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Looks like we're all",LF
 	dc.b	"set for tonight.",ETX
 
+	align 2
 DialogTextDay05ScriptedEventCamp02:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"This isn't so bad.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Better than our last",LF
+	dc.b	"family camping trip. ^",FF
+	dc.b	"D.B. is still scared",LF
+	dc.b	"of fire because of it.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp03:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"When was that?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp04:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"10 years ago. Back",LF
+	dc.b	"when our father was  ^",FF
+	dc.b	"in his rambling man",LF
+	dc.b	"phase.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp05:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"My last camping trip",LF
+	dc.b	"was bad too.         ^",FF
+	dc.b	"This is already a lot",LF
+	dc.b	"better.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp06:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"(and now we're in the",LF
-	dc.b	"camp scene)",ETX
+	dc.b	"My family never went",LF
+	dc.b	"camping.             ^",FF
+	dc.b	"We're more of an",LF
+	dc.b	"indoor crowd.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp07:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"You managed a nice",LF
+	dc.b	"setup here anyway.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp08:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Yeah.. I guess.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp09:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I don't recall seeing",LF
+	dc.b	"you before November. ^",FF
+	dc.b	"Did you move here",LF
+	dc.b	"recently?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp0A:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Sort of, I grew up",LF
+	dc.b	"around here.         ^",FF
+	dc.b	"I moved years ago but",LF
+	dc.b	"I guess I'm back now.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp0B:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Sorry if that's a",LF
+	dc.b	"sore subject.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp0C:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"It's not that, it's",LF
+	dc.b	"only hard to explain.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp0D:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You can tell us.",LF
+	dc.b	"I see you every day. ^",FF
+	dc.b	"I know something is",LF
+	dc.b	"troubling you.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp0E:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I can't, you wouldn't",LF
+	dc.b	"believe it anyway.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp0F:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Hey, I figured it out.",LF
+	dc.b	"You're homeless.     ^",FF
+	dc.b	"You're living here in",LF
+	dc.b	"the mall.            ^",FF
+	dc.b	"Living off mall snacks",LF
+	dc.b	"and sleeping here.   ^",FF
+	dc.b	"Is that about right?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp10:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Yeah, that's right.",LF
+	dc.b	"I'm living here.     ^",FF
+	dc.b	"That's all.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp11:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"How did this happen?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp12:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"It just did.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp13:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You're obviously in",LF
+	dc.b	"some trouble.        ^",FF
+	dc.b	"Maybe we can help.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp14:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You're going to think",LF
+	dc.b	"I'm crazy or lying.  ^",FF
+	dc.b	"I'm not even sure",LF
+	dc.b	"myself anymore.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp15:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Do your worst.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp16:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Fine. Look, I was here",LF
+	dc.b	"before, when I was 4.^",FF
+	dc.b	"We came to see Santa.",LF
+	dc.b	"It's my first memory.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp17:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"That's not so crazy.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp18:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Yeah it is.",LF
+	dc.b	"                     ^",FF
+	dc.b	"This is the first year",LF
+	dc.b	"the mall has a Santa.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp19A:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"That's right. It was",LF
+	dc.b	"25 years ago for me. ^",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp19B:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Everything was so",LF
+	dc.b	"perfect that day.    ^",FF
+	dc.b	"We were like a family",LF
+	dc.b	"in a picture frame.  ^",FF
+	dc.b	"It wasn't long before",LF
+	dc.b	"everything changed.  ^",FF
+	dc.b	"This was our last",LF
+	dc.b	"good time together.  ^",FF
+	dc.b	"I grew up, went to",LF
+	dc.b	"college, got engaged.^",FF
+	dc.b	"You know, all the",LF
+	dc.b	"expected things,     ^",FF
+	dc.b	"I came back here last",LF
+	dc.b	"month, November 2014.^",FF
+	dc.b	"I was in town for a",LF
+	dc.b	"boring work thing.   ^",FF
+	dc.b	"I stopped by the mall",LF
+	dc.b	"hoping it would help.^",FF
+	dc.b	"I'm getting married",LF
+	dc.b	"next summer, but,    ^",FF
+	dc.b	"I'm just really scared",LF
+	dc.b	"to start a family.   ^",FF
+	dc.b	"I thought a happy",LF
+	dc.b	"memory would help.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp1A:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Wait 2014? Who's the",LF
+	dc.b	"president then?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp1B:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Oh, no one you know.",LF
+	dc.b	"He's still in college.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp1C:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Guess I'll find out ",LF
+	dc.b	"when it happens.     ^",FF
+	dc.b	"Go on.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp1D:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"The mall was a",LF
+	dc.b	"complete ghost town. ^",FF
+	dc.b	"There were just a few",LF
+	dc.b	"stores open still.   ^",FF
+	dc.b	"The workshop location",LF
+	dc.b	"was a Wire Warehouse.^",FF
+	dc.b	"It was closing though,",LF
+	dc.b	"final 10 days.       ^",FF
+	dc.b	"In the far back I saw",LF
+	dc.b	"it, by pile of trash.^",FF
+	dc.b	"It was the remnants of",LF
+	dc.b	"Santa's Workshop.    ^",FF
+	dc.b	"It must have been in",LF
+	dc.b	"the backroom forever.^",FF
+	dc.b	"I went up to it and it",LF
+	dc.b	"all came back to me. ^",FF
+	dc.b	"I pictured that moment",LF
+	dc.b	"in 1989 perfectly.   ^",FF
+	dc.b	"I didn't ever want to",LF
+	dc.b	"leave it.            ^",FF
+	dc.b	"But then it's wasn't",LF
+	dc.b	"memory. I was there.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp1E:
+	dc.w	OBJ_NPC_GUARD0
+	;		"1234567890123456789012"
+	dc.b	"Hey! What are you",LF
+	dc.b	"doing here!          ^",FF
+	dc.b	"This place doesn't",LF
+	dc.b	"open until noon.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp1F:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I, uh, I was just..",LF
+	dc.b	"Wait, where am I?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp20:
+	dc.w	OBJ_NPC_GUARD0
+	;		"1234567890123456789012"
+	dc.b	"Is it your first day",LF
+	dc.b	"or are you dumb?     ^",FF
+	dc.b	"Just get back to your",LF
+	dc.b	"own store.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp21:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"My store?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp22:
+	dc.w	OBJ_NPC_GUARD0
+	;		"1234567890123456789012"
+	dc.b	"Down the hall to the",LF
+	dc.b	"right.               ^",FF
+	dc.b	"With all the other",LF
+	dc.b	CHAR_DQUOTE,"lumberjacks",CHAR_DQUOTE,".",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp23:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Oh, OK.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp24:
+	dc.w	OBJ_NPC_GUARD0
+	;		"1234567890123456789012"
+	dc.b	"And if I catch you",LF
+	dc.b	"messing around here  ^",FF
+	dc.b	"again you're banned",LF
+	dc.b	"from the mall forever.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp25:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"So you turned into a",LF
+	dc.b	"lumberjack too?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp26:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"What? I've never even",LF
+	dc.b	"held an axe.         ^",FF
+	dc.b	"This is just a style,",LF
+	dc.b	"that's popular if you^",FF
+	dc.b	"don't want to look",LF
+	dc.b	"like everyone else.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp27:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"But if it's popular",LF
+	dc.b	"then... nevermind.   ^",FF
+	dc.b	"Do you want to go",LF
+	dc.b	"back to 2014?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp28:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Yeah. I only wanted to",LF
+	dc.b	"remember a good time.^",FF
+	dc.b	"Now I can't escape it.",LF
+	dc.b	"I'm scared I'm stuck.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp29:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Is anyone looking for",LF
+	dc.b	"you back home?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp2A:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I automated most of my",LF
+	dc.b	"job, they won't^",FF
+	dc.b	"notice I'm gone until",LF
+	dc.b	"something breaks.    ^",FF
+	dc.b	"My fiance will be back",LF
+	dc.b	"in town soon though. ^",FF
+	dc.b	"She's visiting family",LF
+	dc.b	"in India for a month.^",FF
+	dc.b	"They don't have good",LF
+	dc.b	"wifi in the village, ^",FF
+	dc.b	"so she can't try to",LF
+	dc.b	"contact me.          ^",FF
+	dc.b	"She's flying home on",LF
+	dc.b	"December 26th.       ^",FF
+	dc.b	"I need to be there",LF
+	dc.b	"when she lands.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp2B:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"What if you went back",LF
+	dc.b	"to Santa's Workshop? ^",FF
+	dc.b	"Do you think it would",LF
+	dc.b	"take you back?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp2C:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I thought about it,",LF
+	dc.b	"but I can't get in.  ^",FF
+	dc.b	"It's locked at night.",LF
+	dc.b	"If the guards see me ^",FF
+	dc.b	"there during the day,",LF
+	dc.b	"I might be banned.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp2D:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"What about right after",LF
+	dc.b	"Xmas Eve?            ^",FF
+	dc.b	"They tear it down on",LF
+	dc.b	"the 26th. I bet they ^",FF
+	dc.b	"leave it unlocked so",LF
+	dc.b	"the crew can get in.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp2E:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Do you think that",LF
+	dc.b	"would work?",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp2F
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"It's worth a try.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Worst case is we snag",LF
+	dc.b	"some free decorations.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp30:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Alright, let's do it.",LF
+	dc.b	"Xmas Eve it is.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp31:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Let's meet in my store",LF
+	dc.b	"that morning to plan.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp32:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"We'll get you there.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Meanwhile, I'm going",LF
+	dc.b	"to get some sleep.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp33:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"OK, we're all clear to",LF
+	dc.b	"leave now.",ETX
+
+	align 2
+DialogTextDay05Scene13NPCAfterCamp:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm nervous, what if",LF
+	dc.b	"it doesn't work?",ETX
+
+	align 2
+DialogTextDay05Scene14NPCAfterCamp:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm not even tired",LF
+	dc.b	"a little.",ETX
 
 	align 2
 DialogTextDay05ExitParkingLot1:

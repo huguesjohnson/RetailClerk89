@@ -1,0 +1,27 @@
+InitNPCLocations:
+	lea MEM_NPC_LOCATIONS,a0
+	move.l	#$03010200,(a0)+	; location 00 (VB) - NPCs 03,01,02
+	move.l	#$00000000,(a0)+	; location 01 (WWHALL)
+	move.l	#$00000000,(a0)+	; location 02 (WEHALL)
+	move.l	#$04000000,(a0)+	; location 03 (CENTER)
+	move.l	#$00000000,(a0)+	; location 04 (SHALL)
+	move.l	#$00000000,(a0)+	; location 05 (PARKINGLOT)
+	move.l	#$00000000,(a0)+	; location 06 (EWHALL)
+	move.l	#$18000000,(a0)+	; location 07 (EEHALL)
+	move.l	#$05000000,(a0)+	; location 08 (DENIMCOUNTRY)
+	move.l	#$06000000,(a0)+	; location 09 (CHECKERS)
+	move.l	#$07000000,(a0)+	; location 0A (TLODGE)
+	move.l	#$08000000,(a0)+	; location 0B (CAVERN)
+	move.l	#$09000000,(a0)+	; location 0C (SVIDEO)
+	move.l	#$14150000,(a0)+	; location 0D (WORKSHOP)
+	move.l	#$0A000000,(a0)+	; location 0E (NSHACK)
+	move.l	#$0B000000,(a0)+	; location 0F (POGODAWG)
+	move.l	#$0C000000,(a0)+	; location 10 (CPLANET)
+	move.l	#$0D000000,(a0)+	; location 11 (CNOW)
+	move.l	#$0E000000,(a0)+	; location 12 (TBOOKS)
+	move.l	#$0F000000,(a0)+	; location 13 (FCBCHECKOUT)
+	move.l	#$10000000,(a0)+	; location 14 (FCBFIREARMS)
+	move.l	#$11000000,(a0)+	; location 15 (FCBFISHING)
+	move.l	#$12000000,(a0)+	; location 16 (FCBCAMPING)
+	move.l	#$13000000,(a0)+	; location 17 (SOUTH_CENTER)
+	rts

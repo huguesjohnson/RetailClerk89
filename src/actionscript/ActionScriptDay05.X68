@@ -878,10 +878,16 @@ Day05Scene13Action01NPC:
 Day05Scene13Action01NPCCamping:
 	; test game state
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_CAMP_COMPLETE,d7	; test flag
+	bne.s	Day05Scene13Action01NPCAfterCamp	; branch if set
 	btst.l	#EVENT_FLAG_DAY05_SUB_STARTED,d7	; test flag
 	beq.s	Day05Scene13Action01NPCSub	; branch if set
 	; default text
 	lea	DialogTextScene13Day05NPC12SnowedIn,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day05Scene13Action01NPCAfterCamp:
+	lea	DialogTextDay05Scene13NPCAfterCamp,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day05Scene13Action01NPCSub:
@@ -903,11 +909,16 @@ Day05Scene13Action02NPC:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day05Scene13Action02NPCCamping:
+	; test game state
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_SUB_COMPLETE,d7	; test if sub complete
+	bne.s	Day05Scene13Action02NPCCampingDefault	; flag set, branch
 	cmpi.w	#OBJ_ITEM_RELISH,(MEM_ACTIVE_ITEM)	; test item
 	beq.s	Day05Scene13Action02NPCCampingExpectedItem	; branch if item
 	cmpi.w	#OBJ_ITEM_MIXEDNUTS,(MEM_ACTIVE_ITEM)	; test item
 	beq.s	Day05Scene13Action02NPCCampingExpectedItem	; branch if item
 	; neither expected item - use default text
+Day05Scene13Action02NPCCampingDefault:
 	lea	DialogTextNPCFCBCampingStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -930,10 +941,20 @@ Day05Scene13Action02NPCCampingGive1:	; transition to camp scene
 	bset.l	#MISSION_FLAG_DAY05_FOOD1GIVE,d7	; set flag
 	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#EVENT_FLAG_DAY05_SUB_COMPLETE,d7	; set flag
 	bset.l	#EVENT_FLAG_DAY05_CAMP_STARTED,d7	; set flag
+	;---------------------------------------------------------------------------	
+	; setting both flags here because in the future 
+	; there might be an interactive part of the camp scene 
+	;---------------------------------------------------------------------------	
+	bset.l	#EVENT_FLAG_DAY05_CAMP_COMPLETE,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
-	; update NPCs
+	;---------------------------------------------------------------------------	
+	; update NPCs - some are in multiple places to handle scene transitions
+	;---------------------------------------------------------------------------	
 	move.l	#$16120A1C,(MEM_NPC_LOCATION_FCBCAMPING)
+	move.l	#$12160000,(MEM_NPC_LOCATION_FCBCHECKOUT)
+	move.l	#$12180000,(MEM_NPC_LOCATION_WORKSHOP)
 	; queue scripted event
 	lea ScriptedEventDay05Camp,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -963,9 +984,16 @@ Day05Scene14Action01:	; ACTION_USE_TALK
 Day05Scene14Action01NPC:
 	; test if during blizzard
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_CAMP_COMPLETE,d7	; test flag
+	bne.s	Day05Scene14Action01NPCAfterCamp	; flag set, branch
 	btst.l	#EVENT_FLAG_DAY05_EVENT_LEAVING,d7	; test flag
-	beq.s	Day05Scene14Action01NPCDefault	; flag not set, branch
-	; blizzard text	
+	bne.s	Day05Scene14Action01NPCBlizzard	; flag set, branch
+	bra.s	Day05Scene14Action01NPCDefault	; use default text
+Day05Scene14Action01NPCAfterCamp:
+	lea	DialogTextDay05Scene14NPCAfterCamp,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day05Scene14Action01NPCBlizzard:
 	lea	DialogTextScene14Day05NPC10SnowedIn,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -1120,12 +1148,11 @@ Day05Scene17Action03:	; ACTION_RESPOND
 Day05End:
 	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
 	;---------------------------------------------------------------------------	
-	; update NPC locations
+	; most NPC locations were changed during this day
 	;---------------------------------------------------------------------------	
-	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
-	move.l	#$00000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	bsr.w	InitNPCLocations
+	move.l	#$03160000,(MEM_NPC_LOCATION_VB)
 	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
-	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	

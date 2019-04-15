@@ -22,8 +22,8 @@ DebugTable:
 	dc.l	DebugStartDay5Title	
 	dc.l	DebugStartDay5Blizzard	
 	dc.l	DebugStartDay5Camp	
-	dc.l	DebugStartDay0Title	
-	dc.l	DebugStartDay0Title	
+	dc.l	DebugStartDay5End	
+	dc.l	DebugStartDay6Title	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
@@ -457,6 +457,84 @@ DebugStartDay5Camp:
 	bsr.w	LoadPlayerSprite
 	bsr.w	FixSprites
 	bsr.w	FadeIn	; fade in to the new scene
+	rts
+
+DebugStartDay5End:
+	move.w	#$0005,(MEM_DAY)	; move to day 05
+	move.w	#OBJECTIVE_D5_O1,(MEM_OBJECTIVE)	; update objective
+	; update store keys	
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_TBOOKS,d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7
+	bset.l	#STORE_KEY_VB,d7
+	bset.l	#STORE_KEY_CHECKERS,d7
+	bset.l	#STORE_KEY_TLODGE,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	; update game state
+	move.l	(MEM_GAME_STATE),d7
+	bclr.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear screen flag
+	bset.l	#STATE_FLAG_EXPLORING,d7	; set exploring flag
+	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
+	move.l	d7,(MEM_GAME_STATE)
+	; update event flags
+	move.l	(MEM_DAY_EVENT_FLAGS),d7
+	bset.l	#EVENT_FLAG_DAY05_EVENT_WEATHER,d7
+	bset.l	#EVENT_FLAG_DAY05_EVENT_LEAVING,d7
+	bset.l	#EVENT_FLAG_DAY05_EVENT_TALKDANI,d7
+	bset.l	#EVENT_FLAG_DAY05_SUB_STARTED,d7
+	bset.l	#EVENT_FLAG_DAY05_SUB_COMPLETE,d7
+	bset.l	#EVENT_FLAG_DAY05_CAMP_STARTED,d7
+	bset.l	#EVENT_FLAG_DAY05_CAMP_COMPLETE,d7
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)
+	; update mission flags
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7
+	bset.l	#MISSION_FLAG_DAY05_READBOOK,d7
+	bset.l	#MISSION_FLAG_DAY05_FOOD0GET,d7
+	bset.l	#MISSION_FLAG_DAY05_FOOD1GET,d7
+	bset.l	#MISSION_FLAG_DAY05_FOOD0GIVE,d7
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)
+	; update NPCs
+	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
+	move.l	#$00000000,(MEM_NPC_LOCATION_CENTER)
+	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	move.l	#$00000000,(MEM_NPC_LOCATION_SHALL)
+	move.l	#$00000000,(MEM_NPC_LOCATION_CHECKERS)
+	move.l	#$00000000,(MEM_NPC_LOCATION_TLODGE)
+	move.l	#$00000000,(MEM_NPC_LOCATION_SVIDEO)
+	move.l	#$00000000,(MEM_NPC_LOCATION_WORKSHOP)
+	move.l	#$00000000,(MEM_NPC_LOCATION_CPLANET)
+	move.l	#$00000000,(MEM_NPC_LOCATION_CNOW)
+	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
+	move.l	#$00000000,(MEM_NPC_LOCATION_TBOOKS)
+	move.l	#$12160000,(MEM_NPC_LOCATION_FCBCHECKOUT)
+	move.l	#$00000000,(MEM_NPC_LOCATION_FCBCAMPING)
+	move.l	#$00000000,(MEM_NPC_LOCATION_FCBFISHING)
+	move.l	#$00000000,(MEM_NPC_LOCATION_SOUTH_CENTER)
+	; update player sprite
+	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)
+	; add item to trigger transition and one for testing
+	move.w	#OBJ_ITEM_RELISH,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
+	move.w	#OBJ_ITEM_QUARTERS,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
+	; load scene
+	lea	SceneFCBCheckout,a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	LoadPlayerSprite
+	bsr.w	FixSprites
+	bsr.w	FadeIn	; fade in to the new scene
+	rts
+
+DebugStartDay6Title:
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_TBOOKS,d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7
+	bset.l	#STORE_KEY_VB,d7
+	bset.l	#STORE_KEY_CHECKERS,d7
+	bset.l	#STORE_KEY_TLODGE,d7
+	bset.l	#STORE_KEY_FCB,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	bsr.w	Day05End
 	rts
 
 DebugStartEnd:

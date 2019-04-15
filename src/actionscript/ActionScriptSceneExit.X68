@@ -475,6 +475,29 @@ ExitScene09CanExit: ; ok to exit scene
 	rts	; exit
 
 ;-------------------------------------------------------------------------------
+; exit scene 13 (SCENE_ID_FCBCHECKOUT)
+;-------------------------------------------------------------------------------
+ExitScene13:
+	cmpi.w	#$0005,(MEM_DAY)	; is it day 05?
+	bne.s	ExitScene13Default	; not day 05, default exit
+	; test game state
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY05_CAMP_COMPLETE,d7	; is the camping event complete?
+	beq.s	ExitScene13Default	; not after camping scene, branch
+	;---------------------------------------------------------------------------	
+	; test direction
+	; -exiting east ends the day
+	; -other directions need to reset NPCs
+	;---------------------------------------------------------------------------	
+	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
+	beq.w	Day05End
+	move.l	#$12000000,(MEM_NPC_LOCATION_FCBCHECKOUT)
+	move.l	#$00000000,(MEM_NPC_LOCATION_FCBCAMPING)	
+ExitScene13Default:
+	bsr.w	DefaultExitScene	; use default handler
+	rts	; exit
+
+;-------------------------------------------------------------------------------
 ; exit scene 17 (SCENE_ID_SOUTH_CENTER)
 ;-------------------------------------------------------------------------------
 ExitScene17:

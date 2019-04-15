@@ -1358,6 +1358,243 @@ ScriptedEventDay05Camp:
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp02
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp03
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp04
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp05
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp06
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp07
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp08
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp09
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp0A
+	; --------------------------------------------------------------------------
+	; have Jordan face down
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; npc2 (Jordan)
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp0B
+	; --------------------------------------------------------------------------
+	; have Jordan face right
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp0C
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp0D
+	; --------------------------------------------------------------------------
+	; have Jordan pace down and right
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0002
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp0E
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp0F
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp10
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp11
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp12
+
+	; --------------------------------------------------------------------------
+	; have Jordan face down
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp13
+	; --------------------------------------------------------------------------
+	; have Jordan face right
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp14
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp15
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp16
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp17
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp18
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp19A
+	; --------------------------------------------------------------------------
+	; scene transition would go here
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp19B
+	; --------------------------------------------------------------------------
+	; scene transition would go here
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp1A
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp1B
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp1C
+
+	; --------------------------------------------------------------------------
+	; this would be a good place for another flashback scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp1D
+
+
+	; --------------------------------------------------------------------------
+	; transition to Santa's Workshop scene
+	; --------------------------------------------------------------------------
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; move player sprite while the screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION
+	dc.w	DIRECTION_DOWN
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_WORKSHOP
+	; --------------------------------------------------------------------------
+	; move npc sprite
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; npc2 (guard)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp1E
+	; --------------------------------------------------------------------------
+	; move npc sprite
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; npc1 (Jordan)
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp1F
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp22
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp23
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp24
+	; --------------------------------------------------------------------------
+	; transition back to camp scene
+	; --------------------------------------------------------------------------
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; move player sprite while the screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$011A
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$00B0
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION
+	dc.w	DIRECTION_DOWN
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_FCBCAMPING
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp25
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp26
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp27
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp28
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp29
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp2A
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp2B
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp2C
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp2D
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp2E
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp2F
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp30
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp31
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp32
+	; --------------------------------------------------------------------------
+	; Dani walks up a few steps
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player (Dani)
+	dc.w	DIRECTION_UP
+	dc.w	$0005
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; move sprite while the screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0164
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$00B4
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION
+	dc.w	DIRECTION_LEFT
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_FCBCHECKOUT
+	; --------------------------------------------------------------------------
+	; have D.B. walk in
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; npc2 (D.B.)
+	dc.w	DIRECTION_LEFT
+	dc.w	($01F0-$015E)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp33
+	; --------------------------------------------------------------------------
+	; have D.B. walk out
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_RIGHT
+	dc.w	($01F0-$015E)/SPRITE_STEP_PIXELS
 	dc.w	SCRIPTED_EVENT_END
 
 ; ------------------------------------------------------------------------------

@@ -9,6 +9,10 @@
 
 	include	'sub_ClearVRAM.X68'
 
+	include	'sub_BuildStatusScreen.X68'
+
+	include 'sub_ProcessStatusScreen.X68'
+
 	include	'sub_SetSpritePattern.X68'
 
 	include	'sub_TestSpriteCollision.X68'
@@ -51,8 +55,6 @@
 
 	include	'sub_BuildActionTableOffset.X68'
 
-	include	'sub_ShowDefaultText.X68'
-
 	include	'sub_SetDialogOpening.X68'
 
 	include	'sub_ResetDialog.X68'
@@ -73,11 +75,11 @@
 
 	include	'sub_FadeInFadeOut.X68'
 
-	include	'sub_BuildStatusScreen.X68'
-
-	include 'sub_ProcessStatusScreen.X68'
-
 	include	'sub_EndDemo.X68'
+
+	include 'sub_InitNPCLocations.X68'
+
+	include	'sub_ShowDefaultText.X68'
 
 	if _DEBUG_
 	include	'init_Debug.X68'
