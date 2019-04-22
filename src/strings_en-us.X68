@@ -3416,7 +3416,7 @@ DialogTextDay05ScriptedEventCamp0F:
 	dc.b	"You're living here in",LF
 	dc.b	"the mall.            ^",FF
 	dc.b	"Living off mall snacks",LF
-	dc.b	"and sleeping here.   ^",FF
+	dc.b	"& sleeping back here.^",FF
 	dc.b	"Is that about right?",ETX
 
 	align 2
@@ -3519,7 +3519,7 @@ DialogTextDay05ScriptedEventCamp19B:
 	dc.b	"next summer, but,    ^",FF
 	dc.b	"I'm just really scared",LF
 	dc.b	"to start a family.   ^",FF
-	dc.b	"I thought a happy",LF
+	dc.b	"I thought this happy",LF
 	dc.b	"memory would help.",ETX
 
 	align 2
@@ -3556,8 +3556,8 @@ DialogTextDay05ScriptedEventCamp1D:
 	dc.b	"was a Wire Warehouse.^",FF
 	dc.b	"It was closing though,",LF
 	dc.b	"final 10 days.       ^",FF
-	dc.b	"In the far back I saw",LF
-	dc.b	"it, by pile of trash.^",FF
+	dc.b	"In the far I saw it,",LF
+	dc.b	"by a pile of boxes.  ^",FF
 	dc.b	"It was the remnants of",LF
 	dc.b	"Santa's Workshop.    ^",FF
 	dc.b	"It must have been in",LF
@@ -3566,8 +3566,8 @@ DialogTextDay05ScriptedEventCamp1D:
 	dc.b	"all came back to me. ^",FF
 	dc.b	"I pictured that moment",LF
 	dc.b	"in 1989 perfectly.   ^",FF
-	dc.b	"I didn't ever want to",LF
-	dc.b	"leave it.            ^",FF
+	dc.b	"I didn't want to",LF
+	dc.b	"leave.               ^",FF
 	dc.b	"But then it's wasn't",LF
 	dc.b	"memory. I was there.",ETX
 
@@ -3593,7 +3593,7 @@ DialogTextDay05ScriptedEventCamp20:
 	;		"1234567890123456789012"
 	dc.b	"Is it your first day",LF
 	dc.b	"or are you dumb?     ^",FF
-	dc.b	"Just get back to your",LF
+	dc.b	"Get back to your",LF
 	dc.b	"own store.",ETX
 
 	align 2
@@ -3674,7 +3674,7 @@ DialogTextDay05ScriptedEventCamp2A:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"I automated most of my",LF
-	dc.b	"job, they won't^",FF
+	dc.b	"job, they won't      ^",FF
 	dc.b	"notice I'm gone until",LF
 	dc.b	"something breaks.    ^",FF
 	dc.b	"My fiance will be back",LF
@@ -3689,6 +3689,13 @@ DialogTextDay05ScriptedEventCamp2A:
 	dc.b	"December 26th.       ^",FF
 	dc.b	"I need to be there",LF
 	dc.b	"when she lands.",ETX
+
+	align 2
+DialogTextDay05ScriptedEventCamp2A1:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"(Whyfye? Maybe it's a",LF
+	dc.b	"new phone company.)",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp2B:
@@ -3707,19 +3714,21 @@ DialogTextDay05ScriptedEventCamp2C:
 	dc.b	"but I can't get in.  ^",FF
 	dc.b	"It's locked at night.",LF
 	dc.b	"If the guards see me ^",FF
-	dc.b	"there during the day,",LF
-	dc.b	"I might be banned.",ETX
+	dc.b	"there during the day",LF
+	dc.b	"I might get banned.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp2D:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"What about right after",LF
-	dc.b	"Xmas Eve?            ^",FF
+	dc.b	"closing on Xmas Eve? ^",FF
 	dc.b	"They tear it down on",LF
-	dc.b	"the 26th. I bet they ^",FF
-	dc.b	"leave it unlocked so",LF
-	dc.b	"the crew can get in.",ETX
+	dc.b	"the 26th.            ^",FF
+	dc.b	"We'll claim to be the",LF
+	dc.b	"tear-down crew       ^",FF
+	dc.b	"if anyone catches us",LF
+	dc.b	"there.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp2E:
@@ -4068,6 +4077,15 @@ DialogTextInfoDeskDay07R3:	; rumors
 	;		"1234567890123456789012"
 	dc.b	"day 07 rumors ",LF
 	dc.b	"",ETX
+
+	align 2
+DialogTextInfoDeskStrangeGift:	; secret santa gift
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Here's your Secret",LF
+	dc.b	"Santa gift.          ^",FF
+	dc.b	"(Received Strange",LF
+	dc.b	"Secret Santa Gift)",ETX
 
 ;-------------------------------------------------------------------------------
 ; radio stations
@@ -5369,6 +5387,10 @@ NPCNameFire:
 	;		"1234567890123456789012"
 	dc.b	"Small fire",NPCNAMEEND
 
+NPCNameMallManager:
+	;		"1234567890123456789012"
+	dc.b	"Al",NPCNAMEEND
+
 NPCNameGenericShopper:
 	;		"1234567890123456789012"
 	dc.b	"Shopper",NPCNAMEEND
@@ -5835,6 +5857,15 @@ ItemDescriptionMixedNuts:
 	;		"1234567890123456789012"
 	dc.b	"It's mostly almonds",LF
 	dc.b	"and cashews.",ETX
+
+ItemNameStrangeGift:
+	;		"1234567890"
+	dc.b	"Odd Gift",ITEMNAMEEND
+
+ItemDescriptionStrangeGift:
+	;		"1234567890123456789012"
+	dc.b	"(I wonder who this is",LF
+	dc.b	"from anyway)",ETX
 
 ;-------------------------------------------------------------------------------
 ; store signs

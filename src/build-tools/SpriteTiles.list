@@ -25,3 +25,7 @@
 ../../design/tiles_spriteNPC-secret-shopper.png,../tiles/sprite-tiles/tileset_NPCSpriteSecretShopper.X68
 ../../design/tiles_spriteNPC-guard0.png,../tiles/sprite-tiles/tileset_NPCSpriteGuard0.X68
 ../../design/tiles_spriteNPC-trendyguy.png,../tiles/sprite-tiles/tileset_NPCTrendyGuy.X68
+../../design/tiles_PlayerDaniXmas.png,../tiles/sprite-tiles/tileset_PlayerDaniXmas.X68
+../../design/tiles_NPCSpriteMallManagerNow.png,../tiles/sprite-tiles/tileset_NPCSpriteMallManagerNow.X68
+../../design/tiles_NPCSpriteMallManagerPast.png,../tiles/sprite-tiles/tileset_NPCSpriteMallManagerPast.X68
+../../design/tiles_Scene0BStaffNPCPast.png,../tiles/sprite-tiles/tileset_Scene0BStaffNPCPast.X68

@@ -86,6 +86,23 @@ Day06Scene03Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene03Action01NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test player sprite
+	bne.s	Day06Scene03Action01NPCDefault	; branch if not Dani
+	; test if gift received
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7	; copy global event flags to d7
+	btst.l	#GLOBAL_FLAG_DANI_GIFT,d7	; test if flag is set
+	bne.s	Day06Scene03Action01NPCDefault	; branch if set
+	; update game state
+	bset.l	#GLOBAL_FLAG_DANI_GIFT,d7	; set flag
+	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)	; save updated flags
+	; add item to inventory
+	move.w	#OBJ_ITEM_STRANGE_GIFT,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
+	; text
+	lea	DialogTextInfoDeskStrangeGift,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene03Action01NPCDefault:
 	; setup 4 choice dialog	
 	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
 	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d6	; set text choice flag
@@ -833,6 +850,13 @@ Day06End:
 	; update the game state
 	;---------------------------------------------------------------------------	
 	bsr.w	ClearPlayerInventory	; clear player inventory
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7	; copy global event flags to d7
+	btst.l	#GLOBAL_FLAG_DANI_GIFT,d7	; test if flag is set
+	beq.s	.1	; branch if not set
+	; add item to inventory
+	move.w	#OBJ_ITEM_STRANGE_GIFT,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
+.1
 	move.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; update sprite
 	move.w	#$0007,(MEM_DAY)	; move to day 07
 	move.w	#OBJECTIVE_D7_O0,(MEM_OBJECTIVE)	; update objective

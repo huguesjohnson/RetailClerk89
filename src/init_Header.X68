@@ -13,11 +13,11 @@
 	dc.b	'Retail Clerk 89 - Debug Build                   ' ; cart name
 	dc.b	'Retail Clerk 89 - Debug Build                   ' ; cart name (alt)
 	else
-	dc.b	'Retail Clerk 89 - Demo Build 20190406-00        ' ; cart name
-	dc.b	'Retail Clerk 89 - Demo Build 20190406-00        ' ; cart name (alt)
+	dc.b	'Retail Clerk 89 - Demo Build 20190421-00        ' ; cart name
+	dc.b	'Retail Clerk 89 - Demo Build 20190421-00        ' ; cart name (alt)
 	endif
 	endif
-	dc.b	'GM 20190406-00'	; program type / serial number / version
+	dc.b	'GM 20190421-00'	; program type / serial number / version
 	dc.w	$0000				; ROM checksum
 	dc.b	'J               '	; I/O device support (unused)
 	dc.l	$00000000			; address of ROM start

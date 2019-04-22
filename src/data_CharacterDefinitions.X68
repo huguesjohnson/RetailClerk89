@@ -117,3 +117,19 @@ CharacterDefinitionBilly:
 CharacterDefinitionFire:
 	dc.l	FireSpriteTilesStart
 
+; 1D - OBJ_NPC_MALLMANAGER_NOW
+CharacterDefinitionMallManagerNow:
+	dc.l	NPCSpriteMallManagerNowTilesStart
+
+; 1E - OBJ_NPC_MALLMANAGER_PAST
+CharacterDefinitionMallManagerPast:
+	dc.l	NPCSpriteMallManagerPastTilesStart
+
+; 1F - OBJ_NPC_CAVERN_STAFF_PAST
+CharacterScene0BStaffPastNPC:
+	dc.l	Scene0BStaffNPCPastTilesStart
+
+; 20 - OBJ_NPC_DANI_XMAS
+CharacterDefinitionDaniXmas:
+	dc.l	NPCSpriteDaniXmasTilesStart
+

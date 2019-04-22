@@ -472,7 +472,7 @@ NPCSpriteDaniTilesStart:
 	else
 	include 'tiles/sprite-tiles/tileset_PlayerDani.X68'
 	endif
-NPCSprite1TilesEnd:
+NPCSpriteDaniTilesEnd:
 
 NPCSpriteMaleShopper0Start:
 	include 'tiles/sprite-tiles/tileset_NPCSprite2.X68'
@@ -577,6 +577,22 @@ Scene17StaffNPCTilesEnd:
 FireSpriteTilesStart:
 	include 'tiles/sprite-tiles/tileset_FireSprite.X68'
 FireSpriteTilesEnd:
+
+NPCSpriteDaniXmasTilesStart:
+	include 'tiles/sprite-tiles/tileset_PlayerDaniXmas.X68'
+NPCSpriteDaniXmasTilesEnd:
+
+NPCSpriteMallManagerNowTilesStart:
+	include 'tiles/sprite-tiles/tileset_NPCSpriteMallManagerNow.X68'
+NPCSpriteMallManagerNowTilesEnd:
+
+NPCSpriteMallManagerPastTilesStart:
+	include 'tiles/sprite-tiles/tileset_NPCSpriteMallManagerPast.X68'
+NPCSpriteMallManagerPastTilesEnd:
+
+Scene0BStaffNPCPastTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene0BStaffNPCPast.X68'
+Scene0BStaffNPCPastTilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; status screen tiles

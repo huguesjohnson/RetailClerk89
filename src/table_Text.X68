@@ -353,6 +353,14 @@ NPCNameTable:
 	dc.l	NPCNameBilly
 	; OBJ_NPC_FIRE
 	dc.l	NPCNameFire
+	; OBJ_NPC_MALLMANAGER_NOW
+	dc.l	NPCNameMallManager
+	; OBJ_NPC_MALLMANAGER_PAST
+	dc.l	NPCNameMallManager
+	; OBJ_NPC_CAVERN_STAFF_PAST
+	dc.l	NPCNameCavernStaff
+	; OBJ_NPC_DANI_XMAS
+	dc.l	NPCNameDani
 	; OBJ_NPC_GENERICSHOPPER
 	dc.l	NPCNameGenericShopper
 NPCNameTableEnd:
@@ -463,7 +471,8 @@ ItemNameTable:
 	dc.l	ItemNameRelish
 	; OBJ_ITEM_MIXEDNUTS
 	dc.l	ItemNameMixedNuts
-
+	; OBJ_ITEM_STRANGE_GIFT
+	dc.l	ItemNameStrangeGift
 
 ;-------------------------------------------------------------------------------
 ; item descriptions
@@ -571,6 +580,8 @@ ItemDescriptionTable:
 	dc.l	ItemDescriptionRelish
 	; OBJ_ITEM_MIXEDNUTS
 	dc.l	ItemDescriptionMixedNuts
+	; OBJ_ITEM_STRANGE_GIFT
+	dc.l	ItemDescriptionStrangeGift
 
 ;-------------------------------------------------------------------------------
 ; store names

@@ -1538,6 +1538,8 @@ ScriptedEventDay05Camp:
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp2A
 	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp2A1
+	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp2B
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp2C
