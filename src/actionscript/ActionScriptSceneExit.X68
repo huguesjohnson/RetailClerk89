@@ -175,6 +175,8 @@ ExitScene00Day04Default:
 ; exit scene 01 (SCENE_ID_WWHALL)
 ;-------------------------------------------------------------------------------
 ExitScene01:
+	cmpi.w	#$0006,(MEM_DAY)	; is this day 06?
+	beq.w	ExitScene01Day06	; branch to day 06
 	cmpi.w	#$0005,(MEM_DAY)	; is this day 05?
 	beq.w	ExitScene01Day05	; branch to day 05
 	cmpi.w	#$0004,(MEM_DAY)	; is this day 04?
@@ -278,6 +280,32 @@ ExitScene01Day05:
 ExitScene01Day05Default:
 	bra.w	DefaultExitScene	; use default handler
 	rts
+ExitScene01Day06:
+	; test if player is trying to enter vb
+	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
+	bne.s	ExitScene01Day06Default	; not exiting north
+	;---------------------------------------------------------------------------
+	; if EVENT_FLAG_DAY06_SUB00=1
+	; and 
+	; EVENT_FLAG_DAY06_MISSION_STARTED=0
+	; then prompt to start the night mission
+	;---------------------------------------------------------------------------
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7	; test if mission started
+	bne.s	ExitScene01Day06Default	; branch if started
+	btst.l	#EVENT_FLAG_DAY06_SUB00,d7	; test if subquest complete
+	beq.s	ExitScene01Day06Default	; branch if not complete
+	; else setup 2 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextDay06EnterVB,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
+	rts
+ExitScene01Day06Default:
+	bra.w	DefaultExitScene	; use default handler
+	rts
 
 ;-------------------------------------------------------------------------------
 ; exit scene 02 (SCENE_ID_WEHALL)
@@ -297,9 +325,44 @@ ExitScene03:
 ; exit scene 04 (SCENE_ID_SHALL)
 ;-------------------------------------------------------------------------------
 ExitScene04:
-	; different rules for day05 only
+	; different rules for day05
 	cmpi.w	#$0005,(MEM_DAY)	; test day
-	beq.s	ExitScene04Day05	; branch if day05
+	beq.w	ExitScene04Day05	; branch if day05
+	; different rules for day06
+	cmpi.w	#$0006,(MEM_DAY)	; test day
+	bne.s	ExitScene04Default	; branch if not
+	; has the scripted event already run?
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY06_EVENT_PLAN,d7	; test event flag
+	bne.s	ExitScene04Day06ResetNPCs	; branch if the event has already run
+	; is the player entering nshack?
+	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)
+	bne.w	ExitScene04Default	; not exiting east
+	;---------------------------------------------------------------------------
+	; run the scripted event for day06 and update flags (not in that order)
+	;---------------------------------------------------------------------------
+	bset.l	#EVENT_FLAG_DAY06_EVENT_PLAN,d7	; test event flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save event flags
+	; update keys
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
+	bset.l	#STORE_KEY_NSHACK,d7	; add the nshack key
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d6	; copy global flags to d6
+	btst.l	#GLOBAL_FLAG_JKEY_CPLANET,d6	; does Jordan have cplanet key?
+	beq.s	.1	; branch if not
+	bset.l	#STORE_KEY_CPLANET,d7	; add the cplanet key
+.1
+	btst.l	#GLOBAL_FLAG_JKEY_SVIDEO,d6	; does Jordan have svideo key?
+	beq.s	.2	; branch if not
+	bset.l	#STORE_KEY_SVIDEO,d7	; add the svideo key
+.2
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save updated keys
+	; queue the scripted event
+	lea ScriptedEventDay06Plan,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	rts	; exit
+ExitScene04Day06ResetNPCs:	; reset npcs on day06
+	move.l	#$0A000000,(MEM_NPC_LOCATION_NSHACK)
+ExitScene04Default:
 	; all other days
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
 	btst.l	#STATE_FLAG_MALL_CLOSED,d7	; test mall closed flag

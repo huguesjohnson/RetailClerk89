@@ -9,7 +9,7 @@ _DEBUG_=$1	; enable/disable debug mode
 _EMULATOR_DIAGNOSTICS_=$0	; enable/disable emulator diagnostic mode
 _SPRITE_TILE_DEBUG_=$0	; enable/disable debug sprite tiles
 _SPRITE_COLLISION_=$0	; enable/disable collision between sprites
-_ATGAMES_HACKS=$1	; enable/disable hacks for AtGames devices
+_ATGAMES_HACKS=$0	; enable/disable hacks for AtGames devices
 
 ;-------------------------------------------------------------------------------
 ; settings that effect the game speed that are changed often for debugging

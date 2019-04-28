@@ -534,6 +534,9 @@ DebugStartDay6Title:
 	bset.l	#STORE_KEY_TLODGE,d7
 	bset.l	#STORE_KEY_FCB,d7
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7
+	bset.l	#GLOBAL_FLAG_JKEY_CPLANET,d7
+	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)
 	bsr.w	Day05End
 	rts
 

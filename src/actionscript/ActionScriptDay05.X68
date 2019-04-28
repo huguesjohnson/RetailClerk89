@@ -1165,11 +1165,13 @@ Day05Scene17Action03:	; ACTION_RESPOND
 Day05End:
 	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
 	;---------------------------------------------------------------------------	
-	; most NPC locations were changed during this day
+	; update NPC locations
 	;---------------------------------------------------------------------------	
-	bsr.w	InitNPCLocations
-	move.l	#$03160000,(MEM_NPC_LOCATION_VB)
+	bsr.w	InitNPCLocations ; most NPC locations were changed during this day
+	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
 	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
+	move.l	#$00000000,(MEM_NPC_LOCATION_FCBCAMPING)
+	move.l	#$0A121600,(MEM_NPC_LOCATION_NSHACK)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	
@@ -1208,7 +1210,7 @@ Day05End:
 	;---------------------------------------------------------------------------	
 	; queue the scripted event that starts day 6
 	;---------------------------------------------------------------------------	
-;	lea ScriptedEventDay01Start,a6	; point a6 to event to load
-;	bsr.w QueueScriptedEvent	; queue the event
+	lea ScriptedEventDay06Start,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
 	rts
 

@@ -143,7 +143,15 @@ Day07Scene03Action03R1:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene03Action03R2:
-	lea	DialogTextInfoDeskDay07R2,a6	; load text
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_POGODAWG_OPEN,d7	; set the flag
+	beq.s	Day07Scene03Action03R2Bad	; branch if not set
+Day07Scene03Action03R2Good:
+	lea	DialogTextInfoDeskDay07R2Good,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day07Scene03Action03R2Bad:
+	lea	DialogTextInfoDeskDay07R2Bad,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

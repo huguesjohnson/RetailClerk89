@@ -48,8 +48,51 @@ Day06Scene01Action02:	; ACTION_TAKE_GIVE
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene01Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.s	Day06Scene01Action03StartMission	; branch to day end
+	; else show message
+	lea	DialogTextDay06EnterVBLater,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene01Action03StartMission:
+	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
+	; update game state
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7	; set mission started
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated event flags
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	; update NPCs
+	lea MEM_NPC_LOCATIONS,a0
+	move.l	#$16120000,(a0)+	; location 00 (VB)
+	move.l	#$00000000,(a0)+	; location 01 (WWHALL)
+	move.l	#$00000000,(a0)+	; location 02 (WEHALL)
+	move.l	#$00000000,(a0)+	; location 03 (CENTER)
+	move.l	#$00000000,(a0)+	; location 04 (SHALL)
+	move.l	#$00000000,(a0)+	; location 05 (PARKINGLOT)
+	move.l	#$00000000,(a0)+	; location 06 (EWHALL)
+	move.l	#$00000000,(a0)+	; location 07 (EEHALL)
+	move.l	#$00000000,(a0)+	; location 08 (DENIMCOUNTRY)
+	move.l	#$00000000,(a0)+	; location 09 (CHECKERS)
+	move.l	#$00000000,(a0)+	; location 0A (TLODGE)
+	move.l	#$00000000,(a0)+	; location 0B (CAVERN)
+	move.l	#$00000000,(a0)+	; location 0C (SVIDEO)
+	move.l	#$00000000,(a0)+	; location 0D (WORKSHOP)
+	move.l	#$0A000000,(a0)+	; location 0E (NSHACK)
+	move.l	#$00000000,(a0)+	; location 0F (POGODAWG)
+	move.l	#$00000000,(a0)+	; location 10 (CPLANET)
+	move.l	#$00000000,(a0)+	; location 11 (CNOW)
+	move.l	#$00000000,(a0)+	; location 12 (TBOOKS)
+	move.l	#$00000000,(a0)+	; location 13 (FCBCHECKOUT)
+	move.l	#$00000000,(a0)+	; location 14 (FCBFIREARMS)
+	move.l	#$00000000,(a0)+	; location 15 (FCBFISHING)
+	move.l	#$00000000,(a0)+	; location 16 (FCBCAMPING)
+	move.l	#$00000000,(a0)+	; location 17 (SOUTH_CENTER)
+	; queue the scripted event
+	lea ScriptedEventDay06StartMission,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
 	rts
 
 ;-------------------------------------------------------------------------------
@@ -172,7 +215,6 @@ Day06Scene04Action03:	; ACTION_RESPOND
 Day06Scene05Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
-
 Day06Scene05Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_DANI,d6	; test target
@@ -437,6 +479,8 @@ Day06Scene0DAction01:	; ACTION_USE_TALK
 	beq.s	Day06Scene0DAction01NPC0	; branch to text for the NPC
 	cmpi.w	#OBJ_NPC_WORKSHOP_STAFF1,d6	; test target
 	beq.s	Day06Scene0DAction01NPC1	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	beq.s	Day06Scene0DAction01NPCDani	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -447,6 +491,10 @@ Day06Scene0DAction01NPC0:
 	rts
 Day06Scene0DAction01NPC1:
 	lea	DialogTextWorkshopStaff1DefaultTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene0DAction01NPCDani:
+	lea	DialogTextDay06Scene0DNPCDani,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene0DAction02:	; ACTION_TAKE_GIVE
@@ -592,7 +640,33 @@ Day06Scene11Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene11Action01NPC:
+	;---------------------------------------------------------------------------
+	; if EVENT_FLAG_DAY06_EVENT_PLAN=$1
+	; and
+	; EVENT_FLAG_DAY06_SUB00=$0	
+	; then subquest
+	;---------------------------------------------------------------------------
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY06_SUB00,d7	; test if sub complete
+	bne.s	Day06Scene11Action01NPCSubComplete	; sub complete, branch
+	btst.l	#EVENT_FLAG_DAY06_EVENT_PLAN,d7	; test if planning event ran
+	beq.s	Day06Scene11Action01NPCDefault	; event not started, branch
+	;---------------------------------------------------------------------------
+	; start subquest
+	; THIS IS A PLACEHOLDER THAT NEEDS TO BE FINISHED
+	;---------------------------------------------------------------------------
+	lea	DialogTextDay06Scene11Sub00,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	; THIS PART SHOULD BE DELETED ONCE THE SUBQUEST IS WIRED TOGETHER
+	bset.l	#EVENT_FLAG_DAY06_SUB00,d7	; test if sub complete
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)
+	rts
+Day06Scene11Action01NPCDefault:
 	lea	DialogTextCNowStaffDefaultTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene11Action01NPCSubComplete:
+	lea	DialogTextDay06Scene11SubComplete,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene11Action02:	; ACTION_TAKE_GIVE
@@ -866,6 +940,21 @@ Day06End:
 	bclr.l	#STATE_FLAG_MALL_CLOSED,d7	; clear mall closed flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
 	and.l	#$00000000,(MEM_DAY_EVENT_FLAGS)	; clear day event flags
+	; test if the multi-day pogo dawg quest is complete
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#GLOBAL_FLAG_PDAWG_CUSTOMER0,d7	; test customer0
+	beq.s	.2	; if any customer is missing, branch
+	btst.l	#GLOBAL_FLAG_PDAWG_CUSTOMER1,d7	; test customer1
+	beq.s	.2	; if any customer is missing, branch
+	btst.l	#GLOBAL_FLAG_PDAWG_CUSTOMER2,d7	; test customer2
+	beq.s	.2	; if any customer is missing, branch
+	btst.l	#GLOBAL_FLAG_PDAWG_CUSTOMER3,d7	; test customer3
+	beq.s	.2	; if any customer is missing, branch
+	; all customer flags set = store open
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	bset.l	#EVENT_FLAG_DAY07_POGODAWG_OPEN,d7	; set the flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+.2
 	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission event flags
 	and.l	#$00000000,(MEM_SCENE_BGM)	; clear the background music reference
 	;---------------------------------------------------------------------------	

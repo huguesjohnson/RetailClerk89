@@ -42,13 +42,13 @@ TitleScreenTextDebug:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Unstable Debug Build (April 2019)  ",ETX
+	dc.b	"   Unstable Debug Build (May 2019)  ",ETX
 
 	else
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Story Demo: Days 1-6 (April 2019)  ",ETX
+	dc.b	"   Story Demo: Days 1-7 (May 2019)  ",ETX
 	endif
 
 	if _DEBUG_
@@ -3800,11 +3800,200 @@ DialogTextDay05ExitParkingLot1:
 ; dialog text - day 06
 ;-------------------------------------------------------------------------------
 	align 2
+DialogTextDay06ScriptedEventIntro00:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I heard Todd invited",LF
+	dc.b	"you to his party.    ^",FF
+	dc.b	"You are so lucky!",LF
+	dc.b	"You're going right?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventIntro01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I don't know.",LF
+	dc.b	"Hopefully not.       ^",ETX
+
+	align 2
+DialogTextDay06ScriptedEventIntro02:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Don't ditch, I heard",LF
+	dc.b	"last year was crazy. ^",FF
+	dc.b	"I'm stuck at home,",LF
+	dc.b	"unless.. nevermind.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventIntro03:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Already forgot",LF
+	dc.b	"about it.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan00:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"OK, we need to sneak",LF
+	dc.b	"Jordan into the      ^",FF
+	dc.b	"workshop tonight.",LF
+	dc.b	"How are we doing it?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"He needs a clear path,",LF
+	dc.b	"that means the rest  ^",FF
+	dc.b	"of us have to keep the",LF
+	dc.b	"guard distracted.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan02:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"But if he catches you,",LF
+	dc.b	"you'll get banned,   ^",FF
+	dc.b	"he loves to give out",LF
+	dc.b	"lifetime bans.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan03:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I don't really see",LF
+	dc.b	"the downside to that.^",FF
+	dc.b	"We need every store",LF
+	dc.b	"key we can find.     ^",FF
+	dc.b	"It will give us more",LF
+	dc.b	"places to hide from  ^",FF
+	dc.b	"the guard and bypass",LF
+	dc.b	"the main halls.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan04:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Good thinking.",LF
+	dc.b	"Here's my spare key.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan05:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"And my Secret Santa",LF
+	dc.b	"recipient gave me a  ^",FF
+	dc.b	"key to her store as a",LF
+	dc.b	"thank you.           ^",FFR
+	dc.b	"(Received store keys)",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan06:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Thanks but there are",LF
+	dc.b	"two more we need.    ^",FF
+	dc.b	"The workshop itself",LF
+	dc.b	"of course and also   ^",FF
+	dc.b	"a key for ClothesNow.",LF
+	dc.b	"That location is     ^",FF
+	dc.b	"perfect for getting",LF
+	dc.b	"around the guard.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan07:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"I'll get it.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan08:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"You volunteering?",LF
+	dc.b	"That's unexpected.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan09:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"I dunno, I just think",LF
+	dc.b	"I'm the right person.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan0A:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I have an idea how to",LF
+	dc.b	"get the workshop key ^",FF
+	dc.b	"but it's going",LF
+	dc.b	"to be ugly.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan0B:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Sounds like we have",LF
+	dc.b	"a plan.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventPlan0C:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Let's meet at Video",LF
+	dc.b	"Buffet after close.  ^",FF
+	dc.b	"It's next to Jordan's",LF
+	dc.b	"store so the guard   ^",FF
+	dc.b	"won't see him. They",LF
+	dc.b	"know I go there after^",FF
+	dc.b	"close all the time &",LF
+	dc.b	"won't be suspicious.",ETX
+
+	align 2
+DialogTextDay06Scene11Sub00:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"(placeholder text for",LF
+	dc.b	"event)",ETX
+
+DialogTextDay06EnterVB:
+	;		"1234567890123456789012"
+	dc.b	"Entering will advance",LF
+	dc.b	"time to the night.   ^",FF
+	dc.b	"Are you ready?",LF
+	dc.b	"                     ^",FF
+	dc.b	"{Yeah, let's do it",LF
+	dc.b	"{Maybe later",ETX
+
+	align 2
+DialogTextDay06EnterVBLater:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"(I can waste a little",LF
+	dc.b	"more time in the mall)",ETX
+
+	align 2
+DialogTextDay06Scene11SubComplete:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Remember, inventory",LF
+	dc.b	"is Tuesday at 1:00 AM.",ETX
+
+	align 2
+DialogTextDay06Scene0DNPCDani:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"If you say one word",LF
+	dc.b	"about this to anyone..s",ETX
+
+	align 2
 DialogTextDaniScene05Day06:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"line1",LF
 	dc.b	"line2",ETX
+
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 07
@@ -4026,57 +4215,84 @@ DialogTextInfoDeskDay05R3:	; rumors
 DialogTextInfoDeskDay06R0:	; mall news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 06 mall news ",LF
-	dc.b	"",ETX
+	dc.b	"We'll be closed",LF
+	dc.b	"tomorrow for Xmas.   ^",FF
+	dc.b	"It's the only day that",LF
+	dc.b	"the mall is closed.",ETX
 
 	align 2
 DialogTextInfoDeskDay06R1:	; events
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 06 events ",LF
-	dc.b	"",ETX
+	dc.b	"It's the last shopping",LF
+	dc.b	"day before Xmas!     ^",FF
+	dc.b	"So last chance to",LF
+	dc.b	"visit Santa Claus.",ETX
 
 	align 2
 DialogTextInfoDeskDay06R2:	; store news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 06 store news ",LF
-	dc.b	"",ETX
+	dc.b	"A few stores could use",LF
+	dc.b	"extra help today     ^",FF
+	dc.b	"to cover all the last",LF
+	dc.b	"minute shoppers.",ETX
 
 	align 2
 DialogTextInfoDeskDay06R3:	; rumors
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 06 rumors ",LF
-	dc.b	"",ETX
+	dc.b	"I really shouldn't",LF
+	dc.b	"say anything but..   ^",FF
+	dc.b	"The mall manager might",LF
+	dc.b	"hire extra security  ^",FF
+	dc.b	"because of all the odd",LF
+	dc.b	"activity at night.",ETX
 
 	align 2
 DialogTextInfoDeskDay07R0:	; mall news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 07 mall news ",LF
-	dc.b	"",ETX
+	dc.b	"The mall will be ",LF
+	dc.b	"closing early today.",ETX
 
 	align 2
 DialogTextInfoDeskDay07R1:	; events
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 07 events ",LF
-	dc.b	"",ETX
+	dc.b	"Sadly there aren't any",LF
+	dc.b	"fun New Year events  ^",FF
+	dc.b	"planned for the mall",LF
+	dc.b	"this year.",ETX
 
 	align 2
-DialogTextInfoDeskDay07R2:	; store news
+DialogTextInfoDeskDay07R2Bad:	; store news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 07 store news ",LF
-	dc.b	"",ETX
+	dc.b	"Sorry but I only have",LF
+	dc.b	"bad news today.      ^",FF
+	dc.b	"Pogo Dawg had to close",LF
+	dc.b	"due to poor sales.",ETX
+
+	align 2
+DialogTextInfoDeskDay07R2Good:	; store news
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I'm glad you asked,",LF
+	dc.b	"we have good news!   ^",FF
+	dc.b	"Pogo Dawg decided to",LF
+	dc.b	"renew their lease!",ETX
 
 	align 2
 DialogTextInfoDeskDay07R3:	; rumors
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"day 07 rumors ",LF
-	dc.b	"",ETX
+	dc.b	"I really shouldn't be",LF
+	dc.b	"telling you but...   ^",FF
+	dc.b	"There will be a new",LF
+	dc.b	"store moving in soon.^",FF
+	dc.b	"Wire Warehouse, they",LF
+	dc.b	"sell electronics.",ETX
 
 	align 2
 DialogTextInfoDeskStrangeGift:	; secret santa gift

@@ -107,7 +107,7 @@ ScriptedEventDay01Start:
 	dc.w	DIRECTION_LEFT
 	dc.w	$0000
 	; --------------------------------------------------------------------------
-	; first dialog betweek NPC0 and player
+	; first dialog between NPC0 and player
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay01Intro00
@@ -1597,6 +1597,211 @@ ScriptedEventDay05Camp:
 	; --------------------------------------------------------------------------
 	dc.w	DIRECTION_RIGHT
 	dc.w	($01F0-$015E)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay06Start:
+	; --------------------------------------------------------------------------
+	; move player to be on same X-axis as the NPC0
+	; --------------------------------------------------------------------------
+	dc.w	$0001	; player (Dani)
+	dc.w	DIRECTION_UP
+	dc.w	$003E
+	; --------------------------------------------------------------------------
+	; have NPC0 walk toward the player
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; have have the player face NPC0
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player (Dani)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0000
+	; --------------------------------------------------------------------------
+	; dialog between NPC0 and player
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventIntro00
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventIntro01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventIntro02
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventIntro03
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay06Plan:
+	dc.w	$0001	; player (Dani)
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; load scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_NSHACK
+	; --------------------------------------------------------------------------
+	; move player into the store
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0010
+	dc.w	DIRECTION_UP
+	dc.w	$0020
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0030
+	; --------------------------------------------------------------------------
+	; first dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan00
+	; --------------------------------------------------------------------------
+	; have NPCs face left
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; NPC1 (Jordan)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; NPC2 (D.B.)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; more dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan02
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan03
+	; --------------------------------------------------------------------------
+	; have NPC face up
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; more dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan04
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan05
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan06
+	; --------------------------------------------------------------------------
+	; have NPC face down
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; more dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan07
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan08
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan09
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan0A
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan0B
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventPlan0C
+	; --------------------------------------------------------------------------
+	; walk Dani out of the store
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player (Dani)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0030
+	dc.w	DIRECTION_DOWN
+	dc.w	$0020
+	dc.w	DIRECTION_LEFT
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; walk Jordan out of the store
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; NPC1 (Jordan)
+	dc.w	DIRECTION_DOWN
+	dc.w	$0002
+	dc.w	DIRECTION_LEFT
+	dc.w	($0100-$0082)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	$0008
+	dc.w	DIRECTION_LEFT
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; walk DB out of the store
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; NPC2 (D.B.)
+	dc.w	DIRECTION_DOWN
+	dc.w	$0008
+	dc.w	DIRECTION_LEFT
+	dc.w	($0136-$0082)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_DOWN
+	dc.w	$0008
+	dc.w	DIRECTION_LEFT
+	dc.w	$0010
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$01C0
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DB
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_SHALL
+	; --------------------------------------------------------------------------
+	; walk D.B. into the scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player (D.B.)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0020
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay06StartMission:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0182
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DANI
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_VB
+	; --------------------------------------------------------------------------
+	; walk player into the scene
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	$0030
 	dc.w	SCRIPTED_EVENT_END
 
 ; ------------------------------------------------------------------------------
