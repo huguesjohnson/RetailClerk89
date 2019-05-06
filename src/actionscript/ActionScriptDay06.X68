@@ -64,6 +64,10 @@ Day06Scene01Action03StartMission:
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
 	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	; add key
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
+	bset.l	#STORE_KEY_WORKSHOP,d7	; add the key
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save updated keys
 	; update NPCs
 	lea MEM_NPC_LOCATIONS,a0
 	move.l	#$16120000,(a0)+	; location 00 (VB)
@@ -641,32 +645,61 @@ Day06Scene11Action01:	; ACTION_USE_TALK
 	rts
 Day06Scene11Action01NPC:
 	;---------------------------------------------------------------------------
-	; if EVENT_FLAG_DAY06_EVENT_PLAN=$1
-	; and
-	; EVENT_FLAG_DAY06_SUB00=$0	
-	; then subquest
+	; Possible flows here..
+	; 1) EVENT_FLAG_DAY06_SUB00_COMPLETE = 1 -> text about working
+	; 2) EVENT_FLAG_DAY06_EVENT_PLAN = 0 -> Default NPC text
+	; 3) EVENT_FLAG_DAY06_EVENT_PLAN = 1 and
+	;    EVENT_FLAG_DAY06_SUB00_STARTED = 0 -> scripted event to start sub 
+	; 4) EVENT_FLAG_DAY06_SUB00_STARTED = 1 and
+	;    MISSION_FLAG_DAY06_SUB00_GETITEM = 0 -> message about needing item
+	; 5) EVENT_FLAG_DAY06_SUB00_STARTED = 1 and
+	;    MISSION_FLAG_DAY06_SUB00_GETITEM = 1 -> dialog and set complete flag
 	;---------------------------------------------------------------------------
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
-	btst.l	#EVENT_FLAG_DAY06_SUB00,d7	; test if sub complete
-	bne.s	Day06Scene11Action01NPCSubComplete	; sub complete, branch
-	btst.l	#EVENT_FLAG_DAY06_EVENT_PLAN,d7	; test if planning event ran
-	beq.s	Day06Scene11Action01NPCDefault	; event not started, branch
-	;---------------------------------------------------------------------------
-	; start subquest
-	; THIS IS A PLACEHOLDER THAT NEEDS TO BE FINISHED
-	;---------------------------------------------------------------------------
-	lea	DialogTextDay06Scene11Sub00,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	; THIS PART SHOULD BE DELETED ONCE THE SUBQUEST IS WIRED TOGETHER
-	bset.l	#EVENT_FLAG_DAY06_SUB00,d7	; test if sub complete
-	move.l	d7,(MEM_DAY_EVENT_FLAGS)
-	rts
-Day06Scene11Action01NPCDefault:
-	lea	DialogTextCNowStaffDefaultTalk,a6	; load text
+	btst.l	#EVENT_FLAG_DAY06_SUB00_COMPLETE,d7	; test if sub complete
+	bne.s	Day06Scene11Action01NPCSubComplete	; flag is set, branch
+	btst.l	#EVENT_FLAG_DAY06_EVENT_PLAN,d7	; test if planning scene has run
+	beq.w	Day06Scene11Action01NPCDefault	; flag not set, branch
+	; at this point EVENT_FLAG_DAY06_EVENT_PLAN must be set
+	btst.l	#EVENT_FLAG_DAY06_SUB00_STARTED,d7	; test if sub started
+	beq.s	Day06Scene11Action01NPCStartSub	; flag not set, branch
+	; test mission flags
+	move.l	(MEM_MISSION_EVENT_FLAGS),d6	; copy mission flags to d6
+	btst.l	#MISSION_FLAG_DAY06_SUB00_GETITEM,d6	; test if sub complete
+	beq.s	Day06Scene11Action01NPCSubInprogress	; flag not set, branch
+	; if we reach here then it's the end of the mission
+	bset.l	#EVENT_FLAG_DAY06_SUB00_COMPLETE,d7	; set sub complete
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	andi.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)	; clear mission flags
+	; add key
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
+	bset.l	#STORE_KEY_CNOW,d7	; add the key
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save updated keys
+	; queue scripted event
+	lea ScriptedEventDay06StartSub00Complete,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay06Sub00Complete00,a6	; load initial text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene11Action01NPCSubComplete:
 	lea	DialogTextDay06Scene11SubComplete,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene11Action01NPCStartSub:
+	bset.l	#EVENT_FLAG_DAY06_SUB00_STARTED,d7	; set sub started flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; queue scripted event
+	lea ScriptedEventDay06StartSub00,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay06Sub00Start00,a6	; load initial text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene11Action01NPCSubInprogress:
+	lea	DialogTextDay06Scene11SubInprogress,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene11Action01NPCDefault:
+	lea	DialogTextCNowStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene11Action02:	; ACTION_TAKE_GIVE
@@ -771,6 +804,31 @@ Day06Scene14Action01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene14Action01NPC:
+	; test event flags
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY06_SUB00_STARTED,d7	; test if sub is started
+	beq.s	Day06Scene14Action01NPCDefault	; not started, use default text
+	btst.l	#EVENT_FLAG_DAY06_SUB00_COMPLETE,d7	; test if sub is complete
+	bne.s	Day06Scene14Action01NPCDefault	; complete, use default text
+	; test mission flags
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#MISSION_FLAG_DAY06_SUB00_GETITEM,d7	; test if event is complete
+	bne.s	Day06Scene14Action01NPCDefault	; complete, use default text
+	;---------------------------------------------------------------------------
+	; get item event
+	;---------------------------------------------------------------------------
+	bset.l	#MISSION_FLAG_DAY06_SUB00_GETITEM,d7	; set event complete
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	; add item
+	move.w	#OBJ_ITEM_CAFFEINE_PILLS,d7	; copy item id to d7
+	bsr.w	AddItem	; add item to inventory
+	; queue scripted event
+	lea ScriptedEventDay06StartSub00GetItem,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay06Sub00GetItem00,a6	; load initial text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene14Action01NPCDefault:
 	lea	DialogTextFCBFirearmsStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts

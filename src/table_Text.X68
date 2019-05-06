@@ -473,6 +473,8 @@ ItemNameTable:
 	dc.l	ItemNameMixedNuts
 	; OBJ_ITEM_STRANGE_GIFT
 	dc.l	ItemNameStrangeGift
+	; OBJ_ITEM_CAFFEINE_PILLS
+	dc.l	ItemNameCaffeinePills
 
 ;-------------------------------------------------------------------------------
 ; item descriptions
@@ -582,6 +584,8 @@ ItemDescriptionTable:
 	dc.l	ItemDescriptionMixedNuts
 	; OBJ_ITEM_STRANGE_GIFT
 	dc.l	ItemDescriptionStrangeGift
+	; OBJ_ITEM_CAFFEINE_PILLS
+	dc.l	ItemDescriptionCaffeinePills
 
 ;-------------------------------------------------------------------------------
 ; store names

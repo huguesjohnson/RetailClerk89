@@ -3950,13 +3950,6 @@ DialogTextDay06ScriptedEventPlan0C:
 	dc.b	"close all the time &",LF
 	dc.b	"won't be suspicious.",ETX
 
-	align 2
-DialogTextDay06Scene11Sub00:
-	dc.w	OBJ_NPC_CNOW_STAFF
-	;		"1234567890123456789012"
-	dc.b	"(placeholder text for",LF
-	dc.b	"event)",ETX
-
 DialogTextDay06EnterVB:
 	;		"1234567890123456789012"
 	dc.b	"Entering will advance",LF
@@ -3974,6 +3967,179 @@ DialogTextDay06EnterVBLater:
 	dc.b	"more time in the mall)",ETX
 
 	align 2
+DialogTextDay06Sub00Start00:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"I'm here to apply for",LF
+	dc.b	"a job.               ^",FF
+	dc.b	"I can start",LF
+	dc.b	"immediately.",ETX
+
+	align 2
+DialogTextDay06Sub00Start01:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Wow that's great!",LF
+	dc.b	"No one applies here. ^",FF
+	dc.b	"I don't need help",LF
+	dc.b	"tonight, but our     ^",FF
+	dc.b	"annual inventory is",LF
+	dc.b	"next Tuesday and     ^",FF
+	dc.b	"we need people who",LF
+	dc.b	"can work overnight.  ^",FF
+	dc.b	"It's a temporary job",LF
+	dc.b	"only if that's OK?",ETX
+
+	align 2
+DialogTextDay06Sub00Start02:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Bring it on.",ETX
+
+	align 2
+DialogTextDay06Sub00Start03:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Let's to the interview",LF
+	dc.b	"now then.            ^",FF
+	dc.b	"The most important",LF
+	dc.b	"thing I look for is..^",FF
+	dc.b	"Listening. You have to",LF
+	dc.b	"be a good listener.  ^",FF
+	dc.b	"Last year we hired",LF
+	dc.b	"someone and..        ^",FFR
+	dc.b	"(30 minutes later)",ETX
+
+	align 2
+DialogTextDay06Sub00Start04:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"(I feel asleep)",ETX
+
+	align 2
+DialogTextDay06Sub00Start05:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Did you hear all that?",ETX
+
+	align 2
+DialogTextDay06Sub00Start06:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Huh.",ETX
+
+	align 2
+DialogTextDay06Sub00Start07:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Were you listening to",LF
+	dc.b	"me? If you can't pay ^",FF
+	dc.b	"attention then you",LF
+	dc.b	"can't work here.",ETX
+
+	align 2
+DialogTextDay06Scene11SubInprogress:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"(I need something to",LF
+	dc.b	"help me stay awake)",ETX
+
+	align 2
+DialogTextDay06Sub00GetItem00:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"So, the other night,",LF
+	dc.b	"how'd you stay awake?",ETX
+
+	align 2
+DialogTextDay06Sub00GetItem01:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Pure will power.",ETX
+
+	align 2
+DialogTextDay06Sub00GetItem02:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Really, that seems",LF
+	dc.b	"tough.               ^",FF
+	dc.b	"Just you alone all",LF
+	dc.b	"night.               ^",FF
+	dc.b	"Nothing but the sound",LF
+	dc.b	"of the heating vents.^",FF
+	dc.b	"You had to get sleepy,",LF
+	dc.b	"just a little.",ETX
+
+	align 2
+DialogTextDay06Sub00GetItem03:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"OK, I had some help.",LF
+	dc.b	"Hunter's Formula Max.^",FF
+	dc.b	"It's a caffeine pill",LF
+	dc.b	"I use to hunt bears. ^",FF
+	dc.b	"I'll give you a few if",LF
+	dc.b	"you keep it quiet.",ETX
+
+	align 2
+DialogTextDay06Sub00GetItem04:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"It's a secret to",LF
+	dc.b	"everybody.",ETX
+
+	align 2
+DialogTextDay06Sub00Complete00:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Are you ready to try",LF
+	dc.b	"this again?",ETX
+
+	align 2
+DialogTextDay06Sub00Complete01:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Hold on one second...",LF
+	dc.b	"OK, let's do this.",ETX
+
+	align 2
+DialogTextDay06Sub00Complete02:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"So like I was saying,",LF
+	dc.b	"they were always...  ^",FFR
+	dc.b	"(30 minutes later)",ETX
+
+	align 2
+DialogTextDay06Sub00Complete03:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"..and that's why we",LF
+	dc.b	"keep it in back now. ^",FF
+	dc.b	"Do you understand why",LF
+	dc.b	"listening is critical?",ETX
+
+	align 2
+DialogTextDay06Sub00Complete04:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Yes, absolutely.",LF
+	dc.b	"                     ^",FF
+	dc.b	"(Why am I sweating",LF
+	dc.b	"so much?)",ETX
+
+	align 2
+DialogTextDay06Sub00Complete05:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"That's all I needed!",LF
+	dc.b	"                     ^",FF
+	dc.b	"Here's a key for",LF
+	dc.b	"Tuesday night.       ^",FF
+	dc.b	"Inventory starts at",LF
+	dc.b	"1:00 AM sharp.",ETX
+
+	align 2
 DialogTextDay06Scene11SubComplete:
 	dc.w	OBJ_NPC_CNOW_STAFF
 	;		"1234567890123456789012"
@@ -3985,7 +4151,7 @@ DialogTextDay06Scene0DNPCDani:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"If you say one word",LF
-	dc.b	"about this to anyone..s",ETX
+	dc.b	"about this to anyone..",ETX
 
 	align 2
 DialogTextDaniScene05Day06:
@@ -6082,6 +6248,15 @@ ItemDescriptionStrangeGift:
 	;		"1234567890123456789012"
 	dc.b	"(I wonder who this is",LF
 	dc.b	"from anyway)",ETX
+
+ItemNameCaffeinePills:
+	;		"1234567890"
+	dc.b	"Pills",ITEMNAMEEND
+
+ItemDescriptionCaffeinePills:
+	;		"1234567890123456789012"
+	dc.b	"Hunter's Formula Max",LF
+	dc.b	"caffeine pills.",ETX
 
 ;-------------------------------------------------------------------------------
 ; store signs

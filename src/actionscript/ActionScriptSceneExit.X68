@@ -285,7 +285,7 @@ ExitScene01Day06:
 	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
 	bne.s	ExitScene01Day06Default	; not exiting north
 	;---------------------------------------------------------------------------
-	; if EVENT_FLAG_DAY06_SUB00=1
+	; if EVENT_FLAG_DAY06_SUB00_COMPLETE=1
 	; and 
 	; EVENT_FLAG_DAY06_MISSION_STARTED=0
 	; then prompt to start the night mission
@@ -293,7 +293,7 @@ ExitScene01Day06:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7	; test if mission started
 	bne.s	ExitScene01Day06Default	; branch if started
-	btst.l	#EVENT_FLAG_DAY06_SUB00,d7	; test if subquest complete
+	btst.l	#EVENT_FLAG_DAY06_SUB00_COMPLETE,d7	; test if subquest complete
 	beq.s	ExitScene01Day06Default	; branch if not complete
 	; else setup 2 choice dialog	
 	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6

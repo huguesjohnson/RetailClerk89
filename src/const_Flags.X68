@@ -92,8 +92,10 @@ EVENT_FLAG_DAY05_SUB_COMPLETE=$5	; subquest to find items complete
 EVENT_FLAG_DAY05_CAMP_STARTED=$6	; camping scene started
 EVENT_FLAG_DAY05_CAMP_COMPLETE=$7	; camping scene complete
 EVENT_FLAG_DAY06_EVENT_PLAN=$0	; plan for the day complete
-EVENT_FLAG_DAY06_SUB00=$1	; sub-quest 0 in day 6 complete
-EVENT_FLAG_DAY06_MISSION_STARTED=$2	; night mission started
+EVENT_FLAG_DAY06_SUB00_STARTED=$1	; sub-quest 0 in day 6 started
+EVENT_FLAG_DAY06_SUB00_COMPLETE=$2	; sub-quest 0 in day 6 complete
+EVENT_FLAG_DAY06_MISSION_STARTED=$3	; night mission started
+EVENT_FLAG_DAY06_MISSION_COMPLETE=$4	; night mission started
 EVENT_FLAG_DAY07_POGODAWG_OPEN=$0	; whether the store is open on the last day
 
 ;-------------------------------------------------------------------------------
@@ -131,4 +133,5 @@ MISSION_FLAG_DAY05_FOOD0GET=$1	; found food item 0
 MISSION_FLAG_DAY05_FOOD1GET=$2	; found food item 1
 MISSION_FLAG_DAY05_FOOD0GIVE=$3	; gave food item 0
 MISSION_FLAG_DAY05_FOOD1GIVE=$4	; gave food item 1
+MISSION_FLAG_DAY06_SUB00_GETITEM=$0	; get item in day06 sub00
 

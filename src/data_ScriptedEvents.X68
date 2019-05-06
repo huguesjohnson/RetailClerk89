@@ -1779,6 +1779,63 @@ ScriptedEventDay06Plan:
 	dc.w	$0020
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay06StartSub00:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Start01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Start02
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Start03
+	; --------------------------------------------------------------------------
+	; have NPC face down
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; more dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Start04
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Start05
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Start06
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Start07
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Scene11SubInprogress
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay06StartSub00GetItem:
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00GetItem01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00GetItem02
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00GetItem03
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00GetItem04
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay06StartSub00Complete:
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Complete01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Complete02
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Complete03
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Complete04
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06Sub00Complete05
+	dc.w	SCRIPTED_EVENT_END
+
 ScriptedEventDay06StartMission:
 	dc.w	$0001	; player
 	; --------------------------------------------------------------------------
