@@ -594,6 +594,10 @@ Scene0BStaffNPCPastTilesStart:
 	include 'tiles/sprite-tiles/tileset_Scene0BStaffNPCPast.X68'
 Scene0BStaffNPCPastTilesEnd:
 
+NPCSpriteGuardSleepingTilesStart:
+	include 'tiles/sprite-tiles/tileset_NPCGuardSleeping.X68'
+NPCSpriteGuardSleepingTilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; status screen tiles
 ;-------------------------------------------------------------------------------

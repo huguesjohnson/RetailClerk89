@@ -46,6 +46,7 @@ GLOBAL_FLAG_PDAWG_CUSTOMER3=$3	; customer 4 of 4 referred
 GLOBAL_FLAG_JKEY_CPLANET=$4	; npc jordan has the cplanet key
 GLOBAL_FLAG_JKEY_SVIDEO=$5	; npc jordan has the svideo key
 GLOBAL_FLAG_DANI_GIFT=$6	; Dani has received the secret shopper gift
+GLOBAL_FLAG_DB_SAFE=$7	; D.B. found a safe place to hide on day 06
 
 ;-------------------------------------------------------------------------------
 ; day event flags - used to track events in the current day 
@@ -134,4 +135,7 @@ MISSION_FLAG_DAY05_FOOD1GET=$2	; found food item 1
 MISSION_FLAG_DAY05_FOOD0GIVE=$3	; gave food item 0
 MISSION_FLAG_DAY05_FOOD1GIVE=$4	; gave food item 1
 MISSION_FLAG_DAY06_SUB00_GETITEM=$0	; get item in day06 sub00
+MISSION_FLAG_DAY06_SCRIPTEDEVENT0=$0	; first scripted event in mission
+MISSION_FLAG_DAY06_SCRIPTEDEVENT1=$1	; second scripted event in mission
+MISSION_FLAG_DAY06_RADIO=$2	; second scripted event in mission
 

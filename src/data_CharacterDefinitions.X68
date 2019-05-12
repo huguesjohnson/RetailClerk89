@@ -133,3 +133,7 @@ CharacterScene0BStaffPastNPC:
 CharacterDefinitionDaniXmas:
 	dc.l	NPCSpriteDaniXmasTilesStart
 
+; 21 - OBJ_NPC_SLEEPING_GUARD
+CharacterDefinitionSleepingGuard:
+	dc.l	NPCSpriteGuardSleepingTilesStart
+

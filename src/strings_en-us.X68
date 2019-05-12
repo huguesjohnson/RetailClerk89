@@ -133,7 +133,7 @@ TitleScreenTextFooter:
 
 	DebugScreenLine13:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 6 start of night mission",ETX
 
 	DebugScreenLine14:
 	;		"12345678901234567890123456789012345678"
@@ -4154,6 +4154,209 @@ DialogTextDay06Scene0DNPCDani:
 	dc.b	"about this to anyone..",ETX
 
 	align 2
+DialogTextDay06ScriptedEventDayStartSub00:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Bad news.",LF
+	dc.b	"Someone told security^",FF
+	dc.b	"that there's a prank",LF
+	dc.b	"planned for tonight. ^",FF
+	dc.b	"They added a guard",LF
+	dc.b	"at the info desk.    ^",FF
+	dc.b	"He gave me the stink",LF
+	dc.b	"eye on my way over.  ^",FF
+	dc.b	"That makes two guards",LF
+	dc.b	"to deal with tonight.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventDayStartSub01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I have a plan though.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventDayStartSub02:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"You're our decoy.",LF
+	dc.b	"Cause a distraction, ^",FF
+	dc.b	"somewhere far away",LF
+	dc.b	"from Santa's workshop.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventDayStartSub03:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"When the hallway guard",LF
+	dc.b	"is out of the way,   ^",FF
+	dc.b	"2014 boy & me will run",LF
+	dc.b	"to the workshop.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventDayStartSub04:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"He can catch me, you",LF
+	dc.b	"break for the door.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventDayStartSub05:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You're will to do that",LF
+	dc.b	"for me?              ^",FF
+	dc.b	"Even if you might get",LF
+	dc.b	"banned from the mall?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventDayStartSub06:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I'm moving over the",LF
+	dc.b	"summer anyway.       ^",FF
+	dc.b	"I have enough saved",LF
+	dc.b	"already.             ^",FF
+	dc.b	"D.B. will cover any",LF
+	dc.b	"legal expenses       ^",FF
+	dc.b	"I incur from this",LF
+	dc.b	"little expedition.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventDayStartSub07:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"I'll cover what?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventDayStartSub08:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Just get to being",LF
+	dc.b	"distracting already.",ETX
+
+	align 2
+DialogTextDay06SleepingGuard:
+	;		"1234567890123456789012"
+	dc.b	"It looks like he's",LF
+	dc.b	"totally out.",ETX
+
+	align 2
+DialogTextDay06SleepingGuardTalk:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"(He's breathing but",LF
+	dc.b	"not responding)",ETX
+
+	align 2
+DialogTextDay06Hurry:
+	;		"1234567890123456789012"
+	dc.b	"(We have to hurry, no",LF
+	dc.b	"time to explore)",ETX
+
+	align 2
+DialogTextDay06CantGoBack:
+	;		"1234567890123456789012"
+	dc.b	"(I can't back out of",LF
+	dc.b	"this now)",ETX
+
+	align 2
+DialogTextDay06FootstepsNorth:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"(I heard footsteps",LF
+	dc.b	"to the north)",ETX
+
+	align 2
+DialogTextDay06GuardSomeoneHere:
+	dc.w	OBJ_NPC_GUARD0
+	;		"1234567890123456789012"
+	dc.b	"Hey, is someone here!?",ETX
+
+	align 2
+DialogTextDay06CantGetCaught:
+	;		"1234567890123456789012"
+	dc.b	"(I can't get caught by",LF
+	dc.b	"the info desk guard)",ETX
+
+	align 2
+DialogTextDay06InMissionScriptedEvent0000:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"You're still here?",ETX	
+
+	align 2
+DialogTextDay06InMissionScriptedEvent0001:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I can't do much to",LF
+	dc.b	"help.                ^",FF	
+	dc.b	"I can only offer a",LF
+	dc.b	"safe place to..",ETX	
+
+	align 2
+DialogTextDay06InMissionScriptedEvent0002:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Just me, I'm still",LF
+	dc.b	"counting the register.",ETX	
+
+	align 2
+DialogTextDay06InMissionScriptedEvent0003:
+	dc.w	OBJ_NPC_GUARD0
+	;		"1234567890123456789012"
+	dc.b	"Alright, carry on.",FFR
+	dc.b	"(You hear footsteps",LF
+	dc.b	"walking away)",ETX	
+
+	align 2
+DialogTextDay06Scene0ENPCInMission:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Hide out here as long",LF
+	dc.b	"as you need to.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventExitTLodge00:
+	dc.w	OBJ_NPC_GUARD0
+	;		"1234567890123456789012"
+	dc.b	"Hey! What's all that",LF
+	dc.b	"noise over there!?",ETX
+
+	align 2
+DialogTextDay06ExitEEHallSouth:
+	;		"1234567890123456789012"
+	dc.b	"(If he sees me there",LF
+	dc.b	"I'm busted for sure)",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEndMissionGood00:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"(good ending)",LF
+	dc.b	"",FF
+	dc.b	"",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEndMissionBad00:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"(bad ending)",LF
+	dc.b	"",FF
+	dc.b	"",LF
+	dc.b	"",ETX
+
+;	align 2
+;DialogTextDay06ScriptedEventDayStartSub00:
+;	dc.w	OBJ_NPC_DANI
+;	;		"1234567890123456789012"
+;	dc.b	"",LF
+;	dc.b	"",FF
+;	dc.b	"",LF
+;	dc.b	"",ETX
+
+
+	align 2
 DialogTextDaniScene05Day06:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
@@ -4685,6 +4888,51 @@ DialogTextRadioDay06R3:	; WVVX (hair metal)
 	dc.b	"stuff^",FF
 	dc.b	"stuff",LF
 	dc.b	"stuff.",ETX
+
+DialogTextRadioDay06NightR0:	; WNWT (news and weather)
+	;		"1234567890123456789012"
+	dc.b	"The forecast for Xmas",LF
+	dc.b	"is nice and clear.   ^",FF
+	dc.b	"Sorry to those wanting",LF
+	dc.b	"a little snow..",ETX
+
+DialogTextRadioDay06NightR1:	; WOCX (talk radio)
+	;		"1234567890123456789012"
+	dc.b	"Welcome to Sea to Sea",LF
+	dc.b	"with Barty George.   ^",FF
+	dc.b	"Yesterday's topic is",LF
+	dc.b	"still on my mind.    ^",FF
+	dc.b	"We know the CIA is",LF
+	dc.b	"behind time travel.  ^",FF
+	dc.b	"But why bring back",LF
+	dc.b	"future people?       ^",FF
+	dc.b	"It's really simple",LF
+	dc.b	"folks.               ^",FF
+	dc.b	"In the future all the",LF
+	dc.b	"food is enriched with^",FF
+	dc.b	"all kind of hormones",LF
+	dc.b	"and fluoride.        ^",FF
+	dc.b	"These travelers make",LF
+	dc.b	"ideal super soldiers.^",FF
+	dc.b	"Since in the future",LF
+	dc.b	"everyone must be     ^",FF
+	dc.b	"10x the strength of",LF
+	dc.b	"people today..",ETX
+
+DialogTextRadioDay06NightR2:	; WCAS (top 40)
+	;		"1234567890123456789012"
+	dc.b	"Here's that new Xmas",LF
+	dc.b	"song by NKOTB..",ETX
+
+DialogTextRadioDay06NightR3:	; WVVX (hair metal)
+	;		"1234567890123456789012"
+	dc.b	"Here's a new unsigned",LF
+	dc.b	"Midwest metal band.  ^",FF
+	dc.b	"They're called",LF
+	dc.b	"Prisoner.            ^",FF
+	dc.b	"Here's the debut song",LF
+	dc.b	"'Skeletal Remains'   ^",FF
+	dc.b	"(This is really loud)",ETX
 
 DialogTextRadioDay07R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
@@ -6627,9 +6875,25 @@ StatusScreenDay06Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"December 24, 1989: Christmas Eve",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"Help Jordan sneak into Santa's",LF
+	dc.b	"Plan how to help Jordan sneak into",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"Workshop while avoiding the guards.",ETX
+	dc.b	"Santa's Workshop tonight.",ETX
+
+StatusScreenDay06Objective01:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 24, 1989: Christmas Eve",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"Find something to help you stay awake",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"during your job interview.",ETX
+
+StatusScreenDay06Objective02:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 24, 1989: Christmas Eve",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"Find a way to distract the guard",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"without getting busted.",ETX
 
 StatusScreenDay07Objective00:
 	;		"12345678901234567890123456789012345678"

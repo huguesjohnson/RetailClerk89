@@ -90,10 +90,6 @@ Day02Scene00Action02NPCDefault:
 	lea	DialogTextGreenbergDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene00Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 01 (SCENE_ID_WWHALL)
@@ -109,10 +105,6 @@ Day02Scene01Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene01Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 02 (SCENE_ID_WEHALL)
@@ -126,10 +118,6 @@ Day02Scene02Action01:	; ACTION_USE_TALK
 	rts
 Day02Scene02Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day02Scene02Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -223,10 +211,6 @@ Day02Scene04Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene04Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 05 (SCENE_ID_PARKINGLOT)
@@ -288,10 +272,6 @@ Day02Scene06Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene06Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 07 (SCENE_ID_EEHALL)
@@ -305,10 +285,6 @@ Day02Scene07Action01:	; ACTION_USE_TALK
 	rts
 Day02Scene07Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day02Scene07Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -356,10 +332,6 @@ Day02Scene08Action02:	; ACTION_TAKE_GIVE
 	rts
 Day02Scene08Action02NPC:
 	lea	DialogTextNPCDenimCountryStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day02Scene08Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -423,10 +395,6 @@ Day02Scene09Action02:	; ACTION_TAKE_GIVE
 	rts
 Day02Scene09Action02NPC:
 	lea	DialogTextNPCCheckersStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day02Scene09Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -539,10 +507,6 @@ Day02Scene0BAction02NPCDefault:
 	lea	DialogTextNPCCavernStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene0BAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 0C (SCENE_ID_SVIDEO)
@@ -587,10 +551,6 @@ Day02Scene0CAction02:	; ACTION_TAKE_GIVE
 	rts
 Day02Scene0CAction02NPC:
 	lea	DialogTextNPCSVideoStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day02Scene0CAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -656,10 +616,6 @@ Day02Scene0DAction02NPC1:
 	lea	DialogTextNPCWorkshopStaff1DefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene0DAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 0E (SCENE_ID_NSHACK)
@@ -699,10 +655,6 @@ Day02Scene0EAction02:	; ACTION_TAKE_GIVE
 	rts
 Day02Scene0EAction02NPC:
 	lea	DialogTextNPCNShackStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day02Scene0EAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -746,10 +698,6 @@ Day02Scene0FAction02NPC:
 	lea	DialogTextNPCPogoDawgStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene0FAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 10 (SCENE_ID_CPLANET)
@@ -791,10 +739,6 @@ Day02Scene10Action02NPC:
 	lea	DialogTextNPCCPlanetStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene10Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 11 (SCENE_ID_CNOW)
@@ -834,10 +778,6 @@ Day02Scene11Action02:	; ACTION_TAKE_GIVE
 	rts
 Day02Scene11Action02NPC:
 	lea	DialogTextNPCCNowStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day02Scene11Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -907,10 +847,6 @@ Day02Scene12Action02NPC:
 	lea	DialogTextNPCTBooksStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene12Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 13 (SCENE_ID_FCBCHECKOUT)
@@ -967,10 +903,6 @@ Day02Scene13Action02:	; ACTION_TAKE_GIVE
 	rts
 Day02Scene13Action02NPC:
 	lea	DialogTextNPCFCBCheckoutStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day02Scene13Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -1031,10 +963,6 @@ Day02Scene14Action02NPC:
 	lea	DialogTextNPCFCBFirearmsStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene14Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 15 (SCENE_ID_FCBFISHING)
@@ -1093,10 +1021,6 @@ Day02Scene15Action02NPC:
 	lea	DialogTextNPCFCBFishingStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day02Scene15Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 02 - scene 16 (SCENE_ID_FCBCAMPING)
@@ -1136,10 +1060,6 @@ Day02Scene16Action02:	; ACTION_TAKE_GIVE
 	rts
 Day02Scene16Action02NPC:
 	lea	DialogTextNPCFCBCampingStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day02Scene16Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -1186,10 +1106,6 @@ Day02Scene17Action02:	; ACTION_TAKE_GIVE
 	rts
 Day02Scene17Action02NPC:
 	lea	DialogTextNPCSouthCenterStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day02Scene17Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

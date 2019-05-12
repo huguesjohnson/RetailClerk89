@@ -290,10 +290,6 @@ Day00Scene01Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day00Scene01Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 00 - scene 02 (SCENE_ID_WEHALL)
@@ -307,10 +303,6 @@ Day00Scene02Action01:	; ACTION_USE_TALK
 	rts
 Day00Scene02Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day00Scene02Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -385,10 +377,6 @@ Day00Scene04Action01:	; ACTION_USE_TALK
 	rts
 Day00Scene04Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day00Scene04Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -474,10 +462,6 @@ Day00Scene06Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day00Scene06Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 00 - scene 07 (SCENE_ID_EEHALL)
@@ -509,148 +493,9 @@ Day00Scene07Action02NPC:
 	lea	DialogTextSecurityGuardDay00,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day00Scene07Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
-; day 00 - scene 08 (SCENE_ID_DENIMCOUNTRY) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene08Action00:	; ACTION_LOOK
-Day00Scene08Action01:	; ACTION_USE_TALK
-Day00Scene08Action02:	; ACTION_TAKE_GIVE
-Day00Scene08Action03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 09 (SCENE_ID_CHECKERS) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene09Action00:	; ACTION_LOOK
-Day00Scene09Action01:	; ACTION_USE_TALK
-Day00Scene09Action02:	; ACTION_TAKE_GIVE
-Day00Scene09Action03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 0A (SCENE_ID_TLODGE) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene0AAction00:	; ACTION_LOOK
-Day00Scene0AAction01:	; ACTION_USE_TALK
-Day00Scene0AAction02:	; ACTION_TAKE_GIVE
-Day00Scene0AAction03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 0B (SCENE_ID_CAVERN) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene0BAction00:	; ACTION_LOOK
-Day00Scene0BAction01:	; ACTION_USE_TALK
-Day00Scene0BAction02:	; ACTION_TAKE_GIVE
-Day00Scene0BAction03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 0C (SCENE_ID_SVIDEO) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene0CAction00:	; ACTION_LOOK
-Day00Scene0CAction01:	; ACTION_USE_TALK
-Day00Scene0CAction02:	; ACTION_TAKE_GIVE
-Day00Scene0CAction03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 0D (SCENE_ID_WORKSHOP) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene0DAction00:	; ACTION_LOOK
-Day00Scene0DAction01:	; ACTION_USE_TALK
-Day00Scene0DAction02:	; ACTION_TAKE_GIVE
-Day00Scene0DAction03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 0E (SCENE_ID_NSHACK) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene0EAction00:	; ACTION_LOOK
-Day00Scene0EAction01:	; ACTION_USE_TALK
-Day00Scene0EAction02:	; ACTION_TAKE_GIVE
-Day00Scene0EAction03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 0F (SCENE_ID_POGODAWG) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene0FAction00:	; ACTION_LOOK
-Day00Scene0FAction01:	; ACTION_USE_TALK
-Day00Scene0FAction02:	; ACTION_TAKE_GIVE
-Day00Scene0FAction03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 10 (SCENE_ID_CPLANET) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene10Action00:	; ACTION_LOOK
-Day00Scene10Action01:	; ACTION_USE_TALK
-Day00Scene10Action02:	; ACTION_TAKE_GIVE
-Day00Scene10Action03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 11 (SCENE_ID_CNOW) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene11Action00:	; ACTION_LOOK
-Day00Scene11Action01:	; ACTION_USE_TALK
-Day00Scene11Action02:	; ACTION_TAKE_GIVE
-Day00Scene11Action03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 12 (SCENE_ID_TBOOKS) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene12Action00:	; ACTION_LOOK
-Day00Scene12Action01:	; ACTION_USE_TALK
-Day00Scene12Action02:	; ACTION_TAKE_GIVE
-Day00Scene12Action03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 13 (SCENE_ID_FCBCHECKOUT) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene13Action00:	; ACTION_LOOK
-Day00Scene13Action01:	; ACTION_USE_TALK
-Day00Scene13Action02:	; ACTION_TAKE_GIVE
-Day00Scene13Action03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 14 (SCENE_ID_FCBFIREARMS) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene14Action00:	; ACTION_LOOK
-Day00Scene14Action01:	; ACTION_USE_TALK
-Day00Scene14Action02:	; ACTION_TAKE_GIVE
-Day00Scene14Action03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 15 (SCENE_ID_FCBFISHING) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene15Action00:	; ACTION_LOOK
-Day00Scene15Action01:	; ACTION_USE_TALK
-Day00Scene15Action02:	; ACTION_TAKE_GIVE
-Day00Scene15Action03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 16 (SCENE_ID_FCBCAMPING) - can't be entered in day 00
-;-------------------------------------------------------------------------------
-Day00Scene16Action00:	; ACTION_LOOK
-Day00Scene16Action01:	; ACTION_USE_TALK
-Day00Scene16Action02:	; ACTION_TAKE_GIVE
-Day00Scene16Action03:	; ACTION_RESPOND
-	rts
-
-;-------------------------------------------------------------------------------
-; day 00 - scene 17 (SCENE_ID_SOUTH_CENTER) - can't be entered in day 00
+; day 00 - scene 17 (SCENE_ID_SOUTH_CENTER)
 ;-------------------------------------------------------------------------------
 Day00Scene17Action00:	; ACTION_LOOK
 	bsr.w	ShowDefaultText	; use default text for objects in this scene

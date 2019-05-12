@@ -694,7 +694,7 @@ Day07Scene13Action03:	; ACTION_RESPOND
 ; day 07 - scene 14 (SCENE_ID_FCBFIREARMS)
 ;-------------------------------------------------------------------------------
 Day07Scene14Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	bsr.w ShowDefaultText	; use default text for objects in this scene
 	rts
 Day07Scene14Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
@@ -729,7 +729,7 @@ Day07Scene14Action03:	; ACTION_RESPOND
 ; day 07 - scene 15 (SCENE_ID_FCBFISHING)
 ;-------------------------------------------------------------------------------
 Day07Scene15Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	bsr.w ShowDefaultText	; use default text for objects in this scene
 	rts
 Day07Scene15Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
@@ -764,7 +764,7 @@ Day07Scene15Action03:	; ACTION_RESPOND
 ; day 07 - scene 16 (SCENE_ID_FCBCAMPING)
 ;-------------------------------------------------------------------------------
 Day07Scene16Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	bsr.w ShowDefaultText	; use default text for objects in this scene
 	rts
 Day07Scene16Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
@@ -799,7 +799,7 @@ Day07Scene16Action03:	; ACTION_RESPOND
 ; day 07 - scene 17 (SCENE_ID_SOUTH_CENTER)
 ;-------------------------------------------------------------------------------
 Day07Scene17Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	bsr.w ShowDefaultText	; use default text for objects in this scene
 	rts
 Day07Scene17Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6

@@ -361,6 +361,8 @@ NPCNameTable:
 	dc.l	NPCNameCavernStaff
 	; OBJ_NPC_DANI_XMAS
 	dc.l	NPCNameDani
+	; OBJ_NPC_SLEEPING_GUARD
+	dc.l	NPCNameGuard0
 	; OBJ_NPC_GENERICSHOPPER
 	dc.l	NPCNameGenericShopper
 NPCNameTableEnd:
@@ -624,4 +626,7 @@ StatusScreenObjectives:
 	dc.l	StatusScreenDay03Objective02
 	dc.l	StatusScreenDay05Objective01
 	dc.l	StatusScreenDay05Objective02
+	dc.l	StatusScreenDay06Objective01
+	dc.l	StatusScreenDay06Objective02
+
 

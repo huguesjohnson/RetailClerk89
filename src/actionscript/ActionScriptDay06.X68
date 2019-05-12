@@ -28,10 +28,6 @@ Day06Scene00Action02NPC:
 	lea	DialogTextGreenbergDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene00Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 01 (SCENE_ID_WWHALL)
@@ -64,7 +60,7 @@ Day06Scene01Action03StartMission:
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
 	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-	; add key
+	; add keys
 	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
 	bset.l	#STORE_KEY_WORKSHOP,d7	; add the key
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save updated keys
@@ -73,7 +69,7 @@ Day06Scene01Action03StartMission:
 	move.l	#$16120000,(a0)+	; location 00 (VB)
 	move.l	#$00000000,(a0)+	; location 01 (WWHALL)
 	move.l	#$00000000,(a0)+	; location 02 (WEHALL)
-	move.l	#$00000000,(a0)+	; location 03 (CENTER)
+	move.l	#$21000000,(a0)+	; location 03 (CENTER)
 	move.l	#$00000000,(a0)+	; location 04 (SHALL)
 	move.l	#$00000000,(a0)+	; location 05 (PARKINGLOT)
 	move.l	#$00000000,(a0)+	; location 06 (EWHALL)
@@ -94,6 +90,10 @@ Day06Scene01Action03StartMission:
 	move.l	#$00000000,(a0)+	; location 15 (FCBFISHING)
 	move.l	#$00000000,(a0)+	; location 16 (FCBCAMPING)
 	move.l	#$00000000,(a0)+	; location 17 (SOUTH_CENTER)
+	; clear mission flags
+	and.l	#$00000000,(MEM_MISSION_EVENT_FLAGS)
+	; update objective
+	move.w	#OBJECTIVE_D6_O2,(MEM_OBJECTIVE)	; update objective
 	; queue the scripted event
 	lea ScriptedEventDay06StartMission,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -113,23 +113,32 @@ Day06Scene02Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene02Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 03 (SCENE_ID_CENTER)
 ;-------------------------------------------------------------------------------
 Day06Scene03Action00:	; ACTION_LOOK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_SLEEPING_GUARD,d6	; test target
+	beq.s	Day06Scene03Action00SleepingGuard	; branch to display text
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
+	rts
+Day06Scene03Action00SleepingGuard:
+	lea	DialogTextDay06SleepingGuard,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene03Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
 	beq.s	Day06Scene03Action01NPC	; branch to display text
+	cmpi.w	#OBJ_NPC_SLEEPING_GUARD,d6	; test target
+	beq.s	Day06Scene03Action01SleepingGuard	; branch to display text
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene03Action01SleepingGuard:
+	lea	DialogTextDay06SleepingGuardTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene03Action01NPC:
@@ -208,10 +217,6 @@ Day06Scene04Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene04Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 05 (SCENE_ID_PARKINGLOT)
@@ -272,10 +277,6 @@ Day06Scene06Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene06Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 07 (SCENE_ID_EEHALL)
@@ -289,10 +290,6 @@ Day06Scene07Action01:	; ACTION_USE_TALK
 	rts
 Day06Scene07Action02:	; ACTION_TAKE_GIVE
 	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day06Scene07Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -326,10 +323,6 @@ Day06Scene08Action02NPC:
 	lea	DialogTextNPCDenimCountryStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene08Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 09 (SCENE_ID_CHECKERS)
@@ -361,10 +354,6 @@ Day06Scene09Action02NPC:
 	lea	DialogTextNPCCheckersStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene09Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 0A (SCENE_ID_TLODGE)
@@ -376,12 +365,23 @@ Day06Scene0AAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_TLODGE_STAFF,d6	; test target
 	beq.s	Day06Scene0AAction01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_SCENE_RADIO,d6	; test target
+	beq.s	Day06Scene0AAction01Radio	; branch to text for the radio
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene0AAction01NPC:
 	lea	DialogTextTLodgeStaffDefaultTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene0AAction01Radio:
+	; setup 4 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d6	; set text choice flag
+	bclr.l	#DIALOG_FLAG_STYLE_TITLED,d6	; clear the titled flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	RadioMenu,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene0AAction02:	; ACTION_TAKE_GIVE
@@ -397,8 +397,39 @@ Day06Scene0AAction02NPC:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene0AAction03:	; ACTION_RESPOND
+	bsr.w	ResetDialog	; reset the dialog
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7	; test mission started
+	bne.s	Day06Scene0AAction03Night	; mission started, branch
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene0AAction03Night:
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	bne.s	.1	; branch to next text
+	bclr.l	#MISSION_FLAG_DAY06_RADIO,d7	; clear flag
+	lea	DialogTextRadioDay06NightR0,a6	; response text
+	bra.s	Day06Scene0AAction03Exit
+.1
+	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
+	bne.s	.2	; branch to next text
+	bclr.l	#MISSION_FLAG_DAY06_RADIO,d7	; clear flag
+	lea	DialogTextRadioDay06NightR1,a6	; response text
+	bra.s	Day06Scene0AAction03Exit
+.2
+	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
+	bne.s	.3	; branch to next text
+	bclr.l	#MISSION_FLAG_DAY06_RADIO,d7	; clear flag
+	lea	DialogTextRadioDay06NightR2,a6	; response text
+	bra.s	Day06Scene0AAction03Exit
+.3
+	; must be response 3 then
+	bset.l	#MISSION_FLAG_DAY06_RADIO,d7	; set flag
+	lea	DialogTextRadioDay06NightR3,a6	; response text
+Day06Scene0AAction03Exit:
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
 	rts
 
 ;-------------------------------------------------------------------------------
@@ -431,10 +462,6 @@ Day06Scene0BAction02NPC:
 	lea	DialogTextNPCCavernStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene0BAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 0C (SCENE_ID_SVIDEO)
@@ -464,10 +491,6 @@ Day06Scene0CAction02:	; ACTION_TAKE_GIVE
 	rts
 Day06Scene0CAction02NPC:
 	lea	DialogTextNPCSVideoStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day06Scene0CAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -519,10 +542,6 @@ Day06Scene0DAction02NPC1:
 	lea	DialogTextNPCWorkshopStaff1DefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene0DAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 0E (SCENE_ID_NSHACK)
@@ -539,6 +558,25 @@ Day06Scene0EAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene0EAction01NPC:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7	; test flag
+	beq.s	DialogTextNShackStaffDefaultTalk	; not set, branch
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#MISSION_FLAG_DAY06_SCRIPTEDEVENT0,d7	; test flag
+	bne.s	.1	; set, branch
+	bset.l	#MISSION_FLAG_DAY06_SCRIPTEDEVENT0,d7	; set flag
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	; setup scripted event
+	lea ScriptedEventDay06NShackTalkNPC,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay06InMissionScriptedEvent0000,a6	; load initial text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+.1	
+	lea	DialogTextDay06Scene0ENPCInMission,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene0EAction01NPCDefault:
 	lea	DialogTextNShackStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -552,10 +590,6 @@ Day06Scene0EAction02:	; ACTION_TAKE_GIVE
 	rts
 Day06Scene0EAction02NPC:
 	lea	DialogTextNPCNShackStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day06Scene0EAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -589,10 +623,6 @@ Day06Scene0FAction02NPC:
 	lea	DialogTextNPCPogoDawgStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene0FAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 10 (SCENE_ID_CPLANET)
@@ -622,10 +652,6 @@ Day06Scene10Action02:	; ACTION_TAKE_GIVE
 	rts
 Day06Scene10Action02NPC:
 	lea	DialogTextNPCCPlanetStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day06Scene10Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -688,6 +714,7 @@ Day06Scene11Action01NPCSubComplete:
 Day06Scene11Action01NPCStartSub:
 	bset.l	#EVENT_FLAG_DAY06_SUB00_STARTED,d7	; set sub started flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	move.w	#OBJECTIVE_D6_O1,(MEM_OBJECTIVE)	; update objective
 	; queue scripted event
 	lea ScriptedEventDay06StartSub00,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -712,10 +739,6 @@ Day06Scene11Action02:	; ACTION_TAKE_GIVE
 	rts
 Day06Scene11Action02NPC:
 	lea	DialogTextNPCCNowStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day06Scene11Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -749,10 +772,6 @@ Day06Scene12Action02NPC:
 	lea	DialogTextNPCTBooksStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene12Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 13 (SCENE_ID_FCBCHECKOUT)
@@ -782,10 +801,6 @@ Day06Scene13Action02:	; ACTION_TAKE_GIVE
 	rts
 Day06Scene13Action02NPC:
 	lea	DialogTextNPCFCBCheckoutStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day06Scene13Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -844,10 +859,6 @@ Day06Scene14Action02NPC:
 	lea	DialogTextNPCFCBFirearmsStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene14Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 15 (SCENE_ID_FCBFISHING)
@@ -877,10 +888,6 @@ Day06Scene15Action02:	; ACTION_TAKE_GIVE
 	rts
 Day06Scene15Action02NPC:
 	lea	DialogTextNPCFCBFishingStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day06Scene15Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -914,10 +921,6 @@ Day06Scene16Action02NPC:
 	lea	DialogTextNPCFCBCampingStaffDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day06Scene16Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 06 - scene 17 (SCENE_ID_SOUTH_CENTER)
@@ -947,10 +950,6 @@ Day06Scene17Action02:	; ACTION_TAKE_GIVE
 	rts
 Day06Scene17Action02NPC:
 	lea	DialogTextNPCSouthCenterStaffDefaultGive,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day06Scene17Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

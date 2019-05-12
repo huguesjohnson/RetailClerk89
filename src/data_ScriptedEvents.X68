@@ -1858,7 +1858,243 @@ ScriptedEventDay06StartMission:
 	; walk player into the scene
 	; --------------------------------------------------------------------------
 	dc.w	DIRECTION_UP
+	dc.w	$0098
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventDayStartSub00
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventDayStartSub01
+	; --------------------------------------------------------------------------
+	; face up
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventDayStartSub02
+	; --------------------------------------------------------------------------
+	; face down
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventDayStartSub03
+	; --------------------------------------------------------------------------
+	; pacing
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0006
+	dc.w	DIRECTION_UP
+	dc.w	$0006
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventDayStartSub04
+	; --------------------------------------------------------------------------
+	; move npc left and up
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; NPC1 (Jordan)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0018
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventDayStartSub05
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventDayStartSub06
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventDayStartSub07
+	; --------------------------------------------------------------------------
+	; move player up
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_UP
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; last dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventDayStartSub08
+	; --------------------------------------------------------------------------
+	; move D.B. offscreen
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0 (D.B.)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0060
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
+	dc.w	DIRECTION_RIGHT
 	dc.w	$0030
+	dc.w	DIRECTION_DOWN
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change & move player sprite
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DB
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_WWHALL
+	; --------------------------------------------------------------------------
+	; move player sprite down a few steps
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_DOWN
+	dc.w	$0008
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay06WEHallToCNow:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	($0080-$0020)
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_CNOW
+	; --------------------------------------------------------------------------
+	; walk player into the scene
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0028
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06FootstepsNorth
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06GuardSomeoneHere
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay06NShackTalkNPC:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06InMissionScriptedEvent0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06GuardSomeoneHere
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06InMissionScriptedEvent0002
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06InMissionScriptedEvent0003
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay06ExitTLodge:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0180
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_EEHALL
+	; --------------------------------------------------------------------------
+	; walk player into screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	$0060
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventExitTLodge00
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay06ExitEEHallGood:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0070
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_SVIDEO
+	; --------------------------------------------------------------------------
+	; walk player into screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0060
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEndMissionGood00
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay06ExitEEHallBad:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0180
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_EWHALL
+	; --------------------------------------------------------------------------
+	; walk player into screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEndMissionBad00
 	dc.w	SCRIPTED_EVENT_END
 
 ; ------------------------------------------------------------------------------

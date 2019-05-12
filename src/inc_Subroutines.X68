@@ -73,13 +73,13 @@
 
 	include	'sub_BuildVRAMWriteAddress.X68'
 
-	include	'sub_FadeInFadeOut.X68'
-
 	include	'sub_EndDemo.X68'
 
 	include 'sub_InitNPCLocations.X68'
 
 	include	'sub_ShowDefaultText.X68'
+
+	include	'sub_FadeInFadeOut.X68'
 
 	if _DEBUG_
 	include	'init_Debug.X68'
