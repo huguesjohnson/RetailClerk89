@@ -4242,7 +4242,7 @@ DialogTextDay06SleepingGuard:
 
 	align 2
 DialogTextDay06SleepingGuardTalk:
-	dc.w	OBJ_NPC_DANI
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"(He's breathing but",LF
 	dc.b	"not responding)",ETX
@@ -4250,7 +4250,7 @@ DialogTextDay06SleepingGuardTalk:
 	align 2
 DialogTextDay06Hurry:
 	;		"1234567890123456789012"
-	dc.b	"(We have to hurry, no",LF
+	dc.b	"(I have to hurry, no",LF
 	dc.b	"time to explore)",ETX
 
 	align 2
@@ -4332,19 +4332,79 @@ DialogTextDay06ExitEEHallSouth:
 DialogTextDay06ScriptedEventEndMissionGood00:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
-	dc.b	"(good ending)",LF
-	dc.b	"",FF
-	dc.b	"",LF
-	dc.b	"",ETX
+	dc.b	"(I think I hear the",LF
+	dc.b	"guard approaching)   ^",FF
+	dc.b	"(Sounds like he's",LF
+	dc.b	"walking south now)",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEndMissionGood01:
+	dc.w	OBJ_NPC_GUARD0
+	;		"1234567890123456789012"
+	dc.b	"Hey! What's going on",LF
+	dc.b	"in there?!",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEndMissionGood02:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"(I think I'm safe in",LF
+	dc.b	"here for a while)",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEndMissionGood03:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"If this doesn't work",LF
+	dc.b	"I'll get a job here. ^",FF
+	dc.b	"'Sorry but we're sold",LF
+	dc.b	"out of Chrono Trigger^",FF
+	dc.b	"try again next week,",LF
+	dc.b	"yeah Earthbound too.'",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEndMissionGood04:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Hey, knock it off.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Did you hear all that",LF
+	dc.b	"shouting?            ^",FF
+	dc.b	"I think we're good",LF
+	dc.b	"to go.               ^",FF
+	dc.b	"I'll lead the way.",LF
+	dc.b	"We need to hurry.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEndMissionBad00:
+	dc.w	OBJ_NPC_GUARD0
+	;		"1234567890123456789012"
+	dc.b	"What are you doing",LF
+	dc.b	"here?!",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEndMissionBad01:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
-	dc.b	"(bad ending)",LF
-	dc.b	"",FF
-	dc.b	"",LF
-	dc.b	"",ETX
+	dc.b	"Yeah, about that..",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEndMissionBad02:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"'So if you preorder",LF
+	dc.b	"then you also get..'",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEndMissionBad03:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Shh. I think I heard",LF
+	dc.b	"a commotion outside. ^",FF
+	dc.b	"Like someone running",LF
+	dc.b	"toward the exit.     ^",FF
+	dc.b	"C'mon, quit messing",LF
+	dc.b	"around and follow me.",ETX
 
 ;	align 2
 ;DialogTextDay06ScriptedEventDayStartSub00:

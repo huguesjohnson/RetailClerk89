@@ -353,6 +353,8 @@ ExitScene02Day06MissionInProgress:
 	bsr.w	SetDialogOpening	; flag to open dialog
 	rts	; exit
 ExitScene02Day06MissionInProgressWEHallToCNow:
+	; good enough place to update npcs in VB since it has to be done eventually
+	move.l	#$12010000,(MEM_NPC_LOCATION_VB)	; Jordan and Dani
 	; queue the scripted event
 	lea ScriptedEventDay06WEHallToCNow,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -374,6 +376,23 @@ ExitScene02Day06Default:
 ; exit scene 03 (SCENE_ID_CENTER)
 ;-------------------------------------------------------------------------------
 ExitScene03:
+	; different rules for day06 at the ending
+	cmpi.w	#$0006,(MEM_DAY)	; test day
+	bne.s	ExitScene03Default	; branch if not day06
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY06_MISSION_COMPLETE,d7	; test if mission complete
+	beq.s	ExitScene03Default	; branch if mission not complete
+	; test if player is trying to go north
+	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
+	beq.s	ExitScene03Default	; going east branch 
+	; NOTE - PREVIOUS LINE SHOULD INSTEAD GO TO THE DAY END SCRIPTED EVENT
+	; can't exit other directions
+	; display message
+	lea	DialogTextDay06Hurry,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
+	rts	; exit
+ExitScene03Default:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
@@ -563,12 +582,12 @@ ExitScene06Default: ; ok to exit scene
 ;-------------------------------------------------------------------------------
 ExitScene07:
 	cmpi.w	#$0006,(MEM_DAY)	; is it day 06?
-	bne.s	ExitScene07Default	; not day 06, default exit
+	bne.w	ExitScene07Default	; not day 06, default exit
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy mission flags to d7
 	btst.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7	; test event flag
 	beq.s	ExitScene07Default	; not set, branch
-	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
-	btst.l	#MISSION_FLAG_DAY06_RADIO,d7	; test event flag
+	move.l	(MEM_MISSION_EVENT_FLAGS),d6	; copy mission flags to d6
+	btst.l	#MISSION_FLAG_DAY06_RADIO,d6	; test event flag
 	beq.s	ExitScene07Default	; not set, branch
 	; check direction
 	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
@@ -576,6 +595,13 @@ ExitScene07:
 	; check direction
 	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
 	beq.s	ExitScene07Default	; exiting north, branch
+	;---------------------------------------------------------------------------
+	; if exiting west or east then:
+	; -set EVENT_FLAG_DAY06_MISSION_COMPLETE
+	; -launch the appropriate scripted event 
+	;---------------------------------------------------------------------------
+	bset.l	#EVENT_FLAG_DAY06_MISSION_COMPLETE,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
 	; check direction
 	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
 	beq.s	ExitScene07Day06West	; exiting west, branch
@@ -584,6 +610,10 @@ ExitScene07Day06East:
 	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
 	btst.l	#STORE_KEY_SVIDEO,d7	; can the player enter this store?
 	beq.s	ExitScene07Default	; no key, default logic
+	; set global event flag
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7	; copy global event flags to d7
+	bset.l	#GLOBAL_FLAG_DB_SAFE,d7	; set flag
+	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)	; save updated flags
 	; else queue the scripted event
 	lea ScriptedEventDay06ExitEEHallGood,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event

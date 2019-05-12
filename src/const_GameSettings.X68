@@ -152,8 +152,6 @@ STATUS_SCREEN_INVENTORY_VDP=VDP_VRAM_WRITE_B+$00040000+$0B000000
 ;-------------------------------------------------------------------------------
 ROW_HEIGHT=$800000	; height of a tile row
 PALETTE_SET_SIZE=$80	; size of 4 palettes
-PLAYER_SPRITE_DB=$0000	; use tiles for DB as player sprite
-PLAYER_SPRITE_DANI=$0001	; use tiles for Dani as player sprite
 
 ;-------------------------------------------------------------------------------
 ; action table settings

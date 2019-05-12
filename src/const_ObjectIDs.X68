@@ -158,3 +158,10 @@ OBJ_ITEM_MIXEDNUTS=OBJ_ITEM_BASE+$32
 OBJ_ITEM_STRANGE_GIFT=OBJ_ITEM_BASE+$33
 OBJ_ITEM_CAFFEINE_PILLS=OBJ_ITEM_BASE+$34
 
+;-------------------------------------------------------------------------------
+; player sprite
+;-------------------------------------------------------------------------------
+PLAYER_SPRITE_DB=$0000	; use tiles for DB as player sprite
+PLAYER_SPRITE_DANI=$0001	; use tiles for Dani as player sprite
+PLAYER_SPRITE_FCBCAMPING=$0002	; use tiles for FCBCAMPING sprite
+

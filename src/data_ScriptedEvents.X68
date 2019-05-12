@@ -2061,12 +2061,86 @@ ScriptedEventDay06ExitEEHallGood:
 	; walk player into screen
 	; --------------------------------------------------------------------------
 	dc.w	DIRECTION_RIGHT
-	dc.w	$0060
+	dc.w	$0020
 	; --------------------------------------------------------------------------
 	; dialog
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay06ScriptedEventEndMissionGood00
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEndMissionGood01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEndMissionGood02
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_FCBCAMPING
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_VB
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEndMissionGood03
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEndMissionGood04
+	; --------------------------------------------------------------------------
+	; walk Dani off screen
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; NPC1 (Dani)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0010
+	dc.w	DIRECTION_DOWN
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; move Jordan offscreen
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0 (Jordan)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0060
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0030
+	dc.w	DIRECTION_DOWN
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; move player sprite
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0080
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0100
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_WWHALL
+	; --------------------------------------------------------------------------
+	; move player sprite down a few steps
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_DOWN
+	dc.w	$0008
 	dc.w	SCRIPTED_EVENT_END
 
 ScriptedEventDay06ExitEEHallBad:
@@ -2089,13 +2163,120 @@ ScriptedEventDay06ExitEEHallBad:
 	; walk player into screen
 	; --------------------------------------------------------------------------
 	dc.w	DIRECTION_LEFT
-	dc.w	$0020
+	dc.w	$0010
 	; --------------------------------------------------------------------------
 	; dialog
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay06ScriptedEventEndMissionBad00
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEndMissionBad01
+	; --------------------------------------------------------------------------
+	; D.B. runs off the screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
+	dc.w	DIRECTION_LEFT
+	dc.w	$0040
+	dc.w	DIRECTION_DOWN
+	dc.w	$00B0
+	; --------------------------------------------------------------------------
+	; guard chases after
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0 (guard)
+	dc.w	DIRECTION_DOWN
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_FCBCAMPING
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_VB
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEndMissionBad02
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEndMissionBad03
+	; --------------------------------------------------------------------------
+	; walk Dani off screen
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; NPC1 (Dani)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0010
+	dc.w	DIRECTION_DOWN
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; move Jordan offscreen
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0 (Jordan)
+	dc.w	DIRECTION_LEFT
+	dc.w	$0060
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0030
+	dc.w	DIRECTION_DOWN
+	dc.w	$0080
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; move player sprite
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0080
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0100
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_WWHALL
+	; --------------------------------------------------------------------------
+	; move player sprite down a few steps
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_DOWN
+	dc.w	$0008
 	dc.w	SCRIPTED_EVENT_END
+
+
+
+;Set EVENT_FLAG_DAY06_SUB00_COMPLETE
+;Fade out
+;Move player sprite to off right edge
+;Change scene to EWHall
+;Walk DB into scene
+;(Move G right)
+;G = “What are you doing here!”
+;DB = “Yeah, well…”
+;(Move DB out to DCountry)
+;(Guard follows)
+;Fade out
+;Change player sprite and set position
+;Change scene to VB
+;J - “If you pre-order then you get...”
+;D - “Shh. I think I heard people running toward the parking lot. C’mon, follow me.”
+
 
 ; ------------------------------------------------------------------------------
 ; used to test scene and player sprite changes in scripted events
