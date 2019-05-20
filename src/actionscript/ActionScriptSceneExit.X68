@@ -384,16 +384,30 @@ ExitScene03:
 	beq.s	ExitScene03Default	; branch if mission not complete
 	; test if player is trying to go north
 	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
-	beq.s	ExitScene03Default	; going east branch 
-	; NOTE - PREVIOUS LINE SHOULD INSTEAD GO TO THE DAY END SCRIPTED EVENT
-	; can't exit other directions
-	; display message
+	beq.s	ExitScene03Day06Event	; going north, branch 
+	; can't exit other directions - display message
 	lea	DialogTextDay06Hurry,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; flag to open dialog
 	rts	; exit
 ExitScene03Default:
 	bsr.w	DefaultExitScene	; use default handler
+	rts	; exit
+ExitScene03Day06Event:
+	btst.l	#EVENT_FLAG_DAY06_ENDING_OPEN,d7	; test if ending is accessible
+	bne.s	.1	; branch if flag set
+	; set EVENT_FLAG_DAY06_ENDING_OPEN
+	bset.l	#EVENT_FLAG_DAY06_ENDING_OPEN,d7
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	lea ScriptedEventDay06Ending0,a6
+	bra.s	.2
+.1
+	; update NPCs in nshack
+	move.l	#$0A010000,(MEM_NPC_LOCATION_NSHACK)
+	; queue scripted event
+	lea ScriptedEventDay06Ending1,a6	; point a6 to event to load
+.2
+	bsr.w QueueScriptedEvent	; queue the event
 	rts	; exit
 
 ;-------------------------------------------------------------------------------
@@ -695,6 +709,21 @@ ExitScene0A:
 	bsr.w QueueScriptedEvent	; queue the event
 	rts
 ExitScene0ADefault:
+	bsr.w	DefaultExitScene	; use default handler
+	rts	; exit
+
+;-------------------------------------------------------------------------------
+; exit scene 0E (SCENE_ID_NSHACK)
+;-------------------------------------------------------------------------------
+ExitScene0E:
+	cmpi.w	#$0006,(MEM_DAY)	; is it day 06?
+	bne.s	ExitScene0EDefault	; not day 06, default exit
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy mission flags to d7
+	btst.l	#EVENT_FLAG_DAY06_MISSION_COMPLETE,d7	; test event flag
+	beq.s	ExitScene0EDefault	; not set, branch
+	bra.w	Day06End	; end of the day
+	rts
+ExitScene0EDefault:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 

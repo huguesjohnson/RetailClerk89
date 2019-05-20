@@ -137,11 +137,11 @@ TitleScreenTextFooter:
 
 	DebugScreenLine14:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 6 end of night mission",ETX
 
 	DebugScreenLine15:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 7 title                   ",ETX
 
 	DebugScreenLine16:
 	;		"12345678901234567890123456789012345678"
@@ -4155,6 +4155,17 @@ DialogTextDay06Scene0DNPCDani:
 
 	align 2
 DialogTextDay06ScriptedEventDayStartSub00:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I was thinking, if",LF
+	dc.b	"this doesn't work    ^",FF
+	dc.b	"maybe I could get a",LF
+	dc.b	"job here.            ^",FF
+	dc.b	"I think I'd be",LF
+	dc.b	"pretty good at it.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventDayStartSub01:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Bad news.",LF
@@ -4169,13 +4180,13 @@ DialogTextDay06ScriptedEventDayStartSub00:
 	dc.b	"to deal with tonight.",ETX
 
 	align 2
-DialogTextDay06ScriptedEventDayStartSub01:
+DialogTextDay06ScriptedEventDayStartSub02:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"I have a plan though.",ETX
 
 	align 2
-DialogTextDay06ScriptedEventDayStartSub02:
+DialogTextDay06ScriptedEventDayStartSub03:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"You're our decoy.",LF
@@ -4184,7 +4195,7 @@ DialogTextDay06ScriptedEventDayStartSub02:
 	dc.b	"from Santa's workshop.",ETX
 
 	align 2
-DialogTextDay06ScriptedEventDayStartSub03:
+DialogTextDay06ScriptedEventDayStartSub04:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"When the hallway guard",LF
@@ -4193,14 +4204,14 @@ DialogTextDay06ScriptedEventDayStartSub03:
 	dc.b	"to the workshop.",ETX
 
 	align 2
-DialogTextDay06ScriptedEventDayStartSub04:
+DialogTextDay06ScriptedEventDayStartSub05:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"He can catch me, you",LF
 	dc.b	"break for the door.",ETX
 
 	align 2
-DialogTextDay06ScriptedEventDayStartSub05:
+DialogTextDay06ScriptedEventDayStartSub06:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"You're will to do that",LF
@@ -4209,7 +4220,7 @@ DialogTextDay06ScriptedEventDayStartSub05:
 	dc.b	"banned from the mall?",ETX
 
 	align 2
-DialogTextDay06ScriptedEventDayStartSub06:
+DialogTextDay06ScriptedEventDayStartSub07:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"I'm moving over the",LF
@@ -4222,23 +4233,17 @@ DialogTextDay06ScriptedEventDayStartSub06:
 	dc.b	"little expedition.",ETX
 
 	align 2
-DialogTextDay06ScriptedEventDayStartSub07:
+DialogTextDay06ScriptedEventDayStartSub08:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
 	dc.b	"I'll cover what?",ETX
 
 	align 2
-DialogTextDay06ScriptedEventDayStartSub08:
+DialogTextDay06ScriptedEventDayStartSub09:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Just get to being",LF
 	dc.b	"distracting already.",ETX
-
-	align 2
-DialogTextDay06SleepingGuard:
-	;		"1234567890123456789012"
-	dc.b	"It looks like he's",LF
-	dc.b	"totally out.",ETX
 
 	align 2
 DialogTextDay06SleepingGuardTalk:
@@ -4355,8 +4360,6 @@ DialogTextDay06ScriptedEventEndMissionGood02:
 DialogTextDay06ScriptedEventEndMissionGood03:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"If this doesn't work",LF
-	dc.b	"I'll get a job here. ^",FF
 	dc.b	"'Sorry but we're sold",LF
 	dc.b	"out of Chrono Trigger^",FF
 	dc.b	"try again next week,",LF
@@ -4406,23 +4409,123 @@ DialogTextDay06ScriptedEventEndMissionBad03:
 	dc.b	"C'mon, quit messing",LF
 	dc.b	"around and follow me.",ETX
 
-;	align 2
-;DialogTextDay06ScriptedEventDayStartSub00:
-;	dc.w	OBJ_NPC_DANI
-;	;		"1234567890123456789012"
-;	dc.b	"",LF
-;	dc.b	"",FF
-;	dc.b	"",LF
-;	dc.b	"",ETX
-
-
 	align 2
-DialogTextDaniScene05Day06:
+DialogTextDay06Scene03Dani:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2",ETX
+	dc.b	"Hey was like this when",LF
+	dc.b	"I got here, I swear. ^",FF
+	dc.b	"He's out cold.",ETX
 
+	align 2
+DialogTextDay06ScriptedEventEnding000:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"first ending dialog",LF
+	dc.b	"",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding001:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"ending dialog during",LF
+	dc.b	"2nd scene",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding002:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"ending dialog back at",LF
+	dc.b	"orignal scene",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding100:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Here goes nothing...",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding101:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"It's been over an",LF
+	dc.b	"hour now.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding102:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I saw security drag",LF
+	dc.b	"that arcade guy out. ^",FF
+	dc.b	"I wonder what he'll",LF
+	dc.b	"do now?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding103:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Not my problem.",LF
+	dc.b	"                     ^",FF
+	dc.b	"If he's smart, he'll",LF
+	dc.b	"stay away.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding104:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"What was he up to",LF
+	dc.b	"anyway?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding105:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Some crazy story about",LF
+	dc.b	"his younger self and ^",FF
+	;		"1234567890123456789012"
+	dc.b	"people traveling back",LF
+	dc.b	"in time to shop here.^",FF
+	;		"1234567890123456789012"
+	dc.b	"Or maybe not that,",LF
+	dc.b	"maybe, no, nevermind.^",FF
+	;		"1234567890123456789012"
+	dc.b	"We'll talk about it",LF
+	dc.b	"on the drive home.   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I guess it really",LF
+	dc.b	"doesn't matter.      ^",FF
+	;		"1234567890123456789012"
+	dc.b	"This is all getting",LF
+	dc.b	"demolished one day.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"If there are others",LF
+	dc.b	"we won't meet them.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I'm sure they bought",LF
+	dc.b	"stocks and retired.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding106:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Why would they want",LF
+	dc.b	"to hang out here?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding107:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Exactly.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Let's get home before",LF
+	dc.b	"our parents wake up.",ETX
+
+	align 2
+DialogTextDay06Scene0ENPCEnding:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Go on, I'll lock up",LF
+	dc.b	"behind you.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 07
@@ -5434,6 +5537,35 @@ DialogTextNPCTrendyGuyDefaultLook:
 	;		"1234567890123456789012"
 	dc.b	"That look must take a",LF
 	dc.b	"lot of effort.",ETX
+
+	align 2
+DialogTextNPCFemaleShopperDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"She seems busy.",ETX
+
+	align 2
+DialogTextNPCBillyDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"Something about him",LF
+	dc.b	"is annoying.",ETX
+
+	align 2
+DialogTextNPCMallManagerDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"He seems preoccupied",LF
+	dc.b	"with something.",ETX
+
+	align 2
+DialogTextNPCDaniXmasDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"If only you had a",LF
+	dc.b	"camera right now..",ETX
+
+	align 2
+DialogTextNPCSleepingGuardDefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"It looks like he's",LF
+	dc.b	"totally out.",ETX
 
 ;-------------------------------------------------------------------------------
 ; default NPC talk responses

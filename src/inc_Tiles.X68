@@ -331,6 +331,21 @@ FenceTilesEnd:
 WorkshopTilesEnd:
 
 ;-------------------------------------------------------------------------------
+; flashback scene tiles
+;-------------------------------------------------------------------------------
+FlashbackBackgroundTilesStart:
+	include 'tiles/scene-tiles/tileset_flashbackbackground.X68'
+FlashbackBackgroundTilesEnd:
+
+FlashbackFrameTilesStart:
+	include 'tiles/scene-tiles/tileset_flashbackframe.X68'
+FlashbackFrameTilesEnd:
+
+Flashback1975TilesStart:
+	include 'tiles/scene-tiles/tileset_flashback1975.X68'
+Flashback1975TilesEnd:
+
+;-------------------------------------------------------------------------------
 ; general store frame tiles
 ;-------------------------------------------------------------------------------
 CarpetFloorTilesStart:

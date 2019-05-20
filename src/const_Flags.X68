@@ -97,6 +97,7 @@ EVENT_FLAG_DAY06_SUB00_STARTED=$1	; sub-quest 0 in day 6 started
 EVENT_FLAG_DAY06_SUB00_COMPLETE=$2	; sub-quest 0 in day 6 complete
 EVENT_FLAG_DAY06_MISSION_STARTED=$3	; night mission started
 EVENT_FLAG_DAY06_MISSION_COMPLETE=$4	; night mission started
+EVENT_FLAG_DAY06_ENDING_OPEN=$5	; ending is available
 EVENT_FLAG_DAY07_POGODAWG_OPEN=$0	; whether the store is open on the last day
 
 ;-------------------------------------------------------------------------------

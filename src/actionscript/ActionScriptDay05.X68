@@ -1,9 +1,6 @@
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 00 (SCENE_ID_VB)
 ;-------------------------------------------------------------------------------
-Day05Scene00Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene00Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
@@ -70,41 +67,8 @@ Day05Scene00Action02NPC:
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 05 - scene 01 (SCENE_ID_WWHALL)
-;-------------------------------------------------------------------------------
-Day05Scene01Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
-Day05Scene01Action01:	; ACTION_USE_TALK
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day05Scene01Action02:	; ACTION_TAKE_GIVE
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-
-;-------------------------------------------------------------------------------
-; day 05 - scene 02 (SCENE_ID_WEHALL)
-;-------------------------------------------------------------------------------
-Day05Scene02Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
-Day05Scene02Action01:	; ACTION_USE_TALK
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day05Scene02Action02:	; ACTION_TAKE_GIVE
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-
-;-------------------------------------------------------------------------------
 ; day 05 - scene 03 (SCENE_ID_CENTER)
 ;-------------------------------------------------------------------------------
-Day05Scene03Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene03Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
@@ -178,9 +142,6 @@ Day05Scene03Action03R2:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 04 (SCENE_ID_SHALL)
 ;-------------------------------------------------------------------------------
-Day05Scene04Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene04Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_FCBFISHING_STAFF,d6	; test target
@@ -199,18 +160,10 @@ Day05Scene04Action01NPCFCBFishing:
 	lea	DialogTextScene04Day05NPC11SnowedIn,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day05Scene04Action02:	; ACTION_TAKE_GIVE
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
 
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 05 (SCENE_ID_PARKINGLOT)
 ;-------------------------------------------------------------------------------
-Day05Scene05Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
-
 Day05Scene05Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
@@ -245,41 +198,8 @@ Day05Scene05Action03:	; ACTION_RESPOND
 	rts
 
 ;-------------------------------------------------------------------------------
-; day 05 - scene 06 (SCENE_ID_EWHALL)
-;-------------------------------------------------------------------------------
-Day05Scene06Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
-Day05Scene06Action01:	; ACTION_USE_TALK
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day05Scene06Action02:	; ACTION_TAKE_GIVE
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-
-;-------------------------------------------------------------------------------
-; day 05 - scene 07 (SCENE_ID_EEHALL)
-;-------------------------------------------------------------------------------
-Day05Scene07Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
-Day05Scene07Action01:	; ACTION_USE_TALK
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-Day05Scene07Action02:	; ACTION_TAKE_GIVE
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-
-;-------------------------------------------------------------------------------
 ; day 05 - scene 08 (SCENE_ID_DENIMCOUNTRY)
 ;-------------------------------------------------------------------------------
-Day05Scene08Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene08Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,d6	; test target
@@ -333,9 +253,6 @@ Day05Scene08Action02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 09 (SCENE_ID_CHECKERS)
 ;-------------------------------------------------------------------------------
-Day05Scene09Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene09Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CHECKERS_STAFF,d6	; test target
@@ -364,9 +281,6 @@ Day05Scene09Action02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 0A (SCENE_ID_TLODGE)
 ;-------------------------------------------------------------------------------
-Day05Scene0AAction00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene0AAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_TLODGE_STAFF,d6	; test target
@@ -434,9 +348,6 @@ Day05Scene0AAction03R2:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 0B (SCENE_ID_CAVERN)
 ;-------------------------------------------------------------------------------
-Day05Scene0BAction00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene0BAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CAVERN_STAFF,d6	; test target
@@ -474,9 +385,6 @@ Day05Scene0BAction02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 0C (SCENE_ID_SVIDEO)
 ;-------------------------------------------------------------------------------
-Day05Scene0CAction00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene0CAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_SVIDEO_STAFF,d6	; test target
@@ -505,9 +413,6 @@ Day05Scene0CAction02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 0D (SCENE_ID_WORKSHOP)
 ;-------------------------------------------------------------------------------
-Day05Scene0DAction00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene0DAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_WORKSHOP_STAFF0,d6	; test target
@@ -548,9 +453,6 @@ Day05Scene0DAction02NPC1:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 0E (SCENE_ID_NSHACK)
 ;-------------------------------------------------------------------------------
-Day05Scene0EAction00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene0EAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_NSHACK_STAFF,d6	; test target
@@ -625,9 +527,6 @@ Day05Scene0EAction02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 0F (SCENE_ID_POGODAWG)
 ;-------------------------------------------------------------------------------
-Day05Scene0FAction00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene0FAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_POGODAWG_STAFF,d6	; test target
@@ -702,9 +601,6 @@ Day05Scene0FAction02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 10 (SCENE_ID_CPLANET)
 ;-------------------------------------------------------------------------------
-Day05Scene10Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene10Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CPLANET_STAFF,d6	; test target
@@ -733,9 +629,6 @@ Day05Scene10Action02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 11 (SCENE_ID_CNOW)
 ;-------------------------------------------------------------------------------
-Day05Scene11Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene11Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CNOW_STAFF,d6	; test target
@@ -764,9 +657,6 @@ Day05Scene11Action02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 12 (SCENE_ID_TBOOKS)
 ;-------------------------------------------------------------------------------
-Day05Scene12Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene12Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_TBOOKS_STAFF,d6	; test target
@@ -810,9 +700,6 @@ Day05Scene12Action02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 13 (SCENE_ID_FCBCHECKOUT)
 ;-------------------------------------------------------------------------------
-Day05Scene13Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene13Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_FCBCHECKOUT_STAFF,d6	; test target
@@ -919,9 +806,6 @@ Day05Scene13Action02NPCCampingGive1:	; transition to camp scene
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 14 (SCENE_ID_FCBFIREARMS)
 ;-------------------------------------------------------------------------------
-Day05Scene14Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene14Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_FCBFIREARMS_STAFF,d6	; test target
@@ -966,9 +850,6 @@ Day05Scene14Action02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 15 (SCENE_ID_FCBFISHING)
 ;-------------------------------------------------------------------------------
-Day05Scene15Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene15Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_FCBFISHING_STAFF,d6	; test target
@@ -997,9 +878,6 @@ Day05Scene15Action02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 16 (SCENE_ID_FCBCAMPING)
 ;-------------------------------------------------------------------------------
-Day05Scene16Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene16Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_FCBCAMPING_STAFF,d6	; test target
@@ -1028,9 +906,6 @@ Day05Scene16Action02NPC:
 ;-------------------------------------------------------------------------------
 ; day 05 - scene 17 (SCENE_ID_SOUTH_CENTER)
 ;-------------------------------------------------------------------------------
-Day05Scene17Action00:	; ACTION_LOOK
-	bsr.w	ShowDefaultText	; use default text for objects in this scene
-	rts
 Day05Scene17Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,d6	; test target

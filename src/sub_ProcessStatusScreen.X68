@@ -49,31 +49,7 @@ CancelStatusScreen:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	bclr.l	#STATE_FLAG_STATUS_SCREEN,d7	; update game state
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-ReloadSprites:
-	; reload sprite tiles
-	bsr.w	LoadSpriteZeroTiles
-	bsr.w	LoadPlayerSpriteTiles
-	; this gets the player tiles back but sprite is in wrong positions
-	bsr.w	LoadPlayerSprite
-	; player will be back at default location
-	if	_SPRITE_COLLISION_
-	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
-	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
-	endif
-	move.l	#PLAYER_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_PLAYER_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
-	move.l	#PLAYER_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_PLAYER_SPRITE_X),(VDP_DATA)	; copy the new y-coordinate
-	if	_SPRITE_COLLISION_
-	lea	(MEM_PLAYER_SPRITE_ID),a6	; setup call to FlipSpriteMapPosition
-	bsr.w	FlipSpriteMapPosition	; block the sprite's initial position
-	endif
-	; this seems to get all the NPC sprites right
-	move.w	#$2700,sr		; disable interrupts
-	bsr.w	LoadSceneLoadNPCSprites
-	; needed to get all sprites displaying
-	bsr.w	SetSpriteLinks
-	move.w	#$2000,sr		; re-enable interrupts
+	bsr.w	ReloadSpriteTiles	; reload sprite tiles
 	bsr.w	FadeIn	; fade in
 	bra.w	ExitProcessStatusScreen	; exit
 ProcessStatusScreenTestDPad:

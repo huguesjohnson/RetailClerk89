@@ -200,7 +200,7 @@ SceneCenter:
 	;---------------------------------------------------------------------------
 	; NPC locations
 	;---------------------------------------------------------------------------
-	dc.w	$0001	; two npc slots
+	dc.w	$0003	; four npc slots
 
 	; npc0
 	dc.w	$0118	; starting x location of npc0
@@ -218,6 +218,21 @@ SceneCenter:
 	dc.l	NPCMovementUpStart	; location of movement pattern for npc1
 	dc.w	(NPCMovementUpEnd-NPCMovementUpStart-1)	; pattern length
 
+	; npc2
+	dc.w	$01E0	; starting x location of npc2
+	dc.w	$00F0	; starting y location of npc2
+	dc.w	DIRECTION_LEFT	; starting direction of npc2
+	dc.w	$0000	; movement frequency of npc2
+	dc.l	NullMovementStart	; location of movement pattern for npc2
+	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+
+	; npc3
+	dc.w	$00F0	; starting x location of npc3
+	dc.w	$0170	; starting y location of npc3
+	dc.w	DIRECTION_LEFT	; starting direction of npc3
+	dc.w	$0000	; movement frequency of npc3
+	dc.l	NullMovementStart	; location of movement pattern for npc3
+	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm

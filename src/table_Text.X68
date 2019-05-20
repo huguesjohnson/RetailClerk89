@@ -171,8 +171,26 @@ DefaultNPCDescriptionTable:
 	dc.l	DialogTextNPCSecretShopperDefaultLook
 	; OBJ_NPC_GUARD0
 	dc.l	DialogTextNPCGuard0DefaultLook
-	; OBJ_NCP_TRENDYGUY
+	; OBJ_NPC_TRENDYGUY
 	dc.l	DialogTextNPCTrendyGuyDefaultLook
+	; OBJ_NPC_FEMALE_SHOPPER0
+	dc.l	DialogTextNPCFemaleShopperDefaultLook
+	; OBJ_NPC_BILLY
+	dc.l	DialogTextNPCBillyDefaultLook
+	; OBJ_NPC_FIRE
+	dc.l	DialogTextNothingHappens	; shouldn't be reachable
+	; OBJ_NPC_MALLMANAGER_NOW
+	dc.l	DialogTextNPCMallManagerDefaultLook
+	; OBJ_NPC_MALLMANAGER_PAST
+	dc.l	DialogTextNothingHappens	; shouldn't be reachable
+	; OBJ_NPC_CAVERN_STAFF_PAST
+	dc.l	DialogTextNothingHappens	; shouldn't be reachable
+	; OBJ_NPC_DANI_XMAS
+	dc.l	DialogTextNPCDaniXmasDefaultLook
+	; OBJ_NPC_SLEEPING_GUARD
+	dc.l	DialogTextNPCSleepingGuardDefaultLook
+	; OBJ_NPC_GENERICSHOPPER
+	dc.l	DialogTextNothingHappens	; shouldn't be reachable
 
 ;-------------------------------------------------------------------------------
 ; object names

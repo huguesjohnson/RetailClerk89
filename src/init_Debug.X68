@@ -25,8 +25,8 @@ DebugTable:
 	dc.l	DebugStartDay5End	
 	dc.l	DebugStartDay6Title	
 	dc.l	DebugStartDay6NightStart
-	dc.l	DebugStartDay0Title	
-	dc.l	DebugStartDay0Title	
+	dc.l	DebugStartDay6NightEnd	
+	dc.l	DebugStartDay7Title	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
@@ -575,6 +575,74 @@ DebugStartDay6NightStart:
 	bsr.w	LoadPlayerSprite
 	bsr.w	FixSprites
 	bsr.w	FadeIn	; fade in to the new scene
+	rts
+
+DebugStartDay6NightEnd:
+	move.w	#$0006,(MEM_DAY)	; move to day 06
+	move.w	#OBJECTIVE_D6_O2,(MEM_OBJECTIVE)	; update objective
+	; update game state
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	bset.l	#STATE_FLAG_EXPLORING,d7 ; set exploring flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+	move.l	(MEM_DAY_EVENT_FLAGS),d7
+	bset.l	#EVENT_FLAG_DAY06_EVENT_PLAN,d7
+	bset.l	#EVENT_FLAG_DAY06_SUB00_STARTED,d7
+	bset.l	#EVENT_FLAG_DAY06_SUB00_COMPLETE,d7
+	bset.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7
+	bset.l	#EVENT_FLAG_DAY06_MISSION_COMPLETE,d7
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7
+	bset.l	#MISSION_FLAG_DAY06_SCRIPTEDEVENT0,d7
+	bset.l	#MISSION_FLAG_DAY06_SCRIPTEDEVENT1,d7
+	bset.l	#MISSION_FLAG_DAY06_RADIO,d7
+	move.l	d7,(MEM_MISSION_EVENT_FLAGS)
+	; update keys
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_TBOOKS,d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7
+	bset.l	#STORE_KEY_VB,d7
+	bset.l	#STORE_KEY_CHECKERS,d7
+	bset.l	#STORE_KEY_TLODGE,d7
+	bset.l	#STORE_KEY_FCB,d7
+	bset.l	#STORE_KEY_CNOW,d7
+	bset.l	#STORE_KEY_SVIDEO,d7
+	bset.l	#STORE_KEY_NSHACK,d7
+	bset.l	#STORE_KEY_WORKSHOP,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	; update NPCs
+	move.l	#$2101081D,(MEM_NPC_LOCATION_CENTER)
+	move.l	#$00000000,(MEM_NPC_LOCATION_WORKSHOP)
+	; update player sprite	
+	move.w	#PLAYER_SPRITE_FCBCAMPING,(MEM_PLAYER_SPRITE)
+	; move player sprite close to the exit
+	move.w	#$0100,(MEM_PLAYER_SPRITE_Y)
+	move.w	#$01B0,(MEM_PLAYER_SPRITE_X)
+	; load scene
+	lea	SceneWEHall,a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	LoadPlayerSprite
+	bsr.w	FixSprites
+	bsr.w	FadeIn	; fade in to the new scene
+	rts
+
+DebugStartDay7Title:
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_TBOOKS,d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7
+	bset.l	#STORE_KEY_VB,d7
+	bset.l	#STORE_KEY_CHECKERS,d7
+	bset.l	#STORE_KEY_TLODGE,d7
+	bset.l	#STORE_KEY_FCB,d7
+	bset.l	#STORE_KEY_CNOW,d7
+	bset.l	#STORE_KEY_SVIDEO,d7
+	bset.l	#STORE_KEY_NSHACK,d7
+	bset.l	#STORE_KEY_WORKSHOP,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7
+	bset.l	#GLOBAL_FLAG_JKEY_CPLANET,d7
+	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)
+	bsr.w	Day06End
 	rts
 
 DebugStartEnd:

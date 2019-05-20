@@ -13,6 +13,8 @@
 
 	include 'sub_ProcessStatusScreen.X68'
 
+	include 'sub_ProcessScriptedEvent.X68'
+
 	include	'sub_SetSpritePattern.X68'
 
 	include	'sub_TestSpriteCollision.X68'
@@ -20,6 +22,8 @@
 	include	'sub_MoveSprite.X68'
 
 	include	'sub_FixSprites.X68'
+
+	include	'sub_ReloadSpriteTiles.X68'
 
 	include	'sub_SetActiveSpriteMapRowCol.X68'
 
@@ -76,8 +80,6 @@
 	include	'sub_EndDemo.X68'
 
 	include 'sub_InitNPCLocations.X68'
-
-	include	'sub_ShowDefaultText.X68'
 
 	include	'sub_FadeInFadeOut.X68'
 

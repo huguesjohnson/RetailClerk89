@@ -100,3 +100,18 @@
 	; SCENE_ID_PARKINGLOT_BLIZZARD=$0018
 	include 'scenes/scene_parkinglotblizzard.X68'
 
+	; SCENE_ID_FLASHBACK_1975=$0019
+	include 'scenes/scene_flashback1975.X68'
+
+	; SCENE_ID_FLASHBACK_1989=$001A
+	include 'scenes/scene_flashback1989.X68'
+
+	; SCENE_ID_FLASHBACK_1992=$001B
+	include 'scenes/scene_flashback1992.X68'
+
+	; SCENE_ID_FLASHBACK_2001=$001C
+	include 'scenes/scene_flashback2001.X68'
+
+	; SCENE_ID_FLASHBACK_2014=$001D
+	include 'scenes/scene_flashback2014.X68'
+

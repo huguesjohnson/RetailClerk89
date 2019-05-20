@@ -78,3 +78,18 @@ SceneDefinitionTable:
 	; SCENE_ID_PARKINGLOT_BLIZZARD=$0018
 	dc.l	SceneParkingLotBlizzard
 
+	; SCENE_ID_FLASHBACK_1975=$0019
+	dc.l	SceneFlashback1975
+
+	; SCENE_ID_FLASHBACK_1989=$001A
+	dc.l	SceneFlashback1989
+
+	; SCENE_ID_FLASHBACK_1992=$001B
+	dc.l	SceneFlashback1992
+
+	; SCENE_ID_FLASHBACK_2001=$001C
+	dc.l	SceneFlashback2001
+
+	; SCENE_ID_FLASHBACK_2014=$001D
+	dc.l	SceneFlashback2014
+

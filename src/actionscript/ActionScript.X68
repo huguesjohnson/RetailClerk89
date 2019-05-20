@@ -5,6 +5,29 @@ ActionScriptNullEvent:
 	rts
 
 ;*******************************************************************************
+; used for lookup table conditions that only ever show default look text
+;*******************************************************************************
+ActionScriptDefaultLook:
+	bsr.w	ShowDefaultText
+	rts
+
+;*******************************************************************************
+; used for lookup table conditions that show default use text (no npcs)
+;*******************************************************************************
+ActionScriptDefaultUse:
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+;*******************************************************************************
+; used for lookup table conditions that show default take text (no npcs)
+;*******************************************************************************
+ActionScriptDefaultTake:
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+;*******************************************************************************
 ; end the game
 ;*******************************************************************************
 EndGame:
@@ -66,6 +89,11 @@ ExitDefaultActionGive:
 	include	'actionscript/ActionScriptSceneExit.X68'
 
 ;*******************************************************************************
+; default text for look events
+;*******************************************************************************
+	include	'sub_ShowDefaultText.X68'
+
+;*******************************************************************************
 ; process actions based on day and scene, this is effectively the game script
 ;*******************************************************************************
 	include	'actionscript/ActionScriptDay00.X68'
@@ -76,5 +104,4 @@ ExitDefaultActionGive:
 	include	'actionscript/ActionScriptDay05.X68'
 	include	'actionscript/ActionScriptDay06.X68'
 	include	'actionscript/ActionScriptDay07.X68'
-
 

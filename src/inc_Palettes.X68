@@ -180,6 +180,12 @@ CutSceneParkingLotBlizzardPalettes:
 	include 'palettes/pal_Store_parkingBlizzard_02.X68'
 	include 'palettes/pal_People_00.X68'
 
+FlashbackPalettes:
+	include 'palettes/pal_Flashback00.X68'
+	include 'palettes/pal_Flashback01.X68'
+	include 'palettes/pal_Flashback02.X68'
+	include 'palettes/pal_People_00.X68'
+
 ;-------------------------------------------------------------------------------
 ; palettes for screens that only display text (legal, credits)
 ;-------------------------------------------------------------------------------

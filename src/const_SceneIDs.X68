@@ -30,6 +30,11 @@ SCENE_ID_SOUTH_CENTER=$0017
 ; scenes used in cut-scenes
 ;-------------------------------------------------------------------------------
 SCENE_ID_PARKINGLOT_BLIZZARD=$0018
+SCENE_ID_FLASHBACK_1975=$0019
+SCENE_ID_FLASHBACK_1989=$001A
+SCENE_ID_FLASHBACK_1992=$001B
+SCENE_ID_FLASHBACK_2001=$001C
+SCENE_ID_FLASHBACK_2014=$001D
 
 ;-------------------------------------------------------------------------------
 ; day transition screens
