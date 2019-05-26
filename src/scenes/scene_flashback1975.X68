@@ -8,7 +8,7 @@ SceneFlashback1975:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0003	; tileset count - 1
+	dc.w	$0004	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -23,6 +23,10 @@ SceneFlashback1975:
 	dc.l	FlashbackFrameTilesEnd
 
 	; tileset 3
+	dc.l	FlashbackOfficeTilesStart
+	dc.l	FlashbackOfficeTilesEnd
+
+	; tileset 4
 	dc.l	Flashback1975TilesStart
 	dc.l	Flashback1975TilesEnd
 

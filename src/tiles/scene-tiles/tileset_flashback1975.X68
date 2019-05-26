@@ -1,144 +1,4 @@
-	; 00
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAA99
-	dc.l	$AAAAAA99
-
-	; 01
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$99666666
-	dc.l	$99666666
-
-	; 02
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$66666666
-	dc.l	$66666666
-
-	; 03
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$99999999
-	dc.l	$99999999
-
-	; 04
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$99AAAAAA
-	dc.l	$99AAAAAA
-
-	; 05
-	dc.l	$AAAAAA99
-	dc.l	$AAAAAA99
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-
-	; 06
-	dc.l	$99666666
-	dc.l	$99666666
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-
-	; 07
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-
-	; 08
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-
-	; 09
-	dc.l	$99999999
-	dc.l	$99999999
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$66666666
-
-	; 0A
-	dc.l	$99AAAAAA
-	dc.l	$99AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-
-	; 0B
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-	dc.l	$AAAAAA66
-
-	; 0C
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-
-	; 0D
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-
-	; 0E
+	; 1A
 	dc.l	$88333333
 	dc.l	$88377777
 	dc.l	$88377777
@@ -148,7 +8,7 @@
 	dc.l	$88377777
 	dc.l	$8837CC77
 
-	; 0F
+	; 1B
 	dc.l	$33333388
 	dc.l	$777773C8
 	dc.l	$777773C8
@@ -158,57 +18,7 @@
 	dc.l	$777773C8
 	dc.l	$777773C8
 
-	; 10
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-
-	; 11
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$66666666
-	dc.l	$66666666
-
-	; 12
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-
-	; 13
-	dc.l	$66CB8888
-	dc.l	$66CB8888
-	dc.l	$66CCB888
-	dc.l	$66CCB888
-	dc.l	$66CCB888
-	dc.l	$665CCB88
-	dc.l	$665CCBBB
-	dc.l	$6655CCCC
-
-	; 14
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$BBBBBBBB
-	dc.l	$CCCCCCCC
-
-	; 15
+	; 1C
 	dc.l	$88377777
 	dc.l	$88333333
 	dc.l	$88844444
@@ -218,7 +28,7 @@
 	dc.l	$BBBBBBBB
 	dc.l	$CCCCCCCC
 
-	; 16
+	; 1D
 	dc.l	$777773C8
 	dc.l	$333333C8
 	dc.l	$44444C88
@@ -228,67 +38,7 @@
 	dc.l	$BBBBBBBB
 	dc.l	$CCCCCCCC
 
-	; 17
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$88888888
-	dc.l	$BB888888
-	dc.l	$CB888888
-
-	; 18
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-	dc.l	$888888BC
-
-	; 19
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-	dc.l	$66AAAAAA
-
-	; 1A
-	dc.l	$66555555
-	dc.l	$66555555
-	dc.l	$66555555
-	dc.l	$66555555
-	dc.l	$66555555
-	dc.l	$66555555
-	dc.l	$66555555
-	dc.l	$66555555
-
-	; 1B
-	dc.l	$55555555
-	dc.l	$55555555
-	dc.l	$55555555
-	dc.l	$55555555
-	dc.l	$55555555
-	dc.l	$55555555
-	dc.l	$55555555
-	dc.l	$55555555
-
-	; 1C
-	dc.l	$CB888888
-	dc.l	$CB888888
-	dc.l	$CB888888
-	dc.l	$CB888888
-	dc.l	$CB888888
-	dc.l	$CB888888
-	dc.l	$CB888888
-	dc.l	$CB888888
-
-	; 1D
+	; 1E
 	dc.l	$55555CCC
 	dc.l	$5555C777
 	dc.l	$555C7477
@@ -298,7 +48,7 @@
 	dc.l	$55C44174
 	dc.l	$55C44444
 
-	; 1E
+	; 1F
 	dc.l	$CC555555
 	dc.l	$77C55555
 	dc.l	$777C5555
@@ -308,7 +58,7 @@
 	dc.l	$7144C555
 	dc.l	$4444C555
 
-	; 1F
+	; 20
 	dc.l	$555C4444
 	dc.l	$55CC6C44
 	dc.l	$5C6666C4
@@ -318,7 +68,7 @@
 	dc.l	$C66C662C
 	dc.l	$C66C662C
 
-	; 20
+	; 21
 	dc.l	$444C5555
 	dc.l	$4C6CC555
 	dc.l	$C6666C55
@@ -328,7 +78,7 @@
 	dc.l	$266C66C5
 	dc.l	$266C66C5
 
-	; 21
+	; 22
 	dc.l	$C66C662C
 	dc.l	$C66C6677
 	dc.l	$C44C6644
@@ -338,7 +88,7 @@
 	dc.l	$555C444C
 	dc.l	$555C444C
 
-	; 22
+	; 23
 	dc.l	$266C66C5
 	dc.l	$766C66C5
 	dc.l	$466C44C5
@@ -348,7 +98,7 @@
 	dc.l	$444C5555
 	dc.l	$444C5555
 
-	; 23
+	; 24
 	dc.l	$555C444C
 	dc.l	$555C444C
 	dc.l	$555C444C
@@ -358,7 +108,7 @@
 	dc.l	$5CCCCCCC
 	dc.l	$55CCCCCC
 
-	; 24
+	; 25
 	dc.l	$444C5555
 	dc.l	$444C5555
 	dc.l	$444C5555
@@ -368,7 +118,7 @@
 	dc.l	$CCCCCC55
 	dc.l	$CCCCC555
 
-	; 25
+	; 26
 	dc.l	$555555CC
 	dc.l	$55555C77
 	dc.l	$5555C447
@@ -378,7 +128,7 @@
 	dc.l	$5555C4D1
 	dc.l	$5555C444
 
-	; 26
+	; 27
 	dc.l	$CCC55555
 	dc.l	$774C5555
 	dc.l	$7774C555
@@ -388,7 +138,7 @@
 	dc.l	$4444C555
 	dc.l	$4444C555
 
-	; 27
+	; 28
 	dc.l	$55555C44
 	dc.l	$555555C4
 	dc.l	$55555CC7
@@ -398,7 +148,7 @@
 	dc.l	$5555C7C7
 	dc.l	$5555C7C7
 
-	; 28
+	; 29
 	dc.l	$444C5555
 	dc.l	$477C5555
 	dc.l	$777C5555
@@ -408,7 +158,7 @@
 	dc.l	$C77C5555
 	dc.l	$C74C5555
 
-	; 29
+	; 2A
 	dc.l	$5555C7C7
 	dc.l	$5555C7C7
 	dc.l	$5555C666
@@ -418,7 +168,7 @@
 	dc.l	$55555C66
 	dc.l	$55555C66
 
-	; 2A
+	; 2B
 	dc.l	$C44C5555
 	dc.l	$C44C5555
 	dc.l	$C44C5555
@@ -428,7 +178,7 @@
 	dc.l	$66C55555
 	dc.l	$66C55555
 
-	; 2B
+	; 2C
 	dc.l	$55555C66
 	dc.l	$55555C66
 	dc.l	$55555C66
@@ -438,7 +188,7 @@
 	dc.l	$555CCCCC
 	dc.l	$5555CCCC
 
-	; 2C
+	; 2D
 	dc.l	$66C55555
 	dc.l	$66C55555
 	dc.l	$66C55555
@@ -448,13 +198,43 @@
 	dc.l	$CCCCC555
 	dc.l	$CCCC5555
 
-	; 2D
+	; 2E
 	dc.l	$AAAAAAAA
+	dc.l	$AAAADAAA
+	dc.l	$AAADDAAA
+	dc.l	$AAAADAAA
+	dc.l	$AAAADAAA
+	dc.l	$AAAADAAA
+	dc.l	$AAAADAAA
+	dc.l	$AADDDDDA
+
+	; 2F
 	dc.l	$AAAAAAAA
+	dc.l	$AAADDDDA
+	dc.l	$AADAAADA
+	dc.l	$AADAAADA
+	dc.l	$AAADDDDA
+	dc.l	$AAAAAADA
+	dc.l	$AAAAAADA
+	dc.l	$AAAAAADA
+
+	; 30
 	dc.l	$AAAAAAAA
+	dc.l	$AADDDDDA
+	dc.l	$AAAAAADA
+	dc.l	$AAAAADAA
+	dc.l	$AAAADAAA
+	dc.l	$AAAADAAA
+	dc.l	$AAAADAAA
+	dc.l	$AAAADAAA
+
+	; 31
 	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
-	dc.l	$AAAAAAAA
+	dc.l	$AADDDDDA
+	dc.l	$AADAAAAA
+	dc.l	$AADDDDAA
+	dc.l	$AAAAAADA
+	dc.l	$AAAAAADA
+	dc.l	$AADAAADA
+	dc.l	$AAADDDAA
 

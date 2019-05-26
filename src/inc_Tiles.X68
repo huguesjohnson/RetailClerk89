@@ -341,9 +341,26 @@ FlashbackFrameTilesStart:
 	include 'tiles/scene-tiles/tileset_flashbackframe.X68'
 FlashbackFrameTilesEnd:
 
+FlashbackOfficeTilesStart:
+	include 'tiles/scene-tiles/tileset_flashbackoffice.X68'
+FlashbackOfficeTilesEnd:
+
 Flashback1975TilesStart:
 	include 'tiles/scene-tiles/tileset_flashback1975.X68'
 Flashback1975TilesEnd:
+
+Flashback1992TilesStart:
+	include 'tiles/scene-tiles/tileset_flashback1992.X68'
+Flashback1992TilesEnd:
+
+Flashback2000TilesStart:
+	include 'tiles/scene-tiles/tileset_flashback2000.X68'
+Flashback2000TilesEnd:
+
+Flashback2014TilesStart:
+	include 'tiles/scene-tiles/tileset_flashback2014.X68'
+Flashback2014TilesEnd:
+
 
 ;-------------------------------------------------------------------------------
 ; general store frame tiles

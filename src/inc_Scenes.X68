@@ -109,8 +109,8 @@
 	; SCENE_ID_FLASHBACK_1992=$001B
 	include 'scenes/scene_flashback1992.X68'
 
-	; SCENE_ID_FLASHBACK_2001=$001C
-	include 'scenes/scene_flashback2001.X68'
+	; SCENE_ID_FLASHBACK_2000=$001C
+	include 'scenes/scene_flashback2000.X68'
 
 	; SCENE_ID_FLASHBACK_2014=$001D
 	include 'scenes/scene_flashback2014.X68'

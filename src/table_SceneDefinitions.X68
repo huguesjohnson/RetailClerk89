@@ -87,8 +87,8 @@ SceneDefinitionTable:
 	; SCENE_ID_FLASHBACK_1992=$001B
 	dc.l	SceneFlashback1992
 
-	; SCENE_ID_FLASHBACK_2001=$001C
-	dc.l	SceneFlashback2001
+	; SCENE_ID_FLASHBACK_2000=$001C
+	dc.l	SceneFlashback2000
 
 	; SCENE_ID_FLASHBACK_2014=$001D
 	dc.l	SceneFlashback2014

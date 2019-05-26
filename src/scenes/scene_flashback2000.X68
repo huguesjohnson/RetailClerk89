@@ -1,14 +1,14 @@
-SceneFlashback2001:
+SceneFlashback2000:
 
 	;---------------------------------------------------------------------------
 	; scene ID
 	;---------------------------------------------------------------------------
-	dc.w	SCENE_ID_FLASHBACK_2001
+	dc.w	SCENE_ID_FLASHBACK_2000
 
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0002	; tileset count - 1
+	dc.w	$0004	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -21,6 +21,14 @@ SceneFlashback2001:
 	; tileset 2
 	dc.l	FlashbackFrameTilesStart
 	dc.l	FlashbackFrameTilesEnd
+
+	; tileset 3
+	dc.l	FlashbackOfficeTilesStart
+	dc.l	FlashbackOfficeTilesEnd
+
+	; tileset 4
+	dc.l	Flashback2000TilesStart
+	dc.l	Flashback2000TilesEnd
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -54,7 +62,7 @@ SceneFlashback2001:
 	dc.l	VDP_VRAM_WRITE_B+$00100000	; initial drawing location
 
 	; picture
-	dc.l	PatternFlashbackPicture	; location of pattern to load
+	dc.l	PatternFlashbackPicture2000	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1010000000011001	; base pattern
 	dc.w	$0000	; no repeat

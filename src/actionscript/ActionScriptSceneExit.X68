@@ -394,19 +394,12 @@ ExitScene03Default:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 ExitScene03Day06Event:
-	btst.l	#EVENT_FLAG_DAY06_ENDING_OPEN,d7	; test if ending is accessible
-	bne.s	.1	; branch if flag set
 	; set EVENT_FLAG_DAY06_ENDING_OPEN
 	bset.l	#EVENT_FLAG_DAY06_ENDING_OPEN,d7
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
-	lea ScriptedEventDay06Ending0,a6
-	bra.s	.2
-.1
 	; update NPCs in nshack
 	move.l	#$0A010000,(MEM_NPC_LOCATION_NSHACK)
-	; queue scripted event
-	lea ScriptedEventDay06Ending1,a6	; point a6 to event to load
-.2
+	lea ScriptedEventDay06Ending0,a6
 	bsr.w QueueScriptedEvent	; queue the event
 	rts	; exit
 

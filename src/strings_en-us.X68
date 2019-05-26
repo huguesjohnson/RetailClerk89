@@ -4419,24 +4419,476 @@ DialogTextDay06Scene03Dani:
 
 	align 2
 DialogTextDay06ScriptedEventEnding000:
-	dc.w	OBJ_NPC_DANI
+	dc.w	OBJ_NPC_CAVERN_STAFF
 	;		"1234567890123456789012"
-	dc.b	"first ending dialog",LF
-	dc.b	"",ETX
+	dc.b	"Where are you off to",LF
+	dc.b	"in such a hurry?",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding001:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"ending dialog during",LF
-	dc.b	"2nd scene",ETX
+	dc.b	"What's going on?",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Did you do this to",LF
+	dc.b	"the guard?",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding002:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"He'll be fine, just",LF
+	dc.b	"taking a little nap. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"He won't remember a",LF
+	dc.b	"thing when he wakes. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I'm sorry but this is",LF
+	dc.b	"all my fault.        ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I was so young when it",LF
+	dc.b	"started.             ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I'd only been out of",LF
+	dc.b	"school a week.       ^",FF
+	;		"1234567890123456789012"
+	dc.b	"They hired me to ",LF
+	dc.b	"program this new     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"cutting edge mall ",LF
+	dc.b	"management system.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding003:
+	dc.w	OBJ_NPC_MALLMANAGER_PAST
+	;		"1234567890123456789012"
+	dc.b	"It's not unethical, it",LF
+	dc.b	"is the latest craze. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"It's called subliminal",LF
+	dc.b	"messaging.           ^",FF
+	;		"1234567890123456789012"
+	dc.b	"You just need to wire",LF
+	dc.b	"it into the music.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding004:
+	dc.w	OBJ_NPC_CAVERN_STAFF_PAST
+	;		"1234567890123456789012"
+	dc.b	"Are you sure it's OK?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding005:
+	dc.w	OBJ_NPC_MALLMANAGER_PAST
+	;		"1234567890123456789012"
+	dc.b	"Everyone else is doing",LF
+	dc.b	"it.                  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"It doesn't force you",LF
+	dc.b	"to do anything.      ^",FF
+	;		"1234567890123456789012"
+	dc.b	"It's more like a",LF
+	dc.b	"suggestion.          ^",FF
+	;		"1234567890123456789012"
+	dc.b	"You like working here",LF
+	dc.b	"right?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding006:
+	dc.w	OBJ_NPC_CAVERN_STAFF_PAST
+	;		"1234567890123456789012"
+	dc.b	"Yeah, OK.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding007:
+	dc.w	OBJ_NPC_MALLMANAGER_PAST
+	;		"1234567890123456789012"
+	dc.b	"We're losing too much",LF
+	dc.b	"business.            ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Everyone is going to",LF
+	dc.b	"these super stores.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"We have to do more.",LF
+	dc.b	"Have you figured out ^",FF
+	;		"1234567890123456789012"
+	dc.b	"how to integrate it",LF
+	dc.b	"with the monitors yet?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding008:
+	dc.w	OBJ_NPC_CAVERN_STAFF_PAST
+	;		"1234567890123456789012"
+	dc.b	"It's close, but it may",LF
+	dc.b	"cause some problems.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding009:
+	dc.w	OBJ_NPC_MALLMANAGER_PAST
+	;		"1234567890123456789012"
+	dc.b	"Don't tell me about",LF
+	dc.b	"problems.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding00A:
+	dc.w	OBJ_NPC_CAVERN_STAFF_PAST
+	;		"1234567890123456789012"
+	dc.b	"But these are serious,",LF
+	dc.b	"the images, they.. ",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding00B:
+	dc.w	OBJ_NPC_MALLMANAGER_PAST
+	;		"1234567890123456789012"
+	dc.b	"They're subconscious, ",LF
+	dc.b	"completely harmless. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"It's just some screens",LF
+	dc.b	"with videos and info.^",FF
+	;		"1234567890123456789012"
+	dc.b	"What harm will 1 frame",LF
+	dc.b	"out of 60 do?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding00C:
+	dc.w	OBJ_NPC_MALLMANAGER_PAST
+	;		"1234567890123456789012"
+	dc.b	"Mall traffic is down",LF
+	dc.b	"again.               ^",FF
+	;		"1234567890123456789012"
+	dc.b	"We have to turn on the",LF
+	dc.b	"Nostalgia Engine.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding00D:
+	dc.w	OBJ_NPC_CAVERN_STAFF_PAST
+	;		"1234567890123456789012"
+	dc.b	"It's not ready yet.",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"We don't know all the",LF
+	dc.b	"side-effects.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding00E:
+	dc.w	OBJ_NPC_MALLMANAGER_PAST
+	;		"1234567890123456789012"
+	dc.b	"The effects are all",LF
+	dc.b	"temporary.           ^",FF
+	;		"1234567890123456789012"
+	dc.b	"They're just waves",LF
+	dc.b	"that make you happy. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Happy people buy more.",LF
+	dc.b	"It's a fact.         ^",FF
+	;		"1234567890123456789012"
+	dc.b	"So what if they think",LF
+	dc.b	"they're back in the  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"70s or 80s again?",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"They're happy and",LF
+	dc.b	"spending money.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding00F:
+	dc.w	OBJ_NPC_MALLMANAGER_PAST
+	;		"1234567890123456789012"
+	dc.b	"We don't have much",LF
+	dc.b	"time left!           ^",FF
+	;		"1234567890123456789012"
+	dc.b	"You have to make it",LF
+	dc.b	"work!                ^",FF
+	;		"1234567890123456789012"
+	dc.b	"This will be the thing",LF
+	dc.b	"that saves the mall. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Imagine walking into",LF
+	dc.b	"the mall but instead ^",FF
+	;		"1234567890123456789012"
+	dc.b	"it's exactly how you",LF
+	dc.b	"remember as a kid,   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"because it really is.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding010:
+	dc.w	OBJ_NPC_CAVERN_STAFF_PAST
+	;		"1234567890123456789012"
+	dc.b	"I'm close but..",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding011:
+	dc.w	OBJ_NPC_MALLMANAGER_PAST
+	;		"1234567890123456789012"
+	dc.b	"I don't want to hear",LF
+	dc.b	"about 'but'.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding012:
+	dc.w	OBJ_NPC_CAVERN_STAFF_PAST
+	;		"1234567890123456789012"
+	dc.b	"I don't know if they",LF
+	dc.b	"can leave.           ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Who will test this?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding013:
+	dc.w	OBJ_NPC_MALLMANAGER_PAST
+	;		"1234567890123456789012"
+	dc.b	"Why are you always so",LF
+	dc.b	"difficult?           ^",FF
+	;		"1234567890123456789012"
+	dc.b	"It's not we're",LF
+	dc.b	"forcing them to.     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"The sensors have to ",LF
+	dc.b	"detect that they     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"really want to go back",LF
+	dc.b	"in the first place.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I'll test it, nothing",LF
+	dc.b	"bad will happen.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding014:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"The mall was bulldozed",LF
+	dc.b	"in 2016 to make room ^",FF
+	;		"1234567890123456789012"
+	dc.b	"for some new hipster",LF
+	dc.b	"outdoor market.      ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Vegan restaurants,",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"overpriced beer made",LF
+	dc.b	"in someone's cellar, ^",FF
+	;		"1234567890123456789012"
+	dc.b	"miniature dogs in",LF
+	dc.b	"baby strollers,      ^",FF
+	;		"1234567890123456789012"
+	dc.b	"that's what put me",LF
+	dc.b	"out of work.         ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Almost 40 years of",LF
+	dc.b	"work lost to them.   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"So I came back too.",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I never took a day off",LF
+	dc.b	"in 40 years.         ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I never did anything",LF
+	dc.b	"just for fun.        ^",FF
+	;		"1234567890123456789012"
+	dc.b	"So I came back to run",LF
+	dc.b	"the arcade.          ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I wanted to be",LF
+	dc.b	"somewhere fun once.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I know it will close",LF
+	dc.b	"in 7 years.          ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Hopefully I'll be",LF
+	dc.b	"dead by then.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding015:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"ending dialog back at",LF
-	dc.b	"orignal scene",ETX
+	dc.b	"What happened to the",LF
+	dc.b	"mall manager?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding016:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I think I know now.",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"The system is getting",LF
+	dc.b	"stronger over time,  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"People are coming from",LF
+	dc.b	"before 2014.         ^",FF
+	;		"1234567890123456789012"
+	dc.b	"That means it was",LF
+	dc.b	"finished sooner.     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"The first time I was",LF
+	dc.b	"in 1989              ^",FF
+	;		"1234567890123456789012"
+	dc.b	"there weren't people",LF
+	dc.b	"like beardy here.    ^",FF
+	;		"1234567890123456789012"
+	dc.b	"So I tried to burn it",LF
+	dc.b	"down; it didn't work.^",FF
+	;		"1234567890123456789012"
+	dc.b	"The technology is",LF
+	dc.b	"advancing too fast.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"He must be here then,",LF
+	dc.b	"advancing the project.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding017:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"You said 'people'..",LF
+	dc.b	"Are there others?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding018:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Too many already.",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"There will be more if",LF
+	dc.b	"I can't stop it.     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"It's funny isn't it?",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"The same people who",LF
+	dc.b	"destroyed this mall  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"want to come back to",LF
+	dc.b	"it again.            ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I won't let them ruin",LF
+	dc.b	"my life twice.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding019:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Can I get home the way",LF
+	dc.b	"I entered?",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding01A:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Oh you'd like that.",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Go back & tell all",LF
+	dc.b	"you manbun friends.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"'Hey dudes, check out",LF
+	dc.b	"this neat lifehack!' ^",FF
+	;		"1234567890123456789012"
+	dc.b	"The mall will be",LF
+	dc.b	"crawling with them.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I'm not letting that",LF
+	dc.b	"happen.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding01B:
+	dc.w	OBJ_NPC_MALLMANAGER_NOW
+	;		"1234567890123456789012"
+	dc.b	"No, go back. Tell",LF
+	dc.b	"everyone about it.   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"The mall will make",LF
+	dc.b	"billions!",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding01C:
+	dc.w	OBJ_NPC_CAVERN_STAFF
+	;		"1234567890123456789012"
+	dc.b	"That's all this has",LF
+	dc.b	"been about for you.  ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Manipulating people",LF
+	dc.b	"just to get rich.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding01D:
+	dc.w	OBJ_NPC_MALLMANAGER_NOW
+	;		"1234567890123456789012"
+	dc.b	"At least I have a",LF
+	dc.b	"plan.                ^",FF
+	;		"1234567890123456789012"
+	dc.b	"You go along with",LF
+	dc.b	"whatever you're told.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding01E:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I don't know who to",LF
+	dc.b	"cheer for.           ^",FF
+	;		"1234567890123456789012"
+	dc.b	"They're both pretty",LF
+	dc.b	"awful.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding01F:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Looks like they'll be",LF
+	dc.b	"at this for a while. ^",FF
+	;		"1234567890123456789012"
+	dc.b	"You should go while",LF
+	dc.b	"they're distracted.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding020:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Yeah, this has been",LF
+	dc.b	"good times & all that^",FF
+	;		"1234567890123456789012"
+	dc.b	"but I need to get back",LF
+	dc.b	"to my life.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding021:
+	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You can assure him I",LF
+	dc.b	"won't tell anyone.   ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Best to leave this on",LF
+	dc.b	"the downlow.         ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Thanks for all your ",LF
+	dc.b	"help.                ^",FF
+	;		"1234567890123456789012"
+	dc.b	"I'll really miss you",LF
+	dc.b	"and D.B.             ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Don't try to find me",LF
+	dc.b	"before 2015.         ^",FF
+	;		"1234567890123456789012"
+	dc.b	"Who knows what will",LF
+	dc.b	"happen.              ^",FF
+	;		"1234567890123456789012"
+	dc.b	"How about I invite you",LF
+	dc.b	"to my wedding?       ^",FF
+	;		"1234567890123456789012"
+	dc.b	"We'll catch-up then.",LF
+	dc.b	"                     ^",FF
+	;		"1234567890123456789012"
+	dc.b	"That shouldn't mess",LF
+	dc.b	"with timelines.",ETX
+
+	align 2
+DialogTextDay06ScriptedEventEnding022:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"On the downlow?",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding100:

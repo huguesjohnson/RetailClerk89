@@ -2272,30 +2272,185 @@ ScriptedEventDay06Ending0:
 	dc.w	$0001	; player
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay06ScriptedEventEnding000
-
-
+	; --------------------------------------------------------------------------
+	; step back
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	$0038
+	dc.w	DIRECTION_UP
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; move npc2 into scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; NPC2
+	dc.w	DIRECTION_DOWN
+	dc.w	$0040
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding000
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding002
+	; --------------------------------------------------------------------------
+	; flashback to 1975
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
 	dc.w	SCRIPTED_EVENT_DRAW_SCENE
 	dc.w	SCENE_ID_FLASHBACK_1975
-
-
 	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding001
-
+	dc.l	DialogTextDay06ScriptedEventEnding003
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding004
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding005
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding006
+	; --------------------------------------------------------------------------
+	; flashback to 1992
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	dc.w	SCRIPTED_EVENT_DRAW_SCENE
+	dc.w	SCENE_ID_FLASHBACK_1992
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding007
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding008
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding009
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding00A
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding00B
+	; --------------------------------------------------------------------------
+	; flashback to 2000
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	dc.w	SCRIPTED_EVENT_DRAW_SCENE
+	dc.w	SCENE_ID_FLASHBACK_2000
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding00C
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding00D
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding00E
+	; --------------------------------------------------------------------------
+	; flashback to 2014
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	dc.w	SCRIPTED_EVENT_DRAW_SCENE
+	dc.w	SCENE_ID_FLASHBACK_2014
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding00E
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding00F
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding010
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding011
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding012
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding013
+	; --------------------------------------------------------------------------
+	; return to the hallway
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
 	dc.w	SCRIPTED_EVENT_DRAW_SCENE
 	dc.w	SCENE_ID_CENTER
-
 	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding001
-
-	dc.w	SCRIPTED_EVENT_END
-
-ScriptedEventDay06Ending1:
-	dc.w	$0001	; player
-	;---------------------------------------------------------------------------
-	; walk toward and back from the entrance
-	;---------------------------------------------------------------------------
+	dc.l	DialogTextDay06ScriptedEventEnding014
+	; --------------------------------------------------------------------------
+	; walk Dani up to the NPCs
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; NPC1
+	dc.w	DIRECTION_LEFT
+	dc.w	$0060
+	dc.w	DIRECTION_UP
+	dc.w	$0040
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0040
+	dc.w	DIRECTION_UP
+	dc.w	$0008
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding015
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding016
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding017
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding018
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding019
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding01A
+	; --------------------------------------------------------------------------
+	; move npcs into scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; NPC2
 	dc.w	DIRECTION_DOWN
-	dc.w	$0018
+	dc.w	$0004
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0005	; NPC3
+	dc.w	DIRECTION_UP
+	dc.w	($0151-$009C)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; NPC2
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0040
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding01B
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding01C
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding01D
+	; --------------------------------------------------------------------------
+	; dialog between main characters
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; NPC1
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding01E
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding01F
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding020
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_UP
+	dc.w	$0010
+	dc.w	DIRECTION_DOWN
+	dc.w	$0010
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding021
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding022
+	;---------------------------------------------------------------------------
+	; walk toward the entrance
+	;---------------------------------------------------------------------------
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0001
 	dc.w	DIRECTION_UP
 	dc.w	$0028
 	; --------------------------------------------------------------------------
@@ -2303,7 +2458,7 @@ ScriptedEventDay06Ending1:
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
 	; --------------------------------------------------------------------------
-	; change sprite while screen is blank
+	; move sprite while screen is blank
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
 	dc.w	$0118
@@ -2366,20 +2521,20 @@ ScriptedEventDay06Ending1:
 	; --------------------------------------------------------------------------
 	; dialog
 	; --------------------------------------------------------------------------
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding101
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding102
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding103
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding104
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding105
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding106
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding107
+;	dc.w	SCRIPTED_EVENT_DIALOG
+;	dc.l	DialogTextDay06ScriptedEventEnding101
+;	dc.w	SCRIPTED_EVENT_DIALOG
+;	dc.l	DialogTextDay06ScriptedEventEnding102
+;	dc.w	SCRIPTED_EVENT_DIALOG
+;	dc.l	DialogTextDay06ScriptedEventEnding103
+;	dc.w	SCRIPTED_EVENT_DIALOG
+;	dc.l	DialogTextDay06ScriptedEventEnding104
+;	dc.w	SCRIPTED_EVENT_DIALOG
+;	dc.l	DialogTextDay06ScriptedEventEnding105
+;	dc.w	SCRIPTED_EVENT_DIALOG
+;	dc.l	DialogTextDay06ScriptedEventEnding106
+;	dc.w	SCRIPTED_EVENT_DIALOG
+;	dc.l	DialogTextDay06ScriptedEventEnding107
 	; --------------------------------------------------------------------------
 	; walk Dani out of the store
 	; --------------------------------------------------------------------------

@@ -8,7 +8,7 @@ SceneFlashback1992:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0002	; tileset count - 1
+	dc.w	$0004	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -21,6 +21,14 @@ SceneFlashback1992:
 	; tileset 2
 	dc.l	FlashbackFrameTilesStart
 	dc.l	FlashbackFrameTilesEnd
+
+	; tileset 3
+	dc.l	FlashbackOfficeTilesStart
+	dc.l	FlashbackOfficeTilesEnd
+
+	; tileset 4
+	dc.l	Flashback1992TilesStart
+	dc.l	Flashback1992TilesEnd
 
 	;---------------------------------------------------------------------------
 	; palettes
@@ -54,7 +62,7 @@ SceneFlashback1992:
 	dc.l	VDP_VRAM_WRITE_B+$00100000	; initial drawing location
 
 	; picture
-	dc.l	PatternFlashbackPicture	; location of pattern to load
+	dc.l	PatternFlashbackPicture1992	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1010000000011001	; base pattern
 	dc.w	$0000	; no repeat

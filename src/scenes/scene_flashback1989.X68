@@ -54,7 +54,7 @@ SceneFlashback1989:
 	dc.l	VDP_VRAM_WRITE_B+$00100000	; initial drawing location
 
 	; picture
-	dc.l	PatternFlashbackPicture	; location of pattern to load
+	dc.l	PatternFlashbackPicture1989	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%1010000000011001	; base pattern
 	dc.w	$0000	; no repeat
