@@ -801,6 +801,7 @@ Day06End:
 	move.l	#$00000000,(MEM_NPC_LOCATION_EWHALL)	; clear hallway
 	move.l	#$00000000,(MEM_NPC_LOCATION_CAVERN)	; clear cavern
 	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)	; update dcountry
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)	; update center
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	

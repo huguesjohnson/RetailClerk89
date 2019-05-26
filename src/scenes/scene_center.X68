@@ -161,7 +161,7 @@ SceneCenter:
 	; 		%wwwwwwwxxxxxxxxx
 	dc.w	%1010000011010000
 	; 		%hhhhhhhyyyyyyyyy
-	dc.w	%0100000011111000
+	dc.w	%0010000011111000
 
 	dc.w	OBJ_SCENE_INFODESK
 	; 		%wwwwwwwxxxxxxxxx

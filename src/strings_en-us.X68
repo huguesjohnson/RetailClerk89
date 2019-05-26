@@ -680,6 +680,23 @@ DialogTextSecurityGuardDay00:
 	dc.b	"The mall is closed.",LF
 	dc.b	"Get a move on.",ETX
 
+	align 2
+DialogTextMallManagerDay00:
+	dc.w	OBJ_NPC_MALLMANAGER_NOW
+	;		"1234567890123456789012"
+	dc.b	"Hi, I'm the manager of",LF
+	dc.b	"the mall.            ^",FF
+	dc.b	"You must be the new",LF
+	dc.b	"guy I heard about.   ^",FF
+	dc.b	"Welcome to the",LF
+	dc.b	"Bayhust Mall family! ^",FF
+	dc.b	"I've been here since",LF
+	dc.b	"opening day in 1975. ^",FF
+	dc.b	"The mall has changed a",LF
+	dc.b	"lot since then.      ^",FF
+	dc.b	"I hope you have a long",LF
+	dc.b	"& fruitful career.",ETX
+
 ;-------------------------------------------------------------------------------
 ; dialog text - day 01
 ;-------------------------------------------------------------------------------
@@ -3510,7 +3527,7 @@ DialogTextDay05ScriptedEventCamp19B:
 	dc.b	"You know, all the",LF
 	dc.b	"expected things,     ^",FF
 	dc.b	"I came back here last",LF
-	dc.b	"month, November 2014.^",FF
+	dc.b	"month, November 2013.^",FF
 	dc.b	"I was in town for a",LF
 	dc.b	"boring work thing.   ^",FF
 	dc.b	"I stopped by the mall",LF
@@ -3526,7 +3543,7 @@ DialogTextDay05ScriptedEventCamp19B:
 DialogTextDay05ScriptedEventCamp1A:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Wait 2014? Who's the",LF
+	dc.b	"Wait 2013? Who's the",LF
 	dc.b	"president then?",ETX
 
 	align 2
@@ -3651,7 +3668,7 @@ DialogTextDay05ScriptedEventCamp27:
 	dc.b	"But if it's popular",LF
 	dc.b	"then... nevermind.   ^",FF
 	dc.b	"Do you want to go",LF
-	dc.b	"back to 2014?",ETX
+	dc.b	"back to 2013?",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp28:
@@ -4200,7 +4217,7 @@ DialogTextDay06ScriptedEventDayStartSub04:
 	;		"1234567890123456789012"
 	dc.b	"When the hallway guard",LF
 	dc.b	"is out of the way,   ^",FF
-	dc.b	"2014 boy & me will run",LF
+	dc.b	"2013 boy & me will run",LF
 	dc.b	"to the workshop.",ETX
 
 	align 2

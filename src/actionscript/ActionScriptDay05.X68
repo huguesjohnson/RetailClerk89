@@ -962,6 +962,7 @@ Day05End:
 	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
 	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
 	move.l	#$00000000,(MEM_NPC_LOCATION_FCBCAMPING)
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
 	move.l	#$0A121600,(MEM_NPC_LOCATION_NSHACK)
 	;---------------------------------------------------------------------------	
 	; update the game state

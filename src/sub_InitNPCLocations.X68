@@ -3,7 +3,7 @@ InitNPCLocations:
 	move.l	#$03010200,(a0)+	; location 00 (VB) - NPCs 03,01,02
 	move.l	#$00000000,(a0)+	; location 01 (WWHALL)
 	move.l	#$00000000,(a0)+	; location 02 (WEHALL)
-	move.l	#$04000000,(a0)+	; location 03 (CENTER)
+	move.l	#$041D0000,(a0)+	; location 03 (CENTER)
 	move.l	#$00000000,(a0)+	; location 04 (SHALL)
 	move.l	#$00000000,(a0)+	; location 05 (PARKINGLOT)
 	move.l	#$00000000,(a0)+	; location 06 (EWHALL)
