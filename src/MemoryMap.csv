@@ -35,6 +35,8 @@ MEM_CONTROL_PRESSED,2,store value of a pressed button
 ;-------------------------------------------------------------------------------
 ; game state
 ;-------------------------------------------------------------------------------
+; MEM_OBJECTIVE is first because it's used for save game title 
+MEM_OBJECTIVE,2,which text to show on objectives
 MEM_GAME_STATE,4,used to control the main loop flow
 MEM_ACTION_ID,2,current action selected by player
 MEM_ACTION_TARGET_OBJID,2,action target object id
@@ -45,36 +47,17 @@ MEM_ACTIVE_ITEM,2,item that is currently being used
 MEM_NPC_LOCATIONS,96,table to track where NPCs are located
 MEM_INTRO_SCENE_COUNTER,2,counter for displaying the intro screen
 MEM_DAY,2,what day is it in the story
-MEM_OBJECTIVE,2,which text to show on objectives
 MEM_PLAYER_SPRITE,2,which sprite to use for the player
 MEM_GLOBAL_EVENT_FLAGS,4,track events across days
 MEM_DAY_EVENT_FLAGS,4,track events in the current day
 MEM_MISSION_EVENT_FLAGS,4,track events in the current mission
 MEM_CUSTOMER_FEEDBACK_SCORE,2,used for some missions
 ;-------------------------------------------------------------------------------
-; scripted event management
-;-------------------------------------------------------------------------------
-MEM_SCRIPTED_EVENT_ADDR,4,pointer to scripted event running
-MEM_SCRIPTED_EVENT_ACTION,2,current scripted event action
-MEM_SCRIPTED_EVENT_STEPS,2,steps remaining in current action
-MEM_SCRIPTED_SPRITE_ADDR,4,which sprite to move
-;-------------------------------------------------------------------------------
 ; player inventory
 ;-------------------------------------------------------------------------------
 MEM_PLAYER_ITEM_COUNT,2,how many items the player is holding
 MEM_PLAYER_ITEMS,8,four items
 MEM_PLAYER_STORE_KEYS,4,track which store keys the player has
-;-------------------------------------------------------------------------------
-; dialog & menu management
-;-------------------------------------------------------------------------------
-MEM_MENU_SELECTION,2,which menu item is selected - used for sprite 0
-MEM_MENU_RESPONSE,2,which dialog choice was selected
-MEM_DIALOG_FLAGS,4,used to manage dialogs
-MEM_DIALOG_TITLE,4,pointer to location of dialog title
-MEM_DIALOG_TEXT,4,pointer to location of dialog text
-MEM_DIALOG_VDP,4,pointer to VPD location to write text
-MEM_DIALOG_ITEM_LIST,4,pointer to location of item list to display
-MEM_DIALOG_ITEM_INDEX,2,track which item in the list is being drawn
 ;-------------------------------------------------------------------------------
 ; sprite management
 ;-------------------------------------------------------------------------------
@@ -140,17 +123,6 @@ MEM_NPC3_MOVE_PATTERN,4,movement pattern
 MEM_NPC3_MOVE_PATTERN_LENGTH,2,length of movement pattern
 MEM_NPC3_MOVE_INDEX,2,where the sprite is the movement pattern
 ;-------------------------------------------------------------------------------
-; collision detection
-;-------------------------------------------------------------------------------
-MEM_ACTIVE_SPRITE_LEFT_COLUMN,2,left column of active sprite
-MEM_ACTIVE_SPRITE_HIGH_LEFT,2,high left row of active sprite
-MEM_ACTIVE_SPRITE_LOW_LEFT,2,low left row of active sprite
-MEM_ACTIVE_SPRITE_RIGHT_COLUMN,2,right column of active sprite
-MEM_ACTIVE_SPRITE_HIGH_RIGHT,2,high right row of active sprite
-MEM_ACTIVE_SPRITE_LOW_RIGHT,2,low right row of active sprite
-MEM_COLLISION_MAP_ROW,4,row of map data
-MEM_COLLISION_RESULT,2,result of collision test
-;-------------------------------------------------------------------------------
 ; active scene
 ;-------------------------------------------------------------------------------
 MEM_ACTIVE_SCENE_ID,2,ID of the active scene
@@ -163,4 +135,33 @@ MEM_OBJECT_LIST_OBJS,60,list of objects in current map
 MEM_OBJECT_LIST_NPCS,24,list of npcs in current map
 MEM_SCENE_BGM,4,reference to current background music
 MEM_SCENE_PALETTE,128,storing for fade in/out
+;-------------------------------------------------------------------------------
+; dialog & menu management
+;-------------------------------------------------------------------------------
+MEM_MENU_SELECTION,2,which menu item is selected - used for sprite 0
+MEM_MENU_RESPONSE,2,which dialog choice was selected
+MEM_DIALOG_FLAGS,4,used to manage dialogs
+MEM_DIALOG_TITLE,4,pointer to location of dialog title
+MEM_DIALOG_TEXT,4,pointer to location of dialog text
+MEM_DIALOG_VDP,4,pointer to VPD location to write text
+MEM_DIALOG_ITEM_LIST,4,pointer to location of item list to display
+MEM_DIALOG_ITEM_INDEX,2,track which item in the list is being drawn
+;-------------------------------------------------------------------------------
+; scripted event management
+;-------------------------------------------------------------------------------
+MEM_SCRIPTED_EVENT_ADDR,4,pointer to scripted event running
+MEM_SCRIPTED_EVENT_ACTION,2,current scripted event action
+MEM_SCRIPTED_EVENT_STEPS,2,steps remaining in current action
+MEM_SCRIPTED_SPRITE_ADDR,4,which sprite to move
+;-------------------------------------------------------------------------------
+; collision detection
+;-------------------------------------------------------------------------------
+MEM_ACTIVE_SPRITE_LEFT_COLUMN,2,left column of active sprite
+MEM_ACTIVE_SPRITE_HIGH_LEFT,2,high left row of active sprite
+MEM_ACTIVE_SPRITE_LOW_LEFT,2,low left row of active sprite
+MEM_ACTIVE_SPRITE_RIGHT_COLUMN,2,right column of active sprite
+MEM_ACTIVE_SPRITE_HIGH_RIGHT,2,high right row of active sprite
+MEM_ACTIVE_SPRITE_LOW_RIGHT,2,low right row of active sprite
+MEM_COLLISION_MAP_ROW,4,row of map data
+MEM_COLLISION_RESULT,2,result of collision test
 MEM_COLLISION_DATA,256,collision data for the current map

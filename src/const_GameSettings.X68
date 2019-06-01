@@ -53,6 +53,18 @@ NPC0_SPRITE_VDP_X=$78160002	; write location for npc0 sprite x
 NPC0_SPRITE_VDP_Y=$78100002	; write location for npc0 sprite y
 
 ;-------------------------------------------------------------------------------
+; SRAM addresses and save game settings
+;-------------------------------------------------------------------------------
+SRAM_START=$200001	; SRAM start address
+SRAM_END=$20FFFF	; SRAM end address
+SRAM_LOCK=$A130F1	; address of lock bit
+SRAM_INIT_CHECK=$20FFFE	; address to check if SRAM is initialized
+SAVE_SIZE=$2000	; max size of a save game slot
+SAVE_GAME_START=MEM_OBJECTIVE	; start location of save game data
+SAVE_GAME_END=MEM_ACTIVE_SCENE_EXIT_S	; end location of save game data
+SAVE_DATA_LENGTH=SAVE_GAME_END-SAVE_GAME_START
+
+;-------------------------------------------------------------------------------
 ; directions
 ;-------------------------------------------------------------------------------
 DIRECTION_DOWN=%0000	; 0
@@ -146,6 +158,12 @@ STATUS_SCREEN_MAP_ICON_BASE_PATTERN=%1110000000010001
 STATUS_SCREEN_OBJECTIVE_VDP=VDP_VRAM_WRITE_B+$00020000+$08000000
 STATUS_SCREEN_STOREKEYS_VDP=VDP_VRAM_WRITE_B+$01300000
 STATUS_SCREEN_INVENTORY_VDP=VDP_VRAM_WRITE_B+$00040000+$0B000000
+STATUS_SCREEN_SAVE0_VDP=VDP_VRAM_WRITE_B+$00220000+$0B000000
+
+;-------------------------------------------------------------------------------
+; load screen settings
+;-------------------------------------------------------------------------------
+LOAD_SCREEN_SAVE0_VDP=VDP_VRAM_WRITE_B+$07800000+$00140000
 
 ;-------------------------------------------------------------------------------
 ; display settings

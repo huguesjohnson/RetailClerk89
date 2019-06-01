@@ -209,7 +209,11 @@ DebugStartDay2End:
 	bclr.l	#STATE_FLAG_INTRO_SCREEN,d7 ; clear screen flag
 	bset.l	#STATE_FLAG_EXPLORING,d7	; set exploring flag
 	move.l	d7,(MEM_GAME_STATE)	; save it back
-	move.w	#$0000,(MEM_INTRO_SCENE_COUNTER)
+	lea	SceneParkingLot,a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	LoadPlayerSprite
+	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	bsr.w	FadeIn	; fade in to the new scene
 	rts
 
 DebugStartDay3Title:

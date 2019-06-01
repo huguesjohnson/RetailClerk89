@@ -98,19 +98,19 @@ SceneStatus:
 	dc.l	VDP_VRAM_WRITE_B+$00040000+$07000000	; initial drawing location
 
 	; default save message
-	dc.l	StatusScreenEmptySave	; location of string to display
+	dc.l	StatusScreenDefaultSave	; location of string to display
 	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
 	dc.l	VDP_VRAM_WRITE_B+$00200000+$0B000000	; initial drawing location
 
-	dc.l	StatusScreenEmptySave	; location of string to display
+	dc.l	StatusScreenDefaultSave	; location of string to display
 	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
 	dc.l	VDP_VRAM_WRITE_B+$00200000+$0B800000	; initial drawing location
 
-	dc.l	StatusScreenEmptySave	; location of string to display
+	dc.l	StatusScreenDefaultSave	; location of string to display
 	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
 	dc.l	VDP_VRAM_WRITE_B+$00200000+$0C000000	; initial drawing location
 
-	dc.l	StatusScreenEmptySave	; location of string to display
+	dc.l	StatusScreenDefaultSave	; location of string to display
 	dc.w	DIALOG_BASE_TILE_LOW	; base pattern
 	dc.l	VDP_VRAM_WRITE_B+$00200000+$0C800000	; initial drawing location
 

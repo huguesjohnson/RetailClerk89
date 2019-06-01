@@ -214,6 +214,15 @@ PaletteTitleScreen00:
 	include 'palettes/pal_TitleScreen_03.X68'
 
 ;-------------------------------------------------------------------------------
+; load screen
+;-------------------------------------------------------------------------------
+PaletteLoadScreen00:
+	include 'palettes/pal_StatusScreen_00.X68'
+	include 'palettes/pal_DayIntroScreen_01.X68'
+	include 'palettes/pal_DayIntroScreen_02.X68'
+	include 'palettes/pal_DayIntroScreen_03.X68'
+
+;-------------------------------------------------------------------------------
 ; end palettes
 ;-------------------------------------------------------------------------------
 PaletteEndScreen00:

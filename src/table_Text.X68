@@ -647,4 +647,25 @@ StatusScreenObjectives:
 	dc.l	StatusScreenDay06Objective01
 	dc.l	StatusScreenDay06Objective02
 
+;-------------------------------------------------------------------------------
+; save game titles
+;-------------------------------------------------------------------------------
+SaveGameTitles:
+	dc.l	SaveGameTitleD0O0
+	dc.l	SaveGameTitleD1O0
+	dc.l	SaveGameTitleD1O1
+	dc.l	SaveGameTitleD2O0
+	dc.l	SaveGameTitleD2O1
+	dc.l	SaveGameTitleD2O2
+	dc.l	SaveGameTitleD3O0
+	dc.l	SaveGameTitleD3O1
+	dc.l	SaveGameTitleD4O0
+	dc.l	SaveGameTitleD5O0
+	dc.l	SaveGameTitleD6O0
+	dc.l	SaveGameTitleD7O0
+	dc.l	SaveGameTitleD3O2
+	dc.l	SaveGameTitleD5O1
+	dc.l	SaveGameTitleD5O2
+	dc.l	SaveGameTitleD6O1
+	dc.l	SaveGameTitleD6O2
 

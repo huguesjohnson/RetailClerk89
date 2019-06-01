@@ -35,6 +35,9 @@ CHAR_DQUOTE=$22	; ACSII code for double quote character
 TitleScreenTextNewGame:
 	dc.b	"New Game",ETX
 
+TitleScreenTextLoadGame:
+	dc.b	"Load Game",ETX
+
 	if _DEBUG_
 
 TitleScreenTextDebug:
@@ -42,13 +45,13 @@ TitleScreenTextDebug:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Unstable Debug Build (May 2019)  ",ETX
+	dc.b	"   Unstable Debug Build (June 2019)  ",ETX
 
 	else
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Story Demo: Days 1-7 (May 2019)  ",ETX
+	dc.b	"        Story Demo (June 2019)        ",ETX
 	endif
 
 	if _DEBUG_
@@ -4659,7 +4662,7 @@ DialogTextDay06ScriptedEventEnding013:
 	dc.b	"Why are you always so",LF
 	dc.b	"difficult?           ^",FF
 	;		"1234567890123456789012"
-	dc.b	"It's not we're",LF
+	dc.b	"It's not like we're",LF
 	dc.b	"forcing them to.     ^",FF
 	;		"1234567890123456789012"
 	dc.b	"The sensors have to ",LF
@@ -4887,7 +4890,7 @@ DialogTextDay06ScriptedEventEnding021:
 	dc.b	"and D.B.             ^",FF
 	;		"1234567890123456789012"
 	dc.b	"Don't try to find me",LF
-	dc.b	"before 2015.         ^",FF
+	dc.b	"before November 2013.^",FF
 	;		"1234567890123456789012"
 	dc.b	"Who knows what will",LF
 	dc.b	"happen.              ^",FF
@@ -7564,14 +7567,93 @@ StatusScreenDay07Objective00:
 	;		"1234567890123456789012345678901234567"
 	dc.b	"friends and wrap-up loose ends.",ETX
 
+SaveGameTitleD0O0:
+	;		"123456789012345678901"
+	dc.b	"November 19 (Evening)",ETX
+	
+SaveGameTitleD1O0:
+	;		"123456789012345678901"
+	dc.b	"November 24 (Day)    ",ETX
+
+SaveGameTitleD1O1:
+	;		"123456789012345678901"
+	dc.b	"November 24 (Evening)",ETX
+
+SaveGameTitleD2O0:
+	;		"123456789012345678901"
+	dc.b	"November 26 (Morning)",ETX
+
+SaveGameTitleD2O1:
+	;		"123456789012345678901"
+	dc.b	"November 26 (Day)    ",ETX
+
+SaveGameTitleD2O2:
+	;		"123456789012345678901"
+	dc.b	"November 26 (Evening)",ETX
+
+SaveGameTitleD3O0:
+	;		"123456789012345678901"
+	dc.b	"December 3 (Day)     ",ETX
+
+SaveGameTitleD3O1:
+	;		"123456789012345678901"
+	dc.b	"December 3 (Evening) ",ETX
+
+SaveGameTitleD4O0:
+	;		"123456789012345678901"
+	dc.b	"December 10 (Day)    ",ETX
+
+SaveGameTitleD5O0:
+	;		"123456789012345678901"
+	dc.b	"December 17 (Day)    ",ETX
+
+SaveGameTitleD6O0:
+	;		"123456789012345678901"
+	dc.b	"December 24 (Day)    ",ETX
+
+SaveGameTitleD7O0:
+	;		"123456789012345678901"
+	dc.b	"December 31 (Day)    ",ETX
+
+SaveGameTitleD3O2:
+	;		"123456789012345678901"
+	dc.b	"December 3 (Evening) ",ETX
+
+SaveGameTitleD5O1:
+	;		"123456789012345678901"
+	dc.b	"December 17 (Evening)",ETX
+
+SaveGameTitleD5O2:
+	;		"123456789012345678901"
+	dc.b	"December 17 (Night)  ",ETX
+
+SaveGameTitleD6O1:
+	;		"123456789012345678901"
+	dc.b	"December 24 (Day)    ",ETX
+
+SaveGameTitleD6O2:
+	;		"123456789012345678901"
+	dc.b	"December 24 (Night)  ",ETX
+
 StatusScreenEmptySave:
-	;		"1234567890123456789012"
-	dc.b	"{(not implemented yet)",ETX
+	;		"123456789012345678901"
+	dc.b	"(empty)              ",ETX
+
+StatusScreenDefaultSave:
+	dc.b	"{",ETX
 
 StatusScreenSaveDialog:
-	;		"1234567890123456789012"
-	dc.b	"Nope, saving is still",LF
-	dc.b	"not coded. Try later.",ETX
+	dc.b	"Saved",ETX
+
+LoadScreenCaption:
+	;		"123456789012345678901"
+	dc.b	"Select game to load",ETX
+
+LoadScreenHelp0:
+	dc.b	"Press Start to load game",ETX
+
+LoadScreenHelp1:
+	dc.b	"Press B to cancel",ETX
 
 ;-------------------------------------------------------------------------------
 ; store names

@@ -228,7 +228,7 @@ SceneCenter:
 
 	; npc3
 	dc.w	$0184	; starting x location of npc3
-	dc.w	$0151	; starting y location of npc3
+	dc.w	$0160	; starting y location of npc3
 	dc.w	DIRECTION_LEFT	; starting direction of npc3
 	dc.w	$0000	; movement frequency of npc3
 	dc.l	NullMovementStart	; location of movement pattern for npc3

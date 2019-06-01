@@ -3,6 +3,7 @@
 	;---------------------------------------------------------------------------
 	include 'scenes/scene_legal.X68'
 	include 'scenes/scene_title.X68'
+	include 'scenes/scene_load.X68'
 	include 'scenes/scene_day00.X68'
 	include 'scenes/scene_day01.X68'
 	include 'scenes/scene_day02.X68'

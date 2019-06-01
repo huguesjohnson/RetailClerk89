@@ -18,7 +18,7 @@ Basic framework for:
 
 **Not implemented**
 
-* Fully scripted game - the wiki page here in Github has more information about the roadmap
+* Fully scripted game - the wiki page here in Github has more information about the roadmap. The current plan is to have v1.0 of the game released on Black Friday 2019.
 
 **Building**
 
@@ -27,7 +27,7 @@ vasm command line that works:
 vasmm68k_mot -o RetailClerk89.bin -Fbin -spaces RetailClerk89.X68
 * the 'spaces' option was added to avoid headaches when linking to code from projects using an assembler that ignores spaces in statements
 
-You'll probably want to go into const\_GameSettings.X68 and set \_DEBUG\_ to $0. Also setting \_ATGAMES\_HACKS to $0 is required if you want to run this on real hardware.
+You'll probably want to go into const\_GameSettings.X68 and set \_DEBUG\_ to $0. Also setting \_ATGAMES\_HACKS to $0 is required if you want to run this on real hardware. At some point I'll be smart enough to make those command-line arguments instead.
 
 There are additional build tools that require Java 8+ in the /build-tools/ folder. These are not needed to compile the demo from source. However, they are needed if you want to customize sprites, collision maps, or change the memory map. 
 

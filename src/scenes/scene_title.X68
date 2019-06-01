@@ -56,9 +56,9 @@ SceneTitle:
 	; scenery
 	;---------------------------------------------------------------------------
 	if	_DEBUG_
-	dc.w	$0005	; scenery count
+	dc.w	$0006	; scenery count
 	else
-	dc.w	$0004	; scenery count
+	dc.w	$0005	; scenery count
 	endif
 
 	; title
@@ -91,7 +91,14 @@ SceneTitle:
 	; 0110000000000000	
 	dc.w	$6000	; base pattern
 	dc.w	$0000	; repeat 1 time
-	dc.l	VDP_VRAM_WRITE_A+$0A000000+$003C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$09800000+$003A0000	; initial drawing location
+
+	dc.l	PatternTitleMenu	; location of pattern to load
+	; pccvhnnnnnnnnnnn
+	; 0110000000000000	
+	dc.w	$6000	; base pattern
+	dc.w	$0000	; repeat 1 time
+	dc.l	VDP_VRAM_WRITE_A+$0A800000+$003A0000	; initial drawing location
 
 	if	_DEBUG_
 	; menu
@@ -100,7 +107,7 @@ SceneTitle:
 	; 0110000000000000	
 	dc.w	$6000	; base pattern
 	dc.w	$0000	; repeat 1 time
-	dc.l	VDP_VRAM_WRITE_A+$0B000000+$003C0000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$0B800000+$003A0000	; initial drawing location
 	endif
 
 	; footer
@@ -115,21 +122,26 @@ SceneTitle:
 	; text
 	;---------------------------------------------------------------------------
 	if	_DEBUG_
-	dc.w	$0002	; text count
+	dc.w	$0003	; text count
 	else
-	dc.w	$0001	; text count
+	dc.w	$0002	; text count
 	endif
 
 	; new game text
 	dc.l	TitleScreenTextNewGame	; location of string to display
 	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$0A000000+$00400000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$09800000+$003E0000	; initial drawing location
+
+	; load game text
+	dc.l	TitleScreenTextLoadGame	; location of string to display
+	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$0A800000+$003E0000	; initial drawing location
 
 	if	_DEBUG_
 	; debug text
 	dc.l	TitleScreenTextDebug	; location of string to display
 	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$0B000000+$00400000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$0B800000+$003E0000	; initial drawing location
 	endif
 
 	; footer

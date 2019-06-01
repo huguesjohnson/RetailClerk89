@@ -83,6 +83,12 @@
 
 	include	'sub_FadeInFadeOut.X68'
 
+	include 'sub_SaveLoad.X68'
+
+	include	'sub_ProcessLoadScreen.X68'
+
+	include	'sub_BuildLoadScreen.X68'
+
 	if _DEBUG_
 	include	'init_Debug.X68'
 	endif

@@ -2290,8 +2290,6 @@ ScriptedEventDay06Ending0:
 	; dialog
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding000
-	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay06ScriptedEventEnding001
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay06ScriptedEventEnding002
@@ -2343,8 +2341,6 @@ ScriptedEventDay06Ending0:
 	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
 	dc.w	SCRIPTED_EVENT_DRAW_SCENE
 	dc.w	SCENE_ID_FLASHBACK_2014
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay06ScriptedEventEnding00E
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay06ScriptedEventEnding00F
 	dc.w	SCRIPTED_EVENT_DIALOG
@@ -2521,20 +2517,20 @@ ScriptedEventDay06Ending0:
 	; --------------------------------------------------------------------------
 	; dialog
 	; --------------------------------------------------------------------------
-;	dc.w	SCRIPTED_EVENT_DIALOG
-;	dc.l	DialogTextDay06ScriptedEventEnding101
-;	dc.w	SCRIPTED_EVENT_DIALOG
-;	dc.l	DialogTextDay06ScriptedEventEnding102
-;	dc.w	SCRIPTED_EVENT_DIALOG
-;	dc.l	DialogTextDay06ScriptedEventEnding103
-;	dc.w	SCRIPTED_EVENT_DIALOG
-;	dc.l	DialogTextDay06ScriptedEventEnding104
-;	dc.w	SCRIPTED_EVENT_DIALOG
-;	dc.l	DialogTextDay06ScriptedEventEnding105
-;	dc.w	SCRIPTED_EVENT_DIALOG
-;	dc.l	DialogTextDay06ScriptedEventEnding106
-;	dc.w	SCRIPTED_EVENT_DIALOG
-;	dc.l	DialogTextDay06ScriptedEventEnding107
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding101
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding102
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding103
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding104
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding105
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding106
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06ScriptedEventEnding107
 	; --------------------------------------------------------------------------
 	; walk Dani out of the store
 	; --------------------------------------------------------------------------

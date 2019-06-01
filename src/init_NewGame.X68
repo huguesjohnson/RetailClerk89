@@ -2,6 +2,11 @@ NewGame:
 
 	move.w	#$2700,sr		; disable interrupts
 
+;-------------------------------------------------------------------------------
+; init SRAM
+;-------------------------------------------------------------------------------
+	bsr.w	InitSRAM
+
 InitCounters:
 	move.w	#$0000,(MEM_VBLANK_COUNTER)
 	move.w	#$0000,(MEM_MAINLOOP_COUNTER)
@@ -68,13 +73,13 @@ LoadSpriteZeroLoop:
 	;---------------------------------------------------------------------------
 	move.l	#VDP_VRAM_WRITE_SPRITE,d6	; add to sprite table address
 	move.l	d6,(VDP_CONTROL)	; set write location in VDP
-	move.w	#$0120,(VDP_DATA)	; copy the new y-coordinate
+	move.w	#$0118,(VDP_DATA)	; copy the new y-coordinate
 	;---------------------------------------------------------------------------
 	; update x
 	;---------------------------------------------------------------------------
 	add.l	#$00060000,d6	; move to x-coordinate
 	move.l	d6,(VDP_CONTROL)	; set write location in VDP
-	move.w	#$0178,(VDP_DATA)	; copy the new x-coordinate
+	move.w	#$0170,(VDP_DATA)	; copy the new x-coordinate
 
 InitPlayerSprite:
 	; player	

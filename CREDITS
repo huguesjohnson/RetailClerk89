@@ -40,12 +40,16 @@ The following were used to learn Genesis and/or Motorola 68000 programming:
  "68000 Family Assembly Language" 1994 by Alan Clements
 
 LoadPalettes, LoadTiles, and DrawTileset routines are based on examples from:
- http://bigevilcorporation.co.uk/
+ https://blog.bigevilcorporation.co.uk/
 
-Code for hardware-specific fixes is also from http://bigevilcorporation.co.uk/
+Code for hardware-specific fixes is also from:
+ https://blog.bigevilcorporation.co.uk/
 
 This very detailed Echo Sound Engine setup tutorial was consulted: 
  http://devster.proboards.com/thread/1087/echo-sound-engine-setup-tutorial
+
+Code to write to SRAM is from:
+ https://plutiedev.com/saving-sram
 
 The MilkyTracker tutorials by Brandon Walsh were invaluable to creating BGM:
  https://www.youtube.com/watch?v=N2s04YYO0Wg
