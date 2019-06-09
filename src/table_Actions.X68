@@ -834,7 +834,7 @@ SceneExitTable:
 	; scene 0E (SCENE_ID_NSHACK)
 	dc.l	ExitScene0E
 	; scene 0F (SCENE_ID_POGODAWG)
-	dc.l	DefaultExitScene
+	dc.l	ExitScene0F
 	; scene 10 (SCENE_ID_CPLANET)
 	dc.l	DefaultExitScene
 	; scene 11 (SCENE_ID_CNOW)

@@ -798,10 +798,13 @@ Day06End:
 	;---------------------------------------------------------------------------	
 	bsr.w	InitNPCLocations	; put everything back to the initial state
 	move.l	#$031B0200,(MEM_NPC_LOCATION_VB)	; update VB
-	move.l	#$00000000,(MEM_NPC_LOCATION_EWHALL)	; clear hallway
+	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)	; clear hallway
+	move.l	#$00000000,(MEM_NPC_LOCATION_WORKSHOP)	; clear workshop
+	move.l	#$00000000,(MEM_NPC_LOCATION_FCBCAMPING)	; clear camping section
 	move.l	#$00000000,(MEM_NPC_LOCATION_CAVERN)	; clear cavern
 	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)	; update dcountry
 	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)	; update center
+	move.l	#$22000000,(MEM_NPC_LOCATION_TLODGE)	; update tlodge
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	
@@ -853,9 +856,19 @@ Day06End:
 	move.w	#SPRITE_PLAYER_INIT_Y,(MEM_PLAYER_SPRITE_Y)	; set player sprite y
 	move.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; set direction
 	;---------------------------------------------------------------------------	
-	; queue the scripted event that starts day 7
+	; if EVENT_FLAG_DAY07_POGODAWG_OPEN then setup alternate start
+	; yes, this could be rearranged to make the code shorter
+	; this is what happens when I tack something on late
 	;---------------------------------------------------------------------------	
-;	lea ScriptedEventDay01Start,a6	; point a6 to event to load
-;	bsr.w QueueScriptedEvent	; queue the event
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_POGODAWG_OPEN,d7	; test flag
+	beq.s	ExitDay06End	; flag not set, exit
+	; copying to all 4 in case I do something silly later
+	move.w	#SCENE_ID_POGODAWG,(MEM_ACTIVE_SCENE_EXIT_S)
+	move.w	#SCENE_ID_POGODAWG,(MEM_ACTIVE_SCENE_EXIT_N)
+	move.w	#SCENE_ID_POGODAWG,(MEM_ACTIVE_SCENE_EXIT_W)
+	move.w	#SCENE_ID_POGODAWG,(MEM_ACTIVE_SCENE_EXIT_E)
+	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; update sprite
+ExitDay06End:
 	rts
 

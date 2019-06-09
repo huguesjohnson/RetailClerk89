@@ -2544,11 +2544,347 @@ ScriptedEventDay06Ending0:
 	dc.w	$0020
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay07ScriptedEventGetPDawgKey:
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay07Scene0FGetKey1
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay07ChangePC:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; change the player sprite
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DB
+	; --------------------------------------------------------------------------
+	; move sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	SPRITE_PLAYER_INIT_X
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	SPRITE_PLAYER_INIT_Y
+	; --------------------------------------------------------------------------
+	; change scene
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_VB
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay07Event0:
+	dc.w	$0003	; npc 2
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene08Day07ScriptedEvent01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene08Day07ScriptedEvent02
+	; --------------------------------------------------------------------------
+	; walk Dani out of the store
+	; --------------------------------------------------------------------------
+	; move sprite away from register	
+	dc.w	DIRECTION_LEFT
+	dc.w	($0038)/SPRITE_STEP_PIXELS
+	; move sprite toward door	
+	dc.w	DIRECTION_DOWN
+	dc.w	($005C)/SPRITE_STEP_PIXELS
+	; move sprite out of scene
+	dc.w	DIRECTION_LEFT
+	dc.w	($0028)/SPRITE_STEP_PIXELS
+	; move into hidden space to block movement pattern
+	dc.w	DIRECTION_DOWN
+	dc.w	($0010)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
+
+ScriptedEventDay07Event1:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; move player while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$006E
+	; --------------------------------------------------------------------------
+	; change scene to nshack
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_NSHACK
+	; --------------------------------------------------------------------------
+	; walk player into scene
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent00
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent01
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; move player while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0000
+	; -------------------------------------------------------------------------
+	; change scene to dcountry
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_DENIMCOUNTRY
+	; --------------------------------------------------------------------------
+	; move npc toward counter
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; NPC0
+	dc.w	DIRECTION_LEFT
+	dc.w	$0010
+	dc.w	DIRECTION_UP
+	dc.w	$0002
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; NPC1
+	dc.w	DIRECTION_DOWN
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent02
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent03
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent04
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent05
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	; --------------------------------------------------------------------------
+	; move player while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	($006E+$0020)
+	; --------------------------------------------------------------------------
+	; change scene to nshack
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_NSHACK
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent06
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent07
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent08
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent09
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent0A
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent0B
+	; --------------------------------------------------------------------------
+	; move D.B. toward counter and have Dani face him
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_UP
+	dc.w	$0020
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0060
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; npc2
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent0C
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextScene0EDay07ScriptedEvent0D
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventBadEnding:
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_FADE_BLACK
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_ENDING_BAD0
+	dc.w	SCRIPTED_EVENT_TIMER
+	dc.w	CREDITS_SCREEN_LOOP
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_ENDING_BAD1
+	dc.w	SCRIPTED_EVENT_TIMER
+	dc.w	CREDITS_SCREEN_LOOP
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_ENDING_BAD2
+	dc.w	SCRIPTED_EVENT_TIMER
+	dc.w	CREDITS_SCREEN_LOOP
+	dc.w	SCRIPTED_EVENT_ENDGAME
+
+ScriptedEventGoodEnding:
+	dc.w	$0001	; player
+	; --------------------------------------------------------------------------
+	; walk the player out of the store
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	$0080
+	dc.w	DIRECTION_DOWN
+	dc.w	$0020
+	dc.w	DIRECTION_LEFT
+	dc.w	$0030
+	; --------------------------------------------------------------------------
+	; fade out
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK
+	; --------------------------------------------------------------------------
+	; switch and move player sprite while screen is blank
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_PLAYER_SPRITE
+	dc.w	PLAYER_SPRITE_DANI
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0110
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0180
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_CAVERN
+	; --------------------------------------------------------------------------
+	; walk player into scene
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_UP
+	dc.w	($0180-$00F0)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	; --------------------------------------------------------------------------
+	; move npc0 (now D.B.) closer to player
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0002	; npc0
+	dc.w	DIRECTION_RIGHT
+	dc.w	$0020
+	; --------------------------------------------------------------------------
+	; dialog
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextGoodEnding00
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextGoodEnding01
+	; --------------------------------------------------------------------------
+	; move player up to an arcade machine
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0001	; player
+	dc.w	DIRECTION_RIGHT
+	dc.w	($0176-$0110)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	($00F0-$00E0)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; npc1
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0003	; npc1
+	dc.w	DIRECTION_UP
+	dc.w	($0188-$00F0)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextGoodEnding02
+	dc.w	DIRECTION_RIGHT
+	dc.w	($13F-$0114)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	($00F0-$00A0)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; npc2
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0004	; npc2
+	dc.w	DIRECTION_UP
+	dc.w	($0188-$00F0)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextGoodEnding03
+	dc.w	DIRECTION_LEFT
+	dc.w	($0106-$0080)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	($00F0-$00A0)/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; npc3
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
+	dc.w	$0005	; npc3
+	dc.w	DIRECTION_UP
+	dc.w	($0188-$00F0)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_LEFT
+	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextGoodEnding04
+	dc.w	DIRECTION_DOWN
+	dc.w	($130-$00F0)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_RIGHT
+	dc.w	($018E-$0114)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	$0010/SPRITE_STEP_PIXELS
+	; --------------------------------------------------------------------------
+	; end credits
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_ENDING_GOOD0
+	dc.w	SCRIPTED_EVENT_TIMER
+	dc.w	CREDITS_SCREEN_LOOP
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_ENDING_GOOD1
+	dc.w	SCRIPTED_EVENT_TIMER
+	dc.w	CREDITS_SCREEN_LOOP
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_ENDING_GOOD2
+	dc.w	SCRIPTED_EVENT_TIMER
+	dc.w	CREDITS_SCREEN_LOOP
+	dc.w	SCRIPTED_EVENT_ENDGAME
+
+	if	_DEBUG_
+; ------------------------------------------------------------------------------
+; used to test ending
+; ------------------------------------------------------------------------------
+TestScriptedEventEnding:
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_FADE_BLACK
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_X
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0000
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_CREDITS
+	dc.w	SCRIPTED_EVENT_TIMER
+	dc.w	CREDITS_SCREEN_LOOP
+	dc.w	SCRIPTED_EVENT_ENDGAME
+
 ; ------------------------------------------------------------------------------
 ; used to test scene and player sprite changes in scripted events
 ; ------------------------------------------------------------------------------
-	if	_DEBUG_
-
 TestScriptedEventSceneChange:
 	dc.w	$0001	; player (Dani)
 	dc.w	DIRECTION_UP

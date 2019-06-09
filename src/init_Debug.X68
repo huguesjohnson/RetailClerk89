@@ -26,12 +26,12 @@ DebugTable:
 	dc.l	DebugStartDay6Title	
 	dc.l	DebugStartDay6NightStart
 	dc.l	DebugStartDay6NightEnd	
-	dc.l	DebugStartDay7Title	
+	dc.l	DebugStartDay7TitleBad	
+	dc.l	DebugStartDay7MidBad	
+	dc.l	DebugStartDay7TitleGood	
 	dc.l	DebugStartDay0Title	
 	dc.l	DebugStartDay0Title	
-	dc.l	DebugStartDay0Title	
-	dc.l	DebugStartDay0Title	
-	dc.l	DebugStartDay0Title	
+	dc.l	DebugStartDay7EndGood	
 	dc.l	DebugStartEnd
 
 ProcessDebugScreen:
@@ -629,8 +629,7 @@ DebugStartDay6NightEnd:
 	bsr.w	FadeIn	; fade in to the new scene
 	rts
 
-DebugStartDay7Title:
-	move.l	(MEM_PLAYER_STORE_KEYS),d7
+DebugStartDay7TitleBad:
 	move.l	(MEM_PLAYER_STORE_KEYS),d7
 	bset.l	#STORE_KEY_TBOOKS,d7
 	bset.l	#STORE_KEY_DCOUNTRY,d7
@@ -649,8 +648,132 @@ DebugStartDay7Title:
 	bsr.w	Day06End
 	rts
 
+DebugStartDay7MidBad:
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_TBOOKS,d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7
+	bset.l	#STORE_KEY_VB,d7
+	bset.l	#STORE_KEY_CHECKERS,d7
+	bset.l	#STORE_KEY_TLODGE,d7
+	bset.l	#STORE_KEY_FCB,d7
+	bset.l	#STORE_KEY_CNOW,d7
+	bset.l	#STORE_KEY_SVIDEO,d7
+	bset.l	#STORE_KEY_NSHACK,d7
+	bset.l	#STORE_KEY_WORKSHOP,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7
+	bset.l	#GLOBAL_FLAG_JKEY_CPLANET,d7
+	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)
+	move.l	(MEM_DAY_EVENT_FLAGS),d7
+	bclr.l	#EVENT_FLAG_DAY07_POGODAWG_OPEN,d7
+	bset.l	#EVENT_FLAG_DAY07_LEAVE_VB,d7
+	bset.l	#EVENT_FLAG_DAY07_EVENT0,d7
+	bset.l	#EVENT_FLAG_DAY07_EVENT1,d7
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bset.l	#STATE_FLAG_EXPLORING,d7	; set exploring flag
+	move.l	d7,(MEM_GAME_STATE)	; save it back
+	bsr.w	InitNPCLocations	; put everything back to the initial state
+	move.l	#$031B0200,(MEM_NPC_LOCATION_VB)	; update VB
+	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)	; clear hallway
+	move.l	#$00000000,(MEM_NPC_LOCATION_WORKSHOP)	; clear workshop
+	move.l	#$00000000,(MEM_NPC_LOCATION_FCBCAMPING)	; clear camping section
+	move.l	#$00000000,(MEM_NPC_LOCATION_CAVERN)	; clear cavern
+	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)	; update dcountry
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)	; update center
+	move.l	#$22000000,(MEM_NPC_LOCATION_TLODGE)	; update tlodge
+	move.l	#$0A010000,(MEM_NPC_LOCATION_NSHACK)	; update nshack
+	move.w	#OBJECTIVE_D7_O1,(MEM_OBJECTIVE)
+	move.w	#$0007,(MEM_DAY)	; move to day 07
+	; load scene
+	lea	SceneNShack,a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	LoadPlayerSprite
+	bsr.w	FixSprites
+	bsr.w	FadeIn	; fade in to the new scene
+	rts
+
+DebugStartDay7TitleGood:
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_TBOOKS,d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7
+	bset.l	#STORE_KEY_VB,d7
+	bset.l	#STORE_KEY_CHECKERS,d7
+	bset.l	#STORE_KEY_TLODGE,d7
+	bset.l	#STORE_KEY_FCB,d7
+	bset.l	#STORE_KEY_CNOW,d7
+	bset.l	#STORE_KEY_SVIDEO,d7
+	bset.l	#STORE_KEY_NSHACK,d7
+	bset.l	#STORE_KEY_WORKSHOP,d7
+	bset.l	#STORE_KEY_CPLANET,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7
+	bset.l	#GLOBAL_FLAG_PDAWG_CUSTOMER0,d7	; test customer0
+	bset.l	#GLOBAL_FLAG_PDAWG_CUSTOMER1,d7	; test customer1
+	bset.l	#GLOBAL_FLAG_PDAWG_CUSTOMER2,d7	; test customer2
+	bset.l	#GLOBAL_FLAG_PDAWG_CUSTOMER3,d7	; test customer3
+	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)
+	bsr.w	Day06End
+	rts
+
+DebugStartDay7EndGood:
+	move.l	(MEM_PLAYER_STORE_KEYS),d7
+	bset.l	#STORE_KEY_TBOOKS,d7
+	bset.l	#STORE_KEY_DCOUNTRY,d7
+	bset.l	#STORE_KEY_VB,d7
+	bset.l	#STORE_KEY_CHECKERS,d7
+	bset.l	#STORE_KEY_TLODGE,d7
+	bset.l	#STORE_KEY_FCB,d7
+	bset.l	#STORE_KEY_CNOW,d7
+	bset.l	#STORE_KEY_SVIDEO,d7
+	bset.l	#STORE_KEY_NSHACK,d7
+	bset.l	#STORE_KEY_WORKSHOP,d7
+	bset.l	#STORE_KEY_CPLANET,d7
+	bset.l	#STORE_KEY_POGODAWG,d7
+	bset.l	#STORE_KEY_CAVERN,d7
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7
+	bset.l	#GLOBAL_FLAG_JKEY_CPLANET,d7
+	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)
+	move.l	(MEM_DAY_EVENT_FLAGS),d7
+	bset.l	#EVENT_FLAG_DAY07_POGODAWG_OPEN,d7
+	bset.l	#EVENT_FLAG_DAY07_LEAVE_VB,d7
+	bset.l	#EVENT_FLAG_DAY07_EVENT0,d7
+	bset.l	#EVENT_FLAG_DAY07_EVENT1,d7
+	bset.l	#EVENT_FLAG_DAY07_GOOD_ENDING,d7
+	move.l	#$FFFFFFFF,(MEM_MISSION_EVENT_FLAGS)
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bset.l	#STATE_FLAG_EXPLORING,d7	; set exploring flag
+	move.l	d7,(MEM_GAME_STATE)	; save it back
+	bsr.w	InitNPCLocations	; put everything back to the initial state
+	move.l	#$031B0200,(MEM_NPC_LOCATION_VB)	; update VB
+	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)	; clear hallway
+	move.l	#$00000000,(MEM_NPC_LOCATION_WORKSHOP)	; clear workshop
+	move.l	#$00000000,(MEM_NPC_LOCATION_FCBCAMPING)	; clear camping section
+	move.l	#$00000000,(MEM_NPC_LOCATION_CAVERN)	; clear cavern
+	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)	; update dcountry
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)	; update center
+	move.l	#$22000000,(MEM_NPC_LOCATION_TLODGE)	; update tlodge
+	move.l	#$0A010000,(MEM_NPC_LOCATION_NSHACK)	; update nshack
+	move.w	#OBJECTIVE_D7_O1,(MEM_OBJECTIVE)
+	move.w	#$0007,(MEM_DAY)	; move to day 07
+	; load scene
+	lea	SceneNShack,a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	LoadPlayerSprite
+	bsr.w	FixSprites
+	bsr.w	FadeIn	; fade in to the new scene
+	rts
+
+
 DebugStartEnd:
-	bsr.w	EndGame
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bset.l	#STATE_FLAG_EXPLORING,d7	; set exploring flag
+	move.l	d7,(MEM_GAME_STATE)	; save it back
+	; queue the scripted event
+	lea TestScriptedEventEnding,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
 	rts
 
 	endif

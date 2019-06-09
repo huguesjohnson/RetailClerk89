@@ -144,15 +144,15 @@ TitleScreenTextFooter:
 
 	DebugScreenLine15:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 title                   ",ETX
+	dc.b	"{ Day 7 title (bad)                 ",ETX
 
 	DebugScreenLine16:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 7 mid point (bad)             ",ETX
 
 	DebugScreenLine17:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 7 title (good)                 ",ETX
 
 	DebugScreenLine18:
 	;		"12345678901234567890123456789012345678"
@@ -164,11 +164,11 @@ TitleScreenTextFooter:
 
 	DebugScreenLine1A:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 7 end (good)                 ",ETX
 
 	DebugScreenLine1B:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Ending credits",ETX
+	dc.b	"{ Ending credits (old version)",ETX
 
 	endif
 
@@ -5002,12 +5002,390 @@ DialogTextDay06Scene0ENPCEnding:
 ;-------------------------------------------------------------------------------
 ; dialog text - day 07
 ;-------------------------------------------------------------------------------
+
 	align 2
-DialogTextDaniScene05Day07:
+DialogTextDay07PDawgClosed:
+	;		"1234567890123456789012"
+	dc.b	"There's a sign that",LF
+	dc.b	"says they're closed.",ETX
+
+	align 2
+DialogTextDay07CavernClosed:
+	;		"1234567890123456789012"
+	dc.b	"It's been locked-up",LF
+	dc.b	"since Xmas Eve.",FF
+	dc.b	"Maybe he hid a spare",LF
+	dc.b	"spare key somewhere?",ETX
+
+	align 2
+DialogTextDay07ExitScene0F:
+	;		"1234567890123456789012"
+	dc.b	"(Wasn't there some",LF
+	dc.b	"reason I came here?)",ETX
+
+	align 2
+DialogTextDay07Scene0FGetKey0:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Hey. Yeah. So I guess",LF
+	dc.b	"we're, uh, open.     ^",FF
+	dc.b	"Uh, here. Have one of",LF
+	dc.b	"these, what is it?   ^",FF
+	dc.b	"Huh. What are you",LF
+	dc.b	"doing here?          ^",ETX
+	dc.b	"Oh right, a key. I",LF
+	dc.b	"remember now.        ^",FF
+	;		"1234567890123456789012"
+	dc.b	"In case you want to,",LF
+	dc.b	"like, cook something.",ETX
+
+	align 2
+DialogTextDay07EnterDCountryLater:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"line1",LF
-	dc.b	"line2",ETX
+	dc.b	"(I'll clock in later)",ETX
+
+	align 2
+DialogTextDay07Scene0FGetKey1:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"That's totally a thing",LF
+	dc.b	"I planned to do.",ETX
+
+	align 2
+DialogTextDay07EnterDCountry:
+	;		"1234567890123456789012"
+	dc.b	"Returning to work will",LF
+	dc.b	"advance the story.   ^",FF
+	dc.b	"Are you ready?",LF
+	dc.b	"                     ^",FF
+	dc.b	"{Yeah, that's cool",LF
+	dc.b	"{Maybe later",ETX
+
+	align 2
+DialogTextScene00Day07NPC00:
+	dc.w	OBJ_NPC_BILLY
+	;		"1234567890123456789012"
+	dc.b	"Are you going to kick",LF
+	dc.b	"me out again?",ETX
+
+	align 2
+DialogTextScene00Day07NPC01:
+	dc.w	OBJ_NPC_GENERICSHOPPER
+	;		"1234567890123456789012"
+	dc.b	"If I set the jumpers",LF
+	dc.b	"on my hard drive to  ^",FF
+	dc.b	"non-translation mode",LF
+	dc.b	"do I also need to set^",FF
+	dc.b	"the interleave factor",LF
+	dc.b	"to 6 or leave it at 1?",ETX
+
+	align 2
+DialogTextDay07ExitVB:
+	;		"1234567890123456789012"
+	dc.b	"(I better make sure",LF
+	dc.b	"it's OK to leave)",ETX
+
+	align 2
+DialogTextScene00Day07NPCGreenberg00:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Go ahead and take your",LF
+	dc.b	"break now.           ^",FF
+	dc.b	"You seem a little off",LF
+	dc.b	"today.               ^",FF
+	dc.b	"I hope everything is",LF
+	dc.b	"alright.",ETX
+
+	align 2
+DialogTextScene00Day07NPCGreenberg01:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Oh by the way...",LF
+	dc.b	"Al the mall manager  ^",FF
+	dc.b	"asked me a bunch of",LF
+	dc.b	"questions about you. ^",FF
+	dc.b	"What did you do to",LF
+	dc.b	"set him off?",ETX
+
+	align 2
+DialogTextScene08Day07ScriptedEvent00:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"You're off early.",LF
+	dc.b	"Did you get fired?",ETX
+
+	align 2
+DialogTextScene08Day07ScriptedEvent01:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Nah, I just had to",LF
+	dc.b	"get out.             ^",FF
+	dc.b	"It's like every day",LF
+	dc.b	"there is the same.   ^",FF
+	dc.b	"I needed a break.",ETX
+
+	align 2
+DialogTextScene08Day07ScriptedEvent02:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"That's how it is here.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Last week was the most",LF
+	dc.b	"excitement we'll get.^",FF
+	dc.b	"Stick it out a couple",LF
+	dc.b	"years, you'll live.  ^",FF
+	dc.b	"I might as well head",LF
+	dc.b	"out early too.       ^",FF
+	dc.b	"I think I'll grab a",LF
+	dc.b	"snack on my way out.",ETX
+
+	align 2
+DialogTextScene08Day07DenimCountryStaffTalk:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I hope we stay open",LF
+	dc.b	"another year.",ETX
+
+	align 2
+DialogTextScene08Day07DenimCountryStaffTalkEvent0:
+	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Did she just leave",LF
+	dc.b	"without telling me?",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent00:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"So hey really",LF
+	dc.b	"confronted you?",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Yeah, he came into my",LF
+	dc.b	"store and everything.",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent02:
+	dc.w	OBJ_NPC_MALLMANAGER_NOW
+	;		"1234567890123456789012"
+	dc.b	"I know what you think",LF
+	dc.b	"you heard that night.^",FF
+	dc.b	"I was all ramblings of",LF
+	dc.b	"a sick mind.         ^",FF
+	dc.b	"Both him & your friend",LF
+	dc.b	"are delusional.",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent03:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"It sure seemed like",LF
+	dc.b	"you believed them.",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent04:
+	dc.w	OBJ_NPC_MALLMANAGER_NOW
+	;		"1234567890123456789012"
+	dc.b	"No, now that's just",LF
+	dc.b	"crazy talk.          ^",FF
+	dc.b	"I was stalling until",LF
+	dc.b	"security arrived.    ^",FF
+	dc.b	"You don't really",LF
+	dc.b	"think they...        ^",FF
+	dc.b	"Hmph, no one would",LF
+	dc.b	"believe you anyway.  ^",FF
+	dc.b	"They're both banned",LF
+	dc.b	"from the mall now.   ^",FF
+	dc.b	"You'll be next if you",LF
+	dc.b	"cause trouble.",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent05:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Please, anything but",LF
+	dc.b	"that.",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent06:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"What do you think",LF
+	dc.b	"about what he said?",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent07:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I don't know.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I think Jordan was",LF
+	dc.b	"telling the truth.   ^",FF
+	dc.b	"Or maybe he only",LF
+	dc.b	"thought he was.      ^",FF
+	dc.b	"If he was imagining it",LF
+	dc.b	"all then what are we?^",FF
+	dc.b	"Like are we part of an",LF
+	dc.b	"80s illusion or real?^",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent08:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I don't think he was",LF
+	dc.b	"delusional.          ^",FF
+	dc.b	"I'm pretty sure we're",LF
+	dc.b	"in the 1980s.",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent09:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Yeah...",LF
+	dc.b	"                     ^",FF
+	dc.b	"Not for much longer",LF
+	dc.b	"though, right.       ^",FF
+	dc.b	"It's just a few hours",LF
+	dc.b	"until the 90s.       ^",FF
+	dc.b	"At least they can't",LF
+	dc.b	"worse than the 80s.",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent0A:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Do you have plans for",LF
+	dc.b	"tonight?",ETX
+
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent0B:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Not really.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I got an invite to",LF
+	dc.b	"Todd's party.        ^",FF
+	dc.b	"I might drag D.B.",LF
+	dc.b	"along as my guest.",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent0C:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Todd's party?",LF
+	dc.b	"                     ^",FF
+	dc.b	"He's kind of a tool.",ETX
+
+	align 2
+DialogTextScene0EDay07ScriptedEvent0D:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I can't imagine his",LF
+	dc.b	"friends are better.  ^",FF
+	dc.b	"It's the last day of",LF
+	dc.b	"the 1980s.           ^",FF
+	dc.b	"I'm not spending it",LF
+	dc.b	"with our parents.    ^",FF
+	dc.b	"So that's what we're",LF
+	dc.b	"doing I guess.       ^",FF
+	dc.b	"Unless you have",LF
+	dc.b	"another idea...",ETX
+
+	align 2
+DialogTextScene0EDay07MoreTime:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"So what are we doing?",LF
+	dc.b	"                     ^",FF
+	dc.b	"Todd's party or do you",LF
+	dc.b	"have a better idea?  ^",FFR
+	dc.b	"{Todd's party I guess",LF
+	dc.b	"{Give me more time",ETX
+
+	align 2
+DialogTextScene0EDay07BetterPlan:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"You've had plenty of",LF
+	dc.b	"time to think now,   ^",FF
+	dc.b	"Todd's party or do you",LF
+	dc.b	"have a better idea?  ^",FFR
+	dc.b	"{Todd's party I guess",LF
+	dc.b	"{I have a better idea",ETX
+
+	align 2
+DialogTextScene0EDay07NShackStaffTalk
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I have a feeling the",LF
+	dc.b	"90s will be great.",ETX
+
+	align 2
+DialogTextScene0EDay07Respond0:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Fine, if you insist.",ETX
+
+	align 2
+DialogTextScene0EDay07Respond1MoreTime:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Don't keep me waiting",LF
+	dc.b	"until next year.",ETX
+
+	align 2
+DialogTextScene0EDay07RespondGood:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"I have an idea,",LF
+	dc.b	"follow me.",ETX
+
+	align 2
+DialogTextGoodEnding00:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"We'd have the place to",LF
+	dc.b	"ourselves.           ^",FF
+	dc.b	"Everything is on free",LF
+	dc.b	"play too.",FF
+	dc.b	"Anyone else without",LF
+	dc.b	"plans is welcome too.",ETX
+
+	align 2
+DialogTextGoodEnding01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Hmm, you know what?",LF
+	dc.b	"This isn't half-bad.",ETX
+
+	align 2
+DialogTextGoodEnding02:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Hey, nice setup here.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I assume you have room",LF
+	dc.b	"for an old friend.",ETX
+
+	align 2
+DialogTextGoodEnding03:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"This beats what I had",LF
+	dc.b	"planned, thanks.",ETX
+
+	align 2
+DialogTextGoodEnding04:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I thought I saw you",LF
+	dc.b	"headed this way.     ^",FF
+	dc.b	"What a fun idea!",ETX
 
 ;-------------------------------------------------------------------------------
 ; information desk
@@ -6081,6 +6459,15 @@ DialogTextTLodgeStaffDefaultTalk:
 	dc.b	"perfect Xmas gift is?^",FF
 	dc.b	"An extended warranty",LF
 	dc.b	"for your new phone.",ETX
+
+	align 2
+DialogTextTLodgeStaffDefaultTalkAlt:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Do you need an",LF
+	dc.b	"extended warranty for^",FF
+	dc.b	"any Xmas gifts you",LF
+	dc.b	"received this year?",ETX
 
 	align 2
 DialogTextCavernStaffDefaultTalk:
@@ -7567,6 +7954,14 @@ StatusScreenDay07Objective00:
 	;		"1234567890123456789012345678901234567"
 	dc.b	"friends and wrap-up loose ends.",ETX
 
+StatusScreenDay07Objective01:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 31, 1989: Epilogue",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"Are you stuck going to a bad party",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"or do you have a better idea?",ETX
+
 SaveGameTitleD0O0:
 	;		"123456789012345678901"
 	dc.b	"November 19 (Evening)",ETX
@@ -7634,6 +8029,10 @@ SaveGameTitleD6O1:
 SaveGameTitleD6O2:
 	;		"123456789012345678901"
 	dc.b	"December 24 (Night)  ",ETX
+
+SaveGameTitleD7O1:
+	;		"123456789012345678901"
+	dc.b	"December 31 (Evening)",ETX
 
 StatusScreenEmptySave:
 	;		"123456789012345678901"

@@ -93,3 +93,24 @@ SceneDefinitionTable:
 	; SCENE_ID_FLASHBACK_2014=$001D
 	dc.l	SceneFlashback2014
 
+	; SCENE_ID_CREDITS=$001E
+	dc.l	SceneCredits
+
+	; SCENE_ID_ENDING_BAD0=$001F
+	dc.l	SceneEndingBad0
+	
+	; SCENE_ID_ENDING_BAD1=$0020
+	dc.l	SceneEndingBad1
+	
+	; SCENE_ID_ENDING_BAD2=$0021
+	dc.l	SceneEndingBad2
+
+	; SCENE_ID_ENDING_GOOD0=$0022
+	dc.l	SceneEndingGood0
+
+	; SCENE_ID_ENDING_GOOD1=$0023
+	dc.l	SceneEndingGood1
+
+	; SCENE_ID_ENDING_GOOD2=$0024
+	dc.l	SceneEndingGood2
+

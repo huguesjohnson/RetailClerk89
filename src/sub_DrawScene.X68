@@ -123,7 +123,7 @@ LoadSceneDrawTextNextCharacter:
 	bra.s	LoadSceneDrawTextNextCharacter	; repeat until ETX is reached
 LoadSceneDrawTextLoopEnd:
 	dbra d7,LoadSceneDrawTextLoop	; loop until all data is loaded
-
+z
 ExitDrawScene:
 	move.w	#$2000,sr		; re-enable interrupts
 	rts

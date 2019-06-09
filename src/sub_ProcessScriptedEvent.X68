@@ -26,7 +26,7 @@ NextScriptedEventAction:
 	cmpi.w	#SCRIPTED_EVENT_END,d7	; are we at the end?
 	beq.s	ScriptedEventEnd	; if so branch
 	cmpi.w	#SCRIPTED_EVENT_DIALOG,d7	; display a dialog?
-	beq.s	ScriptedEventDialog	; if so branch
+	beq.w	ScriptedEventDialog	; if so branch
 	cmpi.w	#SCRIPTED_EVENT_CHANGE_SPRITE,d7	; changing the sprite?
 	beq.w	ScriptedEventChangeSprite	; if so branch
 	cmpi.w	#SCRIPTED_EVENT_CHANGE_SCENE,d7	; change scene?
@@ -43,6 +43,10 @@ NextScriptedEventAction:
 	beq.w	ScriptedEventSetPlayerSpriteDirection	; if so branch
 	cmpi.w	#SCRIPTED_EVENT_FADE_BLACK,d7	; fade out?
 	beq.w	ScriptedEventFadeBlack	; if so branch
+	cmpi.w	#SCRIPTED_EVENT_TIMER,d7	; timer?
+	beq.w	ScriptedEventTimer	; if so branch
+	cmpi.w	#SCRIPTED_EVENT_ENDGAME,d7	; end game?
+	beq.w	ScriptedEventEndGame	; if so branch
 	;---------------------------------------------------------------------------
 	; start moving the sprite
 	;---------------------------------------------------------------------------
@@ -130,6 +134,8 @@ ScriptedEventSetPlayerSpriteDirection:
 	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
 	bra.w	ExitProcessScriptedEvent	; exit
 ScriptedEventFadeBlack:
+	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
+	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
 	bsr.w	FadeOut	; fade out
 	; blackout the palette
 	lea	MEM_SCENE_PALETTE,a1	; point a1 to scene palette address
@@ -137,8 +143,19 @@ ScriptedEventFadeBlack:
 ScriptedEventFadeBlackLoop:
 	move.w	#$0000,(a1)+	; write the palette data
 	dbf	d7,ScriptedEventFadeBlackLoop	; decrement d7 and loop if not 0
+	bra.w	ExitProcessScriptedEvent	; exit
+ScriptedEventTimer:
+	move.w	(a6)+,d7	; copy timer to d7
 	move.w	(a6)+,(MEM_SCRIPTED_EVENT_ACTION)	; save next action
 	move.l	a6,(MEM_SCRIPTED_EVENT_ADDR)	; save address of next step
+ScriptedEventTimerLoop:
+	jsr	WaitVBlank	; wait for vblank
+	dbf	d7,ScriptedEventTimerLoop	; loop
 	bra.w	ExitProcessScriptedEvent	; exit
+ScriptedEventEndGame:
+	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
+	bclr.l	#STATE_FLAG_SCRIPTED_EVENT,d7	; clear the scripted event flag
+	move.l	d7,(MEM_GAME_STATE)	; save it back
+	bra.w	EndGame
 ExitProcessScriptedEvent:
 	rts

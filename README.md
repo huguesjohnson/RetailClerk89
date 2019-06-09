@@ -31,7 +31,7 @@ You'll probably want to go into const\_GameSettings.X68 and set \_DEBUG\_ to $0.
 
 There are additional build tools that require Java 8+ in the /build-tools/ folder. These are not needed to compile the demo from source. However, they are needed if you want to customize sprites, collision maps, or change the memory map. 
 
-This has been fully tested on Gens and BlastEm for Linux. It has also been fully tested on real Genesis model 1 hardware using an Everdrive. It has been minimally tested on Genecyst and Gens for Windows. After wrestling with AtGames Firecore it runs on that too if \_ATGAMES\_HACKS are enabled. This makes it likely to run on other AtGames clones but only the Firecore has been explicitly tested. The latest build has issues on Genesis Plus derivatives on Android.
+This has been fully tested on Gens and BlastEm for Linux. It has also been fully tested on real Genesis model 1 hardware using an Everdrive. It has been minimally tested on Genecyst for DOS, Gens for Windows, and Genesis Plus on Android. After wrestling with the AtGames Firecore it runs on that too if \_ATGAMES\_HACKS are enabled. This makes it likely to run on other AtGames clones but only the Firecore has been explicitly tested. Enabling \_ATGAMES\_HACKS breaks the demo on actual Genesis hardware and Genesis Plus.
 
 **Links**
 

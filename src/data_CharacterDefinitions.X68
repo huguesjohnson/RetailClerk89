@@ -137,3 +137,8 @@ CharacterDefinitionDaniXmas:
 CharacterDefinitionSleepingGuard:
 	dc.l	NPCSpriteGuardSleepingTilesStart
 
+; 22 - OBJ_NPC_TLODGE_STAFF_ALT
+CharacterScene0AStaffNPCAlt:
+	dc.l	Scene0AStaffNPCNoHatTilesStart
+
+

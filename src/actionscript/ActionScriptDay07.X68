@@ -7,13 +7,41 @@ Day07Scene00Action00:	; ACTION_LOOK
 Day07Scene00Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
-	beq.s	Day07Scene00Action01NPC	; branch to text for the NPC
+	beq.s	Day07Scene00Action01NPCGreenberg	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_BILLY,d6	; test target
+	beq.s	Day07Scene00Action01NPCBilly	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
+	beq.s	Day07Scene00Action01NPCShopper	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
-Day07Scene00Action01NPC:
+Day07Scene00Action01NPCShopper:
+	lea	DialogTextScene00Day07NPC01,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day07Scene00Action01NPCBilly:
+	lea	DialogTextScene00Day07NPC00,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day07Scene00Action01NPCGreenberg:
+	cmpi.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; test player sprite
+	beq.s	.1	; branch if DB
+	; otherwise use default text
 	lea	DialogTextGreenbergDefaultTalk,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+.1
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_LEAVE_VB,d7	; test if flag is set
+	bne.s .2
+	bset.l	#EVENT_FLAG_DAY07_LEAVE_VB,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	lea	DialogTextScene00Day07NPCGreenberg00,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+.2
+	lea	DialogTextScene00Day07NPCGreenberg01,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene00Action02:	; ACTION_TAKE_GIVE
@@ -182,17 +210,8 @@ Day07Scene05Action00:	; ACTION_LOOK
 	rts
 
 Day07Scene05Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_DANI,d6	; test target
-	beq.s	Day07Scene05Action01NPCDani	; branch
-	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
-	beq.s	Day07Scene05DaniCarLookUse	; same action for look and use
 	; default action	
 	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	bra.s	ExitDay07Scene05Action01
-Day07Scene05Action01NPCDani:
-	lea	DialogTextDaniScene05Day07,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 ExitDay07Scene05Action01:
 	rts
@@ -235,7 +254,16 @@ Day07Scene06Action02:	; ACTION_TAKE_GIVE
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene06Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
+	tst.w	(MEM_MENU_RESPONSE)
+	bne.s	Day07Scene06Action03Later
+	; else transition
+	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
+	; queue the scripted event
+	lea ScriptedEventDay07ChangePC,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	rts
+Day07Scene06Action03Later:
+	lea	DialogTextDay07EnterDCountryLater,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -268,12 +296,36 @@ Day07Scene08Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,d6	; test target
 	beq.s	Day07Scene08Action01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	bne.s	Day07Scene08Action01Default	; branch to default
+	; update event flags
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#EVENT_FLAG_DAY07_EVENT0,d7 	; set event flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; update NPCs
+	move.l	#$0A010000,(MEM_NPC_LOCATION_NSHACK)
+	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	; queue scripted event
+	lea ScriptedEventDay07Event0,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	; show initial text
+	lea	DialogTextScene08Day07ScriptedEvent00,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day07Scene08Action01Default:
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene08Action01NPC:
-	lea	DialogTextDenimCountryStaffDefaultTalk,a6	; load text
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_EVENT0,d7 	; did this event run?
+	beq.s	Day07Scene08Action01NPCDefault	; branch if not
+	lea	DialogTextScene08Day07DenimCountryStaffTalkEvent0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day07Scene08Action01NPCDefault:
+	lea	DialogTextScene08Day07DenimCountryStaffTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene08Action02:	; ACTION_TAKE_GIVE
@@ -336,14 +388,14 @@ Day07Scene0AAction00:	; ACTION_LOOK
 	rts
 Day07Scene0AAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_TLODGE_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_TLODGE_STAFF_ALT,d6	; test target
 	beq.s	Day07Scene0AAction01NPC	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene0AAction01NPC:
-	lea	DialogTextTLodgeStaffDefaultTalk,a6	; load text
+	lea	DialogTextTLodgeStaffDefaultTalkAlt,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene0AAction02:	; ACTION_TAKE_GIVE
@@ -490,12 +542,29 @@ Day07Scene0EAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_NSHACK_STAFF,d6	; test target
 	beq.s	Day07Scene0EAction01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	bne.s	Day07Scene0EAction01NPC	; use default text
+	; setup 2 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_GOOD_ENDING,d7	; test if good ending available
+	beq.s	.1	; not available, branch
+	lea	DialogTextScene0EDay07BetterPlan,a6	; load text
+	bra.s	.2
+.1
+	lea	DialogTextScene0EDay07MoreTime,a6	; load text
+.2
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day07Scene0EAction01Default:
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene0EAction01NPC:
-	lea	DialogTextNShackStaffDefaultTalk,a6	; load text
+	lea	DialogTextScene0EDay07NShackStaffTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene0EAction02:	; ACTION_TAKE_GIVE
@@ -511,7 +580,36 @@ Day07Scene0EAction02NPC:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene0EAction03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
+	; clear 2 choice style
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6
+	bclr.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.s	Day07Scene0EAction03BadEnding	; branch to bad ending
+	; response must be $0001 - test game state
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_GOOD_ENDING,d7	; test flag
+	bne.s	Day07Scene0EAction03GoodEnding	; branch to good ending
+	; else display message
+	lea	DialogTextScene0EDay07Respond1MoreTime,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day07Scene0EAction03BadEnding:
+	; queue scripted event
+	lea ScriptedEventBadEnding,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	; initial text
+	lea	DialogTextScene0EDay07Respond0,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day07Scene0EAction03GoodEnding:
+	; update NPCs
+	move.l	#$160E0A04,(MEM_NPC_LOCATION_CAVERN)
+	; queue scripted event	
+	lea ScriptedEventGoodEnding,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	; initial text
+	lea	DialogTextScene0EDay07RespondGood,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -530,6 +628,26 @@ Day07Scene0FAction01:	; ACTION_USE_TALK
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene0FAction01NPC:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test player sprite
+	bne.s	Day07Scene0FAction01NPCDefault	; branch if not Dani
+	; test if scripted event has already run
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_POGODAWG_KEY,d7	; test flag
+	bne.s	Day07Scene0FAction01NPCDefault	; branch if set
+	bset.l	#EVENT_FLAG_DAY07_POGODAWG_KEY,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; add key
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
+	bset.l	#STORE_KEY_POGODAWG,d7	; set key
+	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save updated flags
+	; queue scripted event
+	lea ScriptedEventDay07ScriptedEventGetPDawgKey,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	; show initial text
+	lea	DialogTextDay07Scene0FGetKey0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day07Scene0FAction01NPCDefault:
 	lea	DialogTextPogoDawgStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -826,9 +944,19 @@ Day07Scene17Action02NPC:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene17Action03:	; ACTION_RESPOND
-	lea	DialogTextNothingHappens,a6	; load default text
+	tst.w	(MEM_MENU_RESPONSE)
+	bne.s	Day07Scene17Action03Later
+	; else transition
+	move.l	#$00000000,(MEM_DIALOG_FLAGS)	; forcibly kill the dialog
+	; queue the scripted event
+	lea ScriptedEventDay07ChangePC,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	rts
+Day07Scene17Action03Later:
+	lea	DialogTextDay07EnterDCountryLater,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+
 
 ;-------------------------------------------------------------------------------
 ; end day 07

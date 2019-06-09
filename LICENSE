@@ -1,5 +1,13 @@
 ********************************************************************************
-License for original code
+Summary
+********************************************************************************
+The license summary for this project is:
+* MIT License for original source code
+* CC BY-SA 4.0 for original characters, story, art, & other non-code things
+* 3rd party assets (code, graphics, music) are under their respective licenses
+
+********************************************************************************
+License for original source code
 ********************************************************************************
 Except where noted below, all code & assets in this project are available under
 The MIT License:
@@ -25,6 +33,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
 THE SOFTWARE.
+
+********************************************************************************
+License for original non-code assets
+********************************************************************************
+The story, setting, and all characters of Retail Clerk '89 are licensed under 
+Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
 
 ********************************************************************************
 3rd party code

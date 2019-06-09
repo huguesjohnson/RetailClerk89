@@ -550,6 +550,10 @@ Scene0AStaffNPCTilesStart:
 	include 'tiles/sprite-tiles/tileset_Scene0AStaffNPC.X68'
 Scene0AStaffNPCTilesEnd:
 
+Scene0AStaffNPCNoHatTilesStart:
+	include 'tiles/sprite-tiles/tileset_Scene0AStaffNPCNoHat.X68'
+Scene0AStaffNPCNoHatTilesEnd:
+
 Scene0BStaffNPCTilesStart:
 	include 'tiles/sprite-tiles/tileset_Scene0BStaffNPC.X68'
 Scene0BStaffNPCTilesEnd:

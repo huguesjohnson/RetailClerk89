@@ -100,6 +100,11 @@ EVENT_FLAG_DAY06_MISSION_STARTED=$3	; night mission started
 EVENT_FLAG_DAY06_MISSION_COMPLETE=$4	; night mission started
 EVENT_FLAG_DAY06_ENDING_OPEN=$5	; ending is available
 EVENT_FLAG_DAY07_POGODAWG_OPEN=$0	; whether the store is open on the last day
+EVENT_FLAG_DAY07_POGODAWG_KEY=$1	; whether the key has been given
+EVENT_FLAG_DAY07_LEAVE_VB=$2	; whether it's clear to leave VB
+EVENT_FLAG_DAY07_EVENT0=$3	; after talking to Dani in DCountry
+EVENT_FLAG_DAY07_EVENT1=$4	; after entering nshack
+EVENT_FLAG_DAY07_GOOD_ENDING=$5	; the "good ending" is available
 
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 

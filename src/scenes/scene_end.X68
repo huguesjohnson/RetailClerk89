@@ -63,7 +63,7 @@ SceneEnd:
 	; 0010000000000000	
 	dc.w	$2000	; base pattern
 	dc.w	$0000	; repeat 1 time
-	dc.l	VDP_VRAM_WRITE_A+$04800000+$00100000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$01800000+$00100000	; initial drawing location
 
 	; title - 89
 	dc.l	PatternTitleLogo89	; location of pattern to load
@@ -71,7 +71,7 @@ SceneEnd:
 	; 0110000000000000	
 	dc.w	$6000	; base pattern
 	dc.w	$0000	; repeat 1 time
-	dc.l	VDP_VRAM_WRITE_A+$04800000+$00360000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_A+$01800000+$00360000	; initial drawing location
 
 	; graphics behind title
 	dc.l	PatternTitleBackground	; location of pattern to load
@@ -79,16 +79,24 @@ SceneEnd:
 	; 0100000000000000	
 	dc.w	$4000	; base pattern
 	dc.w	$0000	; repeat 1 time
-	dc.l	VDP_VRAM_WRITE_B+$03000000+$00300000	; initial drawing location
+	dc.l	VDP_VRAM_WRITE_B+$00000000+$00300000	; initial drawing location
 
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
-	dc.w	$0005	; text count
+	dc.w	$0008	; text count
 
-;	dc.l	Day01IntroText	; location of string to display
-;	dc.w	DIALOG_BASE_TILE+%0110000000000000	; base pattern
-;	dc.l	VDP_VRAM_WRITE_A+$06800000	; initial drawing location
+	dc.l	LegalScreenLine00	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$05800000	; initial drawing location
+
+	dc.l	LegalScreenLine01	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$06800000	; initial drawing location
+
+	dc.l	CreditsScreen00Line1B	; location of string to display
+	dc.w	DIALOG_BASE_TILE	; base pattern
+	dc.l	VDP_VRAM_WRITE_A+$07800000	; initial drawing location
 
 	dc.l	EndScreenTextLine1	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern

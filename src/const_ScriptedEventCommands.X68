@@ -8,3 +8,5 @@ SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y=$9999	; set player sprite Y
 SCRIPTED_EVENT_SET_PLAYER_SPRITE_DIRECTION=$8888	; set player direction
 SCRIPTED_EVENT_FADE_BLACK=$7777	; fade and blackout the palette
 SCRIPTED_EVENT_DRAW_SCENE=$6666	; draw scene, but not completely reload scene
+SCRIPTED_EVENT_TIMER=$5555	; pause for a specified number of frames
+SCRIPTED_EVENT_ENDGAME=$4444	; end the game

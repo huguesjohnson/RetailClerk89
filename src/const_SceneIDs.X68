@@ -37,6 +37,17 @@ SCENE_ID_FLASHBACK_2000=$001C
 SCENE_ID_FLASHBACK_2014=$001D
 
 ;-------------------------------------------------------------------------------
+; credits scenes
+;-------------------------------------------------------------------------------
+SCENE_ID_CREDITS=$001E
+SCENE_ID_ENDING_BAD0=$001F
+SCENE_ID_ENDING_BAD1=$0020
+SCENE_ID_ENDING_BAD2=$0021
+SCENE_ID_ENDING_GOOD0=$0022
+SCENE_ID_ENDING_GOOD1=$0023
+SCENE_ID_ENDING_GOOD2=$0024
+
+;-------------------------------------------------------------------------------
 ; day transition screens
 ;-------------------------------------------------------------------------------
 SCENE_ID_INTRO_DAY00=$0E00
@@ -54,7 +65,6 @@ SCENE_ID_INTRO_DAY07=$0E07
 	if	_DEBUG_
 SCENE_ID_DEBUGMENU=$0FF0
 	endif
-SCENE_ID_CREDITS=$0FFC
 SCENE_ID_LEGAL=$0FFD
 SCENE_ID_END=$0FFE
 SCENE_ID_TITLE=$0FFF

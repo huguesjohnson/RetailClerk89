@@ -189,6 +189,8 @@ DefaultNPCDescriptionTable:
 	dc.l	DialogTextNPCDaniXmasDefaultLook
 	; OBJ_NPC_SLEEPING_GUARD
 	dc.l	DialogTextNPCSleepingGuardDefaultLook
+	; OBJ_NPC_TLODGE_STAFF_ALT
+	dc.l	DialogTextTLodgeStaffDefaultLook
 	; OBJ_NPC_GENERICSHOPPER
 	dc.l	DialogTextNothingHappens	; shouldn't be reachable
 
@@ -381,6 +383,8 @@ NPCNameTable:
 	dc.l	NPCNameDani
 	; OBJ_NPC_SLEEPING_GUARD
 	dc.l	NPCNameGuard0
+	; OBJ_NPC_TLODGE_STAFF_ALT
+	dc.l	NPCNameTLodgeStaff
 	; OBJ_NPC_GENERICSHOPPER
 	dc.l	NPCNameGenericShopper
 NPCNameTableEnd:
@@ -646,6 +650,7 @@ StatusScreenObjectives:
 	dc.l	StatusScreenDay05Objective02
 	dc.l	StatusScreenDay06Objective01
 	dc.l	StatusScreenDay06Objective02
+	dc.l	StatusScreenDay07Objective01
 
 ;-------------------------------------------------------------------------------
 ; save game titles
@@ -668,4 +673,5 @@ SaveGameTitles:
 	dc.l	SaveGameTitleD5O2
 	dc.l	SaveGameTitleD6O1
 	dc.l	SaveGameTitleD6O2
+	dc.l	SaveGameTitleD7O1
 

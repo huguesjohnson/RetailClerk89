@@ -565,7 +565,7 @@ SceneCavern:
 	;---------------------------------------------------------------------------
 	; NPC locations
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; one npc slot
+	dc.w	$0003	; four npc slots
 
 	dc.w	$00CC	; starting x location of npc0
 	dc.w	$00F0	; starting y location of npc0
@@ -573,6 +573,27 @@ SceneCavern:
 	dc.w	$006D	; movement frequency of npc0
 	dc.l	NPCMovementScene0BStart	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene0BEnd-NPCMovementScene0BStart-1)	; pattern length
+
+	dc.w	$0114	; starting x location of npc1
+	dc.w	$0188	; starting y location of npc1
+	dc.w	DIRECTION_UP	; starting direction of npc1
+	dc.w	$FFFF	; movement frequency of npc1
+	dc.l	NullMovementStart	; location of movement pattern for npc1
+	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+
+	dc.w	$0114	; starting x location of npc2
+	dc.w	$0188	; starting y location of npc2
+	dc.w	DIRECTION_UP	; starting direction of npc2
+	dc.w	$FFFF	; movement frequency of npc2
+	dc.l	NullMovementStart	; location of movement pattern for npc2
+	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+
+	dc.w	$0114	; starting x location of npc3
+	dc.w	$0188	; starting y location of npc3
+	dc.w	DIRECTION_UP	; starting direction of npc3
+	dc.w	$FFFF	; movement frequency of npc3
+	dc.l	NullMovementStart	; location of movement pattern for npc3
+	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm

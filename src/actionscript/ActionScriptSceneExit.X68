@@ -102,6 +102,8 @@ ExitScene00:
 	beq.s	ExitScene00Day02	; branch to day 2
 	cmpi.w	#$0004,(MEM_DAY)
 	beq.w	ExitScene00Day04	; branch to day 4
+	cmpi.w	#$0007,(MEM_DAY)
+	beq.w	ExitScene00Day07	; branch to day 7
 	bsr.w	DefaultExitScene	; use default handler
 	rts
 ExitScene00Day00:
@@ -169,6 +171,15 @@ ExitScene00Day04Gift1:
 	rts
 ExitScene00Day04Default:
 	bsr.w	DefaultExitScene	; use default handler
+	rts	; exit
+ExitScene00Day07:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_LEAVE_VB,d7	; test if flag is set
+	bne.w	DefaultExitScene	; flag is set, OK to exit
+	; show text
+	lea	DialogTextDay07ExitVB,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; open the dialog
 	rts	; exit
 
 ;-------------------------------------------------------------------------------
@@ -410,6 +421,9 @@ ExitScene04:
 	; different rules for day05
 	cmpi.w	#$0005,(MEM_DAY)	; test day
 	beq.w	ExitScene04Day05	; branch if day05
+	; different rules for day07
+	cmpi.w	#$0007,(MEM_DAY)	; test day
+	beq.w	ExitScene04Day07	; branch if day07
 	; different rules for day06
 	cmpi.w	#$0006,(MEM_DAY)	; test day
 	bne.w	ExitScene04Default	; branch if not
@@ -509,6 +523,38 @@ ExitScene04Day05Leaving:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; flag to open dialog
 	rts	; exit
+ExitScene04Day07:
+	; test if going east
+	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)
+	bne.s	.1	; not going right (east), use default
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_EVENT0,d7	; test if event 0 has run
+	beq.s	ExitScene04DefaultExit	; use default handler if not set
+	btst.l	#EVENT_FLAG_DAY07_EVENT1,d7	; test if event 1 has run
+	bne.s	ExitScene04DefaultExit	; use default handler if set
+	; update flags
+	bset.l	#EVENT_FLAG_DAY07_EVENT1,d7	; set event 1 has run flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated event flags
+	; update NPCs
+	move.l	#$1D010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	; update objective
+	move.w	#OBJECTIVE_D7_O1,(MEM_OBJECTIVE)
+	; queue scripted event
+	lea ScriptedEventDay07Event1,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	rts
+.1	; test if going west
+	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)
+	bne.s	ExitScene04DefaultExit	; not going left (west), use default
+	; test if store is open
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_POGODAWG_OPEN,d7	; test flag
+	bne.s	ExitScene04DefaultExit	; use default handler if set
+	; show message	
+	lea	DialogTextDay07PDawgClosed,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
+	rts	; exit
 ExitScene04DefaultExit:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
@@ -536,6 +582,8 @@ ExitScene06:
 	beq.s	ExitScene06Day01	; branch to day 01 logic
 	cmpi.w	#$0006,(MEM_DAY)	; is it day 06?
 	beq.s	ExitScene06Day06	; branch to day 06 logic
+	cmpi.w	#$0007,(MEM_DAY)	; is it day 07?
+	beq.w	ExitScene06Day07	; branch to day 07 logic
 	bra.w	ExitScene06Default	; use default handler
 ExitScene06Day01:
 	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
@@ -580,6 +628,19 @@ ExitScene06Day06:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; flag to open dialog
 	rts	; exit
+ExitScene06Day07:
+	cmpi.w	#DIRECTION_DOWN,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
+	bne.s	ExitScene06Default	; not going down, ok to exit
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test player sprite
+	bne.s	ExitScene06Default	; not Dani, ok to exit
+	; setup dialog
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextDay06EnterVB,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
+	rts
 ExitScene06Default: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
@@ -589,7 +650,22 @@ ExitScene06Default: ; ok to exit scene
 ;-------------------------------------------------------------------------------
 ExitScene07:
 	cmpi.w	#$0006,(MEM_DAY)	; is it day 06?
-	bne.w	ExitScene07Default	; not day 06, default exit
+	beq.s	ExitScene07Day06	; branch to day 06 logic
+	cmpi.w	#$0007,(MEM_DAY)	; is it day 07?
+	bne.w	ExitScene07Default	; not day 07, default exit
+	; check direction
+	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction	
+	bne.w	ExitScene07Default	; not going north, default exit
+	; check for key
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
+	btst.l	#STORE_KEY_CAVERN,d7	; can the player enter this store?
+	bne.w	ExitScene07Default	; has key, default logic
+	; show message 
+	lea	DialogTextDay07CavernClosed,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening
+	rts
+ExitScene07Day06:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy mission flags to d7
 	btst.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7	; test event flag
 	beq.s	ExitScene07Default	; not set, branch
@@ -710,13 +786,43 @@ ExitScene0ADefault:
 ;-------------------------------------------------------------------------------
 ExitScene0E:
 	cmpi.w	#$0006,(MEM_DAY)	; is it day 06?
-	bne.s	ExitScene0EDefault	; not day 06, default exit
+	beq.s	ExitScene0EDay06	; not day 06, default exit
+	cmpi.w	#$0007,(MEM_DAY)	; is it day 07?
+	bne.s	ExitScene0EDefault	; not day 07, default exit
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy mission flags to d7
+	btst.l	#EVENT_FLAG_DAY07_EVENT1,d7	; test event flag
+	beq.s	ExitScene0EDefault	; not set, branch
+	; update NPCs	
+	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	bra.s	ExitScene0EDefault	; exit
+ExitScene0EDay06:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy mission flags to d7
 	btst.l	#EVENT_FLAG_DAY06_MISSION_COMPLETE,d7	; test event flag
 	beq.s	ExitScene0EDefault	; not set, branch
 	bra.w	Day06End	; end of the day
 	rts
 ExitScene0EDefault:
+	bsr.w	DefaultExitScene	; use default handler
+	rts	; exit
+
+;-------------------------------------------------------------------------------
+; exit scene 0E (SCENE_ID_POGODAWG)
+;-------------------------------------------------------------------------------
+ExitScene0F:
+	cmpi.w	#$0007,(MEM_DAY)	; is it day 07?
+	bne.s	ExitScene0FDefault	; not day 07, default exit
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test player sprite
+	bne.s	ExitScene0FDefault	; branch if not Dani
+	; test flag
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_POGODAWG_KEY,d7	; test flag
+	bne.s	ExitScene0FDefault	; flag set, can exit
+	; display message
+	lea	DialogTextDay07ExitScene0F,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening
+	rts
+ExitScene0FDefault:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 
@@ -774,12 +880,14 @@ ExitScene13Default:
 ExitScene17:
 	cmpi.w	#$0001,(MEM_DAY)	; is it day 01?
 	beq.s	ExitScene17Day01	; branch to day 01 logic
+	cmpi.w	#$0007,(MEM_DAY)	; is it day 07?
+	beq.w	ExitScene17Day07	; branch to day 07 logic
 	cmpi.w	#$0006,(MEM_DAY)	; is it day 06?
 	bne.w	ExitScene17Default	; not day 06, use default handler
 ExitScene17Day06:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7	; mission in-progress?
-	beq.s	ExitScene17Default	; not started, branch
+	beq.w	ExitScene17Default	; not started, branch
 	; test if trying to go north	
 	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
 	bne.w	ExitScene17Default	; not exiting north
@@ -790,7 +898,7 @@ ExitScene17Day06:
 	rts	; exit
 ExitScene17Day01:
 	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
-	bne.s	ExitScene17Default	; ok to exit
+	bne.w	ExitScene17Default	; ok to exit
 	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is
 	bne.s	ExitScene17Day01Sub02	; must be in sub02
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy game state to d7
@@ -817,6 +925,19 @@ ExitScene17Day01Sub02CantExit:
 	lea	DialogTextDay01Sub02CantEnter,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; setup dialog open
+	rts
+ExitScene17Day07:
+	cmpi.w	#DIRECTION_RIGHT,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
+	bne.s	ExitScene17Default	; not going right, ok to exit
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test player sprite
+	bne.s	ExitScene17Default	; not Dani, ok to exit
+	; setup dialog
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d6
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_2CHOICE,d6	; set text choice flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	DialogTextDay06EnterVB,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
 	rts
 ExitScene17Default: ; ok to exit scene
 	bsr.w	DefaultExitScene	; use default handler
