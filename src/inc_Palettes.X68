@@ -196,6 +196,21 @@ TextOnlyPalettes:
 	include 'palettes/pal_TextOnly_03.X68'
 
 ;-------------------------------------------------------------------------------
+; ending palettes
+;-------------------------------------------------------------------------------
+GoodEnding0Palettes:
+	include 'palettes/pal_Store_cavern_00.X68'
+	include 'palettes/pal_EndingGood_00.X68'
+	include 'palettes/pal_EndingGood_01.X68'
+	include 'palettes/pal_People_00.X68'
+
+BadEnding0Palettes:
+	include 'palettes/pal_EndingBad_00.X68'
+	include 'palettes/pal_EndingBad_01.X68'
+	include 'palettes/pal_EndingBad_02.X68'
+	include 'palettes/pal_People_00.X68'
+
+;-------------------------------------------------------------------------------
 ; day intro screen palettes
 ;-------------------------------------------------------------------------------
 DayIntroScreenPalettes:

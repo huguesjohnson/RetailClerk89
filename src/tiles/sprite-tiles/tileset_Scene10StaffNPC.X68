@@ -1,3 +1,6 @@
+
+tileset_Scene10StaffNPC_Frame0Start:
+
 	dc.l	$00000000
 	dc.l	$00000111
 	dc.l	$00001999
@@ -69,6 +72,10 @@
 	dc.l	$99111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_Scene10StaffNPC_Frame0End:
+
+tileset_Scene10StaffNPC_Frame1Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -142,6 +149,10 @@
 	dc.l	$11000000
 	dc.l	$00000000
 
+tileset_Scene10StaffNPC_Frame1End:
+
+tileset_Scene10StaffNPC_Frame2Start:
+
 	dc.l	$00000000
 	dc.l	$00000011
 	dc.l	$00000199
@@ -213,6 +224,10 @@
 	dc.l	$99111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_Scene10StaffNPC_Frame2End:
+
+tileset_Scene10StaffNPC_Frame3Start:
 
 	dc.l	$00110000
 	dc.l	$01991111
@@ -286,6 +301,10 @@
 	dc.l	$11111000
 	dc.l	$11110000
 
+tileset_Scene10StaffNPC_Frame3End:
+
+tileset_Scene10StaffNPC_Frame4Start:
+
 	dc.l	$00110000
 	dc.l	$01991111
 	dc.l	$19999999
@@ -357,6 +376,10 @@
 	dc.l	$11110000
 	dc.l	$11000000
 	dc.l	$00000000
+
+tileset_Scene10StaffNPC_Frame4End:
+
+tileset_Scene10StaffNPC_Frame5Start:
 
 	dc.l	$00110000
 	dc.l	$01991111
@@ -430,6 +453,10 @@
 	dc.l	$11111000
 	dc.l	$11110000
 
+tileset_Scene10StaffNPC_Frame5End:
+
+tileset_Scene10StaffNPC_Frame6Start:
+
 	dc.l	$00000000
 	dc.l	$00000000
 	dc.l	$00000011
@@ -501,6 +528,10 @@
 	dc.l	$99111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_Scene10StaffNPC_Frame6End:
+
+tileset_Scene10StaffNPC_Frame7Start:
 
 	dc.l	$00000000
 	dc.l	$00000000
@@ -574,6 +605,10 @@
 	dc.l	$11111100
 	dc.l	$11111000
 
+tileset_Scene10StaffNPC_Frame7End:
+
+tileset_Scene10StaffNPC_Frame8Start:
+
 	dc.l	$00000000
 	dc.l	$00000000
 	dc.l	$00000011
@@ -645,6 +680,10 @@
 	dc.l	$19999110
 	dc.l	$11111110
 	dc.l	$11111100
+
+tileset_Scene10StaffNPC_Frame8End:
+
+tileset_Scene10StaffNPC_Frame9Start:
 
 	dc.l	$00001100
 	dc.l	$00019910
@@ -718,6 +757,10 @@
 	dc.l	$11110000
 	dc.l	$11100000
 
+tileset_Scene10StaffNPC_Frame9End:
+
+tileset_Scene10StaffNPC_Frame10Start:
+
 	dc.l	$00001100
 	dc.l	$00019910
 	dc.l	$00199991
@@ -789,6 +832,10 @@
 	dc.l	$19999110
 	dc.l	$11111100
 	dc.l	$11111000
+
+tileset_Scene10StaffNPC_Frame10End:
+
+tileset_Scene10StaffNPC_Frame11Start:
 
 	dc.l	$00001100
 	dc.l	$00019910
@@ -862,3 +909,4 @@
 	dc.l	$11111110
 	dc.l	$11111100
 
+tileset_Scene10StaffNPC_Frame11End:

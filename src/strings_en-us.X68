@@ -229,7 +229,7 @@ CreditsScreen00Line06:
 
 CreditsScreen00Line07:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"          3rd Party Graphics          ",ETX
+	dc.b	"               Graphics               ",ETX
 
 CreditsScreen00Line08:
 	;		"12345678901234567890123456789012345678"
@@ -249,7 +249,7 @@ CreditsScreen00Line0B:
 
 CreditsScreen00Line0C:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Some text is based on Tragic Marker",ETX
+	dc.b	"Santa sign is based on Tragic Marker",ETX
 
 CreditsScreen00Line0D:
 	;		"12345678901234567890123456789012345678"
@@ -269,7 +269,7 @@ CreditsScreen00Line10:
 
 CreditsScreen00Line11:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"            3rd Party Music           ",ETX
+	dc.b	"                Music                 ",ETX
 
 CreditsScreen00Line12:
 	;		"12345678901234567890123456789012345678"
@@ -3588,7 +3588,7 @@ DialogTextDay05ScriptedEventCamp1D:
 	dc.b	"in 1989 perfectly.   ^",FF
 	dc.b	"I didn't want to",LF
 	dc.b	"leave.               ^",FF
-	dc.b	"But then it's wasn't",LF
+	dc.b	"But then it wasn't a",LF
 	dc.b	"memory. I was there.",ETX
 
 	align 2

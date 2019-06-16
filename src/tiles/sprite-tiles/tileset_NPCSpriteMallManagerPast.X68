@@ -1,3 +1,6 @@
+
+tileset_NPCSpriteMallManagerPast_Frame0Start:
+
 	dc.l	$00000111
 	dc.l	$00001222
 	dc.l	$00012322
@@ -69,6 +72,10 @@
 	dc.l	$55511100
 	dc.l	$11111100
 	dc.l	$11111000
+
+tileset_NPCSpriteMallManagerPast_Frame0End:
+
+tileset_NPCSpriteMallManagerPast_Frame1Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -142,6 +149,10 @@
 	dc.l	$11100000
 	dc.l	$00000000
 
+tileset_NPCSpriteMallManagerPast_Frame1End:
+
+tileset_NPCSpriteMallManagerPast_Frame2Start:
+
 	dc.l	$00000000
 	dc.l	$00000011
 	dc.l	$00000122
@@ -213,6 +224,10 @@
 	dc.l	$55511100
 	dc.l	$11111100
 	dc.l	$11111000
+
+tileset_NPCSpriteMallManagerPast_Frame2End:
+
+tileset_NPCSpriteMallManagerPast_Frame3Start:
 
 	dc.l	$00000111
 	dc.l	$00001222
@@ -286,6 +301,10 @@
 	dc.l	$11111100
 	dc.l	$11111000
 
+tileset_NPCSpriteMallManagerPast_Frame3End:
+
+tileset_NPCSpriteMallManagerPast_Frame4Start:
+
 	dc.l	$00000000
 	dc.l	$00000111
 	dc.l	$00001222
@@ -357,6 +376,10 @@
 	dc.l	$11111000
 	dc.l	$11000000
 	dc.l	$10000000
+
+tileset_NPCSpriteMallManagerPast_Frame4End:
+
+tileset_NPCSpriteMallManagerPast_Frame5Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -430,6 +453,10 @@
 	dc.l	$11111100
 	dc.l	$11111000
 
+tileset_NPCSpriteMallManagerPast_Frame5End:
+
+tileset_NPCSpriteMallManagerPast_Frame6Start:
+
 	dc.l	$00000011
 	dc.l	$00000122
 	dc.l	$00001222
@@ -501,6 +528,10 @@
 	dc.l	$55111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_NPCSpriteMallManagerPast_Frame6End:
+
+tileset_NPCSpriteMallManagerPast_Frame7Start:
 
 	dc.l	$00000000
 	dc.l	$00000011
@@ -574,6 +605,10 @@
 	dc.l	$11111100
 	dc.l	$11111000
 
+tileset_NPCSpriteMallManagerPast_Frame7End:
+
+tileset_NPCSpriteMallManagerPast_Frame8Start:
+
 	dc.l	$00000000
 	dc.l	$00000011
 	dc.l	$00000122
@@ -645,6 +680,10 @@
 	dc.l	$15555110
 	dc.l	$11111110
 	dc.l	$11111100
+
+tileset_NPCSpriteMallManagerPast_Frame8End:
+
+tileset_NPCSpriteMallManagerPast_Frame9Start:
 
 	dc.l	$00000111
 	dc.l	$00001222
@@ -718,6 +757,10 @@
 	dc.l	$11111000
 	dc.l	$11110000
 
+tileset_NPCSpriteMallManagerPast_Frame9End:
+
+tileset_NPCSpriteMallManagerPast_Frame10Start:
+
 	dc.l	$00000000
 	dc.l	$00000111
 	dc.l	$00001222
@@ -789,6 +832,10 @@
 	dc.l	$15555110
 	dc.l	$11111100
 	dc.l	$11111000
+
+tileset_NPCSpriteMallManagerPast_Frame10End:
+
+tileset_NPCSpriteMallManagerPast_Frame11Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -862,3 +909,4 @@
 	dc.l	$11111110
 	dc.l	$11111100
 
+tileset_NPCSpriteMallManagerPast_Frame11End:

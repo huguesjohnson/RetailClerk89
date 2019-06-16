@@ -766,7 +766,6 @@ DebugStartDay7EndGood:
 	bsr.w	FadeIn	; fade in to the new scene
 	rts
 
-
 DebugStartEnd:
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	bset.l	#STATE_FLAG_EXPLORING,d7	; set exploring flag

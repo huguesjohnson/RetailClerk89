@@ -1,3 +1,6 @@
+
+tileset_PlayerDB_Frame0Start:
+
 	dc.l	$00000111
 	dc.l	$00001777
 	dc.l	$00017777
@@ -69,6 +72,10 @@
 	dc.l	$55111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_PlayerDB_Frame0End:
+
+tileset_PlayerDB_Frame1Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -142,6 +149,10 @@
 	dc.l	$11000000
 	dc.l	$00000000
 
+tileset_PlayerDB_Frame1End:
+
+tileset_PlayerDB_Frame2Start:
+
 	dc.l	$00000000
 	dc.l	$00000011
 	dc.l	$00000177
@@ -214,6 +225,10 @@
 	dc.l	$11111000
 	dc.l	$11110000
 
+tileset_PlayerDB_Frame2End:
+
+tileset_PlayerDB_Frame3Start:
+
 	dc.l	$00000111
 	dc.l	$00001777
 	dc.l	$00017777
@@ -285,6 +300,10 @@
 	dc.l	$55111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_PlayerDB_Frame3End:
+
+tileset_PlayerDB_Frame4Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -358,6 +377,10 @@
 	dc.l	$11000000
 	dc.l	$00000000
 
+tileset_PlayerDB_Frame4End:
+
+tileset_PlayerDB_Frame5Start:
+
 	dc.l	$00000000
 	dc.l	$00000111
 	dc.l	$00001777
@@ -429,6 +452,10 @@
 	dc.l	$55111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_PlayerDB_Frame5End:
+
+tileset_PlayerDB_Frame6Start:
 
 	dc.l	$00000011
 	dc.l	$00000177
@@ -502,6 +529,10 @@
 	dc.l	$11111000
 	dc.l	$11110000
 
+tileset_PlayerDB_Frame6End:
+
+tileset_PlayerDB_Frame7Start:
+
 	dc.l	$00000000
 	dc.l	$00000011
 	dc.l	$00000177
@@ -573,6 +604,10 @@
 	dc.l	$15555110
 	dc.l	$11111100
 	dc.l	$11111000
+
+tileset_PlayerDB_Frame7End:
+
+tileset_PlayerDB_Frame8Start:
 
 	dc.l	$00000000
 	dc.l	$00000011
@@ -646,6 +681,10 @@
 	dc.l	$11111110
 	dc.l	$11111100
 
+tileset_PlayerDB_Frame8End:
+
+tileset_PlayerDB_Frame9Start:
+
 	dc.l	$00000111
 	dc.l	$00001777
 	dc.l	$00017777
@@ -717,6 +756,10 @@
 	dc.l	$55110000
 	dc.l	$11110000
 	dc.l	$11100000
+
+tileset_PlayerDB_Frame9End:
+
+tileset_PlayerDB_Frame10Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -790,6 +833,10 @@
 	dc.l	$11111110
 	dc.l	$11111100
 
+tileset_PlayerDB_Frame10End:
+
+tileset_PlayerDB_Frame11Start:
+
 	dc.l	$00000000
 	dc.l	$00000111
 	dc.l	$00001777
@@ -862,3 +909,4 @@
 	dc.l	$11111100
 	dc.l	$11111000
 
+tileset_PlayerDB_Frame11End:

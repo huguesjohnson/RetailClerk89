@@ -68,6 +68,18 @@ Pattern16x32:
 	; row 03
 	dc.w	$06,$07
 
+Pattern16x32Rotated:
+	dc.w	$0003	; 4 rows
+	dc.w	$0001	; 2 columns
+	; row 00
+	dc.w	$00,$04
+	; row 01
+	dc.w	$01,$05
+	; row 02
+	dc.w	$02,$06
+	; row 03
+	dc.w	$03,$07
+
 Pattern24x8:
 	dc.w	$0000	; 2 rows
 	dc.w	$0002	; 3 columns	
@@ -176,6 +188,20 @@ Pattern32x40:
 	; row 04
 	dc.w	$10,$11,$12,$13
 
+Pattern48x40:
+	dc.w	$0004	; 5 rows
+	dc.w	$0005	; 6 columns
+	; row 00
+	dc.w	$00,$01,$02,$03,$04,$05
+	; row 01
+	dc.w	$06,$07,$08,$09,$0A,$0B
+	; row 02
+	dc.w	$0C,$0D,$0E,$0F,$10,$11
+	; row 03
+	dc.w	$12,$13,$14,$15,$16,$17
+	; row 04
+	dc.w	$18,$19,$1A,$1B,$1C,$1D
+
 Pattern56x16:
 	dc.w	$0001	; 2 rows
 	dc.w	$0006	; 7 columns
@@ -227,6 +253,18 @@ Pattern80x16:
 	dc.w	$00,$01,$02,$03,$04,$05,$06,$07,$08,$09
 	; row 01
 	dc.w	$0A,$0B,$0C,$0D,$0E,$0F,$10,$11,$12,$13
+
+Pattern80x32:
+	dc.w	$0003	; 4 rows
+	dc.w	$0009	; A columns
+	; row 00
+	dc.w	$00,$01,$02,$03,$04,$05,$06,$07,$08,$09
+	; row 01
+	dc.w	$0A,$0B,$0C,$0D,$0E,$0F,$10,$11,$12,$13
+	; row 02
+	dc.w	$14,$15,$16,$17,$18,$19,$1A,$1B,$1C,$1D
+	; row 03
+	dc.w	$1E,$1F,$20,$21,$22,$23,$24,$25,$26,$27
 
 Pattern88x48:
 	dc.w	$0006	; 6 rows

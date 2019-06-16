@@ -361,6 +361,38 @@ Flashback2014TilesStart:
 	include 'tiles/scene-tiles/tileset_flashback2014.X68'
 Flashback2014TilesEnd:
 
+;-------------------------------------------------------------------------------
+; ending scene tiles
+;-------------------------------------------------------------------------------
+EndingFrameTilesStart:
+	include 'tiles/scene-tiles/tileset_endingframe.X68'
+EndingFrameTilesEnd:
+
+BadEndingBackgroundTilesStart:
+	include 'tiles/scene-tiles/tileset_snowynight.X68'
+BadEndingBackgroundTilesEnd:
+
+BadEnding0TilesStart:
+	include 'tiles/scene-tiles/tileset_doubledoor.X68'
+	include 'tiles/scene-tiles/tileset_houselight.X68'
+BadEnding0TilesEnd:
+
+BadEnding1TilesStart:
+	include 'tiles/scene-tiles/tileset_trendyguyend.X68'
+	include 'tiles/scene-tiles/tileset_couch.X68'
+	include 'tiles/scene-tiles/tileset_table-24x24.X68'
+BadEnding1TilesEnd:
+
+BadEnding2TilesStart:
+	include 'tiles/scene-tiles/tileset_passedoutdude.X68'
+	include 'tiles/scene-tiles/tileset_hottub.X68'
+BadEnding2TilesEnd:
+
+GoodEnding0TilesStart:
+	include 'tiles/scene-tiles/tileset_goodending0floor.X68'
+	include 'tiles/scene-tiles/tileset_workshopdilapidated.X68'
+	include 'tiles/scene-tiles/tileset_boxes.X68'
+GoodEnding0TilesEnd:
 
 ;-------------------------------------------------------------------------------
 ; general store frame tiles

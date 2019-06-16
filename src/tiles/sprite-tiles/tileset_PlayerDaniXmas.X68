@@ -1,3 +1,6 @@
+
+tileset_PlayerDaniXmas_Frame0Start:
+
 	dc.l	$00000111
 	dc.l	$00001BBB
 	dc.l	$0001BBB3
@@ -69,6 +72,10 @@
 	dc.l	$11111000
 	dc.l	$11110000
 	dc.l	$00000000
+
+tileset_PlayerDaniXmas_Frame0End:
+
+tileset_PlayerDaniXmas_Frame1Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -142,6 +149,10 @@
 	dc.l	$11000000
 	dc.l	$00000000
 
+tileset_PlayerDaniXmas_Frame1End:
+
+tileset_PlayerDaniXmas_Frame2Start:
+
 	dc.l	$00000000
 	dc.l	$00000111
 	dc.l	$00001BBB
@@ -213,6 +224,10 @@
 	dc.l	$DD111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_PlayerDaniXmas_Frame2End:
+
+tileset_PlayerDaniXmas_Frame3Start:
 
 	dc.l	$00000111
 	dc.l	$00001BBB
@@ -286,6 +301,10 @@
 	dc.l	$11100000
 	dc.l	$00000000
 
+tileset_PlayerDaniXmas_Frame3End:
+
+tileset_PlayerDaniXmas_Frame4Start:
+
 	dc.l	$00000000
 	dc.l	$00000111
 	dc.l	$00001BBB
@@ -357,6 +376,10 @@
 	dc.l	$11110000
 	dc.l	$11100000
 	dc.l	$11000000
+
+tileset_PlayerDaniXmas_Frame4End:
+
+tileset_PlayerDaniXmas_Frame5Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -430,6 +453,10 @@
 	dc.l	$11110000
 	dc.l	$11100000
 
+tileset_PlayerDaniXmas_Frame5End:
+
+tileset_PlayerDaniXmas_Frame6Start:
+
 	dc.l	$00000011
 	dc.l	$000001BB
 	dc.l	$00001BBB
@@ -501,6 +528,10 @@
 	dc.l	$11111000
 	dc.l	$11110000
 	dc.l	$00000000
+
+tileset_PlayerDaniXmas_Frame6End:
+
+tileset_PlayerDaniXmas_Frame7Start:
 
 	dc.l	$00000000
 	dc.l	$00000011
@@ -574,6 +605,10 @@
 	dc.l	$11111000
 	dc.l	$00000000
 
+tileset_PlayerDaniXmas_Frame7End:
+
+tileset_PlayerDaniXmas_Frame8Start:
+
 	dc.l	$00000000
 	dc.l	$00000011
 	dc.l	$000001BB
@@ -645,6 +680,10 @@
 	dc.l	$11111100
 	dc.l	$11111000
 	dc.l	$00000000
+
+tileset_PlayerDaniXmas_Frame8End:
+
+tileset_PlayerDaniXmas_Frame9Start:
 
 	dc.l	$00000011
 	dc.l	$000001BB
@@ -718,6 +757,10 @@
 	dc.l	$11100000
 	dc.l	$00000000
 
+tileset_PlayerDaniXmas_Frame9End:
+
+tileset_PlayerDaniXmas_Frame10Start:
+
 	dc.l	$00000000
 	dc.l	$00000011
 	dc.l	$000001BB
@@ -789,6 +832,10 @@
 	dc.l	$11111110
 	dc.l	$11111100
 	dc.l	$00000000
+
+tileset_PlayerDaniXmas_Frame10End:
+
+tileset_PlayerDaniXmas_Frame11Start:
 
 	dc.l	$00000000
 	dc.l	$00000011
@@ -862,3 +909,4 @@
 	dc.l	$11111100
 	dc.l	$00000000
 
+tileset_PlayerDaniXmas_Frame11End:

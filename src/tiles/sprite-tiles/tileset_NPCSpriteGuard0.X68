@@ -1,3 +1,6 @@
+
+tileset_NPCSpriteGuard0_Frame0Start:
+
 	dc.l	$00000111
 	dc.l	$0000111A
 	dc.l	$000111AD
@@ -69,6 +72,10 @@
 	dc.l	$55111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_NPCSpriteGuard0_Frame0End:
+
+tileset_NPCSpriteGuard0_Frame1Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -142,6 +149,10 @@
 	dc.l	$11000000
 	dc.l	$00000000
 
+tileset_NPCSpriteGuard0_Frame1End:
+
+tileset_NPCSpriteGuard0_Frame2Start:
+
 	dc.l	$00000000
 	dc.l	$00000011
 	dc.l	$00000111
@@ -213,6 +224,10 @@
 	dc.l	$55111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_NPCSpriteGuard0_Frame2End:
+
+tileset_NPCSpriteGuard0_Frame3Start:
 
 	dc.l	$00000111
 	dc.l	$00001111
@@ -286,6 +301,10 @@
 	dc.l	$11111000
 	dc.l	$11110000
 
+tileset_NPCSpriteGuard0_Frame3End:
+
+tileset_NPCSpriteGuard0_Frame4Start:
+
 	dc.l	$00000000
 	dc.l	$00000111
 	dc.l	$00001111
@@ -357,6 +376,10 @@
 	dc.l	$11110000
 	dc.l	$11000000
 	dc.l	$00000000
+
+tileset_NPCSpriteGuard0_Frame4End:
+
+tileset_NPCSpriteGuard0_Frame5Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
@@ -430,6 +453,10 @@
 	dc.l	$11111000
 	dc.l	$11110000
 
+tileset_NPCSpriteGuard0_Frame5End:
+
+tileset_NPCSpriteGuard0_Frame6Start:
+
 	dc.l	$00000001
 	dc.l	$00000011
 	dc.l	$000001A1
@@ -501,6 +528,10 @@
 	dc.l	$55111000
 	dc.l	$11111000
 	dc.l	$11110000
+
+tileset_NPCSpriteGuard0_Frame6End:
+
+tileset_NPCSpriteGuard0_Frame7Start:
 
 	dc.l	$00000000
 	dc.l	$00000001
@@ -574,6 +605,10 @@
 	dc.l	$11111100
 	dc.l	$11111000
 
+tileset_NPCSpriteGuard0_Frame7End:
+
+tileset_NPCSpriteGuard0_Frame8Start:
+
 	dc.l	$00000000
 	dc.l	$00000001
 	dc.l	$00000011
@@ -645,6 +680,10 @@
 	dc.l	$15555110
 	dc.l	$11111110
 	dc.l	$11111100
+
+tileset_NPCSpriteGuard0_Frame8End:
+
+tileset_NPCSpriteGuard0_Frame9Start:
 
 	dc.l	$00000011
 	dc.l	$00000111
@@ -718,6 +757,10 @@
 	dc.l	$11110000
 	dc.l	$11100000
 
+tileset_NPCSpriteGuard0_Frame9End:
+
+tileset_NPCSpriteGuard0_Frame10Start:
+
 	dc.l	$00000000
 	dc.l	$00000011
 	dc.l	$00000111
@@ -789,6 +832,10 @@
 	dc.l	$15555110
 	dc.l	$11111100
 	dc.l	$11111000
+
+tileset_NPCSpriteGuard0_Frame10End:
+
+tileset_NPCSpriteGuard0_Frame11Start:
 
 	dc.l	$00000000
 	dc.l	$00000011
@@ -862,3 +909,4 @@
 	dc.l	$11111110
 	dc.l	$11111100
 
+tileset_NPCSpriteGuard0_Frame11End:

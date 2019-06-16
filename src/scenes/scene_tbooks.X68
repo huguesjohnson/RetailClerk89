@@ -15,8 +15,8 @@ SceneTBooks:
 	dc.l	TransparentTileEnd
 
 	; tileset 1
-	dc.l	WoodFloorVTilesStart	; start of tiles for south floor
-	dc.l	WoodFloorVTilesEnd	; end of tiles for south floor
+	dc.l	WoodFloorVTilesStart	; start of tiles for floor
+	dc.l	WoodFloorVTilesEnd	; end of tiles for floor
 
 	; tileset 2
 	dc.l	NorthFrameRoundedTilesStart	; start of tiles for south frame
@@ -49,7 +49,7 @@ SceneTBooks:
 	;---------------------------------------------------------------------------
 	dc.w	$0018	; scenery count
 
-	; south floor
+	; floor
 	dc.l	PatternWoodFloorV	; location of pattern to load
 	; 		%pccvhnnnnnnnnnnn
 	dc.w	%0010000000000001

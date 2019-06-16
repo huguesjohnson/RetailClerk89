@@ -84,17 +84,13 @@ SceneEnd:
 	;---------------------------------------------------------------------------
 	; text
 	;---------------------------------------------------------------------------
-	dc.w	$0008	; text count
+	dc.w	$0007	; text count
 
 	dc.l	LegalScreenLine00	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
-	dc.l	VDP_VRAM_WRITE_A+$05800000	; initial drawing location
-
-	dc.l	LegalScreenLine01	; location of string to display
-	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$06800000	; initial drawing location
 
-	dc.l	CreditsScreen00Line1B	; location of string to display
+	dc.l	LegalScreenLine01	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$07800000	; initial drawing location
 

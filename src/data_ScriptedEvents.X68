@@ -2878,8 +2878,10 @@ TestScriptedEventEnding:
 	dc.w	$0000
 	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
 	dc.w	SCENE_ID_CREDITS
+;	dc.w	SCENE_ID_ENDING_BAD2
 	dc.w	SCRIPTED_EVENT_TIMER
 	dc.w	CREDITS_SCREEN_LOOP
+;	dc.w	$FFFF
 	dc.w	SCRIPTED_EVENT_ENDGAME
 
 ; ------------------------------------------------------------------------------

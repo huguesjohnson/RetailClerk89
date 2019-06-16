@@ -53,6 +53,8 @@ public class BuildSpriteTiles{
 				colors.add("ffe0e8e0");//0D
 				colors.add("ffe0c820");//0E
 				colors.add("ff6084a0");//0F
+				//get the name of the sprite - used to label frames later on
+				String spriteName=outputFilePath.substring((outputFilePath.lastIndexOf('/')+1),outputFilePath.lastIndexOf('.'));
 				//open the image
 				File sourceFile=new File(sourceFilePath);
 				BufferedImage image=ImageIO.read(sourceFile);
@@ -68,6 +70,10 @@ public class BuildSpriteTiles{
 				writer=new FileWriter(outputFilePath);
 				//loop through sprite sheet
 				while(currentFrame<totalFrames){
+					writer.write(newLine);
+					writer.write(spriteName+"_Frame"+currentFrame+"Start:");
+					writer.write(newLine);
+					writer.write(newLine);
 					for(int col=0;col<=1;col++){
 						for(int row=0;row<=3;row++){
 							//loop through each pixel of the next 8x8 cell
@@ -94,6 +100,8 @@ public class BuildSpriteTiles{
 							writer.write(newLine);
 						}
 					}
+					writer.write(spriteName+"_Frame"+currentFrame+"End:");
+					writer.write(newLine);
 					currentFrame++;
 				}
 			    System.out.println("Successfully wrote "+outputFilePath);
