@@ -141,4 +141,15 @@ CharacterDefinitionSleepingGuard:
 CharacterScene0AStaffNPCAlt:
 	dc.l	Scene0AStaffNPCNoHatTilesStart
 
+; 23 - OBJ_NPC_MALE_SHOPPER1
+CharacterDefinitionMaleShopper1:
+	dc.l	NPCSpriteMaleShopper1Start
+
+; 24 - OBJ_NPC_MALE_SHOPPER2
+CharacterDefinitionMaleShopper2:
+	dc.l	NPCSpriteMaleShopper2Start
+
+; 25 - OBJ_NPC_FEMALE_SHOPPER1
+CharacterDefinitionFemaleShopper1:
+	dc.l	NPCSpriteFemaleShopper1Start
 

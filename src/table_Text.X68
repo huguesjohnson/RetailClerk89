@@ -191,6 +191,12 @@ DefaultNPCDescriptionTable:
 	dc.l	DialogTextNPCSleepingGuardDefaultLook
 	; OBJ_NPC_TLODGE_STAFF_ALT
 	dc.l	DialogTextTLodgeStaffDefaultLook
+	; OBJ_NPC_MALE_SHOPPER1
+	dc.l	DialogTextMaleShopper1DefaultLook
+	; OBJ_NPC_MALE_SHOPPER2
+	dc.l	DialogTextMaleShopper2DefaultLook
+	; OBJ_NPC_FEMALE_SHOPPER1
+	dc.l	DialogTextFemaleShopper1DefaultLook
 	; OBJ_NPC_GENERICSHOPPER
 	dc.l	DialogTextNothingHappens	; shouldn't be reachable
 
@@ -376,7 +382,7 @@ NPCNameTable:
 	; OBJ_NPC_MALLMANAGER_NOW
 	dc.l	NPCNameMallManager
 	; OBJ_NPC_MALLMANAGER_PAST
-	dc.l	NPCNameMallManager
+	dc.l	NPCNameMallManagerShort
 	; OBJ_NPC_CAVERN_STAFF_PAST
 	dc.l	NPCNameCavernStaff
 	; OBJ_NPC_DANI_XMAS
@@ -385,6 +391,12 @@ NPCNameTable:
 	dc.l	NPCNameGuard0
 	; OBJ_NPC_TLODGE_STAFF_ALT
 	dc.l	NPCNameTLodgeStaff
+	; OBJ_NPC_MALE_SHOPPER1
+	dc.l	NPCNameGenericShopper
+	; OBJ_NPC_MALE_SHOPPER2
+	dc.l	NPCNameGenericShopper
+	; OBJ_NPC_FEMALE_SHOPPER1
+	dc.l	NPCNameGenericShopper
 	; OBJ_NPC_GENERICSHOPPER
 	dc.l	NPCNameGenericShopper
 NPCNameTableEnd:

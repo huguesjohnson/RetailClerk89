@@ -9,6 +9,12 @@
 
 	include	'sub_ClearVRAM.X68'
 
+	include 'sub_SaveLoad.X68'
+
+	include	'sub_ProcessLoadScreen.X68'
+
+	include	'sub_BuildLoadScreen.X68'
+
 	include	'sub_BuildStatusScreen.X68'
 
 	include 'sub_ProcessStatusScreen.X68'
@@ -65,6 +71,8 @@
 
 	include	'sub_ClearDialog.X68'
 
+	include	'sub_BuildVRAMWriteAddress.X68'
+
 	include	'sub_ShowSelectionDialog.X68'
 
 	include	'sub_ProcessAction.X68'
@@ -75,19 +83,11 @@
 
 	include	'sub_QueueScriptedEvent.X68'
 
-	include	'sub_BuildVRAMWriteAddress.X68'
-
 	include	'sub_EndDemo.X68'
 
 	include 'sub_InitNPCLocations.X68'
 
 	include	'sub_FadeInFadeOut.X68'
-
-	include 'sub_SaveLoad.X68'
-
-	include	'sub_ProcessLoadScreen.X68'
-
-	include	'sub_BuildLoadScreen.X68'
 
 	if _DEBUG_
 	include	'init_Debug.X68'

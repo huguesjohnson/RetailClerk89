@@ -188,6 +188,20 @@ Pattern32x40:
 	; row 04
 	dc.w	$10,$11,$12,$13
 
+Pattern40x40:
+	dc.w	$0004	; 5 rows
+	dc.w	$0004	; 5 columns
+	; row 00
+	dc.w	$00,$01,$02,$03,$04
+	; row 01
+	dc.w	$05,$06,$07,$08,$09
+	; row 02
+	dc.w	$0A,$0B,$0C,$0D,$0E
+	; row 03
+	dc.w	$0F,$10,$11,$12,$13
+	; row 04
+	dc.w	$14,$15,$16,$17,$18
+
 Pattern48x40:
 	dc.w	$0004	; 5 rows
 	dc.w	$0005	; 6 columns

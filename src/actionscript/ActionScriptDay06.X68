@@ -86,6 +86,35 @@ Day06Scene01Action03StartMission:
 	rts
 
 ;-------------------------------------------------------------------------------
+; day 06 - scene 02 (SCENE_ID_WEHALL)
+;-------------------------------------------------------------------------------
+Day06Scene02Action01:	; ACTION_USE_TALK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	bne.s	Day06Scene02Action01Default	; branch to default text
+	lea	DialogTextMallManagerDay06,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene02Action01Default:
+	; default text
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene02Action02:	; ACTION_TAKE_GIVE
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	bne.s	Day06Scene02Action02Default	; default text
+	lea	DialogTextNPCMallManagerDefaultGive,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene02Action02Default:
+	; default action
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+
+;-------------------------------------------------------------------------------
 ; day 06 - scene 03 (SCENE_ID_CENTER)
 ;-------------------------------------------------------------------------------
 Day06Scene03Action01:	; ACTION_USE_TALK
@@ -235,22 +264,13 @@ Day06Scene0AAction01:	; ACTION_USE_TALK
 	beq.s	Day06Scene0AAction01NPC	; branch to text for the NPC
 	cmpi.w	#OBJ_SCENE_RADIO,d6	; test target
 	beq.s	Day06Scene0AAction01Radio	; branch to text for the radio
-	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene0AAction01NPC:
 	lea	DialogTextTLodgeStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene0AAction01Radio:
-	; setup 4 choice dialog	
-	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
-	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d6	; set text choice flag
-	bclr.l	#DIALOG_FLAG_STYLE_TITLED,d6	; clear the titled flag
-	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
-	lea	RadioMenu,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	DefaultRadioUse
 	rts
 Day06Scene0AAction02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
@@ -269,9 +289,7 @@ Day06Scene0AAction03:	; ACTION_RESPOND
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7	; test mission started
 	bne.s	Day06Scene0AAction03Night	; mission started, branch
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
+	bra.s	Day06Scene0AAction03RadioDay	; mission not started
 Day06Scene0AAction03Night:
 	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy mission flags to d7
 	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
@@ -298,6 +316,30 @@ Day06Scene0AAction03Night:
 Day06Scene0AAction03Exit:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save updated flags
+	rts
+Day06Scene0AAction03RadioDay:	; ACTION_RESPOND
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.s	Day06Scene0AAction03R0RadioDay	; branch to text for response 0
+	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
+	beq.s	Day06Scene0AAction03R1RadioDay	; branch to text for response 1
+	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
+	beq.s	Day06Scene0AAction03R2RadioDay	; branch to text for response 2
+	; must be response 3 then
+	lea	DialogTextRadioDay06R3,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene0AAction03R0RadioDay:
+	lea	DialogTextRadioDay06R0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene0AAction03R1RadioDay:
+	lea	DialogTextRadioDay06R1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene0AAction03R2RadioDay:
+	lea	DialogTextRadioDay06R2,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
 ;-------------------------------------------------------------------------------
@@ -365,7 +407,7 @@ Day06Scene0DAction01:	; ACTION_USE_TALK
 	beq.s	Day06Scene0DAction01NPC0	; branch to text for the NPC
 	cmpi.w	#OBJ_NPC_WORKSHOP_STAFF1,d6	; test target
 	beq.s	Day06Scene0DAction01NPC1	; branch to text for the NPC
-	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	cmpi.w	#OBJ_NPC_DANI_XMAS,d6	; test target
 	beq.s	Day06Scene0DAction01NPCDani	; branch to text for the NPC
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text

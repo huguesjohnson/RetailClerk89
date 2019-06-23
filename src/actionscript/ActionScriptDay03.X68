@@ -120,6 +120,7 @@ Day03Scene01Action01DB:
 	move.l	#$18000000,(MEM_NPC_LOCATION_EEHALL)
 	move.l	#$00000000,(MEM_NPC_LOCATION_WEHALL)
 	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	move.l	#$00000000,(MEM_NPC_LOCATION_EWHALL)
 	; queue the scripted event
 	lea ScriptedEventDay03DayEnd,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -248,6 +249,34 @@ Day03Scene05Action03:	; ACTION_RESPOND
 	beq.w	Day03End	; branch to day end
 	; else exit
 	lea	DialogTextDaniCarGameEndR0,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+;-------------------------------------------------------------------------------
+; day 03 - scene 06 (SCENE_ID_EWHALL)
+;-------------------------------------------------------------------------------
+Day03Scene06Action01:	; ACTION_USE_TALK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	bne.s	Day03Scene06Action01Default	; branch to default text
+	lea	DialogTextMallManagerDay03,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene06Action01Default:
+	; default text
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene06Action02:	; ACTION_TAKE_GIVE
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	bne.s	Day03Scene06Action02Default	; default text
+	lea	DialogTextNPCMallManagerDefaultGive,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene06Action02Default:
+	; default action
+	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -386,9 +415,14 @@ Day03Scene0AAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_TLODGE_STAFF,d6	; test target
 	beq.s	Day03Scene0AAction01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_SCENE_RADIO,d6	; test target
+	beq.s	Day03Scene0AAction01Radio	; branch to text for the radio
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction01Radio:
+	bsr.w	DefaultRadioUse
 	rts
 Day03Scene0AAction01NPC:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
@@ -492,9 +526,9 @@ Day03Scene0AAction02NPCGiveCamera:
 	addq	#$1,d6
 .3
 	cmpi.w	#$0001,d6
-	beq.s	Day03Scene0AAction02NPCGiveCamera1
+	beq.w	Day03Scene0AAction02NPCGiveCamera1
 	cmpi.w	#$0002,d6
-	beq.s	Day03Scene0AAction02NPCGiveCamera2
+	beq.w	Day03Scene0AAction02NPCGiveCamera2
 	;---------------------------------------------------------------------------
 	; transition to second half of the day
 	;---------------------------------------------------------------------------
@@ -511,6 +545,8 @@ Day03Scene0AAction02NPCGiveCamera:
 	move.l	#$031B0000,(MEM_NPC_LOCATION_VB)
 	move.l	#$1A050B00,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	move.l	#$00000000,(MEM_NPC_LOCATION_WWHALL)
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
+	move.l	#$1D000000,(MEM_NPC_LOCATION_EWHALL)
 	; queue the scripted event
 	lea ScriptedEventDay03ChangePC,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -530,6 +566,10 @@ Day03Scene0AAction02NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day03Scene0AAction03:	; ACTION_RESPOND
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_SCENE_RADIO,d6	; test target
+	beq.s	Day03Scene0AAction03Radio	; branch to text for the radio
+	; otherwise should be the npc
 	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
 	beq.s	Day03Scene0AAction03StartMission	; branch launch scripted event
 	; else display declined dialog
@@ -543,6 +583,31 @@ Day03Scene0AAction03StartMission:
 	lea	DialogTextScene09Day03IntroR0,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
+Day03Scene0AAction03Radio:
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.s	Day03Scene0AAction03R0Radio	; branch to text for response 0
+	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
+	beq.s	Day03Scene0AAction03R1Radio	; branch to text for response 1
+	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
+	beq.s	Day03Scene0AAction03R2Radio	; branch to text for response 2
+	; must be response 3 then
+	lea	DialogTextRadioDay03R3,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction03R0Radio:
+	lea	DialogTextRadioDay03R0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction03R1Radio:
+	lea	DialogTextRadioDay03R1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day03Scene0AAction03R2Radio:
+	lea	DialogTextRadioDay03R2,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
 
 ;-------------------------------------------------------------------------------
 ; day 03 - scene 0B (SCENE_ID_CAVERN)
@@ -1081,6 +1146,7 @@ Day03End:
 	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
 	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	move.l	#$00000000,(MEM_NPC_LOCATION_WEHALL)
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
 	move.l	#$00000000,(MEM_NPC_LOCATION_PARKINGLOT)
 	;---------------------------------------------------------------------------	
 	; update the game state

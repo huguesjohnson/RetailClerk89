@@ -89,6 +89,35 @@ Day04Scene00Action02DB:
 	rts
 
 ;-------------------------------------------------------------------------------
+; day 04 - scene 02 (SCENE_ID_WEHALL)
+;-------------------------------------------------------------------------------
+Day04Scene02Action01:	; ACTION_USE_TALK
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	bne.s	Day04Scene02Action01Default	; branch to default text
+	lea	DialogTextMallManagerDay04,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene02Action01Default:
+	; default text
+	lea	DialogTextNothingHappens,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene02Action02:	; ACTION_TAKE_GIVE
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	bne.s	Day04Scene02Action02Default	; default text
+	lea	DialogTextNPCMallManagerDefaultGive,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene02Action02Default:
+	; default action
+	lea	DialogTextCantTake,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+
+;-------------------------------------------------------------------------------
 ; day 04 - scene 03 (SCENE_ID_CENTER)
 ;-------------------------------------------------------------------------------
 Day04Scene03Action01:	; ACTION_USE_TALK
@@ -233,6 +262,7 @@ Day04Scene03Action03GiveGiftR0:
 	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
 	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
 	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	move.l	#$1D000000,(MEM_NPC_LOCATION_WEHALL)
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
 	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
@@ -443,9 +473,14 @@ Day04Scene0AAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_TLODGE_STAFF,d6	; test target
 	beq.s	Day04Scene0AAction01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_SCENE_RADIO,d6	; test target
+	beq.s	Day04Scene0AAction01Radio	; branch to text for the radio
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0AAction01Radio:
+	bsr.w	DefaultRadioUse
 	rts
 Day04Scene0AAction01NPC:
 	; test if mall is closed
@@ -480,6 +515,30 @@ Day04Scene0AAction02:	; ACTION_TAKE_GIVE
 	rts
 Day04Scene0AAction02NPC:
 	lea	DialogTextNPCTLodgeStaffDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0AAction03:	; ACTION_RESPOND
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.s	Day04Scene0AAction03R0	; branch to text for response 0
+	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
+	beq.s	Day04Scene0AAction03R1	; branch to text for response 1
+	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
+	beq.s	Day04Scene0AAction03R2	; branch to text for response 2
+	; must be response 3 then
+	lea	DialogTextRadioDay04R3,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0AAction03R0:
+	lea	DialogTextRadioDay04R0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0AAction03R1:
+	lea	DialogTextRadioDay04R1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene0AAction03R2:
+	lea	DialogTextRadioDay04R2,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -1148,6 +1207,8 @@ Day04End:
 	move.l	#$00000000,(MEM_NPC_LOCATION_PARKINGLOT)
 	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
 	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	move.l	#$00000000,(MEM_NPC_LOCATION_WEHALL)
+	move.l	#$041D0000,(MEM_NPC_LOCATION_CENTER)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	

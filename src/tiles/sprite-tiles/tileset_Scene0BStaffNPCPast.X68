@@ -4,8 +4,8 @@ tileset_Scene0BStaffNPCPast_Frame0Start:
 	dc.l	$00001111
 	dc.l	$00017777
 	dc.l	$00177777
-	dc.l	$00177333
-	dc.l	$00173333
+	dc.l	$0017A333
+	dc.l	$001A3333
 	dc.l	$00133DD3
 	dc.l	$00133D53
 	dc.l	$00133333
@@ -40,8 +40,8 @@ tileset_Scene0BStaffNPCPast_Frame0Start:
 	dc.l	$11100000
 	dc.l	$77710000
 	dc.l	$77771000
-	dc.l	$33771000
-	dc.l	$33371000
+	dc.l	$33A71000
+	dc.l	$333A1000
 	dc.l	$DD331000
 	dc.l	$5D331000
 	dc.l	$33331000
@@ -81,8 +81,8 @@ tileset_Scene0BStaffNPCPast_Frame1Start:
 	dc.l	$00001111
 	dc.l	$00017777
 	dc.l	$00177777
-	dc.l	$00177333
-	dc.l	$00173333
+	dc.l	$0017A333
+	dc.l	$001A3333
 	dc.l	$00133DD3
 	dc.l	$00133D53
 
@@ -117,8 +117,8 @@ tileset_Scene0BStaffNPCPast_Frame1Start:
 	dc.l	$11100000
 	dc.l	$77710000
 	dc.l	$77771000
-	dc.l	$33771000
-	dc.l	$33371000
+	dc.l	$33A71000
+	dc.l	$333A1000
 	dc.l	$DD331000
 	dc.l	$5D331000
 
@@ -157,8 +157,8 @@ tileset_Scene0BStaffNPCPast_Frame2Start:
 	dc.l	$00000111
 	dc.l	$00001777
 	dc.l	$00017777
-	dc.l	$00017733
-	dc.l	$00017333
+	dc.l	$00017A33
+	dc.l	$0001A333
 	dc.l	$000133DD
 	dc.l	$000133D5
 
@@ -193,8 +193,8 @@ tileset_Scene0BStaffNPCPast_Frame2Start:
 	dc.l	$11110000
 	dc.l	$77771000
 	dc.l	$77777100
-	dc.l	$33377100
-	dc.l	$33337100
+	dc.l	$333A7100
+	dc.l	$3333A100
 	dc.l	$3DD33100
 	dc.l	$35D33100
 
@@ -458,8 +458,8 @@ tileset_Scene0BStaffNPCPast_Frame5End:
 tileset_Scene0BStaffNPCPast_Frame6Start:
 
 	dc.l	$00000011
-	dc.l	$00000177
-	dc.l	$00001337
+	dc.l	$00000137
+	dc.l	$0000133A
 	dc.l	$00001333
 	dc.l	$00001333
 	dc.l	$000013DD
@@ -494,9 +494,9 @@ tileset_Scene0BStaffNPCPast_Frame6Start:
 	dc.l	$00001111
 
 	dc.l	$11100000
-	dc.l	$77610000
-	dc.l	$77761000
-	dc.l	$37771000
+	dc.l	$7A310000
+	dc.l	$77A31000
+	dc.l	$377A1000
 	dc.l	$33771000
 	dc.l	$33371000
 	dc.l	$33331000
@@ -535,8 +535,8 @@ tileset_Scene0BStaffNPCPast_Frame7Start:
 
 	dc.l	$00000000
 	dc.l	$00000011
-	dc.l	$00000177
-	dc.l	$00001337
+	dc.l	$00000137
+	dc.l	$0000133A
 	dc.l	$00001333
 	dc.l	$00001333
 	dc.l	$000013DD
@@ -571,9 +571,9 @@ tileset_Scene0BStaffNPCPast_Frame7Start:
 
 	dc.l	$00000000
 	dc.l	$11100000
-	dc.l	$77610000
-	dc.l	$77761000
-	dc.l	$37771000
+	dc.l	$7A310000
+	dc.l	$77A31000
+	dc.l	$377A1000
 	dc.l	$33771000
 	dc.l	$33371000
 	dc.l	$33331000
@@ -611,8 +611,8 @@ tileset_Scene0BStaffNPCPast_Frame8Start:
 
 	dc.l	$00000000
 	dc.l	$00000011
-	dc.l	$00000177
-	dc.l	$00001337
+	dc.l	$00000137
+	dc.l	$0000133A
 	dc.l	$00001333
 	dc.l	$00001333
 	dc.l	$000013DD
@@ -647,9 +647,9 @@ tileset_Scene0BStaffNPCPast_Frame8Start:
 
 	dc.l	$00000000
 	dc.l	$11100000
-	dc.l	$77610000
-	dc.l	$77761000
-	dc.l	$37771000
+	dc.l	$7A310000
+	dc.l	$77A31000
+	dc.l	$377A1000
 	dc.l	$33771000
 	dc.l	$33371000
 	dc.l	$33331000
@@ -686,9 +686,9 @@ tileset_Scene0BStaffNPCPast_Frame8End:
 tileset_Scene0BStaffNPCPast_Frame9Start:
 
 	dc.l	$00000111
-	dc.l	$00001677
-	dc.l	$00016777
-	dc.l	$00017773
+	dc.l	$000013A7
+	dc.l	$00013A77
+	dc.l	$0001A773
 	dc.l	$00017733
 	dc.l	$00017333
 	dc.l	$00013333
@@ -722,8 +722,8 @@ tileset_Scene0BStaffNPCPast_Frame9Start:
 	dc.l	$00001111
 
 	dc.l	$11000000
-	dc.l	$77100000
-	dc.l	$73310000
+	dc.l	$73100000
+	dc.l	$A3310000
 	dc.l	$33310000
 	dc.l	$33310000
 	dc.l	$DD310000
@@ -734,7 +734,7 @@ tileset_Scene0BStaffNPCPast_Frame9Start:
 	dc.l	$31000000
 	dc.l	$C1100000
 	dc.l	$C1C10000
-	dc.l	$C1C10000
+	dc.l	$A1C10000
 	dc.l	$C1C10000
 	dc.l	$C1C10000
 	dc.l	$C1C10000
@@ -763,9 +763,9 @@ tileset_Scene0BStaffNPCPast_Frame10Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
-	dc.l	$00001677
-	dc.l	$00016777
-	dc.l	$00017773
+	dc.l	$000013A7
+	dc.l	$00013A77
+	dc.l	$0001A773
 	dc.l	$00017733
 	dc.l	$00017333
 	dc.l	$00013333
@@ -799,8 +799,8 @@ tileset_Scene0BStaffNPCPast_Frame10Start:
 
 	dc.l	$00000000
 	dc.l	$11000000
-	dc.l	$77100000
-	dc.l	$73310000
+	dc.l	$73100000
+	dc.l	$A3310000
 	dc.l	$33310000
 	dc.l	$33310000
 	dc.l	$DD310000
@@ -811,7 +811,7 @@ tileset_Scene0BStaffNPCPast_Frame10Start:
 	dc.l	$31000000
 	dc.l	$C1100000
 	dc.l	$C1C10000
-	dc.l	$C1C10000
+	dc.l	$A1C10000
 	dc.l	$C1C10000
 	dc.l	$C1C10000
 
@@ -839,9 +839,9 @@ tileset_Scene0BStaffNPCPast_Frame11Start:
 
 	dc.l	$00000000
 	dc.l	$00000111
-	dc.l	$00001677
-	dc.l	$00016777
-	dc.l	$00017773
+	dc.l	$000013A7
+	dc.l	$00013A77
+	dc.l	$0001A773
 	dc.l	$00017733
 	dc.l	$00017333
 	dc.l	$00013333
@@ -875,8 +875,8 @@ tileset_Scene0BStaffNPCPast_Frame11Start:
 
 	dc.l	$00000000
 	dc.l	$11000000
-	dc.l	$77100000
-	dc.l	$73310000
+	dc.l	$73100000
+	dc.l	$A3310000
 	dc.l	$33310000
 	dc.l	$33310000
 	dc.l	$DD310000
@@ -887,7 +887,7 @@ tileset_Scene0BStaffNPCPast_Frame11Start:
 	dc.l	$31000000
 	dc.l	$C1100000
 	dc.l	$C1C10000
-	dc.l	$C1C10000
+	dc.l	$A1C10000
 	dc.l	$C1C10000
 	dc.l	$C1C10000
 

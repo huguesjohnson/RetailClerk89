@@ -394,6 +394,19 @@ GoodEnding0TilesStart:
 	include 'tiles/scene-tiles/tileset_boxes.X68'
 GoodEnding0TilesEnd:
 
+GoodEnding1TilesStart:
+	include 'tiles/scene-tiles/tileset_oldfloor.X68'
+	include 'tiles/scene-tiles/tileset_oldfloor2.X68'
+	include 'tiles/scene-tiles/tileset_oldstore.X68'
+GoodEnding1TilesEnd:
+
+GoodEnding2TilesStart:
+	include 'tiles/scene-tiles/tileset_endingsprites.X68'
+	include 'tiles/scene-tiles/tileset_sand.X68'
+	include 'tiles/scene-tiles/tileset_water-ending.X68'
+	include 'tiles/scene-tiles/tileset_floralarch.X68'
+GoodEnding2TilesEnd:
+
 ;-------------------------------------------------------------------------------
 ; general store frame tiles
 ;-------------------------------------------------------------------------------
@@ -665,6 +678,18 @@ Scene0BStaffNPCPastTilesEnd:
 NPCSpriteGuardSleepingTilesStart:
 	include 'tiles/sprite-tiles/tileset_NPCGuardSleeping.X68'
 NPCSpriteGuardSleepingTilesEnd:
+
+NPCSpriteMaleShopper1Start:
+	include 'tiles/sprite-tiles/tileset_NPCSprite6.X68'
+NPCSpriteMaleShopper1End:
+
+NPCSpriteMaleShopper2Start:
+	include 'tiles/sprite-tiles/tileset_NPCSprite7.X68'
+NPCSpriteMaleShopper2End:
+
+NPCSpriteFemaleShopper1Start:
+	include 'tiles/sprite-tiles/tileset_NPCSprite8.X68'
+NPCSpriteFemaleShopper1End:
 
 ;-------------------------------------------------------------------------------
 ; status screen tiles

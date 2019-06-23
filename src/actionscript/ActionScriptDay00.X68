@@ -491,6 +491,8 @@ Day00End:
 	move.l	#$00000000,(MEM_NPC_LOCATION_PARKINGLOT)
 	move.l	#$00000000,(MEM_NPC_LOCATION_EEHALL)
 	move.l	#$06021719,(MEM_NPC_LOCATION_CHECKERS)
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
+	move.l	#$1D000000,(MEM_NPC_LOCATION_WEHALL)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	

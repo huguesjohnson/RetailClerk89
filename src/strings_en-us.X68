@@ -685,7 +685,7 @@ DialogTextSecurityGuardDay00:
 
 	align 2
 DialogTextMallManagerDay00:
-	dc.w	OBJ_NPC_MALLMANAGER_NOW
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
 	;		"1234567890123456789012"
 	dc.b	"Hi, I'm the manager of",LF
 	dc.b	"the mall.            ^",FF
@@ -1311,6 +1311,17 @@ DialogTextTBooksStaffDay01Talk3:
 	dc.b	"Let's plan to hang out",LF
 	dc.b	"next winter break.",ETX
 
+	align 2
+DialogTextMallManagerDay01:
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
+	;		"1234567890123456789012"
+	dc.b	"Did I hear the new guy",LF
+	dc.b	"is your brother?     ^",FF
+	dc.b	"That is so great to",LF
+	dc.b	"hear.                ^",FF
+	dc.b	"We strive to keep the",LF
+	dc.b	"mall family friendly.",ETX
+
 ;-------------------------------------------------------------------------------
 ; dialog text - day 02
 ;-------------------------------------------------------------------------------
@@ -1898,6 +1909,17 @@ DialogTextDaniScene05Day02:
 	dc.b	"this time of year",LF
 	dc.b	"though. Let's go.",ETX
 
+	align 2
+DialogTextMallManagerDay02:
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
+	;		"1234567890123456789012"
+	dc.b	"I'm out making my",LF
+	dc.b	"daily rounds.        ^",FF
+	dc.b	"I hope your store is",LF
+	dc.b	"doing well today.    ^",FF
+	dc.b	"This next month is",LF
+	dc.b	"our time to shine.",ETX
+
 ;-------------------------------------------------------------------------------
 ; dialog text - day 03
 ;-------------------------------------------------------------------------------
@@ -2354,6 +2376,17 @@ DialogTextDaniScene05Day03:
 	dc.b	"detective now.       ^",FF
 	dc.b	"Don't get yourself",LF
 	dc.b	"into any trouble.",ETX
+
+	align 2
+DialogTextMallManagerDay03:
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
+	;		"1234567890123456789012"
+	dc.b	"I heard your brother",LF
+	dc.b	"was snooping around. ^",FF
+	dc.b	"You know if there's",LF
+	dc.b	"wrong at the mall    ^",FF
+	dc.b	"you can talk to me",LF
+	dc.b	"about it anytime.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 04
@@ -3010,6 +3043,21 @@ DialogTextDaniScene05Day04:
 	;		"1234567890123456789012"
 	dc.b	"Don't ask about it,",LF
 	dc.b	"let's just go.",ETX
+
+	align 2
+DialogTextMallManagerDay04:
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
+	;		"1234567890123456789012"
+	dc.b	"Oh, there you are.",LF
+	dc.b	"                     ^",FF
+	dc.b	"You know I take mall",LF
+	dc.b	"safety seriously.    ^",FF
+	dc.b	"If there's something",LF
+	dc.b	"you know about       ^",FF
+	dc.b	"you should tell me",LF
+	dc.b	"right away.          ^",FF
+	dc.b	"Together we can keep",LF
+	dc.b	"Bayhurst Mall safe.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 05
@@ -3815,6 +3863,17 @@ DialogTextDay05ExitParkingLot1:
 	;		"1234567890123456789012"
 	dc.b	"(We're not making it",LF
 	dc.b	"out tonight)",ETX
+
+	align 2
+DialogTextMallManagerDay05:
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
+	;		"1234567890123456789012"
+	dc.b	"Bayhurst Mall is proud",LF
+	dc.b	"to always stay open. ^",FF
+	dc.b	"If you see stores",LF
+	dc.b	"close early please   ^",FF
+	dc.b	"report them to me",LF
+	dc.b	"right away.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 06
@@ -4815,7 +4874,7 @@ DialogTextDay06ScriptedEventEnding01A:
 
 	align 2
 DialogTextDay06ScriptedEventEnding01B:
-	dc.w	OBJ_NPC_MALLMANAGER_NOW
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
 	;		"1234567890123456789012"
 	dc.b	"No, go back. Tell",LF
 	dc.b	"everyone about it.   ^",FF
@@ -4835,7 +4894,7 @@ DialogTextDay06ScriptedEventEnding01C:
 
 	align 2
 DialogTextDay06ScriptedEventEnding01D:
-	dc.w	OBJ_NPC_MALLMANAGER_NOW
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
 	;		"1234567890123456789012"
 	dc.b	"At least I have a",LF
 	dc.b	"plan.                ^",FF
@@ -4998,6 +5057,20 @@ DialogTextDay06Scene0ENPCEnding:
 	;		"1234567890123456789012"
 	dc.b	"Go on, I'll lock up",LF
 	dc.b	"behind you.",ETX
+
+	align 2
+DialogTextMallManagerDay06:
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
+	;		"1234567890123456789012"
+	dc.b	"You and your sister",LF
+	dc.b	"are always on break. ^",FF
+	dc.b	"I hope you're not",LF
+	dc.b	"causing any trouble. ^",FF
+	dc.b	"Maintaining the image",LF
+	dc.b	"of Bayhurst Mall     ^",FF
+	dc.b	"is my number one",LF
+	dc.b	"priority.",ETX
+
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 07
@@ -5170,7 +5243,7 @@ DialogTextScene0EDay07ScriptedEvent01:
 
 	align 2
 DialogTextScene0EDay07ScriptedEvent02:
-	dc.w	OBJ_NPC_MALLMANAGER_NOW
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
 	;		"1234567890123456789012"
 	dc.b	"I know what you think",LF
 	dc.b	"you heard that night.^",FF
@@ -5188,7 +5261,7 @@ DialogTextScene0EDay07ScriptedEvent03:
 
 	align 2
 DialogTextScene0EDay07ScriptedEvent04:
-	dc.w	OBJ_NPC_MALLMANAGER_NOW
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
 	;		"1234567890123456789012"
 	dc.b	"No, now that's just",LF
 	dc.b	"crazy talk.          ^",FF
@@ -5689,146 +5762,138 @@ DialogTextInfoDeskStrangeGift:	; secret santa gift
 ; radio stations
 ;-------------------------------------------------------------------------------
 
-	align 2
-DialogTextRadioDay00R0:	; WNWT (news and weather)
-	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
-
-DialogTextRadioDay00R1:	; WOCX (talk radio)
-	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
-
-DialogTextRadioDay00R2:	; WCAS (top 40)
-	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
-
-DialogTextRadioDay00R3:	; WVVX (hair metal)
-	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	; radio shouldn't be reachable on day 00
+;DialogTextRadioDay00R0:	; WNWT (news and weather)
+;DialogTextRadioDay00R1:	; WOCX (talk radio)
+;DialogTextRadioDay00R2:	; WCAS (top 40)
+;DialogTextRadioDay00R3:	; WVVX (hair metal)
 
 DialogTextRadioDay01R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"After traffic and",LF
+	dc.b	"weather we'll check  ^",FF
+	dc.b	"in on the collapse of",LF
+	dc.b	"Eastern Europe.",ETX
 
 DialogTextRadioDay01R1:	; WOCX (talk radio)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Tonight on Sea to Sea",LF
+	dc.b	"with Barty George:   ^",FF
+	dc.b	"Is FEMA sending people",LF
+	dc.b	"from the future back ^",FF
+	dc.b	"to our time to vote",LF
+	dc.b	"for Communists?",ETX
 
 DialogTextRadioDay01R2:	; WCAS (top 40)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Now for a block of",LF
+	dc.b	"ballads by hair bands^",FF
+	dc.b	"that we otherwise ",LF
+	dc.b	"wouldn't ever play.",ETX
 
 DialogTextRadioDay01R3:	; WVVX (hair metal)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"We're getting requests",LF
+	dc.b	"for some Seattle band^",FF
+	dc.b	"look people, we only",LF
+	dc.b	"play metal here.",ETX
 
 DialogTextRadioDay02R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Time for traffic on",LF
+	dc.b	"the Fibonacci Primes:^",FF
+	dc.b	"and, wait, we also do",LF
+	dc.b	"weather on the 3s.",FF
+	dc.b	"This new system is",FF
+	dc.b	"a little confusing.",ETX
 
 DialogTextRadioDay02R1:	; WOCX (talk radio)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Tonight on Sea to Sea",LF
+	dc.b	"with Barty George:   ^",FF
+	dc.b	"We talk to a time",LF
+	dc.b	"traveler from 2016.  ^",FF
+	dc.b	"They describe life",LF
+	dc.b	"under alien rule.",ETX
 
 DialogTextRadioDay02R2:	; WCAS (top 40)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Are you burned out on",LF
+	dc.b	"Love Shack yet?      ^",FF
+	dc.b	"We sure aren't so here",LF
+	dc.b	"it is again.",ETX
 
 DialogTextRadioDay02R3:	; WVVX (hair metal)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"If they play it on",LF
+	dc.b	"the top 40 station   ^",FF
+	dc.b	"or any other then you",LF
+	dc.b	"won't hear it here.",ETX
 
 DialogTextRadioDay03R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Trying a new system",LF
+	dc.b	"which has traffic on ^",FF
+	dc.b	"composite numbers and",LF
+	dc.b	"news at Euclid primes.",ETX
 
 DialogTextRadioDay03R1:	; WOCX (talk radio)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Tonight on Sea to Sea",LF
+	dc.b	"with Barty George:   ^",FF
+	dc.b	"Is the CIA using time",LF
+	dc.b	"travel to spy on us? ^",FF
+	dc.b	"We have someone from",LF
+	dc.b	"2001 who says yes.",ETX
 
 DialogTextRadioDay03R2:	; WCAS (top 40)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Here's a song with a",LF
+	dc.b	"bunch of references  ^",FF
+	dc.b	"to stuff you don't",LF
+	dc.b	"understand.",ETX
 
 DialogTextRadioDay03R3:	; WVVX (hair metal)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"We're not playing any",LF
+	dc.b	"of that Seattle stuff^",FF
+	dc.b	"but we will be playing",LF
+	dc.b	"some midwest metal.",ETX
 
 DialogTextRadioDay04R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Hold on, I need to",LF
+	dc.b	"talk to my producer..^",FF
+	dc.b	"Yeah.. OK, no.. we're",LF
+	dc.b	"not covering that.   ^",FF
+	dc.b	"None of our listeners",LF
+	dc.b	"knows where that is.",FF
+	dc.b	"Let's just do traffic",LF
+	dc.b	"& weather on loop.",ETX
 
 DialogTextRadioDay04R1:	; WOCX (talk radio)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Tonight on Sea to Sea",LF
+	dc.b	"with Barty George:   ^",FF
+	dc.b	"We talk to a survivor",LF
+	dc.b	"of the upcoming      ^",FF
+	dc.b	"2012 Mayan Apocalypse.",ETX
 
 DialogTextRadioDay04R2:	; WCAS (top 40)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Here that hot new song",LF
+	dc.b	"which is a mash-up  ^",FF
+	dc.b	"of things from your",LF
+	dc.b	"parents' childhood.",ETX
 
 DialogTextRadioDay04R3:	; WVVX (hair metal)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"I'm tired of answering",LF
+	dc.b	"this all the time..  ^",FF
+	dc.b	"the only acceptable",LF
+	dc.b	"regions for metal are",FF
+	dc.b	"LA, midwest, Norway,",LF
+	dc.b	"and, uh, not Seattle.",ETX
 
 DialogTextRadioDay05R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
@@ -5854,7 +5919,13 @@ DialogTextRadioDay05R1:	; WOCX (talk radio)
 	dc.b	"Don't touch that dial",LF
 	dc.b	"because after 10:00  ^",FF
 	dc.b	"is Sea to Sea with",LF
-	dc.b	"Barty George.",ETX
+	dc.b	"Barty George.        ^",FF
+	dc.b	"He has some great",LF
+	dc.b	"stuff lined-up too.  ^",FF
+	dc.b	"His series on time",LF
+	dc.b	"travel takes a twist.^",FF
+	dc.b	"It's very important",LF
+	dc.b	"you listen tonight.",ETX
 
 DialogTextRadioDay05R2:	; WCAS (top 40)
 	;		"1234567890123456789012"
@@ -5870,37 +5941,45 @@ DialogTextRadioDay05R3:	; WVVX (hair metal)
 	dc.b	"This was a demo song",LF
 	dc.b	"from an underground  ^",FF
 	dc.b	"midwest metal band",LF
-	dc.b	"called Wrath.        ^",FF
-	dc.b	"Up next is a new band",LF
-	dc.b	"from Seattle...",ETX
+	dc.b	"called Wrath.",ETX
 
 DialogTextRadioDay06R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Only one shopping day",LF
+	dc.b	"left and traffic     ^",FF
+	dc.b	"around the malls is",LF
+	dc.b	"crazy. Now weather..",ETX
 
 DialogTextRadioDay06R1:	; WOCX (talk radio)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Tonight on Sea to Sea",LF
+	dc.b	"with Barty George:   ^",FF
+	dc.b	"You won't believe who",LF
+	dc.b	"is president in 2004.^",FF
+	dc.b	"We have another time",LF
+	dc.b	"traveler who exposes ^",FF
+	dc.b	"the election upset of",LF
+	dc.b	"the century.",ETX
 
 DialogTextRadioDay06R2:	; WCAS (top 40)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Starting at 10:00",LF
+	dc.b	"tonight we're going  ^",FF
+	dc.b	"to play all Xmas",LF
+	dc.b	"music until the 26th.^",FF
+	dc.b	"Some people say it's",LF
+	dc.b	"too early to start   ^",FF
+	dc.b	"playing Xmas music on",LF
+	dc.b	"the 24th. C'mon, it's^",FF
+	dc.b	"not like we're playing",LF
+	dc.b	"it in November.",FF
 
 DialogTextRadioDay06R3:	; WVVX (hair metal)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Alright, we're going",LF
+	dc.b	"to try and find some ^",FF
+	dc.b	"Xmas metal songs if",LF
+	dc.b	"you people insist.",ETX
 
 DialogTextRadioDay06NightR0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
@@ -5949,31 +6028,34 @@ DialogTextRadioDay06NightR3:	; WVVX (hair metal)
 
 DialogTextRadioDay07R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"It looks like people",LF
+	dc.b	"are celebrating early^",FF
+	dc.b	"because we have a few",LF
+	dc.b	"accidents already.",ETX
 
 DialogTextRadioDay07R1:	; WOCX (talk radio)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"Tonight on Sea to Sea",LF
+	dc.b	"with Barty George:   ^",FF
+	dc.b	"It wasn't time travel",LF
+	dc.b	"all along.           ^",FF
+	dc.b	"It was really aliens",LF
+	dc.b	"creating clones with ^",FF
+	dc.b	"future memories.",ETX
 
 DialogTextRadioDay07R2:	; WCAS (top 40)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"And now for the #1",LF
+	dc.b	"song in the country..^",FF
+	dc.b	"Wait, is this really",LF
+	dc.b	"how the 80s ends?",ETX
 
 DialogTextRadioDay07R3:	; WVVX (hair metal)
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"stuff^",FF
-	dc.b	"stuff",LF
-	dc.b	"stuff.",ETX
+	dc.b	"I think the 90s are",LF
+	dc.b	"going to be a great  ^",FF
+	dc.b	"decade for metal, even",LF
+	dc.b	"better than the 80s.",ETX
 
 ;-------------------------------------------------------------------------------
 ; default object descriptions
@@ -6417,6 +6499,24 @@ DialogTextNPCSleepingGuardDefaultLook:
 	dc.b	"It looks like he's",LF
 	dc.b	"totally out.",ETX
 
+	align 2
+DialogTextMaleShopper1DefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"more stuff",ETX
+
+	align 2
+DialogTextMaleShopper2DefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"more stuff",ETX
+
+	align 2
+DialogTextFemaleShopper1DefaultLook:
+	;		"1234567890123456789012"
+	dc.b	"stuff",LF
+	dc.b	"more stuff",ETX
+
 ;-------------------------------------------------------------------------------
 ; default NPC talk responses
 ;-------------------------------------------------------------------------------
@@ -6804,6 +6904,13 @@ DialogTextNPCWorkshopStaff1DefaultGive:
 	dc.b	"What do you want me",LF
 	dc.b	"to do with that?",ETX
 
+	align 2
+DialogTextNPCMallManagerDefaultGive:
+	dc.w	OBJ_NPC_MALLMANAGER_SHORT
+	;		"1234567890123456789012"
+	dc.b	"That's interesting but",LF
+	dc.b	"I don't need it.",ETX
+
 ;-------------------------------------------------------------------------------
 ; object names
 ;-------------------------------------------------------------------------------
@@ -7069,6 +7176,10 @@ NPCNameFire:
 	dc.b	"Small fire",NPCNAMEEND
 
 NPCNameMallManager:
+	;		"1234567890123456789012"
+	dc.b	"Al (mall manager)",NPCNAMEEND
+
+NPCNameMallManagerShort:
 	;		"1234567890123456789012"
 	dc.b	"Al",NPCNAMEEND
 

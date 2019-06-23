@@ -114,8 +114,8 @@ ActionTable:
 	dc.l	ActionScriptDefaultTake	; ACTION_TAKE_GIVE
 	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
-	dc.l	ActionScriptDefaultUse	; ACTION_USE_TALK
-	dc.l	ActionScriptDefaultTake	; ACTION_TAKE_GIVE
+	dc.l	Day01Scene02Action01	; ACTION_USE_TALK
+	dc.l	Day01Scene02Action02	; ACTION_TAKE_GIVE
 	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day01Scene03Action01	; ACTION_USE_TALK
@@ -148,7 +148,7 @@ ActionTable:
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day01Scene0AAction01	; ACTION_USE_TALK
 	dc.l	Day01Scene0AAction02	; ACTION_TAKE_GIVE
-	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	Day01Scene0AAction03	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day01Scene0BAction01	; ACTION_USE_TALK
 	dc.l	Day01Scene0BAction02	; ACTION_TAKE_GIVE
@@ -248,7 +248,7 @@ ActionTable:
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day02Scene0AAction01	; ACTION_USE_TALK
 	dc.l	Day02Scene0AAction02	; ACTION_TAKE_GIVE
-	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	Day02Scene0AAction03	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day02Scene0BAction01	; ACTION_USE_TALK
 	dc.l	Day02Scene0BAction02	; ACTION_TAKE_GIVE
@@ -330,8 +330,8 @@ ActionTable:
 	dc.l	Day03Scene05Action02	; ACTION_TAKE_GIVE
 	dc.l	Day03Scene05Action03	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
-	dc.l	ActionScriptDefaultUse	; ACTION_USE_TALK
-	dc.l	ActionScriptDefaultTake	; ACTION_TAKE_GIVE
+	dc.l	Day03Scene06Action01	; ACTION_USE_TALK
+	dc.l	Day03Scene06Action01	; ACTION_TAKE_GIVE
 	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
 	dc.l	Day03Scene07Action00	; ACTION_LOOK
 	dc.l	Day03Scene07Action01	; ACTION_USE_TALK
@@ -414,8 +414,8 @@ ActionTable:
 	dc.l	ActionScriptDefaultTake	; ACTION_TAKE_GIVE
 	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
-	dc.l	ActionScriptDefaultUse	; ACTION_USE_TALK
-	dc.l	ActionScriptDefaultTake	; ACTION_TAKE_GIVE
+	dc.l	Day04Scene02Action01	; ACTION_USE_TALK
+	dc.l	Day04Scene02Action02	; ACTION_TAKE_GIVE
 	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day04Scene03Action01	; ACTION_USE_TALK
@@ -448,7 +448,7 @@ ActionTable:
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day04Scene0AAction01	; ACTION_USE_TALK
 	dc.l	Day04Scene0AAction02	; ACTION_TAKE_GIVE
-	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	Day04Scene0AAction03	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day04Scene0BAction01	; ACTION_USE_TALK
 	dc.l	Day04Scene0BAction02	; ACTION_TAKE_GIVE
@@ -614,8 +614,8 @@ ActionTable:
 	dc.l	ActionScriptDefaultTake	; ACTION_TAKE_GIVE
 	dc.l	Day06Scene01Action03	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
-	dc.l	ActionScriptDefaultUse	; ACTION_USE_TALK
-	dc.l	ActionScriptDefaultTake	; ACTION_TAKE_GIVE
+	dc.l	Day06Scene02Action01	; ACTION_USE_TALK
+	dc.l	Day06Scene02Action02	; ACTION_TAKE_GIVE
 	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day06Scene03Action01	; ACTION_USE_TALK
@@ -705,99 +705,99 @@ ActionTable:
 	;---------------------------------------------------------------------------
 	; day 07
 	;---------------------------------------------------------------------------
-	dc.l	Day07Scene00Action00	; ACTION_LOOK
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene00Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene00Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene00Action03	; ACTION_RESPOND
-	dc.l	Day07Scene01Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene01Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene01Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene01Action03	; ACTION_RESPOND
-	dc.l	Day07Scene02Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene02Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene02Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene02Action03	; ACTION_RESPOND
-	dc.l	Day07Scene03Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene03Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene03Action02	; ACTION_TAKE_GIVE
 	dc.l	Day07Scene03Action03	; ACTION_RESPOND
-	dc.l	Day07Scene04Action00	; ACTION_LOOK
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene04Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene04Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene04Action03	; ACTION_RESPOND
-	dc.l	Day07Scene05Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene05Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene05Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene05Action03	; ACTION_RESPOND
-	dc.l	Day07Scene06Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene06Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene06Action02	; ACTION_TAKE_GIVE
 	dc.l	Day07Scene06Action03	; ACTION_RESPOND
-	dc.l	Day07Scene07Action00	; ACTION_LOOK
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene07Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene07Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene07Action03	; ACTION_RESPOND
-	dc.l	Day07Scene08Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene08Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene08Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene08Action03	; ACTION_RESPOND
-	dc.l	Day07Scene09Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene09Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene09Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene09Action03	; ACTION_RESPOND
-	dc.l	Day07Scene0AAction00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene0AAction01	; ACTION_USE_TALK
 	dc.l	Day07Scene0AAction02	; ACTION_TAKE_GIVE
 	dc.l	Day07Scene0AAction03	; ACTION_RESPOND
-	dc.l	Day07Scene0BAction00	; ACTION_LOOK
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene0BAction01	; ACTION_USE_TALK
 	dc.l	Day07Scene0BAction02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene0BAction03	; ACTION_RESPOND
-	dc.l	Day07Scene0CAction00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene0CAction01	; ACTION_USE_TALK
 	dc.l	Day07Scene0CAction02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene0CAction03	; ACTION_RESPOND
-	dc.l	Day07Scene0DAction00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene0DAction01	; ACTION_USE_TALK
 	dc.l	Day07Scene0DAction02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene0DAction03	; ACTION_RESPOND
-	dc.l	Day07Scene0EAction00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene0EAction01	; ACTION_USE_TALK
 	dc.l	Day07Scene0EAction02	; ACTION_TAKE_GIVE
 	dc.l	Day07Scene0EAction03	; ACTION_RESPOND
-	dc.l	Day07Scene0FAction00	; ACTION_LOOK
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene0FAction01	; ACTION_USE_TALK
 	dc.l	Day07Scene0FAction02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene0FAction03	; ACTION_RESPOND
-	dc.l	Day07Scene10Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene10Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene10Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene10Action03	; ACTION_RESPOND
-	dc.l	Day07Scene11Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene11Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene11Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene11Action03	; ACTION_RESPOND
-	dc.l	Day07Scene12Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene12Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene12Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene12Action03	; ACTION_RESPOND
-	dc.l	Day07Scene13Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene13Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene13Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene13Action03	; ACTION_RESPOND
-	dc.l	Day07Scene14Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene14Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene14Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene14Action03	; ACTION_RESPOND
-	dc.l	Day07Scene15Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene15Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene15Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene15Action03	; ACTION_RESPOND
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
 	dc.l	Day07Scene16Action00	; ACTION_LOOK
 	dc.l	Day07Scene16Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene16Action02	; ACTION_TAKE_GIVE
-	dc.l	Day07Scene16Action03	; ACTION_RESPOND
-	dc.l	Day07Scene17Action00	; ACTION_LOOK
+	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
+	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day07Scene17Action01	; ACTION_USE_TALK
 	dc.l	Day07Scene17Action02	; ACTION_TAKE_GIVE
 	dc.l	Day07Scene17Action03	; ACTION_RESPOND

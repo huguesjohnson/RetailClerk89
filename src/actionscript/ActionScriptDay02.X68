@@ -66,6 +66,7 @@ Day02Scene00Action02NPC:
 	move.l	#$161A1200,(MEM_NPC_LOCATION_VB)
 	move.l	#$00050000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	move.l	#$00000000,(MEM_NPC_LOCATION_FCBCAMPING)
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
 	; remove the item from the player's inventory
 	move.w	#OBJ_ITEM_QUARTERS,d7	; copy object ID to d7
 	bsr.w	RemoveItem	; remove the item
@@ -95,6 +96,12 @@ Day02Scene03Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
 	beq.s	Day02Scene03Action01NPC	; branch to display text
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	bne.s	Day02Scene03Action01Default	; branch to default text
+	lea	DialogTextMallManagerDay02,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene03Action01Default:
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -111,6 +118,12 @@ Day02Scene03Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
 	beq.s	Day02Scene03Action02NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	bne.s	Day02Scene03Action02Default	; default text
+	lea	DialogTextNPCMallManagerDefaultGive,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene03Action02Default:
 	; default action
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -322,9 +335,14 @@ Day02Scene0AAction01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_TLODGE_STAFF,d6	; test target
 	beq.s	Day02Scene0AAction01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_SCENE_RADIO,d6	; test target
+	beq.s	Day02Scene0AAction01Radio	; branch to text for the radio
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene0AAction01Radio:
+	bsr.w	DefaultRadioUse
 	rts
 Day02Scene0AAction01NPC:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
@@ -355,6 +373,30 @@ Day02Scene0AAction02:	; ACTION_TAKE_GIVE
 	rts
 Day02Scene0AAction02NPC:
 	lea	DialogTextNPCTLodgeStaffDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene0AAction03:	; ACTION_RESPOND
+	bsr.w	ResetDialog	; reset the dialog
+	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
+	beq.s	Day02Scene0AAction03R0	; branch to text for response 0
+	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
+	beq.s	Day02Scene0AAction03R1	; branch to text for response 1
+	cmpi.w	#$0002,(MEM_MENU_RESPONSE)	; is the menu selection 2?
+	beq.s	Day02Scene0AAction03R2	; branch to text for response 2
+	; must be response 3 then
+	lea	DialogTextRadioDay02R3,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene0AAction03R0:
+	lea	DialogTextRadioDay02R0,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene0AAction03R1:
+	lea	DialogTextRadioDay02R1,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene0AAction03R2:
+	lea	DialogTextRadioDay02R2,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -1030,6 +1072,8 @@ Day02End:
 	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	move.l	#$12000000,(MEM_NPC_LOCATION_FCBCAMPING)
 	move.l	#$12000000,(MEM_NPC_LOCATION_WWHALL)
+	move.l	#$00000000,(MEM_NPC_LOCATION_EWHALL)
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	

@@ -53,6 +53,28 @@ EndGame:
 	rts
 
 ;*******************************************************************************
+; default text for look events
+;*******************************************************************************
+	include	'sub_ShowDefaultText.X68'
+
+;*******************************************************************************
+; scene exit actions - a lot of the game flow is in here, probably too much
+;*******************************************************************************
+	include	'actionscript/ActionScriptSceneExit.X68'
+
+;*******************************************************************************
+; process actions based on day and scene, this is effectively the game script
+;*******************************************************************************
+	include	'actionscript/ActionScriptDay00.X68'
+	include	'actionscript/ActionScriptDay01.X68'
+	include	'actionscript/ActionScriptDay02.X68'
+	include	'actionscript/ActionScriptDay03.X68'
+	include	'actionscript/ActionScriptDay04.X68'
+	include	'actionscript/ActionScriptDay05.X68'
+	include	'actionscript/ActionScriptDay06.X68'
+	include	'actionscript/ActionScriptDay07.X68'
+
+;*******************************************************************************
 ; default event processing routines
 ;*******************************************************************************
 
@@ -77,30 +99,22 @@ DefaultActionGiveNoItems:
 ExitDefaultActionGive:
 	rts
 
+;-------------------------------------------------------------------------------
+; player uses a radio
+;-------------------------------------------------------------------------------
+DefaultRadioUse:
+	; setup 4 choice dialog	
+	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d6	; set text choice flag
+	bclr.l	#DIALOG_FLAG_STYLE_TITLED,d6	; clear the titled flag
+	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
+	lea	RadioMenu,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
 ;*******************************************************************************
 ; default take actions
 ;*******************************************************************************
 	include	'actionscript/ActionScriptDefaultTake.X68'
 
-;*******************************************************************************
-; scene exit actions - a lot of the game flow is in here, probably too much
-;*******************************************************************************
-	include	'actionscript/ActionScriptSceneExit.X68'
-
-;*******************************************************************************
-; default text for look events
-;*******************************************************************************
-	include	'sub_ShowDefaultText.X68'
-
-;*******************************************************************************
-; process actions based on day and scene, this is effectively the game script
-;*******************************************************************************
-	include	'actionscript/ActionScriptDay00.X68'
-	include	'actionscript/ActionScriptDay01.X68'
-	include	'actionscript/ActionScriptDay02.X68'
-	include	'actionscript/ActionScriptDay03.X68'
-	include	'actionscript/ActionScriptDay04.X68'
-	include	'actionscript/ActionScriptDay05.X68'
-	include	'actionscript/ActionScriptDay06.X68'
-	include	'actionscript/ActionScriptDay07.X68'
 

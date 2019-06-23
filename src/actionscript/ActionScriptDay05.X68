@@ -73,6 +73,12 @@ Day05Scene03Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
 	beq.s	Day05Scene03Action01NPC	; branch to display text
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	bne.s	Day05Scene03Action01Default	; branch to default text
+	lea	DialogTextMallManagerDay05,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day05Scene03Action01Default:
 	; default text
 	lea	DialogTextNothingHappens,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -106,6 +112,12 @@ Day05Scene03Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
 	beq.s	Day05Scene03Action02NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	bne.s	Day05Scene03Action02Default	; default text
+	lea	DialogTextNPCMallManagerDefaultGive,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day05Scene03Action02Default:
 	; default action
 	lea	DialogTextCantTake,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -296,13 +308,7 @@ Day05Scene0AAction01NPC:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day05Scene0AAction01Radio:
-	; setup 4 choice dialog	
-	move.l	(MEM_DIALOG_FLAGS),d6	; copy dialog flags to d7
-	bset.l	#DIALOG_FLAG_STYLE_TEXT_4CHOICE,d6	; set text choice flag
-	bclr.l	#DIALOG_FLAG_STYLE_TITLED,d6	; clear the titled flag
-	move.l	d6,(MEM_DIALOG_FLAGS)	; save it back
-	lea	RadioMenu,a6	; load text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	DefaultRadioUse
 	rts
 Day05Scene0AAction02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
@@ -964,6 +970,7 @@ Day05End:
 	move.l	#$00000000,(MEM_NPC_LOCATION_FCBCAMPING)
 	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
 	move.l	#$0A121600,(MEM_NPC_LOCATION_NSHACK)
+	move.l	#$1D000000,(MEM_NPC_LOCATION_WEHALL)
 	;---------------------------------------------------------------------------	
 	; update the game state
 	;---------------------------------------------------------------------------	

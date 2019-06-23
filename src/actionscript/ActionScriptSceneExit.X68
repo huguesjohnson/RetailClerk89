@@ -455,6 +455,8 @@ ExitScene04:
 	; queue the scripted event
 	lea ScriptedEventDay06Plan,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
+	; update NPCs
+	move.l	#$14200000,(MEM_NPC_LOCATION_WORKSHOP)	; update workshop
 	rts	; exit
 ExitScene04Day06ResetNPCs:	; reset npcs on day06
 	move.l	#$0A000000,(MEM_NPC_LOCATION_NSHACK)
@@ -618,7 +620,7 @@ ExitScene06Day01Sub02CantExit:
 ExitScene06Day06:
 	; test event flags
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
-	btst.l	#EVENT_FLAG_DAY06_SUB00_STARTED,d7	; test flag
+	btst.l	#EVENT_FLAG_DAY06_MISSION_STARTED,d7	; test flag
 	beq.s	ExitScene06Default	; not set, branch
 	; test if trying to go west	
 	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)
@@ -952,6 +954,8 @@ ExitSceneDay01SwitchPC:
 	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
 	; Dani is now an NPC again
 	move.l	#$05010000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	; move the mall manager
+	move.l	#$0000000,(MEM_NPC_LOCATION_WEHALL)
 	; queue the scripted event
 	lea ScriptedEventDay01ChangePC,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event

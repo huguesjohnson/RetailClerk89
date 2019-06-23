@@ -297,6 +297,7 @@ DebugStartDay4Mid:
 	bsr.w	AddItem
 	move.w	#OBJ_ITEM_MYSTERY_PACKAGE,d7
 	bsr.w	AddItem
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
 	; load scene
 	move.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)
 	lea	SceneCenter,a6
@@ -333,6 +334,7 @@ DebugStartDay4End:
 	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
 	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
 	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
+	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
 	; load scene	
 	lea	SceneParkingLot,a6
 	bsr.w	LoadScene	; branch to LoadScene subroutine
