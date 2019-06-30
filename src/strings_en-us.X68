@@ -45,13 +45,13 @@ TitleScreenTextDebug:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Unstable Debug Build (June 2019)  ",ETX
+	dc.b	"   Unstable Debug Build (July 2019)  ",ETX
 
 	else
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"        Story Demo (June 2019)        ",ETX
+	dc.b	"        Story Demo (July 2019)        ",ETX
 	endif
 
 	if _DEBUG_
@@ -2388,6 +2388,33 @@ DialogTextMallManagerDay03:
 	dc.b	"you can talk to me",LF
 	dc.b	"about it anytime.",ETX
 
+	align 2
+DialogTextDay03PDawgCustomer00:
+	dc.w	OBJ_NPC_FEMALE_SHOPPER1
+	;		"1234567890123456789012"
+	dc.b	"Cooking sure looks.",LF
+	dc.b	"difficult.           ^",FF
+	dc.b	"I wonder if there's an",LF
+	dc.b	"easier way to eat?",ETX
+
+	align 2
+DialogTextDay03PDawgCustomer01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"You could try going to",LF
+	dc.b	"Pogo Dawg.",FF
+	dc.b	"They have something",LF
+	dc.b	"similar to food.",FF
+	dc.b	"It's usually already",LF
+	dc.b	"been cooked too.",ETX
+
+	align 2
+DialogTextDay03PDawgCustomer02:
+	dc.w	OBJ_NPC_FEMALE_SHOPPER1
+	;		"1234567890123456789012"
+	dc.b	"Thanks, I'll give that",LF
+	dc.b	"a try.",ETX
+
 ;-------------------------------------------------------------------------------
 ; dialog text - day 04
 ;------------------------------------------------------------------------------
@@ -3058,6 +3085,35 @@ DialogTextMallManagerDay04:
 	dc.b	"right away.          ^",FF
 	dc.b	"Together we can keep",LF
 	dc.b	"Bayhurst Mall safe.",ETX
+
+	align 2
+DialogTextDay04PDawgCustomer00:
+	dc.w	OBJ_NPC_MALE_SHOPPER2
+	;		"1234567890123456789012"
+	dc.b	"I'm so hungry that",LF
+	dc.b	"I'm taking up hunting.",ETX
+
+	align 2
+DialogTextDay04PDawgCustomer01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"That's one thing that",LF
+	dc.b	"will work.          ^",FF
+	dc.b	"But it's probably",LF
+	dc.b	"easier to buy food. ^",FF
+	dc.b	"Have you tried Pogo",LF
+	dc.b	"Dawg?               ^",FF
+	dc.b	"If you still want to",LF
+	dc.b	"kill live animals   ^",FF
+	dc.b	"you can check out",LF
+	dc.b	"their kitchen.",ETX
+
+	align 2
+DialogTextDay04PDawgCustomer02:
+	dc.w	OBJ_NPC_MALE_SHOPPER2
+	;		"1234567890123456789012"
+	dc.b	"Sounds like a win-win,",LF
+	dc.b	"thanks.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 05
@@ -5071,6 +5127,36 @@ DialogTextMallManagerDay06:
 	dc.b	"is my number one",LF
 	dc.b	"priority.",ETX
 
+	align 2
+DialogTextDay06PDawgCustomer00:
+	dc.w	OBJ_NPC_MALE_SHOPPER1
+	;		"1234567890123456789012"
+	dc.b	"It's my turn to host",LF
+	dc.b	"movie night,         ^",FF
+	dc.b	"but my friends always",LF
+	dc.b	"stay too late.       ^",FF
+	dc.b	"I don't want to be",LF
+	dc.b	"rude & kick them out,^",FF
+	dc.b	"but I need to get some",LF
+	dc.b	"sleep before work.",ETX
+
+	align 2
+DialogTextDay06PDawgCustomer01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Try serving them",LF
+	dc.b	"some Pogo Dawg.      ^",FF
+	dc.b	"They'll be rushing",LF
+	dc.b	"home in no time.     ^",FF
+	dc.b	"They also might lose",LF
+	dc.b	"a few pounds.",ETX
+
+	align 2
+DialogTextDay06PDawgCustomer02:
+	dc.w	OBJ_NPC_MALE_SHOPPER1
+	;		"1234567890123456789012"
+	dc.b	"You're pretty smart.",LF
+	dc.b	"I like that idea.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 07
@@ -5087,8 +5173,8 @@ DialogTextDay07CavernClosed:
 	;		"1234567890123456789012"
 	dc.b	"It's been locked-up",LF
 	dc.b	"since Xmas Eve.",FF
-	dc.b	"Maybe he hid a spare",LF
-	dc.b	"spare key somewhere?",ETX
+	dc.b	"Maybe someone has a",LF
+	dc.b	"key?",ETX
 
 	align 2
 DialogTextDay07ExitScene0F:
@@ -5459,6 +5545,238 @@ DialogTextGoodEnding04:
 	dc.b	"I thought I saw you",LF
 	dc.b	"headed this way.     ^",FF
 	dc.b	"What a fun idea!",ETX
+
+	align 2
+DialogTextDay07CavernUse:
+	;		"1234567890123456789012"
+	dc.b	"Maybe these other keys",LF
+	dc.b	"are for the games..",FF
+	dc.b	"Yeah, it's in free",LF
+	dc.b	"play mode now.",ETX
+
+DialogTextDay07TQTent0:
+	;		"1234567890123456789012"
+	dc.b	"(He really was living",LF
+	dc.b	"in here, it's a mess.^",FF
+	dc.b	"Maybe there's",LF
+	dc.b	"something good left..)",FF
+	dc.b	"(Found Wood Comb)",LF
+	dc.b	"                     ^",FF
+	dc.b	"(I wonder if anyone",LF
+	dc.b	"could use this?)",ETX
+
+DialogTextDay07TQTent1:
+	;		"1234567890123456789012"
+	dc.b	"There's nothing else",LF
+	dc.b	"worth taking.",ETX
+
+	align 2
+DialogTextDay07TQCheckers:
+	dc.w	OBJ_NPC_CHECKERS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Hey, this is pretty",LF
+	dc.b	"nice, thanks.",FF
+	dc.b	"I bet it will help me",LF
+	dc.b	"get my hair perfect. ^",FF
+	dc.b	"After Xmas we get rid",LF
+	dc.b	"of our excess stock. ^",FF
+	dc.b	"Just like all the",LF
+	dc.b	"stores do around now ^",FF
+	dc.b	"This went out of style",LF
+	dc.b	"but could come back. ^",FF
+	dc.b	"It will at least keep",LF
+	dc.b	"you warm.            ^",FFR
+	dc.b	"(Received Black",LF
+	dc.b	"Leather Jacket)",ETX
+
+	align 2
+DialogTextDay07TQCPlanet:
+	dc.w	OBJ_NPC_CPLANET_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Wow, this is perfect",LF
+	dc.b	"for our weekly Friday^",FF
+	dc.b	"Rocky Horror Picture",LF
+	dc.b	"Show night.          ^",FF
+	dc.b	"I didn't think you",LF
+	dc.b	"were so cool.        ^",FF
+	dc.b	"If you really want to",LF
+	dc.b	"be edgy though,      ^",FF
+	dc.b	"then you need to get",LF
+	dc.b	"a nose hoop.         ^",FF
+	dc.b	"Here, take a couple.",LF
+	dc.b	"I know a guy who will^",FF
+	dc.b	"pierce you for cheap",LF
+	dc.b	"when you're ready.   ^",FFR
+	dc.b	"(Received nose hoops)",ETX
+
+	align 2
+DialogTextDay07TQFCBFishing:
+	dc.w	OBJ_NPC_FCBFISHING_STAFF
+	;		"1234567890123456789012"
+	dc.b	"What are these? Some",LF
+	dc.b	"kind of new hook?    ^",FF
+	dc.b	"I'll give them a try.",LF
+	dc.b	"Thanks for sharing.  ^",FF
+	dc.b	"I didn't think you",LF
+	dc.b	"were into fishing.   ^",FF
+	dc.b	"Ice fishing season is",LF
+	dc.b	"about to start.      ^",FF
+	dc.b	"Here's a fish decoy",LF
+	dc.b	"that works great.    ^",FFR
+	dc.b	"(Received decoy fish)",ETX
+
+	align 2
+DialogTextDay07TQCNow:
+	dc.w	OBJ_NPC_CNOW_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Is this a necklace?",LF
+	dc.b	"                     ^",FF
+	dc.b	"It looks just like the",LF
+	dc.b	"fish on my car!      ^",FF
+	dc.b	"Sorry but we only have",LF
+	dc.b	"women's clothing.    ^",FF
+	dc.b	"You can give this to",LF
+	dc.b	"someone special.     ^",FF
+	dc.b	"It's too wild for our",LF
+	dc.b	"store.               ^",FFR
+	dc.b	"(Received Neon Dress)",ETX
+
+	align 2
+DialogTextDay07TQFCBFirearms:
+	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I could make some",LF
+	dc.b	"great camo from this.^",FF
+	dc.b	"Here's something for",LF
+	dc.b	"you in exchange.     ^",FF
+	dc.b	"We're not allowed to",LF
+	dc.b	"sell it anymore.     ^",FFR
+	dc.b	"(Received Landmine)",ETX
+
+	align 2
+DialogTextDay07TQTBooks:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Why are you walking",LF
+	dc.b	"around with that!?   ^",FF
+	dc.b	"I thought I knew you",LF
+	dc.b	"better.              ^",FF
+	dc.b	"Give it to me and I'll",LF
+	dc.b	"dispose of it.       ^",FF
+	dc.b	"You need to get",LF
+	dc.b	"yourself in order.   ^",FF
+	dc.b	"Take these",LF
+	dc.b	"motivational books.  ^",FF
+	dc.b	"Maybe you can find a",LF
+	dc.b	"better direction.    ^",FF
+	dc.b	"We can't sell them.",LF
+	dc.b	"No one that shops at ^",FF
+	dc.b	"this mall wants to",LF
+	dc.b	"improve themselves.  ^",FFR
+	dc.b	"(Received",LF
+	dc.b	"motivational books)",ETX
+
+	align 2
+DialogTextDay07TQTLodge:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Yeah, I need to work",LF
+	dc.b	"my selling skills.   ^",FF
+	dc.b	"Let me trade for this",LF
+	dc.b	"graphing calculator. ^",FF
+	dc.b	"It's an older model so",LF
+	dc.b	"I'm afraid I can't   ^",FF
+	dc.b	"offer you an extended",LF
+	dc.b	"warranty.            ^",FFR
+	dc.b	"(Received graphing",LF
+	dc.b	"calculator)",ETX
+
+	align 2
+DialogTextDay07TQSVideo:
+	dc.w	OBJ_NPC_SVIDEO_STAFF
+	;		"1234567890123456789012"
+	dc.b	"This will be so much",LF
+	dc.b	"help in class.       ^",FF
+	dc.b	"This is too nice of",LF
+	dc.b	"you.                 ^",FF
+	dc.b	"All I have are these",LF
+	dc.b	"old Betamax tapes.   ^",FF
+	dc.b	"Maybe you still have",LF
+	dc.b	"a player around.     ^",FF
+	dc.b	"(Received Betamax",LF
+	dc.b	"tapes)",ETX
+
+	align 2
+DialogTextDay07TQSCenter:
+	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Yeah I can use these",LF
+	dc.b	"when I babysit.      ^",FF
+	dc.b	"Sorry I don't have",LF
+	dc.b	"anything good.       ^",FF
+	dc.b	"We close for the",LF
+	dc.b	"season tonight,      ^",FF
+	dc.b	"but you can take",LF
+	dc.b	"whatever you want.   ^",FF
+	dc.b	"The Xmas sausage might",LF
+	dc.b	"be a little grungy.  ^",FF
+	dc.b	"If you fry it enough",LF
+	dc.b	"I'm sure it's fine.  ^",FFR
+	dc.b	"(Received Rancid Meat)",ETX
+
+	align 2
+DialogTextDay07TQPDawg:
+	dc.w	OBJ_NPC_POGODAWG_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Uh, are you the new,",LF
+	dc.b	"yeah, delivery dude? ^",FF
+	dc.b	"You're, what's it",LF
+	dc.b	"called, late.        ^",FF
+	dc.b	"Here's the daily lunch",LF
+	dc.b	"delivery for...      ^",FF
+	dc.b	"Hey, when did you get",LF
+	dc.b	"here?                ^",FF
+	dc.b	"Right, uh, dude, the",LF
+	dc.b	"lunch delivery for...^",FF
+	dc.b	"That one who can't",LF
+	dc.b	"leave their, um, job.^",FFR
+	dc.b	"(Received lunch",LF
+	dc.b	"delivery)",ETX
+
+	align 2
+DialogTextDay07TQPDawgStuck:
+	;		"1234567890123456789012"
+	dc.b	"(This is the only",LF
+	dc.b	"place that could want^",FF
+	dc.b	"all this rancid meat",LF
+	dc.b	"but they're closed.. ^",FF
+	dc.b	"I think I'm stuck now)",ETX
+
+	align 2
+DialogTextDay07TQCenter:
+	dc.w	OBJ_NPC_CENTER_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Thanks! There's never",LF
+	dc.b	"a backup here.       ^",FF
+	dc.b	"This is what I'm stuck",LF
+	dc.b	"with every day.      ^",FF
+	dc.b	"Since you're out",LF
+	dc.b	"running errands,     ^",FF
+	dc.b	"I found this on the",LF
+	dc.b	"floor this morning.  ^",FF
+	dc.b	"Please give it back to",LF
+	dc.b	"the owner.           ^",FFR
+	dc.b	"(Received Cavern keys)",ETX
+
+	align 2
+DialogTextDay07TQCavern:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"(It looks like he's",LF
+	dc.b	"really gone.         ^",FF
+	dc.b	"I could do whatever",LF
+	dc.b	"I wanted to here.)",ETX
+
 
 ;-------------------------------------------------------------------------------
 ; information desk
@@ -6911,6 +7229,20 @@ DialogTextNPCMallManagerDefaultGive:
 	dc.b	"That's interesting but",LF
 	dc.b	"I don't need it.",ETX
 
+	align 2
+DialogTextNPCGenericShopperDefaultGive:
+	dc.w	OBJ_NPC_GENERICSHOPPER
+	;		"1234567890123456789012"
+	dc.b	"That's not what I'm",LF
+	dc.b	"looking for.",ETX
+
+	align 2
+DialogTextNPCBillyDefaultGive:
+	dc.w	OBJ_NPC_BILLY
+	;		"1234567890123456789012"
+	dc.b	"I'm not allowed to",LF
+	dc.b	"take that.",ETX
+
 ;-------------------------------------------------------------------------------
 ; object names
 ;-------------------------------------------------------------------------------
@@ -7667,6 +7999,104 @@ ItemDescriptionCaffeinePills:
 	;		"1234567890123456789012"
 	dc.b	"Hunter's Formula Max",LF
 	dc.b	"caffeine pills.",ETX
+
+ItemNameWoodComb:
+	;		"1234567890"
+	dc.b	"Wood Comb",ITEMNAMEEND
+
+ItemDescriptionWoodComb:
+	;		"1234567890123456789012"
+	dc.b	"It looks expensive yet",LF
+	dc.b	"old-fashioned.",ETX
+
+ItemNameJacket:
+	;		"1234567890"
+	dc.b	"Blk Jacket",ITEMNAMEEND
+
+ItemDescriptionJacket:
+	;		"1234567890123456789012"
+	dc.b	"Black leather jacket,",LF
+	dc.b	"very punk.",ETX
+
+ItemNameNoseHoops:
+	;		"1234567890"
+	dc.b	"Nose Hoops",ITEMNAMEEND
+
+ItemDescriptionNoseHoops:
+	;		"1234567890123456789012"
+	dc.b	"These look painful.",LF
+	dc.b	"",ETX
+
+ItemNameDecoyFish:
+	;		"1234567890"
+	dc.b	"Decoy Fish",ITEMNAMEEND
+
+ItemDescriptionDecoyFish:
+	;		"1234567890123456789012"
+	dc.b	"A miniature fake fish",LF
+	dc.b	"on a string.",ETX
+
+ItemNameNeonDress:
+	;		"1234567890"
+	dc.b	"Neon Dress",ITEMNAMEEND
+
+ItemDescriptionNeonDress:
+	;		"1234567890123456789012"
+	dc.b	"It's extremely bright.",ETX
+
+ItemNameLandmine:
+	;		"1234567890"
+	dc.b	"Landmine",ITEMNAMEEND
+
+ItemDescriptionLandmine:
+	;		"1234567890123456789012"
+	dc.b	"(I hope this isn't",LF
+	dc.b	"active)",ETX
+
+ItemNameMotivationalBooks:
+	;		"1234567890"
+	dc.b	"MotivBooks",ITEMNAMEEND
+
+ItemDescriptionMotivationalBooks:
+	;		"1234567890123456789012"
+	dc.b	"Motivational business",LF
+	dc.b	"books.",ETX
+
+ItemNameCalculator:
+	;		"1234567890"
+	dc.b	"Calculator",ITEMNAMEEND
+
+ItemDescriptionCalculator:
+	;		"1234567890123456789012"
+	dc.b	"Slightly outdated",LF
+	dc.b	"graphing calculator.",ETX
+
+ItemNameBetaTapes:
+	;		"1234567890"
+	dc.b	"Beta Tapes",ITEMNAMEEND
+
+ItemDescriptionBetaTapes:
+	;		"1234567890123456789012"
+	dc.b	"Various movies on",LF
+	dc.b	"Betamax.",ETX
+
+ItemNameRancidMeat:
+	;		"1234567890"
+	dc.b	"RancidMeat",ITEMNAMEEND
+
+ItemDescriptionRancidMeat:
+	;		"1234567890123456789012"
+	dc.b	"Might be edible if",LF
+	dc.b	"it's deep-fried.",ETX
+
+ItemNameLunchDelivery:
+	;		"1234567890"
+	dc.b	"LunchDlvry",ITEMNAMEEND
+
+ItemDescriptionLunchDelivery:
+	;		"1234567890123456789012"
+	dc.b	"Lunch for a hungry",LF
+	dc.b	"mall employee.",ETX
 
 ;-------------------------------------------------------------------------------
 ; store signs

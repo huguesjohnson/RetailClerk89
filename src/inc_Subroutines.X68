@@ -75,6 +75,12 @@
 
 	include	'sub_ShowSelectionDialog.X68'
 
+	include	'sub_EndDemo.X68'
+
+	include 'sub_InitNPCLocations.X68'
+
+	include	'sub_FadeInFadeOut.X68'
+
 	include	'sub_ProcessAction.X68'
 
 	include	'sub_Inventory.X68'
@@ -82,12 +88,6 @@
 	include	'sub_ClearPlayerInventory.X68'
 
 	include	'sub_QueueScriptedEvent.X68'
-
-	include	'sub_EndDemo.X68'
-
-	include 'sub_InitNPCLocations.X68'
-
-	include	'sub_FadeInFadeOut.X68'
 
 	if _DEBUG_
 	include	'init_Debug.X68'

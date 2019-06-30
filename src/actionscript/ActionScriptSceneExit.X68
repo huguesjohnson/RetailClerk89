@@ -173,6 +173,11 @@ ExitScene00Day04Default:
 	bsr.w	DefaultExitScene	; use default handler
 	rts	; exit
 ExitScene00Day07:
+	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; test which PC this is
+	bne.s	.1
+	bsr.w	DefaultExitScene	; use default handler
+	rts	; exit
+.1
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY07_LEAVE_VB,d7	; test if flag is set
 	bne.w	DefaultExitScene	; flag is set, OK to exit
@@ -457,6 +462,7 @@ ExitScene04:
 	bsr.w QueueScriptedEvent	; queue the event
 	; update NPCs
 	move.l	#$14200000,(MEM_NPC_LOCATION_WORKSHOP)	; update workshop
+	move.l	#$09000000,(MEM_NPC_LOCATION_SVIDEO)
 	rts	; exit
 ExitScene04Day06ResetNPCs:	; reset npcs on day06
 	move.l	#$0A000000,(MEM_NPC_LOCATION_NSHACK)
@@ -552,7 +558,17 @@ ExitScene04Day07:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY07_POGODAWG_OPEN,d7	; test flag
 	bne.s	ExitScene04DefaultExit	; use default handler if set
-	; show message	
+	; show message based on whether player is stuck in the trading quest
+	move.w	#OBJ_ITEM_RANCID_MEAT,d7	; copy object id to d7
+	bsr.w	HasItem	; test if player has the item
+	cmpi.w	#$FFFF,d6	; return value is in d6
+	beq.s	.2	; player doesn't have the item, branch
+	; message saying they are stuck
+	lea	DialogTextDay07TQPDawgStuck,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
+	rts	; exit
+.2	
 	lea	DialogTextDay07PDawgClosed,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; flag to open dialog
@@ -661,7 +677,18 @@ ExitScene07:
 	; check for key
 	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
 	btst.l	#STORE_KEY_CAVERN,d7	; can the player enter this store?
-	bne.w	ExitScene07Default	; has key, default logic
+	beq.s	ExitScene07CavernClosed	; branch if not set
+	; test if the scene has already run
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_GOOD_ENDING,d7	; test flag
+	bne.w	ExitScene07Default	; flag set, use default
+	bset.l	#EVENT_FLAG_DAY07_GOOD_ENDING,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; run the scripted event
+	lea ScriptedEventDay07EnterCavern,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	rts	
+ExitScene07CavernClosed:
 	; show message 
 	lea	DialogTextDay07CavernClosed,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT

@@ -5,12 +5,10 @@ Day04Scene00Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
 	beq.s	Day04Scene00Action01NPC	; branch to text for the NPC
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_DB,d6	; test target
 	beq.s	Day04Scene00Action01DB	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene00Action01DB:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
@@ -56,8 +54,7 @@ Day04Scene00Action02:	; ACTION_TAKE_GIVE
 	cmpi.w	#OBJ_ITEM_ENVELOPE2,(MEM_ACTIVE_ITEM)	; test item
 	beq.s	Day04Scene00Action02Default	; flag not set, use default
 Day04Scene00Action02Sub:
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_DB,d6	; test target
+	cmpi.w	#OBJ_NPC_DB,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene00Action02SubNPC	; branch to text for the NPC
 	; else show the take menu
 	bsr.w	Scene00DefaultTake	; use scene defaults
@@ -72,12 +69,10 @@ Day04Scene00Action02Default:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
 	beq.s	Day04Scene00Action02NPC	; branch to text for the NPC
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_DB,d6	; test target
 	beq.s	Day04Scene00Action02DB	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene00Action02NPC:
 	lea	DialogTextGreenbergDefaultGive,a6	; load text
@@ -92,30 +87,25 @@ Day04Scene00Action02DB:
 ; day 04 - scene 02 (SCENE_ID_WEHALL)
 ;-------------------------------------------------------------------------------
 Day04Scene02Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,(MEM_ACTION_TARGET_OBJID) ; test target
 	bne.s	Day04Scene02Action01Default	; branch to default text
 	lea	DialogTextMallManagerDay04,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene02Action01Default:
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene02Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,(MEM_ACTION_TARGET_OBJID) ; test target
 	bne.s	Day04Scene02Action02Default	; default text
 	lea	DialogTextNPCMallManagerDefaultGive,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene02Action02Default:
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
-
 
 ;-------------------------------------------------------------------------------
 ; day 04 - scene 03 (SCENE_ID_CENTER)
@@ -124,12 +114,10 @@ Day04Scene03Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
 	beq.s	Day04Scene03Action01NPC	; branch to display text
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_FCBCAMPING_STAFF,d6	; test target
 	beq.s	Day04Scene03Action01NPCFCBCamping	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene03Action01NPCFCBCamping:
 	lea	DialogTextDay04Scene03TalkNPC,a6	; load default text
@@ -188,12 +176,10 @@ Day04Scene03Action01NPCMallClosed:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene03Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_CENTER_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene03Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene03Action02NPC:
 	;---------------------------------------------------------------------------
@@ -243,7 +229,7 @@ Day04Scene03Action03:	; ACTION_RESPOND
 	; must be the 3rd option
 Day04Scene03Action03GiveGift:
 	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
-	beq.s	Day04Scene03Action03GiveGiftR1	; branch if 1
+	beq.w	Day04Scene03Action03GiveGiftR1	; branch if 1
 Day04Scene03Action03GiveGiftR0:
 	; workaround due to dialog clearing MEM_ACTIVE_ITEM
 	move.w	(MEM_MISSION_EVENT_FLAGS),(MEM_ACTIVE_ITEM)
@@ -263,6 +249,7 @@ Day04Scene03Action03GiveGiftR0:
 	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
 	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	move.l	#$1D000000,(MEM_NPC_LOCATION_WEHALL)
+	move.l	#$10000000,(MEM_NPC_LOCATION_FCBFIREARMS)
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
 	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
@@ -340,8 +327,7 @@ Day04Scene05Action01:	; ACTION_USE_TALK
 	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
 	beq.s	Day04Scene05DaniCarLookUse	; same action for look and use
 	; default action	
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	bra.s	ExitDay04Scene05Action01
 Day04Scene05Action01NPCDani:
 	lea	DialogTextDaniScene05Day04,a6	; load dialog text
@@ -358,11 +344,6 @@ Day04Scene05DaniCarLookUse:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
-Day04Scene05Action02:	; ACTION_TAKE_GIVE
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
-	rts
-
 Day04Scene05Action03:	; ACTION_RESPOND
 	bsr.w	ResetDialog	; reset the dialog
 	cmpi.w	#$0000,(MEM_MENU_RESPONSE)	; is the menu selection 0?
@@ -376,12 +357,10 @@ Day04Scene05Action03:	; ACTION_RESPOND
 ; day 04 - scene 08 (SCENE_ID_DENIMCOUNTRY)
 ;-------------------------------------------------------------------------------
 Day04Scene08Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene08Action01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene08Action01NPC:
 	; test if mall is closed
@@ -407,12 +386,10 @@ Day04Scene08Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene08Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene08Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene08Action02NPC:
 	lea	DialogTextNPCDenimCountryStaffDefaultGive,a6	; load text
@@ -423,12 +400,10 @@ Day04Scene08Action02NPC:
 ; day 04 - scene 09 (SCENE_ID_CHECKERS)
 ;-------------------------------------------------------------------------------
 Day04Scene09Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_CHECKERS_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_CHECKERS_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene09Action01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene09Action01NPC:
 	; test if mall is closed
@@ -454,12 +429,10 @@ Day04Scene09Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene09Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_CHECKERS_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_CHECKERS_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene09Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene09Action02NPC:
 	lea	DialogTextNPCCheckersStaffDefaultGive,a6	; load text
@@ -476,8 +449,7 @@ Day04Scene0AAction01:	; ACTION_USE_TALK
 	cmpi.w	#OBJ_SCENE_RADIO,d6	; test target
 	beq.s	Day04Scene0AAction01Radio	; branch to text for the radio
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene0AAction01Radio:
 	bsr.w	DefaultRadioUse
@@ -506,12 +478,10 @@ Day04Scene0AAction01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0AAction02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_TLODGE_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_TLODGE_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene0AAction02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene0AAction02NPC:
 	lea	DialogTextNPCTLodgeStaffDefaultGive,a6	; load text
@@ -546,12 +516,10 @@ Day04Scene0AAction03R2:
 ; day 04 - scene 0B (SCENE_ID_CAVERN)
 ;-------------------------------------------------------------------------------
 Day04Scene0BAction01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_CAVERN_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_CAVERN_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene0BAction01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene0BAction01NPC:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
@@ -569,12 +537,10 @@ Day04Scene0BAction01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0BAction02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_CAVERN_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_CAVERN_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene0BAction02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene0BAction02NPC:
 	lea	DialogTextNPCCavernStaffDefaultGive,a6	; load text
@@ -585,12 +551,10 @@ Day04Scene0BAction02NPC:
 ; day 04 - scene 0C (SCENE_ID_SVIDEO)
 ;-------------------------------------------------------------------------------
 Day04Scene0CAction01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_SVIDEO_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_SVIDEO_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene0CAction01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene0CAction01NPC:
 	; test if mall is closed
@@ -628,12 +592,10 @@ Day04Scene0CAction01NPCSubFindGift:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0CAction02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_SVIDEO_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_SVIDEO_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene0CAction02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene0CAction02NPC:
 	lea	DialogTextNPCSVideoStaffDefaultGive,a6	; load text
@@ -650,8 +612,7 @@ Day04Scene0DAction01:	; ACTION_USE_TALK
 	cmpi.w	#OBJ_NPC_WORKSHOP_STAFF1,d6	; test target
 	beq.s	Day04Scene0DAction01NPC1	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene0DAction01NPC0:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
@@ -690,8 +651,7 @@ Day04Scene0DAction02:	; ACTION_TAKE_GIVE
 	cmpi.w	#OBJ_NPC_WORKSHOP_STAFF1,d6	; test target
 	beq.s	Day04Scene0DAction02NPC1	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene0DAction02NPC0:
 	lea	DialogTextNPCWorkshopStaff0DefaultGive,a6	; load text
@@ -706,12 +666,10 @@ Day04Scene0DAction02NPC1:
 ; day 04 - scene 0E (SCENE_ID_NSHACK)
 ;-------------------------------------------------------------------------------
 Day04Scene0EAction01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_NSHACK_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_NSHACK_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene0EAction01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene0EAction01NPC:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
@@ -729,12 +687,10 @@ Day04Scene0EAction01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0EAction02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_NSHACK_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_NSHACK_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene0EAction02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene0EAction02NPC:
 	lea	DialogTextNPCNShackStaffDefaultGive,a6	; load text
@@ -745,12 +701,10 @@ Day04Scene0EAction02NPC:
 ; day 04 - scene 0F (SCENE_ID_POGODAWG)
 ;-------------------------------------------------------------------------------
 Day04Scene0FAction01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_POGODAWG_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_POGODAWG_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene0FAction01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene0FAction01NPC:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
@@ -768,12 +722,10 @@ Day04Scene0FAction01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0FAction02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_POGODAWG_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_POGODAWG_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene0FAction02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene0FAction02NPC:
 	lea	DialogTextNPCPogoDawgStaffDefaultGive,a6	; load text
@@ -784,12 +736,10 @@ Day04Scene0FAction02NPC:
 ; day 04 - scene 10 (SCENE_ID_CPLANET)
 ;-------------------------------------------------------------------------------
 Day04Scene10Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_CPLANET_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_CPLANET_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene10Action01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene10Action01NPC:
 	; test if mall is closed
@@ -827,12 +777,10 @@ Day04Scene10Action01NPCSubFindGift:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene10Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_CPLANET_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_CPLANET_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene10Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene10Action02NPC:
 	lea	DialogTextNPCCPlanetStaffDefaultGive,a6	; load text
@@ -843,12 +791,10 @@ Day04Scene10Action02NPC:
 ; day 04 - scene 11 (SCENE_ID_CNOW)
 ;-------------------------------------------------------------------------------
 Day04Scene11Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_CNOW_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_CNOW_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene11Action01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene11Action01NPC:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
@@ -866,12 +812,10 @@ Day04Scene11Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene11Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_CNOW_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_CNOW_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene11Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene11Action02NPC:
 	lea	DialogTextNPCCNowStaffDefaultGive,a6	; load text
@@ -882,12 +826,10 @@ Day04Scene11Action02NPC:
 ; day 04 - scene 12 (SCENE_ID_TBOOKS)
 ;-------------------------------------------------------------------------------
 Day04Scene12Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_TBOOKS_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_TBOOKS_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene12Action01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene12Action01NPC:
 	; test if mall is closed
@@ -930,8 +872,7 @@ Day04Scene12Action02:	; ACTION_TAKE_GIVE
 	cmpi.w	#OBJ_ITEM_ENVELOPE2,(MEM_ACTIVE_ITEM)	; test item
 	beq.s	Day04Scene12Action02Default	; flag not set, use default
 Day04Scene12Action02Sub:
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_TBOOKS_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_TBOOKS_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene12Action02SubNPC	; branch to text for the NPC
 	; else show the take menu
 	bsr.w	Scene12DefaultTake	; use scene defaults
@@ -943,12 +884,10 @@ Day04Scene12Action02SubNPC:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene12Action02Default:
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_TBOOKS_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_TBOOKS_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene12Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene12Action02NPC:
 	lea	DialogTextNPCTBooksStaffDefaultGive,a6	; load text
@@ -959,12 +898,10 @@ Day04Scene12Action02NPC:
 ; day 04 - scene 13 (SCENE_ID_FCBCHECKOUT)
 ;-------------------------------------------------------------------------------
 Day04Scene13Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_FCBCHECKOUT_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_FCBCHECKOUT_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene13Action01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene13Action01NPC:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
@@ -982,12 +919,10 @@ Day04Scene13Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene13Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_FCBCHECKOUT_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_FCBCHECKOUT_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene13Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene13Action02NPC:
 	lea	DialogTextNPCFCBCheckoutStaffDefaultGive,a6	; load text
@@ -1001,9 +936,23 @@ Day04Scene14Action01:	; ACTION_USE_TALK
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_FCBFIREARMS_STAFF,d6	; test target
 	beq.s	Day04Scene14Action01NPC	; branch to text for the NPC
-	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
+	cmpi.w	#OBJ_NPC_MALE_SHOPPER2,d6	; test target
+	bne.s	Day04Scene14Action01Default	; branch to default
+	; update npcs
+	move.l	#$10000000,(MEM_NPC_LOCATION_FCBFIREARMS)
+	; update game state
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7	; copy global flags to d7
+	bset.l	#GLOBAL_FLAG_PDAWG_CUSTOMER1,d7	; set flag
+	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)	; save updated flags
+	; setup scripted event and dialog	
+	lea ScriptedEventDay04DawgCustomer,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	lea	DialogTextDay04PDawgCustomer00,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene14Action01Default:
+	; default text
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene14Action01NPC:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
@@ -1021,12 +970,10 @@ Day04Scene14Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene14Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_FCBFIREARMS_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_FCBFIREARMS_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene14Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene14Action02NPC:
 	lea	DialogTextNPCFCBFirearmsStaffDefaultGive,a6	; load text
@@ -1037,12 +984,10 @@ Day04Scene14Action02NPC:
 ; day 04 - scene 15 (SCENE_ID_FCBFISHING)
 ;-------------------------------------------------------------------------------
 Day04Scene15Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_FCBFISHING_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_FCBFISHING_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene15Action01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene15Action01NPC:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
@@ -1060,12 +1005,10 @@ Day04Scene15Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene15Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_FCBFISHING_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_FCBFISHING_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene15Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene15Action02NPC:
 	lea	DialogTextNPCFCBFishingStaffDefaultGive,a6	; load text
@@ -1076,12 +1019,10 @@ Day04Scene15Action02NPC:
 ; day 04 - scene 16 (SCENE_ID_FCBCAMPING)
 ;-------------------------------------------------------------------------------
 Day04Scene16Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_FCBCAMPING_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_FCBCAMPING_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene16Action01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene16Action01NPC:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
@@ -1107,12 +1048,10 @@ Day04Scene16Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene16Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_FCBCAMPING_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_FCBCAMPING_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene16Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene16Action02NPC:
 	lea	DialogTextNPCFCBCampingStaffDefaultGive,a6	; load text
@@ -1123,12 +1062,10 @@ Day04Scene16Action02NPC:
 ; day 04 - scene 17 (SCENE_ID_SOUTH_CENTER)
 ;-------------------------------------------------------------------------------
 Day04Scene17Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene17Action01NPC	; branch to text for the NPC
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w ActionScriptDefaultUse
 	rts
 Day04Scene17Action01NPC:
 	; test if mall is closed
@@ -1154,12 +1091,10 @@ Day04Scene17Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene17Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene17Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene17Action02NPC:
 	lea	DialogTextNPCSouthCenterStaffDefaultGive,a6	; load text

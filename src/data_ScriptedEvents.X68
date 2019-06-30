@@ -764,6 +764,28 @@ ScriptedEventDay03Start:
 	dc.w	($0180-$0070)/SPRITE_STEP_PIXELS
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay03DawgCustomer:
+	dc.w	$0003	; npc1
+	; --------------------------------------------------------------------------
+	; dialog Dani and npc
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay03PDawgCustomer01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay03PDawgCustomer02
+	; --------------------------------------------------------------------------
+	; move npc off the screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($01A4-$0160+$0008)/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	$0094/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_LEFT
+	dc.w	$0020/SPRITE_STEP_PIXELS
+	dc.w	DIRECTION_UP
+	dc.w	$0040/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
 ScriptedEventDay03ChangePC:
 	dc.w	$0001	; player
 	; --------------------------------------------------------------------------
@@ -1136,6 +1158,22 @@ ScriptedEventDay04GoodGift1:
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay04SDBGoodGift
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay04DawgCustomer:
+	dc.w	$0003	; npc1
+	; --------------------------------------------------------------------------
+	; dialog Dani and npc
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay04PDawgCustomer01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay04PDawgCustomer02
+	; --------------------------------------------------------------------------
+	; move npc off the screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_DOWN
+	dc.w	($01A0-$00D0)/SPRITE_STEP_PIXELS
 	dc.w	SCRIPTED_EVENT_END
 
 ScriptedEventDay05Intro:
@@ -2007,6 +2045,22 @@ ScriptedEventDay06WEHallToCNow:
 	dc.l	DialogTextDay06GuardSomeoneHere
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay06DawgCustomer:
+	dc.w	$0003	; npc1
+	; --------------------------------------------------------------------------
+	; dialog Dani and npc
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06PDawgCustomer01
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay06PDawgCustomer02
+	; --------------------------------------------------------------------------
+	; move npc off the screen
+	; --------------------------------------------------------------------------
+	dc.w	DIRECTION_LEFT
+	dc.w	($00A0-$0070)/SPRITE_STEP_PIXELS
+	dc.w	SCRIPTED_EVENT_END
+
 ScriptedEventDay06NShackTalkNPC:
 	dc.w	$0001	; player
 	; --------------------------------------------------------------------------
@@ -2717,6 +2771,18 @@ ScriptedEventDay07Event1:
 	dc.l	DialogTextScene0EDay07ScriptedEvent0C
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextScene0EDay07ScriptedEvent0D
+	dc.w	SCRIPTED_EVENT_END
+
+ScriptedEventDay07EnterCavern:
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_SET_PLAYER_SPRITE_Y
+	dc.w	$0180
+	dc.w	SCRIPTED_EVENT_CHANGE_SCENE
+	dc.w	SCENE_ID_CAVERN
+	dc.w	DIRECTION_UP
+	dc.w	$0080
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay07TQCavern
 	dc.w	SCRIPTED_EVENT_END
 
 ScriptedEventBadEnding:

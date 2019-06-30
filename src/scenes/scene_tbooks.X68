@@ -314,7 +314,7 @@ SceneTBooks:
 	;---------------------------------------------------------------------------
 	; NPC locations
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; one npc slot
+	dc.w	$0001	; two npc slots
 
 	dc.w	$00A2	; starting x location of npc0
 	dc.w	$00DA	; starting y location of npc0
@@ -322,6 +322,14 @@ SceneTBooks:
 	dc.w	$0095	; movement frequency of npc0
 	dc.l	NPCMovementScene12Start	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene12End-NPCMovementScene12Start-1)	; pattern length
+
+	dc.w	$01A4	; starting x location of npc1
+	dc.w	$0120	; starting y location of npc1
+	dc.w	DIRECTION_UP	; starting direction of npc1
+	dc.w	$0001	; movement frequency of npc1
+	dc.l	NPCMovementUpStart	; location of movement pattern for npc1
+	dc.w	(NPCMovementUpEnd-NPCMovementUpStart-1)	; pattern length
+
 
 	;---------------------------------------------------------------------------
 	; bgm

@@ -279,8 +279,10 @@ TestTitleLoadSelectedScreen:
 	bclr.l	#STATE_FLAG_TITLE_SCREEN,d7 ; clear game state flag
 	tst.w	(MEM_MENU_SELECTION)	; which item was selected?
 	beq.s	TestTitleLoadNewGame	; new game selected
+	if _DEBUG_
 	cmpi.w	#$0002,(MEM_MENU_SELECTION)	; debug menu selected?
 	beq.s	TestTitleLoadDebugMenu	; branch to debug menu
+	endif
 	; switch to load screen
 	move.w	#$0000,(MEM_MENU_SELECTION)	; clear menu selection
 	bset.l	#STATE_FLAG_LOAD_MENU,d7 ; set debug menu flag
@@ -291,6 +293,7 @@ TestTitleLoadSelectedScreen:
 	bsr.w	BuildLoadScreen	; builds the text on the screen
 	bsr.w	FadeIn	; fade in to the new scene
 	bra.w	MainGameLoop	;	return to start of game loop
+	if _DEBUG_
 TestTitleLoadDebugMenu:
 	move.w	#$0000,(MEM_MENU_SELECTION)	; clear menu selection
 	bset.l	#STATE_FLAG_DEBUG_MENU,d7 ; set debug menu flag
@@ -300,6 +303,7 @@ TestTitleLoadDebugMenu:
 	bsr.w	LoadPlayerSprite	; load the player sprite (also loads sprite 0)
 	bsr.w	FadeIn	; fade in to the new scene
 	bra.w	MainGameLoop	;	return to start of game loop
+	endif
 TestTitleLoadNewGame:
 	bset.l	#STATE_FLAG_INTRO_SCREEN,d7 ; set intro screen flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state

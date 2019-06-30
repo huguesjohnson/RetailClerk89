@@ -226,7 +226,7 @@ SceneFCBFirearms:
 	;---------------------------------------------------------------------------
 	; NPC locations
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; one npc slot
+	dc.w	$0001	; two npc slots
 
 	dc.w	$00E0	; starting x location of npc0
 	dc.w	$00A0	; starting y location of npc0
@@ -234,6 +234,13 @@ SceneFCBFirearms:
 	dc.w	$FFFF	; movement frequency of npc0
 	dc.l	NullMovementStart	; location of movement pattern for npc0
 	dc.w	(NullMovementEnd-NullMovementStart-1)	; pattern length
+
+	dc.w	$011C	; starting x location of npc1
+	dc.w	$00D0	; starting y location of npc1
+	dc.w	DIRECTION_DOWN	; starting direction of npc1
+	dc.w	$0097	; movement frequency of npc1
+	dc.l	NPCMovementBrowsingStart	; location of movement pattern for npc1
+	dc.w	(NPCMovementBrowsingEnd-NPCMovementBrowsingStart-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm

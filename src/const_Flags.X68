@@ -40,14 +40,13 @@ DIALOG_FLAG_TEXT_CLOSING=$1F	; dialog is closing
 ;-------------------------------------------------------------------------------
 ; global event flags - used to track events across days 
 ;-------------------------------------------------------------------------------
-GLOBAL_FLAG_PDAWG_CUSTOMER0=$0	; customer 1 of 4 referred
-GLOBAL_FLAG_PDAWG_CUSTOMER1=$1	; customer 2 of 4 referred
-GLOBAL_FLAG_PDAWG_CUSTOMER2=$2	; customer 3 of 4 referred
-GLOBAL_FLAG_PDAWG_CUSTOMER3=$3	; customer 4 of 4 referred
-GLOBAL_FLAG_JKEY_CPLANET=$4	; npc jordan has the cplanet key
-GLOBAL_FLAG_JKEY_SVIDEO=$5	; npc jordan has the svideo key
-GLOBAL_FLAG_DANI_GIFT=$6	; Dani has received the secret shopper gift
-GLOBAL_FLAG_DB_SAFE=$7	; D.B. found a safe place to hide on day 06
+GLOBAL_FLAG_PDAWG_CUSTOMER0=$0	; customer 1 of 3 referred
+GLOBAL_FLAG_PDAWG_CUSTOMER1=$1	; customer 2 of 3 referred
+GLOBAL_FLAG_PDAWG_CUSTOMER2=$2	; customer 3 of 3 referred
+GLOBAL_FLAG_JKEY_CPLANET=$3	; npc jordan has the cplanet key
+GLOBAL_FLAG_JKEY_SVIDEO=$4	; npc jordan has the svideo key
+GLOBAL_FLAG_DANI_GIFT=$5	; Dani has received the secret shopper gift
+GLOBAL_FLAG_DB_SAFE=$6	; D.B. found a safe place to hide on day 06
 
 ;-------------------------------------------------------------------------------
 ; day event flags - used to track events in the current day 
@@ -104,7 +103,8 @@ EVENT_FLAG_DAY07_POGODAWG_KEY=$1	; whether the key has been given
 EVENT_FLAG_DAY07_LEAVE_VB=$2	; whether it's clear to leave VB
 EVENT_FLAG_DAY07_EVENT0=$3	; after talking to Dani in DCountry
 EVENT_FLAG_DAY07_EVENT1=$4	; after entering nshack
-EVENT_FLAG_DAY07_GOOD_ENDING=$5	; the "good ending" is available
+EVENT_FLAG_DAY07_SEARCH_TENT=$5	; after searching the tents
+EVENT_FLAG_DAY07_GOOD_ENDING=$6	; the "good ending" is available
 
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 

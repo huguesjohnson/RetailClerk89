@@ -246,6 +246,7 @@ DebugStartDay3Mid:
 	move.l	#$031B0000,(MEM_NPC_LOCATION_VB)
 	move.l	#$1A050B00,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	move.l	#$00000000,(MEM_NPC_LOCATION_WWHALL)
+	move.l	#$0E250000,(MEM_NPC_LOCATION_TBOOKS)
 	; queue the scripted event
 	lea ScriptedEventDay03ChangePC,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -713,7 +714,6 @@ DebugStartDay7TitleGood:
 	bset.l	#GLOBAL_FLAG_PDAWG_CUSTOMER0,d7	; test customer0
 	bset.l	#GLOBAL_FLAG_PDAWG_CUSTOMER1,d7	; test customer1
 	bset.l	#GLOBAL_FLAG_PDAWG_CUSTOMER2,d7	; test customer2
-	bset.l	#GLOBAL_FLAG_PDAWG_CUSTOMER3,d7	; test customer3
 	move.l	d7,(MEM_GLOBAL_EVENT_FLAGS)
 	bsr.w	Day06End
 	rts

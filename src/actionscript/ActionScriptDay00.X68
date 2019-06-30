@@ -2,8 +2,7 @@
 ; day 00 - scene 00 (SCENE_ID_VB)
 ;-------------------------------------------------------------------------------
 Day00Scene00Action00:	; ACTION_LOOK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_DANI,d6	; test target
+	cmpi.w	#OBJ_NPC_DANI,(MEM_ACTION_TARGET_OBJID)	; test target
 	bne.s	Day00Scene00Action00Default	; branch to default
 	lea	DialogTextDaniScene00Day00Action0,a6	; load text for the day
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -15,7 +14,7 @@ ExitDay00Scene00Action00:
 
 Day00Scene00Action01:	; ACTION_USE_TALK
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	move.w	(MEM_ACTION_TARGET_OBJID),d6
 	cmpi.w	#OBJ_SCENE_REGISTER,d6	; test target
 	beq.w	Day00Scene00Register	; branch if this is the register
 	cmpi.w	#OBJ_NPC_DANI,d6	; test target
@@ -42,7 +41,7 @@ Day00Scene00Action01NPCMaleShopper:
 	;---------------------------------------------------------------------------
 	; handle dialog with shopper		
 	;---------------------------------------------------------------------------
-	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
+	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,(MEM_ACTION_TARGET_OBJID)	; test target
 	bne.w	Day00Scene00Action01NPCGreenberg	; test next NPC
 	btst.l	#EVENT_FLAG_DAY00_EVENT00_COMPLETE,d7	; test if 1st event ran
 	bne	Day00Scene00Action01NPCMaleShopperTestFlag8	; branch if it is
@@ -98,7 +97,7 @@ Day00Scene00Action01NPCGreenberg:
 	;---------------------------------------------------------------------------
 	; handle dialog with Greenberg		
 	;---------------------------------------------------------------------------
-	cmpi.w	#OBJ_NPC_GREENBERG,d6	; test target
+	cmpi.w	#OBJ_NPC_GREENBERG,(MEM_ACTION_TARGET_OBJID)	; test target
 	bne.w	Day00Scene00Action01Default	; branch to display default text
 	lea	DialogTextGreenbergScene00Day00Talk,a6	; load dialog text
 	bra.w	Day00Scene00Action01CopyDialogText	; branch to setup dialog
@@ -119,12 +118,12 @@ Day00Scene00Action02:	; ACTION_TAKE_GIVE
 	bne.s	Day00Scene00Action02DefaultTake	; flag is set, branch
 	btst.l	#EVENT_FLAG_DAY00_NPC01_GIVE02,d7	; test if last give flag is set
 	beq.s	Day00Scene00Action02DefaultTake	; flag is not set, branch
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6 (again)
-	cmpi.w	#OBJ_SCENE_VB_8BIT,d6	; is the player looking at 8-bit games?
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_SCENE_VB_8BIT,d6	;  8-bit games?
 	beq.s	Day00Scene00Action02LaunchScriptedEvent	; if so, launch event
-	cmpi.w	#OBJ_SCENE_VB_16BIT,d6	; is the player looking at 16-bit games?
+	cmpi.w	#OBJ_SCENE_VB_16BIT,d6	; 16-bit games?
 	beq.s	Day00Scene00Action02LaunchScriptedEvent	; if so, launch event
-	cmpi.w	#OBJ_SCENE_VB_HANDHELD,d6	; is player looking at handheld games?
+	cmpi.w	#OBJ_SCENE_VB_HANDHELD,d6	; handheld games?
 	bne.s	Day00Scene00Action02DefaultTake	; if not branch
 Day00Scene00Action02LaunchScriptedEvent:
 	; set flag to indicate the scripted event ran
@@ -140,7 +139,7 @@ Day00Scene00Action02DefaultTake:
 	bra.w	ExitDay00Scene00Action02	; exit
 Day00Scene00Action02GiveNPC:
 	bsr.w	RemoveActiveItem	; remove the item
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	move.w	(MEM_ACTION_TARGET_OBJID),d6
 	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
 	bne.s	Day00Scene00Action02GiveNPCTest2	; branch if not MALE_SHOPPER0
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags for the day to d7
@@ -188,8 +187,7 @@ Day00Scene00Action02GiveNPCTest3:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day00Scene00Action02DefaultGive:
-	lea	DialogTextNothingHappens,a6	; load dialog text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultUse
 ExitDay00Scene00Action02:
 	rts
 
@@ -197,8 +195,7 @@ Day00Scene00Action03:	; ACTION_RESPOND
 	;---------------------------------------------------------------------------
 	; determine which NPC the player responded to
 	;---------------------------------------------------------------------------
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,d6	; test target
+	cmpi.w	#OBJ_NPC_MALE_SHOPPER0,(MEM_ACTION_TARGET_OBJID)	; test target
 	bne.w	Day00Scene00Action03Default	; branch to display default text
 Day00Scene00Action03NPCMaleShopper:
 	;---------------------------------------------------------------------------
@@ -270,8 +267,7 @@ Day00Scene00Action03NPCMaleShopperFlag3R1:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bra.s	ExitDay00Scene00Action03	; exit
 Day00Scene00Action03Default:
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultUse
 	bsr.w	ResetDialog	; reset the dialog
 ExitDay00Scene00Action03:
 	rts
@@ -291,8 +287,7 @@ Day00Scene03Action01:	; ACTION_USE_TALK
 	rts
 Day00Scene03Action01Default:
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultUse
 	rts
 Day00Scene03Action01NPC:
 	; setup 4 choice dialog	
@@ -307,8 +302,7 @@ Day00Scene03Action02:	; ACTION_TAKE_GIVE
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
 	beq.s	Day00Scene03Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day00Scene03Action02NPC:
 	lea	DialogTextNPCCenterStaffDefaultGive,a6	; load text
@@ -360,8 +354,7 @@ Day00Scene05Action01:	; ACTION_USE_TALK
 	cmpi.w	#OBJ_SCENE_DANICAR,d6	; test target
 	beq.s	Day00Scene05DaniCarLookUse	; same action for look and use	
 	; default action	
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultUse
 	rts
 Day00Scene05Action01NPCDani:
 	lea	DialogTextDaniScene05Day00,a6	; load dialog text
@@ -394,8 +387,7 @@ Day00Scene05Action02NPCDani:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day00Scene05Action02DaniCar:
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 
 Day00Scene05Action03:	; ACTION_RESPOND
@@ -411,24 +403,20 @@ Day00Scene05Action03:	; ACTION_RESPOND
 ; day 00 - scene 07 (SCENE_ID_EEHALL)
 ;-------------------------------------------------------------------------------
 Day00Scene07Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_GUARD0,d6	; test target
+	cmpi.w	#OBJ_NPC_GUARD0,(MEM_ACTION_TARGET_OBJID)	; test target
 	beq.s	Day00Scene07Action01NPC	; branch to display text
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultUse
 	rts
 Day00Scene07Action01NPC:
 	lea	DialogTextSecurityGuardDay00,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day00Scene07Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_GUARD0,d6	; test target
+	cmpi.w	#OBJ_NPC_GUARD0,(MEM_ACTION_TARGET_OBJID)	; test target
 	beq.s	Day00Scene07Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day00Scene07Action02NPC:
 	lea	DialogTextSecurityGuardDay00,a6	; load text
@@ -439,12 +427,10 @@ Day00Scene07Action02NPC:
 ; day 00 - scene 17 (SCENE_ID_SOUTH_CENTER)
 ;-------------------------------------------------------------------------------
 Day00Scene17Action01:	; ACTION_USE_TALK
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day00Scene17Action01NPC	; branch to display text
 	; default text
-	lea	DialogTextNothingHappens,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultUse
 	rts
 Day00Scene17Action01NPC:
 	; setup 2 choice dialog	
@@ -455,12 +441,10 @@ Day00Scene17Action01NPC:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day00Scene17Action02:	; ACTION_TAKE_GIVE
-	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
-	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,d6	; test target
+	cmpi.w	#OBJ_NPC_SOUTH_CENTER_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day00Scene17Action02NPC	; branch to text for the NPC
 	; default action
-	lea	DialogTextCantTake,a6	; load default text
-	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	ActionScriptDefaultTake
 	rts
 Day00Scene17Action02NPC:
 	lea	DialogTextNPCSouthCenterStaffDefaultGive,a6	; load text

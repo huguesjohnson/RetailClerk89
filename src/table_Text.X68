@@ -511,6 +511,28 @@ ItemNameTable:
 	dc.l	ItemNameStrangeGift
 	; OBJ_ITEM_CAFFEINE_PILLS
 	dc.l	ItemNameCaffeinePills
+	; OBJ_ITEM_WOOD_COMB
+	dc.l	ItemNameWoodComb
+	; OBJ_ITEM_JACKET
+	dc.l	ItemNameJacket
+	; OBJ_ITEM_NOSE_HOOPS
+	dc.l	ItemNameNoseHoops
+	; OBJ_ITEM_DECOY_FISH
+	dc.l	ItemNameDecoyFish
+	; OBJ_ITEM_NEON_DRESS
+	dc.l	ItemNameNeonDress
+	; OBJ_ITEM_LANDMINE
+	dc.l	ItemNameLandmine
+	; OBJ_ITEM_MOTIVATIONAL_BOOKS
+	dc.l	ItemNameMotivationalBooks
+	; OBJ_ITEM_CALCULATOR
+	dc.l	ItemNameCalculator
+	; OBJ_ITEM_BETA_TAPES
+	dc.l	ItemNameBetaTapes
+	; OBJ_ITEM_RANCID_MEAT
+	dc.l	ItemNameRancidMeat
+	; OBJ_ITEM_LUNCH_DELIVERY
+	dc.l	ItemNameLunchDelivery
 
 ;-------------------------------------------------------------------------------
 ; item descriptions
@@ -622,6 +644,28 @@ ItemDescriptionTable:
 	dc.l	ItemDescriptionStrangeGift
 	; OBJ_ITEM_CAFFEINE_PILLS
 	dc.l	ItemDescriptionCaffeinePills
+	; OBJ_ITEM_WOOD_COMB
+	dc.l	ItemDescriptionWoodComb
+	; OBJ_ITEM_JACKET
+	dc.l	ItemDescriptionJacket
+	; OBJ_ITEM_NOSE_HOOPS
+	dc.l	ItemDescriptionNoseHoops
+	; OBJ_ITEM_DECOY_FISH
+	dc.l	ItemDescriptionDecoyFish
+	; OBJ_ITEM_NEON_DRESS
+	dc.l	ItemDescriptionNeonDress
+	; OBJ_ITEM_LANDMINE
+	dc.l	ItemDescriptionLandmine
+	; OBJ_ITEM_MOTIVATIONAL_BOOKS
+	dc.l	ItemDescriptionMotivationalBooks
+	; OBJ_ITEM_CALCULATOR
+	dc.l	ItemDescriptionCalculator
+	; OBJ_ITEM_BETA_TAPES
+	dc.l	ItemDescriptionBetaTapes
+	; OBJ_ITEM_RANCID_MEAT
+	dc.l	ItemDescriptionRancidMeat
+	; OBJ_ITEM_LUNCH_DELIVERY
+	dc.l	ItemDescriptionLunchDelivery
 
 ;-------------------------------------------------------------------------------
 ; store names

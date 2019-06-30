@@ -244,7 +244,7 @@ SceneSVideo:
 	;---------------------------------------------------------------------------
 	; NPC locations
 	;---------------------------------------------------------------------------
-	dc.w	$0000	; one npc slot
+	dc.w	$0001	; two npc slots
 
 	dc.w	$00E8	; starting x location of npc0
 	dc.w	$00F0	; starting y location of npc0
@@ -252,6 +252,13 @@ SceneSVideo:
 	dc.w	$007F	; movement frequency of npc0
 	dc.l	NPCMovementScene0CStart	; location of movement pattern for npc0
 	dc.w	(NPCMovementScene0CEnd-NPCMovementScene0CStart-1)	; pattern length
+
+	dc.w	$00A0	; starting x location of npc1
+	dc.w	$0090	; starting y location of npc1
+	dc.w	DIRECTION_DOWN	; starting direction of npc1
+	dc.w	$0097	; movement frequency of npc1
+	dc.l	NPCMovementBrowsingStart	; location of movement pattern for npc1
+	dc.w	(NPCMovementBrowsingEnd-NPCMovementBrowsingStart-1)	; pattern length
 
 	;---------------------------------------------------------------------------
 	; bgm
