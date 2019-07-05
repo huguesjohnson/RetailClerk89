@@ -301,11 +301,17 @@ Day00Scene03Action02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_CENTER_STAFF,d6	; test target
 	beq.s	Day00Scene03Action02NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_MALLMANAGER_NOW,d6	; test target
+	beq.s	Day00Scene03Action02NPCMallManager	; branch to text for the NPC
 	; default action
 	bsr.w	ActionScriptDefaultTake
 	rts
 Day00Scene03Action02NPC:
 	lea	DialogTextNPCCenterStaffDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day00Scene03Action02NPCMallManager:
+	lea	DialogTextNPCMallManagerDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day00Scene03Action03:	; ACTION_RESPOND

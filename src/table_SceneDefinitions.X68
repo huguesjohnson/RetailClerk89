@@ -105,12 +105,22 @@ SceneDefinitionTable:
 	; SCENE_ID_ENDING_BAD2=$0021
 	dc.l	SceneEndingBad2
 
-	; SCENE_ID_ENDING_GOOD0=$0022
+	; SCENE_ID_ENDING_BAD3=$0022
+	dc.l	SceneEndingBad3
+
+	; SCENE_ID_ENDING_GOOD0=$0023
 	dc.l	SceneEndingGood0
 
-	; SCENE_ID_ENDING_GOOD1=$0023
+	; SCENE_ID_ENDING_GOOD1=$0024
 	dc.l	SceneEndingGood1
 
-	; SCENE_ID_ENDING_GOOD2=$0024
+	; SCENE_ID_ENDING_GOOD2=$0025
 	dc.l	SceneEndingGood2
+
+	; SCENE_ID_ENDING_GOOD3=$0026
+	dc.l	SceneEndingGood3
+
+	; SCENE_ID_ENDING_PERFECT0=$0027
+	dc.l	SceneEndingPerfect0
+
 

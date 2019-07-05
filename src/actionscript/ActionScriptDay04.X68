@@ -970,13 +970,20 @@ Day04Scene14Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene14Action02:	; ACTION_TAKE_GIVE
-	cmpi.w	#OBJ_NPC_FCBFIREARMS_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
+	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
+	cmpi.w	#OBJ_NPC_FCBFIREARMS_STAFF,d6 ; test target
 	beq.s	Day04Scene14Action02NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_MALE_SHOPPER2,d6	; test target
+	beq.s	Day04Scene14Action02NPCShopper	; branch to default
 	; default action
 	bsr.w	ActionScriptDefaultTake
 	rts
 Day04Scene14Action02NPC:
 	lea	DialogTextNPCFCBFirearmsStaffDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene14Action02NPCShopper:
+	lea	DialogTextNPCGenericShopperDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

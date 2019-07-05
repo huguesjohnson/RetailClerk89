@@ -290,7 +290,7 @@ Day03Scene07Action00Default:
 	bsr.w	ShowDefaultText	; use default text for objects in this scene
 	rts
 Day03Scene07Action00NPCGuard:
-	lea	DialogTextDay03Scene07NPCGuard,a6	; load default text
+	lea	DialogTextNPCGuard0DefaultLook,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

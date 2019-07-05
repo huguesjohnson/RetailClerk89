@@ -135,6 +135,8 @@ ExitScene00Day02:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
 	btst.l	#EVENT_FLAG_DAY02_MID_EVENT,d7	; test if flag is set
 	beq.s	ExitScene00Day02Default	; flag not set, branch
+	cmpi.w	#PLAYER_SPRITE_DB,(MEM_PLAYER_SPRITE)	; check which sprite this is
+	beq.s	ExitScene00Day02Default	; don't update if DB
 	; update NPCs in SCENE_VB
 	move.l	#$16000000,(MEM_NPC_LOCATION_VB)	; update NPCs
 ExitScene00Day02Default:
@@ -322,11 +324,22 @@ ExitScene01Day06:
 	bsr.w	SetDialogOpening	; flag to open dialog
 	rts
 ExitScene01Day06MissionInProgress:
+	move.w	(MEM_PLAYER_SPRITE_DIRECTION),d6
 	; test if player is trying to enter vb
-	cmpi.w	#DIRECTION_UP,(MEM_PLAYER_SPRITE_DIRECTION)
-	bne.s	ExitScene01Day06Default	; not going up, branch 
+	cmpi.w	#DIRECTION_UP,d6
+	beq.s	ExitScene01Day06MissionInProgressUp
+	cmpi.w	#DIRECTION_LEFT,d6
+	beq.s	ExitScene01Day06MissionInProgressLeft
+	bra.s	ExitScene01Day06Default	; default 
+ExitScene01Day06MissionInProgressUp:
 	; display message
 	lea	DialogTextDay06CantGoBack,a6	; load dialog text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	bsr.w	SetDialogOpening	; flag to open dialog
+	rts	; exit
+ExitScene01Day06MissionInProgressLeft:
+	; display message
+	lea	DialogTextDay06Backtrack,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	bsr.w	SetDialogOpening	; flag to open dialog
 	rts	; exit
@@ -447,6 +460,7 @@ ExitScene04:
 	; update keys
 	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
 	bset.l	#STORE_KEY_NSHACK,d7	; add the nshack key
+	bset.l	#STORE_KEY_FCB,d7	; add the nshack key
 	move.l	(MEM_GLOBAL_EVENT_FLAGS),d6	; copy global flags to d6
 	btst.l	#GLOBAL_FLAG_JKEY_CPLANET,d6	; does Jordan have cplanet key?
 	beq.s	.1	; branch if not
@@ -714,6 +728,7 @@ ExitScene07Day06:
 	;---------------------------------------------------------------------------
 	bset.l	#EVENT_FLAG_DAY06_MISSION_COMPLETE,d7	; set flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	bsr.w	ClearPlayerInventory	; clear player inventory
 	; check direction
 	cmpi.w	#DIRECTION_LEFT,(MEM_PLAYER_SPRITE_DIRECTION)	; test direction
 	beq.s	ExitScene07Day06West	; exiting west, branch

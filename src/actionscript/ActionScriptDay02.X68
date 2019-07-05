@@ -242,13 +242,20 @@ Day02Scene08Action01Dani:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day02Scene08Action02:	; ACTION_TAKE_GIVE
-	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
+	move.w	(MEM_ACTION_TARGET_OBJID),d6
+	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,d6 ; test target
 	beq.s	Day02Scene08Action02NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DANI,d6 ; test target
+	beq.s	Day02Scene08Action02Dani	; branch to text for the NPC
 	; default action
 	bsr.w	ActionScriptDefaultTake
 	rts
 Day02Scene08Action02NPC:
 	lea	DialogTextNPCDenimCountryStaffDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene08Action02Dani:
+	lea	DialogTextDaniDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 

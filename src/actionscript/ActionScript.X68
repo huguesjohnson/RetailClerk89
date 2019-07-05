@@ -36,8 +36,22 @@ EndGame:
 	and.l	#$0000,d7	; clear all other flags
 	bset.l	#STATE_FLAG_END_SCREEN,d7 ; set end screen state flag	
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-	; load end scene
-	lea	SceneEnd,a6	; address of the scene for the title screen
+	;---------------------------------------------------------------------------
+	; determine which ending to load
+	;---------------------------------------------------------------------------
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	btst.l	#EVENT_FLAG_DAY07_PERFECT_ENDING,d7	; perfect ending achieved?
+	beq.s	.1	; perfect ending not achieved
+	lea	SceneEndingPerfect0,a6	; last screen of perfect ending
+	bra.s	EndGameLoadScene	; load the scene
+.1
+	btst.l	#EVENT_FLAG_DAY07_GOOD_ENDING,d7	; good ending achieved?
+	beq.s	EndGameBadEnding	; good ending not achieved
+	lea	SceneEndingGood3,a6	; last screen of good ending
+	bra.s	EndGameLoadScene	; load the scene
+EndGameBadEnding:
+	lea	SceneEndingBad3,a6	; last screen of bad ending
+EndGameLoadScene:
 	jsr	LoadScene	; branch to LoadScene subroutine
 	bsr.w	FadeIn	; fade in
 	rts

@@ -379,11 +379,17 @@ Day06Scene0CAction02:	; ACTION_TAKE_GIVE
 	move.w	(MEM_ACTION_TARGET_OBJID),d6	; copy action target to d6
 	cmpi.w	#OBJ_NPC_SVIDEO_STAFF,d6	; test target
 	beq.s	Day06Scene0CAction02NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_MALE_SHOPPER1,d6	; test target
+	beq.s	Day06Scene0CAction02NPCShopper	; branch to text for the NPC
 	; default action
 	bsr.w	ActionScriptDefaultTake
 	rts
 Day06Scene0CAction02NPC:
 	lea	DialogTextNPCSVideoStaffDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene0CAction02NPCShopper:
+	lea	DialogTextNPCGenericShopperDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -419,6 +425,8 @@ Day06Scene0DAction02:	; ACTION_TAKE_GIVE
 	beq.s	Day06Scene0DAction02NPC0	; branch to text for the NPC
 	cmpi.w	#OBJ_NPC_WORKSHOP_STAFF1,d6	; test target
 	beq.s	Day06Scene0DAction02NPC1	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DANI_XMAS,d6	; test target
+	beq.s	Day06Scene0DAction02NPCDani	; branch to text for the NPC
 	; default action
 	bsr.w	ActionScriptDefaultTake
 	rts
@@ -428,6 +436,10 @@ Day06Scene0DAction02NPC0:
 	rts
 Day06Scene0DAction02NPC1:
 	lea	DialogTextNPCWorkshopStaff1DefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene0DAction02NPCDani:
+	lea	DialogTextDaniDefaultGive,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 
@@ -569,6 +581,9 @@ Day06Scene11Action01NPC:
 	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7
 	bset.l	#STORE_KEY_CNOW,d7	; add the key
 	move.l	d7,(MEM_PLAYER_STORE_KEYS)	; save updated keys
+	; remove item for this mission
+	move.w	#OBJ_ITEM_CAFFEINE_PILLS,d7	; copy object id to d7
+	bsr.w	RemoveItem	; remove the item
 	; queue scripted event
 	lea ScriptedEventDay06StartSub00Complete,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event

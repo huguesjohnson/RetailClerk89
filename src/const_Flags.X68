@@ -105,6 +105,7 @@ EVENT_FLAG_DAY07_EVENT0=$3	; after talking to Dani in DCountry
 EVENT_FLAG_DAY07_EVENT1=$4	; after entering nshack
 EVENT_FLAG_DAY07_SEARCH_TENT=$5	; after searching the tents
 EVENT_FLAG_DAY07_GOOD_ENDING=$6	; the "good ending" is available
+EVENT_FLAG_DAY07_PERFECT_ENDING=$7	; the "perfect ending" is available
 
 ;-------------------------------------------------------------------------------
 ; mission event flags - used to track progress within sub-quests 

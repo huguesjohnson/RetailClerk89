@@ -469,6 +469,9 @@ Day07Scene0EAction03:	; ACTION_RESPOND
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day07Scene0EAction03BadEnding:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	bclr.l	#EVENT_FLAG_DAY07_GOOD_ENDING,d7	; unset good ending
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
 	; queue scripted event
 	lea ScriptedEventBadEnding,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -479,8 +482,33 @@ Day07Scene0EAction03BadEnding:
 Day07Scene0EAction03GoodEnding:
 	; update NPCs
 	move.l	#$160E0A04,(MEM_NPC_LOCATION_CAVERN)
+	; test if conditions met for perfect ending
+	move.l	(MEM_PLAYER_STORE_KEYS),d7	; copy store keys to d7	
+	cmpi.w	#$1FFF,d7	; test if player has all keys
+	bne.s	.1 ; missing a key, branch to good ending
+	move.w	(MEM_CUSTOMER_FEEDBACK_SCORE),d7	; copy feedback score to d7
+	cmpi.w	#$0004,d7	; test for perfect feedback score 
+	bne.s	.1 ; not perfect, branch to good ending
+	move.l	(MEM_GLOBAL_EVENT_FLAGS),d7	; copy global event flags to d7
+	btst.l	#GLOBAL_FLAG_DANI_GIFT,d7	; have gift?
+	beq.s	.1	; no gift, branch to good ending
+	btst.l	#GLOBAL_FLAG_DB_SAFE,d7	; DB safe on day 06?
+	beq.s	.1	; not safe, branch to good ending
+	bra.s	Day07Scene0EAction03PerfectEnding	; all conditions met
+.1	; normal good ending
 	; queue scripted event	
 	lea ScriptedEventGoodEnding,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	; initial text
+	lea	DialogTextScene0EDay07RespondGood,a6	; load default text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day07Scene0EAction03PerfectEnding:
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day event flags to d7
+	bset.l	#EVENT_FLAG_DAY07_PERFECT_ENDING,d7	; perfect ending achieved?
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; queue scripted event	
+	lea ScriptedEventPerfectEnding,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
 	; initial text
 	lea	DialogTextScene0EDay07RespondGood,a6	; load default text

@@ -60,115 +60,115 @@ TitleScreenTextFooter:
 
 	DebugScreenLine00:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Debug starting scene",ETX
+	dc.b	"Debug starting scene                  ",ETX
 
 	DebugScreenLine01:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 0 title screen",ETX
+	dc.b	"{ Day 0 title screen                  ",ETX
 
 	DebugScreenLine02:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 0 After demo mission",ETX
+	dc.b	"{ Day 0 After demo mission            ",ETX
 
 	DebugScreenLine03:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 1 title screen",ETX
+	dc.b	"{ Day 1 title screen                  ",ETX
 
 	DebugScreenLine04:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 1 mid point",ETX
+	dc.b	"{ Day 1 mid point                     ",ETX
 
 	DebugScreenLine05:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 1 end",ETX
+	dc.b	"{ Day 1 end                           ",ETX
 
 	DebugScreenLine06:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 2 title screen",ETX
+	dc.b	"{ Day 2 title screen                  ",ETX
 
 	DebugScreenLine07:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 2 mid point",ETX
+	dc.b	"{ Day 2 mid point                     ",ETX
 
 	DebugScreenLine08:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 2 end",ETX
+	dc.b	"{ Day 2 end                           ",ETX
 
 	DebugScreenLine09:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 3 title",ETX
+	dc.b	"{ Day 3 title                         ",ETX
 
 	DebugScreenLine0A:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 3 mid point",ETX
+	dc.b	"{ Day 3 mid point                     ",ETX
 
 	DebugScreenLine0B:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 4 title",ETX
+	dc.b	"{ Day 4 title                         ",ETX
 
 	DebugScreenLine0C:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 4 mid point",ETX
+	dc.b	"{ Day 4 mid point                     ",ETX
 
 	DebugScreenLine0D:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 4 end",ETX
+	dc.b	"{ Day 4 end                           ",ETX
 
 	DebugScreenLine0E:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 5 title",ETX
+	dc.b	"{ Day 5 title                         ",ETX
 
 	DebugScreenLine0F:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 5 parking lot blizzard scene",ETX
+	dc.b	"{ Day 5 parking lot blizzard scene    ",ETX
 
 	DebugScreenLine10:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 5 camp scene",ETX
+	dc.b	"{ Day 5 camp scene                    ",ETX
 
 	DebugScreenLine11:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 5 end                     ",ETX
+	dc.b	"{ Day 5 end                           ",ETX
 
 	DebugScreenLine12:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 6 title                   ",ETX
+	dc.b	"{ Day 6 title                         ",ETX
 
 	DebugScreenLine13:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 6 start of night mission",ETX
+	dc.b	"{ Day 6 start of night mission        ",ETX
 
 	DebugScreenLine14:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 6 end of night mission",ETX
+	dc.b	"{ Day 6 end of night mission          ",ETX
 
 	DebugScreenLine15:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 title (bad)                 ",ETX
+	dc.b	"{ Day 7 title (bad)                   ",ETX
 
 	DebugScreenLine16:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 mid point (bad)             ",ETX
+	dc.b	"{ Day 7 mid point (bad)               ",ETX
 
 	DebugScreenLine17:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 title (good)                 ",ETX
+	dc.b	"{ Day 7 title (good)                  ",ETX
 
 	DebugScreenLine18:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 7 end (good)                    ",ETX
 
 	DebugScreenLine19:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ (not implemented)",ETX
+	dc.b	"{ Day 7 title (perfect)               ",ETX
 
 	DebugScreenLine1A:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 end (good)                 ",ETX
+	dc.b	"{ Day 7 end (perfect)                 ",ETX
 
 	DebugScreenLine1B:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Ending credits (old version)",ETX
+	dc.b	"{ Ending credits (old version)        ",ETX
 
 	endif
 
@@ -310,6 +310,18 @@ CreditsScreen00Line1A:
 CreditsScreen00Line1B:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"See CREDITS & LICENSE for details",ETX
+
+LegalScreenLine00BadEnding:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"    Retail Clerk '89 - Bad Ending     ",ETX
+
+LegalScreenLine00GoodEnding:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"    Retail Clerk '89 - Good Ending    ",ETX
+
+LegalScreenLine00PerfectEnding:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"  Retail Clerk '89 - Perfect Ending   ",ETX
 
 ;-------------------------------------------------------------------------------
 ; general messages
@@ -783,7 +795,7 @@ DialogTextDay01VBDBDefaultTalk:
 	dc.b	"Let's share any keys",LF
 	dc.b	"we get, just in case.^",FF
 	dc.b	"I can make copies of",LF
-	dc.b	"them in our garage.  ^",FF
+	dc.b	"them.                ^",FF
 	dc.b	"Dad taught me how when",LF
 	dc.b	"he was in his fallout^",FF
 	dc.b	"shelter phase a few",LF
@@ -2362,13 +2374,6 @@ DialogTextDay03Scene02Action00NPCDB:
 	dc.b	"here anyway?)",ETX
 
 	align 2
-DialogTextDay03Scene07NPCGuard:
-	dc.w	OBJ_NPC_GUARD0
-	;		"1234567890123456789012"
-	dc.b	"Finish up your",LF
-	dc.b	"business & leave.",ETX
-
-	align 2
 DialogTextDaniScene05Day03:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
@@ -3056,7 +3061,7 @@ DialogTextDay04CPlanetGoodGift:
 	dc.b	"You might be alright",LF
 	dc.b	"after all.           ^",FF
 	dc.b	"Have a key to my store",LF
-	dc.b	"a don't be a stranger.",ETX
+	dc.b	"& don't be a stranger.",ETX
 
 	align 2
 DialogTextDay04SDBGoodGift:
@@ -4400,6 +4405,12 @@ DialogTextDay06CantGoBack:
 	dc.b	"this now)",ETX
 
 	align 2
+DialogTextDay06Backtrack:
+	;		"1234567890123456789012"
+	dc.b	"(I don't want to",LF
+	dc.b	"backtrack later)",ETX
+
+	align 2
 DialogTextDay06FootstepsNorth:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
@@ -5511,7 +5522,7 @@ DialogTextGoodEnding00:
 	dc.b	"We'd have the place to",LF
 	dc.b	"ourselves.           ^",FF
 	dc.b	"Everything is on free",LF
-	dc.b	"play too.",FF
+	dc.b	"play too.            ^",FF
 	dc.b	"Anyone else without",LF
 	dc.b	"plans is welcome too.",ETX
 
@@ -5777,6 +5788,154 @@ DialogTextDay07TQCavern:
 	dc.b	"I could do whatever",LF
 	dc.b	"I wanted to here.)",ETX
 
+	align 2
+DialogTextPerfectEnding00:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Hey, here you are.",ETX
+
+	align 2
+DialogTextPerfectEnding01:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Yeah, just saying bye",LF
+	dc.b	"to people I'll miss. ^",FF
+	dc.b	"I feel like we're part",LF
+	dc.b	"of a secret club.",ETX
+
+	align 2
+DialogTextPerfectEnding02:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"No kidding.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Are you moving to the",LF
+	dc.b	"dorm tomorrow?",ETX
+
+	align 2
+DialogTextPerfectEnding03:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"That's the plan.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I sure won't miss",LF
+	dc.b	"working Xmas retail. ^",FF
+	dc.b	"Junior over here has",LF
+	dc.b	"two more years of it.",ETX
+
+
+	align 2
+DialogTextPerfectEnding04:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"This will be my last",LF
+	dc.b	"Xmas at this store.",ETX
+
+	align 2
+DialogTextPerfectEnding05:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I hope it's not so",LF
+	dc.b	"weird for you again.",ETX
+
+	align 2
+DialogTextPerfectEnding06:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"I think it will be",LF
+	dc.b	"quiet.               ^",FF
+	dc.b	"I just have to get",LF
+	dc.b	"through a few months.",ETX
+
+	align 2
+DialogTextPerfectEnding07:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Good luck. Maybe I'll",LF
+	dc.b	"visit over Xmas break.",ETX
+
+	align 2
+DialogTextPerfectEnding08:
+	dc.w	OBJ_NPC_DB
+	;		"1234567890123456789012"
+	dc.b	"Speaking of Xmas, you",LF
+	dc.b	"never found out who  ^",FF
+	dc.b	"gave you those",LF
+	dc.b	"necklaces.",ETX
+
+	align 2
+DialogTextPerfectEnding09:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"They're so strange.",LF
+	dc.b	"I don't get them.",ETX
+
+	align 2
+DialogTextPerfectEnding0A:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"It's just an",LF
+	dc.b	"Ouroboros charm.     ^",FF
+	dc.b	"I thought everyone",LF
+	dc.b	"knew what it was.    ^",FF
+	dc.b	"It represents a cycle",LF
+	dc.b	"of death & rebirth.  ^",FF
+	dc.b	"Like how one day this",LF
+	dc.b	"will all be gone.    ^",FF
+	dc.b	"Then something new",LF
+	dc.b	"will be born from it.^",FF
+	dc.b	"That arcade guy",LF
+	dc.b	"couldn't accept it,  ^",FF
+	dc.b	"but it's impossible to",LF
+	dc.b	"stop the cycle.",ETX
+
+	align 2
+DialogTextPerfectEnding0B:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Oh, thanks then.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I assume this was an",LF
+	dc.b	"admission of guilt.",ETX
+
+	align 2
+DialogTextPerfectEnding0C:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Yes, guilty. It has",LF
+	dc.b	"some meaning to me.  ^",FF
+	dc.b	"I thought you might ",LF
+	dc.b	"relate to it to.     ^",FF
+	dc.b	"It seems to fit your",LF
+	dc.b	"attitude at least.",ETX
+
+	align 2
+DialogTextPerfectEnding0D:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"This is getting",LF
+	dc.b	"deeper than I planned.",ETX
+
+	align 2
+DialogTextPerfectEnding0E:
+	dc.w	OBJ_NPC_NSHACK_STAFF
+	;		"1234567890123456789012"
+	dc.b	"Let's just call it our",LF
+	dc.b	"club symbol then.",ETX
+
+	align 2
+DialogTextPerfectEnding0F:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"I'm good with that.",LF
+	dc.b	"See you later maybe.",ETX
+
+	align 2
+DialogTextPerfectEnding10:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Let's get out of here",LF
+	dc.b	"before it's late.",ETX
 
 ;-------------------------------------------------------------------------------
 ; information desk
@@ -6072,9 +6231,15 @@ DialogTextInfoDeskStrangeGift:	; secret santa gift
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Here's your Secret",LF
-	dc.b	"Santa gift.          ^",FF
-	dc.b	"(Received Strange",LF
-	dc.b	"Secret Santa Gift)",ETX
+	dc.b	"Santa gift.          ^",FFR
+	dc.b	"(Received Secret",LF
+	dc.b	"Santa Gift)          ^",FF
+	dc.b	"(What are these?)",LF
+	dc.b	"                     ^",FF
+	dc.b	"(They're matching",LF
+	dc.b	"string necklaces with^",FF
+	dc.b	"a charm of a snake",LF
+	dc.b	"eating its own tail.)",ETX
 
 ;-------------------------------------------------------------------------------
 ; radio stations
@@ -7984,12 +8149,12 @@ ItemDescriptionMixedNuts:
 
 ItemNameStrangeGift:
 	;		"1234567890"
-	dc.b	"Odd Gift",ITEMNAMEEND
+	dc.b	"Necklace",ITEMNAMEEND
 
 ItemDescriptionStrangeGift:
 	;		"1234567890123456789012"
-	dc.b	"(I wonder who this is",LF
-	dc.b	"from anyway)",ETX
+	dc.b	"Weird string necklace",LF
+	dc.b	"with a snake charm.",ETX
 
 ItemNameCaffeinePills:
 	;		"1234567890"
@@ -8154,27 +8319,27 @@ Day01IntroText:
 
 Day01IntroTip0:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"Trading Items",ETX
+	dc.b	"Store keys let you enter a store after",ETX
 
 Day01IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"Each store has items than can be traded",ETX
+	dc.b	"the mall is closed.",ETX
 
 Day01IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"You can take items from your store",ETX
+	dc.b	"Keys can be earned by completing tasks",ETX
 
 Day01IntroTip3:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"New items are unlocked by trading",ETX
+	dc.b	"that help the store.",ETX
 
 Day01IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"You can carry up to four trading items",ETX
+	dc.b	"Try talking to other mall employees to",ETX
 
 Day01IntroTip5:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"Talk to NPCs to see what items they want",ETX
+	dc.b	"see who needs help each day.",ETX
 
 Day02IntroText:
 	;		"1234567890123456789012345678901234567890"
@@ -8182,27 +8347,27 @@ Day02IntroText:
 
 Day02IntroTip0:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"Store keys let you enter a store after",ETX
+	dc.b	"Most items are not carried over",ETX
 
 Day02IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"the mall is closed and borrow items",ETX
+	dc.b	"between days.",ETX
 
 Day02IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"Keys can be earned by completing tasks",ETX
+	dc.b	"Try to use all items in your inventory",ETX
 
 Day02IntroTip3:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"that help the store",ETX
+	dc.b	"before the day ends.",ETX
 
 Day02IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"Try talking to other mall employees to",ETX
+	dc.b	"Store keys are always carried over",ETX
 
 Day02IntroTip5:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"see who needs help each day.",ETX
+	dc.b	"between days.",ETX
 
 Day03IntroText:
 	;		"1234567890123456789012345678901234567890"
@@ -8298,11 +8463,11 @@ Day06IntroTip0:
 
 Day06IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"something suspicious you'll have to",ETX
+	dc.b	"something suspicious it will effect",ETX
 
 Day06IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"restart the mission from the beginning.",ETX
+	dc.b	"the ending.",ETX
 
 Day06IntroTip3:
 	;		"1234567890123456789012345678901234567890"
@@ -8318,7 +8483,7 @@ Day06IntroTip5:
 
 Day07IntroText:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	" December 31, 1989: Last Day of the 80s",ETX
+	dc.b	" December 31, 1989: Last Day of the 80s ",ETX
 
 Day07IntroTip0:
 	;		"1234567890123456789012345678901234567890"
@@ -8338,7 +8503,7 @@ Day07IntroTip3:
 
 Day07IntroTip4:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"",ETX
+	dc.b	"There are three possible endings.",ETX
 
 Day07IntroTip5:
 	;		"1234567890123456789012345678901234567890"

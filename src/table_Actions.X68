@@ -334,8 +334,8 @@ ActionTable:
 	dc.l	Day03Scene06Action01	; ACTION_TAKE_GIVE
 	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
 	dc.l	Day03Scene07Action00	; ACTION_LOOK
-	dc.l	ActionScriptDefaultUse	; ACTION_USE_TALK
-	dc.l	ActionScriptDefaultTake	; ACTION_TAKE_GIVE
+	dc.l	Day00Scene07Action01	; ACTION_USE_TALK
+	dc.l	Day00Scene07Action02	; ACTION_TAKE_GIVE
 	dc.l	ActionScriptNullEvent	; ACTION_RESPOND
 	dc.l	ActionScriptDefaultLook	; ACTION_LOOK
 	dc.l	Day03Scene08Action01	; ACTION_USE_TALK
