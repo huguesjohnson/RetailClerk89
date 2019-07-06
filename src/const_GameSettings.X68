@@ -47,10 +47,16 @@ SCENE_VDP=$0000	; write location for scene tiles
 FONT_VDP=$1200	; write location for font tiles
 SPRITE_VDP=$2200	; write location for sprite tiles
 PLAYER_SPRITE_VDP=SPRITE_VDP+$0020	; write location for player sprite tiles
-PLAYER_SPRITE_VDP_X=$780E0002	; write location for player sprite x
-PLAYER_SPRITE_VDP_Y=$78080002	; write location for player sprite x
-NPC0_SPRITE_VDP_X=$78160002	; write location for npc0 sprite x
-NPC0_SPRITE_VDP_Y=$78100002	; write location for npc0 sprite y
+PLAYER_SPRITE_VDP_X=$780E0002	; player sprite x vdp
+PLAYER_SPRITE_VDP_Y=$78080002	; player sprite y vdp
+NPC0_SPRITE_VDP_X=PLAYER_SPRITE_VDP_X+$00080000	; npc0 sprite x vdp
+NPC0_SPRITE_VDP_Y=PLAYER_SPRITE_VDP_Y+$00080000	; npc0 sprite y vdp
+NPC1_SPRITE_VDP_X=NPC0_SPRITE_VDP_X+$00080000	; npc1 sprite x vdp
+NPC1_SPRITE_VDP_Y=NPC0_SPRITE_VDP_Y+$00080000	; npc1 sprite y vdp
+NPC2_SPRITE_VDP_X=NPC1_SPRITE_VDP_X+$00080000	; npc2 sprite x vdp
+NPC2_SPRITE_VDP_Y=NPC1_SPRITE_VDP_Y+$00080000	; npc2 sprite y vdp
+NPC3_SPRITE_VDP_X=NPC2_SPRITE_VDP_X+$00080000	; npc3 sprite x vdp
+NPC3_SPRITE_VDP_Y=NPC2_SPRITE_VDP_Y+$00080000	; npc3 sprite y vdp
 
 ;-------------------------------------------------------------------------------
 ; SRAM addresses and save game settings

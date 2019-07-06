@@ -240,6 +240,7 @@ TestTitleScreenTestDPadPressed:
 	andi.b	#BUTTON_RIGHT_PRESSED,d6	; test if the right button was pressed
 	bne.s	TestTitleScreenIncrementSelector	; dpad pressed, branch
 	bra.s	TestTitleScreenTestStartPressedLoop	; dpad not pressed
+	if _DEBUG_
 TestTitleScreenIncrementSelector:
 	cmpi.w	#$0002,(MEM_MENU_SELECTION)
 	bne	.1
@@ -255,6 +256,23 @@ TestTitleScreenDecrementSelector:
 	bra.s	TestTitleScreenMoveSelector
 .2	
 	sub.w	#$0001,(MEM_MENU_SELECTION)
+	else
+TestTitleScreenIncrementSelector:
+	cmpi.w	#$0001,(MEM_MENU_SELECTION)
+	bne	.1
+	move.w	#$0000,(MEM_MENU_SELECTION)
+	bra.s	TestTitleScreenMoveSelector
+.1	
+	add.w	#$0001,(MEM_MENU_SELECTION)
+	bra.s	TestTitleScreenMoveSelector
+TestTitleScreenDecrementSelector:
+	tst.w	(MEM_MENU_SELECTION)
+	bne	.2
+	move.w	#$0001,(MEM_MENU_SELECTION)
+	bra.s	TestTitleScreenMoveSelector
+.2	
+	sub.w	#$0001,(MEM_MENU_SELECTION)
+	endif
 TestTitleScreenMoveSelector:
 	move.w	(MEM_MENU_SELECTION),d7	; menu position
 	mulu.w	#$10,d7	; 16 pixels

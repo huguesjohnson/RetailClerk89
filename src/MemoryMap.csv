@@ -154,6 +154,10 @@ MEM_SCRIPTED_EVENT_ACTION,2,current scripted event action
 MEM_SCRIPTED_EVENT_STEPS,2,steps remaining in current action
 MEM_SCRIPTED_SPRITE_ADDR,4,which sprite to move
 ;-------------------------------------------------------------------------------
+; temp working space
+;-------------------------------------------------------------------------------
+MEM_TEMP_SPACE,32,temp working space
+;-------------------------------------------------------------------------------
 ; collision detection
 ;-------------------------------------------------------------------------------
 MEM_ACTIVE_SPRITE_LEFT_COLUMN,2,left column of active sprite

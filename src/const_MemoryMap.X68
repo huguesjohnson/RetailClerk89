@@ -155,15 +155,19 @@ MEM_SCRIPTED_EVENT_ACTION=$FFFF0240	; current scripted event action
 MEM_SCRIPTED_EVENT_STEPS=$FFFF0242	; steps remaining in current action
 MEM_SCRIPTED_SPRITE_ADDR=$FFFF0244	; which sprite to move
 ;-------------------------------------------------------------------------------
+; temp working space
+;-------------------------------------------------------------------------------
+MEM_TEMP_SPACE=$FFFF0248	; temp working space
+;-------------------------------------------------------------------------------
 ; collision detection
 ;-------------------------------------------------------------------------------
-MEM_ACTIVE_SPRITE_LEFT_COLUMN=$FFFF0248	; left column of active sprite
-MEM_ACTIVE_SPRITE_HIGH_LEFT=$FFFF024A	; high left row of active sprite
-MEM_ACTIVE_SPRITE_LOW_LEFT=$FFFF024C	; low left row of active sprite
-MEM_ACTIVE_SPRITE_RIGHT_COLUMN=$FFFF024E	; right column of active sprite
-MEM_ACTIVE_SPRITE_HIGH_RIGHT=$FFFF0250	; high right row of active sprite
-MEM_ACTIVE_SPRITE_LOW_RIGHT=$FFFF0252	; low right row of active sprite
-MEM_COLLISION_MAP_ROW=$FFFF0254	; row of map data
-MEM_COLLISION_RESULT=$FFFF0258	; result of collision test
-MEM_COLLISION_DATA=$FFFF025A	; collision data for the current map
-MEM_END=$FFFF035A
+MEM_ACTIVE_SPRITE_LEFT_COLUMN=$FFFF0268	; left column of active sprite
+MEM_ACTIVE_SPRITE_HIGH_LEFT=$FFFF026A	; high left row of active sprite
+MEM_ACTIVE_SPRITE_LOW_LEFT=$FFFF026C	; low left row of active sprite
+MEM_ACTIVE_SPRITE_RIGHT_COLUMN=$FFFF026E	; right column of active sprite
+MEM_ACTIVE_SPRITE_HIGH_RIGHT=$FFFF0270	; high right row of active sprite
+MEM_ACTIVE_SPRITE_LOW_RIGHT=$FFFF0272	; low right row of active sprite
+MEM_COLLISION_MAP_ROW=$FFFF0274	; row of map data
+MEM_COLLISION_RESULT=$FFFF0278	; result of collision test
+MEM_COLLISION_DATA=$FFFF027A	; collision data for the current map
+MEM_END=$FFFF037A
