@@ -1,9 +1,8 @@
 # Retail Clerk '89
-Retail Clerk '89 is a personal exercise to learn Sega Genesis programming. This might even turn into a real game demo one day.
+Retail Clerk '89 started as a personal exercise to learn Sega Genesis programming. It's now a nearly finished game demo. Although originally inspired by Phantasy Star II and III it morphed into more of an interactive fiction game. It's not especially fun but has a complete story. 
 
 **Currently implemented**
 
-Basic framework for:
 * Drawing background graphics and sprites
 * Capturing controller input and moving a sprite based on it
 * Playing and pausing background music
@@ -14,11 +13,12 @@ Basic framework for:
 * Branching dialog based on player choices
 * Transition between main playable characters
 * Title screens, intro screens, and ending screens
-* Short demo used to test all this stuff
+* Saving and loading
+* Story demo with three possible endings
 
 **Not implemented**
 
-* Fully scripted game - the wiki page here in Github has more information about the roadmap. The current plan is to have v1.0 of the game released on Black Friday 2019.
+* At this point.. just the fully debugged game. The current plan is to have v1.0 of the game released by Black Friday 2019, likely sooner.
 
 **Building**
 
