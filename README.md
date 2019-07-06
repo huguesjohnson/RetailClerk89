@@ -1,5 +1,5 @@
 # Retail Clerk '89
-Retail Clerk '89 started as a personal exercise to learn Sega Genesis programming. It's now a nearly finished game demo. Although originally inspired by Phantasy Star II and III it morphed into more of an interactive fiction game. It's not especially fun but has a complete story. 
+Retail Clerk '89 started as a personal exercise to learn Sega Genesis programming. It's now a nearly finished game demo. Although originally inspired by Phantasy Star II and III it morphed into more of an interactive fiction / casual adventure game. It's not especially fun but has a complete story. 
 
 **Currently implemented**
 
