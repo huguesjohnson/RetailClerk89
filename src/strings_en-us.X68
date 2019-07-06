@@ -14,6 +14,15 @@
 ;  1) In the overhead view, the dialog displays a fixed 22 chars per row
 ;  2) Game font only includes ASCII, unused chars could be re-purposed though
 ;  3) The game logo text is not in this file
+;  4) Character & item names are also restricted to small values
+;
+; The second item is the one I feel worst about..
+; It makes adding non-English characters a complete nightmare.
+; Another option would be extending the dialog font but that has issues too..
+; Hint: If you try doing that also make sure to update DIALOG_BASE_TILE.
+;
+; Yes, this script was written by a native English speaker.
+; I know that is very difficult to believe.
 ;*******************************************************************************
 
 ;-------------------------------------------------------------------------------
@@ -45,13 +54,13 @@ TitleScreenTextDebug:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Unstable Debug Build (July 2019)  ",ETX
+	dc.b	"    Stable Debug Build (July 2019)    ",ETX
 
 	else
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"        Story Demo (July 2019)        ",ETX
+	dc.b	"       Stable Demo (July 2019)        ",ETX
 	endif
 
 	if _DEBUG_
@@ -209,7 +218,7 @@ CreditsScreen00Line01:
 
 CreditsScreen00Line02:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Story and program by Hugues Johnson",ETX
+	dc.b	"Story & program by Hugues Johnson",ETX
 
 CreditsScreen00Line03:
 	;		"12345678901234567890123456789012345678"
@@ -393,7 +402,7 @@ DialogTextDaniScene00Day00Flag1:
 	;		"1234567890123456789012"
 	dc.b	"Maybe you should",LF
 	dc.b	"actually talk to him.^",FF
-	dc.b	"`You know, like",LF
+	dc.b	"You know, like,",LF
 	dc.b	"do your job.",ETX
 
 	align 2
@@ -438,8 +447,7 @@ DialogTextDaniScene00Day00Exit2:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Meet me at the car",LF
-	dc.b	"whenever he bothers  ^",FF
-	dc.b	"to show up again.",ETX
+	dc.b	"when he shows up.",ETX
 
 	align 2
 DialogTextDaniScene05Day00:
@@ -453,16 +461,14 @@ DialogTextDaniScene05Day00:
 DialogTextGreenbergScene00Day00Exit:
 	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"Did I just see a guy",LF
-	dc.b	"walking out with a   ^",FF
-	dc.b	"copy of Baby Boomer?",LF
-	dc.b	"You're the best sales^",FF
-	dc.b	"person I hired this",LF
-	dc.b	"season.              ^",FF
+	dc.b	"Did I see a guy with a",LF
+	dc.b	"copy of Baby Boomer? ^",FF
+	dc.b	"You're the best hire",LF
+	dc.b	"of the season if so. ^",FF
 	dc.b	"Sorry for being gone a",LF
-	dc.b	"while, there was a   ^",FF
-	dc.b	"sale at the other end",LF
-	dc.b	"of the mall.         ^",FF
+	dc.b	"while.               ^",FF
+	dc.b	"There was a sale at",LF
+	dc.b	"my favorite store.   ^",FF
 	dc.b	"You did fine though so",LF
 	dc.b	"get on home.",ETX
 
@@ -470,16 +476,15 @@ DialogTextGreenbergScene00Day00Exit:
 DialogTextGreenbergScene00Day00Talk:
 	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"Don't keep",LF
-	dc.b	"that nice young lady ^",FF
-	dc.b	"waiting too long.",ETX
+	dc.b	"Don't keep that nice",LF
+	dc.b	"young lady waiting.",ETX
 
 	align 2
 DialogTextGreenbergScene00Day00Give:
 	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"You're not",LF
-	dc.b	"stealing either?     ^",FF
+	dc.b	"You're not stealing",LF
+	dc.b	"either?              ^",FF
 	dc.b	"You're the model",LF
 	dc.b	"employee today.",ETX
 
@@ -487,7 +492,7 @@ DialogTextGreenbergScene00Day00Give:
 DialogTextScene00Day00Event0D0:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"This is taking",LF
+	dc.b	"Ugh, this is taking",LF
 	dc.b	"forever.",ETX
 
 	align 2 
@@ -495,7 +500,7 @@ DialogTextScene00Day00Event0D1:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Here, this is the game",LF
-	dc.b	"your kid wants.      ^",ETX
+	dc.b	"your kid wants.",ETX
 
 	align 2
 DialogTextScene00Day00Event0D2:
@@ -503,17 +508,16 @@ DialogTextScene00Day00Event0D2:
 	;		"1234567890123456789012"
 	dc.b	"Baby Boomer?",LF
 	dc.b	"That can't be right. ^",FF
-	dc.b	"Do you even work",LF
-	dc.b	"here?                ^",ETX
+	dc.b	"Do you even work here?",ETX
 
 	align 2
 DialogTextScene00Day00Event0D3:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Trust me. It's",LF
-	dc.b	"what all the kids    ^",FF
-	dc.b	"are playing today.",LF
-	dc.b	"It's really popular. ^",ETX
+	dc.b	"Trust me. It's a very",LF
+	dc.b	"popular game.        ^",FF
+	dc.b	"All the kids are",LF
+	dc.b	"playing it today.",ETX
 
 	align 2
 DialogTextScene00Day00Event0D4:
@@ -556,9 +560,9 @@ DialogTextMaleShopper0Scene00Day00Flag0R1:
 	dc.b	"I'm supposed to pickup",LF
 	dc.b	"some game for my kid.^",FF
 	dc.b	"It has a guy on the",LF
-	dc.b	"box or maybe a car.^",FF
+	dc.b	"box or maybe a car.  ^",FF
 	dc.b	"Do you know the one",LF
-	dc.b	"I'm talking about?  ^",FFR
+	dc.b	"I'm talking about?   ^",FFR
 	dc.b	"{Oh yeah, that one.",LF
 	dc.b	"{It's sold out.",ETX
 
@@ -566,7 +570,7 @@ DialogTextMaleShopper0Scene00Day00Flag0R1:
 DialogTextMaleShopper0Scene00Day00Flag2R0:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"Someone and Iggy vs",LF
+	dc.b	"Someone & Iggy vs",LF
 	dc.b	"whatever & something.^",FF
 	dc.b	"You know all these ",LF
 	dc.b	"games, go find it.",ETX
@@ -575,8 +579,8 @@ DialogTextMaleShopper0Scene00Day00Flag2R0:
 DialogTextMaleShopper0Scene00Day00Flag2R1:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"It's the one with two",LF
-	dc.b	"controllers on the TV^",FF
+	dc.b	"It's the one on the TV",LF
+	dc.b	"with two controllers.^",FF
 	dc.b	"I thought you were",LF
 	dc.b	"the expert on this.",ETX
 
@@ -646,13 +650,6 @@ DialogTextDaniCarDayEnd:
 	dc.b	"{Yeah, time to leave",LF
 	dc.b	"{Not yet",ETX
 
-DialogTextDaniCarGameEnd:
-	;		"1234567890123456789012"
-	dc.b	"Do you want to end",LF
-	dc.b	"this little demo?    ^",FF
-	dc.b	"{Yeah, I'm done",LF
-	dc.b	"{Not yet",ETX
-
 DialogTextDaniCarGameEndR0:
 	;		"1234567890123456789012"
 	dc.b	"OK, come back whenever",LF
@@ -662,8 +659,8 @@ DialogTextDaniCarGameEndR0:
 DialogTextDaniWalkingHome:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"In 10 minutes",LF
-	dc.b	"you're walking home.",ETX
+	dc.b	"In 10 minutes you're",LF
+	dc.b	"walking home.",ETX
 
 	align 2
 DialogTextNPCSouthCenterStaffDay00:
@@ -679,7 +676,7 @@ DialogTextNPCSouthCenterStaffDay00R0:
 	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Well you have a good",LF
-	dc.b	"night and stay warm.",ETX
+	dc.b	"night & stay warm.",ETX
 
 	align 2
 DialogTextNPCSouthCenterStaffDay00R1:
@@ -733,8 +730,8 @@ DialogTextDay01Intro00:
 	dc.b	"This is really bad.  ^",FF
 	dc.b	"Today should be the",LF
 	dc.b	"busiest day all year,^",FF
-	dc.b	"but it's totally",LF
-	dc.b	"empty in here.       ^",FF
+	dc.b	"but it's totally empty",LF
+	dc.b	"in here.             ^",FF
 	dc.b	"Since Marcy's had that",LF
 	dc.b	"fire it's been dead. ^",FF
 	dc.b	"Why can't they get a ",LF
@@ -779,23 +776,23 @@ DialogTextDay01Intro03:
 DialogTextSecurityGuardDay01:
 	dc.w	OBJ_NPC_GUARD0
 	;		"1234567890123456789012"
-	dc.b	"Mall's closing in 5.",LF
+	dc.b	"Mall's closing in 5",LF
 	dc.b	"minutes, move along.",ETX
 
 	align 2
 DialogTextDay01VBDBDefaultTalk:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"I'm stuck",LF
-	dc.b	"closing tonight.     ^",FF
+	dc.b	"I'm stuck closing",LF
+	dc.b	"tonight.             ^",FF
 	dc.b	"Head over to my store",LF
 	dc.b	"after your shift.    ^",FF
 	dc.b	"Here's a key so you",LF
 	dc.b	"can let yourself in. ^",FF
 	dc.b	"Let's share any keys",LF
 	dc.b	"we get, just in case.^",FF
-	dc.b	"I can make copies of",LF
-	dc.b	"them.                ^",FF
+	dc.b	"I know how to make",LF
+	dc.b	"copies of them.      ^",FF
 	dc.b	"Dad taught me how when",LF
 	dc.b	"he was in his fallout^",FF
 	dc.b	"shelter phase a few",LF
@@ -812,13 +809,15 @@ DialogTextDay01VBDBTalk01:
 DialogTextDay01Sub00Intro:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"I'm glad you're ",LF
-	dc.b	"here. The rest of the^",FF
-	dc.b	"staff called in sick. ",LF
-	dc.b	"I'm stuck here alone ^",FF
-	dc.b	"and starving. Would   ",LF
-	dc.b	"you mind watching the^",FF
-	dc.b	"store for just a tiny ",LF
+	dc.b	"I'm glad you're here.",LF
+	dc.b	"                     ^",FF
+	dc.b	"The rest of the staff",LF
+	dc.b	"called in sick.      ^",FF
+	dc.b	"I'm stuck here alone",LF
+	dc.b	"all night & starving.^",FF
+	dc.b	"Would you mind",LF
+	dc.b	"watching the store?  ^",FF
+	dc.b	"It's just for a little",LF
 	dc.b	"bit? I'll be fast.   ^",FFR
 	dc.b	"{Yeah, whatever",LF
 	dc.b	"{Give me five minutes",ETX
@@ -827,15 +826,15 @@ DialogTextDay01Sub00Intro:
 DialogTextDay01Sub00IntroDecline:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Sure, whenever",LF
-	dc.b	"you're free is cool.",ETX
+	dc.b	"Sure, whenever you're",LF
+	dc.b	"free is cool.",ETX
 
 	align 2
 DialogTextDay01Sub00Start00:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Thanks, I won't ",LF
-	dc.b	"be long I promise.   ^",FF
+	dc.b	"Thanks, I won't be",LF
+	dc.b	"long I promise.      ^",FF
 	dc.b	"It's not like there",LF
 	dc.b	"are many choices here.",ETX
 
@@ -843,8 +842,7 @@ DialogTextDay01Sub00Start00:
 DialogTextDay01Sub00Start01:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Just to warn you,    ",LF
-	dc.b	"the customers here  ^",FF
+	dc.b	"Warning, our customers",LF
 	dc.b	"can be pretty dim.",ETX
 
 	align 2
@@ -867,9 +865,8 @@ DialogTextDay01Sub00NPC1D0:
 DialogTextDay01Sub00NPC1D0R0:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"Right, you were      ",LF
-	dc.b	"working at the shoe  ^",FF
-	dc.b	"store the other day.  ",ETX
+	dc.b	"Right, you were at the",LF
+	dc.b	"shoe store yesterday.",ETX
 
 	align 2
 DialogTextDay01Sub00NPCD1:
@@ -885,22 +882,22 @@ DialogTextDay01Sub00NPC1D1R0:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"It's in our west wing",LF
-	dc.b	"go out those doors & ^",FF
-	dc.b	"turn right. Keep going",LF
-	dc.b	"it'll be to the left.",ETX
+	dc.b	"go out & turn right. ^",FF
+	dc.b	"Keep going until you",LF
+	dc.b	"find the book section.",ETX
 
 	align 2
 DialogTextDay01Sub00NPC1D1R1:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"Can you go  ",LF
-	dc.b	"see if you have it?",ETX
+	dc.b	"Can you go see if you",LF
+	dc.b	"have it in the back?",ETX
 
 	align 2
 DialogTextDay01Sub00NPC1D1R1Dani:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Well this is a  ",LF
+	dc.b	"Well this is a",LF
 	dc.b	"clothing store so..",ETX
 
 	align 2
@@ -914,14 +911,14 @@ DialogTextDay01Sub00NPC1D1R1NPC:
 DialogTextDay01Sub00NPC1D0R1:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"You kids all look",LF
-	dc.b	"the same.",ETX
+	dc.b	"You kids all look the",LF
+	dc.b	"same.",ETX
 
 	align 2
 DialogTextDay01Sub00NPCD2:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"This is some kind of ",LF
+	dc.b	"This is some kind of",LF
 	dc.b	"board game store?    ^",FFR
 	dc.b	"{Not even a little",LF
 	dc.b	"{In a way",ETX
@@ -936,10 +933,10 @@ DialogTextDay01Sub00NPC1D2R0:
 DialogTextDay01Sub00NPC1D2R0Dani:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Yes, this store ",LF
-	dc.b	"has been in my family^",FF
-	dc.b	"for over seven        ",LF
-	dc.b	"generations now.    ^",ETX
+	dc.b	"Yes, my great grandpa",LF
+	dc.b	"opened this store.   ^",FF
+	dc.b	"For 60 years now our",LF
+	dc.b	"family has run it.",ETX
 
 	align 2
 DialogTextDay01Sub00NPC1D2R0NPC:
@@ -951,21 +948,22 @@ DialogTextDay01Sub00NPC1D2R0NPC:
 DialogTextDay01Sub00NPC1D2R1:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"Great. I'm  ",LF
-	dc.b	"looking for this new ^",FF
-	dc.b	"board game. It's this",LF
-	dc.b	"real estate game like^",FF
-	dc.b	"Monopoly but it's     ",LF
-	dc.b	"based on..           ^",ETX
+	dc.b	"Great, I'm looking for",LF
+	dc.b	"this new board game. ^",FF
+	dc.b	"It's this real estate",LF
+	dc.b	"game like Monopoly.  ^",FF
+	dc.b	"Only it's based on.. ",ETX
 
 	align 2
 DialogTextDay01Sub00NPC1D2R1Dani:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Nope, stop right",LF
-	dc.b	"there. We are so not ^",FF
-	dc.b	"doing this. You should",LF
-	dc.b	"just move along now. ",ETX
+	dc.b	"there.               ^",FF
+	dc.b	"We are so not doing",LF
+	dc.b	"this.                ^",FF
+	dc.b	"You should move along",LF
+	dc.b	"now.",ETX
 
 	align 2
 DialogTextDay01Sub00NPC2D0:
@@ -1001,35 +999,41 @@ MenuMannequinSub00NPC2ShowCancel:
 
 	align 2
 DialogTextDay01Sub00NPC2D1:
+; commented out due to thing I need to fix
 ;	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"All wrong. I",LF
-	dc.b	"need something nobody^",FF
-	dc.b	"has seen before, this ",LF
-	dc.b	"is way too average.",ETX
+	dc.b	"All wrong.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I need something",LF
+	dc.b	"nobody has seen.     ^",FF
+	dc.b	"This is way too",LF
+	dc.b	"average.",ETX
 
 	align 2
 DialogTextDay01Sub00NPC2D2:
+; commented out due to thing I need to fix
 ;	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Here, this one is,   ",LF
+	dc.b	"Here, this one is",LF
 	dc.b	"really something.",ETX
 
 	align 2
 DialogTextDay01Sub00NPC2D2NPC:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"What is that",LF
-	dc.b	"color? It's not blue,^",FF
-	dc.b	"it's not green, I've  ",LF
-	dc.b	"never seen it.",ETX
+	dc.b	"What is this color?",LF
+	dc.b	"                     ^",FF
+	dc.b	"It's not blue..",LF
+	dc.b	"It's not green..     ^",FF
+	dc.b	"I've never seen",LF
+	dc.b	"anything like it.",ETX
 
 	align 2
 DialogTextDay01Sub00NPC2D2Dani:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"It's says it's",LF
-	dc.b	"called",CHAR_DQUOTE,"teal",CHAR_DQUOTE,".",ETX
+	dc.b	"It says it's called",LF
+	dc.b	CHAR_DQUOTE,"teal",CHAR_DQUOTE,".",ETX
 
 	align 2
 DialogTextDay01Sub00NPC2D2NPC2:
@@ -1042,8 +1046,8 @@ DialogTextDay01Sub00NPC2D2NPC2:
 DialogTextDay01Sub00NPC2D3:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
-	dc.b	"`I don't have forever,",LF
-	dc.b	"ring me up already.'",ETX
+	dc.b	"I don't have forever,",LF
+	dc.b	"ring me up already.",ETX
 
 	align 2
 DialogTextDay01Sub00NPC3D0:
@@ -1095,7 +1099,7 @@ DialogTextDay01Sub00NPC3D2:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
 	dc.b	"Do you sell paisley",LF
-	dc.b	"kipper ties?        ^",FFR
+	dc.b	"kipper ties?         ^",FFR
 	dc.b	"{I'm so sorry but..",LF
 	dc.b	"{Not this decade",ETX
 
@@ -1118,7 +1122,7 @@ DialogTextDay01Sub00NPC3D3:
 	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
 	dc.b	"Do you have any deals",LF
-	dc.b	"you want to mention? ^",FF
+	dc.b	"you want to mention? ^",FFR
 	dc.b	"{Yes of course",LF
 	dc.b	"{Please leave",ETX
 
@@ -1126,9 +1130,8 @@ DialogTextDay01Sub00NPC3D3:
 DialogTextDay01Sub00NPC3D3R0:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Yes, today only",LF
-	dc.b	"everything is two    ^",FF
-	dc.b	"for the price of two!",ETX
+	dc.b	"Today only everything",LF
+	dc.b	"is two for two.      ^",ETX
 
 	align 2
 DialogTextDay01Sub00NPC3D3R1:
@@ -1168,12 +1171,14 @@ DialogTextDay01Sub00End01:
 DialogTextDay01Sub00End02:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Hey wait, my parents ",LF
-	dc.b	"will be out of town  ^",FF
-	dc.b	"for New Years and they",LF
-	dc.b	"said I could have a  ^",FF
-	dc.b	"few people over. Why  ",LF
-	dc.b	"don't you come by?",ETX
+	dc.b	"Hey wait.",LF
+	dc.b	"                     ^",FF
+	dc.b	"My parents will be out",LF
+	dc.b	"of town on New Years.^",FF
+	dc.b	"They said I could have",LF
+	dc.b	"a few people over.   ^",FF
+	dc.b	"Why don't you stop by",LF
+	dc.b	"if you can?",ETX
 
 	align 2
 DialogTextDay01Sub00End03:
@@ -1181,7 +1186,7 @@ DialogTextDay01Sub00End03:
 	;		"1234567890123456789012"
 	dc.b	"Just as a friend!    ",LF
 	dc.b	"Just as a friend!    ^",FF
-	dc.b	"You can even bring    ",LF
+	dc.b	"You can even bring ",LF
 	dc.b	"someone, it's cool.",ETX
 
 	align 2
@@ -1213,8 +1218,8 @@ DialogTextDay01Sub02Start:
 	dc.b	"label is worn off.   ^",FF
 	dc.b	"Find out who this is",LF
 	dc.b	"for on your way out.^",FFR
-	dc.b	"[Received",LF
-	dc.b	"Mystery Package]",ETX
+	dc.b	"[Received mystery",LF
+	dc.b	"package]",ETX
 
 	align 2
 DialogTextDay01Sub02TalkGreenberg:
@@ -1228,15 +1233,15 @@ DialogTextDay01Sub02D0:
 	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
 	dc.b	"The delivery guy gets",LF
-	dc.b	"our stores confused  ^",FF
-	dc.b	"all the time, but this",LF
-	dc.b	"one isn't for us.    ^",FF
+	dc.b	"our stores confused. ^",FF
+	dc.b	"It happens at least",LF
+	dc.b	"once a week.         ^",FF
+	dc.b	"This one isn't for us",LF
+	dc.b	"though.              ^",FF
 	dc.b	"It's too small, might",LF
-	dc.b	"be an old beta tape. ^",FF
-	dc.b	"Check back sometime, ",LF
-	dc.b	"we get stuff for your^",FF
-	dc.b	"store every once a",LF
-	dc.b	"week or so.",ETX
+	dc.b	"be a camcorder tape. ^",FF
+	dc.b	"I don't know who here",LF
+	dc.b	"sells them.",ETX
 
 	align 2
 DialogTextDay01Sub02TalkNPCStaffSVideo:
@@ -1251,23 +1256,22 @@ DialogTextDay01Sub02D1:
 	;		"1234567890123456789012"
 	dc.b	"Hey, we've been",LF
 	dc.b	"looking for that!    ^",FF
-	dc.b	"It's a replacement",LF
-	dc.b	"tape for our security^",FF
-	dc.b	"system. The old one ",LF
-	dc.b	"is so worn out that  ^",FF
-	dc.b	"we couldn't see who.. ",LF
-	dc.b	"nevermind. Thanks.",ETX
+	dc.b	"It's a replacement for",LF
+	dc.b	"our security system. ^",FF
+	dc.b	"The old one is so worn",LF
+	dc.b	"out we couldn't see..^",FF
+	dc.b	"Nevermind. Thanks.",ETX
 
 	align 2
 DialogTextDay01End:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"You're just in time",LF
-	dc.b	"for once. I'm done   ^",FF
-	dc.b	"closing out the",LF
-	dc.b	"register. Let's get  ^",FF
-	dc.b	"home before it's too",LF
-	dc.b	"cold outside.",ETX
+	dc.b	"for once.            ^",FF
+	dc.b	"I'm done closing out",LF
+	dc.b	"the register.        ^",FF
+	dc.b	"Let's get home before",LF
+	dc.b	"it's too cold out.",ETX
 
 	align 2
 DialogTextDay01ParkingLot:
@@ -1299,7 +1303,7 @@ DialogTextTBooksStaffDay01Talk1:
 	dc.w	OBJ_NPC_TBOOKS_STAFF
 	;		"1234567890123456789012"
 	dc.b	"A little bit but I'm",LF
-	dc.b	"getting by alright. ^",FF
+	dc.b	"getting by alright.  ^",FF
 	dc.b	"Knowing it's my last",LF
 	dc.b	"winter here helps.",ETX
 
@@ -1341,20 +1345,26 @@ DialogTextMallManagerDay01:
 DialogTextScriptedEventDay02Start:
 	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"We're out of quarters",LF
-	dc.b	"& no one on this end ^",FF
-	dc.b	"of the mall had any to",LF
-	dc.b	"spare. Why don't you ^",FF
-	dc.b	"try other stores. You",LF
-	dc.b	"might have good luck.^",FF
-	dc.b	"By the way, when I",LF
-	dc.b	"stopped over at the  ^",FF
-	dc.b	"bookstore your friend",LF
-	dc.b	"asked me to tell you ^",FF
-	dc.b	"to come over to talk",LF
-	dc.b	"about something.     ^",FF
-	dc.b	"Anyway here's $10, see",LF
-	dc.b	"if anyone has change.^",FFR
+	dc.b	"I tried every store on",LF
+	dc.b	"this end of the mall.^",FF
+	dc.b	"They're all running",LF
+	dc.b	"low on change too.   ^",FF
+	dc.b	"We're only out of",LF
+	dc.b	"quarters now.        ^",FF
+	dc.b	"That's how it always",LF
+	dc.b	"starts.              ^",FF
+	dc.b	"If we don't get some",LF
+	dc.b	"dimes will be next.  ^",FF
+	dc.b	"Why don't you try the",LF
+	dc.b	"other stores?        ^",FF
+	dc.b	"You might have better",LF
+	dc.b	"luck than me.        ^",FF
+	dc.b	"Your friend across the",LF
+	dc.b	"hall asked about you.^",FF
+	dc.b	"He said to come over &",LF
+	dc.b	"talk when you can.   ^",FF
+	dc.b	"Anyway, try to find us",LF
+	dc.b	"some quarters.       ^",FFR
 	dc.b	"[Received $10 bill]",ETX
 
 	align 2
@@ -1363,25 +1373,20 @@ DialogTextCavernStaffDay02Sub00:
 	;		"1234567890123456789012"
 	dc.b	"You're from that video",LF
 	dc.b	"game store right?    ^",FF
-	;		"1234567890123456789012"
-	dc.b	"First you steal all my",LF
-	dc.b	"business now you want^",FF
-	;		"1234567890123456789012"
-	dc.b	"all my change too? I'm",LF
-	dc.b	"not the bank kid.    ^",FF
-	;		"1234567890123456789012"
-	dc.b	"...",LF
-	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
+	dc.b	"You guys are stealing",FF
+	dc.b	"half my business.    ^",LF
+	dc.b	"Now you want me to do",FF
+	dc.b	"you a favor?         ^",LF
+	dc.b	"I'm not the bank kid.",FF
+	dc.b	"                     ^",LF
+	dc.b	"...",FF
+	dc.b	"                     ^",LF
 	dc.b	"Sorry, I'm cranky from",LF
 	dc.b	"working too long.    ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Here, have a roll of",LF
 	dc.b	"quarters.            ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Do yourself a favor &",LF
 	dc.b	"don't work too hard. ^",FF
-	;		"1234567890123456789012"
 	dc.b	"It's not worth it in",LF
 	dc.b	"the end.             ^",FFR
 	;		"1234567890123456789012"
@@ -1406,30 +1411,33 @@ DialogTextGreenbergDay02Transition:
 	;		"1234567890123456789012"
 	dc.b	"Great job, I knew you",LF
 	dc.b	"could get it done.   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"I have to leave early",LF
-	dc.b	"but I think you can  ^",FF
-	;		"1234567890123456789012"
-	dc.b	"handle closing on your",LF
-	dc.b	"own. Here's a key so ^",FF
-	;		"1234567890123456789012"
-	dc.b	"you can lock up. Don't",LF
-	dc.b	"worry, it'll be fine.",ETX
+	dc.b	"I'm sorry but I have",LF
+	dc.b	"to leave early.      ^",FF
+	dc.b	"I think you can handle",LF
+	dc.b	"closing on your own. ^",FF
+	dc.b	"Here's a key so you",LF
+	dc.b	"can lock up.         ^",FF
+	dc.b	"Don't worry at all,",LF
+	dc.b	"you'll be fine.      ^",FFR
+	dc.b	"[Received store key]",ETX
 
 	align 2
 DialogTextDay02Transition00:
 	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
 	;		"1234567890123456789012"
-	dc.b	"I thought you said",LF
-	dc.b	"D.B. was meeting you ^",FF
-	dc.b	"here an hour ago?",LF
-	dc.b	"Your shift is over.",ETX
+	dc.b	"Your shift is over.",LF
+	dc.b	"Why are you here?",ETX
 
 	align 2
 DialogTextDay02Transition01:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"He probably got lost.",ETX
+	dc.b	"I was waiting for my",LF
+	dc.b	"brother to show up.  ^",FF
+	dc.b	"He should have been",LF
+	dc.b	"here an hour ago.    ^",FF
+	dc.b	"He probably got lost.",LF
+	dc.b	"I better find him.",ETX
 
 	align 2
 DialogTextDay02SubsNotComplete:
@@ -1441,29 +1449,26 @@ DialogTextDay02SubsNotComplete:
 DialogTextTBooksStaffDay02TalkSub01NotStarted:
 	dc.w	OBJ_NPC_TBOOKS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"We have a problem. You",LF
-	dc.b	"& Dani are the only  ^",FF
-	;		"1234567890123456789012"
-	dc.b	"ones I trust to help.",LF
-	dc.b	"I think there's a pro^",FF
-	;		"1234567890123456789012"
-	dc.b	"shoplifter working",LF
-	dc.b	"this mall. We got hit^",FF
-	;		"1234567890123456789012"
-	dc.b	"by them. When I took",LF
-	dc.b	"inventory some pricey^",FF
-	;		"1234567890123456789012"
-	dc.b	"science books were",LF
-	dc.b	"missing. I think they^",FF
-	;		"1234567890123456789012"
-	dc.b	"are being resold. I'm",LF
-	dc.b	"stuck alone today so ^",FF
-	;		"1234567890123456789012"
-	dc.b	"I need you to ask the",LF
-	dc.b	"other stores if they ^",FF
-	;		"1234567890123456789012"
-	dc.b	"were hit. Let me know",LF
-	dc.b	"everything you heard.",ETX
+	dc.b	"We have a problem.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I only trust you &",LF
+	dc.b	"Dani to help with it.^",FF
+	dc.b	"I think there's a pro",LF
+	dc.b	"shoplifter here.     ^",FF
+	dc.b	"We got hit by them",LF
+	dc.b	"yesterday.           ^",FF
+	dc.b	"Some pricey science",LF
+	dc.b	"books are missing.   ^",FF
+	dc.b	"Could be they are",LF
+	dc.b	"reselling them.      ^",FF
+	dc.b	"I don't know why else",LF
+	dc.b	"they'd take them.    ^",FF
+	dc.b	"I need you to check",LF
+	dc.b	"the other stores.    ^",FF
+	dc.b	"See if any of them",LF
+	dc.b	"were also hit.       ^",FF
+	dc.b	"Let me know everything",LF
+	dc.b	"you hear.",ETX
 
 	align 2
 DialogTextTBooksStaffDay02TalkSub01Started:
@@ -1476,26 +1481,19 @@ DialogTextTBooksStaffDay02TalkSub01Started:
 DialogTextTBooksStaffDay02TalkSub01Mid:
 	dc.w	OBJ_NPC_TBOOKS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Thanks for looking ",LF
-	dc.b	"into this. It's odd. ^",FF
-	;		"1234567890123456789012"
-	dc.b	"I don't see any real",LF
-	dc.b	"connection between   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"these missing items.",LF
-	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
+	dc.b	"Thanks for looking",LF
+	dc.b	"into this.           ^",FF
+	dc.b	"I don't see an obvious",LF
+	dc.b	"connection here.     ^",FF
+	dc.b	"These missing items",LF
+	dc.b	"are all different.   ^",FF
 	dc.b	"We need to keep an eye",LF
 	dc.b	"on this for a while. ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I don't remember ever",LF
 	dc.b	"giving you a key.    ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Here, take one now &",LF
-	dc.b	"stop by to borrow    ^",FF
-	;		"1234567890123456789012"
-	dc.b	"whatever you like",LF
-	dc.b	"after the mall closes.",ETX
+	dc.b	"stop by whenever.    ^",FFR
+	dc.b	"[Received store key]",ETX
 
 	align 2
 DialogTextTBooksStaffDay02TalkSub01Complete:
@@ -1508,8 +1506,8 @@ DialogTextTBooksStaffDay02TalkSub01Complete:
 DialogTextDenimCountryStaffDay02Sub01Talk:
 	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Anything missing? Not",LF
-	dc.b	"that I've seen.",ETX
+	dc.b	"Anything missing?",LF
+	dc.b	"Not that I've seen.",ETX
 
 	align 2
 DialogTextDenimCountryDaniDay02Talk:
@@ -1532,18 +1530,16 @@ DialogTextCheckersStaffDay02Sub01Talk:
 DialogTextTLodgeStaffDay02Sub01Talk:
 	dc.w	OBJ_NPC_TLODGE_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Nothing's been stolen",LF
-	dc.b	"but we are missing a ^",FF
-	;		"1234567890123456789012"
-	dc.b	"shipment. It's for the",LF
-	dc.b	"new line of police   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"scanners. They support",LF
-	dc.b	"over 20K frequencies,^",FF
-	;		"1234567890123456789012"
-	dc.b	"extended warranty ",LF
+	dc.b	"We haven't had",LF
+	dc.b	"anything stolen.     ^",FF
+	dc.b	"We are missing one",LF
+	dc.b	"shipment though.     ^",FF
+	dc.b	"It's for a new line",LF
+	dc.b	"of police scanners.  ^",LF
+	dc.b	"They support over 20K",LF
+	dc.b	"frequencies.         ^",FF
+	dc.b	"Extended warranty",LF
 	dc.b	"available for $20.   ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I assumed they shipped",LF
 	dc.b	"to the wrong store.",ETX
 
@@ -1551,30 +1547,29 @@ DialogTextTLodgeStaffDay02Sub01Talk:
 DialogTextCavernStaffDay02Sub01Talk:
 	dc.w	OBJ_NPC_CAVERN_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Stolen items? Yeah",LF
-	dc.b	"some guy just took a ^",FF
-	dc.b	"roll of quarters from",LF
-	dc.b	"me. I don't suppose  ^",FF
-	dc.b	"you know anything",LF
-	dc.b	"about that?",ETX
+	dc.b	"Stolen items?",LF
+	dc.b	"                     ^",FF
+	dc.b	"Yeah some guy just",LF
+	dc.b	"took my quarters.    ^",FF
+	dc.b	"You already know about",LF
+	dc.b	"that.",ETX
 
 	align 2
 DialogTextSVideoStaffDay02Sub01Talk:
 	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Nothing is missing",LF
-	dc.b	"from the shelves but ^",FF
-	dc.b	"there is something",LF
-	dc.b	"weird here. Movies   ^",FF
-	dc.b	"that don't sell get",LF
-	dc.b	"thrown out but first ^",FF
-	dc.b	"we run them through ",LF
-	dc.b	"a tape eraser. Keeps ^",FF
-	dc.b	"the dumpster divers",LF
-	dc.b	"away. Well overnight ^",FF
-	dc.b	"someone broke in and",LF
-	dc.b	"stole the eraser     ^",FF
-	dc.b	"out of our backroom.",LF
+	dc.b	"from the shelves.    ^",FF
+	dc.b	"There is something",LF
+	dc.b	"weird missing though.^",FF
+	dc.b	"We throw out movies",LF
+	dc.b	"that don't sell.     ^",FF
+	dc.b	"First we run a tape",LF
+	dc.b	"eraser over them.    ^",FF
+	dc.b	"It keeps the dumpster",LF
+	dc.b	"divers away.         ^",FF
+	dc.b	"Well someone broke in",LF
+	dc.b	"overnight & took it. ^",FF
 	dc.b	"Who would do that?",ETX
 
 	align 2
@@ -1595,22 +1590,22 @@ DialogTextPogoDawgStaffDay02Sub01Talk:
 DialogTextCPlanetStaffDay02Sub01Talk:
 	dc.w	OBJ_NPC_CPLANET_STAFF
 	;		"1234567890123456789012"
-	dc.b	"There are some boy",LF
-	dc.b	"band CDs that I wish ^",FF
-	dc.b	"would get stolen. Go",LF
-	dc.b	"ahead and take them.",ETX
+	dc.b	"I wish someone stole",LF
+	dc.b	"these boy band CDs.  ^",FF
+	dc.b	"I don't suppose you",LF
+	dc.b	"want them?",ETX
 
 	align 2
 DialogTextCNowStaffDay02Sub01Talk:
 	dc.w	OBJ_NPC_CNOW_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Nothing's missing from",LF
-	dc.b	"here but this reminds^",FF
-	dc.b	"me of a story from",LF
-	dc.b	"last summer..        ^",FF
+	dc.b	"here.                ^",FF
+	dc.b	"This reminds me of",LF
+	dc.b	"last summer though...^",FF
 	dc.b	"[30 minutes pass]",LF
 	dc.b	"                     ^",FF
-	dc.b	".. he never said why",LF
+	dc.b	"...he never said why",LF
 	dc.b	"he didn't call back.",ETX
 
 	align 2
@@ -1648,17 +1643,15 @@ DialogTextSouthCenterStaffDay02Sub01Talk:
 	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Funny you should ask.",LF
-	dc.b	"I swear someone has  ^",FF
-	dc.b	"been stealing from us",LF
-	dc.b	"at night. In the     ^",FF
-	dc.b	"morning we always seem",LF
-	dc.b	"to be missing a few  ^",FF
-	dc.b	"small things we locked",LF
-	dc.b	"up at close. I was   ^",FF
-	dc.b	"worried about rodents",LF
-	dc.b	"but could it be a    ^",FF
-	dc.b	"person taking things",LF
-	dc.b	"overnight?",ETX
+	dc.b	"                     ^",FF
+	dc.b	"I swear someone is",LF
+	dc.b	"stealing at night.   ^",FF
+	dc.b	"A few small items go",LF
+	dc.b	"missing every day.   ^",FF
+	dc.b	"I was worried about",LF
+	dc.b	"rodents.             ^",LF
+	dc.b	"Do you think it's a",LF
+	dc.b	"person instead?",ETX
 
 	align 2
 DialogTextWorkshopStaff0Day02Sub01Talk:
@@ -1678,28 +1671,23 @@ DialogTextWorkshopStaff1Day02Sub01Talk:
 DialogTextCheckersStaffDay02DaniTalkGood:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"There was secret",LF
-	dc.b	"shopper here last    ^",FF
-	;		"1234567890123456789012"
-	dc.b	"week & our review was",LF
-	dc.b	"amazing. We're all   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"getting a big bonus.",LF
-	dc.b	"I'm spending mine to ^",FF
-	;		"1234567890123456789012"
-	dc.b	"make my New Years",LF
-	dc.b	"party the best ever.",ETX
+	dc.b	"We had a secret",LF
+	dc.b	"shopper last week.   ^",FF
+	dc.b	"Our review was",LF
+	dc.b	"amazing.             ^",FF
+	dc.b	"We're all getting a",LF
+	dc.b	"bonus from it.       ^",FF
+	dc.b	"My New Years party",LF
+	dc.b	"will be great now!",ETX
 
 	align 2
 DialogTextCheckersStaffDay02DaniTalkMid:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
 	dc.b	"I guess we had a ",LF
-	dc.b	"secret shopper last  ^",FF
-	;		"1234567890123456789012"
-	dc.b	"week. I don't remember",LF
-	dc.b	"them at all.         ^",FF
-	;		"1234567890123456789012"
+	dc.b	"secret shopper here. ^",FF
+	dc.b	"I don't remember them",LF
+	dc.b	"at all.              ^",FF
 	dc.b	"We did OK I guess. It",LF
 	dc.b	"could have been worse.",ETX
 
@@ -1708,11 +1696,9 @@ DialogTextCheckersStaffDay02DaniTalkBad:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Be careful at your",LF
-	dc.b	"store. We just got a ^",FF
-	;		"1234567890123456789012"
-	dc.b	"really bad secret",LF
-	dc.b	"shopper review here. ^",FF
-	;		"1234567890123456789012"
+	dc.b	"store.               ^",FF
+	dc.b	"We just got a bad",LF
+	dc.b	"secret shopper score.^",FF
 	dc.b	"Now we all have to",LF
 	dc.b	"take extra training.",ETX
 
@@ -1721,26 +1707,23 @@ ScriptedEventDay02Mid00:
 	dc.w	OBJ_NPC_FEMALE_SHOPPER0
 	;		"1234567890123456789012"
 	dc.b	"I can't decide which",LF
-	dc.b	"game system to get my^",FF
+	dc.b	"system to get my kid.^",FF
+	dc.b	"They want the new",LF
+	dc.b	"new 16-bit one.      ^",FF
 	;		"1234567890123456789012"
-	dc.b	"kids. They want the",LF
-	dc.b	"new 16-bit one. Is it^",FF
-	;		"1234567890123456789012"
-	dc.b	"this Turbo 16 one or",LF
+	dc.b	"Is it the Turbo 16 or",LF
 	dc.b	"the Sega Gemini?",ETX
 
 	align 2
 ScriptedEventDay02Mid01:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
-	dc.b	"Yeah. The TuboGrafx",LF
-	dc.b	"has 16 right there   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"in the name & is $10",LF
-	dc.b	"cheaper making it the^",FF
-	;		"1234567890123456789012"
-	dc.b	"more family budget",LF
-	dc.b	"friendly option.",ETX
+	dc.b	"The TurboGrafx has 16",LF
+	dc.b	"right in its name.   ^",FF
+	dc.b	"It's also $10 cheaper.",LF
+	dc.b	"                     ^",FF
+	dc.b	"So it's better on the",LF
+	dc.b	"family budget too.",ETX
 
 	align 2
 ScriptedEventDay02Mid02:
@@ -1769,23 +1752,14 @@ ScriptedEventDay02Mid04:
 ScriptedEventDay02Mid05:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
+	dc.b	"In two years that",LF
+	dc.b	"system will be dead. ^",FF
+	dc.b	"You won't be able to",LF
+	dc.b	"find any new games.  ^",FF
+	dc.b	"Your kid will be very",LF
+	dc.b	"disappointed.        ^",FF
 	dc.b	"You have to believe me",LF
-	dc.b	"on this. In a year   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"you won't be able to",LF
-	dc.b	"find any games for   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"that thing. It'll be ",LF
-	dc.b	"complete waste.      ^",FF
-	;		"1234567890123456789012"
-	dc.b	"I can't tell you how I",LF
-	dc.b	"know this, I just do.^",FF
-	;		"1234567890123456789012"
-	dc.b	"And if you don't",LF
-	dc.b	"listen to me your    ^",FF
-	;		"1234567890123456789012"
-	dc.b	"kids will eventually",LF
-	dc.b	"be very disappointed.",ETX
+	dc.b	"on this.",ETX
 
 	align 2
 ScriptedEventDay02Mid06:
@@ -1800,7 +1774,6 @@ ScriptedEventDay02Mid07:
 	;		"1234567890123456789012"
 	dc.b	"What's your problem?",LF
 	dc.b	"You just blew a sale.^",FF
-	;		"1234567890123456789012"
 	dc.b	"You need to mind your",LF
 	dc.b	"own business.",ETX
 
@@ -1808,11 +1781,12 @@ ScriptedEventDay02Mid07:
 ScriptedEventDay02Mid08:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"I.. I'm sorry, I just",LF
-	dc.b	"don't like to see    ^",FF
-	;		"1234567890123456789012"
-	dc.b	"people make mistakes",LF
-	dc.b	"they can't undo.",ETX
+	dc.b	"I.. look.. I'm sorry.",LF
+	dc.b	"OK. I'm sorry.       ^",FF
+	dc.b	"I just didn't want her",LF
+	dc.b	"to make a mistake.   ^",FF
+	dc.b	"You can't undo some",LF
+	dc.b	"mistakes.",ETX
 
 	align 2
 ScriptedEventDay02Mid09:
@@ -1827,10 +1801,8 @@ DialogTextFCBCheckoutStaffDay02Sub02Talk:
 	;		"1234567890123456789012"
 	dc.b	"I think I'd notice if",LF
 	dc.b	"he left & came back. ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Why are you looking at",LF
 	dc.b	"me like that?        ^",FF
-	;		"1234567890123456789012"
 	dc.b	"OK, fine. I was asleep",LF
 	dc.b	"for the past hour.",ETX
 
@@ -1840,7 +1812,6 @@ DialogTextFCBFirearmsStaffDay02Sub02Talk:
 	;		"1234567890123456789012"
 	dc.b	"That guy never talks",LF
 	dc.b	"to me.               ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I don't care where he",LF
 	dc.b	"is.",ETX
 
@@ -1848,11 +1819,11 @@ DialogTextFCBFirearmsStaffDay02Sub02Talk:
 DialogTextFCBFishingStaffDay02Sub02Talk:
 	dc.w	OBJ_NPC_FCBFISHING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"I haven't seen him",LF
-	dc.b	"since he went on his ^",FF
+	dc.b	"I saw him leaving for",LF
+	dc.b	"his 30-minute break. ^",FF
 	;		"1234567890123456789012"
-	dc.b	"30-minute break. He's",LF
-	dc.b	"usually back by now.",ETX
+	dc.b	"He's usually back by",LF
+	dc.b	"now.",ETX
 
 	align 2
 DialogTextDBDay02Sub02StartedTalk:
@@ -1875,24 +1846,20 @@ DialogTextDBDay02Sub02MidTalk:
 ScriptedEventDay02Sub02Mid00:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Hey, you can mess up",LF
-	dc.b	"your own store all   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"you want by leave my",LF
-	dc.b	"brother alone.       ^",FF
-	;		"1234567890123456789012"
+	dc.b	"You can mess up your",LF
+	dc.b	"store all you want.  ^",FF
+	dc.b	"But you better leave",LF
+	dc.b	"my brother alone.    ^",FF
 	dc.b	"He's trying to save",LF
-	dc.b	"for college and can't^",FF
-	;		"1234567890123456789012"
-	dc.b	"afford to lose",LF
-	dc.b	"another job.",ETX
+	dc.b	"for college.         ^",FF
+	dc.b	"He can't afford to",LF
+	dc.b	"lose another job.",ETX
 
 	align 2
 ScriptedEventDay02Sub02Mid01:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"OK, I'm sorry.",LF
-	dc.b	"I just..             ^",FF
 	dc.b	"It won't happen again.",ETX
 
 	align 2
@@ -1900,10 +1867,11 @@ ScriptedEventDay02Sub02End00:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Alright, I found him.",LF
-	dc.b	"Let me know if he    ^",FF
-	;		"1234567890123456789012"
-	dc.b	"bugs you again. Finish",LF
-	dc.b	"closing & let's leave.",ETX
+	dc.b	"                     ^",FF
+	dc.b	"Let me know if he bugs",LF
+	dc.b	"you again.           ^",FF
+	dc.b	"Finish up closing &",LF
+	dc.b	"let's leave already.",ETX
 
 	align 2
 ScriptedEventDay02Sub02End01:
@@ -1917,9 +1885,9 @@ DialogTextDaniScene05Day02:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"That was some day.",LF
-	dc.b	"Pretty typical for   ^",FF
-	dc.b	"this time of year",LF
-	dc.b	"though. Let's go.",ETX
+	dc.b	"                     ^",FF
+	dc.b	"Pretty typical for",LF
+	dc.b	"this time of year.",ETX
 
 	align 2
 DialogTextMallManagerDay02:
@@ -1965,10 +1933,8 @@ DialogTextDaniScene08Day03:
 DialogTextScene09Day03Intro:
 	dc.w	OBJ_NPC_TLODGE_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Hey, are you still",LF
-	dc.b	"interested in finding^",FF
-	dc.b	"missing items from",LF
-	dc.b	"stores?              ^",FFR
+	dc.b	"Are you still looking",LF
+	dc.b	"for missing items?   ^",FFR
 	dc.b	"{Go on...",LF
 	dc.b	"{Maybe later",ETX
 
@@ -1978,28 +1944,18 @@ DialogTextScene09Day03IntroR0:
 	;		"1234567890123456789012"
 	dc.b	"We had a shipment of 4",LF
 	dc.b	"spy cameras get lost.^",FF
-	;		"1234567890123456789012"
 	dc.b	"They're a hot Xmas",LF
 	dc.b	"gift this year.      ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Extended warranty",LF
 	dc.b	"available for $15.   ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I thought they were",LF
 	dc.b	"gone for good.       ^",FF
-	;		"1234567890123456789012"
-	dc.b	"The other day I went",LF
-	dc.b	"to make a call and   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"I saw one hidden by",LF
-	dc.b	"the phone booths.    ^",FF
-	;		"1234567890123456789012"
+	dc.b	"Today I spotted one",LF
+	dc.b	"by the phone booths. ^",FF
 	dc.b	"Someone's using it to",LF
 	dc.b	"spy on people here.  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I can't leave today to",LF
 	dc.b	"look for the other 3.^",FF
-	;		"1234567890123456789012"
 	dc.b	"If you find them, I'll",LF
 	dc.b	"come up with a reward.",ETX
 
@@ -2015,9 +1971,7 @@ DialogTextScene09Day03Found0:
 	dc.w	OBJ_NPC_TLODGE_STAFF
 	;		"1234567890123456789012"
 	dc.b	"There should be 3 more",LF
-	dc.b	"cameras hidden around^",FF
-	dc.b	"the mall if my theory",LF
-	dc.b	"is correct.",ETX
+	dc.b	"cameras out there.",ETX
 
 	align 2
 DialogTextScene09Day03Found1:
@@ -2031,7 +1985,7 @@ DialogTextScene09Day03Found2:
 	dc.w	OBJ_NPC_TLODGE_STAFF
 	;		"1234567890123456789012"
 	dc.b	"So close, just 1 more",LF
-	dc.b	"camera out there.",ETX
+	dc.b	"camera to find.",ETX
 
 	align 2
 DialogTextScene09Day03Give1:
@@ -2049,24 +2003,21 @@ DialogTextScene09Day03Give2:
 
 DialogTextDay03FindCamera1:
 	;		"1234567890123456789012"
-	dc.b	"Hey, there's something",LF
-	dc.b	"under the bench..",FF
-	dc.b	"(Found Camera)",LF
-	dc.b	"",ETX
+	dc.b	"(Hey, there's something",LF
+	dc.b	"under the bench..)",FF
+	dc.b	"[Found Camera]",ETX
 
 DialogTextDay03FindCamera2:
 	;		"1234567890123456789012"
 	dc.b	"You dig through the",LF
 	dc.b	"plant for a minute..",FF
-	dc.b	"(Found Camera)",LF
-	dc.b	"",ETX
+	dc.b	"[Found Camera]",ETX
 
 DialogTextDay03FindCamera3:
 	;		"1234567890123456789012"
-	dc.b	"There's something",LF
-	dc.b	"hidden in this pot..",FF
-	dc.b	"(Found Camera)",LF
-	dc.b	"",ETX
+	dc.b	"(There's something",LF
+	dc.b	"hidden in this pot..)",FF
+	dc.b	"[Found Camera]",ETX
 
 	align 2
 DialogTextDay03CantEnterVB:
@@ -2082,14 +2033,11 @@ DialogTextDay03ScriptedEventMid00:
 	dc.b	"these cameras.       ^",FF
 	dc.b	"Have a key to the",LF
 	dc.b	"store in return.     ^",FF
-	dc.b	"Feel free to use the",LF
-	dc.b	"computer or borrow   ^",FF
-	dc.b	"anything you want",LF
-	dc.b	"after hours.         ^",FF
-	dc.b	"I don't understand why",LF
-	dc.b	"someone wants to spy ^",FF
-	dc.b	"on the mall. Nothing",LF
-	dc.b	"exciting happens here.",ETX
+	dc.b	"I don't understand who",LF
+	dc.b	"wants to spy on us.  ^",FF
+	dc.b	"Nothing exciting ever",LF
+	dc.b	"happens here.        ^",FFR
+	dc.b	"[Received store key]",ETX
 
 	align 2
 DialogTextDay03ScriptedEventMid01:
@@ -2100,33 +2048,29 @@ DialogTextDay03ScriptedEventMid01:
 	dc.b	"He was just at, where",LF
 	dc.b	"was it again? Uh..   ^",FF
 	dc.b	"That place I work with",LF
-	dc.b	"the food. He said you^",FF
-	dc.b	"were watching his",LF
-	dc.b	"store for him.       ^",FF
-	dc.b	"So like, do you help",LF
+	dc.b	"the food.            ^",FF
+	dc.b	"He said you were like",LF
+	dc.b	"watching the store.  ^",FF
+	dc.b	"So, huh, do you help",LF
 	dc.b	"with other stuff too?",ETX
 
 	align 2
 DialogTextDay03ScriptedEventMid02:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"That was two weeks  ",LF
+	dc.b	"That was two weeks",LF
 	dc.b	"ago.",ETX
 
 	align 2
 DialogTextDay03ScriptedEventMid03:
 	dc.w	OBJ_NPC_POGODAWG_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Huh. Yeah. Dude, yeah",LF
-	dc.b	"OK. So we're going to^",FF
-	dc.b	"close at the end of,",LF
-	dc.b	"uh, the month, if we ^",FF
-	dc.b	"don't get more, what",LF
-	dc.b	"are they called?     ^",FF
-	dc.b	"Right, customers. Can",LF
-	dc.b	"you help get people  ^",FF
-	dc.b	"to like eat at our",LF
-	dc.b	"restaurant more?",ETX
+	dc.b	"We have to close this",LF
+	dc.b	"month. Like forever. ^",FF
+	dc.b	"We don't have enough,",LF
+	dc.b	"uh, customers? Right?^",FF
+	dc.b	"Can you get people to",LF
+	dc.b	"eat at our place more?",ETX
 
 	align 2
 DialogTextDay03ScriptedEventMid04:
@@ -2139,10 +2083,10 @@ DialogTextDay03ScriptedEventMid04:
 DialogTextDay03ScriptedEventMid05:
 	dc.w	OBJ_NPC_POGODAWG_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Oh. Uh. Thanks. So we",LF
-	dc.b	"have, like, I think ^",FF
-	dc.b	"until the end of the",LF
-	dc.b	"month or we'll close.",ETX
+	dc.b	"Uh. Yeah. Thanks.",LF
+	dc.b	"                     ^",FF
+	dc.b	"We have, uh, like",LF
+	dc.b	"a couple weeks left.",ETX
 
 	align 2
 DialogTextDay03Scene08NPCShopper:
@@ -2168,18 +2112,18 @@ DialogTextDay03BillySubStarted:
 DialogTextDay03GreenbergStartSub:
 	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"Where's D.B.? Oh, I",LF
-	dc.b	"sent him to find that^",FF
-	;		"1234567890123456789012"
-	dc.b	"young man's parent so",LF
-	dc.b	"we can close. I think^",FF
-	;		"1234567890123456789012"
-	dc.b	"they must work in the",LF
-	dc.b	"mall and their sitter^",FF
-	;		"1234567890123456789012"
-	dc.b	"canceled. Here's been",LF
-	dc.b	"here quite a while.  ^",FF
-	;		"1234567890123456789012"
+	dc.b	"Where's D.B.?",LF
+	dc.b	"                     ^",FF
+	dc.b	"He's looking for that",LF
+	dc.b	"young man's parent.  ^",FF
+	dc.b	"I think they work in",LF
+	dc.b	"the mall.            ^",FF
+	dc.b	"Maybe their sitter",LF
+	dc.b	"canceled.            ^",FF
+	dc.b	"He's been here for",LF
+	dc.b	"quite a while.       ^",FF
+	dc.b	"We can't close while",LF
+	dc.b	"he's still here.     ^",FF
 	dc.b	"I bet he could use a",LF
 	dc.b	"hand searching.",ETX
 
@@ -2208,21 +2152,18 @@ DialogTextDay03GreenbergMallClosed:
 DialogTextScene17Day03Event:
 	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Oh Billy? He's my",LF
-	dc.b	"grandson. His parents^",FF
-	;		"1234567890123456789012"
-	dc.b	"had tickets to a show",LF
-	dc.b	"tonight & asked me to^",FF
-	;		"1234567890123456789012"
-	dc.b	"watch him. He would",LF
-	dc.b	"have been so bored   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"here so I sent him to",LF
-	dc.b	"the game store.      ^",FF
-	;		"1234567890123456789012"
+	dc.b	"Oh Billy?",LF
+	dc.b	"He's my grandson.    ^",FF
+	dc.b	"His parents had plans",LF
+	dc.b	"tonight.             ^",FF
+	dc.b	"Then I had to come in",LF
+	dc.b	"at the last minute.  ^",FF
+	dc.b	"He would have been so",LF
+	dc.b	"bored here.          ^",FF
+	dc.b	"That's why I left him",LF
+	dc.b	"at the game store.   ^",FF
 	dc.b	"I hope he didn't get",LF
 	dc.b	"in the way too badly.^",FF
-	;		"1234567890123456789012"
 	dc.b	"It's almost closing",LF
 	dc.b	"time so I'll get him.",ETX
 
@@ -2244,7 +2185,7 @@ DialogTextDenimCountryStaffDay03SubVBTalk:
 DialogTextCheckersStaffDay03SubVBTalk:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"I'm just glad they ",LF
+	dc.b	"I'm just glad they",LF
 	dc.b	"weren't ditched here.",ETX
 
 	align 2
@@ -2253,7 +2194,6 @@ DialogTextTLodgeStaffDay03SubVBTalk:
 	;		"1234567890123456789012"
 	dc.b	"That's definitely not",LF
 	dc.b	"my kid.              ^",FF
-	;		"1234567890123456789012"
 	dc.b	"While you're here, any",LF
 	dc.b	"interest in a new PC?",ETX
 
@@ -2261,12 +2201,10 @@ DialogTextTLodgeStaffDay03SubVBTalk:
 DialogTextCavernStaffDay03SubVBTalk:
 	dc.w	OBJ_NPC_CAVERN_STAFF
 	;		"1234567890123456789012"
-	dc.b	"If I had kids I sure",LF
-	dc.b	"wouldn't leave them  ^",FF
-	dc.b	"unsupervised here.",LF
-	dc.b	"There are some real  ^",FF
-	dc.b	"unsavory types that",LF
-	dc.b	"hang around this mall.",ETX
+	dc.b	"If I had kids I would",LF
+	dc.b	"not bring them here. ^",FF
+	dc.b	"There are some real",LF
+	dc.b	"unsavory types around.",ETX
 
 	align 2
 DialogTextSVideoStaffDay03SubVBTalk:
@@ -2275,7 +2213,7 @@ DialogTextSVideoStaffDay03SubVBTalk:
 	dc.b	"I think he was ditched",LF
 	dc.b	"here once too.       ^",FF
 	dc.b	"I don't know who left",LF
-	dc.b	"him here though.",ETX
+	dc.b	"him though.",ETX
 
 	align 2
 DialogTextNShackStaffDay03SubVBTalk:
@@ -2301,7 +2239,7 @@ DialogTextCPlanetStaffDay03SubVBTalk:
 DialogTextCNowStaffDay03SubVBTalk:
 	dc.w	OBJ_NPC_CNOW_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Kids are great but I ",LF
+	dc.b	"Kids are great but I",LF
 	dc.b	"don't have any yet.  ^",FF
 	dc.b	"One day though I'd",LF
 	dc.b	"like to have some.   ^",FF
@@ -2363,9 +2301,9 @@ DialogTextDay03End:
 	dc.b	"I took care of your",LF
 	dc.b	"store's kid problem. ^",FF
 	dc.b	"You're welcome.",LF
-	dc.b	"Everyone is trying to^",FF
-	dc.b	"close now so let's get",LF
-	dc.b	"out of here already.",ETX
+	dc.b	"                     ^",FF
+	dc.b	"It's closing time so",LF
+	dc.b	"let's go already.",ETX
 
 	align 2
 DialogTextDay03Scene02Action00NPCDB:
@@ -2388,10 +2326,8 @@ DialogTextMallManagerDay03:
 	;		"1234567890123456789012"
 	dc.b	"I heard your brother",LF
 	dc.b	"was snooping around. ^",FF
-	dc.b	"You know if there's",LF
-	dc.b	"wrong at the mall    ^",FF
-	dc.b	"you can talk to me",LF
-	dc.b	"about it anytime.",ETX
+	dc.b	"You should talk to me",LF
+	dc.b	"if something is wrong.",ETX
 
 	align 2
 DialogTextDay03PDawgCustomer00:
@@ -2428,19 +2364,18 @@ DialogTextDay03PDawgCustomer02:
 DialogTextScriptedEventDay04Start00:
 	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Hey, I got that Todd",LF
-	dc.b	"guy in the employee  ^",FF
-	dc.b	"Secret Santa Exchange.",LF
-	dc.b	"You went to high     ^",FF
-	dc.b	"school with him right?",LF
+	dc.b	"Hey, I got Todd in the",LF
+	dc.b	"Secret Santa thing.  ^",FF
+	dc.b	"You went to the same",LF
+	dc.b	"high school right?   ^",LF
 	dc.b	"What should I get him?",ETX
 
 	align 2
 DialogTextScriptedEventDay04Start01:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"A clue would be a",LF
-	dc.b	"good start.",ETX
+	dc.b	"A clue would be a good",LF
+	dc.b	"start.",ETX
 
 	align 2
 DialogTextScriptedEventDay04Start02:
@@ -2471,11 +2406,9 @@ DialogTextDay04Scene03SubNotStartedR0:
 	dc.b	"We have just one",LF
 	dc.b	"small problem though.^",FF
 	dc.b	"There was a mix-up &",LF
-	dc.b	"we could really use  ^",FF
-	dc.b	"one more person. Do",LF
-	dc.b	"you think you could  ^",FF
-	dc.b	"find one more person",LF
-	dc.b	"to sign-up today?",ETX
+	dc.b	"we need 1 more gift. ^",FF
+	dc.b	"Do you think you could",LF
+	dc.b	"find someone to join?",ETX
 
 	align 2
 DialogTextDay04Scene03SubNotStartedR1:
@@ -2488,10 +2421,10 @@ DialogTextDay04Scene03SubNotStartedR1:
 DialogTextDay04Scene03SubStarted0:
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"When you find the ",LF
-	dc.b	"perfect gift please  ^",FF
-	dc.b	"give it to me. I'll",LF
-	dc.b	"take care of the rest.",ETX
+	dc.b	"When you find a gift",LF
+	dc.b	"please give it to me.^",FF
+	dc.b	"I'll take care of the",LF
+	dc.b	"rest!",ETX
 
 	align 2
 DialogTextDay04Scene03SubChoose:
@@ -2510,7 +2443,7 @@ DialogTextDay04Scene03SubChoose0:
 	;		"1234567890123456789012"
 	dc.b	"Here you go!",LF
 	dc.b	"                     ^",FFR
-	dc.b	"(Received Envelope)",ETX
+	dc.b	"[Received Envelope]",ETX
 
 	align 2
 DialogTextDay04Scene03SubChoose1:
@@ -2518,16 +2451,18 @@ DialogTextDay04Scene03SubChoose1:
 	;		"1234567890123456789012"
 	dc.b	"Interesting pick.",LF
 	dc.b	"Good luck!           ^",FFR
-	dc.b	"(Received Envelope)",ETX
+	dc.b	"[Received Envelope]",ETX
 
 	align 2
 DialogTextDay04Scene03SubStartGift0:
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
 	dc.b	"The rules are simple,",LF
-	dc.b	"find a gift for the  ^",FF
-	dc.b	"name in your envelope.",LF
-	dc.b	"Then give it to me.  ^",FF
+	dc.b	"                     ^",FF
+	dc.b	"Find a gift for the",LF
+	dc.b	"name in the envelope.^",FF
+	dc.b	"Then bring the gift to",LF
+	dc.b	"me.                  ^",FF
 	dc.b	"I'll wrap it & give it",LF
 	dc.b	"to them before Xmas.",ETX
 
@@ -2544,7 +2479,7 @@ DialogTextDay04Scene03SubTBooks0:
 	;		"1234567890123456789012"
 	dc.b	"Hey, glad you're here.",LF
 	dc.b	"                     ^",FF
-	dc.b	"Are you interested in ",LF
+	dc.b	"Are you interested in",LF
 	dc.b	"making a trade?",ETX
 
 	align 2
@@ -2558,13 +2493,13 @@ DialogTextDay04Scene03SubTBooks2:
 	dc.w	OBJ_NPC_TBOOKS_STAFF
 	;		"1234567890123456789012"
 	dc.b	"I need something from",LF
-	dc.b	"your store for my    ^",FF
-	dc.b	"Secret Santa gift. So",LF
-	dc.b	"how about you take   ^",FF
-	dc.b	"whatever you need from",LF
-	dc.b	"here for your gift   ^",FF
-	dc.b	"in exchange? Consider",LF
-	dc.b	"it an even trade.",ETX
+	dc.b	"your store.          ^",FF
+	dc.b	"It's for my Secret",LF
+	dc.b	"Santa gift.          ^",FF
+	dc.b	"In exchange you grab",LF
+	dc.b	"a gift from here.    ^",FF
+	dc.b	"We'll consider it an",LF
+	dc.b	"even trade.",ETX
 
 	align 2
 DialogTextDay04Scene03SubTBooks3:
@@ -2580,11 +2515,9 @@ DialogTextDay04Scene03SubTBooks4:
 	dc.w	OBJ_NPC_TBOOKS_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Great, just take",LF
-	dc.b	"whatever you want.   ^",FF
-	dc.b	"If you change your",LF
-	dc.b	"mind about a book    ^",FF
-	dc.b	"give it to me and I'll",LF
-	dc.b	"put it back.",ETX
+	dc.b	"whatever you need.   ^",FF
+	dc.b	"Give a book back to me",LF
+	dc.b	"if you don't want it.",ETX
 
 	align 2
 DialogTextDay04Scene03NPCGive:
@@ -2619,21 +2552,6 @@ DialogTextDay04Scene03SubStartedGiveR0:
 	dc.b	"your secret gift.",ETX
 
 	align 2
-DialogTextDay04Scene03StartSub:
-	dc.w	OBJ_NPC_CENTER_STAFF
-	;		"1234567890123456789012"
-	dc.b	"OK, here's how it",LF
-	dc.b	"works. Inside these  ^",FF
-	dc.b	"envelopes are the",LF
-	dc.b	"names of who you are ^",FF
-	dc.b	"finding gifts for.",LF
-	dc.b	"Once you find a gift ^",FF
-	dc.b	"bring it back here.",LF
-	dc.b	"Which do you want?   ^",FF
-	dc.b	"{Envelope 1",LF
-	dc.b	"{Envelope 2",ETX
-
-	align 2
 DialogTextDay04Scene03StartSubR:
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
@@ -2644,8 +2562,8 @@ DialogTextDay04Scene03StartSubR:
 DialogTextDay04Scene03SubComplete:
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"The gift exchange",LF
-	dc.b	"went perfectly!      ^",FF
+	dc.b	"The gift exchange went",LF
+	dc.b	"perfectly!           ^",FF
 	dc.b	"I can't wait until",LF
 	dc.b	"next year!",ETX
 
@@ -2667,21 +2585,21 @@ DialogTextDBDay04:
 DialogTextDBDay04SubFindNPC:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
-	dc.b	"Gift exchange? Were",LF
-	dc.b	"you replaced with a  ^",FF
-	dc.b	"clone overnight?",LF
-	dc.b	"I'm probably alone   ^",FF
-	dc.b	"tonight so I can't",LF
-	dc.b	"help with all of that.",ETX
+	dc.b	"Gift exchange?",LF
+	dc.b	"                     ^",FF
+	dc.b	"Were you replaced with",LF
+	dc.b	"a clone overnight?  ^",FF
+	dc.b	"I'm alone now so I",LF
+	dc.b	"can't help with that.",ETX
 
 	align 2
 DialogTextDBDay04SubFindGift:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Hey, I'm taking ",LF
-	dc.b	"something for this   ^",FF
-	dc.b	"gift exchange. I",LF
-	dc.b	"assume you don't care.",ETX
+	dc.b	"I'm taking something",LF
+	dc.b	"for the exchange.    ^",FF
+	dc.b	"I assume you don't",LF
+	dc.b	"care.",ETX
 
 	align 2
 DialogTextTBooksStaffDay04SubFindNPC:
@@ -2689,10 +2607,8 @@ DialogTextTBooksStaffDay04SubFindNPC:
 	;		"1234567890123456789012"
 	dc.b	"I'm already in the ",LF
 	dc.b	"gift exchange.       ^",FF
-	dc.b	"Feel free to grab",LF
-	dc.b	"something from here  ^",FF
-	dc.b	"when you're looking",LF
-	dc.b	"for a gift.",ETX
+	dc.b	"Stop by later if you",LF
+	dc.b	"need a gift.",ETX
 
 	align 2
 DialogTextDenimCountryStaffDay04SubFindNPC:
@@ -2732,17 +2648,15 @@ DialogTextCavernStaffDay04SubFindNPC:
 DialogTextSVideoStaffDay04SubFindNPC:
 	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
-	dc.b	"I'm signed-up for it",LF
-	dc.b	"already.",ETX
+	dc.b	"Sorry, too late.",LF
+	dc.b	"I'm already in it.",ETX
 
 	align 2
 DialogTextNShackStaffDay04SubFindNPC:
 	dc.w	OBJ_NPC_NSHACK_STAFF
 	;		"1234567890123456789012"
-	dc.b	"It sounds interesting",LF
-	dc.b	"but I never know     ^",FF
-	dc.b	"what to get people so",LF
-	dc.b	"I'll pass this time.",ETX
+	dc.b	"I'm signed-up for it",LF
+	dc.b	"already.",ETX
 
 	align 2
 DialogTextPogoDawgStaffDay04SubFindNPC:
@@ -2757,7 +2671,7 @@ DialogTextCPlanetStaffDay04SubFindNPC:
 	;		"1234567890123456789012"
 	dc.b	"Oh I'm signed-up.",LF
 	dc.b	"                     ^",FF
-	dc.b	"Whoever got my name",LF
+	dc.b	"Whoever drew my name",LF
 	dc.b	"better get it right.",ETX
 
 	align 2
@@ -2766,7 +2680,7 @@ DialogTextCNowStaffDay04SubFindNPC:
 	;		"1234567890123456789012"
 	dc.b	"I'm in already, I love",LF
 	dc.b	"presents. Last year..^",FF
-	dc.b	"(30 minutes later)",LF
+	dc.b	"[30 minutes later]",LF
 	dc.b	"                     ^",FF
 	dc.b	"..the doctor said she",LF
 	dc.b	"never saw it before.",ETX
@@ -2813,10 +2727,7 @@ DialogTextSouthCenterStaffDay04SubFindNPC:
 DialogTextWorkshopStaff0Day04SubFindNPC:
 	dc.w	OBJ_NPC_WORKSHOP_STAFF0
 	;		"1234567890123456789012"
-	dc.b	"I'm already signed-up,",LF
-	dc.b	"don't know when I'll ^",FF
-	dc.b	"get a long enough",LF
-	dc.b	"break to shop.",ETX
+	dc.b	"I'm already signed-up.",ETX
 
 	align 2
 DialogTextWorkshopStaff1Day04SubFindNPC:
@@ -2830,23 +2741,16 @@ DialogTextSVideoStaffDay04SubFindGift0:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"My little brother,",LF
-	;		"1234567890123456789012"
 	dc.b	"definitely not me,   ^",FF
-	;		"1234567890123456789012"
 	dc.b	"got your name in the",LF
-	;		"1234567890123456789012"
 	dc.b	"Secret Santa exchange.",ETX
 
 	align 2
 DialogTextSVideoStaffDay04SubFindGift1:
 	dc.w	OBJ_NPC_SVIDEO_STAFF
-	;		"1234567890123456789012"
-	dc.b	"You mean D.B.? He",LF
-	;		"1234567890123456789012"
-	dc.b	"seems nice.          ^",FF
-	;		"1234567890123456789012"
+	dc.b	"You mean D.B.?",LF
+	dc.b	"He seems nice.       ^",FF
 	dc.b	"Is he really just a",LF
-	;		"1234567890123456789012"
 	dc.b	"senior?",ETX
 
 	align 2
@@ -2854,11 +2758,8 @@ DialogTextSVideoStaffDay04SubFindGift2:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Yeah, he might even",LF
-	;		"1234567890123456789012"
 	dc.b	"graduate this year.  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"So what do you want",LF
-	;		"1234567890123456789012"
 	dc.b	"anyway?",ETX
 
 	align 2
@@ -2866,19 +2767,12 @@ DialogTextSVideoStaffDay04SubFindGift3:
 	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
 	dc.b	"I just started junior",LF
-	;		"1234567890123456789012"
 	dc.b	"college in August.   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"I'm thinking of",LF
-	;		"1234567890123456789012"
-	dc.b	"majoring in math or  ^",FF
-	;		"1234567890123456789012"
-	dc.b	"computer science.",LF
-	;		"1234567890123456789012"
-	dc.b	"I can't decide.      ^",FF
-	;		"1234567890123456789012"
+	dc.b	"I want to study math",LF
+	dc.b	"& computer science.  ^",FF
+	dc.b	"I can't decide which",LF
+	dc.b	"to major in though.  ^",LF
 	dc.b	"I'm really interested",LF
-	;		"1234567890123456789012"
 	dc.b	"in both right now.",ETX
 
 	align 2
@@ -2886,18 +2780,15 @@ DialogTextSVideoStaffDay04SubFindGift4:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"OK, maybe he can",LF
-	;		"1234567890123456789012"
-	dc.b	"manage that.",ETX
+	dc.b	"something to help.",ETX
 
 	align 2
 DialogTextCPlanetStaffDay04SubFindGift0:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Hey so that Secret",LF
-	;		"1234567890123456789012"
 	dc.b	"Santa exchange,      ^",FF
 	dc.b	"It's really dumb",LF
-	;		"1234567890123456789012"
 	dc.b	"right?",ETX
 
 	align 2
@@ -2905,39 +2796,28 @@ DialogTextCPlanetStaffDay04SubFindGift1:
 	dc.w	OBJ_NPC_CPLANET_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Yeah, I only signed-up",LF
-	;		"1234567890123456789012"
 	dc.b	"as a joke.           ^",FF
-	;		"1234567890123456789012"
 	dc.b	"You know, to mess with",LF
-	;		"1234567890123456789012"
 	dc.b	"people.",ETX
 
 	align 2
 DialogTextCPlanetStaffDay04SubFindGift2:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Of course. So my",LF
-	;		"1234567890123456789012"
-	dc.b	"brother, not me,     ^",FF
-	;		"1234567890123456789012"
-	dc.b	"signed-up and got your",LF
-	;		"1234567890123456789012"
-	dc.b	"name. He's kind of   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"useless so could you",LF
-	;		"1234567890123456789012"
-	dc.b	"give me an idea..    ^",FF
-	;		"1234567890123456789012"
+	dc.b	"Of course.",LF
+	dc.b	"                     ^",FF
+	dc.b	"So my brother, not me,",LF
+	dc.b	"signed-up & got you. ^",FF
+	dc.b	"He's kind of useless,",LF
+	dc.b	"could I get a hint?  ^",FF
 	dc.b	"For him, not me.",ETX
 
 	align 2
 DialogTextCPlanetStaffDay04SubFindGift3:
 	dc.w	OBJ_NPC_CPLANET_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Anything that's dark",LF
-	;		"1234567890123456789012"
-	dc.b	"and mysterious,      ^",FF
-	;		"1234567890123456789012"
+	dc.b	"Anything that's dark &",LF
+	dc.b	"mysterious,      ^",FF
 	dc.b	"Like my heart.",ETX
 
 	align 2
@@ -2945,7 +2825,6 @@ DialogTextCPlanetStaffDay04SubFindGift4:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"OK, yeah, he'll figure",LF
-	;		"1234567890123456789012"
 	dc.b	"something out I guess.",ETX
 
 	align 2
@@ -2957,8 +2836,8 @@ DialogTextDay04ScriptedEventTransition:
 	dc.b	"Go ahead and leave for",LF
 	dc.b	"the night.           ^",FF
 	dc.b	"I'll take care of",LF
-	dc.b	"cleaning-up tonight  ^",FF
-	dc.b	"Since you were alone",LF
+	dc.b	"cleaning-up tonight, ^",FF
+	dc.b	"since you were alone",LF
 	dc.b	"most of the day.",ETX
 
 	align 2
@@ -2986,35 +2865,29 @@ DialogTextCheckersStaffDay04MallClosed:
 DialogTextDCountryStaffDay04MallClosed:
 	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Dani just left a ",LF
+	dc.b	"Dani just left a",LF
 	dc.b	"second ago.",ETX
 
 	align 2
 DialogTextTLodgeStaffDay04MallClosed:
-	dc.w	OBJ_NPC_SVIDEO_STAFF
+	dc.w	OBJ_NPC_TLODGE_STAFF
 	;		"1234567890123456789012"
-	dc.b	"I have to stop by the",LF
-	dc.b	"info desk before they^",FF
-	dc.b	"leave to see what I ",LF
-	dc.b	"got in the exchange.",ETX
+	dc.b	"I'm trying to close,",LF
+	dc.b	"we can talk later.",ETX
 
 	align 2
 DialogTextCenterStaffDay04MallClosed:
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Please tell your",LF
-	dc.b	"sister to stop by &  ^",FF
-	dc.b	"pick-up her Secret",LF
-	dc.b	"Santa gift soon.",ETX
+	dc.b	"Please ask your sister",LF
+	dc.b	"to pick-up her gift."ETX
 
 	align 2
 DialogTextSouthCenterStaffDay04MallClosed:
 	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
 	dc.b	"I hope security finds",LF
-	dc.b	"the person who's been^",FF
-	dc.b	"stealing from us",LF
-	dc.b	"overnight.",ETX
+	dc.b	"who's been stealing.",ETX
 
 	align 2
 DialogTextSVideoStaffDay04MallClosed:
@@ -3032,21 +2905,21 @@ DialogTextCPlanetStaffDay04MallClosed:
 	;		"1234567890123456789012"
 	dc.b	"You sure don't wait",LF
 	dc.b	"long, huh.           ^",FF
-	dc.b	"I can't talk tonight,",LF
-	dc.b	"I'm going to see the ^",FF
-	dc.b	"Rocky Horror Picture",LF
-	dc.b	"show in a little bit.^",LF
-	dc.b	"Just as a joke you",LF
-	dc.b	"know.",ETX
+	dc.b	"I can't talk tonight.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I'm heading out to the",FF
+	dc.b	"Rocky Horror show.   ^",LF
+	dc.b	"I go every week. Just",LF
+	dc.b	"as a joke of course.",ETX
 
 	align 2
 DialogTextDay04SVideoGoodGift:
 	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
 	dc.b	"I know it was you who",LF
-	dc.b	"found my Secret Santa^",FF
-	dc.b	"gift. Thanks, it was",LF
-	dc.b	"really great.        ^",FF
+	dc.b	"found my gift.       ^",FF
+	dc.b	"Thanks, it was really",LF
+	dc.b	"great.               ^",FF
 	dc.b	"Have a key to my store",LF
 	dc.b	"and stop by anytime.",ETX
 
@@ -3084,10 +2957,8 @@ DialogTextMallManagerDay04:
 	dc.b	"                     ^",FF
 	dc.b	"You know I take mall",LF
 	dc.b	"safety seriously.    ^",FF
-	dc.b	"If there's something",LF
-	dc.b	"you know about       ^",FF
-	dc.b	"you should tell me",LF
-	dc.b	"right away.          ^",FF
+	dc.b	"You should tell me",LF
+	dc.b	"anything you hear.   ^",FF
 	dc.b	"Together we can keep",LF
 	dc.b	"Bayhurst Mall safe.",ETX
 
@@ -3109,7 +2980,7 @@ DialogTextDay04PDawgCustomer01:
 	dc.b	"Have you tried Pogo",LF
 	dc.b	"Dawg?               ^",FF
 	dc.b	"If you still want to",LF
-	dc.b	"kill live animals   ^",FF
+	dc.b	"kill live animals,  ^",FF
 	dc.b	"you can check out",LF
 	dc.b	"their kitchen.",ETX
 
@@ -3130,10 +3001,10 @@ DialogTextDay05ScriptedEventIntro00:
 	;		"1234567890123456789012"
 	dc.b	"We haven't had any",LF
 	dc.b	"shoppers for an hour.^",FF
-	dc.b	"I heard something",LF
-	dc.b	"about a blizzard in  ^",FF
-	dc.b	"the forecast tonight,",LF
-	dc.b	"maybe it's early?    ^",FF
+	dc.b	"I know there's a storm",LF
+	dc.b	"due overnight.       ^",FF
+	dc.b	"Maybe it arrived",LF
+	dc.b	"early?               ^",FF
 	dc.b	"Can you go find out",LF
 	dc.b	"what's going on?",ETX
 
@@ -3141,10 +3012,8 @@ DialogTextDay05ScriptedEventIntro00:
 DialogTextGreenbergScene00Day05Storm:
 	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
-	dc.b	"If that storm is",LF
-	dc.b	"heading here then you^",FF
-	dc.b	"should get out while",LF
-	dc.b	"you still can.       ^",FF
+	dc.b	"You should get out",LF
+	dc.b	"while you still can. ^",FF
 	dc.b	"No point in both of ",LF
 	dc.b	"us being stuck here.",ETX
 
@@ -3153,9 +3022,9 @@ DialogTextGreenbergScene00Day05SnowedIn:
 	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
 	dc.b	"Don't worry about me.",LF
-	dc.b	"This is giving me the^",FF
-	dc.b	"time to catch-up",LF
-	dc.b	"on taking inventory.",ETX
+	dc.b	"                     ^",FF
+	dc.b	"I'll catch-up on",LF
+	dc.b	"taking inventory.",ETX
 
 	align 2
 DialogTextScene04Day05NPC11SnowedIn:
@@ -3246,7 +3115,7 @@ DialogTextDay05ScriptedEventStartSub01:
 	dc.b	"That's too bad but it",LF
 	dc.b	"will be OK, I swear. ^",FF
 	dc.b	"You can stay in the",LF
-	dc.b	"camping are here.    ^",FF
+	dc.b	"camping area here.   ^",FF
 	dc.b	"It won't be a problem",LF
 	dc.b	"at all.              ^",FF
 	dc.b	"There are enough tents",LF
@@ -3264,11 +3133,9 @@ DialogTextDay05ScriptedEventStartSub03:
 	;		"1234567890123456789012"
 	dc.b	"No catch, I'm not like",LF
 	dc.b	"that at all.         ^",FF
-	dc.b	"How about you find us",LF
-	dc.b	"something to eat and ^",FF
-	dc.b	"we'll call it even?",LF
-	dc.b	"I wouldn't complain  ^",FF
-	dc.b	"if you found something",LF
+	dc.b	"Bring something to eat",LF
+	dc.b	"& we'll call it even?^",FF
+	dc.b	"Maybe find something",LF
 	dc.b	"for heat too.        ^",FF
 	dc.b	"It gets cold back ",LF
 	dc.b	"there at night.",ETX
@@ -3315,18 +3182,20 @@ DialogTextDay05ScriptedEventStartSub09:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"I know it's a limited",LF
-	dc.b	"selection here but   ^",FF
-	dc.b	"you should be able to",LF
+	dc.b	"selection here.      ^",FF
+	dc.b	"You should be able to",LF
 	dc.b	"find a couple things.",ETX
 
 	align 2
 DialogTextDay05Scene12UseBookshelf:
-	dc.b	"Alright, let's see..",LF
-	dc.b	"So gluten is just    ^",FF
-	dc.b	"like bread & vegan has",LF
-	dc.b	"no animal stuff.     ^",FF
+	dc.b	"(Alright, let's see..",LF
+	dc.b	"                     ^",FF
+	dc.b	"So gluten is just like",LF
+	dc.b	"bread, ok.           ^",FF
+	dc.b	"Vegan means no animal",LF
+	dc.b	"stuff.               ^",FF
 	dc.b	"So no bread & no meat,",LF
-	dc.b	"yeah that sounds easy.",ETX
+	dc.b	"yeah, sounds easy.)",ETX
 		
 	align 2
 DialogTextDay05SubDontKnow:
@@ -3344,19 +3213,19 @@ DialogTextDay05SubNoChance:
 DialogTextDay05ScriptedEventSub00D0:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Yeah I need something",LF
-	dc.b	"without animal stuff ^",FF
-	dc.b	"and something called",LF
-	dc.b	"gluten.",ETX
+	dc.b	"I need stuff without",LF
+	dc.b	"meat or gluten.      ^",LF
+	dc.b	"I hope that means",LF
+	dc.b	"something to you.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventSub00D1:
 	dc.w	OBJ_NPC_NSHACK_STAFF
 	;		"1234567890123456789012"
 	dc.b	"This must be for",LF
-	dc.b	"Jordan. He's here all^",FF
-	dc.b	"the time. Here are a",LF
-	dc.b	"few things for him.",ETX
+	dc.b	"Jordan right?        ^",FF
+	dc.b	"He's here often, take",LF
+	dc.b	"these for him.",ETX
 
 	align 2
 DialogTextScene0EDay05NPCSub00:
@@ -3369,12 +3238,11 @@ DialogTextScene0EDay05NPCSub00:
 DialogTextDay05ScriptedEventSub00D2:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"OK, thanks. Hey, I'm",LF
-	dc.b	"sure he'd invite you ^",FF
-	dc.b	"to the camp out if he",LF
-	dc.b	"knew you were here.  ^",FFR
-	dc.b	"(Received mixed",LF
-	dc.b	"nuts)",ETX
+	dc.b	"OK, thanks.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I'm sure he'd welcome",LF
+	dc.b	"you too tonight.     ^",FFR
+	dc.b	"[Received mixed nuts]",ETX
 
 	align 2
 DialogTextDay05ScriptedEventSub01D0:
@@ -3402,7 +3270,7 @@ DialogTextDay05ScriptedEventSub01D3:
 	;		"1234567890123456789012"
 	dc.b	"Dude, even I think",LF
 	dc.b	"this is weird.",FFR
-	dc.b	"(Received relish)",ETX
+	dc.b	"[Received relish]",ETX
 
 	align 2
 DialogTextDay05ExitParkingLot0:
@@ -3452,10 +3320,10 @@ DialogTextDay05ScriptedEventCamp03:
 DialogTextDay05ScriptedEventCamp04:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"10 years ago. Back",LF
-	dc.b	"when our father was  ^",FF
-	dc.b	"in his rambling man",LF
-	dc.b	"phase.",ETX
+	dc.b	"10 years ago.",LF
+	dc.b	"                     ^",FF
+	dc.b	"Our father was in a",LF
+	dc.b	"rambling man phase.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp05:
@@ -3510,15 +3378,15 @@ DialogTextDay05ScriptedEventCamp0A:
 DialogTextDay05ScriptedEventCamp0B:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Sorry if that's a",LF
-	dc.b	"sore subject.",ETX
+	dc.b	"Sorry if that's a sore",LF
+	dc.b	"subject.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp0C:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"It's not that, it's",LF
-	dc.b	"only hard to explain.",ETX
+	dc.b	"hard to explain.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp0D:
@@ -3628,8 +3496,8 @@ DialogTextDay05ScriptedEventCamp19B:
 	;		"1234567890123456789012"
 	dc.b	"Everything was so",LF
 	dc.b	"perfect that day.    ^",FF
-	dc.b	"We were like a family",LF
-	dc.b	"in a picture frame.  ^",FF
+	dc.b	"We were like the",LF
+	dc.b	"perfect family then. ^",FF
 	dc.b	"It wasn't long before",LF
 	dc.b	"everything changed.  ^",FF
 	dc.b	"This was our last",LF
@@ -3639,7 +3507,7 @@ DialogTextDay05ScriptedEventCamp19B:
 	dc.b	"You know, all the",LF
 	dc.b	"expected things,     ^",FF
 	dc.b	"I came back here last",LF
-	dc.b	"month, November 2013.^",FF
+	dc.b	"month, November 2014.^",FF
 	dc.b	"I was in town for a",LF
 	dc.b	"boring work thing.   ^",FF
 	dc.b	"I stopped by the mall",LF
@@ -3648,14 +3516,14 @@ DialogTextDay05ScriptedEventCamp19B:
 	dc.b	"next summer, but,    ^",FF
 	dc.b	"I'm just really scared",LF
 	dc.b	"to start a family.   ^",FF
-	dc.b	"I thought this happy",LF
+	dc.b	"I thought a happy",LF
 	dc.b	"memory would help.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp1A:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Wait 2013? Who's the",LF
+	dc.b	"Wait 2014? Who's the",LF
 	dc.b	"president then?",ETX
 
 	align 2
@@ -3680,17 +3548,17 @@ DialogTextDay05ScriptedEventCamp1D:
 	dc.b	"The mall was a",LF
 	dc.b	"complete ghost town. ^",FF
 	dc.b	"There were just a few",LF
-	dc.b	"stores open still.   ^",FF
+	dc.b	"stores still open.   ^",FF
 	dc.b	"The workshop location",LF
 	dc.b	"was a Wire Warehouse.^",FF
 	dc.b	"It was closing though,",LF
 	dc.b	"final 10 days.       ^",FF
-	dc.b	"In the far I saw it,",LF
+	dc.b	"In the back I saw it,",LF
 	dc.b	"by a pile of boxes.  ^",FF
 	dc.b	"It was the remnants of",LF
 	dc.b	"Santa's Workshop.    ^",FF
 	dc.b	"It must have been in",LF
-	dc.b	"the backroom forever.^",FF
+	dc.b	"storage forever.     ^",FF
 	dc.b	"I went up to it and it",LF
 	dc.b	"all came back to me. ^",FF
 	dc.b	"I pictured that moment",LF
@@ -3722,8 +3590,8 @@ DialogTextDay05ScriptedEventCamp20:
 	;		"1234567890123456789012"
 	dc.b	"Is it your first day",LF
 	dc.b	"or are you dumb?     ^",FF
-	dc.b	"Get back to your",LF
-	dc.b	"own store.",ETX
+	dc.b	"Get back to your own",LF
+	dc.b	"store.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp21:
@@ -3744,16 +3612,16 @@ DialogTextDay05ScriptedEventCamp22:
 DialogTextDay05ScriptedEventCamp23:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Oh, OK.",ETX
+	dc.b	"Oh, ok.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp24:
 	dc.w	OBJ_NPC_GUARD0
 	;		"1234567890123456789012"
-	dc.b	"And if I catch you",LF
-	dc.b	"messing around here  ^",FF
-	dc.b	"again you're banned",LF
-	dc.b	"from the mall forever.",ETX
+	dc.b	"I better not find you",LF
+	dc.b	"messing around here. ^",FF
+	dc.b	"You'll earn a lifetime",LF
+	dc.b	"ban from the mall.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp25:
@@ -3769,8 +3637,8 @@ DialogTextDay05ScriptedEventCamp26:
 	dc.b	"What? I've never even",LF
 	dc.b	"held an axe.         ^",FF
 	dc.b	"This is just a style,",LF
-	dc.b	"that's popular if you^",FF
-	dc.b	"don't want to look",LF
+	dc.b	"that's popular.      ^",FF
+	dc.b	"It's so you don't look",LF
 	dc.b	"like everyone else.",ETX
 
 	align 2
@@ -3780,7 +3648,7 @@ DialogTextDay05ScriptedEventCamp27:
 	dc.b	"But if it's popular",LF
 	dc.b	"then... nevermind.   ^",FF
 	dc.b	"Do you want to go",LF
-	dc.b	"back to 2013?",ETX
+	dc.b	"back to 2014?",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp28:
@@ -3803,16 +3671,16 @@ DialogTextDay05ScriptedEventCamp2A:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"I automated most of my",LF
-	dc.b	"job, they won't      ^",FF
-	dc.b	"notice I'm gone until",LF
-	dc.b	"something breaks.    ^",FF
+	dc.b	"job.                 ^",FF
+	dc.b	"They won't notice I'm",LF
+	dc.b	"gone for a while.    ^",FF
 	dc.b	"My fiance will be back",LF
 	dc.b	"in town soon though. ^",FF
 	dc.b	"She's visiting family",LF
 	dc.b	"in India for a month.^",FF
 	dc.b	"They don't have good",LF
-	dc.b	"wifi in the village, ^",FF
-	dc.b	"so she can't try to",LF
+	dc.b	"wifi in the village. ^",FF
+	dc.b	"She won't try to",LF
 	dc.b	"contact me.          ^",FF
 	dc.b	"She's flying home on",LF
 	dc.b	"December 26th.       ^",FF
@@ -3841,9 +3709,9 @@ DialogTextDay05ScriptedEventCamp2C:
 	;		"1234567890123456789012"
 	dc.b	"I thought about it,",LF
 	dc.b	"but I can't get in.  ^",FF
-	dc.b	"It's locked at night.",LF
-	dc.b	"If the guards see me ^",FF
-	dc.b	"there during the day",LF
+	dc.b	"Daytime's no good.",LF
+	dc.b	"It's locked at night.^",FF
+	dc.b	"If the guards see me",LF
 	dc.b	"I might get banned.",ETX
 
 	align 2
@@ -3852,12 +3720,8 @@ DialogTextDay05ScriptedEventCamp2D:
 	;		"1234567890123456789012"
 	dc.b	"What about right after",LF
 	dc.b	"closing on Xmas Eve? ^",FF
-	dc.b	"They tear it down on",LF
-	dc.b	"the 26th.            ^",FF
-	dc.b	"We'll claim to be the",LF
-	dc.b	"tear-down crew       ^",FF
-	dc.b	"if anyone catches us",LF
-	dc.b	"there.",ETX
+	dc.b	"They probably stop",LF
+	dc.b	"guarding it then.",ETX
 
 	align 2
 DialogTextDay05ScriptedEventCamp2E:
@@ -3902,7 +3766,7 @@ DialogTextDay05ScriptedEventCamp32:
 DialogTextDay05ScriptedEventCamp33:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
-	dc.b	"OK, we're all clear to",LF
+	dc.b	"Ok, we're all clear to",LF
 	dc.b	"leave now.",ETX
 
 	align 2
@@ -3931,10 +3795,8 @@ DialogTextMallManagerDay05:
 	;		"1234567890123456789012"
 	dc.b	"Bayhurst Mall is proud",LF
 	dc.b	"to always stay open. ^",FF
-	dc.b	"If you see stores",LF
-	dc.b	"close early please   ^",FF
-	dc.b	"report them to me",LF
-	dc.b	"right away.",ETX
+	dc.b	"Please report any",LF
+	dc.b	"stores closing early.",ETX
 
 ;-------------------------------------------------------------------------------
 ; dialog text - day 06
@@ -3953,7 +3815,7 @@ DialogTextDay06ScriptedEventIntro01:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"I don't know.",LF
-	dc.b	"Hopefully not.       ^",ETX
+	dc.b	"Hopefully not.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventIntro02:
@@ -3968,26 +3830,25 @@ DialogTextDay06ScriptedEventIntro02:
 DialogTextDay06ScriptedEventIntro03:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Already forgot",LF
-	dc.b	"about it.",ETX
+	dc.b	"Already forgot about",LF
+	dc.b	"it.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventPlan00:
 	dc.w	OBJ_NPC_NSHACK_STAFF
 	;		"1234567890123456789012"
-	dc.b	"OK, we need to sneak",LF
-	dc.b	"Jordan into the      ^",FF
-	dc.b	"workshop tonight.",LF
+	dc.b	"We need to sneak into",LF
+	dc.b	"the workshop tonight.^",FF
 	dc.b	"How are we doing it?",ETX
 
 	align 2
 DialogTextDay06ScriptedEventPlan01:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"He needs a clear path,",LF
-	dc.b	"that means the rest  ^",FF
-	dc.b	"of us have to keep the",LF
-	dc.b	"guard distracted.",ETX
+	dc.b	"He needs a clear path.",LF
+	dc.b	"                     ^",FF
+	dc.b	"The rest of us have to",LF
+	dc.b	"keep the guard busy.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventPlan02:
@@ -4007,8 +3868,8 @@ DialogTextDay06ScriptedEventPlan03:
 	dc.b	"We need every store",LF
 	dc.b	"key we can find.     ^",FF
 	dc.b	"It will give us more",LF
-	dc.b	"places to hide from  ^",FF
-	dc.b	"the guard and bypass",LF
+	dc.b	"places to hide.      ^",FF
+	dc.b	"We can also bypass",LF
 	dc.b	"the main halls.",ETX
 
 	align 2
@@ -4022,11 +3883,11 @@ DialogTextDay06ScriptedEventPlan04:
 DialogTextDay06ScriptedEventPlan05:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"And my Secret Santa",LF
-	dc.b	"recipient gave me a  ^",FF
-	dc.b	"key to her store as a",LF
-	dc.b	"thank you.           ^",FFR
-	dc.b	"(Received store keys)",ETX
+	dc.b	"My Secret Santa giftee",LF
+	dc.b	"gave me this key.    ^",FF
+	dc.b	"I guess it was her way",LF
+	dc.b	"of saying thank you. ^",FFR
+	dc.b	"[Received store keys]",ETX
 
 	align 2
 DialogTextDay06ScriptedEventPlan06:
@@ -4035,11 +3896,9 @@ DialogTextDay06ScriptedEventPlan06:
 	dc.b	"Thanks but there are",LF
 	dc.b	"two more we need.    ^",FF
 	dc.b	"The workshop itself",LF
-	dc.b	"of course and also   ^",FF
-	dc.b	"a key for ClothesNow.",LF
-	dc.b	"That location is     ^",FF
-	dc.b	"perfect for getting",LF
-	dc.b	"around the guard.",ETX
+	dc.b	"& also ClothesNow.   ^",FF
+	dc.b	"We can bypass the",LF
+	dc.b	"center hallway there.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventPlan07:
@@ -4066,9 +3925,9 @@ DialogTextDay06ScriptedEventPlan0A:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"I have an idea how to",LF
-	dc.b	"get the workshop key ^",FF
-	dc.b	"but it's going",LF
-	dc.b	"to be ugly.",ETX
+	dc.b	"get the workshop key.^",FF
+	dc.b	"It's going to be real",LF
+	dc.b	"ugly though.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventPlan0B:
@@ -4084,11 +3943,13 @@ DialogTextDay06ScriptedEventPlan0C:
 	dc.b	"Let's meet at Video",LF
 	dc.b	"Buffet after close.  ^",FF
 	dc.b	"It's next to Jordan's",LF
-	dc.b	"store so the guard   ^",FF
-	dc.b	"won't see him. They",LF
-	dc.b	"know I go there after^",FF
-	dc.b	"close all the time &",LF
-	dc.b	"won't be suspicious.",ETX
+	dc.b	"store.               ^",FF
+	dc.b	"The guard won't see",LF
+	dc.b	"him duck in there.   ^",FF
+	dc.b	"They know I go there",LF
+	dc.b	"after close often.   ^",FF
+	dc.b	"They won't be",LF
+	dc.b	"suspicious of me.",ETX
 
 DialogTextDay06EnterVB:
 	;		"1234567890123456789012"
@@ -4122,13 +3983,13 @@ DialogTextDay06Sub00Start01:
 	dc.b	"Wow that's great!",LF
 	dc.b	"No one applies here. ^",FF
 	dc.b	"I don't need help",LF
-	dc.b	"tonight, but our     ^",FF
-	dc.b	"annual inventory is",LF
-	dc.b	"next Tuesday and     ^",FF
-	dc.b	"we need people who",LF
-	dc.b	"can work overnight.  ^",FF
+	dc.b	"tonight.             ^",FF
+	dc.b	"Our annual inventory",LF
+	dc.b	"next Tuesday.        ^",FF
+	dc.b	"We need people who can",LF
+	dc.b	"work it overnight.   ^",FF
 	dc.b	"It's a temporary job",LF
-	dc.b	"only if that's OK?",ETX
+	dc.b	"only if that's ok?",ETX
 
 	align 2
 DialogTextDay06Sub00Start02:
@@ -4148,7 +4009,7 @@ DialogTextDay06Sub00Start03:
 	dc.b	"be a good listener.  ^",FF
 	dc.b	"Last year we hired",LF
 	dc.b	"someone and..        ^",FFR
-	dc.b	"(30 minutes later)",ETX
+	dc.b	"[30 minutes later]",ETX
 
 	align 2
 DialogTextDay06Sub00Start04:
@@ -4173,9 +4034,9 @@ DialogTextDay06Sub00Start07:
 	dc.w	OBJ_NPC_CNOW_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Were you listening to",LF
-	dc.b	"me? If you can't pay ^",FF
-	dc.b	"attention then you",LF
-	dc.b	"can't work here.",ETX
+	dc.b	"me at all?           ^",FF
+	dc.b	"If you can't listen,",LF
+	dc.b	"you can't work here.",ETX
 
 	align 2
 DialogTextDay06Scene11SubInprogress:
@@ -4217,7 +4078,7 @@ DialogTextDay06Sub00GetItem03:
 	dc.b	"OK, I had some help.",LF
 	dc.b	"Hunter's Formula Max.^",FF
 	dc.b	"It's a caffeine pill",LF
-	dc.b	"I use to hunt bears. ^",FF
+	dc.b	"Great for bear hunts.^",FF
 	dc.b	"I'll give you a few if",LF
 	dc.b	"you keep it quiet.",ETX
 
@@ -4240,7 +4101,7 @@ DialogTextDay06Sub00Complete01:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
 	dc.b	"Hold on one second...",LF
-	dc.b	"OK, let's do this.",ETX
+	dc.b	"Ok, let's do this.",ETX
 
 	align 2
 DialogTextDay06Sub00Complete02:
@@ -4248,7 +4109,7 @@ DialogTextDay06Sub00Complete02:
 	;		"1234567890123456789012"
 	dc.b	"So like I was saying,",LF
 	dc.b	"they were always...  ^",FFR
-	dc.b	"(30 minutes later)",ETX
+	dc.b	"[30 minutes later]",ETX
 
 	align 2
 DialogTextDay06Sub00Complete03:
@@ -4297,21 +4158,19 @@ DialogTextDay06Scene0DNPCDani:
 DialogTextDay06ScriptedEventDayStartSub00:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"I was thinking, if",LF
-	dc.b	"this doesn't work    ^",FF
-	dc.b	"maybe I could get a",LF
-	dc.b	"job here.            ^",FF
-	dc.b	"I think I'd be",LF
-	dc.b	"pretty good at it.",ETX
+	dc.b	"If this doesn't work,",LF
+	dc.b	"can I get a job here?^",FF
+	dc.b	"I think I'd be pretty",LF
+	dc.b	"good at it.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventDayStartSub01:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Bad news.",LF
-	dc.b	"Someone told security^",FF
-	dc.b	"that there's a prank",LF
-	dc.b	"planned for tonight. ^",FF
+	dc.b	"                     ^",FF
+	dc.b	"Someone told security",LF
+	dc.b	"a prank was planned. ^",FF
 	dc.b	"They added a guard",LF
 	dc.b	"at the info desk.    ^",FF
 	dc.b	"He gave me the stink",LF
@@ -4330,17 +4189,17 @@ DialogTextDay06ScriptedEventDayStartSub03:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"You're our decoy.",LF
-	dc.b	"Cause a distraction, ^",FF
-	dc.b	"somewhere far away",LF
-	dc.b	"from Santa's workshop.",ETX
+	dc.b	"Cause a distraction. ^",FF
+	dc.b	"Somewhere away from",LF
+	dc.b	"Santa's Workshop.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventDayStartSub04:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"When the hallway guard",LF
-	dc.b	"is out of the way,   ^",FF
-	dc.b	"2013 boy & me will run",LF
+	dc.b	"is distracted by you ^",FF
+	dc.b	"2014 boy & me will run",LF
 	dc.b	"to the workshop.",ETX
 
 	align 2
@@ -4348,14 +4207,14 @@ DialogTextDay06ScriptedEventDayStartSub05:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"He can catch me, you",LF
-	dc.b	"break for the door.",ETX
+	dc.b	"rush for the door.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventDayStartSub06:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"You're will to do that",LF
-	dc.b	"for me?              ^",FF
+	dc.b	"You're willing to do",LF
+	dc.b	"that for me?         ^",FF
 	dc.b	"Even if you might get",LF
 	dc.b	"banned from the mall?",ETX
 
@@ -4363,14 +4222,12 @@ DialogTextDay06ScriptedEventDayStartSub06:
 DialogTextDay06ScriptedEventDayStartSub07:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"I'm moving over the",LF
-	dc.b	"summer anyway.       ^",FF
+	dc.b	"I'm moving at the end",LF
+	dc.b	"of summer anyway.    ^",FF
 	dc.b	"I have enough saved",LF
 	dc.b	"already.             ^",FF
-	dc.b	"D.B. will cover any",LF
-	dc.b	"legal expenses       ^",FF
-	dc.b	"I incur from this",LF
-	dc.b	"little expedition.",ETX
+	dc.b	"D.B. will cover bail",LF
+	dc.b	"if it goes real bad.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventDayStartSub08:
@@ -4390,32 +4247,32 @@ DialogTextDay06SleepingGuardTalk:
 	dc.w	OBJ_NPC_FCBCAMPING_STAFF
 	;		"1234567890123456789012"
 	dc.b	"(He's breathing but",LF
-	dc.b	"not responding)",ETX
+	dc.b	"not responding.)",ETX
 
 	align 2
 DialogTextDay06Hurry:
 	;		"1234567890123456789012"
 	dc.b	"(I have to hurry, no",LF
-	dc.b	"time to explore)",ETX
+	dc.b	"time to explore.)",ETX
 
 	align 2
 DialogTextDay06CantGoBack:
 	;		"1234567890123456789012"
 	dc.b	"(I can't back out of",LF
-	dc.b	"this now)",ETX
+	dc.b	"this now.)",ETX
 
 	align 2
 DialogTextDay06Backtrack:
 	;		"1234567890123456789012"
 	dc.b	"(I don't want to",LF
-	dc.b	"backtrack later)",ETX
+	dc.b	"backtrack later.)",ETX
 
 	align 2
 DialogTextDay06FootstepsNorth:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
 	dc.b	"(I heard footsteps",LF
-	dc.b	"to the north)",ETX
+	dc.b	"to the north.)",ETX
 
 	align 2
 DialogTextDay06GuardSomeoneHere:
@@ -4427,7 +4284,7 @@ DialogTextDay06GuardSomeoneHere:
 DialogTextDay06CantGetCaught:
 	;		"1234567890123456789012"
 	dc.b	"(I can't get caught by",LF
-	dc.b	"the info desk guard)",ETX
+	dc.b	"the info desk guard.)",ETX
 
 	align 2
 DialogTextDay06InMissionScriptedEvent0000:
@@ -4457,7 +4314,7 @@ DialogTextDay06InMissionScriptedEvent0003:
 	;		"1234567890123456789012"
 	dc.b	"Alright, carry on.",FFR
 	dc.b	"(You hear footsteps",LF
-	dc.b	"walking away)",ETX	
+	dc.b	"walking away.)",ETX	
 
 	align 2
 DialogTextDay06Scene0ENPCInMission:
@@ -4477,16 +4334,16 @@ DialogTextDay06ScriptedEventExitTLodge00:
 DialogTextDay06ExitEEHallSouth:
 	;		"1234567890123456789012"
 	dc.b	"(If he sees me there",LF
-	dc.b	"I'm busted for sure)",ETX
+	dc.b	"I'm busted for sure.)",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEndMissionGood00:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
 	dc.b	"(I think I hear the",LF
-	dc.b	"guard approaching)   ^",FF
+	dc.b	"guard approaching.)   ^",FF
 	dc.b	"(Sounds like he's",LF
-	dc.b	"walking south now)",ETX
+	dc.b	"walking south now.)",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEndMissionGood01:
@@ -4500,7 +4357,7 @@ DialogTextDay06ScriptedEventEndMissionGood02:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
 	dc.b	"(I think I'm safe in",LF
-	dc.b	"here for a while)",ETX
+	dc.b	"here for a while.)",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEndMissionGood03:
@@ -4576,7 +4433,6 @@ DialogTextDay06ScriptedEventEnding001:
 	;		"1234567890123456789012"
 	dc.b	"What's going on?",LF
 	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Did you do this to",LF
 	dc.b	"the guard?",ETX
 
@@ -4586,22 +4442,16 @@ DialogTextDay06ScriptedEventEnding002:
 	;		"1234567890123456789012"
 	dc.b	"He'll be fine, just",LF
 	dc.b	"taking a little nap. ^",FF
-	;		"1234567890123456789012"
 	dc.b	"He won't remember a",LF
 	dc.b	"thing when he wakes. ^",FF
-	;		"1234567890123456789012"
-	dc.b	"I'm sorry but this is",LF
-	dc.b	"all my fault.        ^",FF
-	;		"1234567890123456789012"
+	dc.b	"I'm sorry but this",LF
+	dc.b	"mess is all my fault.^",FF
 	dc.b	"I was so young when it",LF
 	dc.b	"started.             ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I'd only been out of",LF
 	dc.b	"school a week.       ^",FF
-	;		"1234567890123456789012"
 	dc.b	"They hired me to ",LF
 	dc.b	"program this new     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"cutting edge mall ",LF
 	dc.b	"management system.",ETX
 
@@ -4611,10 +4461,8 @@ DialogTextDay06ScriptedEventEnding003:
 	;		"1234567890123456789012"
 	dc.b	"It's not unethical, it",LF
 	dc.b	"is the latest craze. ^",FF
-	;		"1234567890123456789012"
 	dc.b	"It's called subliminal",LF
 	dc.b	"messaging.           ^",FF
-	;		"1234567890123456789012"
 	dc.b	"You just need to wire",LF
 	dc.b	"it into the music.",ETX
 
@@ -4622,7 +4470,7 @@ DialogTextDay06ScriptedEventEnding003:
 DialogTextDay06ScriptedEventEnding004:
 	dc.w	OBJ_NPC_CAVERN_STAFF_PAST
 	;		"1234567890123456789012"
-	dc.b	"Are you sure it's OK?",ETX
+	dc.b	"Are you sure it's ok?",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding005:
@@ -4630,13 +4478,10 @@ DialogTextDay06ScriptedEventEnding005:
 	;		"1234567890123456789012"
 	dc.b	"Everyone else is doing",LF
 	dc.b	"it.                  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"It doesn't force you",LF
 	dc.b	"to do anything.      ^",FF
-	;		"1234567890123456789012"
 	dc.b	"It's more like a",LF
 	dc.b	"suggestion.          ^",FF
-	;		"1234567890123456789012"
 	dc.b	"You like working here",LF
 	dc.b	"right?",ETX
 
@@ -4644,7 +4489,7 @@ DialogTextDay06ScriptedEventEnding005:
 DialogTextDay06ScriptedEventEnding006:
 	dc.w	OBJ_NPC_CAVERN_STAFF_PAST
 	;		"1234567890123456789012"
-	dc.b	"Yeah, OK.",ETX
+	dc.b	"Yeah, ok, I'll do it.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding007:
@@ -4652,15 +4497,12 @@ DialogTextDay06ScriptedEventEnding007:
 	;		"1234567890123456789012"
 	dc.b	"We're losing too much",LF
 	dc.b	"business.            ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Everyone is going to",LF
 	dc.b	"these super stores.  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"We have to do more.",LF
-	dc.b	"Have you figured out ^",FF
-	;		"1234567890123456789012"
-	dc.b	"how to integrate it",LF
-	dc.b	"with the monitors yet?",ETX
+	dc.b	"                     ^",FF
+	dc.b	"Is it integrated with",LF
+	dc.b	"all the monitors yet?",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding008:
@@ -4689,10 +4531,8 @@ DialogTextDay06ScriptedEventEnding00B:
 	;		"1234567890123456789012"
 	dc.b	"They're subconscious, ",LF
 	dc.b	"completely harmless. ^",FF
-	;		"1234567890123456789012"
 	dc.b	"It's just some screens",LF
 	dc.b	"with videos and info.^",FF
-	;		"1234567890123456789012"
 	dc.b	"What harm will 1 frame",LF
 	dc.b	"out of 60 do?",ETX
 
@@ -4702,7 +4542,6 @@ DialogTextDay06ScriptedEventEnding00C:
 	;		"1234567890123456789012"
 	dc.b	"Mall traffic is down",LF
 	dc.b	"again.               ^",FF
-	;		"1234567890123456789012"
 	dc.b	"We have to turn on the",LF
 	dc.b	"Nostalgia Engine.",ETX
 
@@ -4712,7 +4551,6 @@ DialogTextDay06ScriptedEventEnding00D:
 	;		"1234567890123456789012"
 	dc.b	"It's not ready yet.",LF
 	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"We don't know all the",LF
 	dc.b	"side-effects.",ETX
 
@@ -4722,20 +4560,13 @@ DialogTextDay06ScriptedEventEnding00E:
 	;		"1234567890123456789012"
 	dc.b	"The effects are all",LF
 	dc.b	"temporary.           ^",FF
-	;		"1234567890123456789012"
 	dc.b	"They're just waves",LF
 	dc.b	"that make you happy. ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Happy people buy more.",LF
 	dc.b	"It's a fact.         ^",FF
-	;		"1234567890123456789012"
 	dc.b	"So what if they think",LF
-	dc.b	"they're back in the  ^",FF
-	;		"1234567890123456789012"
-	dc.b	"70s or 80s again?",LF
-	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
-	dc.b	"They're happy and",LF
+	dc.b	"it's the 1980s again?^",FF
+	dc.b	"They're happy &",LF
 	dc.b	"spending money.",ETX
 
 	align 2
@@ -4744,20 +4575,16 @@ DialogTextDay06ScriptedEventEnding00F:
 	;		"1234567890123456789012"
 	dc.b	"We don't have much",LF
 	dc.b	"time left!           ^",FF
-	;		"1234567890123456789012"
 	dc.b	"You have to make it",LF
 	dc.b	"work!                ^",FF
-	;		"1234567890123456789012"
 	dc.b	"This will be the thing",LF
 	dc.b	"that saves the mall. ^",FF
-	;		"1234567890123456789012"
-	dc.b	"Imagine walking into",LF
-	dc.b	"the mall but instead ^",FF
-	;		"1234567890123456789012"
-	dc.b	"it's exactly how you",LF
-	dc.b	"remember as a kid,   ^",FF
-	;		"1234567890123456789012"
-	dc.b	"because it really is.",ETX
+	dc.b	"Imagine how beautiful",LF
+	dc.b	"it will be.          ^",FF
+	dc.b	"A mall that's exactly",LF
+	dc.b	"how you remember it. ^",FF
+	dc.b	"But it's not just a  ^",LF
+	dc.b	"memory, you're there.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding010:
@@ -4778,7 +4605,6 @@ DialogTextDay06ScriptedEventEnding012:
 	;		"1234567890123456789012"
 	dc.b	"I don't know if they",LF
 	dc.b	"can leave.           ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Who will test this?",ETX
 
 	align 2
@@ -4787,16 +4613,12 @@ DialogTextDay06ScriptedEventEnding013:
 	;		"1234567890123456789012"
 	dc.b	"Why are you always so",LF
 	dc.b	"difficult?           ^",FF
-	;		"1234567890123456789012"
 	dc.b	"It's not like we're",LF
 	dc.b	"forcing them to.     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"The sensors have to ",LF
-	dc.b	"detect that they     ^",FF
-	;		"1234567890123456789012"
-	dc.b	"really want to go back",LF
-	dc.b	"in the first place.  ^",FF
-	;		"1234567890123456789012"
+	dc.b	"read their desire.   ^",FF
+	dc.b	"They have to really",LF
+	dc.b	"want to go back.     ^",FF
 	dc.b	"I'll test it, nothing",LF
 	dc.b	"bad will happen.",ETX
 
@@ -4805,44 +4627,31 @@ DialogTextDay06ScriptedEventEnding014:
 	dc.w	OBJ_NPC_CAVERN_STAFF
 	;		"1234567890123456789012"
 	dc.b	"The mall was bulldozed",LF
-	dc.b	"in 2016 to make room ^",FF
-	;		"1234567890123456789012"
-	dc.b	"for some new hipster",LF
+	dc.b	"in 2016.             ^",FF
+	dc.b	"Replaced by a hipster",LF
 	dc.b	"outdoor market.      ^",FF
-	;		"1234567890123456789012"
-	dc.b	"Vegan restaurants,",LF
+	dc.b	"Vegan restaurants.",LF
 	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
-	dc.b	"overpriced beer made",LF
-	dc.b	"in someone's cellar, ^",FF
-	;		"1234567890123456789012"
-	dc.b	"miniature dogs in",LF
-	dc.b	"baby strollers,      ^",FF
-	;		"1234567890123456789012"
-	dc.b	"that's what put me",LF
+	dc.b	"Overpriced beer made",LF
+	dc.b	"in someone's cellar. ^",FF
+	dc.b	"Miniature dogs in",LF
+	dc.b	"baby strollers.      ^",FF
+	dc.b	"That's what put me",LF
 	dc.b	"out of work.         ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Almost 40 years of",LF
 	dc.b	"work lost to them.   ^",FF
-	;		"1234567890123456789012"
 	dc.b	"So I came back too.",LF
 	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I never took a day off",LF
 	dc.b	"in 40 years.         ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I never did anything",LF
 	dc.b	"just for fun.        ^",FF
-	;		"1234567890123456789012"
 	dc.b	"So I came back to run",LF
 	dc.b	"the arcade.          ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I wanted to be",LF
 	dc.b	"somewhere fun once.  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I know it will close",LF
-	dc.b	"in 7 years.          ^",FF
-	;		"1234567890123456789012"
+	dc.b	"in 7-8 years.        ^",FF
 	dc.b	"Hopefully I'll be",LF
 	dc.b	"dead by then.",ETX
 
@@ -4859,36 +4668,28 @@ DialogTextDay06ScriptedEventEnding016:
 	;		"1234567890123456789012"
 	dc.b	"I think I know now.",LF
 	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"The system is getting",LF
-	dc.b	"stronger over time,  ^",FF
-	;		"1234567890123456789012"
+	dc.b	"stronger over time.  ^",FF
 	dc.b	"People are coming from",LF
 	dc.b	"before 2014.         ^",FF
-	;		"1234567890123456789012"
 	dc.b	"That means it was",LF
 	dc.b	"finished sooner.     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"The first time I was",LF
 	dc.b	"in 1989              ^",FF
-	;		"1234567890123456789012"
 	dc.b	"there weren't people",LF
 	dc.b	"like beardy here.    ^",FF
-	;		"1234567890123456789012"
 	dc.b	"So I tried to burn it",LF
 	dc.b	"down; it didn't work.^",FF
-	;		"1234567890123456789012"
 	dc.b	"The technology is",LF
 	dc.b	"advancing too fast.  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"He must be here then,",LF
-	dc.b	"advancing the project.",ETX
+	dc.b	"working on the system.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding017:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"You said 'people'..",LF
+	dc.b	"You said `people'..",LF
 	dc.b	"Are there others?",ETX
 
 	align 2
@@ -4897,19 +4698,14 @@ DialogTextDay06ScriptedEventEnding018:
 	;		"1234567890123456789012"
 	dc.b	"Too many already.",LF
 	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"There will be more if",LF
 	dc.b	"I can't stop it.     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"It's funny isn't it?",LF
 	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"The same people who",LF
 	dc.b	"destroyed this mall  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"want to come back to",LF
 	dc.b	"it again.            ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I won't let them ruin",LF
 	dc.b	"my life twice.",ETX
 
@@ -4926,16 +4722,12 @@ DialogTextDay06ScriptedEventEnding01A:
 	;		"1234567890123456789012"
 	dc.b	"Oh you'd like that.",LF
 	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Go back & tell all",LF
 	dc.b	"you manbun friends.  ^",FF
-	;		"1234567890123456789012"
-	dc.b	"'Hey dudes, check out",LF
+	dc.b	"`Hey dudes, check out",LF
 	dc.b	"this neat lifehack!' ^",FF
-	;		"1234567890123456789012"
 	dc.b	"The mall will be",LF
 	dc.b	"crawling with them.  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I'm not letting that",LF
 	dc.b	"happen.",ETX
 
@@ -4955,7 +4747,6 @@ DialogTextDay06ScriptedEventEnding01C:
 	;		"1234567890123456789012"
 	dc.b	"That's all this has",LF
 	dc.b	"been about for you.  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Manipulating people",LF
 	dc.b	"just to get rich.",ETX
 
@@ -4965,7 +4756,6 @@ DialogTextDay06ScriptedEventEnding01D:
 	;		"1234567890123456789012"
 	dc.b	"At least I have a",LF
 	dc.b	"plan.                ^",FF
-	;		"1234567890123456789012"
 	dc.b	"You go along with",LF
 	dc.b	"whatever you're told.",ETX
 
@@ -4975,7 +4765,6 @@ DialogTextDay06ScriptedEventEnding01E:
 	;		"1234567890123456789012"
 	dc.b	"I don't know who to",LF
 	dc.b	"cheer for.           ^",FF
-	;		"1234567890123456789012"
 	dc.b	"They're both pretty",LF
 	dc.b	"awful.",ETX
 
@@ -4984,8 +4773,7 @@ DialogTextDay06ScriptedEventEnding01F:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Looks like they'll be",LF
-	dc.b	"at this for a while. ^",FF
-	;		"1234567890123456789012"
+	dc.b	"at it for a while.  ^",FF
 	dc.b	"You should go while",LF
 	dc.b	"they're distracted.",ETX
 
@@ -4995,7 +4783,6 @@ DialogTextDay06ScriptedEventEnding020:
 	;		"1234567890123456789012"
 	dc.b	"Yeah, this has been",LF
 	dc.b	"good times & all that^",FF
-	;		"1234567890123456789012"
 	dc.b	"but I need to get back",LF
 	dc.b	"to my life.",ETX
 
@@ -5005,30 +4792,24 @@ DialogTextDay06ScriptedEventEnding021:
 	;		"1234567890123456789012"
 	dc.b	"You can assure him I",LF
 	dc.b	"won't tell anyone.   ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Best to leave this on",LF
 	dc.b	"the downlow.         ^",FF
-	;		"1234567890123456789012"
 	dc.b	"Thanks for all your ",LF
 	dc.b	"help.                ^",FF
-	;		"1234567890123456789012"
-	dc.b	"I'll really miss you",LF
-	dc.b	"and D.B.             ^",FF
-	;		"1234567890123456789012"
+	dc.b	"I'll really miss all",LF
+	dc.b	"of you.              ^",FF
 	dc.b	"Don't try to find me",LF
-	dc.b	"before November 2013.^",FF
-	;		"1234567890123456789012"
+	dc.b	"before November 2014.^",FF
 	dc.b	"Who knows what will",LF
 	dc.b	"happen.              ^",FF
-	;		"1234567890123456789012"
 	dc.b	"How about I invite you",LF
 	dc.b	"to my wedding?       ^",FF
-	;		"1234567890123456789012"
 	dc.b	"We'll catch-up then.",LF
 	dc.b	"                     ^",FF
-	;		"1234567890123456789012"
 	dc.b	"That shouldn't mess",LF
-	dc.b	"with timelines.",ETX
+	dc.b	"with timelines.      ^",FF
+	dc.b	"It'll be a longer wait",LF
+	dc.b	"for you than me.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding022:
@@ -5046,8 +4827,8 @@ DialogTextDay06ScriptedEventEnding100:
 DialogTextDay06ScriptedEventEnding101:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"It's been over an",LF
-	dc.b	"hour now.",ETX
+	dc.b	"It's been over an hour",LF
+	dc.b	"now.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding102:
@@ -5079,32 +4860,25 @@ DialogTextDay06ScriptedEventEnding105:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Some crazy story about",LF
-	dc.b	"his younger self and ^",FF
-	;		"1234567890123456789012"
-	dc.b	"people traveling back",LF
+	dc.b	"his younger self.    ^",FF
+	dc.b	"People traveling back",LF
 	dc.b	"in time to shop here.^",FF
-	;		"1234567890123456789012"
 	dc.b	"Or maybe not that,",LF
-	dc.b	"maybe, no, nevermind.^",FF
-	;		"1234567890123456789012"
+	dc.b	"maybe.. I don't know.^",FF
 	dc.b	"We'll talk about it",LF
 	dc.b	"on the drive home.   ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I guess it really",LF
 	dc.b	"doesn't matter.      ^",FF
-	;		"1234567890123456789012"
 	dc.b	"This is all getting",LF
 	dc.b	"demolished one day.  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"If there are others",LF
 	dc.b	"we won't meet them.  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"I'm sure they bought",LF
 	dc.b	"stocks and retired.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventEnding106:
-	dc.w	OBJ_NPC_DANI
+	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
 	dc.b	"Why would they want",LF
 	dc.b	"to hang out here?",ETX
@@ -5123,13 +4897,13 @@ DialogTextDay06Scene0ENPCEnding:
 	dc.w	OBJ_NPC_NSHACK_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Go on, I'll lock up",LF
-	dc.b	"behind you.",ETX
+	dc.b	"after you leave.",ETX
 
 	align 2
 DialogTextMallManagerDay06:
 	dc.w	OBJ_NPC_MALLMANAGER_SHORT
 	;		"1234567890123456789012"
-	dc.b	"You and your sister",LF
+	dc.b	"You & your sister",LF
 	dc.b	"are always on break. ^",FF
 	dc.b	"I hope you're not",LF
 	dc.b	"causing any trouble. ^",FF
@@ -5203,9 +4977,8 @@ DialogTextDay07Scene0FGetKey0:
 	dc.b	"these, what is it?   ^",FF
 	dc.b	"Huh. What are you",LF
 	dc.b	"doing here?          ^",ETX
-	dc.b	"Oh right, a key. I",LF
-	dc.b	"remember now.        ^",FF
-	;		"1234567890123456789012"
+	dc.b	"Oh right, a key.",LF
+	dc.b	"I remember now.      ^",FF
 	dc.b	"In case you want to,",LF
 	dc.b	"like, cook something.",ETX
 
@@ -5254,7 +5027,7 @@ DialogTextScene00Day07NPC01:
 DialogTextDay07ExitVB:
 	;		"1234567890123456789012"
 	dc.b	"(I better make sure",LF
-	dc.b	"it's OK to leave)",ETX
+	dc.b	"it's ok to leave)",ETX
 
 	align 2
 DialogTextScene00Day07NPCGreenberg00:
@@ -5272,9 +5045,11 @@ DialogTextScene00Day07NPCGreenberg01:
 	dc.w	OBJ_NPC_GREENBERG
 	;		"1234567890123456789012"
 	dc.b	"Oh by the way...",LF
-	dc.b	"Al the mall manager  ^",FF
-	dc.b	"asked me a bunch of",LF
-	dc.b	"questions about you. ^",FF
+	dc.b	"                     ^",FF
+	dc.b	"Al the mall manager",LF
+	dc.b	"asked me about you.  ^",FF
+	dc.b	"He seemed really",LF
+	dc.b	"irritated.           ^",FF
 	dc.b	"What did you do to",LF
 	dc.b	"set him off?",ETX
 
@@ -5328,7 +5103,7 @@ DialogTextScene08Day07DenimCountryStaffTalkEvent0:
 DialogTextScene0EDay07ScriptedEvent00:
 	dc.w	OBJ_NPC_NSHACK_STAFF
 	;		"1234567890123456789012"
-	dc.b	"So hey really",LF
+	dc.b	"So he really",LF
 	dc.b	"confronted you?",ETX
 
 	align 2
@@ -5400,7 +5175,7 @@ DialogTextScene0EDay07ScriptedEvent07:
 	dc.b	"If he was imagining it",LF
 	dc.b	"all then what are we?^",FF
 	dc.b	"Like are we part of an",LF
-	dc.b	"80s illusion or real?^",ETX
+	dc.b	"80s illusion or real?",ETX
 
 	align 2
 DialogTextScene0EDay07ScriptedEvent08:
@@ -5408,8 +5183,8 @@ DialogTextScene0EDay07ScriptedEvent08:
 	;		"1234567890123456789012"
 	dc.b	"I don't think he was",LF
 	dc.b	"delusional.          ^",FF
-	dc.b	"I'm pretty sure we're",LF
-	dc.b	"in the 1980s.",ETX
+	dc.b	"I'm confident we're in",LF
+	dc.b	"the 1980s.",ETX
 
 	align 2
 DialogTextScene0EDay07ScriptedEvent09:
@@ -5421,7 +5196,7 @@ DialogTextScene0EDay07ScriptedEvent09:
 	dc.b	"though, right.       ^",FF
 	dc.b	"It's just a few hours",LF
 	dc.b	"until the 90s.       ^",FF
-	dc.b	"At least they can't",LF
+	dc.b	"At least they can't be",LF
 	dc.b	"worse than the 80s.",ETX
 
 	align 2
@@ -5464,7 +5239,7 @@ DialogTextScene0EDay07ScriptedEvent0D:
 	dc.b	"So that's what we're",LF
 	dc.b	"doing I guess.       ^",FF
 	dc.b	"Unless you have",LF
-	dc.b	"another idea...",ETX
+	dc.b	"another idea..",ETX
 
 	align 2
 DialogTextScene0EDay07MoreTime:
@@ -5571,7 +5346,7 @@ DialogTextDay07TQTent0:
 	dc.b	"in here, it's a mess.^",FF
 	dc.b	"Maybe there's",LF
 	dc.b	"something good left..)",FF
-	dc.b	"(Found Wood Comb)",LF
+	dc.b	"[Found wood comb]",LF
 	dc.b	"                     ^",FF
 	dc.b	"(I wonder if anyone",LF
 	dc.b	"could use this?)",ETX
@@ -5597,17 +5372,15 @@ DialogTextDay07TQCheckers:
 	dc.b	"but could come back. ^",FF
 	dc.b	"It will at least keep",LF
 	dc.b	"you warm.            ^",FFR
-	dc.b	"(Received Black",LF
-	dc.b	"Leather Jacket)",ETX
+	dc.b	"[Received black",LF
+	dc.b	"leather jacket]",ETX
 
 	align 2
 DialogTextDay07TQCPlanet:
 	dc.w	OBJ_NPC_CPLANET_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Wow, this is perfect",LF
-	dc.b	"for our weekly Friday^",FF
-	dc.b	"Rocky Horror Picture",LF
-	dc.b	"Show night.          ^",FF
+	dc.b	"This is perfect for",LF
+	dc.b	"Rocky Horror night.  ^",FF
 	dc.b	"I didn't think you",LF
 	dc.b	"were so cool.        ^",FF
 	dc.b	"If you really want to",LF
@@ -5615,10 +5388,10 @@ DialogTextDay07TQCPlanet:
 	dc.b	"then you need to get",LF
 	dc.b	"a nose hoop.         ^",FF
 	dc.b	"Here, take a couple.",LF
-	dc.b	"I know a guy who will^",FF
-	dc.b	"pierce you for cheap",LF
-	dc.b	"when you're ready.   ^",FFR
-	dc.b	"(Received nose hoops)",ETX
+	dc.b	"                     ^",FF
+	dc.b	"I know a guy who will",LF
+	dc.b	"pierce you for cheap.^",FFR
+	dc.b	"[Received nose hoops]",ETX
 
 	align 2
 DialogTextDay07TQFCBFishing:
@@ -5634,7 +5407,7 @@ DialogTextDay07TQFCBFishing:
 	dc.b	"about to start.      ^",FF
 	dc.b	"Here's a fish decoy",LF
 	dc.b	"that works great.    ^",FFR
-	dc.b	"(Received decoy fish)",ETX
+	dc.b	"[Received decoy fish]",ETX
 
 	align 2
 DialogTextDay07TQCNow:
@@ -5650,7 +5423,7 @@ DialogTextDay07TQCNow:
 	dc.b	"someone special.     ^",FF
 	dc.b	"It's too wild for our",LF
 	dc.b	"store.               ^",FFR
-	dc.b	"(Received Neon Dress)",ETX
+	dc.b	"[Received neon dress]",ETX
 
 	align 2
 DialogTextDay07TQFCBFirearms:
@@ -5662,7 +5435,7 @@ DialogTextDay07TQFCBFirearms:
 	dc.b	"you in exchange.     ^",FF
 	dc.b	"We're not allowed to",LF
 	dc.b	"sell it anymore.     ^",FFR
-	dc.b	"(Received Landmine)",ETX
+	dc.b	"[Received landmine]",ETX
 
 	align 2
 DialogTextDay07TQTBooks:
@@ -5684,23 +5457,21 @@ DialogTextDay07TQTBooks:
 	dc.b	"No one that shops at ^",FF
 	dc.b	"this mall wants to",LF
 	dc.b	"improve themselves.  ^",FFR
-	dc.b	"(Received",LF
-	dc.b	"motivational books)",ETX
+	dc.b	"[Received",LF
+	dc.b	"motivational books]",ETX
 
 	align 2
 DialogTextDay07TQTLodge:
 	dc.w	OBJ_NPC_TLODGE_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Yeah, I need to work",LF
-	dc.b	"my selling skills.   ^",FF
+	dc.b	"on my selling skills.^",FF
 	dc.b	"Let me trade for this",LF
 	dc.b	"graphing calculator. ^",FF
 	dc.b	"It's an older model so",LF
-	dc.b	"I'm afraid I can't   ^",FF
-	dc.b	"offer you an extended",LF
-	dc.b	"warranty.            ^",FFR
-	dc.b	"(Received graphing",LF
-	dc.b	"calculator)",ETX
+	dc.b	"no extended warranty.^",FFR
+	dc.b	"[Received graphing",LF
+	dc.b	"calculator]",ETX
 
 	align 2
 DialogTextDay07TQSVideo:
@@ -5714,8 +5485,8 @@ DialogTextDay07TQSVideo:
 	dc.b	"old Betamax tapes.   ^",FF
 	dc.b	"Maybe you still have",LF
 	dc.b	"a player around.     ^",FF
-	dc.b	"(Received Betamax",LF
-	dc.b	"tapes)",ETX
+	dc.b	"[Received Betamax",LF
+	dc.b	"tapes]",ETX
 
 	align 2
 DialogTextDay07TQSCenter:
@@ -5733,7 +5504,7 @@ DialogTextDay07TQSCenter:
 	dc.b	"be a little grungy.  ^",FF
 	dc.b	"If you fry it enough",LF
 	dc.b	"I'm sure it's fine.  ^",FFR
-	dc.b	"(Received Rancid Meat)",ETX
+	dc.b	"[Received rancid meat]",ETX
 
 	align 2
 DialogTextDay07TQPDawg:
@@ -5751,17 +5522,16 @@ DialogTextDay07TQPDawg:
 	dc.b	"lunch delivery for...^",FF
 	dc.b	"That one who can't",LF
 	dc.b	"leave their, um, job.^",FFR
-	dc.b	"(Received lunch",LF
-	dc.b	"delivery)",ETX
+	dc.b	"[Received lunch",LF
+	dc.b	"delivery]",ETX
 
 	align 2
 DialogTextDay07TQPDawgStuck:
 	;		"1234567890123456789012"
-	dc.b	"(This is the only",LF
-	dc.b	"place that could want^",FF
-	dc.b	"all this rancid meat",LF
-	dc.b	"but they're closed.. ^",FF
-	dc.b	"I think I'm stuck now)",ETX
+	dc.b	"(No one else would",LF
+	dc.b	"want this rancid meat^",FF
+	dc.b	"but they're closed..",FF
+	dc.b	"I'm stuck with it.)",ETX
 
 	align 2
 DialogTextDay07TQCenter:
@@ -5777,7 +5547,7 @@ DialogTextDay07TQCenter:
 	dc.b	"floor this morning.  ^",FF
 	dc.b	"Please give it back to",LF
 	dc.b	"the owner.           ^",FFR
-	dc.b	"(Received Cavern keys)",ETX
+	dc.b	"[Received Cavern keys]",ETX
 
 	align 2
 DialogTextDay07TQCavern:
@@ -5822,7 +5592,6 @@ DialogTextPerfectEnding03:
 	dc.b	"working Xmas retail. ^",FF
 	dc.b	"Junior over here has",LF
 	dc.b	"two more years of it.",ETX
-
 
 	align 2
 DialogTextPerfectEnding04:
@@ -5885,8 +5654,10 @@ DialogTextPerfectEnding0A:
 	dc.b	"Then something new",LF
 	dc.b	"will be born from it.^",FF
 	dc.b	"That arcade guy",LF
-	dc.b	"couldn't accept it,  ^",FF
-	dc.b	"but it's impossible to",LF
+	dc.b	"couldn't accept it.  ^",FF
+	dc.b	"You see how it ended",LF
+	dc.b	"for him.             ^",FF
+	dc.b	"It's impossible to",LF
 	dc.b	"stop the cycle.",ETX
 
 	align 2
@@ -5945,7 +5716,7 @@ DialogTextPerfectEnding10:
 DialogTextInfoDeskDay00R0:	; mall news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Santa's Workshop just",LF
+	dc.b	"Santa's Workshop",LF
 	dc.b	"opened this morning. ^",FF
 	dc.b	"It was already very",LF
 	dc.b	"busy there today.",ETX
@@ -5954,20 +5725,16 @@ DialogTextInfoDeskDay00R0:	; mall news
 DialogTextInfoDeskDay00R1:	; events
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"This is exciting! The",LF
-	dc.b	"mall will be open at ^",FF
-	dc.b	"6:00 AM on Black",LF
-	dc.b	"Friday this year.",ETX
+	dc.b	"The mall opens at 6:00",LF
+	dc.b	"AM on Black Friday!",ETX
 
 	align 2
 DialogTextInfoDeskDay00R2:	; store news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"The first Fish or Cut",LF
-	dc.b	"Bait store in our    ^",FF
-	dc.b	"area is open now. They",LF
-	dc.b	"have this fun gimmick^",FF
-	dc.b	"where their staff",LF
+	dc.b	"We now have a Fish or",LF
+	dc.b	"Cut Bait store.      ^",FF
+	dc.b	"All their employees",LF
 	dc.b	"dress as lumberjacks.",ETX
 
 	align 2
@@ -5976,30 +5743,30 @@ DialogTextInfoDeskDay00R3:	; rumors
 	;		"1234567890123456789012"
 	dc.b	"I really shouldn't",LF
 	dc.b	"tell you this but..  ^",FF
-	dc.b	"One store here isn't",LF
-	dc.b	"doing well & might be^",FF
-	dc.b	"sold next year. Don't",LF
-	dc.b	"tell anyone please.",ETX
+	dc.b	"One store isn't doing",LF
+	dc.b	"well & might close.  ^",FF
+	dc.b	"It might happen at the",LF
+	dc.b	"end of the year.",ETX
 
 	align 2
 DialogTextInfoDeskDay01R0:	; mall news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
 	dc.b	"It's secret shopper",LF
-	dc.b	"at the mall. All our ^",FF
-	dc.b	"stores are being rated",LF
+	dc.b	"season at the mall.  ^",FF
+	dc.b	"Stores are being rated",LF
 	dc.b	"by undercover experts.",ETX
 
 	align 2
 DialogTextInfoDeskDay01R1:	; events
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"We're trying to ",LF
-	dc.b	"organize a really fun^",FF
-	dc.b	"Secret Santa exchange",LF
-	dc.b	"for mall employees.  ^",FF
-	dc.b	"Sign-ups start next",LF
-	dc.b	"week, please join us!",ETX
+	dc.b	"We're organizing a",LF
+	dc.b	"Secret Santa exchange^",FF
+	dc.b	"open to all mall",LF
+	dc.b	"employees.           ^",FF
+	dc.b	"Sign-ups start soon,",LF
+	dc.b	"please join us!",ETX
 
 	align 2
 DialogTextInfoDeskDay01R2:	; store news
@@ -6027,10 +5794,10 @@ DialogTextInfoDeskDay01R3:	; rumors
 DialogTextInfoDeskDay02R0:	; mall news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"December weekend ",LF
-	dc.b	"hours start soon.    ^",FF
+	dc.b	"December weekend hours",LF
+	dc.b	"start soon.          ^",FF
 	dc.b	"All stores will stay",LF
-	dc.b	"open until 10:00.",ETX
+	dc.b	"open until 10:00 PM.",ETX
 
 	align 2
 DialogTextInfoDeskDay02R1:	; events
@@ -6047,10 +5814,10 @@ DialogTextInfoDeskDay02R1:	; events
 DialogTextInfoDeskDay02R2:	; store news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Transistor Lodge is ",LF
-	dc.b	"getting all kinds of ^",FF
-	dc.b	"exciting new products",LF
-	dc.b	"just in time for Xmas.",ETX
+	dc.b	"The kiosk down the",LF
+	dc.b	"hall was busy today. ^",FF
+	dc.b	"They ran out of",LF
+	dc.b	"several favorites.",ETX
 
 	align 2
 DialogTextInfoDeskDay02R3:	; rumors
@@ -6058,10 +5825,8 @@ DialogTextInfoDeskDay02R3:	; rumors
 	;		"1234567890123456789012"
 	dc.b	"You're friends with",LF
 	dc.b	"Charles right?       ^",FF
-	;		"1234567890123456789012"
 	dc.b	"It's not my business",LF
 	dc.b	"but he seems really  ^",FF
-	;		"1234567890123456789012"
 	dc.b	"upset every time I see",LF
 	dc.b	"him. I hope he's OK.",ETX
 
@@ -6083,18 +5848,16 @@ DialogTextInfoDeskDay03R1:	; events
 	dc.b	"Only one week until ",LF
 	dc.b	"our very first mall  ^",FF
 	dc.b	"employee Secret Santa",LF
-	dc.b	"exchange! I'll be fun!",ETX
+	dc.b	"exchange!",ETX
 
 	align 2
 DialogTextInfoDeskDay03R2:	; store news
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Transistor Lodge is ",LF
-	dc.b	"expecting some really^",FF
-	dc.b	"exciting new items",LF
-	dc.b	"this month!          ^",FF
-	dc.b	"You should go see what",LF
-	dc.b	"they have!",ETX
+	dc.b	"getting all kinds of ^",FF
+	dc.b	"exciting new products",LF
+	dc.b	"just in time for Xmas.",ETX
 
 	align 2
 DialogTextInfoDeskDay03R3:	; rumors
@@ -6158,7 +5921,7 @@ DialogTextInfoDeskDay06R1:	; events
 	;		"1234567890123456789012"
 	dc.b	"It's the last shopping",LF
 	dc.b	"day before Xmas!     ^",FF
-	dc.b	"So last chance to",LF
+	dc.b	"Also last chance to",LF
 	dc.b	"visit Santa Claus.",ETX
 
 	align 2
@@ -6232,8 +5995,8 @@ DialogTextInfoDeskStrangeGift:	; secret santa gift
 	;		"1234567890123456789012"
 	dc.b	"Here's your Secret",LF
 	dc.b	"Santa gift.          ^",FFR
-	dc.b	"(Received Secret",LF
-	dc.b	"Santa Gift)          ^",FF
+	dc.b	"[Received Secret",LF
+	dc.b	"Santa Gift]          ^",FF
 	dc.b	"(What are these?)",LF
 	dc.b	"                     ^",FF
 	dc.b	"(They're matching",LF
@@ -6253,7 +6016,7 @@ DialogTextInfoDeskStrangeGift:	; secret santa gift
 
 DialogTextRadioDay01R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
-	dc.b	"After traffic and",LF
+	dc.b	"After traffic &",LF
 	dc.b	"weather we'll check  ^",FF
 	dc.b	"in on the collapse of",LF
 	dc.b	"Eastern Europe.",ETX
@@ -6341,16 +6104,16 @@ DialogTextRadioDay03R3:	; WVVX (hair metal)
 	dc.b	"We're not playing any",LF
 	dc.b	"of that Seattle stuff^",FF
 	dc.b	"but we will be playing",LF
-	dc.b	"some midwest metal.",ETX
+	dc.b	"some Midwest metal.",ETX
 
 DialogTextRadioDay04R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
 	dc.b	"Hold on, I need to",LF
 	dc.b	"talk to my producer..^",FF
-	dc.b	"Yeah.. OK, no.. we're",LF
+	dc.b	"Yeah.. Ok, no.. we're",LF
 	dc.b	"not covering that.   ^",FF
 	dc.b	"None of our listeners",LF
-	dc.b	"knows where that is.",FF
+	dc.b	"knows where that is. ^",FF
 	dc.b	"Let's just do traffic",LF
 	dc.b	"& weather on loop.",ETX
 
@@ -6375,14 +6138,14 @@ DialogTextRadioDay04R3:	; WVVX (hair metal)
 	dc.b	"this all the time..  ^",FF
 	dc.b	"the only acceptable",LF
 	dc.b	"regions for metal are",FF
-	dc.b	"LA, midwest, Norway,",LF
+	dc.b	"LA, Midwest, Norway,",LF
 	dc.b	"and, uh, not Seattle.",ETX
 
 DialogTextRadioDay05R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
 	dc.b	"It's 7:05 so time for",LF
-	dc.b	"weather on the primes^",FF
-	dc.b	"& we're in for a rough",LF
+	dc.b	"weather on the odds. ^",FF
+	dc.b	"We're in for a rough",LF
 	dc.b	"one tonight folks.   ^",FF
 	dc.b	"At least 2ft of snow",LF
 	dc.b	"is headed our way.   ^",FF
@@ -6421,17 +6184,17 @@ DialogTextRadioDay05R2:	; WCAS (top 40)
 
 DialogTextRadioDay05R3:	; WVVX (hair metal)
 	;		"1234567890123456789012"
-	dc.b	"This was a demo song",LF
+	dc.b	"That was a demo song",LF
 	dc.b	"from an underground  ^",FF
-	dc.b	"midwest metal band",LF
+	dc.b	"Midwest metal band",LF
 	dc.b	"called Wrath.",ETX
 
 DialogTextRadioDay06R0:	; WNWT (news and weather)
 	;		"1234567890123456789012"
 	dc.b	"Only one shopping day",LF
-	dc.b	"left and traffic     ^",FF
-	dc.b	"around the malls is",LF
-	dc.b	"crazy. Now weather..",ETX
+	dc.b	"left & traffic around^",FF
+	dc.b	"the malls is crazy.",LF
+	dc.b	"Now weather..",ETX
 
 DialogTextRadioDay06R1:	; WOCX (talk radio)
 	;		"1234567890123456789012"
@@ -6486,7 +6249,7 @@ DialogTextRadioDay06NightR1:	; WOCX (talk radio)
 	dc.b	"In the future all the",LF
 	dc.b	"food is enriched with^",FF
 	dc.b	"all kind of hormones",LF
-	dc.b	"and fluoride.        ^",FF
+	dc.b	"& fluoride.          ^",FF
 	dc.b	"These travelers make",LF
 	dc.b	"ideal super soldiers.^",FF
 	dc.b	"Since in the future",LF
@@ -6505,7 +6268,7 @@ DialogTextRadioDay06NightR3:	; WVVX (hair metal)
 	dc.b	"Midwest metal band.  ^",FF
 	dc.b	"They're called",LF
 	dc.b	"Prisoner.            ^",FF
-	dc.b	"Here's the debut song",LF
+	dc.b	"Here's their 1st song",LF
 	dc.b	"'Skeletal Remains'   ^",FF
 	dc.b	"(This is really loud)",ETX
 
@@ -6649,7 +6412,7 @@ DialogTextClothing:
 DialogTextRadio:
 	;		"1234567890123456789012"
 	dc.b	"You can faintly hear",LF
-	dc.b	"an oldies station.",ETX
+	dc.b	"a news station.",ETX
 
 DialogTextCassettePlayer:
 	;		"1234567890123456789012"
@@ -6683,7 +6446,7 @@ DialogTextVideoWall:
 
 DialogTextVideoRack:
 	;		"1234567890123456789012"
-	dc.b	"Here are the new and",LF
+	dc.b	"Here are the new &",LF
 	dc.b	"exciting releases.",ETX
 
 DialogTextNutCase:
@@ -6876,7 +6639,8 @@ DialogTextCavernStaffDefaultLook:
 
 DialogTextSVideoStaffDefaultLook:
 	;		"1234567890123456789012"
-	dc.b	"`So what's your deal?'",ETX
+	dc.b	"You don't think she",LF
+	dc.b	"likes being stared at.",ETX
 
 DialogTextNShackStaffDefaultLook:
 	;		"1234567890123456789012"
@@ -6891,7 +6655,7 @@ DialogTextPogoDawgStaffDefaultLook:
 DialogTextCPlanetStaffDefaultLook:
 	;		"1234567890123456789012"
 	dc.b	"She doesn't seem happy",LF
-	dc.b	"that you're staring.",ETX
+	dc.b	"that you're looking.",ETX
 
 DialogTextCNowStaffDefaultLook:
 	;		"1234567890123456789012"
@@ -6985,20 +6749,20 @@ DialogTextNPCSleepingGuardDefaultLook:
 	align 2
 DialogTextMaleShopper1DefaultLook:
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"more stuff",ETX
+	dc.b	"Maybe he needs help",LF
+	dc.b	"with something.",ETX
 
 	align 2
 DialogTextMaleShopper2DefaultLook:
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"more stuff",ETX
+	dc.b	"He's pacing around a",LF
+	dc.b	"lot.",ETX
 
 	align 2
 DialogTextFemaleShopper1DefaultLook:
 	;		"1234567890123456789012"
-	dc.b	"stuff",LF
-	dc.b	"more stuff",ETX
+	dc.b	"She seems overwhelmed",LF
+	dc.b	"by all the books.",ETX
 
 ;-------------------------------------------------------------------------------
 ; default NPC talk responses
@@ -7062,9 +6826,8 @@ DialogTextCavernStaffDefaultTalk:
 DialogTextSVideoStaffDefaultTalk:
 	dc.w	OBJ_NPC_SVIDEO_STAFF
 	;		"1234567890123456789012"
-	dc.b	"If you're looking for",LF
-	dc.b	"a specific movie we  ^",FF
-	dc.b	"probably have it.",ETX
+	dc.b	"Are you looking for a",LF
+	dc.b	"specific movie?",ETX
 
 	align 2
 DialogTextNShackStaffDefaultTalk:
@@ -7096,9 +6859,9 @@ DialogTextCNowStaffDefaultTalk:
 	dc.b	"you're here!         ^",FF
 	dc.b	"You won't believe what",LF
 	dc.b	"happened today!'     ^",FF
-	dc.b	"(30 minutes later)",LF
+	dc.b	"[30 minutes later]",LF
 	dc.b	"                     ^",FF
-	dc.b	"'..and that's why I'm ",LF
+	dc.b	"..and that's why I'm",LF
 	dc.b	"waiting until after  ^",FF
 	dc.b	"I get married!",ETX
 
@@ -7113,10 +6876,8 @@ DialogTextTBooksStaffDefaultTalk:
 DialogTextFCBCheckoutStaffDefaultTalk:
 	dc.w	OBJ_NPC_FCBCHECKOUT_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Are you going to buy",LF
-	dc.b	"something or are you ^",FF
-	dc.b	"just here to annoy",LF
-	dc.b	"me?",ETX
+	dc.b	"Are you here to shop",LF
+	dc.b	"or just annoy me?",ETX
 
 	align 2
 DialogTextFCBFirearmsStaffDefaultTalk:
@@ -7131,10 +6892,8 @@ DialogTextFCBFirearmsStaffDefaultTalk:
 DialogTextFCBFishingStaffDefaultTalk:
 	dc.w	OBJ_NPC_FCBFISHING_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Ice fishing season is",LF
-	dc.b	"almost here. We have ^",FF
-	dc.b	"everything you need",LF
-	dc.b	"to catch a ton.",ETX
+	dc.b	"We have everything you",LF
+	dc.b	"need for ice fishing.",ETX
 
 	align 2
 DialogTextFCBCampingStaffDefaultTalk:
@@ -7148,23 +6907,21 @@ DialogTextFCBCampingStaffDefaultTalk:
 DialogTextSouthCenterStaffDefaultTalk:
 	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Good evening.",ETX
+	dc.b	"Hello.",ETX
 
 	align 2
 DialogTextWorkshopStaff0DefaultTalk:
 	dc.w	OBJ_NPC_WORKSHOP_STAFF0
 	;		"1234567890123456789012"
 	dc.b	"Sorry, only children",LF
-	dc.b	"under 12 can take    ^",FF
-	dc.b	"photos with Santa.",ETX
+	dc.b	"under are 12 allowed.",ETX
 
 	align 2
 DialogTextWorkshopStaff1DefaultTalk:
 	dc.w	OBJ_NPC_WORKSHOP_STAFF1
 	;		"1234567890123456789012"
-	dc.b	"Aren't you supposed",LF
-	dc.b	"to have a kid with   ^",FF
-	dc.b	"you to visit Santa?",ETX
+	dc.b	"Aren't you supposed to",LF
+	dc.b	"have a kid with you?",ETX
 
 ;-------------------------------------------------------------------------------
 ; menus
@@ -7406,7 +7163,7 @@ DialogTextNPCBillyDefaultGive:
 	dc.w	OBJ_NPC_BILLY
 	;		"1234567890123456789012"
 	dc.b	"I'm not allowed to",LF
-	dc.b	"take that.",ETX
+	dc.b	"have that.",ETX
 
 ;-------------------------------------------------------------------------------
 ; object names
@@ -7777,7 +7534,7 @@ ItemName16BitLastBattle:
 
 ItemDescription16BitLastBattle:
 	;		"1234567890123456789012"
-	dc.b	"The 'Last Battle', we",LF
+	dc.b	"The `Last Battle', we",LF
 	dc.b	"can only hope.",ETX
 
 ItemName16BitGalaga90:
@@ -7813,7 +7570,7 @@ ItemNameHWProdigy:
 
 ItemDescriptionHWProdigy:
 	;		"1234567890123456789012"
-	dc.b	"Includes the modem and",LF
+	dc.b	"Includes the modem &",LF
 	dc.b	"software.",ETX
 
 ItemName35Disks:
@@ -8176,7 +7933,7 @@ ItemDescriptionWoodComb:
 
 ItemNameJacket:
 	;		"1234567890"
-	dc.b	"Blk Jacket",ITEMNAMEEND
+	dc.b	"BlckJacket",ITEMNAMEEND
 
 ItemDescriptionJacket:
 	;		"1234567890123456789012"
@@ -8189,8 +7946,7 @@ ItemNameNoseHoops:
 
 ItemDescriptionNoseHoops:
 	;		"1234567890123456789012"
-	dc.b	"These look painful.",LF
-	dc.b	"",ETX
+	dc.b	"These look painful.",ETX
 
 ItemNameDecoyFish:
 	;		"1234567890"
@@ -8431,15 +8187,15 @@ Day05IntroText:
 
 Day05IntroTip0:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"Bayhurst mall opened back in 1975.",ETX
+	dc.b	"Bayhurst Mall opened in 1975.",ETX
 
 Day05IntroTip1:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"They say it's never once closed due to",ETX
+	dc.b	"They say it never once closed due to",ETX
 
 Day05IntroTip2:
 	;		"1234567890123456789012345678901234567890"
-	dc.b	"bad weather in that time.",ETX
+	dc.b	"bad weather since then.",ETX
 
 Day05IntroTip3:
 	;		"1234567890123456789012345678901234567890"
@@ -8546,7 +8302,7 @@ StatusScreenDay01Objective01:
 	;		"1234567890123456789012345678901234567"
 	dc.b	"Track down the owner of the mystery",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"package and meet your sister.",ETX
+	dc.b	"package & meet your sister.",ETX
 
 StatusScreenDay02Objective00:
 	;		"12345678901234567890123456789012345678"
@@ -8594,7 +8350,7 @@ StatusScreenDay03Objective02:
 	;		"1234567890123456789012345678901234567"
 	dc.b	"You have to find that kid's parents",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"and D.B. before you can leave.",ETX
+	dc.b	"& D.B. before you can leave.",ETX
 
 StatusScreenDay04Objective00:
 	;		"12345678901234567890123456789012345678"
@@ -8839,7 +8595,7 @@ LegalScreenLine05:
 	dc.b	"This demo uses the Echo Sound Driver  ",ETX
 LegalScreenLine06:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Copyright (c) 2010-2017               ",ETX
+	dc.b	"Copyright (c) 2010-2019               ",ETX
 LegalScreenLine07:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"Javier Degirolmo (sikthehedgehog)     ",ETX
