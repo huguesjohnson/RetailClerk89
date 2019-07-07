@@ -70,29 +70,22 @@ ProcessLoadScreenTestStart:
 	move.w	(a6)+,(MEM_NPC3_SPRITE_Y)
 	move.w	(a6)+,(MEM_NPC3_SPRITE_DIRECTION)
 	move.w	(a6)+,(MEM_NPC3_MOVE_INDEX)
-
-
 	move.l	#NPC0_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC0_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
 	move.l	#NPC0_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC0_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
-
 	move.l	#NPC1_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC1_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
 	move.l	#NPC1_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC1_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
-
 	move.l	#NPC2_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC2_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
 	move.l	#NPC2_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC2_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
-
 	move.l	#NPC3_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC3_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
 	move.l	#NPC3_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
 	move.w	(MEM_NPC3_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
-
-
 	;---------------------------------------------------------------------------
 	; fix sprites and fade in
 	;---------------------------------------------------------------------------

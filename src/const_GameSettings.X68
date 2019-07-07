@@ -64,7 +64,6 @@ NPC3_SPRITE_VDP_Y=NPC2_SPRITE_VDP_Y+$00080000	; npc3 sprite y vdp
 SRAM_START=$200001	; SRAM start address
 SRAM_END=$20FFFF	; SRAM end address
 SRAM_LOCK=$A130F1	; address of lock bit
-SRAM_INIT_CHECK=$20FFFE	; address to check if SRAM is initialized
 SAVE_SIZE=$2000	; max size of a save game slot
 SAVE_GAME_START=MEM_OBJECTIVE	; start location of save game data
 SAVE_GAME_END=MEM_ACTIVE_SCENE_EXIT_S	; end location of save game data
