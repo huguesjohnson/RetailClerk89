@@ -1373,14 +1373,14 @@ DialogTextCavernStaffDay02Sub00:
 	;		"1234567890123456789012"
 	dc.b	"You're from that video",LF
 	dc.b	"game store right?    ^",FF
-	dc.b	"You guys are stealing",FF
-	dc.b	"half my business.    ^",LF
-	dc.b	"Now you want me to do",FF
-	dc.b	"you a favor?         ^",LF
-	dc.b	"I'm not the bank kid.",FF
-	dc.b	"                     ^",LF
-	dc.b	"...",FF
-	dc.b	"                     ^",LF
+	dc.b	"You guys are stealing",LF
+	dc.b	"half my business.    ^",FF
+	dc.b	"Now you want me to do",LF
+	dc.b	"you a favor?         ^",FF
+	dc.b	"I'm not the bank kid.",LF
+	dc.b	"                     ^",FF
+	dc.b	"...",LF
+	dc.b	"                     ^",FF
 	dc.b	"Sorry, I'm cranky from",LF
 	dc.b	"working too long.    ^",FF
 	dc.b	"Here, have a roll of",LF
@@ -1535,7 +1535,7 @@ DialogTextTLodgeStaffDay02Sub01Talk:
 	dc.b	"We are missing one",LF
 	dc.b	"shipment though.     ^",FF
 	dc.b	"It's for a new line",LF
-	dc.b	"of police scanners.  ^",LF
+	dc.b	"of police scanners.  ^",FF
 	dc.b	"They support over 20K",LF
 	dc.b	"frequencies.         ^",FF
 	dc.b	"Extended warranty",LF
@@ -1649,7 +1649,7 @@ DialogTextSouthCenterStaffDay02Sub01Talk:
 	dc.b	"A few small items go",LF
 	dc.b	"missing every day.   ^",FF
 	dc.b	"I was worried about",LF
-	dc.b	"rodents.             ^",LF
+	dc.b	"rodents.             ^",FF
 	dc.b	"Do you think it's a",LF
 	dc.b	"person instead?",ETX
 
@@ -2367,7 +2367,7 @@ DialogTextScriptedEventDay04Start00:
 	dc.b	"Hey, I got Todd in the",LF
 	dc.b	"Secret Santa thing.  ^",FF
 	dc.b	"You went to the same",LF
-	dc.b	"high school right?   ^",LF
+	dc.b	"high school right?   ^",FF
 	dc.b	"What should I get him?",ETX
 
 	align 2
@@ -2771,7 +2771,7 @@ DialogTextSVideoStaffDay04SubFindGift3:
 	dc.b	"I want to study math",LF
 	dc.b	"& computer science.  ^",FF
 	dc.b	"I can't decide which",LF
-	dc.b	"to major in though.  ^",LF
+	dc.b	"to major in though.  ^",FF
 	dc.b	"I'm really interested",LF
 	dc.b	"in both right now.",ETX
 
@@ -2880,7 +2880,7 @@ DialogTextCenterStaffDay04MallClosed:
 	dc.w	OBJ_NPC_CENTER_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Please ask your sister",LF
-	dc.b	"to pick-up her gift."ETX
+	dc.b	"to pick-up her gift.",ETX
 
 	align 2
 DialogTextSouthCenterStaffDay04MallClosed:
@@ -2907,8 +2907,8 @@ DialogTextCPlanetStaffDay04MallClosed:
 	dc.b	"long, huh.           ^",FF
 	dc.b	"I can't talk tonight.",LF
 	dc.b	"                     ^",FF
-	dc.b	"I'm heading out to the",FF
-	dc.b	"Rocky Horror show.   ^",LF
+	dc.b	"I'm heading out to the",LF
+	dc.b	"Rocky Horror show.   ^",FF
 	dc.b	"I go every week. Just",LF
 	dc.b	"as a joke of course.",ETX
 
@@ -3199,6 +3199,7 @@ DialogTextDay05Scene12UseBookshelf:
 		
 	align 2
 DialogTextDay05SubDontKnow:
+	dc.w	OBJ_NPC_DANI
 	dc.b	"(I still don't know",LF
 	dc.b	"what I'm looking for)^",FF
 	dc.b	"(Maybe a cookbook",LF
@@ -3214,7 +3215,7 @@ DialogTextDay05ScriptedEventSub00D0:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"I need stuff without",LF
-	dc.b	"meat or gluten.      ^",LF
+	dc.b	"meat or gluten.      ^",FF
 	dc.b	"I hope that means",LF
 	dc.b	"something to you.",ETX
 
@@ -4583,7 +4584,7 @@ DialogTextDay06ScriptedEventEnding00F:
 	dc.b	"it will be.          ^",FF
 	dc.b	"A mall that's exactly",LF
 	dc.b	"how you remember it. ^",FF
-	dc.b	"But it's not just a  ^",LF
+	dc.b	"But it's not just a",LF
 	dc.b	"memory, you're there.",ETX
 
 	align 2
@@ -6218,7 +6219,7 @@ DialogTextRadioDay06R2:	; WCAS (top 40)
 	dc.b	"playing Xmas music on",LF
 	dc.b	"the 24th. C'mon, it's^",FF
 	dc.b	"not like we're playing",LF
-	dc.b	"it in November.",FF
+	dc.b	"it in November.",ETX
 
 DialogTextRadioDay06R3:	; WVVX (hair metal)
 	;		"1234567890123456789012"
