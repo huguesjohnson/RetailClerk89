@@ -1473,12 +1473,24 @@ ScriptedEventDay05Camp:
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp19A
 	; --------------------------------------------------------------------------
-	; scene transition would go here
+	; scene transition
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	dc.w	SCRIPTED_EVENT_DRAW_SCENE
+	dc.w	SCENE_ID_FLASHBACK_1989
+	; --------------------------------------------------------------------------
+	; dialog
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp19B
 	; --------------------------------------------------------------------------
-	; scene transition would go here
+	; scene transition
+	; --------------------------------------------------------------------------
+	dc.w	SCRIPTED_EVENT_FADE_BLACK	; fade out
+	dc.w	SCRIPTED_EVENT_DRAW_SCENE
+	dc.w	SCENE_ID_FCBCAMPING
+	; --------------------------------------------------------------------------
+	; dialog
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp1A
@@ -1486,14 +1498,8 @@ ScriptedEventDay05Camp:
 	dc.l	DialogTextDay05ScriptedEventCamp1B
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp1C
-
-	; --------------------------------------------------------------------------
-	; this would be a good place for another flashback scene
-	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp1D
-
-
 	; --------------------------------------------------------------------------
 	; transition to Santa's Workshop scene
 	; --------------------------------------------------------------------------

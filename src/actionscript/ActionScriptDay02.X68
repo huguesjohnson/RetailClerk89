@@ -42,6 +42,7 @@ Day02Scene00Action01NPCDBCompleted:
 	move.l	d7,(MEM_GAME_STATE)	; save game state
 	move.l	#$00000000,(MEM_NPC_LOCATION_VB)
 	move.l	#$01000000,(MEM_NPC_LOCATION_PARKINGLOT)
+	move.l	#$18000000,(MEM_NPC_LOCATION_EEHALL)
 	; clear all mission flags
 	and.l #$00000000,(MEM_MISSION_EVENT_FLAGS)
 	; queue the scripted event
@@ -168,6 +169,8 @@ Day02Scene04Action01NPC:
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
 	; update NPCs in the south hall
 	move.l	#$00000000,(MEM_NPC_LOCATION_SHALL)	; update NPCs
+	; update objective	
+	move.w	#OBJECTIVE_D2_O4,(MEM_OBJECTIVE)
 	; queue the scripted event
 	lea ScriptedEventDay02Night00,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -209,6 +212,29 @@ Day02Scene05Action03:	; ACTION_RESPOND
 	; else exit
 	lea	DialogTextDaniCarGameEndR0,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+
+;-------------------------------------------------------------------------------
+; day 02 - scene 07 (SCENE_ID_EEHALL)
+;-------------------------------------------------------------------------------
+Day02Scene07Action01:	; ACTION_USE_TALK
+	cmpi.w	#OBJ_NPC_GUARD0,(MEM_ACTION_TARGET_OBJID)	; test target
+	bne.s	Day02Scene07Action01Default	; use default text
+	lea	DialogTextSecurityGuardDay00,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day02Scene07Action01Default:
+	; default text
+	bsr.w	ActionScriptDefaultUse
+	rts
+Day02Scene07Action02:	; ACTION_TAKE_GIVE
+	cmpi.w	#OBJ_NPC_GUARD0,(MEM_ACTION_TARGET_OBJID)	; test target
+	bne.s	Day02Scene07Action02Default	; use default text
+	lea	DialogTextSecurityGuardDay00,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+Day02Scene07Action02Default:
+	; default action
+	bsr.w	ActionScriptDefaultTake
 	rts
 
 ;-------------------------------------------------------------------------------
@@ -990,6 +1016,7 @@ Day02TestSub02Mid:
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save day event flags
 	; move npc to south hall
 	move.l	#$12000000,(MEM_NPC_LOCATION_SHALL)	; update NPCs
+	move.w	#OBJECTIVE_D2_O3,(MEM_OBJECTIVE)	; increment objective
 ExitDay02TestSub02Complete:
 	rts
 

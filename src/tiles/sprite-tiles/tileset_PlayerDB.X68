@@ -80,7 +80,7 @@ tileset_PlayerDB_Frame1Start:
 	dc.l	$00000000
 	dc.l	$00000111
 	dc.l	$00001777
-	dc.l	$00017776
+	dc.l	$00017777
 	dc.l	$00177673
 	dc.l	$00177333
 	dc.l	$001773D3
@@ -192,7 +192,7 @@ tileset_PlayerDB_Frame2Start:
 	dc.l	$00000000
 	dc.l	$11100000
 	dc.l	$77710000
-	dc.l	$67771000
+	dc.l	$77771000
 	dc.l	$36777100
 	dc.l	$33677100
 	dc.l	$3D367100

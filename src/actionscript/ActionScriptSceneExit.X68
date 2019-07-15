@@ -35,7 +35,7 @@ DefaultExitScene:
 	btst.l	d7,d5	; test if player has the key
 	bne.s	DefaultExitSceneLoadNewScene	; player has the key, branch
 	;--------------------------------------------------------------------------- 
-	; at this point the played needs a key for the store
+	; at this point the player needs a key for the store
 	; if the day is 05 and EVENT_FLAG_DAY05_EVENT_LEAVING is set
 	; then there are different rules
 	;--------------------------------------------------------------------------- 
@@ -45,6 +45,8 @@ DefaultExitScene:
 	btst.l	#EVENT_FLAG_DAY05_EVENT_LEAVING,d7	; test flag
 	bne.w	ExitSceneDay05Blizzard	; flag set, branch
 DefaultExitSceneNoKey:
+	; this line is for a bug that was really fun to track down
+	move.w	#$FFFF,(MEM_ACTION_TARGET_NPCID)
 	; display message
 	lea	DialogTextStoreClosed,a6	; load dialog text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT

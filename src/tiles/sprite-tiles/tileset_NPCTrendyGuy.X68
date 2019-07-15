@@ -167,7 +167,7 @@ tileset_NPCTrendyGuy_Frame2Start:
 	dc.l	$00144466
 	dc.l	$01444446
 	dc.l	$01444444
-	dc.l	$144444C4
+	dc.l	$14444444
 	dc.l	$14461444
 	dc.l	$16611444
 
@@ -203,7 +203,7 @@ tileset_NPCTrendyGuy_Frame2Start:
 	dc.l	$64441000
 	dc.l	$44444100
 	dc.l	$44444100
-	dc.l	$44444100
+	dc.l	$C4444100
 	dc.l	$44144100
 	dc.l	$44144100
 

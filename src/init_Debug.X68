@@ -32,7 +32,7 @@ DebugTable:
 	dc.l	DebugStartDay7EndGood	
 	dc.l	DebugStartDay7TitlePerfect	
 	dc.l	DebugStartDay7EndPerfect
-	dc.l	DebugStartEnd
+	dc.l	DebugStartWIPScene
 
 ProcessDebugScreen:
 	; process start press
@@ -849,17 +849,18 @@ DebugStartDay7EndPerfect:
 	bsr.w	LoadScene	; branch to LoadScene subroutine
 	bsr.w	LoadPlayerSprite
 	bsr.w	FixSprites
-	bsr.w	FadeIn	; fade in to the new scene
+	bsr.w	FadeIn	; fade in to the scene
 	rts
 
+DebugStartWIPScene:
 
-DebugStartEnd:
-	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
-	bset.l	#STATE_FLAG_EXPLORING,d7	; set exploring flag
-	move.l	d7,(MEM_GAME_STATE)	; save it back
-	; queue the scripted event
-	lea TestScriptedEventEnding,a6	; point a6 to event to load
-	bsr.w QueueScriptedEvent	; queue the event
+	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
+	bset.l	#STATE_FLAG_EXPLORING,d7 ; set exploring flag
+	move.l	d7,(MEM_GAME_STATE)	; save updated game state
+
+	lea	SceneFlashback1989,a6
+	bsr.w	LoadScene	; branch to LoadScene subroutine
+	bsr.w	FadeIn	; fade in to the scene
 	rts
 
 	endif

@@ -666,6 +666,9 @@ Day01Scene09Action03MannequinRespond:
 	lea ScriptedEventDay01Sub00NPC3MoveRight,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
 Day01Scene09Action03MannequinRespondSetText:
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TITLED,d7	; set the titled flag
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated flags
 	lea	DialogTextDay01Sub00NPC2D1,a6	; load first text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -686,6 +689,9 @@ Day01Scene09Action03TMannequinRespond:
 	bset.l	#MISSION_FLAG_DAY01_SUB00_NPC3_D2,d7	; set flag
 	move.l	d7,(MEM_MISSION_EVENT_FLAGS)	; save flags
 Day01Scene09Action03TMannequinRespondSetText:
+	move.l	(MEM_DIALOG_FLAGS),d7	; copy dialog flags to d7
+	bset.l	#DIALOG_FLAG_STYLE_TITLED,d7	; set the titled flag
+	move.l	d7,(MEM_DIALOG_FLAGS)	; save updated flags
 	lea	DialogTextDay01Sub00NPC2D2,a6	; load first text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts

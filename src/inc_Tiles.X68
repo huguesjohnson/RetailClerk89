@@ -308,11 +308,11 @@ BannerTilesStart:
 	include 'tiles/scene-tiles/tileset_banner.X68'
 BannerTilesEnd:
 
-WorkshopTilesStart:
-
 WorkshopFrameTilesStart:
 	include 'tiles/scene-tiles/tileset_workshopframe.X68'
 WorkshopFrameTilesEnd:
+
+WorkshopTilesStart:
 
 SnowFloorTilesStart:
 	include 'tiles/scene-tiles/tileset_snowfloor.X68'

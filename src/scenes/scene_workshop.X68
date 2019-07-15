@@ -8,7 +8,7 @@ SceneWorkshop:
 	;---------------------------------------------------------------------------
 	; tiles
 	;---------------------------------------------------------------------------
-	dc.w	$0002	; tileset count - 1
+	dc.w	$0003	; tileset count - 1
 
 	; tileset 0
 	dc.l	TransparentTileStart
@@ -18,7 +18,11 @@ SceneWorkshop:
 	dc.l	CarpetFloorTilesStart	; start of floor tiles
 	dc.l	CarpetFloorTilesEnd	; end of floor tiles
 
-	; tileset 2
+	; tileset 3
+	dc.l	WorkshopFrameTilesStart	; start of frame tiles
+	dc.l	WorkshopFrameTilesEnd	; end of frame tiles
+
+	; tileset 3
 	dc.l	WorkshopTilesStart	; start of workshop tiles
 	dc.l	WorkshopTilesEnd	; end of workshop tiles
 

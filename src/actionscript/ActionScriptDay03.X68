@@ -544,6 +544,7 @@ Day03Scene0AAction03StartMission:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy day flags to d7
 	bset.l	#EVENT_FLAG_DAY03_SUB_TLODGE_STARTED,d7	; set mission started flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	move.w	#OBJECTIVE_D3_O3,(MEM_OBJECTIVE)	; increment objective
 	lea	DialogTextScene09Day03IntroR0,a6	; load default text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts

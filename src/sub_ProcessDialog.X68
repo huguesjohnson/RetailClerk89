@@ -282,6 +282,11 @@ ProcessDialogTestButtonPressC:	; c
 ProcessDialogSetClosing:
 	bset.l	#DIALOG_FLAG_TEXT_CLOSING,d7	; set closing flag
 	bclr.l	#DIALOG_FLAG_TEXT_OPEN,d7	; closing, clear open flag
+	; next test is for a weird bug that probably has a better fix
+	btst.l	#DIALOG_FLAG_STYLE_ITEM_MENU,d7	; set item menu flag
+	beq.s	.1
+	bclr.l	#DIALOG_FLAG_STYLE_TITLED,d7	; closing, clear open flag
+.1
 	btst.l	#DIALOG_FLAG_OPTION_PERSIST_SELECTOR,d7	; hide the selector?
 	bne.w	ExitProcessDialog	; don't hide if flag is set
 	bsr.w	HideSelectorSprite	; hide selector sprite if flag not set

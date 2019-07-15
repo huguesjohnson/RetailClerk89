@@ -80,9 +80,6 @@ InitSRAM:
 	cmpi.w	#$8989,d7	; test if it matches the expected init value
 	beq.s	ExitInitSRAM	; branch if it does
 	; write init data
-	clr	d6	; just being paranoid
-	move.w	#$0004,d6
-	mulu.w	#SAVE_SIZE,d6	; copy by save size
 	lea	(SRAM_START),a5	; point a5 to the start of SRAM
 	adda.l	d6,a5	; move to offset location
 	move.b	#$89,(a5)	; first half of word

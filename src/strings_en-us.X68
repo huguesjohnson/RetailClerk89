@@ -177,7 +177,7 @@ TitleScreenTextFooter:
 
 	DebugScreenLine1B:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Ending credits (old version)        ",ETX
+	dc.b	"{ Work in-progress scene test         ",ETX
 
 	endif
 
@@ -999,8 +999,7 @@ MenuMannequinSub00NPC2ShowCancel:
 
 	align 2
 DialogTextDay01Sub00NPC2D1:
-; commented out due to thing I need to fix
-;	dc.w	OBJ_NPC_GENERICSHOPPER
+	dc.w	OBJ_NPC_GENERICSHOPPER
 	;		"1234567890123456789012"
 	dc.b	"All wrong.",LF
 	dc.b	"                     ^",FF
@@ -1011,8 +1010,7 @@ DialogTextDay01Sub00NPC2D1:
 
 	align 2
 DialogTextDay01Sub00NPC2D2:
-; commented out due to thing I need to fix
-;	dc.w	OBJ_NPC_DANI
+	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
 	dc.b	"Here, this one is",LF
 	dc.b	"really something.",ETX
@@ -2003,7 +2001,7 @@ DialogTextScene09Day03Give2:
 
 DialogTextDay03FindCamera1:
 	;		"1234567890123456789012"
-	dc.b	"(Hey, there's something",LF
+	dc.b	"(Hey, something is",LF
 	dc.b	"under the bench..)",FF
 	dc.b	"[Found Camera]",ETX
 
@@ -3986,7 +3984,7 @@ DialogTextDay06Sub00Start01:
 	dc.b	"I don't need help",LF
 	dc.b	"tonight.             ^",FF
 	dc.b	"Our annual inventory",LF
-	dc.b	"next Tuesday.        ^",FF
+	dc.b	"is next Tuesday.     ^",FF
 	dc.b	"We need people who can",LF
 	dc.b	"work it overnight.   ^",FF
 	dc.b	"It's a temporary job",LF
@@ -4002,7 +4000,7 @@ DialogTextDay06Sub00Start02:
 DialogTextDay06Sub00Start03:
 	dc.w	OBJ_NPC_CNOW_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Let's to the interview",LF
+	dc.b	"Let's do the interview",LF
 	dc.b	"now then.            ^",FF
 	dc.b	"The most important",LF
 	dc.b	"thing I look for is..^",FF
@@ -4342,7 +4340,7 @@ DialogTextDay06ScriptedEventEndMissionGood00:
 	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
 	dc.b	"(I think I hear the",LF
-	dc.b	"guard approaching.)   ^",FF
+	dc.b	"guard approaching.)  ^",FF
 	dc.b	"(Sounds like he's",LF
 	dc.b	"walking south now.)",ETX
 
@@ -4977,7 +4975,7 @@ DialogTextDay07Scene0FGetKey0:
 	dc.b	"Uh, here. Have one of",LF
 	dc.b	"these, what is it?   ^",FF
 	dc.b	"Huh. What are you",LF
-	dc.b	"doing here?          ^",ETX
+	dc.b	"doing here?          ^",FF
 	dc.b	"Oh right, a key.",LF
 	dc.b	"I remember now.      ^",FF
 	dc.b	"In case you want to,",LF
@@ -7689,7 +7687,7 @@ ItemDescriptionQuarters:
 
 ItemNameCamera1:
 	;		"1234567890"
-	dc.b	"Camera",ITEMNAMEEND
+	dc.b	"Camera 1",ITEMNAMEEND
 
 ItemDescriptionCamera1:
 	;		"1234567890123456789012"
@@ -7698,7 +7696,7 @@ ItemDescriptionCamera1:
 
 ItemNameCamera2:
 	;		"1234567890"
-	dc.b	"Camera",ITEMNAMEEND
+	dc.b	"Camera 2",ITEMNAMEEND
 
 ItemDescriptionCamera2:
 	;		"1234567890123456789012"
@@ -7707,7 +7705,7 @@ ItemDescriptionCamera2:
 
 ItemNameCamera3:
 	;		"1234567890"
-	dc.b	"Camera",ITEMNAMEEND
+	dc.b	"Camera 3",ITEMNAMEEND
 
 ItemDescriptionCamera3:
 	;		"1234567890123456789012"
@@ -8325,9 +8323,25 @@ StatusScreenDay02Objective02:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"November 26, 1989: Missing items",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"1) Track that guy down",LF
+	dc.b	"You need to track that guy down.",LF
 	;		"1234567890123456789012345678901234567"
-	dc.b	"2) Go home",ETX
+	dc.b	"Maybe his coworkers know something.",ETX
+
+StatusScreenDay02Objective03:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"November 26, 1989: Missing items",LF
+	;		"1234567890123456789012345678901234567"s
+	dc.b	"He must be somewhere else in the",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"mall, time to search.",ETX
+
+StatusScreenDay02Objective04:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"November 26, 1989: Missing items",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"That's enough for one day,",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"time to head out.",ETX
 
 StatusScreenDay03Objective00:
 	;		"12345678901234567890123456789012345678"
@@ -8336,6 +8350,14 @@ StatusScreenDay03Objective00:
 	dc.b	"Maybe someone has an update on the",LF
 	;		"1234567890123456789012345678901234567"
 	dc.b	"items missing from their store?",ETX
+
+StatusScreenDay03Objective03:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 3, 1989: Making new friends",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"There are 3 cameras hidden in the",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"mall, try looking everywhere.",ETX
 
 StatusScreenDay03Objective01:
 	;		"12345678901234567890123456789012345678"
@@ -8449,6 +8471,14 @@ SaveGameTitleD2O2:
 	;		"123456789012345678901"
 	dc.b	"November 26 (Evening)",ETX
 
+SaveGameTitleD2O3:
+	;		"123456789012345678901"
+	dc.b	"November 26 (Evening)",ETX
+
+SaveGameTitleD2O4:
+	;		"123456789012345678901"
+	dc.b	"November 26 (Night)  ",ETX
+
 SaveGameTitleD3O0:
 	;		"123456789012345678901"
 	dc.b	"December 3 (Day)     ",ETX
@@ -8476,6 +8506,10 @@ SaveGameTitleD7O0:
 SaveGameTitleD3O2:
 	;		"123456789012345678901"
 	dc.b	"December 3 (Evening) ",ETX
+
+SaveGameTitleD3O3:
+	;		"123456789012345678901"
+	dc.b	"December 3 (Day)     ",ETX
 
 SaveGameTitleD5O1:
 	;		"123456789012345678901"

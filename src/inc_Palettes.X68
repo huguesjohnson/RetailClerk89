@@ -186,6 +186,10 @@ FlashbackPalettes:
 	include 'palettes/pal_Flashback02.X68'
 	include 'palettes/pal_People_00.X68'
 
+Flashback1989Palettes:
+	include 'palettes/pal_Flashback1989.X68'
+	include 'palettes/pal_People_00.X68'
+
 ;-------------------------------------------------------------------------------
 ; palettes for screens that only display text (legal, credits)
 ;-------------------------------------------------------------------------------
