@@ -954,6 +954,16 @@ ScriptedEventDay04StartSub:
 	dc.w	($0118-$0070)/SPRITE_STEP_PIXELS
 	dc.w	SCRIPTED_EVENT_END
 
+ScriptedEventDay04TBooksGreenberg:
+	dc.w	$0001	; player
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextTBooksGreenbergDay0401
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextTBooksGreenbergDay0402
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextTBooksGreenbergDay0403
+	dc.w	SCRIPTED_EVENT_END
+
 ScriptedEventDay04TBooks:
 	dc.w	$0001	; player
 	; --------------------------------------------------------------------------

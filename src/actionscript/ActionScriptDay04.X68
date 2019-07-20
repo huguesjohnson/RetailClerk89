@@ -150,6 +150,8 @@ Day04Scene03Action01NPCSubNotStarted:
 	move.l	d7,(MEM_DIALOG_FLAGS)	; save it back
 	lea	DialogTextDay04Scene03SubNotStarted,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	; just for fun let's move greenberg to the bookstore
+	move.l	#$0E030000,(MEM_NPC_LOCATION_TBOOKS)
 	rts
 Day04Scene03Action01NPCSubStartedNotCompleteNoNPC:
 	lea	DialogTextDay04Scene03SubNotStartedR0,a6	; load text
@@ -250,6 +252,7 @@ Day04Scene03Action03GiveGiftR0:
 	move.l	#$05000000,(MEM_NPC_LOCATION_DENIMCOUNTRY)
 	move.l	#$1D000000,(MEM_NPC_LOCATION_WEHALL)
 	move.l	#$10000000,(MEM_NPC_LOCATION_FCBFIREARMS)
+	move.l	#$0E000000,(MEM_NPC_LOCATION_TBOOKS)
 	move.l	(MEM_GAME_STATE),d7	; copy game state to d7
 	bset.l	#STATE_FLAG_MALL_CLOSED,d7	; set mall closed flag
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
@@ -828,6 +831,16 @@ Day04Scene11Action02NPC:
 Day04Scene12Action01:	; ACTION_USE_TALK
 	cmpi.w	#OBJ_NPC_TBOOKS_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day04Scene12Action01NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_GREENBERG,(MEM_ACTION_TARGET_OBJID) ; test target
+	bne.s	Day04Scene12Action01Default	; branch to default if not
+	; queue scripted event
+	lea ScriptedEventDay04TBooksGreenberg,a6	; point a6 to event to load
+	bsr.w QueueScriptedEvent	; queue the event
+	; show first message
+	lea	DialogTextTBooksGreenbergDay0400,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day04Scene12Action01Default:
 	; default text
 	bsr.w ActionScriptDefaultUse
 	rts
@@ -855,6 +868,12 @@ Day04Scene12Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene12Action02:	; ACTION_TAKE_GIVE
+	cmpi.w	#OBJ_NPC_GREENBERG,(MEM_ACTION_TARGET_OBJID) ; test target
+	bne.s	.1
+	lea	DialogTextGreenbergDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+.1
 	;---------------------------------------------------------------------------
 	; if EVENT_FLAG_DAY04_SUB_TBOOKS_DIALOG is set
 	; and

@@ -60,7 +60,7 @@ TitleScreenTextFooter:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"       Stable Demo (July 2019)        ",ETX
+	dc.b	"      Release Build (July 2019)      ",ETX
 	endif
 
 	if _DEBUG_
@@ -2609,6 +2609,35 @@ DialogTextTBooksStaffDay04SubFindNPC:
 	dc.b	"need a gift.",ETX
 
 	align 2
+DialogTextTBooksGreenbergDay0400:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Shouldn't you be at",LF
+	dc.b	"your store?",ETX
+
+	align 2
+DialogTextTBooksGreenbergDay0401:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Shouldn't you be at",LF
+	dc.b	"your store?",ETX
+
+	align 2
+DialogTextTBooksGreenbergDay0402:
+	dc.w	OBJ_NPC_DANI
+	;		"1234567890123456789012"
+	dc.b	"Yeah, alright.",ETX
+
+	align 2
+DialogTextTBooksGreenbergDay0403:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"You worry too much.",LF
+	dc.b	"                     ^",FF
+	dc.b	"I'm sure D.B. is doing",LF
+	dc.b	"just fine right now.",ETX
+
+	align 2
 DialogTextDenimCountryStaffDay04SubFindNPC:
 	dc.w	OBJ_NPC_DENIMCOUNTRY_STAFF
 	;		"1234567890123456789012"
@@ -4152,6 +4181,33 @@ DialogTextDay06Scene0DNPCDani:
 	;		"1234567890123456789012"
 	dc.b	"If you say one word",LF
 	dc.b	"about this to anyone..",ETX
+
+	align 2
+DialogTextDay06Sub00Scene00NPC:
+	dc.w	OBJ_NPC_GREENBERG
+	;		"1234567890123456789012"
+	dc.b	"Something to help you",LF
+	dc.b	"stay awake?          ^",FF
+	dc.b	"What crazy things do",LF
+	dc.b	"you have planned?",ETX
+
+	align 2
+DialogTextDay06Sub12Scene00NPC:
+	dc.w	OBJ_NPC_TBOOKS_STAFF
+	;		"1234567890123456789012"
+	dc.b	"What? That's a weird",LF
+	dc.b	"thing to look for.   ^",FF
+	dc.b	"You should take better",LF
+	dc.b	"care of yourself.",ETX
+
+	align 2
+DialogTextDay06Sub0AScene00NPC:
+	dc.w	OBJ_NPC_TLODGE_STAFF
+	;		"1234567890123456789012"
+	dc.b	"You need help staying",LF
+	dc.b	"awake?               ^",FF
+	dc.b	"We sold out of alarm",LF
+	dc.b	"clocks yesterday.",ETX
 
 	align 2
 DialogTextDay06ScriptedEventDayStartSub00:

@@ -8,6 +8,20 @@ Day06Scene00Action01:	; ACTION_USE_TALK
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene00Action01NPC:
+	; test event flags
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY06_SUB00_STARTED,d7	; test if sub is started
+	beq.s	Day06Scene00Action01NPCDefault	; not started, use default text
+	btst.l	#EVENT_FLAG_DAY06_SUB00_COMPLETE,d7	; test if sub is complete
+	bne.s	Day06Scene00Action01NPCDefault	; complete, use default text
+	; test mission flag
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#MISSION_FLAG_DAY06_SUB00_GETITEM,d7	; test if event is complete
+	bne.s	Day06Scene00Action01NPCDefault	; complete, use default text
+	lea	DialogTextDay06Sub00Scene00NPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene00Action01NPCDefault:
 	lea	DialogTextGreenbergDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -198,6 +212,7 @@ Day06Scene08Action01:	; ACTION_USE_TALK
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene08Action01NPC:
+Day06Scene08Action01NPCDefault:
 	lea	DialogTextDenimCountryStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -222,6 +237,7 @@ Day06Scene09Action01:	; ACTION_USE_TALK
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene09Action01NPC:
+Day06Scene09Action01NPCDefault:
 	lea	DialogTextCheckersStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -247,6 +263,20 @@ Day06Scene0AAction01:	; ACTION_USE_TALK
 	beq.s	Day06Scene0AAction01Radio	; branch to text for the radio
 	rts
 Day06Scene0AAction01NPC:
+	; test event flags
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY06_SUB00_STARTED,d7	; test if sub is started
+	beq.s	Day06Scene0AAction01NPCDefault	; not started, use default text
+	btst.l	#EVENT_FLAG_DAY06_SUB00_COMPLETE,d7	; test if sub is complete
+	bne.s	Day06Scene0AAction01NPCDefault	; complete, use default text
+	; test mission flag
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#MISSION_FLAG_DAY06_SUB00_GETITEM,d7	; test if event is complete
+	bne.s	Day06Scene0AAction01NPCDefault	; complete, use default text
+	lea	DialogTextDay06Sub0AScene00NPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene0AAction01NPCDefault:
 	lea	DialogTextTLodgeStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -332,6 +362,7 @@ Day06Scene0BAction01:	; ACTION_USE_TALK
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene0BAction01NPC:
+Day06Scene0BAction01NPCDefault:
 	lea	DialogTextCavernStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -372,6 +403,7 @@ Day06Scene0CAction01Default:
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene0CAction01NPC:
+Day06Scene0CAction01NPCDefault:
 	lea	DialogTextSVideoStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -408,10 +440,12 @@ Day06Scene0DAction01:	; ACTION_USE_TALK
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene0DAction01NPC0:
+Day06Scene0DAction01NPC0Default:
 	lea	DialogTextWorkshopStaff0DefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day06Scene0DAction01NPC1:
+Day06Scene0DAction01NPC1Default:
 	lea	DialogTextWorkshopStaff1DefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -502,6 +536,7 @@ Day06Scene0FAction01:	; ACTION_USE_TALK
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene0FAction01NPC:
+Day06Scene0FAction01NPCDefault:
 	lea	DialogTextPogoDawgStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -526,6 +561,7 @@ Day06Scene10Action01:	; ACTION_USE_TALK
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene10Action01NPC:
+Day06Scene10Action01NPCDefault:
 	lea	DialogTextCPlanetStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -633,6 +669,20 @@ Day06Scene12Action01:	; ACTION_USE_TALK
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene12Action01NPC:
+	; test event flags
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#EVENT_FLAG_DAY06_SUB00_STARTED,d7	; test if sub is started
+	beq.s	Day06Scene12Action01NPCDefault	; not started, use default text
+	btst.l	#EVENT_FLAG_DAY06_SUB00_COMPLETE,d7	; test if sub is complete
+	bne.s	Day06Scene12Action01NPCDefault	; complete, use default text
+	; test mission flag
+	move.l	(MEM_MISSION_EVENT_FLAGS),d7	; copy event flags to d7
+	btst.l	#MISSION_FLAG_DAY06_SUB00_GETITEM,d7	; test if event is complete
+	bne.s	Day06Scene12Action01NPCDefault	; complete, use default text
+	lea	DialogTextDay06Sub12Scene00NPC,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+Day06Scene12Action01NPCDefault:
 	lea	DialogTextTBooksStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -657,6 +707,7 @@ Day06Scene13Action01:	; ACTION_USE_TALK
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene13Action01NPC:
+Day06Scene13Action01NPCDefault:
 	lea	DialogTextFCBCheckoutStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
@@ -730,6 +781,7 @@ Day06Scene15Action01:	; ACTION_USE_TALK
 	bsr.w	ActionScriptDefaultUse
 	rts
 Day06Scene15Action01NPC:
+Day06Scene15Action01NPCDefault:
 	lea	DialogTextFCBFishingStaffDefaultTalk,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts

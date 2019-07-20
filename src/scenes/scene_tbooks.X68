@@ -326,10 +326,9 @@ SceneTBooks:
 	dc.w	$01A4	; starting x location of npc1
 	dc.w	$0120	; starting y location of npc1
 	dc.w	DIRECTION_UP	; starting direction of npc1
-	dc.w	$0001	; movement frequency of npc1
+	dc.w	$FFFF	; movement frequency of npc1
 	dc.l	NPCMovementUpStart	; location of movement pattern for npc1
 	dc.w	(NPCMovementUpEnd-NPCMovementUpStart-1)	; pattern length
-
 
 	;---------------------------------------------------------------------------
 	; bgm
