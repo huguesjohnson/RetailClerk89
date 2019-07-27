@@ -18,80 +18,8 @@ ProcessLoadScreenTestStart:
 	;---------------------------------------------------------------------------	
 	; load game	
 	;---------------------------------------------------------------------------	
-	bsr.w	FadeOut	; fade out
 	bsr.w	LoadGame	;	load the game from SRAM
-	;---------------------------------------------------------------------------
-	; reloading the scene sets all the sprite positions back to default
-	;---------------------------------------------------------------------------
-	lea	MEM_TEMP_SPACE,a6	; point a6 to a temporary space
-	move.w	(MEM_NPC0_SPRITE_X),(a6)+
-	move.w	(MEM_NPC0_SPRITE_Y),(a6)+
-	move.w	(MEM_NPC0_SPRITE_DIRECTION),(a6)+
-	move.w	(MEM_NPC0_MOVE_INDEX),(a6)+
-	move.w	(MEM_NPC1_SPRITE_X),(a6)+
-	move.w	(MEM_NPC1_SPRITE_Y),(a6)+
-	move.w	(MEM_NPC1_SPRITE_DIRECTION),(a6)+
-	move.w	(MEM_NPC1_MOVE_INDEX),(a6)+
-	move.w	(MEM_NPC2_SPRITE_X),(a6)+
-	move.w	(MEM_NPC2_SPRITE_Y),(a6)+
-	move.w	(MEM_NPC2_SPRITE_DIRECTION),(a6)+
-	move.w	(MEM_NPC2_MOVE_INDEX),(a6)+
-	move.w	(MEM_NPC3_SPRITE_X),(a6)+
-	move.w	(MEM_NPC3_SPRITE_Y),(a6)+
-	move.w	(MEM_NPC3_SPRITE_DIRECTION),(a6)+
-	move.w	(MEM_NPC3_MOVE_INDEX),(a6)+
-	;---------------------------------------------------------------------------
-	; reload scene
-	;---------------------------------------------------------------------------
-	clr.l	d7	; just being paranoid
-	move.w	(MEM_ACTIVE_SCENE_ID),d7	; copy scene ID to load to d7
-	mulu.w	#$4,d7	; multiply by 4 to get offset in scene definition table
-	lea	SceneDefinitionTable,a6	; point a6 to the scene definition table
-	adda.l	d7,a6	; add offset
-	move.l	(a6),a6	; have a6 point to the value at a6
-	bsr.w	LoadScene	; branch to LoadScene subroutine
-	;---------------------------------------------------------------------------
-	; restore sprite positions
-	;---------------------------------------------------------------------------
-	lea	MEM_TEMP_SPACE,a6	; point a6 to a temporary space
-	move.w	(a6)+,(MEM_NPC0_SPRITE_X)
-	move.w	(a6)+,(MEM_NPC0_SPRITE_Y)
-	move.w	(a6)+,(MEM_NPC0_SPRITE_DIRECTION)
-	move.w	(a6)+,(MEM_NPC0_MOVE_INDEX)
-	move.w	(a6)+,(MEM_NPC1_SPRITE_X)
-	move.w	(a6)+,(MEM_NPC1_SPRITE_Y)
-	move.w	(a6)+,(MEM_NPC1_SPRITE_DIRECTION)
-	move.w	(a6)+,(MEM_NPC1_MOVE_INDEX)
-	move.w	(a6)+,(MEM_NPC2_SPRITE_X)
-	move.w	(a6)+,(MEM_NPC2_SPRITE_Y)
-	move.w	(a6)+,(MEM_NPC2_SPRITE_DIRECTION)
-	move.w	(a6)+,(MEM_NPC2_MOVE_INDEX)
-	move.w	(a6)+,(MEM_NPC3_SPRITE_X)
-	move.w	(a6)+,(MEM_NPC3_SPRITE_Y)
-	move.w	(a6)+,(MEM_NPC3_SPRITE_DIRECTION)
-	move.w	(a6)+,(MEM_NPC3_MOVE_INDEX)
-	move.l	#NPC0_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_NPC0_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
-	move.l	#NPC0_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_NPC0_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
-	move.l	#NPC1_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_NPC1_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
-	move.l	#NPC1_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_NPC1_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
-	move.l	#NPC2_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_NPC2_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
-	move.l	#NPC2_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_NPC2_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
-	move.l	#NPC3_SPRITE_VDP_Y,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_NPC3_SPRITE_Y),(VDP_DATA)	; copy the new y-coordinate
-	move.l	#NPC3_SPRITE_VDP_X,(VDP_CONTROL)	; set write location in VDP
-	move.w	(MEM_NPC3_SPRITE_X),(VDP_DATA)	; copy the new x-coordinate
-	;---------------------------------------------------------------------------
-	; fix sprites and fade in
-	;---------------------------------------------------------------------------
-	bsr.w	LoadPlayerSprite	; load the player sprite
-	bsr.w	FixSprites	; move player sprite and reset sprite links
-	bsr.w	FadeIn	; fade in to the new scene
+	bsr.w	ReloadCurrentScene	; reload current scene (needed to fix sprites)
 	bra.w	MainGameLoop	;	return to start of game loop	
 ProcessLoadScreenTestDpad:
 	; process dpad press

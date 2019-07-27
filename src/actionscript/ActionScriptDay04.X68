@@ -133,12 +133,12 @@ Day04Scene03Action01NPC:
 	; is the sub-quest complete?
 	btst.l	#EVENT_FLAG_DAY04_SUB_COMPLETE,d7	; test complete flag
 	bne.s	Day04Scene03Action01NPCComplete	; branch if set
-	; has an NPC joined the sub-quest?
-	btst.l	#EVENT_FLAG_DAY04_SUB_NPCFOUND,d7	; test flag
-	bne.s	Day04Scene03Action01ChooseEnvelope	; branch if set
 	; is the find gift part started?
 	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test flag
 	bne.s	Day04Scene03Action01NPCSubStartedNotCompleteNPC	; branch
+	; has an NPC joined the sub-quest?
+	btst.l	#EVENT_FLAG_DAY04_SUB_NPCFOUND,d7	; test flag
+	bne.s	Day04Scene03Action01ChooseEnvelope	; branch if set
 	; not complete & no NPC - test if started
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test started flag
 	bne.s	Day04Scene03Action01NPCSubStartedNotCompleteNoNPC	; branch        
@@ -245,6 +245,8 @@ Day04Scene03Action03GiveGiftR0:
 	; queue scripted event
 	lea ScriptedEventDay04Transition,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
+	; update objective
+	move.w	#OBJECTIVE_D4_O3,(MEM_OBJECTIVE)
 	; setup stuff for end of day
 	bsr.w	ClearPlayerInventory
 	move.l	#$03000000,(MEM_NPC_LOCATION_VB)
@@ -272,6 +274,8 @@ Day04Scene03Action03ChooseStartSubR0:
 	; update flags
 	bset.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; set started flag
 	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
+	; update objective
+	move.w	#OBJECTIVE_D4_O1,(MEM_OBJECTIVE)
 	; show the response text
 	lea	DialogTextDay04Scene03SubNotStartedR0,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -283,6 +287,8 @@ Day04Scene03Action03ChooseStartSubR1:
 Day04Scene03Action03ChooseEnvelope:
 	; update flags
 	bset.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; set started flag
+	; update objective
+	move.w	#OBJECTIVE_D4_O2,(MEM_OBJECTIVE)
 	; update NPC locations
 	move.l	#$04000000,(MEM_NPC_LOCATION_CENTER)
 	cmpi.w	#$0001,(MEM_MENU_RESPONSE)	; is the menu selection 1?
@@ -469,7 +475,7 @@ Day04Scene0AAction01NPC:
 	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
 	bne.s	Day04Scene0AAction01NPCDefault	; npc found, branch
 	; use text for sub-quest
-	lea	DialogTextCheckersStaffDay04SubFindNPC,a6	; load text
+	lea	DialogTextTLodgeStaffDay04SubFindNPC,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0AAction01NPCMallClosed:
@@ -807,7 +813,7 @@ Day04Scene11Action01NPC:
 	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
 	bne.s	DialogTextCNowStaffDefaultTalk	; npc found, branch
 	; use text for sub-quest
-	lea	DialogTextCPlanetStaffDay04SubFindNPC,a6	; load text
+	lea	DialogTextCNowStaffDay04SubFindNPC,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene11Action01NPCDefault:

@@ -333,6 +333,12 @@ Day03Scene08Action01NPCShopper:
 Day03Scene08Action02:	; ACTION_TAKE_GIVE
 	cmpi.w	#OBJ_NPC_DENIMCOUNTRY_STAFF,(MEM_ACTION_TARGET_OBJID) ; test target
 	beq.s	Day03Scene08Action02NPC	; branch to text for the NPC
+	cmpi.w	#OBJ_NPC_DANI,(MEM_ACTION_TARGET_OBJID)	; test target
+	bne.s	.1	; branch to default
+	lea	DialogTextDaniDefaultGive,a6	; load text
+	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
+	rts
+.1
 	; default action
 	bsr.w	ActionScriptDefaultTake
 	rts

@@ -10,6 +10,8 @@ ProcessStatusScreenTestACButtonPressed:	; test if the player pressed A
 ProcessStatusScreenACButtonPressed:
 	; setup dialog
 	bsr.w	SetDialogOpening	; setup dialog
+	; fixing similar bug to one in DefaultExitSceneNoKey
+	move.w	#$FFFF,(MEM_ACTION_TARGET_NPCID)
 	; set flag to not hide the selector after closing
 	move.l	(MEM_DIALOG_FLAGS),d7	; copy current dialog state to d7
 	bset.l	#DIALOG_FLAG_OPTION_PERSIST_SELECTOR,d7	; set option
@@ -68,18 +70,10 @@ ProcessStatusScreenTestBButtonPressed:	; test if the player pressed B
 	cmpi.w	#BUTTON_B_PRESSED,d6	; test if the B button was pressed
 	bne.w	ProcessStatusScreenTestDPad	; B button is not pressed
 CancelStatusScreen:
-	move.w	(MEM_ACTIVE_SCENE_ID),d6	; copy active scene ID to d6
-	mulu.w	#$4,d6	; multiply by 4 to get offset
-	lea	SceneDefinitionTable,a6	; point a6 to the scene definition table
-	adda.l	d6,a6	; add offset
-	move.l	(a6),a6	; have a6 point to the value at a6
-	move.w	(a6)+,d6	; discard first word
-	bsr.w	DrawScene	; branch to DrawScene subroutine
 	move.l	(MEM_GAME_STATE),d7	; copy current game state to d7
 	bclr.l	#STATE_FLAG_STATUS_SCREEN,d7	; update game state
 	move.l	d7,(MEM_GAME_STATE)	; save updated game state
-	bsr.w	ReloadSpriteTiles	; reload sprite tiles
-	bsr.w	FadeIn	; fade in
+	bsr.w	ReloadCurrentScene	; reload the current scene
 	bra.w	ExitProcessStatusScreen	; exit
 ProcessStatusScreenTestDPad:
 	cmpi.w	#$0000,(MEM_PLAYER_ITEM_COUNT)	; is item count 0?

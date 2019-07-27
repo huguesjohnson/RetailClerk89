@@ -673,7 +673,7 @@ Day05Scene13Action01NPCCamping:
 	btst.l	#EVENT_FLAG_DAY05_CAMP_COMPLETE,d7	; test flag
 	bne.s	Day05Scene13Action01NPCAfterCamp	; branch if set
 	btst.l	#EVENT_FLAG_DAY05_SUB_STARTED,d7	; test flag
-	beq.s	Day05Scene13Action01NPCSub	; branch if set
+	bne.s	Day05Scene13Action01NPCSub	; branch if set
 	; default text
 	lea	DialogTextScene13Day05NPC12SnowedIn,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT

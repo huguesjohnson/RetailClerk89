@@ -213,7 +213,7 @@ SceneCenter:
 	; npc1
 	dc.w	$0118	; starting x location of npc1
 	dc.w	$0100	; starting y location of npc1
-	dc.w	DIRECTION_DOWN	; starting direction of npc1
+	dc.w	DIRECTION_UP	; starting direction of npc1
 	dc.w	$0000	; movement frequency of npc1
 	dc.l	NPCMovementUpStart	; location of movement pattern for npc1
 	dc.w	(NPCMovementUpEnd-NPCMovementUpStart-1)	; pattern length

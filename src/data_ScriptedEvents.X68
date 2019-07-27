@@ -301,12 +301,12 @@ ScriptedEventDay01Sub00NPC2Exit:
 	dc.w	DIRECTION_DOWN
 	dc.w	($0180-$00C8)/SPRITE_STEP_PIXELS
 	; --------------------------------------------------------------------------
-	; NPC 3 needs to move from $0100,$0180 to $00B8,$010C
+	; NPC 3 needs to move from $0100,$0180 to $00B8,$0114
 	; --------------------------------------------------------------------------
 	dc.w	SCRIPTED_EVENT_CHANGE_SPRITE
 	dc.w	$0005	; NPC3
 	dc.w	DIRECTION_UP
-	dc.w	($0180-$010C)/SPRITE_STEP_PIXELS
+	dc.w	($0180-$0114)/SPRITE_STEP_PIXELS
 	dc.w	DIRECTION_LEFT
 	dc.w	($0100-$00B8)/SPRITE_STEP_PIXELS
 	dc.w	DIRECTION_DOWN
@@ -336,12 +336,12 @@ ScriptedEventDay01Sub00NPC3MoveCounter:
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay01Sub00NPC2D2NPC2
 	; --------------------------------------------------------------------------
-	; NPC 3 needs to move from $0180,$010C to $0130,$00CC
+	; NPC 3 needs to move from $0180,$0114 to $0130,$00CC
 	; --------------------------------------------------------------------------
 	dc.w	DIRECTION_LEFT
 	dc.w	($0180-$0130)/SPRITE_STEP_PIXELS
 	dc.w	DIRECTION_UP
-	dc.w	($010C-$00CC)/SPRITE_STEP_PIXELS
+	dc.w	($0114-$00CC)/SPRITE_STEP_PIXELS
 	dc.w	SCRIPTED_EVENT_END
 
 ScriptedEventDay01Sub00NPC3Exit:
@@ -863,7 +863,7 @@ ScriptedEventDay03DayEnd:
 	; --------------------------------------------------------------------------
 	dc.w	$0001	; player
 	dc.w	DIRECTION_RIGHT
-	dc.w	($00B4/SPRITE_STEP_PIXELS)
+	dc.w	($00D4/SPRITE_STEP_PIXELS)
 	; --------------------------------------------------------------------------
 	; move D.B. off the screen
 	; --------------------------------------------------------------------------
@@ -1420,8 +1420,6 @@ ScriptedEventDay05Camp:
 	dc.l	DialogTextDay05ScriptedEventCamp08
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp09
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay05ScriptedEventCamp0A
 	; --------------------------------------------------------------------------
 	; have Jordan face down
 	; --------------------------------------------------------------------------
@@ -1429,6 +1427,8 @@ ScriptedEventDay05Camp:
 	dc.w	$0003	; npc2 (Jordan)
 	dc.w	DIRECTION_DOWN
 	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp0A
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp0B
 	; --------------------------------------------------------------------------
@@ -1455,14 +1455,13 @@ ScriptedEventDay05Camp:
 	dc.l	DialogTextDay05ScriptedEventCamp10
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp11
-	dc.w	SCRIPTED_EVENT_DIALOG
-	dc.l	DialogTextDay05ScriptedEventCamp12
-
 	; --------------------------------------------------------------------------
 	; have Jordan face down
 	; --------------------------------------------------------------------------
 	dc.w	DIRECTION_DOWN
 	dc.w	$0001
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp12
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp13
 	; --------------------------------------------------------------------------
@@ -1552,6 +1551,10 @@ ScriptedEventDay05Camp:
 	dc.w	$0001
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp1F
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp20
+	dc.w	SCRIPTED_EVENT_DIALOG
+	dc.l	DialogTextDay05ScriptedEventCamp21
 	dc.w	SCRIPTED_EVENT_DIALOG
 	dc.l	DialogTextDay05ScriptedEventCamp22
 	dc.w	SCRIPTED_EVENT_DIALOG

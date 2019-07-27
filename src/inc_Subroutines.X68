@@ -51,6 +51,8 @@
 
 	include 'sub_DrawScene.X68'
 
+	include 'sub_ReloadCurrentScene.X68'
+
 	include	'sub_ProcessDialog.X68'
 	
 	include	'sub_SetSpriteLink.X68'

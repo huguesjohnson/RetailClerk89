@@ -73,107 +73,107 @@ TitleScreenTextFooter:
 
 	DebugScreenLine01:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 0 title screen                  ",ETX
+	dc.b	"{ Day 0 (11/19) title screen          ",ETX
 
 	DebugScreenLine02:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 0 After demo mission            ",ETX
+	dc.b	"{ Day 0 (11/19) After demo mission    ",ETX
 
 	DebugScreenLine03:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 1 title screen                  ",ETX
+	dc.b	"{ Day 1 (11/24) title screen          ",ETX
 
 	DebugScreenLine04:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 1 mid point                     ",ETX
+	dc.b	"{ Day 1 (11/24) mid point             ",ETX
 
 	DebugScreenLine05:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 1 end                           ",ETX
+	dc.b	"{ Day 1 (11/24) end                   ",ETX
 
 	DebugScreenLine06:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 2 title screen                  ",ETX
+	dc.b	"{ Day 2 (11/26) title screen          ",ETX
 
 	DebugScreenLine07:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 2 mid point                     ",ETX
+	dc.b	"{ Day 2 (11/26) mid point             ",ETX
 
 	DebugScreenLine08:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 2 end                           ",ETX
+	dc.b	"{ Day 2 (11/26) end                   ",ETX
 
 	DebugScreenLine09:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 3 title                         ",ETX
+	dc.b	"{ Day 3 (12/3) title                  ",ETX
 
 	DebugScreenLine0A:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 3 mid point                     ",ETX
+	dc.b	"{ Day 3 (12/3) mid point              ",ETX
 
 	DebugScreenLine0B:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 4 title                         ",ETX
+	dc.b	"{ Day 4 (12/10) title                 ",ETX
 
 	DebugScreenLine0C:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 4 mid point                     ",ETX
+	dc.b	"{ Day 4 (12/10) mid point             ",ETX
 
 	DebugScreenLine0D:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 4 end                           ",ETX
+	dc.b	"{ Day 4 (12/10) end                   ",ETX
 
 	DebugScreenLine0E:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 5 title                         ",ETX
+	dc.b	"{ Day 5 (12/17) title                 ",ETX
 
 	DebugScreenLine0F:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 5 parking lot blizzard scene    ",ETX
+	dc.b	"{ Day 5 (12/17) parking lot blizzard  ",ETX
 
 	DebugScreenLine10:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 5 camp scene                    ",ETX
+	dc.b	"{ Day 5 (12/17) camp scene            ",ETX
 
 	DebugScreenLine11:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 5 end                           ",ETX
+	dc.b	"{ Day 5 (12/17) end                   ",ETX
 
 	DebugScreenLine12:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 6 title                         ",ETX
+	dc.b	"{ Day 6 (12/24) title                 ",ETX
 
 	DebugScreenLine13:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 6 start of night mission        ",ETX
+	dc.b	"{ Day 6 (12/24) start of night mission",ETX
 
 	DebugScreenLine14:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 6 end of night mission          ",ETX
+	dc.b	"{ Day 6 (12/24) end of night mission  ",ETX
 
 	DebugScreenLine15:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 title (bad)                   ",ETX
+	dc.b	"{ Day 7 (12/31) title - bad           ",ETX
 
 	DebugScreenLine16:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 mid point (bad)               ",ETX
+	dc.b	"{ Day 7 (12/31) mid point - bad       ",ETX
 
 	DebugScreenLine17:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 title (good)                  ",ETX
+	dc.b	"{ Day 7 (12/31) title - good          ",ETX
 
 	DebugScreenLine18:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 end (good)                    ",ETX
+	dc.b	"{ Day 7 (12/31) end - good            ",ETX
 
 	DebugScreenLine19:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 title (perfect)               ",ETX
+	dc.b	"{ Day 7 (12/31) title - perfect       ",ETX
 
 	DebugScreenLine1A:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"{ Day 7 end (perfect)                 ",ETX
+	dc.b	"{ Day 7 (12/31) end - perfect         ",ETX
 
 	DebugScreenLine1B:
 	;		"12345678901234567890123456789012345678"
@@ -739,7 +739,7 @@ DialogTextDay01Intro00:
 	dc.b	"That Santa thing there",LF
 	dc.b	"now doesn't count.   ^",FF
 	dc.b	"Our store may close if",LF
-	dc.b	"sales don't improve.'",ETX
+	dc.b	"sales don't improve.",ETX
 
 	align 2
 DialogTextDay01Intro01:
@@ -1154,7 +1154,7 @@ DialogTextDay01Sub00NPC0Talk:
 DialogTextDay01Sub00End00:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Hey, wait sec!",ETX
+	dc.b	"Hey, wait a sec!",ETX
 
 	align 2
 DialogTextDay01Sub00End01:
@@ -1169,7 +1169,7 @@ DialogTextDay01Sub00End01:
 DialogTextDay01Sub00End02:
 	dc.w	OBJ_NPC_CHECKERS_STAFF
 	;		"1234567890123456789012"
-	dc.b	"Hey wait.",LF
+	dc.b	"Hold on!",LF
 	dc.b	"                     ^",FF
 	dc.b	"My parents will be out",LF
 	dc.b	"of town on New Years.^",FF
@@ -1351,7 +1351,7 @@ DialogTextScriptedEventDay02Start:
 	dc.b	"quarters now.        ^",FF
 	dc.b	"That's how it always",LF
 	dc.b	"starts.              ^",FF
-	dc.b	"If we don't get some",LF
+	dc.b	"If we don't get some,",LF
 	dc.b	"dimes will be next.  ^",FF
 	dc.b	"Why don't you try the",LF
 	dc.b	"other stores?        ^",FF
@@ -2457,7 +2457,7 @@ DialogTextDay04Scene03SubStartGift0:
 	;		"1234567890123456789012"
 	dc.b	"The rules are simple,",LF
 	dc.b	"                     ^",FF
-	dc.b	"Find a gift for the",LF
+	dc.b	"find a gift for the",LF
 	dc.b	"name in the envelope.^",FF
 	dc.b	"Then bring the gift to",LF
 	dc.b	"me.                  ^",FF
@@ -2744,8 +2744,9 @@ DialogTextFCBCampingStaffDay04SubFindNPC:
 	dc.b	"Plus I know everyone",LF
 	dc.b	"here well by now.",ETX
 
+	align 2
 DialogTextSouthCenterStaffDay04SubFindNPC:
-	dc.w	OBJ_NPC_FCBCAMPING_STAFF
+	dc.w	OBJ_NPC_SOUTH_CENTER_STAFF
 	;		"1234567890123456789012"
 	dc.b	"Too late, I signed-up",LF
 	dc.b	"this morning.",ETX
@@ -2806,7 +2807,7 @@ DialogTextSVideoStaffDay04SubFindGift3:
 DialogTextSVideoStaffDay04SubFindGift4:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"OK, maybe he can",LF
+	dc.b	"OK, maybe he can find",LF
 	dc.b	"something to help.",ETX
 
 	align 2
@@ -3093,8 +3094,8 @@ DialogTextScene0EDay05NPC0ASnowedIn:
 	;		"1234567890123456789012"
 	dc.b	"I wish I could leave",LF
 	dc.b	"like everyone else,  ^",FF
-	dc.b	"but I don't have car.",LF
-	dc.b	"I'll be OK.",ETX
+	dc.b	"but I don't have a",LF
+	dc.b	"car. I'll be OK.",ETX
 
 	align 2
 DialogTextScene0FDay05NPC0BSnowedIn:
@@ -4112,7 +4113,7 @@ DialogTextDay06Sub00GetItem03:
 
 	align 2
 DialogTextDay06Sub00GetItem04:
-	dc.w	OBJ_NPC_FCBFIREARMS_STAFF
+	dc.w	OBJ_NPC_DB
 	;		"1234567890123456789012"
 	dc.b	"It's a secret to",LF
 	dc.b	"everybody.",ETX
@@ -4471,7 +4472,7 @@ DialogTextDay06ScriptedEventEndMissionBad03:
 DialogTextDay06Scene03Dani:
 	dc.w	OBJ_NPC_DANI
 	;		"1234567890123456789012"
-	dc.b	"Hey was like this when",LF
+	dc.b	"He was like this when",LF
 	dc.b	"I got here, I swear. ^",FF
 	dc.b	"He's out cold.",ETX
 
@@ -4778,7 +4779,7 @@ DialogTextDay06ScriptedEventEnding01A:
 	dc.b	"Oh you'd like that.",LF
 	dc.b	"                     ^",FF
 	dc.b	"Go back & tell all",LF
-	dc.b	"you manbun friends.  ^",FF
+	dc.b	"your manbun friends.  ^",FF
 	dc.b	"`Hey dudes, check out",LF
 	dc.b	"this neat lifehack!' ^",FF
 	dc.b	"The mall will be",LF
@@ -4958,7 +4959,7 @@ DialogTextDay06Scene0ENPCEnding:
 DialogTextMallManagerDay06:
 	dc.w	OBJ_NPC_MALLMANAGER_SHORT
 	;		"1234567890123456789012"
-	dc.b	"You & your sister",LF
+	dc.b	"It seems like you",LF
 	dc.b	"are always on break. ^",FF
 	dc.b	"I hope you're not",LF
 	dc.b	"causing any trouble. ^",FF
@@ -6104,8 +6105,8 @@ DialogTextRadioDay02R0:	; WNWT (news and weather)
 	dc.b	"Time for traffic on",LF
 	dc.b	"the Fibonacci Primes:^",FF
 	dc.b	"and, wait, we also do",LF
-	dc.b	"weather on the 3s.",FF
-	dc.b	"This new system is",FF
+	dc.b	"weather on the 3s.   ^",FF
+	dc.b	"This new system is",LF
 	dc.b	"a little confusing.",ETX
 
 DialogTextRadioDay02R1:	; WOCX (talk radio)
@@ -6303,7 +6304,7 @@ DialogTextRadioDay06NightR1:	; WOCX (talk radio)
 	dc.b	"folks.               ^",FF
 	dc.b	"In the future all the",LF
 	dc.b	"food is enriched with^",FF
-	dc.b	"all kind of hormones",LF
+	dc.b	"all kinds of hormones",LF
 	dc.b	"& fluoride.          ^",FF
 	dc.b	"These travelers make",LF
 	dc.b	"ideal super soldiers.^",FF
@@ -6452,7 +6453,7 @@ DialogTextDaniCar:
 DialogTextMannequin:
 	;		"1234567890123456789012"
 	dc.b	"Keep this up & you'll",LF
-	dc.b	"get you kicked out.",ETX
+	dc.b	"get kicked out.",ETX
 
 DialogTextTMannequin:
 	;		"1234567890123456789012"
@@ -6913,7 +6914,7 @@ DialogTextCNowStaffDefaultTalk:
 	dc.b	"Hi! I'm so happy",LF
 	dc.b	"you're here!         ^",FF
 	dc.b	"You won't believe what",LF
-	dc.b	"happened today!'     ^",FF
+	dc.b	"happened today!      ^",FF
 	dc.b	"[30 minutes later]",LF
 	dc.b	"                     ^",FF
 	dc.b	"..and that's why I'm",LF
@@ -7194,7 +7195,7 @@ DialogTextNPCWorkshopStaff0DefaultGive:
 
 	align 2
 DialogTextNPCWorkshopStaff1DefaultGive:
-	dc.w	OBJ_NPC_WORKSHOP_STAFF0
+	dc.w	OBJ_NPC_WORKSHOP_STAFF1
 	;		"1234567890123456789012"
 	dc.b	"What do you want me",LF
 	dc.b	"to do with that?",ETX
@@ -8439,6 +8440,30 @@ StatusScreenDay04Objective00:
 	;		"1234567890123456789012345678901234567"
 	dc.b	"good way to earn a new store key.",ETX
 
+StatusScreenDay04Objective01:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 10, 1989: Secret Santa",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"You need to find another person to",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"join the Secret Santa gift exchange.",ETX
+
+StatusScreenDay04Objective02:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 10, 1989: Secret Santa",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"Find a good gift & bring it to the",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"information desk.",ETX
+
+StatusScreenDay04Objective03:
+	;		"12345678901234567890123456789012345678"
+	dc.b	"December 10, 1989: Secret Santa",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"End of the day,",LF
+	;		"1234567890123456789012345678901234567"
+	dc.b	"head out whenever you're ready.",ETX
+
 StatusScreenDay05Objective00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"December 17, 1989: The Blizzard",LF
@@ -8517,11 +8542,11 @@ SaveGameTitleD1O1:
 
 SaveGameTitleD2O0:
 	;		"123456789012345678901"
-	dc.b	"November 26 (Morning)",ETX
+	dc.b	"November 26 (Day)    ",ETX
 
 SaveGameTitleD2O1:
 	;		"123456789012345678901"
-	dc.b	"November 26 (Day)    ",ETX
+	dc.b	"November 26 (Evening)",ETX
 
 SaveGameTitleD2O2:
 	;		"123456789012345678901"
@@ -8546,6 +8571,18 @@ SaveGameTitleD3O1:
 SaveGameTitleD4O0:
 	;		"123456789012345678901"
 	dc.b	"December 10 (Day)    ",ETX
+
+SaveGameTitleD4O1:
+	;		"123456789012345678901"
+	dc.b	"December 10 (Day)    ",ETX
+
+SaveGameTitleD4O2:
+	;		"123456789012345678901"
+	dc.b	"December 10 (Day)    ",ETX
+
+SaveGameTitleD4O3:
+	;		"123456789012345678901"
+	dc.b	"December 10 (Night)  ",ETX
 
 SaveGameTitleD5O0:
 	;		"123456789012345678901"

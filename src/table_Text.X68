@@ -710,6 +710,9 @@ StatusScreenObjectives:
 	dc.l	StatusScreenDay02Objective03
 	dc.l	StatusScreenDay02Objective04
 	dc.l	StatusScreenDay03Objective03
+	dc.l	StatusScreenDay04Objective01
+	dc.l	StatusScreenDay04Objective02
+	dc.l	StatusScreenDay04Objective03
 
 ;-------------------------------------------------------------------------------
 ; save game titles
@@ -736,5 +739,8 @@ SaveGameTitles:
 	dc.l	SaveGameTitleD2O3
 	dc.l	SaveGameTitleD2O4
 	dc.l	SaveGameTitleD3O3
+	dc.l	SaveGameTitleD4O1
+	dc.l	SaveGameTitleD4O2
+	dc.l	SaveGameTitleD4O3
 
 
