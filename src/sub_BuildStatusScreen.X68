@@ -14,7 +14,10 @@ BuildStatusScreen:
 	;---------------------------------------------------------------------------
 	; determine spot for "you are here" icon
 	;---------------------------------------------------------------------------
+	clr	d6	; done out of paranoia
 	move.w	(MEM_ACTIVE_SCENE_ID),d6	; copy active scene ID to d6
+	cmpi.w	#SCENE_ID_SOUTH_CENTER,d6	; check against my own stupidity
+	bgt.s	BuildStatusScreenObjectiveText
 	mulu.w	#LWORD_SIZE,d6	; multiply by LWORD_SIZE to get offset
 	lea	StatusMapIconLocationTable,a6	; point a6 to the lookup table
 	adda.l	d6,a6	; move to offset
@@ -24,7 +27,10 @@ BuildStatusScreen:
 	; draw the objective text
 	;---------------------------------------------------------------------------
 BuildStatusScreenObjectiveText:
+	clr	d6	; done out of paranoia
 	move.w	(MEM_OBJECTIVE),d6	; copy objective to d6
+	cmpi.w	#MAX_OBJECTIVE,d6	; check against my own stupidity
+	bgt.s	BuildSaveTitles
 	mulu.w	#LWORD_SIZE,d6	; multiply by LWORD_SIZE to get offset
 	lea	StatusScreenObjectives,a5	; point a5 to the lookup table
 	adda.l	d6,a5	; move to offset

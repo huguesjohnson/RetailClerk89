@@ -161,13 +161,13 @@ MEM_TEMP_SPACE=$FFFF0248	; temp working space
 ;-------------------------------------------------------------------------------
 ; collision detection
 ;-------------------------------------------------------------------------------
-MEM_ACTIVE_SPRITE_LEFT_COLUMN=$FFFF0268	; left column of active sprite
-MEM_ACTIVE_SPRITE_HIGH_LEFT=$FFFF026A	; high left row of active sprite
-MEM_ACTIVE_SPRITE_LOW_LEFT=$FFFF026C	; low left row of active sprite
-MEM_ACTIVE_SPRITE_RIGHT_COLUMN=$FFFF026E	; right column of active sprite
-MEM_ACTIVE_SPRITE_HIGH_RIGHT=$FFFF0270	; high right row of active sprite
-MEM_ACTIVE_SPRITE_LOW_RIGHT=$FFFF0272	; low right row of active sprite
-MEM_COLLISION_MAP_ROW=$FFFF0274	; row of map data
-MEM_COLLISION_RESULT=$FFFF0278	; result of collision test
-MEM_COLLISION_DATA=$FFFF027A	; collision data for the current map
-MEM_END=$FFFF037A
+MEM_ACTIVE_SPRITE_LEFT_COLUMN=$FFFF0288	; left column of active sprite
+MEM_ACTIVE_SPRITE_HIGH_LEFT=$FFFF028A	; high left row of active sprite
+MEM_ACTIVE_SPRITE_LOW_LEFT=$FFFF028C	; low left row of active sprite
+MEM_ACTIVE_SPRITE_RIGHT_COLUMN=$FFFF028E	; right column of active sprite
+MEM_ACTIVE_SPRITE_HIGH_RIGHT=$FFFF0290	; high right row of active sprite
+MEM_ACTIVE_SPRITE_LOW_RIGHT=$FFFF0292	; low right row of active sprite
+MEM_COLLISION_MAP_ROW=$FFFF0294	; row of map data
+MEM_COLLISION_RESULT=$FFFF0298	; result of collision test
+MEM_COLLISION_DATA=$FFFF029A	; collision data for the current map
+MEM_END=$FFFF039A

@@ -14,7 +14,7 @@ LoadPlayerSpriteTiles:
 	move.w	#$2700,sr		; disable interrupts
 	cmpi.w	#PLAYER_SPRITE_DANI,(MEM_PLAYER_SPRITE)	; which sprite tiles to use?
 	beq.s	.1	; branch to use tiles for Dani
-	cmpi.w	#PLAYER_SPRITE_FCBCAMPING,(MEM_PLAYER_SPRITE)	; which sprite tiles to use?
+	cmpi.w	#PLAYER_SPRITE_FCBCAMPING,(MEM_PLAYER_SPRITE)
 	beq.s	.2	; branch to use tiles for FCBCamping sprite
 	; else use default tiles
 	lea	PlayerSpriteTilesStart,a0	; set address of first tile to load
