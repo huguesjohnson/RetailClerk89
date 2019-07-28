@@ -52,6 +52,7 @@ Unpause:
 	moveq	#$0004,d0	; number of palettes to load
 	move.l	#VDP_CRAM_WRITE,d1	; initial write address
 	bsr.w	LoadPalettes	; branch to LoadPalettes subroutine
+	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset frame counter
 UpdatePause:
 	move.l	d7,(MEM_GAME_STATE)	; save the new paused state
 TestPause:
@@ -113,6 +114,7 @@ TestStatusScreen:
 	; player is on the status screen
 	;---------------------------------------------------------------------------
 	bsr.w	ProcessStatusScreen	; branch to process the status screen
+	move.w	#$0000,(MEM_FRAME_COUNTER)	; reset frame counter
 	bra.w	MainGameLoop	; return to start of game loop
 ;-------------------------------------------------------------------------------
 ; determine if the player is in free exploration mode
@@ -225,7 +227,7 @@ TestTitleScreenTestStartPressed:
 	;---------------------------------------------------------------------------
 	; handle selector movement
 	;---------------------------------------------------------------------------
-	bne.w	TestTitleLoadSelectedScreen	; start button pressed, load next screen	
+	bne.w	TestTitleLoadSelectedScreen	; start button pressed, load next screen
 TestTitleScreenTestDPadPressed:
 	move.b	(MEM_CONTROL_PRESSED),d6	; copy pressed buttons to d6
 	andi.b	#BUTTON_UP_PRESSED,d6	; test if the up button was pressed

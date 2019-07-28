@@ -105,8 +105,15 @@ VBlank:
 	bset	#STATE_FLAG_VBLANK,(MEM_GAME_STATE)	; set vblank flag
 	addq	#$1,(MEM_VBLANK_COUNTER)	; increment debug counter 
 	addq	#$1,(MEM_FRAME_COUNTER)		; increment frame counter
+	; prevent some freezing bugs	
+	bpl.s	VBlankReadJoypads
+	and.w	#$0000,(MEM_FRAME_COUNTER)
 
 VBlankReadJoypads:
+
+	move.l	(MEM_FRAME_COUNTER),(MEM_DEBUG_1)
+
+
 	bsr.w	ReadJoypads					; read controllers
 
 VBlankOrderSprites:
