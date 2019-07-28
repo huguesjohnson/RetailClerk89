@@ -594,6 +594,10 @@ Day04Scene0CAction01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene0CAction01NPCSubFindGift:
+	; set flag
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#EVENT_FLAG_DAY04_SUB_TALK_NPC,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
 	; queue scripted event
 	lea ScriptedEventDay04FindGiftSVideo,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -779,6 +783,10 @@ Day04Scene10Action01NPCDefault:
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
 	rts
 Day04Scene10Action01NPCSubFindGift:
+	; set flag
+	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
+	bset.l	#EVENT_FLAG_DAY04_SUB_TALK_NPC,d7	; set flag
+	move.l	d7,(MEM_DAY_EVENT_FLAGS)	; save updated flags
 	; queue scripted event
 	lea ScriptedEventDay04FindGiftCPlanet,a6	; point a6 to event to load
 	bsr.w QueueScriptedEvent	; queue the event
@@ -1139,6 +1147,9 @@ Day04Scene17Action02NPC:
 Day04CheckGoodGift:
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy flags to d7
 	bset.l	#EVENT_FLAG_DAY04_SUB_GIFT_GIVEN,d7	; set gift given flag
+	; test if Dani talked to the NPC
+	btst.l	#EVENT_FLAG_DAY04_SUB_TALK_NPC,d7	; test flag
+	beq.s	Day04CheckGoodGiftExit	; not set, exit
 	btst.l	#EVENT_FLAG_DAY04_SUB_CHOICE1,d7	; test choice
 	bne.s	Day04CheckGoodGiftNPCCPlanet	; branch if choice 1
 Day04CheckGoodGiftNPCSVideo:

@@ -7818,8 +7818,8 @@ ItemNameRBook4:
 	dc.b	"GetAGhost",ITEMNAMEEND
 
 ItemDescriptionRBook4:
-	;		"1              234567890123456"
-	dc.b	"",CHAR_DQUOTE,"New paranormal",LF
+	;		"1              234567890123456789012"
+	dc.b	"",CHAR_DQUOTE,"A debut paranormal",LF
 	;		"1234567890123456789012"
 	dc.b	"romance series",CHAR_DQUOTE,ETX
 
