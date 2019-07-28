@@ -4779,7 +4779,7 @@ DialogTextDay06ScriptedEventEnding01A:
 	dc.b	"Oh you'd like that.",LF
 	dc.b	"                     ^",FF
 	dc.b	"Go back & tell all",LF
-	dc.b	"your manbun friends.  ^",FF
+	dc.b	"your manbun friends. ^",FF
 	dc.b	"`Hey dudes, check out",LF
 	dc.b	"this neat lifehack!' ^",FF
 	dc.b	"The mall will be",LF
