@@ -110,10 +110,6 @@ VBlank:
 	and.w	#$0000,(MEM_FRAME_COUNTER)
 
 VBlankReadJoypads:
-
-	move.l	(MEM_FRAME_COUNTER),(MEM_DEBUG_1)
-
-
 	bsr.w	ReadJoypads					; read controllers
 
 VBlankOrderSprites:

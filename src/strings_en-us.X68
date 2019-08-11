@@ -186,23 +186,23 @@ TitleScreenTextFooter:
 ;-------------------------------------------------------------------------------
 EndScreenTextLine1:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Thank you for trying this little demo.",ETX
+	dc.b	"Thank you for trying this little demo!",ETX
 
 EndScreenTextLine2:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Follow the progress of this project at",ETX
+	dc.b	"",ETX
 
 EndScreenTextLine3:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"https://HuguesJohnson.com/",ETX
+	dc.b	"Check out my other projects over at",ETX
 
 EndScreenTextLine4:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Look for the final game in stores",ETX
+	dc.b	"https://HuguesJohnson.com/",ETX
 
 EndScreenTextLine5:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"sometime around Xmas 2040.",ETX
+	dc.b	"",ETX
 
 EndScreenTextLine6:
 	;		"12345678901234567890123456789012345678"
