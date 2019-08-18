@@ -2926,7 +2926,7 @@ DialogTextSVideoStaffDay04MallClosed:
 
 	align 2
 DialogTextCPlanetStaffDay04MallClosed:
-	dc.w	OBJ_NPC_SVIDEO_STAFF
+	dc.w	OBJ_NPC_CPLANET_STAFF
 	;		"1234567890123456789012"
 	dc.b	"You sure don't wait",LF
 	dc.b	"long, huh.           ^",FF
@@ -4694,7 +4694,7 @@ DialogTextDay06ScriptedEventEnding014:
 	dc.b	"baby strollers.      ^",FF
 	dc.b	"That's what put me",LF
 	dc.b	"out of work.         ^",FF
-	dc.b	"Almost 40 years of",LF
+	dc.b	"Over 40 years of",LF
 	dc.b	"work lost to them.   ^",FF
 	dc.b	"So I came back too.",LF
 	dc.b	"                     ^",FF
