@@ -320,15 +320,15 @@ CreditsScreen00Line1B:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"See CREDITS & LICENSE for details",ETX
 
-LegalScreenLine00BadEnding:
+EndScreenLine00BadEnding:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"    Retail Clerk '89 - Bad Ending     ",ETX
 
-LegalScreenLine00GoodEnding:
+EndScreenLine00GoodEnding:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"    Retail Clerk '89 - Good Ending    ",ETX
 
-LegalScreenLine00PerfectEnding:
+EndScreenLine00PerfectEnding:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"  Retail Clerk '89 - Perfect Ending   ",ETX
 
@@ -8701,7 +8701,6 @@ StoreName0C:
 ;-------------------------------------------------------------------------------
 ; legal screen text
 ;-------------------------------------------------------------------------------
-
 LegalScreenLine00:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"           Retail Clerk '89           ",ETX

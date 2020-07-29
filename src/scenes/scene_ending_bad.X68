@@ -834,7 +834,7 @@ SceneEndingBad3:
 	;---------------------------------------------------------------------------
 	dc.w	$0007	; text count
 
-	dc.l	LegalScreenLine00BadEnding	; location of string to display
+	dc.l	EndScreenLine00BadEnding	; location of string to display
 	dc.w	DIALOG_BASE_TILE	; base pattern
 	dc.l	VDP_VRAM_WRITE_A+$06800000	; initial drawing location
 
