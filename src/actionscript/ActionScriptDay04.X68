@@ -817,9 +817,9 @@ Day04Scene11Action01NPC:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
-	beq.s	DialogTextCNowStaffDefaultTalk	; not started, branch
+	beq.s	Day04Scene11Action01NPCDefault	; not started, branch
 	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
-	bne.s	DialogTextCNowStaffDefaultTalk	; npc found, branch
+	bne.s	Day04Scene11Action01NPCDefault	; npc found, branch
 	; use text for sub-quest
 	lea	DialogTextCNowStaffDay04SubFindNPC,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
@@ -1033,9 +1033,9 @@ Day04Scene15Action01NPC:
 	; check if in the sub-quest to find an NPC npc the secret santa exchange
 	move.l	(MEM_DAY_EVENT_FLAGS),d7	; copy event flags to d7
 	btst.l	#EVENT_FLAG_DAY04_SUB_STARTED,d7	; test if stated
-	beq.s	DialogTextFCBFishingStaffDefaultTalk	; not started, branch
+	beq.s	Day04Scene15Action01NPCDefault	; not started, branch
 	btst.l	#EVENT_FLAG_DAY04_SUB_FINDGIFTSTARTED,d7	; test if npc found
-	bne.s	DialogTextFCBFishingStaffDefaultTalk	; npc found, branch
+	bne.s	Day04Scene15Action01NPCDefault	; npc found, branch
 	; use text for sub-quest
 	lea	DialogTextFCBFishingStaffDay04SubFindNPC,a6	; load text
 	move.l	a6,MEM_DIALOG_TEXT	; copy address to MEM_DIALOG_TEXT
