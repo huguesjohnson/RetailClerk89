@@ -222,6 +222,17 @@ TrapException:
 ;*******************************************************************************
 	include	'table_SceneKeyLookup.X68'
 
+Resources:
+	org	ROM_ADDR_RESOURCES
+	;---------------------------------------------------------------------------
+	; Personal note to vasm 1.8h... 
+	; I really f'ing meant it when I said "org ROM_ADDR_RESOURCES"
+	; I don't know why you ignored it the first time so here it is again.
+	; Did you think I was joking?
+	; Every other org statement works exactly as expected.
+	; I don't know what your problem is that you need to be told twice here.
+	; I assume the change named "Reworked absolute ORG sections" is the issue.
+	;---------------------------------------------------------------------------
 	org	ROM_ADDR_RESOURCES
 
 ;*******************************************************************************
@@ -263,6 +274,6 @@ BGM_Day00:
 ;*******************************************************************************
 
 RomEnd:
-	ORG ROM_ADDR_END
+	org ROM_ADDR_END
 	dc.b	%11111111
     end 0
