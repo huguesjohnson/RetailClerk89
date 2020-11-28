@@ -54,13 +54,13 @@ TitleScreenTextDebug:
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"   Stable Debug Build (August 2019)   ",ETX
+	dc.b	" Debug Version 1.0.1 (September 2020) ",ETX
 
 	else
 
 TitleScreenTextFooter:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"     Release Build (August 2019)      ",ETX
+	dc.b	"Release Version 1.0.1 (September 2020)",ETX
 	endif
 
 	if _DEBUG_
@@ -8706,7 +8706,7 @@ LegalScreenLine00:
 	dc.b	"           Retail Clerk '89           ",ETX
 LegalScreenLine01:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Copyright (c) 2015-2019 Hugues Johnson",ETX
+	dc.b	"Copyright (c) 2015-2020 Hugues Johnson",ETX
 LegalScreenLine02:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"This demo is not licensed by Sega     ",ETX
@@ -8721,7 +8721,7 @@ LegalScreenLine05:
 	dc.b	"This demo uses the Echo Sound Driver  ",ETX
 LegalScreenLine06:
 	;		"12345678901234567890123456789012345678"
-	dc.b	"Copyright (c) 2010-2019               ",ETX
+	dc.b	"Copyright (c) 2010-2020               ",ETX
 LegalScreenLine07:
 	;		"12345678901234567890123456789012345678"
 	dc.b	"Javier Degirolmo (sikthehedgehog)     ",ETX
