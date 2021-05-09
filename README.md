@@ -32,9 +32,9 @@ This has been fully tested on Gens and BlastEm for Linux. It has also been fully
 
 **Links**
 
-Project page - http://www.huguesjohnson.com/rc89/
+Project page - https://www.huguesjohnson.com/rc89/
 
-Builds that mostly work - http://www.huguesjohnson.com/rc89/releases.html
+Builds that mostly work - https://www.huguesjohnson.com/rc89/releases.html
 
 **Disclaimers**
 
