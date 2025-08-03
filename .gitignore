@@ -2,6 +2,7 @@
 *.java~
 *.X68~
 *.68k~
+**/.DS_Store
 src/RetailClerk89*.bin
 src/address.log
 /blastem
